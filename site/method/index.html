@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FrontierGraph Method</title>
+    <meta
+      name="description"
+      content="Method notes for FrontierGraph, a deterministic graph-native ranker for research opportunities in economics."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../config.js"></script>
+  </head>
+  <body>
+    <div class="page">
+      <header class="masthead">
+        <a class="brand" href="../">
+          <span class="brand-mark"></span>
+          <span class="brand-text">
+            <span class="eyebrow">Method</span>
+            <span class="brand-title">FrontierGraph</span>
+          </span>
+        </a>
+        <nav class="mastnav">
+          <a href="../">Home</a>
+          <a id="method-open-app" href="https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app">Open app</a>
+          <a href="mailto:prashant.garg@imperial.ac.uk">Contact</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="method-hero">
+          <p class="eyebrow">A concise methods note</p>
+          <h1>How FrontierGraph turns the literature into a ranked agenda.</h1>
+          <p class="method-copy">
+            FrontierGraph is built around a narrow principle: AI may help extract graph structure from text, but the
+            ranking itself should remain deterministic, auditable, and interpretable by domain experts.
+          </p>
+        </section>
+
+        <section class="section method-grid">
+          <article class="method-card">
+            <p class="eyebrow">Stance</p>
+            <h3>What the tool is trying to do</h3>
+            <ul>
+              <li>Surface promising missing directed links in the economics literature.</li>
+              <li>Make those suggestions inspectable rather than opaque.</li>
+              <li>Support researcher judgment instead of pretending to automate scientific strategy.</li>
+            </ul>
+          </article>
+          <article class="method-card">
+            <p class="eyebrow">Constraint</p>
+            <h3>What AI is allowed to do</h3>
+            <ul>
+              <li>Read papers and extract candidate graph edges.</li>
+              <li>Stop there.</li>
+              <li>The ranking, filtering, and evidence presentation stay deterministic after graph construction.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Pipeline</p>
+              <h2>Four stages</h2>
+            </div>
+          </div>
+          <div class="steps">
+            <article class="step">
+              <span class="step-number">1</span>
+              <h3>Extract</h3>
+              <p>Convert papers into a claim graph of directed concept-to-concept relationships.</p>
+            </article>
+            <article class="step">
+              <span class="step-number">2</span>
+              <h3>Generate candidates</h3>
+              <p>Enumerate missing links implied by underexplored pairs, open paths, and incomplete motifs.</p>
+            </article>
+            <article class="step">
+              <span class="step-number">3</span>
+              <h3>Score</h3>
+              <p>Combine graph signals with penalties for highly connected hubs and boosts for low-contact corridors.</p>
+            </article>
+            <article class="step">
+              <span class="step-number">4</span>
+              <h3>Inspect</h3>
+              <p>Let users drill into mediators, paths, papers, and exportable idea briefs for each candidate.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section method-grid">
+          <article class="method-card">
+            <p class="eyebrow">Signals</p>
+            <h3>What drives the ranking</h3>
+            <ul>
+              <li>Underexplored concept-pair gaps.</li>
+              <li>Path-implied missing direct edges.</li>
+              <li>Motif completion in open triads.</li>
+              <li>Field distance, prior co-occurrence, and hub penalties.</li>
+            </ul>
+          </article>
+          <article class="method-card">
+            <p class="eyebrow">Evaluation</p>
+            <h3>How it is checked</h3>
+            <ul>
+              <li>Retrospective backtests over multiple time horizons.</li>
+              <li>Score decomposition and evidence inspection in the app.</li>
+              <li>Separate workstreams for expert validation and prospective challenge design in the repo.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="section two-column">
+          <div>
+            <p class="eyebrow">Current beta limits</p>
+            <h2>What this public version is not doing yet</h2>
+            <p class="body-copy">
+              The live beta is read-only and economics-focused. It does not yet model downstream scientific value,
+              support saved agendas, or offer a custom domain for the app itself. The current stack is intentionally
+              lightweight so the product can be tested before the infrastructure becomes more complex.
+            </p>
+          </div>
+          <div class="list-card">
+            <ul class="trust-list">
+              <li>Economics graph only in the current public beta.</li>
+              <li>Read-only SQLite backend mounted into Cloud Run.</li>
+              <li>No user accounts or collaboration layer yet.</li>
+              <li>Method and outputs remain versioned in the GitHub repo.</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div>
+          <span class="footer-title">FrontierGraph</span>
+          <p class="footer-copy">Questions or collaborations: prashant.garg@imperial.ac.uk</p>
+        </div>
+        <div class="footer-links">
+          <a id="method-footer-app" href="https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app">Open the app</a>
+          <a href="../">Home</a>
+          <a href="mailto:prashant.garg@imperial.ac.uk">Email</a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      (function applyConfig() {
+        var config = window.RANKER_CONFIG || {};
+        var appLinks = [
+          document.getElementById("method-open-app"),
+          document.getElementById("method-footer-app"),
+        ];
+        if (config.appUrl) {
+          appLinks.forEach(function (link) {
+            if (link) {
+              link.href = config.appUrl;
+            }
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

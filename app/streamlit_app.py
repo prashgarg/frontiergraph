@@ -44,11 +44,11 @@ NOVELTY_LABELS = {
 }
 
 PRESET_HELP = {
-    "Balanced": "Keeps the existing score at the center, with a mild boost for broad, low-contact opportunities.",
-    "Bold frontier": "Pushes harder toward cross-field and boundary ideas that could open new lines of work.",
-    "Fast follow": "Favors ideas with strong graph evidence and many supporting routes right now.",
-    "Underexplored": "Prioritizes thinly connected areas where direct work has not yet caught up.",
-    "Bridge builder": "Looks for ideas that connect literatures and can rewire the field map.",
+    "Balanced": "A broad default that keeps the base graph score central while still rewarding low-contact opportunities.",
+    "Bold frontier": "Pushes toward boundary and cross-field links that could open fresh lines of work.",
+    "Fast follow": "Favors ideas that already have strong graph support and look tractable now.",
+    "Underexplored": "Pushes toward thinly connected areas where direct work has lagged the surrounding graph.",
+    "Bridge builder": "Looks for ideas that connect literatures and shift the field map.",
 }
 
 
@@ -58,99 +58,125 @@ def inject_css() -> None:
         <style>
         .stApp {
             background:
-                radial-gradient(circle at top left, rgba(244, 230, 197, 0.55), transparent 34%),
-                radial-gradient(circle at top right, rgba(159, 196, 171, 0.45), transparent 28%),
-                linear-gradient(180deg, #f5f1e8 0%, #edf2ed 100%);
+                radial-gradient(circle at top left, rgba(180, 139, 83, 0.10), transparent 30%),
+                linear-gradient(180deg, #f5f1e8 0%, #f7f4ee 45%, #eff2ef 100%);
         }
         .block-container {
-            max-width: 1280px;
+            max-width: 1180px;
             padding-top: 2rem;
             padding-bottom: 3rem;
         }
         h1, h2, h3 {
             font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
-            color: #1c2a23;
+            color: #182226;
             letter-spacing: -0.02em;
         }
-        .stMarkdown, .stText, .stMetric, .stDataFrame, .stCaption {
-            font-family: "Avenir Next", "Trebuchet MS", "Helvetica Neue", sans-serif;
+        .stMarkdown, .stText, .stMetric, .stDataFrame, .stCaption, .stSelectbox, .stMultiSelect, .stSlider {
+            font-family: "Avenir Next", "Work Sans", "Helvetica Neue", sans-serif;
         }
-        .hero-panel {
-            border: 1px solid rgba(73, 93, 78, 0.15);
-            border-radius: 24px;
-            padding: 1.35rem 1.45rem 1.15rem 1.45rem;
-            background: linear-gradient(135deg, rgba(255, 249, 236, 0.92), rgba(233, 244, 239, 0.9));
-            box-shadow: 0 18px 40px rgba(42, 57, 46, 0.08);
-            margin-bottom: 1rem;
+        .hero-shell {
+            padding: 0.35rem 0 1.2rem 0;
+            border-bottom: 1px solid rgba(24, 34, 38, 0.10);
+            margin-bottom: 1.2rem;
         }
-        .hero-kicker {
-            font-size: 0.76rem;
+        .eyebrow {
+            font-size: 0.74rem;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            color: #5b6c61;
-            margin-bottom: 0.35rem;
+            color: #5b666c;
+            margin-bottom: 0.55rem;
         }
         .hero-title {
-            font-size: 2.55rem;
-            line-height: 1.02;
-            margin: 0 0 0.45rem 0;
-            color: #173126;
+            font-size: 3rem;
+            line-height: 0.96;
+            margin: 0;
+            max-width: 14ch;
         }
         .hero-copy {
-            font-size: 1rem;
-            color: #425349;
-            max-width: 58rem;
-            margin: 0;
+            max-width: 50rem;
+            margin-top: 0.8rem;
+            color: #546066;
+            line-height: 1.7;
+            font-size: 1.02rem;
         }
-        .card {
-            background: rgba(255, 255, 255, 0.82);
-            border: 1px solid rgba(86, 101, 91, 0.14);
-            border-radius: 20px;
-            padding: 1rem 1rem 0.9rem 1rem;
-            box-shadow: 0 10px 30px rgba(44, 58, 49, 0.06);
-            min-height: 250px;
+        .note-box {
+            border: 1px solid rgba(24, 34, 38, 0.10);
+            background: rgba(255, 252, 247, 0.82);
+            border-radius: 16px;
+            padding: 1rem 1.05rem;
+            box-shadow: 0 12px 32px rgba(44, 38, 31, 0.05);
         }
-        .card-rank {
-            font-size: 0.76rem;
+        .note-kicker {
+            font-size: 0.74rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: #607267;
+            color: #6d6557;
+            margin-bottom: 0.45rem;
         }
-        .card-title {
+        .note-title {
             font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-            font-size: 1.3rem;
-            line-height: 1.12;
-            margin: 0.4rem 0 0.45rem 0;
-            color: #1c2a23;
+            font-size: 1.45rem;
+            line-height: 1.08;
+            margin: 0 0 0.55rem 0;
         }
-        .card-meta {
-            color: #627267;
-            font-size: 0.9rem;
+        .note-copy {
+            color: #4f5c61;
+            line-height: 1.65;
+            margin: 0;
+        }
+        .detail-box {
+            border: 1px solid rgba(24, 34, 38, 0.10);
+            background: rgba(255, 255, 255, 0.70);
+            border-radius: 16px;
+            padding: 1rem 1.05rem;
+        }
+        .detail-box h3 {
+            font-size: 1.4rem;
+            line-height: 1.08;
+            margin: 0 0 0.45rem 0;
+        }
+        .detail-meta {
+            color: #667178;
+            font-size: 0.88rem;
             margin-bottom: 0.7rem;
         }
-        .card-copy {
-            color: #33463a;
-            font-size: 0.96rem;
-            line-height: 1.45;
-            margin-bottom: 0.7rem;
-        }
-        .pill {
-            display: inline-block;
-            padding: 0.2rem 0.55rem;
-            margin: 0 0.35rem 0.35rem 0;
-            border-radius: 999px;
-            background: #e4efe7;
-            color: #1e5b43;
-            font-size: 0.78rem;
-        }
-        .score-line {
-            font-size: 1.7rem;
-            font-weight: 600;
-            color: #0c5b3a;
+        .detail-copy {
+            color: #435158;
+            line-height: 1.65;
+            margin-bottom: 0.65rem;
         }
         .muted {
-            color: #617065;
-            font-size: 0.9rem;
+            color: #5d696f;
+            font-size: 0.92rem;
+        }
+        .stTabs [data-baseweb="tab-list"] {
+            gap: 0.5rem;
+        }
+        .stTabs [data-baseweb="tab"] {
+            border-radius: 999px;
+            border: 1px solid rgba(24, 34, 38, 0.10);
+            background: rgba(255, 255, 255, 0.55);
+            padding: 0.45rem 0.9rem;
+        }
+        .stTabs [aria-selected="true"] {
+            background: #1f4f4a;
+            color: #f7faf8;
+        }
+        [data-testid="stMetric"] {
+            border: 1px solid rgba(24, 34, 38, 0.10);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.58);
+            padding: 0.8rem 0.9rem;
+        }
+        [data-testid="stExpander"] {
+            border: 1px solid rgba(24, 34, 38, 0.10);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.58);
+        }
+        .section-rule {
+            height: 1px;
+            background: rgba(24, 34, 38, 0.10);
+            margin: 1.2rem 0;
         }
         </style>
         """,
@@ -220,7 +246,7 @@ def load_candidate_summary(db_path: str) -> pd.DataFrame:
     df["source_field_name"] = df["source_field"].map(JEL_FIELD_NAMES).fillna("Unmapped field")
     df["target_field_name"] = df["target_field"].map(JEL_FIELD_NAMES).fillna("Unmapped field")
     df["cross_field"] = df["source_field"] != df["target_field"]
-    df["boundary_flag"] = (df["cross_field"]) & (df["cooc_count"].fillna(0) <= 0)
+    df["boundary_flag"] = df["cross_field"] & (df["cooc_count"].fillna(0) <= 0)
     df["novelty_type"] = df.apply(classify_novelty, axis=1)
     df["novelty_label"] = df["novelty_type"].map(NOVELTY_LABELS).fillna("Other")
     df["opportunity"] = df["u_label"] + " -> " + df["v_label"]
@@ -355,44 +381,14 @@ def compute_priority_score(df: pd.DataFrame, preset: str) -> pd.Series:
     boundary = df["boundary_norm"].fillna(0.0)
 
     if preset == "Bold frontier":
-        return (
-            0.38 * base
-            + 0.24 * boundary
-            + 0.16 * cross
-            + 0.12 * low_contact
-            + 0.10 * (1.0 - hub)
-        )
+        return 0.38 * base + 0.24 * boundary + 0.16 * cross + 0.12 * low_contact + 0.10 * (1.0 - hub)
     if preset == "Fast follow":
-        return (
-            0.42 * path
-            + 0.20 * motif
-            + 0.16 * base
-            + 0.12 * mediator
-            + 0.10 * (1.0 - low_contact)
-        )
+        return 0.42 * path + 0.20 * motif + 0.16 * base + 0.12 * mediator + 0.10 * (1.0 - low_contact)
     if preset == "Underexplored":
-        return (
-            0.28 * base
-            + 0.26 * gap
-            + 0.20 * low_contact
-            + 0.14 * staleness
-            + 0.12 * (1.0 - hub)
-        )
+        return 0.28 * base + 0.26 * gap + 0.20 * low_contact + 0.14 * staleness + 0.12 * (1.0 - hub)
     if preset == "Bridge builder":
-        return (
-            0.34 * base
-            + 0.24 * cross
-            + 0.18 * boundary
-            + 0.14 * path
-            + 0.10 * (1.0 - hub)
-        )
-    return (
-        0.72 * base
-        + 0.10 * cross
-        + 0.08 * low_contact
-        + 0.06 * (1.0 - hub)
-        + 0.04 * mediator
-    )
+        return 0.34 * base + 0.24 * cross + 0.18 * boundary + 0.14 * path + 0.10 * (1.0 - hub)
+    return 0.72 * base + 0.10 * cross + 0.08 * low_contact + 0.06 * (1.0 - hub) + 0.04 * mediator
 
 
 def recommendation_play(row: pd.Series) -> str:
@@ -403,18 +399,18 @@ def recommendation_play(row: pd.Series) -> str:
     motif_count = to_int(row.get("motif_count", 0), default=0)
 
     if novelty == "boundary_crossfield" and path_support >= 0.7:
-        return "Build a bridge paper across literatures"
+        return "Build a bridge paper across literatures."
     if novelty == "boundary_crossfield":
-        return "Run a scoping review before a bridge paper"
+        return "Start with a scoping review before a bridge paper."
     if gap_bonus >= 0.4 and mediator_count >= 25:
-        return "Convert scattered hints into a direct empirical test"
+        return "Convert scattered hints into a direct empirical test."
     if gap_bonus >= 0.4:
-        return "Commission a short synthesis and pilot design"
+        return "Commission a short synthesis and pilot design."
     if path_support >= 0.8 and motif_count >= 100:
-        return "High-confidence candidate for a flagship empirical paper"
+        return "This is a strong candidate for a flagship empirical paper."
     if path_support >= 0.7:
-        return "Test the direct link with a focused empirical design"
-    return "Use as a seminar seed or targeted replication map"
+        return "Test the direct link with a focused empirical design."
+    return "Use this as a seminar seed or targeted replication map."
 
 
 def why_now(row: pd.Series) -> str:
@@ -425,45 +421,9 @@ def why_now(row: pd.Series) -> str:
     cooc_count = to_int(row.get("cooc_count", 0), default=0)
     novelty = str(row.get("novelty_label", ""))
     return (
-        f"{source_label} -> {target_label} looks promising because the graph finds "
-        f"{mediator_count} mediators and {motif_count} supporting motifs, while direct contact stays at "
-        f"{cooc_count} prior co-occurrences. The current opportunity is best read as a {novelty.lower()}."
-    )
-
-
-def pill(text: str) -> str:
-    return f"<span class='pill'>{html.escape(text)}</span>"
-
-
-def render_featured_card(row: pd.Series, rank_label: str) -> None:
-    priority_score = to_float(row.get("priority_score", 0.0), default=0.0)
-    title = html.escape(str(row.get("opportunity", "")))
-    meta = html.escape(
-        f"{row.get('code_pair', '')} | {row.get('source_field_name', '')} -> {row.get('target_field_name', '')}"
-    )
-    play = html.escape(recommendation_play(row))
-    reason = html.escape(why_now(row))
-    tags = "".join(
-        [
-            pill(str(row.get("novelty_label", ""))),
-            pill("Cross-field" if bool(row.get("cross_field", False)) else "Within-field"),
-            pill(f"Cooc {int(row.get('cooc_count', 0) or 0)}"),
-        ]
-    )
-    st.markdown(
-        f"""
-        <div class="card">
-            <div class="card-rank">{html.escape(rank_label)}</div>
-            <div class="card-title">{title}</div>
-            <div class="card-meta">{meta}</div>
-            <div class="score-line">{priority_score:.3f}</div>
-            <div class="muted">priority score</div>
-            <div style="margin-top:0.75rem">{tags}</div>
-            <div class="card-copy" style="margin-top:0.75rem"><strong>Suggested play:</strong> {play}</div>
-            <div class="card-copy">{reason}</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
+        f"{source_label} -> {target_label} has {mediator_count} mediators and {motif_count} supporting motifs, "
+        f"while direct contact remains at {cooc_count} prior co-occurrences. In the current graph it looks like a "
+        f"{novelty.lower()}."
     )
 
 
@@ -472,14 +432,16 @@ def field_option_label(field_code: str) -> str:
 
 
 def candidate_option_label(row: pd.Series) -> str:
-    return (
-        f"{row['opportunity']} | {row['novelty_label']} | "
-        f"priority={float(row['priority_score']):.3f}"
-    )
+    rank = to_int(row.get("priority_rank", 0), default=0)
+    return f"#{rank} {row['opportunity']} | {row['priority_score']:.3f}"
 
 
 def filtered_download_frame(filtered_df: pd.DataFrame) -> pd.DataFrame:
-    out = filtered_df[
+    working = filtered_df.copy()
+    if "priority_rank" not in working.columns:
+        working["priority_rank"] = np.arange(1, len(working) + 1)
+
+    out = working[
         [
             "priority_rank",
             "priority_score",
@@ -494,11 +456,11 @@ def filtered_download_frame(filtered_df: pd.DataFrame) -> pd.DataFrame:
             "motif_count",
         ]
     ].copy()
-    out["suggested_play"] = filtered_df.apply(recommendation_play, axis=1)
+    out["project_shape"] = working.apply(recommendation_play, axis=1)
+    out["why_now"] = working.apply(why_now, axis=1)
     return out.rename(
         columns={
             "priority_rank": "rank",
-            "priority_score": "priority_score",
             "score": "base_score",
             "source_field_name": "source_field",
             "target_field_name": "target_field",
@@ -508,70 +470,151 @@ def filtered_download_frame(filtered_df: pd.DataFrame) -> pd.DataFrame:
     )
 
 
+def shortlist_view(shortlist_df: pd.DataFrame) -> pd.DataFrame:
+    working = shortlist_df.copy()
+    if "priority_rank" not in working.columns:
+        working["priority_rank"] = np.arange(1, len(working) + 1)
+
+    return (
+        working[
+            [
+                "priority_rank",
+                "opportunity",
+                "novelty_label",
+                "target_field_name",
+                "priority_score",
+                "cooc_count",
+                "mediator_count",
+            ]
+        ]
+        .rename(
+            columns={
+                "priority_rank": "Rank",
+                "opportunity": "Opportunity",
+                "novelty_label": "Type",
+                "target_field_name": "Target field",
+                "priority_score": "Priority",
+                "cooc_count": "Prior contact",
+                "mediator_count": "Mediators",
+            }
+        )
+        .assign(Priority=lambda df: df["Priority"].map(lambda value: f"{value:.3f}"))
+    )
+
+
+def filter_candidates(
+    candidates_df: pd.DataFrame,
+    search_text: str,
+    source_fields: list[str],
+    target_fields: list[str],
+    novelty_filter: list[str],
+    min_score: float,
+    cooc_cap: int | None,
+    min_mediators: int,
+    only_cross_field: bool,
+) -> pd.DataFrame:
+    filtered_df = candidates_df.copy()
+    if search_text.strip():
+        q = search_text.strip().lower()
+        filtered_df = filtered_df[
+            filtered_df["u"].str.lower().str.contains(q, na=False)
+            | filtered_df["v"].str.lower().str.contains(q, na=False)
+            | filtered_df["u_label"].str.lower().str.contains(q, na=False)
+            | filtered_df["v_label"].str.lower().str.contains(q, na=False)
+        ]
+    if source_fields:
+        filtered_df = filtered_df[filtered_df["source_field"].isin(source_fields)]
+    if target_fields:
+        filtered_df = filtered_df[filtered_df["target_field"].isin(target_fields)]
+    if novelty_filter:
+        allowed_novelties = {key for key, label in NOVELTY_LABELS.items() if label in novelty_filter}
+        filtered_df = filtered_df[filtered_df["novelty_type"].isin(allowed_novelties)]
+    if only_cross_field:
+        filtered_df = filtered_df[filtered_df["cross_field"]]
+    filtered_df = filtered_df[filtered_df["score"].fillna(0.0) >= float(min_score)]
+    if cooc_cap is not None:
+        filtered_df = filtered_df[filtered_df["cooc_count"].fillna(0) <= int(cooc_cap)]
+    filtered_df = filtered_df[filtered_df["mediator_count"].fillna(0) >= int(min_mediators)]
+    return filtered_df
+
+
+def render_lead_box(row: pd.Series) -> None:
+    st.markdown(
+        f"""
+        <div class="note-box">
+            <div class="note-kicker">Current top recommendation</div>
+            <div class="note-title">{html.escape(str(row['opportunity']))}</div>
+            <p class="note-copy"><strong>Suggested move:</strong> {html.escape(recommendation_play(row))}</p>
+            <p class="note-copy">{html.escape(why_now(row))}</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, preset: str, top_n: int) -> None:
-    st.subheader("Ranked Opportunities")
+    st.subheader("Ranked agenda")
     st.caption(PRESET_HELP[preset])
 
     if filtered_df.empty:
-        st.warning("No ideas match the current filters. Relax the field, novelty, or evidence settings.")
+        st.warning("No opportunities match the current filters. Relax the thresholds or switch presets.")
         return
 
-    summary_cols = st.columns(4)
-    summary_cols[0].metric("Ideas in play", f"{len(filtered_df):,}")
-    summary_cols[1].metric("Cross-field share", f"{100 * filtered_df['cross_field'].mean():.1f}%")
-    summary_cols[2].metric("Median priority", f"{filtered_df['priority_score'].median():.3f}")
-    summary_cols[3].metric("Boundary ideas", f"{int(filtered_df['boundary_flag'].sum()):,}")
-
-    st.markdown("### Featured recommendations")
     shortlist_df = filtered_df.head(int(top_n)).reset_index(drop=True)
-    featured = shortlist_df.head(3).reset_index(drop=True)
-    feature_cols = st.columns(len(featured))
-    for idx, row in featured.iterrows():
-        with feature_cols[idx]:
-            render_featured_card(row, f"Rank {idx + 1}")
+    lead_row = shortlist_df.iloc[0]
 
-    options_df = shortlist_df.head(100).reset_index(drop=True)
+    lead_cols = st.columns([1.7, 1, 1, 1])
+    with lead_cols[0]:
+        render_lead_box(lead_row)
+    with lead_cols[1]:
+        st.metric("Ideas in play", f"{len(filtered_df):,}")
+    with lead_cols[2]:
+        st.metric("Cross-field share", f"{100 * filtered_df['cross_field'].mean():.1f}%")
+    with lead_cols[3]:
+        st.metric("Median priority", f"{filtered_df['priority_score'].median():.3f}")
+
+    st.markdown("<div class='section-rule'></div>", unsafe_allow_html=True)
+    st.markdown("### Shortlist")
+    st.dataframe(shortlist_view(shortlist_df), use_container_width=True, hide_index=True)
+
+    options_df = shortlist_df.head(min(100, len(shortlist_df))).reset_index(drop=True)
     selected_idx = st.selectbox(
-        "Inspect a recommendation",
+        "Inspect one opportunity in detail",
         options=options_df.index,
         format_func=lambda i: candidate_option_label(options_df.loc[i]),
     )
-    selected_row = options_df.loc[int(selected_idx)]
-    render_candidate_detail(db_path, selected_row)
+    render_candidate_detail(db_path, options_df.loc[int(selected_idx)])
 
-    st.markdown("### Shortlist")
-    shortlist = filtered_download_frame(shortlist_df)
-    st.dataframe(shortlist, use_container_width=True, hide_index=True)
     st.download_button(
         label="Download current shortlist as CSV",
         data=filtered_download_frame(shortlist_df).to_csv(index=False),
-        file_name="economics_opportunity_shortlist.csv",
+        file_name="frontiergraph_shortlist.csv",
         mime="text/csv",
     )
 
 
 def render_candidate_detail(db_path: str, row: pd.Series) -> None:
     bundle = load_candidate_bundle(db_path, str(row["u"]), str(row["v"]))
-    candidate_df = bundle["candidate_df"]
     candidate_row = bundle["candidate_row"]
     mediators_df = bundle["mediators_df"]
     paths_df = bundle["paths_df"]
     papers_df = bundle["papers_df"]
     neighborhood_row = bundle["neighborhood_row"]
 
-    if candidate_row is None or candidate_df.empty:
+    if candidate_row is None:
         st.warning("Candidate details were not found in the database.")
         return
 
-    st.markdown("### Recommendation brief")
-    top_cols = st.columns([1.4, 1, 1, 1])
+    st.markdown("### Selected opportunity")
+    top_cols = st.columns([1.6, 1, 1, 1])
     top_cols[0].markdown(
         f"""
-        <div class="card" style="min-height: 0">
-            <div class="card-title" style="margin-top:0">{html.escape(str(row['opportunity']))}</div>
-            <div class="card-meta">{html.escape(str(row['code_pair']))}</div>
-            <div class="card-copy"><strong>Suggested play:</strong> {html.escape(recommendation_play(row))}</div>
-            <div class="card-copy">{html.escape(why_now(row))}</div>
+        <div class="detail-box">
+            <h3>{html.escape(str(row['opportunity']))}</h3>
+            <div class="detail-meta">{html.escape(str(row['code_pair']))}</div>
+            <div class="detail-copy"><strong>Project shape:</strong> {html.escape(recommendation_play(row))}</div>
+            <div class="detail-copy">{html.escape(why_now(row))}</div>
+            <div class="muted">Source field: {html.escape(str(row['source_field_name']))} | Target field: {html.escape(str(row['target_field_name']))}</div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -580,60 +623,72 @@ def render_candidate_detail(db_path: str, row: pd.Series) -> None:
     top_cols[2].metric("Base score", f"{to_float(candidate_row['score']):.3f}")
     top_cols[3].metric("Prior contact", f"{to_int(candidate_row.get('cooc_count', 0))}")
 
-    overview_tab, evidence_tab, papers_tab = st.tabs(["Overview", "Evidence", "Supporting papers"])
+    summary_tab, evidence_tab, papers_tab, export_tab = st.tabs(["Summary", "Evidence", "Papers", "Export"])
 
-    with overview_tab:
-        overview = pd.DataFrame(
-            [
-                {
-                    "Novelty": row["novelty_label"],
-                    "Source field": row["source_field_name"],
-                    "Target field": row["target_field_name"],
-                    "Path support": to_float(candidate_row.get("path_support_norm", 0.0)),
-                    "Gap bonus": to_float(candidate_row.get("gap_bonus", 0.0)),
-                    "Motif bonus": to_float(candidate_row.get("motif_bonus_norm", 0.0)),
-                    "Hub penalty": to_float(candidate_row.get("hub_penalty", 0.0)),
-                    "Mediators": to_int(candidate_row.get("mediator_count", 0)),
-                    "Motifs": to_int(candidate_row.get("motif_count", 0)),
-                    "Rank in base model": to_int(candidate_row.get("rank", 0)),
-                }
-            ]
-        )
-        st.dataframe(overview, use_container_width=True, hide_index=True)
-        if neighborhood_row is not None:
-            st.markdown("**Neighborhood snapshot**")
-            st.write(f"Top outgoing neighbors of {row['u']}: {neighborhood_row['top_out_neighbors_u_json']}")
-            st.write(f"Top incoming neighbors of {row['v']}: {neighborhood_row['top_in_neighbors_v_json']}")
+    with summary_tab:
+        summary_left, summary_right = st.columns(2)
+        with summary_left:
+            summary_df = pd.DataFrame(
+                [
+                    {"Metric": "Novelty", "Value": row["novelty_label"]},
+                    {"Metric": "Path support", "Value": f"{to_float(candidate_row.get('path_support_norm', 0.0)):.3f}"},
+                    {"Metric": "Gap bonus", "Value": f"{to_float(candidate_row.get('gap_bonus', 0.0)):.3f}"},
+                    {"Metric": "Motif bonus", "Value": f"{to_float(candidate_row.get('motif_bonus_norm', 0.0)):.3f}"},
+                    {"Metric": "Hub penalty", "Value": f"{to_float(candidate_row.get('hub_penalty', 0.0)):.3f}"},
+                    {"Metric": "Base-model rank", "Value": str(to_int(candidate_row.get('rank', 0)))},
+                ]
+            )
+            st.dataframe(summary_df, use_container_width=True, hide_index=True)
+        with summary_right:
+            evidence_df = pd.DataFrame(
+                [
+                    {"Measure": "Mediators", "Count": to_int(candidate_row.get("mediator_count", 0))},
+                    {"Measure": "Supporting motifs", "Count": to_int(candidate_row.get("motif_count", 0))},
+                    {"Measure": "Prior co-occurrences", "Count": to_int(candidate_row.get("cooc_count", 0))},
+                ]
+            )
+            st.dataframe(evidence_df, use_container_width=True, hide_index=True)
+            if neighborhood_row is not None:
+                with st.expander("Inspect local neighborhood", expanded=False):
+                    st.markdown("**Top outgoing neighbors of the source concept**")
+                    st.code(str(neighborhood_row["top_out_neighbors_u_json"]))
+                    st.markdown("**Top incoming neighbors of the target concept**")
+                    st.code(str(neighborhood_row["top_in_neighbors_v_json"]))
 
     with evidence_tab:
-        ev1, ev2 = st.columns(2)
-        with ev1:
+        ev_left, ev_right = st.columns(2)
+        with ev_left:
             st.markdown("**Top mediators**")
-            st.dataframe(mediators_df, use_container_width=True, hide_index=True)
-        with ev2:
+            st.dataframe(mediators_df.head(25), use_container_width=True, hide_index=True)
+        with ev_right:
             st.markdown("**Top supporting paths**")
-            st.dataframe(paths_df, use_container_width=True, hide_index=True)
+            st.dataframe(paths_df.head(25), use_container_width=True, hide_index=True)
 
     with papers_tab:
-        st.dataframe(papers_df, use_container_width=True, hide_index=True)
+        st.markdown("**Supporting papers behind the candidate paths**")
+        st.dataframe(papers_df.head(150), use_container_width=True, hide_index=True)
 
-    brief = build_idea_brief_markdown(
-        candidate_row=candidate_row,
-        mediators_df=mediators_df,
-        paths_df=paths_df,
-        papers_df=papers_df,
-        neighborhood_row=neighborhood_row,
-    )
-    st.download_button(
-        label="Export idea brief (Markdown)",
-        data=brief,
-        file_name=f"idea_brief_{row['u']}_to_{row['v']}.md",
-        mime="text/markdown",
-    )
+    with export_tab:
+        brief = build_idea_brief_markdown(
+            candidate_row=candidate_row,
+            mediators_df=mediators_df,
+            paths_df=paths_df,
+            papers_df=papers_df,
+            neighborhood_row=neighborhood_row,
+        )
+        st.markdown(
+            "Export a markdown brief if you want to move the idea into a memo, seminar note, or working agenda."
+        )
+        st.download_button(
+            label="Export idea brief (Markdown)",
+            data=brief,
+            file_name=f"idea_brief_{row['u']}_to_{row['v']}.md",
+            mime="text/markdown",
+        )
 
 
 def render_field_radar_tab(filtered_df: pd.DataFrame) -> None:
-    st.subheader("Field Radar")
+    st.subheader("Field map")
     if filtered_df.empty:
         st.warning("No ideas to summarize under the current filters.")
         return
@@ -643,7 +698,6 @@ def render_field_radar_tab(filtered_df: pd.DataFrame) -> None:
         .agg(
             ideas=("priority_score", "size"),
             mean_priority=("priority_score", "mean"),
-            mean_base_score=("score", "mean"),
             cross_field_share=("cross_field", "mean"),
         )
         .sort_values(["mean_priority", "ideas"], ascending=[False, False])
@@ -658,37 +712,20 @@ def render_field_radar_tab(filtered_df: pd.DataFrame) -> None:
         )
         .sort_values(["mean_priority", "ideas"], ascending=[False, False])
     )
-    novelty_mix = (
-        filtered_df["novelty_label"]
-        .value_counts(dropna=False)
-        .rename_axis("novelty")
-        .reset_index(name="ideas")
-    )
 
-    c1, c2 = st.columns(2)
-    with c1:
+    left, right = st.columns(2)
+    with left:
         st.markdown("**Most promising target areas**")
-        st.bar_chart(target_summary.set_index("target_field_name")["mean_priority"].head(10))
         st.dataframe(target_summary.head(12), use_container_width=True, hide_index=True)
-    with c2:
+    with right:
         st.markdown("**Strongest source -> target corridors**")
-        corridor_chart = corridor_summary.head(10).copy()
-        corridor_chart["corridor_label"] = (
-            corridor_chart["source_field_name"].str.replace(" and ", " & ", regex=False)
-            + " -> "
-            + corridor_chart["target_field_name"].str.replace(" and ", " & ", regex=False)
-        )
-        st.bar_chart(corridor_chart.set_index("corridor_label")["mean_priority"])
         st.dataframe(corridor_summary.head(12), use_container_width=True, hide_index=True)
-
-    st.markdown("**Novelty mix**")
-    novelty_chart = novelty_mix.set_index("novelty")["ideas"]
-    st.bar_chart(novelty_chart)
-    st.dataframe(novelty_mix, use_container_width=True, hide_index=True)
 
 
 def render_concept_tab(db_path: str, nodes_df: pd.DataFrame) -> None:
-    st.subheader("Concept Explorer")
+    st.subheader("Concept lookup")
+    st.caption("Use this when you already know the concept you want to trace through the graph.")
+
     query = st.text_input("Find a concept by code or label", value="")
     filtered = nodes_df
     if query.strip():
@@ -750,11 +787,11 @@ def render_concept_tab(db_path: str, nodes_df: pd.DataFrame) -> None:
     )
 
     st.markdown(f"### {concept_label} ({concept_code})")
-    c1, c2 = st.columns(2)
-    with c1:
+    left, right = st.columns(2)
+    with left:
         st.markdown("**Top outgoing opportunities**")
         st.dataframe(outgoing, use_container_width=True, hide_index=True)
-    with c2:
+    with right:
         st.markdown("**Top incoming opportunities**")
         st.dataframe(incoming, use_container_width=True, hide_index=True)
 
@@ -763,21 +800,18 @@ def render_concept_tab(db_path: str, nodes_df: pd.DataFrame) -> None:
 
 
 def render_method_tab(filtered_df: pd.DataFrame, preset: str) -> None:
-    st.subheader("How this ranker works")
-    st.write(
-        "This interface stays deterministic. It re-ranks the existing graph-derived candidate table with different "
-        "objective presets, then lets the user filter by field, novelty, and evidence strength."
-    )
+    st.subheader("Method")
     st.markdown(
-        f"""
-        - Current preset: `{preset}`
-        - Interpretation: {PRESET_HELP[preset]}
-        - Base ingredients: path support, gap bonus, motif bonus, hub penalty, prior co-occurrence, and field distance
+        """
+        1. AI extracts graph structure from papers.
+        2. The app scores missing links with deterministic graph signals.
+        3. Users re-rank and inspect the evidence rather than receiving a black-box recommendation.
         """
     )
+    st.caption(f"Current preset: {preset}. {PRESET_HELP[preset]}")
 
     if filtered_df.empty:
-        st.info("The filtered set is empty, so there is no live ranking to summarize.")
+        st.info("The filtered set is empty, so there is no live summary to report.")
         return
 
     live_summary = pd.DataFrame(
@@ -792,25 +826,25 @@ def render_method_tab(filtered_df: pd.DataFrame, preset: str) -> None:
         ]
     )
     st.dataframe(live_summary, use_container_width=True, hide_index=True)
-    st.write(
-        "A good operating rule is to use `Balanced` for general scanning, `Bold frontier` or `Bridge builder` when "
-        "you want new field combinations, and `Fast follow` when you want tractable papers with stronger existing graph support."
-    )
 
 
 def main() -> None:
-    st.set_page_config(page_title="Economics Opportunity Ranker", layout="wide")
+    st.set_page_config(
+        page_title="FrontierGraph | Economics ranker",
+        layout="wide",
+        initial_sidebar_state="collapsed",
+    )
     inject_css()
 
     st.markdown(
         """
-        <div class="hero-panel">
-            <div class="hero-kicker">Deterministic metascience tool</div>
-            <div class="hero-title">Economics Opportunity Ranker</div>
+        <div class="hero-shell">
+            <div class="eyebrow">FrontierGraph beta</div>
+            <h1 class="hero-title">Where should economics go next?</h1>
             <p class="hero-copy">
-                A practical interface for asking what economics should work on next. The tool turns the existing claim
-                graph into ranked research opportunities, lets you steer for frontier ideas or fast-follow ideas, and
-                shows the evidence behind every recommendation.
+                FrontierGraph ranks missing links in the economics literature, then lets you inspect why each one looks
+                promising. The interface is meant to get busy researchers from a broad graph to a credible shortlist
+                quickly.
             </p>
         </div>
         """,
@@ -823,7 +857,14 @@ def main() -> None:
         if Path("data/processed/app_causalclaims.db").exists()
         else "data/processed/app.db"
     )
-    db_path = st.sidebar.text_input("SQLite DB path", value=db_default)
+
+    with st.expander("Advanced settings", expanded=False):
+        db_path = st.text_input(
+            "SQLite DB path",
+            value=db_default,
+            help="Change this only if you are pointing the app at a different local SQLite build.",
+        )
+
     if not Path(db_path).exists():
         st.error(f"Database not found: {db_path}")
         st.stop()
@@ -838,59 +879,46 @@ def main() -> None:
     novelty_options = list(NOVELTY_LABELS.values())
     max_base_score = max(to_float(candidates_df["score"].max(), default=0.01), 0.01)
     default_min_score = min(0.18, round(max_base_score, 3))
+    slider_max = max(5, int(min(candidates_df["cooc_count"].quantile(0.99), 250)))
 
-    st.sidebar.header("Ranking controls")
-    preset = st.sidebar.selectbox("Ranking mode", options=list(PRESET_HELP.keys()), index=0)
-    search_text = st.sidebar.text_input("Keyword filter", value="")
-    source_fields = st.sidebar.multiselect(
-        "From fields",
-        options=available_fields,
-        format_func=field_option_label,
-    )
-    target_fields = st.sidebar.multiselect(
-        "To fields",
-        options=available_fields,
-        format_func=field_option_label,
-    )
-    novelty_filter = st.sidebar.multiselect("Novelty lens", options=novelty_options, default=novelty_options)
-    min_score = st.sidebar.slider(
-        "Minimum base score",
-        min_value=0.0,
-        max_value=float(round(max_base_score, 3)),
-        value=float(default_min_score),
-        step=0.01,
-    )
-    use_cooc_cap = st.sidebar.checkbox("Cap prior co-occurrences", value=True)
-    cooc_cap = None
-    if use_cooc_cap:
-        slider_max = max(5, int(min(candidates_df["cooc_count"].quantile(0.99), 250)))
-        cooc_cap = st.sidebar.slider("Maximum prior co-occurrences", min_value=0, max_value=slider_max, value=50)
-    min_mediators = st.sidebar.slider("Minimum mediator count", min_value=0, max_value=100, value=5)
-    only_cross_field = st.sidebar.checkbox("Only cross-field ideas", value=False)
-    top_n = st.sidebar.slider("Shortlist size", min_value=10, max_value=150, value=40, step=10)
+    with st.expander("Refine the ranking", expanded=False):
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            preset = st.selectbox("Ranking mode", options=list(PRESET_HELP.keys()), index=0)
+            search_text = st.text_input("Keyword filter", value="")
+            top_n = st.slider("Shortlist size", min_value=10, max_value=150, value=30, step=10)
+        with col2:
+            source_fields = st.multiselect("From fields", options=available_fields, format_func=field_option_label)
+            target_fields = st.multiselect("To fields", options=available_fields, format_func=field_option_label)
+            novelty_filter = st.multiselect("Novelty lens", options=novelty_options, default=novelty_options)
+        with col3:
+            min_score = st.slider(
+                "Minimum base score",
+                min_value=0.0,
+                max_value=float(round(max_base_score, 3)),
+                value=float(default_min_score),
+                step=0.01,
+            )
+            use_cooc_cap = st.checkbox("Cap prior co-occurrences", value=True)
+            cooc_cap = (
+                st.slider("Maximum prior co-occurrences", min_value=0, max_value=slider_max, value=min(25, slider_max))
+                if use_cooc_cap
+                else None
+            )
+            min_mediators = st.slider("Minimum mediator count", min_value=0, max_value=100, value=5)
+            only_cross_field = st.checkbox("Only cross-field ideas", value=False)
 
-    filtered_df = candidates_df.copy()
-    if search_text.strip():
-        q = search_text.strip().lower()
-        filtered_df = filtered_df[
-            filtered_df["u"].str.lower().str.contains(q, na=False)
-            | filtered_df["v"].str.lower().str.contains(q, na=False)
-            | filtered_df["u_label"].str.lower().str.contains(q, na=False)
-            | filtered_df["v_label"].str.lower().str.contains(q, na=False)
-        ]
-    if source_fields:
-        filtered_df = filtered_df[filtered_df["source_field"].isin(source_fields)]
-    if target_fields:
-        filtered_df = filtered_df[filtered_df["target_field"].isin(target_fields)]
-    if novelty_filter:
-        allowed_novelties = {key for key, label in NOVELTY_LABELS.items() if label in novelty_filter}
-        filtered_df = filtered_df[filtered_df["novelty_type"].isin(allowed_novelties)]
-    if only_cross_field:
-        filtered_df = filtered_df[filtered_df["cross_field"]]
-    filtered_df = filtered_df[filtered_df["score"].fillna(0.0) >= float(min_score)]
-    if cooc_cap is not None:
-        filtered_df = filtered_df[filtered_df["cooc_count"].fillna(0) <= int(cooc_cap)]
-    filtered_df = filtered_df[filtered_df["mediator_count"].fillna(0) >= int(min_mediators)]
+    filtered_df = filter_candidates(
+        candidates_df,
+        search_text=search_text,
+        source_fields=source_fields,
+        target_fields=target_fields,
+        novelty_filter=novelty_filter,
+        min_score=min_score,
+        cooc_cap=cooc_cap,
+        min_mediators=min_mediators,
+        only_cross_field=only_cross_field,
+    )
 
     if not filtered_df.empty:
         filtered_df = filtered_df.copy()
@@ -902,9 +930,7 @@ def main() -> None:
         filtered_df["priority_score"] = pd.Series(dtype=float)
         filtered_df["priority_rank"] = pd.Series(dtype=int)
 
-    ranker_tab, radar_tab, concept_tab, method_tab = st.tabs(
-        ["Opportunity ranker", "Field radar", "Concept explorer", "Method"]
-    )
+    ranker_tab, radar_tab, concept_tab, method_tab = st.tabs(["Ranker", "Field map", "Concepts", "Method"])
 
     with ranker_tab:
         render_ranker_tab(db_path, filtered_df, preset, top_n=top_n)
