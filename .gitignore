@@ -1,0 +1,16 @@
+.DS_Store
+.pytest_cache/
+.ranker_runtime/
+.venv/
+.vscode/
+__pycache__/
+*.egg-info/
+*.log
+*.py[cod]
+
+data/processed/
+data/external/
+outputs/
+paper/
+
+deploy/public_beta.env

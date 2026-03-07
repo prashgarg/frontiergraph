@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "missing-claims"
+version = "0.1.0"
+description = "Missing-claim recommender + webtool for claim graphs"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "pandas>=2.2.0",
+  "pyarrow>=19.0.0",
+  "numpy>=2.0.0",
+  "PyYAML>=6.0",
+  "matplotlib>=3.8.0",
+  "streamlit>=1.35.0",
+  "openai>=1.35.0",
+]
+
+[project.scripts]
+economics-ranker = "src.run_ranker:main"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

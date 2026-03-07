@@ -1,0 +1,87 @@
+substitutions:
+  _REGION: us-central1
+  _AR_REPOSITORY: economics-ranker
+  _IMAGE_NAME: economics-opportunity-ranker
+  _SERVICE_NAME: economics-opportunity-ranker-beta
+  _CPU: "2"
+  _MEMORY: 4Gi
+  _TIMEOUT: 300s
+  _CONCURRENCY: "4"
+  _MIN_INSTANCES: "0"
+  _MAX_INSTANCES: "3"
+  _DATA_BUCKET: ""
+  _DB_FILENAME: app_causalclaims.db
+  _MOUNT_PATH: /mnt/ranker-data
+  _VOLUME_NAME: ranker-data
+
+steps:
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        set -euo pipefail
+        if ! gcloud artifacts repositories describe "${_AR_REPOSITORY}" \
+          --location "${_REGION}" \
+          --project "$PROJECT_ID" >/dev/null 2>&1; then
+          gcloud artifacts repositories create "${_AR_REPOSITORY}" \
+            --repository-format=docker \
+            --location="${_REGION}" \
+            --description="Container images for the Economics Opportunity Ranker" \
+            --project "$PROJECT_ID"
+        fi
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --tag
+      - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_IMAGE_NAME}:${SHORT_SHA}
+      - .
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_IMAGE_NAME}:${SHORT_SHA}
+
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        set -euo pipefail
+        IMAGE_URI="${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_IMAGE_NAME}:${SHORT_SHA}"
+        env_vars="ECON_RANKER_HOST=0.0.0.0,ECON_RANKER_HEADLESS=true"
+        deploy_args=(
+          gcloud run deploy "${_SERVICE_NAME}"
+          --project "$PROJECT_ID"
+          --region "${_REGION}"
+          --platform managed
+          --allow-unauthenticated
+          --execution-environment gen2
+          --image "$IMAGE_URI"
+          --cpu "${_CPU}"
+          --memory "${_MEMORY}"
+          --timeout "${_TIMEOUT}"
+          --concurrency "${_CONCURRENCY}"
+          --min-instances "${_MIN_INSTANCES}"
+          --max-instances "${_MAX_INSTANCES}"
+        )
+        if [[ -n "${_DATA_BUCKET}" ]]; then
+          env_vars="${env_vars},ECON_OPPORTUNITY_DB=${_MOUNT_PATH}/${_DB_FILENAME}"
+          deploy_args+=(
+            --add-volume "name=${_VOLUME_NAME},type=cloud-storage,bucket=${_DATA_BUCKET},readonly=true"
+            --add-volume-mount "volume=${_VOLUME_NAME},mount-path=${_MOUNT_PATH}"
+          )
+        else
+          env_vars="${env_vars},ECON_OPPORTUNITY_DB=/app/data/processed/app.db"
+        fi
+        deploy_args+=(--set-env-vars "$env_vars")
+        "${deploy_args[@]}"
+
+images:
+  - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_IMAGE_NAME}:${SHORT_SHA}
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+timeout: 1800s

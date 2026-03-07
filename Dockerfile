@@ -1,0 +1,24 @@
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    STREAMLIT_BROWSER_GATHER_USAGE_STATS=false \
+    ECON_RANKER_HOST=0.0.0.0 \
+    ECON_RANKER_HEADLESS=true \
+    PORT=8080
+
+WORKDIR /app
+
+RUN useradd --create-home --uid 10001 appuser
+
+COPY . /app
+
+RUN python -m pip install --upgrade pip \
+    && python -m pip install .
+
+USER appuser
+
+EXPOSE 8080
+
+CMD ["python", "-m", "src.run_ranker"]

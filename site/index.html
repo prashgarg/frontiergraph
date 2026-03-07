@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Economics Opportunity Ranker</title>
+    <meta
+      name="description"
+      content="A public beta for ranking what economics should work on next using a deterministic graph-native metascience engine."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./config.js"></script>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="#top">
+          <span class="brand-mark"></span>
+          <span class="brand-copy">
+            <span class="brand-kicker">Public Beta</span>
+            <span class="brand-title">Economics Opportunity Ranker</span>
+          </span>
+        </a>
+        <nav class="nav">
+          <a href="#how-it-works">How it works</a>
+          <a href="#use-cases">Use cases</a>
+          <a href="#beta">Beta</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" id="top">
+          <div class="hero-card">
+            <div class="eyebrow">Deterministic metascience engine</div>
+            <h1>What should economics work on next?</h1>
+            <p>
+              This tool turns the economics literature graph into ranked research opportunities. AI is used only to
+              extract text into graph structure. Everything after that is a transparent, deterministic ranking system
+              built for metascience.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" id="open-app-link" href="https://economics-opportunity-ranker-beta-placeholder.run.app">Open the beta app</a>
+              <a class="button button-secondary" id="open-paper-link" href="https://frontiergraph.com/method">Read the method</a>
+            </div>
+          </div>
+          <div class="hero-side">
+            <div class="panel">
+              <h2 class="panel-title">What users can do</h2>
+              <div class="signal-list">
+                <div class="signal-item">
+                  <strong>Scan the frontier</strong>
+                  Find high-priority economics ideas using presets for balanced, bold, fast-follow, or bridge-building work.
+                </div>
+                <div class="signal-item">
+                  <strong>Inspect the evidence</strong>
+                  See mediators, paths, supporting papers, and graph signals behind each recommendation.
+                </div>
+                <div class="signal-item">
+                  <strong>Export a research agenda</strong>
+                  Build shortlists and turn promising gaps into concrete project briefs.
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <h2 class="panel-title">Core stance</h2>
+              <div class="quote">AI extracts the graph. The ranker stays deterministic.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="stats">
+          <div class="grid grid-3">
+            <div class="stat-card">
+              <div class="stat-value">856</div>
+              <div class="stat-label">Concept nodes in the current economics graph</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">30,896</div>
+              <div class="stat-label">Economics papers represented in the corpus</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">387,555</div>
+              <div class="stat-label">Missing directed claim candidates available to rank</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="how-it-works">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Method</div>
+              <h2 class="section-title">How it works</h2>
+            </div>
+            <div class="section-copy">
+              The product is not a black box that invents directions. It is a graph-native ranking system that
+              surfaces underconnected ideas and shows why they deserve attention.
+            </div>
+          </div>
+          <div class="grid grid-3">
+            <div class="feature">
+              <strong>1. Build the graph</strong>
+              Papers are converted into directed causal-claim edges. This is the only step where AI is allowed.
+            </div>
+            <div class="feature">
+              <strong>2. Score missing edges</strong>
+              The engine combines gap signals, path support, motif completion, hub penalties, and field distance.
+            </div>
+            <div class="feature">
+              <strong>3. Rank what to do next</strong>
+              Users can re-rank for frontier bets, tractable fast-follow work, underexplored areas, or bridge ideas.
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="use-cases">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Use cases</div>
+              <h2 class="section-title">Who this is for</h2>
+            </div>
+            <div class="section-copy">
+              The beta is designed for economists, funders, editors, and research organizations that want a structured
+              way to inspect what the field is neglecting.
+            </div>
+          </div>
+          <div class="grid grid-3">
+            <div class="panel">
+              <h3 class="panel-title">Researchers</h3>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <strong>Spot tractable papers</strong>
+                  Start from strong graph evidence and convert latent links into empirical designs.
+                </div>
+                <div class="timeline-item">
+                  <strong>Search for bridge topics</strong>
+                  Find pairs of concepts that connect separate literatures with minimal prior contact.
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <h3 class="panel-title">Funders and labs</h3>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <strong>Build portfolios</strong>
+                  Compare underexplored, boundary, and fast-follow projects instead of relying on vague novelty rhetoric.
+                </div>
+                <div class="timeline-item">
+                  <strong>Interrogate the field map</strong>
+                  See which target areas and source-to-target corridors are rising inside the graph.
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <h3 class="panel-title">Editors and reviewers</h3>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <strong>Contextualize submissions</strong>
+                  Understand whether a paper sits on a crowded path or opens a low-contact route.
+                </div>
+                <div class="timeline-item">
+                  <strong>Surface neglected combinations</strong>
+                  Review research agendas through the lens of graph structure rather than field prestige alone.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="beta">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Launch plan</div>
+              <h2 class="section-title">Public beta architecture</h2>
+            </div>
+            <div class="section-copy">
+              The launch path keeps the stack lean: a static public website, a public app, and a read-only mounted
+              economics database behind it.
+            </div>
+          </div>
+          <div class="beta-note">
+            <div class="panel">
+              <h3 class="panel-title">Website</h3>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <strong><code>frontiergraph.com</code></strong>
+                  Hosted on Cloudflare Pages. This is the public face of the project and should stay fast, static, and cheap.
+                </div>
+                <div class="timeline-item">
+                  <strong><code>your-service.run.app</code></strong>
+                  Hosted on Google Cloud Run for the first beta. Move it behind <code>app.frontiergraph.com</code> once you
+                  want a branded production URL.
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <h3 class="panel-title">Data posture</h3>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <strong>Read-only beta</strong>
+                  The first public version serves a mounted SQLite build of the economics corpus. No user accounts or mutable state yet.
+                </div>
+                <div class="timeline-item">
+                  <strong>Later upgrade path</strong>
+                  Once the product needs feedback, accounts, or saved research agendas, the storage layer can move to PostgreSQL.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>
+          Replace the placeholder links in <code>site/config.js</code> before publishing this page. The public beta app
+          is intentionally separate from the marketing site so the story, docs, and product can evolve independently.
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      (function applyConfig() {
+        var config = window.RANKER_CONFIG || {};
+        var appLink = document.getElementById("open-app-link");
+        var paperLink = document.getElementById("open-paper-link");
+        if (config.appUrl) {
+          appLink.href = config.appUrl;
+        }
+        if (config.paperUrl) {
+          paperLink.href = config.paperUrl;
+        } else if (config.docsUrl) {
+          paperLink.href = config.docsUrl;
+        }
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+#!/bin/zsh
+set -euo pipefail
+
+REPO_DIR="/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant Garg/GraphDir"
+LAUNCHER="$REPO_DIR/launchers/run_ranker_gui.sh"
+LOG_FILE="$REPO_DIR/.ranker_runtime/logs/launcher.log"
+
+set +e
+"$LAUNCHER" >/dev/null 2>&1
+RC=$?
+set -e
+
+if [[ "$RC" -eq 0 ]]; then
+  /bin/sleep 2
+  /usr/bin/open "http://127.0.0.1:8501"
+  exit 0
+fi
+
+if [[ "$RC" -eq 86 ]]; then
+  /usr/bin/open "https://www.python.org/downloads/macos/"
+  exit 0
+fi
+
+if [[ -f "$LOG_FILE" ]]; then
+  /usr/bin/open "$LOG_FILE"
+fi
+
+exit "$RC"
