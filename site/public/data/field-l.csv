@@ -1,0 +1,201 @@
+opportunity,code_pair,source_field,target_field,novelty,priority,base_score,prior_contact,mediators,motifs
+financial instability -> market power,F65 -> L11,International economics,Industrial organization,Cross-field gap,0.4782957172706165,0.4130684457173618,76,169,169
+reputation -> distortions,L14 -> H31,Industrial organization,Public economics,Cross-field gap,0.46832004204280153,0.3835667131880918,76,208,208
+institutional quality -> precautionary savings,L15 -> D14,Industrial organization,Microeconomics,Cross-field gap,0.4681121833980608,0.37285678337937994,44,203,203
+borrowing constraints -> institutional quality,F34 -> L15,International economics,Industrial organization,Cross-field gap,0.45925049878418767,0.3586704289435969,37,187,187
+public debt -> market power,H63 -> L11,Public economics,Industrial organization,Cross-field gap,0.4513674825884599,0.3440287480550159,25,163,163
+competition -> consumption,L13 -> E21,Industrial organization,Macroeconomics and monetary economics,Cross-field gap,0.445716372457194,0.32429690763974717,18,162,162
+vertical integration -> fertility,L22 -> J13,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4422684036824366,0.24672774150051624,0,42,42
+market power -> qe,L11 -> C22,Industrial organization,Mathematical and quantitative methods,Cross-field gap,0.43657900507884867,0.33828780301737243,85,181,181
+emu -> seller revenue,F36 -> L85,International economics,Industrial organization,Cross-field boundary,0.43305417403328633,0.23216793075188627,0,40,40
+leverage -> industry concentration,G24 -> L69,Financial economics,Industrial organization,Cross-field boundary,0.43105133534321255,0.23034889024058666,0,36,36
+inflation -> entrepreneurial activity,E31 -> L26,Macroeconomics and monetary economics,Industrial organization,Cross-field gap,0.4286832114431553,0.30191306561914866,19,139,139
+fiscal deficits -> entrepreneurial activity,H68 -> L26,Public economics,Industrial organization,Cross-field boundary,0.42688645832711514,0.22718628612034295,0,28,28
+competition -> economic stability,L13 -> E63,Industrial organization,Macroeconomics and monetary economics,Cross-field gap,0.4259560686211201,0.3026609550439875,27,162,162
+fertility -> vertical integration,J13 -> L22,Labor and demographic economics,Industrial organization,Cross-field boundary,0.425341948115856,0.22170671799358135,0,36,36
+offshoring -> financial fragility,L24 -> G51,Industrial organization,Financial economics,Cross-field boundary,0.4246601995584047,0.22197626980083565,0,32,32
+central bank independence -> industry concentration,E58 -> L69,Macroeconomics and monetary economics,Industrial organization,Cross-field boundary,0.42419047462496434,0.22165365827862535,0,31,31
+public debt -> industry concentration,H63 -> L69,Public economics,Industrial organization,Cross-field boundary,0.4239224513350776,0.22011429080732017,0,34,34
+blockchain technology -> industry concentration,E42 -> L69,Macroeconomics and monetary economics,Industrial organization,Cross-field boundary,0.42374478619843786,0.21991097999695955,0,34,34
+offshoring -> distance to jobs,L24 -> R23,Industrial organization,"Urban, rural, and regional economics",Cross-field boundary,0.42308594208512795,0.22243242891241555,0,25,25
+altruism -> structural transformation,D64 -> L16,Microeconomics,Industrial organization,Cross-field boundary,0.42285053229805336,0.22000528959520627,0,30,30
+seller revenue -> emu,L85 -> F36,Industrial organization,International economics,Cross-field boundary,0.42276793487440634,0.2216673594130349,0,26,26
+financial stability -> industry concentration,G28 -> L69,Financial economics,Industrial organization,Cross-field boundary,0.4226926633271306,0.21928917553717564,0,31,31
+institutional quality -> covid-19 pandemic,L15 -> H12,Industrial organization,Public economics,Cross-field gap,0.4226871533190054,0.30924116744809205,68,190,190
+deregulation -> labor force participation,L51 -> J21,Industrial organization,Labor and demographic economics,Cross-field boundary,0.42240184051916313,0.22015386153451005,0,28,28
+competition -> fiscal deficits,L13 -> H68,Industrial organization,Public economics,Cross-field boundary,0.42098002442747323,0.22147171907034488,0,21,21
+antidumping measures -> entrepreneurial activity,F18 -> L26,International economics,Industrial organization,Cross-field boundary,0.42080653766881665,0.2195662735434529,0,24,24
+vertical integration -> unemployment,L22 -> J64,Industrial organization,Labor and demographic economics,Cross-field gap,0.4205703522654251,0.22925039125317895,1,99,99
+offshoring -> demand shocks,L24 -> E39,Industrial organization,Macroeconomics and monetary economics,Cross-field boundary,0.4201620504891123,0.21796974512195874,0,25,25
+offshoring -> labor force participation,L24 -> J21,Industrial organization,Labor and demographic economics,Cross-field boundary,0.42002134722451034,0.2206449597771211,0,20,20
+entrepreneurial activity -> inflation,L26 -> E31,Industrial organization,Macroeconomics and monetary economics,Cross-field gap,0.4200195895854879,0.2896503999095156,19,131,131
+profitability -> consumption,L21 -> E21,Industrial organization,Macroeconomics and monetary economics,Cross-field gap,0.41983356092546736,0.3031125775454441,52,167,167
+media freedom -> exchange rates,L82 -> F31,Industrial organization,International economics,Cross-field boundary,0.4196357392492634,0.21765576993340569,0,24,24
+offshoring -> market stability,L24 -> D53,Industrial organization,Microeconomics,Cross-field boundary,0.41869859687370703,0.21517283680774127,0,26,26
+altruism -> offshoring,D64 -> L24,Microeconomics,Industrial organization,Cross-field boundary,0.41865758561709626,0.21608794461034095,0,24,24
+transport costs -> equity premium,L91 -> G12,Industrial organization,Financial economics,Cross-field boundary,0.41860590361222316,0.21555846614575966,0,25,25
+fiscal deficits -> tougher competition,H68 -> L19,Public economics,Industrial organization,Cross-field boundary,0.4185276702667673,0.21644503756677821,0,23,23
+media freedom -> fiscal policy,L82 -> E62,Industrial organization,Macroeconomics and monetary economics,Cross-field boundary,0.4185178717841515,0.22046423574508137,0,17,17
+offshoring -> personalized medicine,L24 -> I11,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.41848667656658667,0.2153426509724459,0,25,25
+retailer integration -> inequality,L81 -> D63,Industrial organization,Microeconomics,Cross-field boundary,0.4182551223497334,0.21456844235760966,0,26,26
+corruption -> offshoring,H57 -> L24,Public economics,Industrial organization,Cross-field boundary,0.4180988914796646,0.21571109142049236,0,23,23
+climate change -> monopoly power,Q54 -> L12,"Agriculture, natural resources, and environment",Industrial organization,Cross-field boundary,0.4177439989779551,0.21519033103028995,0,23,23
+offshoring -> altruism,L24 -> D64,Industrial organization,Microeconomics,Cross-field boundary,0.4173554174539208,0.2135480711504556,0,25,25
+media freedom -> weak institutions,L82 -> O17,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.4168978057980606,0.21982991196935125,0,15,15
+social security -> oil prices,H55 -> L71,Public economics,Industrial organization,Cross-field boundary,0.41673792470336946,0.2149096981672911,0,21,21
+media freedom -> equilibrium outcomes,L82 -> D51,Industrial organization,Microeconomics,Cross-field boundary,0.41672166902028424,0.21678952093192697,0,18,18
+vertical integration -> increased immigration,L22 -> K37,Industrial organization,Law and economics,Cross-field boundary,0.415728454998452,0.21257061891704743,0,22,22
+stricter roos -> average productivity,L42 -> O47,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.4154717078530756,0.2145020556039826,0,18,18
+personalized medicine -> offshoring,I11 -> L24,"Health, education, and welfare",Industrial organization,Cross-field boundary,0.4153842766403206,0.2106077135383774,0,25,25
+vertical integration -> conceptual artists,L22 -> Z11,Industrial organization,Other special topics,Cross-field boundary,0.41536350514644194,0.21318490686207014,0,20,20
+media freedom -> firm behavior,L82 -> D21,Industrial organization,Microeconomics,Cross-field boundary,0.4153143998436815,0.21246752725107002,0,21,21
+entrepreneurial activity -> fiscal deficits,L26 -> H68,Industrial organization,Public economics,Cross-field boundary,0.41521436617905827,0.21482701746583147,0,17,17
+scc -> less-confident households,L96 -> G59,Industrial organization,Financial economics,Cross-field boundary,0.4151580665593746,0.21412505561854456,0,18,18
+age -> state competition,J14 -> L49,Labor and demographic economics,Industrial organization,Cross-field boundary,0.41496331132169595,0.2126010263474488,0,20,20
+industry concentration -> public debt,L69 -> H63,Industrial organization,Public economics,Cross-field boundary,0.4148894219686833,0.2140423108846326,0,18,18
+overruling -> heterogeneity,L43 -> D29,Industrial organization,Microeconomics,Cross-field boundary,0.414827216856505,0.21170817539098255,0,21,21
+transport costs -> investor behavior,L91 -> G41,Industrial organization,Financial economics,Cross-field boundary,0.4147116892902986,0.2121156567130409,0,20,20
+state competition -> home production,L49 -> D13,Industrial organization,Microeconomics,Cross-field boundary,0.4145984625393801,0.21083542028085087,0,22,22
+blockchain technology -> number of firms,E42 -> L20,Macroeconomics and monetary economics,Industrial organization,Cross-field boundary,0.4144077746924644,0.21108047040708866,0,21,21
+media freedom -> human capital,L82 -> J24,Industrial organization,Labor and demographic economics,Cross-field boundary,0.41425449890827243,0.2113893490582046,0,20,20
+privatization -> demand shocks,L33 -> E39,Industrial organization,Macroeconomics and monetary economics,Cross-field boundary,0.41422561797871443,0.21249644739925813,0,18,18
+fiscal deficits -> competition,H68 -> L13,Public economics,Industrial organization,Cross-field boundary,0.4141203257796088,0.20963955717066168,0,23,23
+offshoring -> gender,L24 -> J16,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4139117326518898,0.21225712078608336,0,18,18
+interest rates -> gaming,E43 -> L83,Macroeconomics and monetary economics,Industrial organization,Cross-field boundary,0.41379800805039046,0.21323988977918598,0,16,16
+oil prices -> social security,L71 -> H55,Industrial organization,Public economics,Cross-field boundary,0.41377589585716706,0.2113112695345378,0,19,19
+gaming -> inflation,L83 -> E31,Industrial organization,Macroeconomics and monetary economics,Cross-field boundary,0.4135344264191073,0.2114952834154224,0,18,18
+media freedom -> government spending,L82 -> H59,Industrial organization,Public economics,Cross-field boundary,0.4134348746007979,0.2130612169404051,0,16,16
+financial intermediaries -> industry concentration,G23 -> L69,Financial economics,Industrial organization,Cross-field boundary,0.4132762500978393,0.2105022004809777,0,19,19
+media freedom -> social security,L82 -> H55,Industrial organization,Public economics,Cross-field boundary,0.41318566767179066,0.21433651987255337,0,14,14
+competition -> higher dependency ratio,L13 -> J19,Industrial organization,Labor and demographic economics,Cross-field boundary,0.41303412500936426,0.2108078494899196,0,18,18
+transport costs -> retirement decisions,L91 -> J26,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4127651180301138,0.21163542049986292,0,16,16
+stricter roos -> home production,L42 -> D13,Industrial organization,Microeconomics,Cross-field boundary,0.4127622765196202,0.21028157838343703,0,18,18
+increased immigration -> vertical integration,K37 -> L22,Law and economics,Industrial organization,Cross-field boundary,0.4127552257571243,0.20915374319460453,0,20,20
+fiscal policy -> industry characteristics,E62 -> L89,Macroeconomics and monetary economics,Industrial organization,Cross-field boundary,0.412741608536687,0.21347269153138138,0,14,14
+privatization -> location choices,L33 -> R32,Industrial organization,"Urban, rural, and regional economics",Cross-field boundary,0.41273954920084527,0.2122944252478417,0,15,15
+anticipated ramsey reforms -> market power,H00 -> L11,Public economics,Industrial organization,Cross-field boundary,0.41273602291590056,0.21235609650977605,0,15,15
+business groups -> fertility,L39 -> J13,Industrial organization,Labor and demographic economics,Cross-field boundary,0.41271992281897196,0.2116088380306639,0,16,16
+number of firms -> gender,L20 -> J16,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4127003291038892,0.21309946667944882,0,14,14
+capital taxation -> horizontal mergers,H24 -> L41,Public economics,Industrial organization,Cross-field boundary,0.4126273200097301,0.21136399602169745,0,16,16
+stricter roos -> high-skilled immigrants,L42 -> J61,Industrial organization,Labor and demographic economics,Cross-field boundary,0.41252756505780036,0.213858687661941,0,13,13
+offshoring -> corruption,L24 -> H57,Industrial organization,Public economics,Cross-field boundary,0.4125176193866717,0.20931245296743037,0,19,19
+monopoly power -> climate change,L12 -> Q54,Industrial organization,"Agriculture, natural resources, and environment",Cross-field boundary,0.4123528235697217,0.20964309782164545,0,18,18
+inflation -> gaming,E31 -> L83,Macroeconomics and monetary economics,Industrial organization,Cross-field boundary,0.4123436487660086,0.21169605943181566,0,15,15
+technology -> counterfeiting,L63 -> K42,Industrial organization,Law and economics,Cross-field boundary,0.4122294008894539,0.21009097804560956,0,17,17
+dsge models -> entrepreneurial activity,E13 -> L26,Macroeconomics and monetary economics,Industrial organization,Cross-field boundary,0.412197854410414,0.2100856048422881,0,17,17
+reputation -> health improvements,L14 -> I12,Industrial organization,"Health, education, and welfare",Cross-field gap,0.4120961344218246,0.2812222419643122,41,176,176
+immigration -> privatization,F22 -> L33,International economics,Industrial organization,Cross-field boundary,0.41203972084956836,0.2099734387393924,0,17,17
+government intervention -> causal identification,L59 -> C32,Industrial organization,Mathematical and quantitative methods,Cross-field boundary,0.41200038542571477,0.21057804716909823,0,16,16
+industry concentration -> economic indicators,L69 -> E01,Industrial organization,Macroeconomics and monetary economics,Cross-field boundary,0.4119511673754514,0.20983663801432667,0,17,17
+technology -> housing prices,L63 -> R31,Industrial organization,"Urban, rural, and regional economics",Cross-field boundary,0.4119261695985073,0.21124208772513228,0,15,15
+oil prices -> educational attainment,L71 -> I21,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.41190977154881225,0.20839666090638181,0,19,19
+privatization -> immigration,L33 -> F22,Industrial organization,International economics,Cross-field boundary,0.4117964293146497,0.20822716628323765,0,19,19
+ppi targeting -> investor behavior,L65 -> G41,Industrial organization,Financial economics,Cross-field boundary,0.4117962946679852,0.20942346199857861,0,17,17
+competition -> health capital,L13 -> I15,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.41176810987993845,0.20943396143240428,0,17,17
+offshoring -> increased immigration,L24 -> K37,Industrial organization,Law and economics,Cross-field boundary,0.4117273191378802,0.21243764461261144,0,13,13
+entrepreneurial activity -> sustainability,L26 -> Q01,Industrial organization,"Agriculture, natural resources, and environment",Cross-field boundary,0.41162447461243584,0.2085759286388643,0,18,18
+oil prices -> fertility,L71 -> J13,Industrial organization,Labor and demographic economics,Cross-field boundary,0.41160691641723945,0.2097813484768514,0,16,16
+privatization -> home production,L33 -> D13,Industrial organization,Microeconomics,Cross-field boundary,0.41160561125723993,0.20981182077332178,0,16,16
+emu -> oil prices,F36 -> L71,International economics,Industrial organization,Cross-field boundary,0.4116031887105916,0.2092668747585464,0,17,17
+offshoring -> centrality measures,L24 -> C10,Industrial organization,Mathematical and quantitative methods,Cross-field boundary,0.4115700076859374,0.20908086217388383,0,17,17
+oil prices -> housing prices,L71 -> R31,Industrial organization,"Urban, rural, and regional economics",Cross-field boundary,0.41143010742885083,0.2095350176973617,0,16,16
+antidumping measures -> scc,F18 -> L96,International economics,Industrial organization,Cross-field boundary,0.41134575557161807,0.20758133964145403,0,19,19
+industry concentration -> leverage,L69 -> G24,Industrial organization,Financial economics,Cross-field boundary,0.411330708025308,0.20871889552157907,0,17,17
+media freedom -> capital flows,L82 -> F32,Industrial organization,International economics,Cross-field boundary,0.4113004042617204,0.21017617541697164,0,15,15
+market share -> labor force participation,L17 -> J21,Industrial organization,Labor and demographic economics,Cross-field boundary,0.41128930094772226,0.20817286269692145,0,18,18
+public education -> automation,H52 -> L23,Public economics,Industrial organization,Cross-field boundary,0.41128582469927916,0.2110035305586155,0,14,14
+government intervention -> gender,L59 -> J16,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4112579194389422,0.20932594322002515,0,16,16
+horizontal mergers -> average productivity,L41 -> O47,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.4112074918736527,0.20996225199868818,0,15,15
+borrowing costs -> industry concentration,H74 -> L69,Public economics,Industrial organization,Cross-field boundary,0.4111605090026975,0.20848207663826662,0,17,17
+public information -> full employment,L86 -> E24,Industrial organization,Macroeconomics and monetary economics,Cross-field boundary,0.4111196262712297,0.2116077576341375,0,13,13
+market power -> precautionary savings,L11 -> D14,Industrial organization,Microeconomics,Cross-field gap,0.41106860440210347,0.2829890422038152,34,149,149
+gaming -> interest rates,L83 -> E43,Industrial organization,Macroeconomics and monetary economics,Cross-field boundary,0.4110060716622343,0.21047076583380145,0,14,14
+structural transformation -> altruism,L16 -> D64,Industrial organization,Microeconomics,Cross-field boundary,0.4109720691203652,0.20699959047929645,0,19,19
+market size -> consumption,L25 -> E21,Industrial organization,Macroeconomics and monetary economics,Cross-field gap,0.410969157807137,0.2788086986073943,27,154,154
+offshoring -> zero lower bound,L24 -> E49,Industrial organization,Macroeconomics and monetary economics,Cross-field boundary,0.41093684447234674,0.20957936010392633,0,15,15
+gender -> monopoly power,J16 -> L12,Labor and demographic economics,Industrial organization,Cross-field boundary,0.4109251850168845,0.20751853234470002,0,18,18
+demand shocks -> offshoring,E39 -> L24,Macroeconomics and monetary economics,Industrial organization,Cross-field boundary,0.4109147340308838,0.2120197054340067,0,12,12
+corporate income tax -> competition,K34 -> L13,Law and economics,Industrial organization,Cross-field boundary,0.41082995017681156,0.21097433757249445,0,13,13
+competition -> equity premium,L13 -> G12,Industrial organization,Financial economics,Cross-field gap,0.4108207332433114,0.2646224279953264,11,130,130
+exchange rates -> gaming,F31 -> L83,International economics,Industrial organization,Cross-field boundary,0.41081415907025925,0.21178250480601207,0,12,12
+monopoly power -> home production,L12 -> D13,Industrial organization,Microeconomics,Cross-field boundary,0.41077447851828136,0.20931253186469076,0,15,15
+public information -> government revenue,L86 -> H27,Industrial organization,Public economics,Cross-field boundary,0.41071538214096787,0.20916249993574534,0,15,15
+age -> competition,J14 -> L13,Labor and demographic economics,Industrial organization,Cross-field boundary,0.4107118301405376,0.20841933908260646,0,16,16
+family background -> oil prices,J12 -> L71,Labor and demographic economics,Industrial organization,Cross-field boundary,0.41064452084019437,0.20841761512552018,0,16,16
+leverage -> durability,G24 -> L68,Financial economics,Industrial organization,Cross-field boundary,0.410489058024043,0.20880633825916636,0,15,15
+state competition -> increasing returns,L49 -> I26,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.4104627122312484,0.20748036080891674,0,17,17
+number of firms -> test scores,L20 -> C12,Industrial organization,Mathematical and quantitative methods,Cross-field boundary,0.41043026900494817,0.20879970291429112,0,15,15
+ppi targeting -> precautionary savings,L65 -> D14,Industrial organization,Microeconomics,Cross-field boundary,0.41025078092839945,0.21001664521273639,0,13,13
+us -> inequality,L87 -> I24,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.41008095903395364,0.2074852686103949,0,16,16
+leverage -> us,G24 -> L87,Financial economics,Industrial organization,Cross-field boundary,0.4100764776938585,0.20825890185298856,0,15,15
+privatization -> labor force participation,L33 -> J21,Industrial organization,Labor and demographic economics,Cross-field boundary,0.40994328695066645,0.20954912585657492,0,13,13
+vertical integration -> energy prices,L22 -> Q41,Industrial organization,"Agriculture, natural resources, and environment",Cross-field boundary,0.4099405053810747,0.20801012231730304,0,15,15
+government actions -> oil prices,H11 -> L71,Public economics,Industrial organization,Cross-field boundary,0.4099051502928869,0.20878182510071908,0,14,14
+public debt -> transport costs,H63 -> L91,Public economics,Industrial organization,Cross-field boundary,0.40987577153087484,0.20866340173555634,0,14,14
+competition -> age,L13 -> J14,Industrial organization,Labor and demographic economics,Cross-field boundary,0.40986484073759266,0.20786073591350476,0,15,15
+industry concentration -> cooperation,L69 -> C71,Industrial organization,Mathematical and quantitative methods,Cross-field boundary,0.40972083315574126,0.20838573792675424,0,14,14
+durability -> inequality,L68 -> D63,Industrial organization,Microeconomics,Cross-field boundary,0.40970659522743036,0.20692890253975174,0,16,16
+credit constraints -> industry characteristics,E51 -> L89,Macroeconomics and monetary economics,Industrial organization,Cross-field boundary,0.40968724555921276,0.2093594256609775,0,13,13
+retirement decisions -> market share,J26 -> L17,Labor and demographic economics,Industrial organization,Cross-field boundary,0.40965986922507813,0.20621617667953612,0,17,17
+media freedom -> unemployment,L82 -> J64,Industrial organization,Labor and demographic economics,Cross-field boundary,0.40960456972821924,0.2083526860651665,0,14,14
+fiscal deficits -> monopoly power,H68 -> L12,Public economics,Industrial organization,Cross-field boundary,0.4095839183600673,0.2074285164389836,0,15,15
+trade liberalization -> gaming,F13 -> L83,International economics,Industrial organization,Cross-field boundary,0.4095791135873933,0.20900139045770474,0,13,13
+corporate income tax -> automation,K34 -> L23,Law and economics,Industrial organization,Cross-field boundary,0.40957018864799133,0.20987419760705486,0,12,12
+overruling -> expected returns,L43 -> G17,Industrial organization,Financial economics,Cross-field boundary,0.40955418556676026,0.20747224481626675,0,15,15
+hac rule -> automation,I18 -> L23,"Health, education, and welfare",Industrial organization,Cross-field boundary,0.409552525028264,0.20825660056801054,0,14,14
+timtobuild -> statistical discrimination,L74 -> J79,Industrial organization,Labor and demographic economics,Cross-field boundary,0.40950818328152166,0.20813847144338274,0,14,14
+offshoring -> climate change,L24 -> Q54,Industrial organization,"Agriculture, natural resources, and environment",Cross-field boundary,0.40943661512035373,0.20796490059547618,0,14,14
+stricter roos -> unions,L42 -> J51,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4093536609133047,0.20952222073545995,0,12,12
+economic stability -> alcohol consumption,E63 -> L66,Macroeconomics and monetary economics,Industrial organization,Cross-field boundary,0.4092796491207229,0.20776274274662143,0,14,14
+privatization -> labor supply,L33 -> J20,Industrial organization,Labor and demographic economics,Cross-field boundary,0.40924562637981055,0.21149121698191467,0,10,10
+transport costs -> public debt,L91 -> H63,Industrial organization,Public economics,Cross-field boundary,0.40924306068707816,0.2062543984992695,0,16,16
+overruling -> unemployment,L43 -> J64,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4092211202353843,0.2076407095851498,0,14,14
+market share -> retirement decisions,L17 -> J26,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4091670232312472,0.2075453234261605,0,14,14
+privatization -> sustainability,L33 -> Q01,Industrial organization,"Agriculture, natural resources, and environment",Cross-field boundary,0.4091128226776406,0.20671603189836113,0,15,15
+offshoring -> risk premia,L24 -> G22,Industrial organization,Financial economics,Cross-field boundary,0.4090922289643436,0.2074583221634068,0,14,14
+fiscal deficits -> market access,H68 -> L10,Public economics,Industrial organization,Cross-field boundary,0.40904562240592346,0.2066241253450402,0,15,15
+retailer integration -> ceo compensation,L81 -> M12,Industrial organization,Business administration and business economics,Cross-field boundary,0.4090141449148801,0.20820258407722558,0,13,13
+media freedom -> decentralization,L82 -> H77,Industrial organization,Public economics,Cross-field boundary,0.4090012885744639,0.2113834653027401,0,10,10
+automation -> public education,L23 -> H52,Industrial organization,Public economics,Cross-field boundary,0.40899782323494266,0.21012276860406767,0,11,11
+zero lower bound -> industry concentration,E49 -> L69,Macroeconomics and monetary economics,Industrial organization,Cross-field boundary,0.4089960913070406,0.20661319151155155,0,15,15
+overruling -> inequality,L43 -> I24,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.4089749458712578,0.2058376405184437,0,16,16
+immigration -> alcohol consumption,F22 -> L66,International economics,Industrial organization,Cross-field boundary,0.4089653090096517,0.20652579070045596,0,15,15
+technology -> market behavior,L63 -> G40,Industrial organization,Financial economics,Cross-field boundary,0.40896297582706886,0.2065221545811969,0,15,15
+hegemony -> stricter roos,F54 -> L42,International economics,Industrial organization,Cross-field boundary,0.40892820934145124,0.20646542799521136,0,15,15
+conceptual artists -> seller revenue,Z11 -> L85,Other special topics,Industrial organization,Cross-field boundary,0.40892110059873943,0.20887732492163102,0,12,12
+altruism -> transport costs,D64 -> L91,Microeconomics,Industrial organization,Cross-field boundary,0.4088675803484331,0.20712957474531304,0,14,14
+vertical integration -> higher dependency ratio,L22 -> J19,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4088376188223841,0.20790260456821755,0,13,13
+electrification -> borrowing costs,L94 -> H74,Industrial organization,Public economics,Cross-field boundary,0.4088363933157336,0.20703993735775447,0,14,14
+credit constraints -> alcohol consumption,E51 -> L66,Macroeconomics and monetary economics,Industrial organization,Cross-field boundary,0.4087923896119097,0.20787344061556184,0,13,13
+market access -> budget deficits,L10 -> H62,Industrial organization,Public economics,Cross-field boundary,0.4087581434527737,0.20692834958226777,0,14,14
+horizontal mergers -> fertility,L41 -> J13,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4087576862612346,0.20868862162562274,0,12,12
+central bank independence -> gaming,E58 -> L83,Macroeconomics and monetary economics,Industrial organization,Cross-field boundary,0.4087262261226384,0.2077026250317214,0,13,13
+fiscal policy -> ppi targeting,E62 -> L65,Macroeconomics and monetary economics,Industrial organization,Cross-field boundary,0.40857655596237213,0.20590560071613936,0,15,15
+labor force participation -> monopoly power,J21 -> L12,Labor and demographic economics,Industrial organization,Cross-field boundary,0.40857650413947827,0.20665080539545597,0,14,14
+transport costs -> altruism,L91 -> D64,Industrial organization,Microeconomics,Cross-field boundary,0.4085562989829409,0.20521956455640916,0,16,16
+investor behavior -> ppi targeting,G41 -> L65,Financial economics,Industrial organization,Cross-field boundary,0.4085424704491209,0.2065986842536837,0,14,14
+financial integration -> retailer integration,F30 -> L81,International economics,Industrial organization,Cross-field boundary,0.4085331619277534,0.2058750002816664,0,15,15
+unions -> stricter roos,J51 -> L42,Labor and demographic economics,Industrial organization,Cross-field boundary,0.40851048019318303,0.20739025925773333,0,13,13
+deregulation -> confounding factors,L51 -> C39,Industrial organization,Mathematical and quantitative methods,Cross-field boundary,0.40847232082793716,0.20650207573910045,0,14,14
+investment subsidies -> offshoring,H25 -> L24,Public economics,Industrial organization,Cross-field boundary,0.40845548799144926,0.20728990678857478,0,13,13
+deregulation -> conceptual artists,L51 -> Z11,Industrial organization,Other special topics,Cross-field boundary,0.4084547798516345,0.20650563409883077,0,14,14
+technology -> climate change,L63 -> Q54,Industrial organization,"Agriculture, natural resources, and environment",Cross-field boundary,0.4084470437769759,0.209161544644485,0,11,11
+us -> income,L87 -> E25,Industrial organization,Macroeconomics and monetary economics,Cross-field boundary,0.40843787122757375,0.2081281489664553,0,12,12
+number of firms -> blockchain technology,L20 -> E42,Industrial organization,Macroeconomics and monetary economics,Cross-field boundary,0.4084345821766856,0.20644056579887637,0,14,14
+market size -> increased education levels,L25 -> I25,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.4083988122786107,0.20644975195833123,0,14,14
+increased education levels -> market size,I25 -> L25,"Health, education, and welfare",Industrial organization,Cross-field boundary,0.4083546683860379,0.20558546478856135,0,15,15
+privatization -> significant,L33 -> C55,Industrial organization,Mathematical and quantitative methods,Cross-field boundary,0.4083260997972368,0.20555435048614643,0,15,15
+media freedom -> cooperation,L82 -> C71,Industrial organization,Mathematical and quantitative methods,Cross-field boundary,0.4083167732665158,0.21026168049531027,0,10,10
+gaming -> economic stability,L83 -> E63,Industrial organization,Macroeconomics and monetary economics,Cross-field boundary,0.40831674666636547,0.20704593606023589,0,13,13
+electrification -> personalized medicine,L94 -> I11,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.4082994201504713,0.20627480395998837,0,14,14
+overspending -> entrepreneurial activity,H72 -> L26,Public economics,Industrial organization,Cross-field boundary,0.4082980240711539,0.20551094591740343,0,15,15
+compliance with ntpos -> higher wages,L31 -> J31,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4082854868242498,0.20620768046531168,0,14,14
+capital controls -> durability,F38 -> L68,International economics,Industrial organization,Cross-field boundary,0.40820021851938165,0.2060992196304682,0,14,14
+cooperation -> industry concentration,C71 -> L69,Mathematical and quantitative methods,Industrial organization,Cross-field boundary,0.40819866553235773,0.2077882324922711,0,12,12
+forecast targeting -> industry concentration,C53 -> L69,Mathematical and quantitative methods,Industrial organization,Cross-field boundary,0.4081974648357781,0.20611090414331965,0,14,14
+stricter roos -> gender,L42 -> J16,Industrial organization,Labor and demographic economics,Cross-field boundary,0.40818562207892545,0.20872269238778232,0,11,11
+specificity of rolling stock -> fdi,L92 -> F23,Industrial organization,International economics,Cross-field boundary,0.4081539401095846,0.20530489864372187,0,15,15
+higher education -> horizontal mergers,I23 -> L41,"Health, education, and welfare",Industrial organization,Cross-field boundary,0.40814762655335385,0.20602497204944772,0,14,14
+market power -> higher dependency ratio,L11 -> J19,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4081278150297469,0.20677971279957744,0,13,13
+specificity of rolling stock -> health outcomes,L92 -> I14,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.40811577928898707,0.20675771670265441,0,13,13
+technology -> investor behavior,L63 -> G41,Industrial organization,Financial economics,Cross-field boundary,0.4080847279684164,0.2059350454880539,0,14,14

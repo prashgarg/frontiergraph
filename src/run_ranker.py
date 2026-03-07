@@ -32,7 +32,7 @@ def default_headless() -> bool:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Launch the Economics Opportunity Ranker.")
+    parser = argparse.ArgumentParser(description="Launch FrontierGraph.")
     parser.add_argument(
         "--db",
         default=None,

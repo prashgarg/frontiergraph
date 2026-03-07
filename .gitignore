@@ -7,6 +7,8 @@ __pycache__/
 *.egg-info/
 *.log
 *.py[cod]
+site/node_modules/
+site/dist/
 
 data/processed/
 data/external/

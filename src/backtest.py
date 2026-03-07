@@ -265,7 +265,7 @@ def _write_report(
     year_max = int(corpus_df["year"].max())
 
     lines: list[str] = []
-    lines.append("# Missing Claims Report")
+    lines.append("# FrontierGraph Backtest Report")
     lines.append("")
     lines.append("## Dataset Summary")
     lines.append(f"- nodes: {n_nodes}")

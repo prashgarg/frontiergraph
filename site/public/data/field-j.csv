@@ -1,0 +1,201 @@
+opportunity,code_pair,source_field,target_field,novelty,priority,base_score,prior_contact,mediators,motifs
+inflation -> human capital,E31 -> J24,Macroeconomics and monetary economics,Labor and demographic economics,Cross-field gap,0.6091234328587036,0.5990399201148966,27,225,225
+exchange rates -> human capital,F31 -> J24,International economics,Labor and demographic economics,Cross-field gap,0.6017220979445034,0.5604891996041255,7,219,219
+exchange rates -> job creation,F31 -> J23,International economics,Labor and demographic economics,Cross-field gap,0.545333108665762,0.511589509521158,42,170,170
+human capital -> exchange rates,J24 -> F31,Labor and demographic economics,International economics,Cross-field gap,0.5353099274819718,0.45406691148155087,7,205,205
+firm value -> unemployment,G32 -> J64,Financial economics,Labor and demographic economics,Cross-field gap,0.5212468461011268,0.45008672846733977,19,191,191
+demographic changes -> exchange rates,J11 -> F31,Labor and demographic economics,International economics,Cross-field gap,0.4634395606280003,0.33294786139461574,6,182,182
+mergers -> fertility,G34 -> J13,Financial economics,Labor and demographic economics,Cross-field boundary,0.4591285924046646,0.2689186151289111,0,57,57
+fdi -> fertility,F23 -> J13,International economics,Labor and demographic economics,Cross-field boundary,0.4581913984250716,0.268300491790645,0,57,57
+age -> terms of trade,J14 -> F14,Labor and demographic economics,International economics,Cross-field boundary,0.45450179336872193,0.26117926518931567,0,61,61
+limited liability -> human capital,K13 -> J24,Law and economics,Labor and demographic economics,Cross-field boundary,0.45428200603048163,0.25883761122280363,0,64,64
+higher wages -> public debt,J31 -> H63,Labor and demographic economics,Public economics,Cross-field gap,0.45409277572872986,0.34309412602452605,17,160,160
+patents -> unemployment,O34 -> J64,"Economic development, innovation, and growth",Labor and demographic economics,Cross-field boundary,0.45160645608704203,0.2583024374866058,0,52,52
+emu -> life expectancy,F36 -> J17,International economics,Labor and demographic economics,Cross-field boundary,0.44801424853887517,0.2532867479690263,0,50,50
+ethnic diversity -> public debt,J15 -> H63,Labor and demographic economics,Public economics,Cross-field boundary,0.44736920508307565,0.2511528699527238,0,56,56
+fertility -> fdi,J13 -> F23,Labor and demographic economics,International economics,Cross-field boundary,0.4468119109581596,0.2487042734508959,0,62,62
+human capital -> moral hazard,J24 -> G52,Labor and demographic economics,Financial economics,Cross-field gap,0.4461469080267677,0.34195605211161784,61,201,201
+limited liability -> unemployment,K13 -> J64,Law and economics,Labor and demographic economics,Cross-field boundary,0.4450865866478685,0.24688789932156696,0,54,54
+ethnic diversity -> expected returns,J15 -> G17,Labor and demographic economics,Financial economics,Cross-field boundary,0.44362860173461044,0.24504448787548308,0,54,54
+vertical integration -> fertility,L22 -> J13,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4422684036824366,0.24672774150051624,0,42,42
+public debt -> ethnic diversity,H63 -> J15,Public economics,Labor and demographic economics,Cross-field boundary,0.4413943014001126,0.24011233571480367,0,60,60
+fixed exchange rate regime -> labor supply,F33 -> J22,International economics,Labor and demographic economics,Cross-field boundary,0.4412346796385813,0.24022108250779511,0,58,58
+limited liability -> labor supply,K13 -> J22,Law and economics,Labor and demographic economics,Cross-field boundary,0.4388553675124152,0.24001997893714988,0,44,44
+unions -> financial fragility,J51 -> G51,Labor and demographic economics,Financial economics,Cross-field boundary,0.43869430954205435,0.2394602678722248,0,46,46
+age -> trade liberalization,J14 -> F13,Labor and demographic economics,International economics,Cross-field boundary,0.4378118292332258,0.2392204330291617,0,44,44
+central bank independence -> high-skilled immigrants,E58 -> J61,Macroeconomics and monetary economics,Labor and demographic economics,Cross-field boundary,0.43772959110639104,0.24050750279149946,0,39,39
+interest rates -> gender,E43 -> J16,Macroeconomics and monetary economics,Labor and demographic economics,Cross-field boundary,0.43772791292402374,0.23774140475477812,0,47,47
+financial literacy -> unemployment,G53 -> J64,Financial economics,Labor and demographic economics,Cross-field boundary,0.4366712487998451,0.24125891733148386,0,36,36
+fertility -> mergers,J13 -> G34,Labor and demographic economics,Financial economics,Cross-field boundary,0.4359328941902438,0.23327338174605255,0,52,52
+emu -> efficiency wages,F36 -> J33,International economics,Labor and demographic economics,Cross-field boundary,0.4358778125384903,0.233675163629771,0,50,50
+mergers -> high-skilled immigrants,G34 -> J61,Financial economics,Labor and demographic economics,Cross-field boundary,0.4325619141084013,0.23178017411932553,0,40,40
+limited liability -> family background,K13 -> J12,Law and economics,Labor and demographic economics,Cross-field boundary,0.4309168568148395,0.23074297981101602,0,35,35
+human capital -> economic stability,J24 -> E63,Labor and demographic economics,Macroeconomics and monetary economics,Cross-field gap,0.4301793765813998,0.3157320602753296,40,183,183
+exchange rates -> gender,F31 -> J16,International economics,Labor and demographic economics,Cross-field boundary,0.42976277618012626,0.2279881771198146,0,38,38
+limited liability -> statistical discrimination,K13 -> J79,Law and economics,Labor and demographic economics,Cross-field boundary,0.4289766367501444,0.22679464913686773,0,37,37
+gender -> exchange rates,J16 -> F31,Labor and demographic economics,International economics,Cross-field boundary,0.42894293671681344,0.22747703870155506,0,35,35
+financial stability -> employment,G28 -> J63,Financial economics,Labor and demographic economics,Cross-field gap,0.42737640540691624,0.28674746462075357,11,157,157
+monetary policy -> gender,E52 -> J16,Macroeconomics and monetary economics,Labor and demographic economics,Cross-field boundary,0.42674722780502855,0.22647688652801676,0,29,29
+expected returns -> ethnic diversity,G17 -> J15,Financial economics,Labor and demographic economics,Cross-field boundary,0.4264177520640451,0.2230591284538552,0,37,37
+investment subsidies -> family background,H25 -> J12,Public economics,Labor and demographic economics,Cross-field boundary,0.42594075868965053,0.22460064478215527,0,31,31
+fertility -> vertical integration,J13 -> L22,Labor and demographic economics,Industrial organization,Cross-field boundary,0.425341948115856,0.22170671799358135,0,36,36
+gender -> interest rates,J16 -> E43,Labor and demographic economics,Macroeconomics and monetary economics,Cross-field boundary,0.4245816531735449,0.2210145360461031,0,34,34
+unions -> increased immigration,J51 -> K37,Labor and demographic economics,Law and economics,Cross-field boundary,0.42455314836148295,0.22513135779141777,0,25,25
+financial stability -> high-skilled immigrants,G28 -> J61,Financial economics,Labor and demographic economics,Cross-field boundary,0.42418302330077934,0.22073943668571053,0,34,34
+central bank independence -> labor force participation,E58 -> J21,Macroeconomics and monetary economics,Labor and demographic economics,Cross-field boundary,0.42413097784711123,0.22330606871886177,0,27,27
+ownership -> unemployment,H13 -> J64,Public economics,Labor and demographic economics,Cross-field boundary,0.4238272167379128,0.22069819652614717,0,32,32
+fixed exchange rate regime -> labor supply,F33 -> J20,International economics,Labor and demographic economics,Cross-field boundary,0.4237682991244357,0.22172981067047187,0,30,30
+age -> price level,J14 -> E30,Labor and demographic economics,Macroeconomics and monetary economics,Cross-field boundary,0.42366999436961317,0.22170578850773237,0,29,29
+unions -> leverage,J51 -> G24,Labor and demographic economics,Financial economics,Cross-field boundary,0.42354452417678623,0.22021342138199732,0,32,32
+trade liberalization -> age,F13 -> J14,International economics,Labor and demographic economics,Cross-field boundary,0.42354332749583723,0.22145646355003612,0,29,29
+human capital -> limited liability,J24 -> K13,Labor and demographic economics,Law and economics,Cross-field boundary,0.42331846426532155,0.2203033088384016,0,31,31
+efficiency wages -> emu,J33 -> F36,Labor and demographic economics,International economics,Cross-field boundary,0.42331668978220893,0.22011513593509008,0,32,32
+patents -> minimum wage,O34 -> J38,"Economic development, innovation, and growth",Labor and demographic economics,Cross-field boundary,0.42275194940281147,0.22103173033381943,0,27,27
+banks -> higher dependency ratio,G21 -> J19,Financial economics,Labor and demographic economics,Cross-field boundary,0.4227342252405534,0.21974353885656575,0,30,30
+limited liability -> ethnic diversity,K13 -> J15,Law and economics,Labor and demographic economics,Cross-field boundary,0.4226903488950683,0.22001458635724783,0,29,29
+deregulation -> labor force participation,L51 -> J21,Industrial organization,Labor and demographic economics,Cross-field boundary,0.42240184051916313,0.22015386153451005,0,28,28
+increased immigration -> gender,K37 -> J16,Law and economics,Labor and demographic economics,Cross-field boundary,0.42232312945906936,0.22193807957379216,0,24,24
+economic integration -> gender,F15 -> J16,International economics,Labor and demographic economics,Cross-field boundary,0.4220624894839534,0.21765984833307558,0,33,33
+leverage -> higher wages,G24 -> J31,Financial economics,Labor and demographic economics,Cross-field gap,0.42197935047470586,0.2953419494012345,30,161,161
+high-skilled immigrants -> mergers,J61 -> G34,Labor and demographic economics,Financial economics,Cross-field boundary,0.4219633343353062,0.2177430079199245,0,32,32
+network structure -> unions,D85 -> J51,Microeconomics,Labor and demographic economics,Cross-field boundary,0.42134628223057585,0.2180233135425063,0,29,29
+fiscal policy -> gender,E62 -> J16,Macroeconomics and monetary economics,Labor and demographic economics,Cross-field boundary,0.42111779739802646,0.21770018839488373,0,29,29
+unions -> financial intermediaries,J51 -> G23,Labor and demographic economics,Financial economics,Cross-field boundary,0.42076405969590946,0.21752551479722335,0,28,28
+high-skilled immigrants -> financial stability,J61 -> G28,Labor and demographic economics,Financial economics,Cross-field boundary,0.4207119927386121,0.21788800345776047,0,27,27
+fertility -> increased emissions,J13 -> F64,Labor and demographic economics,International economics,Cross-field boundary,0.42066102159376306,0.2174433042960612,0,28,28
+capital mobility -> efficiency wages,F20 -> J33,International economics,Labor and demographic economics,Cross-field boundary,0.4205930983232712,0.21652499249261883,0,30,30
+vertical integration -> unemployment,L22 -> J64,Industrial organization,Labor and demographic economics,Cross-field gap,0.4205703522654251,0.22925039125317895,1,99,99
+fixed exchange rate regime -> human capital,F33 -> J24,International economics,Labor and demographic economics,Cross-field gap,0.42032127389555485,0.22498681665116532,1,115,115
+fixed exchange rate regime -> reduced labor usage,F33 -> J89,International economics,Labor and demographic economics,Cross-field boundary,0.4202601187419611,0.21633795660772792,0,29,29
+gender -> fiscal policy,J16 -> E62,Labor and demographic economics,Macroeconomics and monetary economics,Cross-field boundary,0.4202158748583367,0.21668693724310936,0,28,28
+offshoring -> labor force participation,L24 -> J21,Industrial organization,Labor and demographic economics,Cross-field boundary,0.42002134722451034,0.2206449597771211,0,20,20
+increased immigration -> unions,K37 -> J51,Law and economics,Labor and demographic economics,Cross-field boundary,0.4196461755505439,0.21902584214346424,0,22,22
+unions -> investor behavior,J51 -> G41,Labor and demographic economics,Financial economics,Cross-field boundary,0.419592934568809,0.2156815807310573,0,28,28
+terms of trade -> age,F14 -> J14,International economics,Labor and demographic economics,Cross-field boundary,0.41954894955260125,0.21654989034239067,0,26,26
+capital controls -> ethnic diversity,F38 -> J15,International economics,Labor and demographic economics,Cross-field boundary,0.41943510586677174,0.2147831896370581,0,30,30
+unions -> housing prices,J51 -> R31,Labor and demographic economics,"Urban, rural, and regional economics",Cross-field boundary,0.4194275980747913,0.21673736461040657,0,25,25
+leverage -> gender,G24 -> J16,Financial economics,Labor and demographic economics,Cross-field boundary,0.4193553118301525,0.21708746439666765,0,24,24
+r&d subsidies -> labor supply,O38 -> J22,"Economic development, innovation, and growth",Labor and demographic economics,Cross-field boundary,0.41922552359998927,0.22052597205189595,0,19,19
+fixed exchange rate regime -> labor force participation,F33 -> J21,International economics,Labor and demographic economics,Cross-field boundary,0.418938673841161,0.21474562647184423,0,28,28
+dsge models -> increased unemployment,E13 -> J65,Macroeconomics and monetary economics,Labor and demographic economics,Cross-field boundary,0.4188463861252298,0.21648722960951322,0,24,24
+higher dependency ratio -> exchange rates,J19 -> F31,Labor and demographic economics,International economics,Cross-field boundary,0.41876322403378874,0.2222423103913101,0,15,15
+corporate culture -> unemployment,M14 -> J64,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.418698758311636,0.21721651910833514,0,22,22
+unions -> government revenue,J51 -> H27,Labor and demographic economics,Public economics,Cross-field boundary,0.4186813208121,0.21386874937002853,0,29,29
+fertility -> external financing,J13 -> G39,Labor and demographic economics,Financial economics,Cross-field boundary,0.4185590591249617,0.21474017431500703,0,27,27
+globalization -> gender,F60 -> J16,International economics,Labor and demographic economics,Cross-field boundary,0.41846041487013025,0.21696109771489447,0,22,22
+price discrimination -> employment,D40 -> J63,Microeconomics,Labor and demographic economics,Cross-field gap,0.41844110440929416,0.2987346208015156,54,171,171
+labor supply -> fixed exchange rate regime,J22 -> F33,Labor and demographic economics,International economics,Cross-field boundary,0.4182994670361093,0.21379310019712444,0,28,28
+credit constraints -> gender,E51 -> J16,Macroeconomics and monetary economics,Labor and demographic economics,Cross-field boundary,0.41824118425713674,0.21600713957517487,0,23,23
+nominal wage contracts -> educational attainment,J41 -> I21,Labor and demographic economics,"Health, education, and welfare",Cross-field boundary,0.4178965495900094,0.2179181059600158,0,19,19
+unions -> economic benefits,J51 -> O22,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.41786274950994656,0.21306760200657784,0,28,28
+gender -> leverage,J16 -> G24,Labor and demographic economics,Financial economics,Cross-field boundary,0.41742583841251407,0.21368941228590477,0,25,25
+interest rates -> discrimination,E43 -> J71,Macroeconomics and monetary economics,Labor and demographic economics,Cross-field boundary,0.41734306437984936,0.21504800620377082,0,22,22
+minimum wage -> pollution,J38 -> Q53,Labor and demographic economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.41719139833655894,0.21549964215885262,0,21,21
+central bank independence -> gender,E58 -> J16,Macroeconomics and monetary economics,Labor and demographic economics,Cross-field boundary,0.41717355708594883,0.21553338778013728,0,21,21
+gender -> firm behavior,J16 -> D21,Labor and demographic economics,Microeconomics,Cross-field boundary,0.4170506036682637,0.2152795624954165,0,21,21
+gender -> full employment,J16 -> E24,Labor and demographic economics,Macroeconomics and monetary economics,Cross-field boundary,0.4170302285962449,0.21782201290100697,0,17,17
+high-skilled immigrants -> central bank independence,J61 -> E58,Labor and demographic economics,Macroeconomics and monetary economics,Cross-field boundary,0.41695766420431546,0.21305323888032074,0,25,25
+public debt -> gender,H63 -> J16,Public economics,Labor and demographic economics,Cross-field boundary,0.41670369613470204,0.21218552073885813,0,26,26
+ceo compensation -> unemployment,M12 -> J64,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.41664766115642576,0.2163673329459907,0,18,18
+gender -> public debt,J16 -> H63,Labor and demographic economics,Public economics,Cross-field boundary,0.41629916325112193,0.2134029627233019,0,22,22
+carbon pricing -> unions,Q58 -> J51,"Agriculture, natural resources, and environment",Labor and demographic economics,Cross-field boundary,0.4162667188430959,0.2135322607601657,0,22,22
+discount factor -> unions,H43 -> J51,Public economics,Labor and demographic economics,Cross-field boundary,0.41622089379366645,0.2106007854905545,0,28,28
+ems membership -> financial distress,J60 -> G33,Labor and demographic economics,Financial economics,Cross-field boundary,0.4161503208518725,0.2155902370565464,0,18,18
+gender -> increase in public debt,J16 -> H69,Labor and demographic economics,Public economics,Cross-field boundary,0.41605422917975154,0.21304513247089285,0,22,22
+policy coordination -> ethnic diversity,F42 -> J15,International economics,Labor and demographic economics,Cross-field boundary,0.415954895779603,0.21287185213958798,0,22,22
+unions -> network structure,J51 -> D85,Labor and demographic economics,Microeconomics,Cross-field boundary,0.41592478908827,0.21233586495681284,0,23,23
+protectionism -> gender,F52 -> J16,International economics,Labor and demographic economics,Cross-field boundary,0.4156582248961956,0.21149437942239557,0,24,24
+labor force participation -> government revenue,J21 -> H27,Labor and demographic economics,Public economics,Cross-field boundary,0.41561823600466036,0.2123331512331185,0,22,22
+higher dependency ratio -> banks,J19 -> G21,Labor and demographic economics,Financial economics,Cross-field boundary,0.4155668539482278,0.21525552982901472,0,17,17
+exchange rates -> higher dependency ratio,F31 -> J19,International economics,Labor and demographic economics,Cross-field boundary,0.4155464162670498,0.21181400644861792,0,23,23
+nominal wage contracts -> capital inflows,J41 -> F21,Labor and demographic economics,International economics,Cross-field boundary,0.4155280122758082,0.21277238266939758,0,21,21
+nominal wage contracts -> home production,J41 -> D13,Labor and demographic economics,Microeconomics,Cross-field boundary,0.4154838386364411,0.21612544871415776,0,16,16
+high-skilled immigrants -> liquidity,J61 -> E41,Labor and demographic economics,Macroeconomics and monetary economics,Cross-field boundary,0.41547376361409494,0.21273164318302212,0,21,21
+patents -> unions,O34 -> J51,"Economic development, innovation, and growth",Labor and demographic economics,Cross-field boundary,0.4153811608882878,0.21375005496058871,0,19,19
+fdi -> stigma,F23 -> J70,International economics,Labor and demographic economics,Cross-field boundary,0.4152187400323023,0.21493818676965,0,17,17
+wicksellian rules -> statistical discrimination,E12 -> J79,Macroeconomics and monetary economics,Labor and demographic economics,Cross-field boundary,0.4152145124703419,0.21137604514887792,0,23,23
+unions -> discount factor,J51 -> H43,Labor and demographic economics,Public economics,Cross-field boundary,0.41510287251407063,0.21156852024133463,0,22,22
+financial fragility -> unions,G51 -> J51,Financial economics,Labor and demographic economics,Cross-field boundary,0.41500376779703946,0.21202875821531664,0,21,21
+age -> state competition,J14 -> L49,Labor and demographic economics,Industrial organization,Cross-field boundary,0.41496331132169595,0.2126010263474488,0,20,20
+model misspecification -> labor mobility,C50 -> J62,Mathematical and quantitative methods,Labor and demographic economics,Cross-field boundary,0.41481688782969117,0.21286713148257272,0,19,19
+demographic changes -> sustainability of collusion,J11 -> K21,Labor and demographic economics,Law and economics,Cross-field boundary,0.41478947387422493,0.21061820115331187,0,23,23
+ethnic diversity -> aggregate demand,J15 -> E00,Labor and demographic economics,Macroeconomics and monetary economics,Cross-field boundary,0.4147234312232051,0.21482900305367494,0,16,16
+workers' bargaining power -> training,J52 -> M53,Labor and demographic economics,Business administration and business economics,Cross-field boundary,0.41456053597421433,0.21791836608849835,0,12,12
+unions -> budget deficits,J51 -> H62,Labor and demographic economics,Public economics,Cross-field boundary,0.4143134065611958,0.21091987277508362,0,21,21
+media freedom -> human capital,L82 -> J24,Industrial organization,Labor and demographic economics,Cross-field boundary,0.41425449890827243,0.2113893490582046,0,20,20
+high-skilled immigrants -> aggregate demand,J61 -> E00,Labor and demographic economics,Macroeconomics and monetary economics,Cross-field boundary,0.41425148179416554,0.21572927437615053,0,14,14
+blockchain technology -> labor force participation,E42 -> J21,Macroeconomics and monetary economics,Labor and demographic economics,Cross-field boundary,0.41422583360652154,0.20977725009707612,0,23,23
+labor force participation -> improves welfare,J21 -> D60,Labor and demographic economics,Microeconomics,Cross-field boundary,0.41412123469205864,0.21013501844809204,0,22,22
+property tax -> job creation,H71 -> J23,Public economics,Labor and demographic economics,Cross-field boundary,0.413941951453332,0.21149752380721545,0,19,19
+age -> monopoly power,J14 -> D42,Labor and demographic economics,Microeconomics,Cross-field boundary,0.41392476986070603,0.21207795397563672,0,18,18
+offshoring -> gender,L24 -> J16,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4139117326518898,0.21225712078608336,0,18,18
+gender -> government revenue,J16 -> H27,Labor and demographic economics,Public economics,Cross-field boundary,0.41390871334905144,0.21085859146960212,0,20,20
+age -> network structure,J14 -> D85,Labor and demographic economics,Microeconomics,Cross-field boundary,0.41387923087381395,0.21134321978618778,0,19,19
+investor behavior -> unions,G41 -> J51,Financial economics,Labor and demographic economics,Cross-field boundary,0.41385848650449836,0.21030694457202992,0,21,21
+gender -> monetary policy,J16 -> E52,Labor and demographic economics,Macroeconomics and monetary economics,Cross-field boundary,0.413831827699998,0.21209425092208545,0,18,18
+unions -> ceo compensation,J51 -> M12,Labor and demographic economics,Business administration and business economics,Cross-field boundary,0.41379268080885634,0.21256693350564373,0,17,17
+globalization -> workers' bargaining power,F60 -> J52,International economics,Labor and demographic economics,Cross-field boundary,0.41372348814379417,0.21189560343763456,0,18,18
+legal aid -> unemployment,K36 -> J64,Law and economics,Labor and demographic economics,Cross-field boundary,0.41369967673006247,0.2111173125108516,0,19,19
+gender -> increased immigration,J16 -> K37,Labor and demographic economics,Law and economics,Cross-field boundary,0.4136680358747723,0.21236176225175,0,17,17
+investment subsidies -> labor force participation,H25 -> J21,Public economics,Labor and demographic economics,Cross-field boundary,0.41364153772942325,0.20938500263620002,0,22,22
+gender -> systemic risk,J16 -> E44,Labor and demographic economics,Macroeconomics and monetary economics,Cross-field boundary,0.4136238905013916,0.2094231341644384,0,22,22
+occupational choices -> interest rates,J44 -> E43,Labor and demographic economics,Macroeconomics and monetary economics,Cross-field boundary,0.4135989434844866,0.21170410364879697,0,18,18
+ethnic diversity -> limited liability,J15 -> K13,Labor and demographic economics,Law and economics,Cross-field boundary,0.4135840501700537,0.21092402617125558,0,19,19
+discrimination -> exchange rates,J71 -> F31,Labor and demographic economics,International economics,Cross-field boundary,0.41357959729481114,0.21460948927301812,0,14,14
+public investment -> unions,H54 -> J51,Public economics,Labor and demographic economics,Cross-field boundary,0.41352108488078365,0.21030206241426405,0,20,20
+government policies -> dividends,J18 -> G35,Labor and demographic economics,Financial economics,Cross-field boundary,0.41349690889894763,0.20916500647425879,0,22,22
+advertising -> unemployment,M37 -> J64,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.41338860960768015,0.21343140913414355,0,15,15
+hegemony -> high-skilled immigrants,F54 -> J61,International economics,Labor and demographic economics,Cross-field boundary,0.4132917973635878,0.2093894196590246,0,21,21
+high-skilled immigrants -> dividends,J61 -> G35,Labor and demographic economics,Financial economics,Cross-field boundary,0.41321568023224775,0.21179907769388262,0,17,17
+price stickiness -> unions,C54 -> J51,Mathematical and quantitative methods,Labor and demographic economics,Cross-field boundary,0.4132156491531971,0.2116578033874303,0,17,17
+mergers -> discrimination,G34 -> J71,Financial economics,Labor and demographic economics,Cross-field boundary,0.41311950470047265,0.21028403695964623,0,19,19
+workers' bargaining power -> entrepreneurship,J52 -> M13,Labor and demographic economics,Business administration and business economics,Cross-field boundary,0.41305244665904883,0.21072013793713892,0,18,18
+competition -> higher dependency ratio,L13 -> J19,Industrial organization,Labor and demographic economics,Cross-field boundary,0.41303412500936426,0.2108078494899196,0,18,18
+financial intermediaries -> unions,G23 -> J51,Financial economics,Labor and demographic economics,Cross-field boundary,0.41302346323951966,0.2100805468853167,0,19,19
+firm behavior -> gender,D21 -> J16,Microeconomics,Labor and demographic economics,Cross-field boundary,0.412950733228653,0.2128602865057745,0,15,15
+nominal wage contracts -> growth,J41 -> O40,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4129147364716359,0.2111850176117855,0,17,17
+housing prices -> unions,R31 -> J51,"Urban, rural, and regional economics",Labor and demographic economics,Cross-field boundary,0.41291313266690255,0.21115782938461009,0,17,17
+constitutional reforms -> employment,K10 -> J68,Law and economics,Labor and demographic economics,Cross-field boundary,0.41288835747081903,0.20925911573347641,0,20,20
+labor mobility -> model misspecification,J62 -> C50,Labor and demographic economics,Mathematical and quantitative methods,Cross-field boundary,0.4128546678784398,0.20979531932422651,0,19,19
+collusion -> higher dependency ratio,D74 -> J19,Microeconomics,Labor and demographic economics,Cross-field boundary,0.4128103904627729,0.21113224058900515,0,17,17
+budget deficits -> unions,H62 -> J51,Public economics,Labor and demographic economics,Cross-field boundary,0.4128066930345715,0.20979250774388516,0,19,19
+employment -> exchange rates,J63 -> F31,Labor and demographic economics,International economics,Cross-field gap,0.4127769019201789,0.29233368410300753,46,148,148
+transport costs -> retirement decisions,L91 -> J26,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4127651180301138,0.21163542049986292,0,16,16
+gender -> location choices,J16 -> R32,Labor and demographic economics,"Urban, rural, and regional economics",Cross-field boundary,0.4127351856645388,0.21096795999552675,0,17,17
+business groups -> fertility,L39 -> J13,Industrial organization,Labor and demographic economics,Cross-field boundary,0.41271992281897196,0.2116088380306639,0,16,16
+credit constraints -> higher dependency ratio,E51 -> J19,Macroeconomics and monetary economics,Labor and demographic economics,Cross-field boundary,0.41270752542734795,0.21088824071100992,0,17,17
+number of firms -> gender,L20 -> J16,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4127003291038892,0.21309946667944882,0,14,14
+age -> conflicts of interest,J14 -> F51,Labor and demographic economics,International economics,Cross-field boundary,0.41267958195472526,0.2110307105816799,0,17,17
+higher dependency ratio -> welfare implications,J19 -> I30,Labor and demographic economics,"Health, education, and welfare",Cross-field boundary,0.41267826189713236,0.21216193443410875,0,15,15
+leverage -> unions,G24 -> J51,Financial economics,Labor and demographic economics,Cross-field boundary,0.4125649709770262,0.20884030404685866,0,20,20
+fixed exchange rate regime -> gender,F33 -> J16,International economics,Labor and demographic economics,Cross-field boundary,0.4125311611919988,0.20876037023751096,0,20,20
+stricter roos -> high-skilled immigrants,L42 -> J61,Industrial organization,Labor and demographic economics,Cross-field boundary,0.41252756505780036,0.213858687661941,0,13,13
+unions -> price volatility,J51 -> G13,Labor and demographic economics,Financial economics,Cross-field boundary,0.41239312779214504,0.21037304610060517,0,17,17
+discrimination -> income,J71 -> E25,Labor and demographic economics,Macroeconomics and monetary economics,Cross-field boundary,0.41232193766435177,0.20972465811311755,0,18,18
+fiscal transfers -> labor force participation,H87 -> J21,Public economics,Labor and demographic economics,Cross-field boundary,0.4123052856346739,0.20844561624847976,0,20,20
+exchange rates -> discrimination,F31 -> J71,International economics,Labor and demographic economics,Cross-field boundary,0.41227647577557414,0.21018879767902332,0,17,17
+decline in agricultural employment -> financial instability,J43 -> F65,Labor and demographic economics,International economics,Cross-field boundary,0.4122526827335756,0.2089056853106208,0,19,19
+increased emissions -> fertility,F64 -> J13,International economics,Labor and demographic economics,Cross-field boundary,0.41225097851019726,0.20892813690398906,0,19,19
+high-skilled immigrants -> external financing,J61 -> G39,Labor and demographic economics,Financial economics,Cross-field boundary,0.41213421019148916,0.21333645203981502,0,13,13
+corruption -> labor force participation,H57 -> J21,Public economics,Labor and demographic economics,Cross-field boundary,0.4120086810522112,0.20854619204886396,0,19,19
+resource allocation -> gender,D45 -> J16,Microeconomics,Labor and demographic economics,Cross-field boundary,0.4118668950452132,0.2089371119749533,0,18,18
+aggregate demand -> high-skilled immigrants,E00 -> J61,Macroeconomics and monetary economics,Labor and demographic economics,Cross-field boundary,0.4118440415331277,0.21176524519748138,0,14,14
+family background -> limited liability,J12 -> K13,Labor and demographic economics,Law and economics,Cross-field boundary,0.4118345198295608,0.20950561314129923,0,17,17
+joining the ems -> firm behavior,J45 -> D21,Labor and demographic economics,Microeconomics,Cross-field boundary,0.4117906249738078,0.208836557959172,0,18,18
+age -> emerging markets,J14 -> G15,Labor and demographic economics,Financial economics,Cross-field boundary,0.41165266465436706,0.21068027861651623,0,15,15
+borrowing costs -> labor force participation,H74 -> J21,Public economics,Labor and demographic economics,Cross-field boundary,0.41163399371126846,0.2085679089311997,0,18,18
+oil prices -> fertility,L71 -> J13,Industrial organization,Labor and demographic economics,Cross-field boundary,0.41160691641723945,0.2097813484768514,0,16,16
+discrimination -> interest rates,J71 -> E43,Labor and demographic economics,Macroeconomics and monetary economics,Cross-field boundary,0.4115536470249894,0.20981207864378623,0,16,16
+housing prices -> job satisfaction,R31 -> J28,"Urban, rural, and regional economics",Labor and demographic economics,Cross-field boundary,0.4113719999398443,0.20884187456491315,0,17,17
+decline in agricultural employment -> capital flows,J43 -> F32,Labor and demographic economics,International economics,Cross-field boundary,0.4113121361544208,0.20806392344010405,0,18,18
+market share -> labor force participation,L17 -> J21,Industrial organization,Labor and demographic economics,Cross-field boundary,0.41128930094772226,0.20817286269692145,0,18,18
+age -> climate change,J14 -> Q54,Labor and demographic economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.41126368526639884,0.21090854859533936,0,14,14
+government intervention -> gender,L59 -> J16,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4112579194389422,0.20932594322002515,0,16,16
+corruption -> participation rates,H57 -> J49,Public economics,Labor and demographic economics,Cross-field boundary,0.41124573073520254,0.2073706061463974,0,19,19
+corruption -> unions,H57 -> J51,Public economics,Labor and demographic economics,Cross-field boundary,0.41122572491006787,0.20794373514365047,0,18,18
+network structure -> age,D85 -> J14,Microeconomics,Labor and demographic economics,Cross-field boundary,0.41120261755295445,0.20919299794160423,0,16,16
+ai -> workers' bargaining power,C45 -> J52,Mathematical and quantitative methods,Labor and demographic economics,Cross-field boundary,0.4111725557970364,0.2106550887602326,0,14,14
+labor supply -> fixed exchange rate regime,J20 -> F33,Labor and demographic economics,International economics,Cross-field boundary,0.41116942855821415,0.20786616695681814,0,18,18
+corporate income tax -> unemployment,K34 -> J64,Law and economics,Labor and demographic economics,Cross-field boundary,0.4111487893092127,0.21335034621292623,0,11,11
+ethnic diversity -> policy coordination,J15 -> F42,Labor and demographic economics,International economics,Cross-field boundary,0.41111891755396934,0.20908140242771314,0,16,16
+unemployment -> ceo compensation,J64 -> M12,Labor and demographic economics,Business administration and business economics,Cross-field boundary,0.41108111823212284,0.2084279266501159,0,17,17

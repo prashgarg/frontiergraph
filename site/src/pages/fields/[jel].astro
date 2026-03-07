@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import OpportunityTable from "../../components/OpportunityTable.astro";
+import { data, formatNumber } from "../../lib/site-data";
+
+export function getStaticPaths() {
+  return Object.keys(data.fields).map((jel) => ({ params: { jel: jel.toLowerCase() } }));
+}
+
+const jel = (Astro.params.jel || "").toUpperCase();
+const field = data.fields[jel];
+if (!field) {
+  throw new Error(`Unknown field: ${jel}`);
+}
+---
+
+<BaseLayout
+  title={`${field.name} | FrontierGraph`}
+  description={`Ranked opportunities touching ${field.name}.`}
+>
+  <main>
+    <section class="page-hero">
+      <span class="eyebrow">Field {field.code}</span>
+      <h1>{field.name}</h1>
+      <p class="lede">
+        Static view for the current beta graph slice touching {field.name}. Use this page to see the strongest incoming
+        and outgoing opportunities before going deeper in the app.
+      </p>
+      <div class="button-row">
+        <span class="field-pill">{formatNumber(field.ideas)} ideas</span>
+        <span class="field-pill">{field.median_priority.toFixed(3)} median priority</span>
+        <a class="button-secondary" href={field.download_path}>Download CSV</a>
+        <a class="button-primary" href={field.app_link}>Open field in app</a>
+      </div>
+    </section>
+
+    <section class="section spotlight-grid">
+      {field.examples.map((item: any) => (
+        <article class="card">
+          <span class="eyebrow">{item.novelty}</span>
+          <h3>{item.opportunity}</h3>
+          <p class="card-copy">{item.project_shape}</p>
+          <p class="card-copy">{item.why_now}</p>
+        </article>
+      ))}
+    </section>
+
+    <OpportunityTable
+      items={field.top_targeting}
+      title={`Top opportunities targeting ${field.name}`}
+    />
+
+    <OpportunityTable
+      items={field.top_originating}
+      title={`Top opportunities originating from ${field.name}`}
+    />
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Corridors</span>
+          <h2>Strongest corridors touching {field.name}</h2>
+        </div>
+      </div>
+      <div class="corridor-grid">
+        {field.corridors.map((corridor: any) => (
+          <article class="corridor-card">
+            <span class="eyebrow">{corridor.corridor}</span>
+            <h3>{corridor.source_field_name} → {corridor.target_field_name}</h3>
+            <div class="button-row">
+              <span class="field-pill">{corridor.ideas} ideas</span>
+              <span class="field-pill">{corridor.mean_priority.toFixed(3)} mean priority</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { data } from "../../lib/site-data";
+
+const betaDb = data.downloads.beta_db;
+const demoRepoPath = `${data.repo_url}/tree/main/data/demo`;
+const publicReady = Boolean(betaDb.public_url);
+---
+
+<BaseLayout
+  title="Downloads | FrontierGraph"
+  description="Download the FrontierGraph source code, demo dataset, and public beta database package."
+>
+  <main>
+    <section class="page-hero">
+      <span class="eyebrow">Open release</span>
+      <h1>Code and data</h1>
+      <p class="lede">
+        The public release includes the repository, the demo dataset, and the full beta economics database package with
+        checksum and provenance metadata.
+      </p>
+    </section>
+
+    <section class="section download-stack">
+      <article class="download-panel">
+        <span class="eyebrow">Source code</span>
+        <h3>Public repository</h3>
+        <p class="download-copy">
+          Clone the code, run the demo dataset locally, inspect the build pipeline, and reproduce the beta app.
+        </p>
+        <div class="button-row">
+          <a class="button-primary" href={data.repo_url}>Open GitHub repo</a>
+          <a class="button-secondary" href="/method/">Read the method</a>
+        </div>
+      </article>
+
+      <article class="download-panel">
+        <span class="eyebrow">Demo data</span>
+        <h3>Small reproducible starter dataset</h3>
+        <p class="download-copy">
+          Use the in-repo demo data to run the full pipeline without needing the larger economics beta database.
+        </p>
+        <div class="button-row">
+          <a class="button-primary" href={demoRepoPath}>Open demo data</a>
+          <a class="button-secondary" href={`${data.repo_url}/blob/main/README.md`}>Quickstart README</a>
+        </div>
+      </article>
+
+      <article class="download-panel">
+        <span class="eyebrow">Full beta database</span>
+        <h3>{betaDb.filename}</h3>
+        <div class="download-meta">
+          <div>
+            <span class="tiny-label">Size</span>
+            <div class="big-number">{betaDb.db_size_gb} GB</div>
+          </div>
+          <div>
+            <span class="tiny-label">SHA-256</span>
+            <div class="card-copy">{betaDb.sha256.slice(0, 16)}...</div>
+          </div>
+        </div>
+        <p class="download-copy">
+          This is the exact database package used for the public economics beta. It is distributed with manifest and checksum files.
+        </p>
+        {!publicReady && (
+          <p class="warning-note">
+            Public mirror pending: the database metadata is live, but the object itself still needs public bucket access enabled.
+          </p>
+        )}
+        <div class="button-row">
+          {publicReady ? (
+            <a class="button-primary" href={betaDb.public_url}>Download beta DB</a>
+          ) : (
+            <span class="download-badge">Mirror pending cloud publish</span>
+          )}
+          <a class="button-secondary" href={data.downloads.checksum_path}>Checksum</a>
+          <a class="button-secondary" href={data.downloads.manifest_path}>Manifest</a>
+        </div>
+      </article>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,188 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import OpportunityTable from "../components/OpportunityTable.astro";
+import { data, formatNumber } from "../lib/site-data";
+
+const fieldHighlights = data.fields_index.slice(0, 6);
+const cards = [
+  {
+    href: "/fields/",
+    title: "Browse by subfield",
+    copy: "Start from the field you know and inspect the strongest incoming and outgoing opportunities.",
+  },
+  {
+    href: "/discover/bridges/",
+    title: "Cross-field bridges",
+    copy: "See the links where separate literatures appear ready to connect.",
+  },
+  {
+    href: "/discover/frontier/",
+    title: "Frontier bets",
+    copy: "Open the boldest graph-implied opportunities in the beta corpus.",
+  },
+  {
+    href: "/discover/fast-follow/",
+    title: "Fast-follow ideas",
+    copy: "Move quickly on ideas that already have strong path support.",
+  },
+  {
+    href: "/method/",
+    title: "Methods and evidence",
+    copy: "Inspect the deterministic ranking logic and the evidence behind every suggestion.",
+  },
+  {
+    href: "/downloads/",
+    title: "Data and code",
+    copy: "Get the public repository, demo data, and the full beta database package.",
+  },
+];
+---
+
+<BaseLayout
+  title="FrontierGraph"
+  description="FrontierGraph ranks what economics should work on next using a deterministic metascience engine."
+>
+  <main>
+    <section class="hero">
+      <div class="hero-panel">
+        <span class="eyebrow">Deterministic metascience for economics</span>
+        <h1>Where the economics literature still looks structurally incomplete.</h1>
+        <p class="lede">
+          FrontierGraph turns the economics literature graph into ranked research opportunities. AI is used only to
+          extract graph structure from text. The ranking itself is deterministic, inspectable, and designed for busy
+          academics who want a credible shortlist fast.
+        </p>
+        <div class="hero-actions">
+          <a class="button-primary" href={data.app_url}>Open the app</a>
+          <a class="button-secondary" href="/discover/">Browse discovery pages</a>
+          <a class="button-tertiary" href="/downloads/">Download code and data</a>
+        </div>
+      </div>
+      <div class="hero-panel hero-visual">
+        <div class="constellation">
+          <div class="constellation-lines"></div>
+          <div class="signal-card">
+            <span class="eyebrow">Live graph snapshot</span>
+            <h3>{data.home.hero_example.opportunity}</h3>
+            <p class="signal-subline">{data.home.hero_example.why_now}</p>
+            <div class="button-row">
+              <span class="field-pill">{data.home.hero_example.source_field_name}</span>
+              <span class="field-pill">{data.home.hero_example.target_field_name}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="metrics-grid">
+        <article class="metric-card">
+          <div class="metric-value">{formatNumber(data.metrics.nodes)}</div>
+          <div class="metric-label">concept nodes in the current economics graph</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-value">{formatNumber(data.metrics.papers)}</div>
+          <div class="metric-label">papers represented in the corpus</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-value">{formatNumber(data.metrics.candidates)}</div>
+          <div class="metric-label">candidate missing links available to rank</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">What it does</span>
+          <h2>Six ways into the graph</h2>
+        </div>
+        <p class="section-copy">
+          The public site is not just a landing page. It is a static discovery layer that lets researchers enter from
+          field pages, discovery modes, methods, and downloads before they ever touch the app.
+        </p>
+      </div>
+      <div class="card-grid">
+        {cards.map((card) => (
+          <a class="card" href={card.href}>
+            <span class="eyebrow">Entry point</span>
+            <h3>{card.title}</h3>
+            <p class="card-copy">{card.copy}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <OpportunityTable
+      items={data.home.snapshot}
+      title="Live beta snapshot"
+      caption="The rows below come from the current economics beta corpus. They are not marketing examples; they are the actual top-ranked opportunities in the live graph snapshot."
+    />
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Why trust it</span>
+          <h2>Legible before broad</h2>
+        </div>
+      </div>
+      <div class="trust-grid">
+        <article class="card">
+          <h3>AI stops at extraction</h3>
+          <p class="card-copy">
+            FrontierGraph uses AI to convert text into graph structure. The ranking itself is deterministic.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Evidence stays inspectable</h3>
+          <p class="card-copy">
+            Each idea can be unpacked into mediators, paths, supporting papers, and local graph context.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Built for real use</h3>
+          <p class="card-copy">
+            The goal is not a black-box answer. The goal is a structured first pass on where the field might be leaving room.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Field entry points</span>
+          <h2>Start from your own part of economics</h2>
+        </div>
+        <a class="text-link" href="/fields/">See all subfields</a>
+      </div>
+      <div class="fields-grid">
+        {fieldHighlights.map((field) => (
+          <a class="field-card" href={`/fields/${field.code.toLowerCase()}/`}>
+            <span class="eyebrow">{field.code}</span>
+            <h3>{field.name}</h3>
+            <div class="button-row">
+              <span class="field-pill">{formatNumber(field.ideas)} ideas</span>
+              <span class="field-pill">{field.median_priority.toFixed(3)} median priority</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="cta-band">
+        <span class="eyebrow">Open release</span>
+        <h2>Code, demo data, and the full beta database package are part of the product.</h2>
+        <p class="section-copy">
+          FrontierGraph is not meant to hide the machinery. The public release includes the repo, the demo data, and a
+          versioned beta database package with checksums and provenance.
+        </p>
+        <div class="button-row">
+          <a class="button-primary" href="/downloads/">Go to downloads</a>
+          <a class="button-secondary" href={data.repo_url}>View repository</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

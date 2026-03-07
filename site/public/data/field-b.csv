@@ -1,0 +1,201 @@
+opportunity,code_pair,source_field,target_field,novelty,priority,base_score,prior_contact,mediators,motifs
+historical context -> polarization,B15 -> C46,History of economic thought,Mathematical and quantitative methods,Cross-field boundary,0.411551239130012,0.21046878928444118,0,15,15
+patents -> gradualist approach,O34 -> B52,"Economic development, innovation, and growth",History of economic thought,Cross-field boundary,0.40958529698145973,0.20750086842099494,0,15,15
+legal reform -> gradualist approach,K41 -> B52,Law and economics,History of economic thought,Cross-field boundary,0.40725426868787745,0.20543864435564796,0,13,13
+economic integration -> salient thinkers,F15 -> B31,International economics,History of economic thought,Cross-field boundary,0.4065778217982624,0.2044365852794756,0,13,13
+mergers -> salient thinkers,G34 -> B31,Financial economics,History of economic thought,Cross-field boundary,0.406075992493273,0.20648875896871235,0,10,10
+banks -> salient thinkers,G21 -> B31,Financial economics,History of economic thought,Cross-field boundary,0.4059862758339122,0.2063191476908788,0,10,10
+trade liberalization -> salient thinkers,F13 -> B31,International economics,History of economic thought,Cross-field boundary,0.4054026347628424,0.2054042194126206,0,10,10
+capital inflows -> salient thinkers,F21 -> B31,International economics,History of economic thought,Cross-field boundary,0.40537194530946297,0.20437150503484444,0,11,11
+investment -> salient thinkers,G31 -> B31,Financial economics,History of economic thought,Cross-field boundary,0.4053359957607558,0.20433420672184138,0,11,11
+terms of trade -> salient thinkers,F14 -> B31,International economics,History of economic thought,Cross-field boundary,0.4049087052589905,0.20367364133908678,0,11,11
+decentralization -> salient thinkers,H77 -> B31,Public economics,History of economic thought,Cross-field boundary,0.40466000599766233,0.2042913688647574,0,10,10
+credit constraints -> salient thinkers,E51 -> B31,Macroeconomics and monetary economics,History of economic thought,Cross-field boundary,0.40456844732163844,0.20414253382301703,0,10,10
+public debt -> salient thinkers,H63 -> B31,Public economics,History of economic thought,Cross-field boundary,0.40440299735631485,0.20390108989270675,0,10,10
+trade -> salient thinkers,F19 -> B31,International economics,History of economic thought,Cross-field boundary,0.4042704437873066,0.20475055846798682,0,9,9
+depreciation -> salient thinkers,D25 -> B31,Microeconomics,History of economic thought,Cross-field boundary,0.40412475083999383,0.20348157983390858,0,10,10
+emu -> evolution of macroeconomic thought,F36 -> B22,International economics,History of economic thought,Cross-field boundary,0.4040257272885114,0.2044694248965572,0,9,9
+methodology -> high-skilled immigrants,B41 -> J61,History of economic thought,Labor and demographic economics,Cross-field boundary,0.40377753173281894,0.20404593472310018,0,9,9
+tax policy -> evolution of macroeconomic thought,H29 -> B22,Public economics,History of economic thought,Cross-field boundary,0.4037325192530669,0.2051863510123116,0,8,8
+borrowing constraints -> salient thinkers,F34 -> B31,International economics,History of economic thought,Cross-field boundary,0.4036359588270455,0.20381673741716438,0,9,9
+educational policies -> gradualist approach,I28 -> B52,"Health, education, and welfare",History of economic thought,Cross-field boundary,0.40362461724896526,0.202745840027228,0,10,10
+patents -> historical context,O34 -> B15,"Economic development, innovation, and growth",History of economic thought,Cross-field boundary,0.4034444705597494,0.2047995464256848,0,8,8
+evolution of macroeconomic thought -> consumer welfare,B22 -> D69,History of economic thought,Microeconomics,Cross-field boundary,0.40335521510385214,0.204599560488817,0,8,8
+employment -> salient thinkers,J63 -> B31,Labor and demographic economics,History of economic thought,Cross-field boundary,0.4033383118095113,0.20339112327524478,0,9,9
+auction outcomes -> historical context,D44 -> B15,Microeconomics,History of economic thought,Cross-field boundary,0.40324144701303055,0.20322308518311114,0,9,9
+historical context -> auction outcomes,B15 -> D44,History of economic thought,Microeconomics,Cross-field boundary,0.40316911548674106,0.203134461066109,0,9,9
+historical context -> price volatility,B15 -> G13,History of economic thought,Financial economics,Cross-field boundary,0.40306809876233796,0.20573104349318042,0,7,7
+fdi -> salient thinkers,F23 -> B31,International economics,History of economic thought,Cross-field boundary,0.4026827014260396,0.20358109790891213,0,8,8
+investment subsidies -> gradualist approach,H25 -> B52,Public economics,History of economic thought,Cross-field boundary,0.4025811915409732,0.20341448052224687,0,8,8
+joint ownership -> gradualist approach,R21 -> B52,"Urban, rural, and regional economics",History of economic thought,Cross-field boundary,0.40257598743649314,0.20340398016168237,0,8,8
+financial stability -> salient thinkers,G28 -> B31,Financial economics,History of economic thought,Cross-field boundary,0.40253743300545913,0.20335442596472972,0,8,8
+evolution of macroeconomic thought -> welfare,B22 -> I38,History of economic thought,"Health, education, and welfare",Cross-field boundary,0.4025132559575033,0.20332386624980275,0,8,8
+salient thinkers -> labor market dynamics,B31 -> J29,History of economic thought,Labor and demographic economics,Cross-field boundary,0.40225058414267867,0.2029175770845424,0,8,8
+government interventions -> methodology,H81 -> B41,Public economics,History of economic thought,Cross-field boundary,0.40222254318399703,0.20289667623132665,0,8,8
+optimal contracts -> salient thinkers,D86 -> B31,Microeconomics,History of economic thought,Cross-field boundary,0.40220901718940055,0.20286952520996007,0,8,8
+salient thinkers -> welfare,B31 -> I38,History of economic thought,"Health, education, and welfare",Cross-field boundary,0.4020254987480803,0.20259247637143568,0,8,8
+emu -> salient thinkers,F36 -> B31,International economics,History of economic thought,Cross-field boundary,0.401891894936475,0.20239159821410083,0,8,8
+economic conditions -> bb strategy,E66 -> B00,Macroeconomics and monetary economics,History of economic thought,Cross-field boundary,0.40188135360856286,0.20237661625300016,0,8,8
+human capital -> bb strategy,J24 -> B00,Labor and demographic economics,History of economic thought,Cross-field boundary,0.4017988157676864,0.20357234203124094,0,7,7
+capital taxation -> salient thinkers,H24 -> B31,Public economics,History of economic thought,Cross-field boundary,0.4016974588898428,0.20210925424474063,0,8,8
+limited liability -> salient thinkers,K13 -> B31,Law and economics,History of economic thought,Cross-field boundary,0.40156578663180464,0.2032080699794751,0,7,7
+optimal policy -> salient thinkers,C61 -> B31,Mathematical and quantitative methods,History of economic thought,Cross-field boundary,0.40138031603254176,0.2029336708561492,0,7,7
+international cooperation -> salient thinkers,F53 -> B31,International economics,History of economic thought,Cross-field boundary,0.40135690136282165,0.20289709087352717,0,7,7
+historical context -> improves welfare,B15 -> D60,History of economic thought,Microeconomics,Cross-field boundary,0.4013272394349749,0.20286012480915544,0,7,7
+market share -> methodology,L17 -> B41,Industrial organization,History of economic thought,Cross-field boundary,0.40122064103762556,0.20269956821460755,0,7,7
+labor market dynamics -> salient thinkers,J29 -> B31,Labor and demographic economics,History of economic thought,Cross-field boundary,0.4011808579014775,0.2026482952856105,0,7,7
+public debt -> evolution of macroeconomic thought,H63 -> B22,Public economics,History of economic thought,Cross-field boundary,0.40117962548890007,0.20421428703981162,0,6,6
+search frictions -> salient thinkers,J69 -> B31,Labor and demographic economics,History of economic thought,Cross-field boundary,0.40108818186845074,0.2024946969851675,0,7,7
+salient thinkers -> investment,B31 -> G31,History of economic thought,Financial economics,Cross-field boundary,0.4010565049729979,0.20244514164063812,0,7,7
+market liquidity -> salient thinkers,G10 -> B31,Financial economics,History of economic thought,Cross-field boundary,0.4009934395328059,0.20237215351400153,0,7,7
+job satisfaction -> historical context,J28 -> B15,Labor and demographic economics,History of economic thought,Cross-field boundary,0.4009474812917597,0.2022913339503677,0,7,7
+majority rule -> salient thinkers,D71 -> B31,Microeconomics,History of economic thought,Cross-field boundary,0.4009313090610583,0.20227294654208705,0,7,7
+reduced labor usage -> gradualist approach,J89 -> B52,Labor and demographic economics,History of economic thought,Cross-field boundary,0.4008606936442563,0.20216657306892125,0,7,7
+firm productivity -> economic approach,D22 -> B55,Microeconomics,History of economic thought,Cross-field boundary,0.4008026485074768,0.20207760742746764,0,7,7
+corruption -> gradualist approach,H57 -> B52,Public economics,History of economic thought,Cross-field boundary,0.4007615210490654,0.20202097512535416,0,7,7
+evolution of macroeconomic thought -> health outcomes,B22 -> I14,History of economic thought,"Health, education, and welfare",Cross-field boundary,0.4007284191670167,0.20196537082869997,0,7,7
+r&d investment -> historical context,O32 -> B15,"Economic development, innovation, and growth",History of economic thought,Cross-field boundary,0.4006856419736985,0.20340806412517173,0,6,6
+salient thinkers -> leverage,B31 -> G24,History of economic thought,Financial economics,Cross-field boundary,0.4006531601125883,0.20185737853072816,0,7,7
+historical context -> high volatility,B15 -> C58,History of economic thought,Mathematical and quantitative methods,Cross-field boundary,0.4006489891028069,0.20515777007457064,0,5,5
+financial fragility -> salient thinkers,G51 -> B31,Financial economics,History of economic thought,Cross-field boundary,0.40057525101655184,0.20174534338064326,0,7,7
+public education -> gradualist approach,H52 -> B52,Public economics,History of economic thought,Cross-field boundary,0.40056235428432574,0.2017278437396836,0,7,7
+deadweight loss -> evolution of macroeconomic thought,H21 -> B22,Public economics,History of economic thought,Cross-field boundary,0.4004991733761892,0.20310727414841956,0,6,6
+carbon tax -> evolution of macroeconomic thought,H23 -> B22,Public economics,History of economic thought,Cross-field boundary,0.40049876716415095,0.20311104527152618,0,6,6
+risk premia -> gradualist approach,G22 -> B52,Financial economics,History of economic thought,Cross-field boundary,0.40049411028315096,0.2016289232055304,0,7,7
+city size -> salient thinkers,R12 -> B31,"Urban, rural, and regional economics",History of economic thought,Cross-field boundary,0.4004914244863243,0.20310512211998522,0,6,6
+trade patterns -> salient thinkers,F10 -> B31,International economics,History of economic thought,Cross-field boundary,0.4004200717208064,0.20299369068676507,0,6,6
+transaction costs -> salient thinkers,D23 -> B31,Microeconomics,History of economic thought,Cross-field boundary,0.4003445168661331,0.20287675559690457,0,6,6
+historical context -> financial intermediaries,B15 -> G23,History of economic thought,Financial economics,Cross-field boundary,0.4003319594273645,0.20287163937546343,0,6,6
+trade -> bb strategy,F19 -> B00,International economics,History of economic thought,Cross-field boundary,0.4002134585340506,0.20268106281872797,0,6,6
+public funding -> methodology,I22 -> B41,"Health, education, and welfare",History of economic thought,Cross-field boundary,0.40018018261007304,0.20264849045917474,0,6,6
+offshoring -> gradualist approach,L24 -> B52,Industrial organization,History of economic thought,Cross-field boundary,0.40015139149367734,0.20257898999851634,0,6,6
+limited liability -> gradualist approach,K13 -> B52,Law and economics,History of economic thought,Cross-field boundary,0.40013063840700624,0.20255476605288805,0,6,6
+foreign aid -> evolution of macroeconomic thought,F35 -> B22,International economics,History of economic thought,Cross-field boundary,0.4000955898112503,0.20251848359390914,0,6,6
+bb strategy -> equilibrium prices,B00 -> D41,History of economic thought,Microeconomics,Cross-field boundary,0.40008493785668336,0.20249026922720126,0,6,6
+vertical integration -> salient thinkers,L22 -> B31,Industrial organization,History of economic thought,Cross-field boundary,0.4000376504755476,0.20243371151532227,0,6,6
+gender -> methodology,J16 -> B41,Labor and demographic economics,History of economic thought,Cross-field boundary,0.3999919896869568,0.20234491457047074,0,6,6
+enhanced cooperation -> salient thinkers,F55 -> B31,International economics,History of economic thought,Cross-field boundary,0.39990498247599937,0.20222053414239316,0,6,6
+institutional quality -> the foundational importance of economic theory as a guiding framework has diminished,L15 -> B49,Industrial organization,History of economic thought,Cross-field boundary,0.3998951964209459,0.20219786300016598,0,6,6
+evolution of macroeconomic thought -> tax policy,B22 -> H29,History of economic thought,Public economics,Cross-field boundary,0.3998948034647817,0.2022098781970232,0,6,6
+historical context -> financial constraints,B15 -> D20,History of economic thought,Microeconomics,Cross-field boundary,0.3998755223554452,0.2021837155625839,0,6,6
+technological progress -> the foundational importance of economic theory as a guiding framework has diminished,O39 -> B49,"Economic development, innovation, and growth",History of economic thought,Cross-field boundary,0.3998479091198793,0.2021326409936791,0,6,6
+transparency -> welles and godard,G38 -> B13,Financial economics,History of economic thought,Cross-field boundary,0.39983921436925396,0.20212459391266438,0,6,6
+demand shocks -> bb strategy,E39 -> B00,Macroeconomics and monetary economics,History of economic thought,Cross-field boundary,0.39983921121980964,0.2021161713572485,0,6,6
+foreign aid -> salient thinkers,F35 -> B31,International economics,History of economic thought,Cross-field boundary,0.39983576874794413,0.2021202977809483,0,6,6
+fertility -> economic approach,J13 -> B55,Labor and demographic economics,History of economic thought,Cross-field boundary,0.39982369322113737,0.20210319094604728,0,6,6
+evolution of macroeconomic thought -> educational attainment,B22 -> I21,History of economic thought,"Health, education, and welfare",Cross-field boundary,0.3997906543135425,0.20205083510967908,0,6,6
+high-skilled immigrants -> methodology,J61 -> B41,Labor and demographic economics,History of economic thought,Cross-field boundary,0.39975954428676286,0.20200593411798756,0,6,6
+foreign aid -> economic approach,F35 -> B55,International economics,History of economic thought,Cross-field boundary,0.39972266468676537,0.20195051285154655,0,6,6
+electoral outcomes -> salient thinkers,K16 -> B31,Law and economics,History of economic thought,Cross-field boundary,0.39971829935715797,0.20194871015982852,0,6,6
+salient thinkers -> mergers,B31 -> G34,History of economic thought,Financial economics,Cross-field boundary,0.3997009285002955,0.20191570987583246,0,6,6
+income inequality -> welles and godard,D31 -> B13,Microeconomics,History of economic thought,Cross-field boundary,0.3996918708490145,0.20190341950315693,0,6,6
+historical context -> patents,B15 -> O34,History of economic thought,"Economic development, innovation, and growth",Cross-field boundary,0.3996781180332465,0.20188374736786704,0,6,6
+monetary policy -> economic approach,E52 -> B55,Macroeconomics and monetary economics,History of economic thought,Cross-field boundary,0.399673234448767,0.2018735692998008,0,6,6
+entrepreneurship -> methodology,M13 -> B41,Business administration and business economics,History of economic thought,Cross-field boundary,0.3996415202168237,0.20182534157105994,0,6,6
+transport costs -> gradualist approach,L91 -> B52,Industrial organization,History of economic thought,Cross-field boundary,0.39960161950751466,0.20177007472006625,0,6,6
+test scores -> salient thinkers,C12 -> B31,Mathematical and quantitative methods,History of economic thought,Cross-field boundary,0.3995978392111502,0.20176449821957743,0,6,6
+trade liberalization -> the foundational importance of economic theory as a guiding framework has diminished,F13 -> B49,International economics,History of economic thought,Cross-field boundary,0.39958516378666536,0.20174729887220727,0,6,6
+optimal contracts -> economic approach,D86 -> B55,Microeconomics,History of economic thought,Cross-field boundary,0.39955841667626424,0.20170581105572227,0,6,6
+higher corporate tax rates -> salient thinkers,H32 -> B31,Public economics,History of economic thought,Cross-field boundary,0.3995295460107074,0.201665957923988,0,6,6
+asymmetric information -> welles and godard,D82 -> B13,Microeconomics,History of economic thought,Cross-field boundary,0.3995035133200477,0.201625439507251,0,6,6
+auction outcomes -> economic approach,D44 -> B55,Microeconomics,History of economic thought,Cross-field boundary,0.3994969942326894,0.20161614672745853,0,6,6
+financial constraints -> gradualist approach,H60 -> B52,Public economics,History of economic thought,Cross-field boundary,0.39942614484977185,0.20151413793498546,0,6,6
+enhanced cooperation -> economic approach,F55 -> B55,International economics,History of economic thought,Cross-field boundary,0.3993607879618038,0.2014191349392942,0,6,6
+imperfect information -> the foundational importance of economic theory as a guiding framework has diminished,D83 -> B49,Microeconomics,History of economic thought,Cross-field boundary,0.3992729830659097,0.20300031947875483,0,5,5
+leverage -> salient thinkers,G24 -> B31,Financial economics,History of economic thought,Cross-field boundary,0.3992408870500831,0.2029609670230106,0,5,5
+income inequality -> economics approach,D31 -> B54,Microeconomics,History of economic thought,Cross-field boundary,0.39918949491788913,0.2028589276379964,0,5,5
+methodology -> valuation effects,B41 -> Q51,History of economic thought,"Agriculture, natural resources, and environment",Cross-field boundary,0.39901394690140507,0.2026044481361559,0,5,5
+financial development -> salient thinkers,O16 -> B31,"Economic development, innovation, and growth",History of economic thought,Cross-field boundary,0.39895757950364563,0.20253839928406925,0,5,5
+optimal mechanism -> salient thinkers,D47 -> B31,Microeconomics,History of economic thought,Cross-field boundary,0.3989381216594167,0.2024864677762585,0,5,5
+capital controls -> evolution of macroeconomic thought,F38 -> B22,International economics,History of economic thought,Cross-field boundary,0.39890221502776335,0.20244469004894444,0,5,5
+government spending -> evolution of macroeconomic thought,H59 -> B22,Public economics,History of economic thought,Cross-field boundary,0.3988806695579476,0.2024064259784051,0,5,5
+consumption -> evolution of macroeconomic thought,E21 -> B22,Macroeconomics and monetary economics,History of economic thought,Cross-field boundary,0.3988515874791437,0.2023659067297644,0,5,5
+public drug insurance -> gradualist approach,H51 -> B52,Public economics,History of economic thought,Cross-field boundary,0.3988275476490292,0.20233701266441337,0,5,5
+tax policy -> historical development of civic and intellectual life,H29 -> B11,Public economics,History of economic thought,Cross-field boundary,0.3988004509046842,0.20228261743630493,0,5,5
+labor market outcomes -> evolution of macroeconomic thought,J48 -> B22,Labor and demographic economics,History of economic thought,Cross-field boundary,0.3987867756750372,0.20225555292549294,0,5,5
+evolution of macroeconomic thought -> deadweight loss,B22 -> H21,History of economic thought,Public economics,Cross-field boundary,0.3987746427224704,0.20224191967696048,0,5,5
+family background -> the foundational importance of economic theory as a guiding framework has diminished,J12 -> B49,Labor and demographic economics,History of economic thought,Cross-field boundary,0.39874660234646453,0.20219928400640463,0,5,5
+firm productivity -> salient thinkers,D22 -> B31,Microeconomics,History of economic thought,Cross-field boundary,0.3987384054947286,0.20220524434214354,0,5,5
+bb strategy -> lower prices,B00 -> P22,History of economic thought,Economic systems,Cross-field boundary,0.398727671931835,0.20216840270380979,0,5,5
+seller revenue -> salient thinkers,L85 -> B31,Industrial organization,History of economic thought,Cross-field boundary,0.39872377174093676,0.20217634985301938,0,5,5
+evolution of macroeconomic thought -> consumption,B22 -> E21,History of economic thought,Macroeconomics and monetary economics,Cross-field boundary,0.3987109903749521,0.20215812171939146,0,5,5
+evolution of macroeconomic thought -> human capital,B22 -> J24,History of economic thought,Labor and demographic economics,Cross-field boundary,0.398680960912965,0.20209914737917498,0,5,5
+economic integration -> bb strategy,F15 -> B00,International economics,History of economic thought,Cross-field boundary,0.3986524213876929,0.20205610721059747,0,5,5
+methodology -> optimal security design,B41 -> K24,History of economic thought,Law and economics,Cross-field boundary,0.39862250350662115,0.20201058170144665,0,5,5
+entrepreneurial activity -> economic approach,L26 -> B55,Industrial organization,History of economic thought,Cross-field boundary,0.3986006134721203,0.2019756844757314,0,5,5
+educational attainment -> economic approach,I21 -> B55,"Health, education, and welfare",History of economic thought,Cross-field boundary,0.3985989560906076,0.20198214375545614,0,5,5
+central bank independence -> bb strategy,E58 -> B00,Macroeconomics and monetary economics,History of economic thought,Cross-field boundary,0.39859878985816954,0.20197739366208378,0,5,5
+financial innovations -> gradualist approach,G29 -> B52,Financial economics,History of economic thought,Cross-field boundary,0.39859254669901445,0.2019768773203698,0,5,5
+evolution of macroeconomic thought -> emu,B22 -> F36,History of economic thought,International economics,Cross-field boundary,0.39857167744426863,0.20195644749159072,0,5,5
+pollution -> historical context,Q53 -> B15,"Agriculture, natural resources, and environment",History of economic thought,Cross-field boundary,0.398534276810661,0.2018880602095045,0,5,5
+market power -> the foundational importance of economic theory as a guiding framework has diminished,L11 -> B49,Industrial organization,History of economic thought,Cross-field boundary,0.39853250126021905,0.20187742705037162,0,5,5
+housing prices -> evolution of macroeconomic thought,R31 -> B22,"Urban, rural, and regional economics",History of economic thought,Cross-field boundary,0.39852588242738396,0.20186363064437238,0,5,5
+financial constraints -> gradualist approach,D20 -> B52,Microeconomics,History of economic thought,Cross-field boundary,0.39851074070759424,0.201860001450596,0,5,5
+bb strategy -> demand shocks,B00 -> E39,History of economic thought,Macroeconomics and monetary economics,Cross-field boundary,0.3985024107179272,0.20183966953167912,0,5,5
+nominal wage contracts -> methodology,J41 -> B41,Labor and demographic economics,History of economic thought,Cross-field boundary,0.39850110188610993,0.20183365841799367,0,5,5
+methodology -> entrepreneurship,B41 -> M13,History of economic thought,Business administration and business economics,Cross-field boundary,0.3984981289136405,0.20182962437666552,0,5,5
+social security -> the foundational importance of economic theory as a guiding framework has diminished,H55 -> B49,Public economics,History of economic thought,Cross-field boundary,0.39848627366689693,0.2018217192306511,0,5,5
+corruption -> salient thinkers,H57 -> B31,Public economics,History of economic thought,Cross-field boundary,0.3984786490417538,0.20180698019621734,0,5,5
+austria's growth model -> weak institutions,B53 -> O17,History of economic thought,"Economic development, innovation, and growth",Cross-field boundary,0.3984652093990884,0.20177931419657957,0,5,5
+salient thinkers -> banks,B31 -> G21,History of economic thought,Financial economics,Cross-field boundary,0.39845379859382,0.20175926843946895,0,5,5
+supply shocks -> methodology,Q43 -> B41,"Agriculture, natural resources, and environment",History of economic thought,Cross-field boundary,0.398453707826569,0.2017724158439107,0,5,5
+past sentiments -> policy interventions,B14 -> D78,History of economic thought,Microeconomics,Cross-field boundary,0.3984328456653,0.20173001105864893,0,5,5
+labor force participation -> methodology,J21 -> B41,Labor and demographic economics,History of economic thought,Cross-field boundary,0.3984098395082035,0.20169894175450706,0,5,5
+evolution of macroeconomic thought -> life expectancy,B22 -> J17,History of economic thought,Labor and demographic economics,Cross-field boundary,0.3983967328251006,0.20168052508050258,0,5,5
+employment -> the foundational importance of economic theory as a guiding framework has diminished,J63 -> B49,Labor and demographic economics,History of economic thought,Cross-field boundary,0.3983952406197996,0.20383671234441947,0,4,4
+quotas -> economic approach,C21 -> B55,Mathematical and quantitative methods,History of economic thought,Cross-field boundary,0.39839446561667635,0.20167744869396467,0,5,5
+equilibrium prices -> bb strategy,D41 -> B00,Microeconomics,History of economic thought,Cross-field boundary,0.3983913056728815,0.20167739610349844,0,5,5
+privatization -> gradualist approach,L33 -> B52,Industrial organization,History of economic thought,Cross-field boundary,0.39836939597744314,0.2016384221989055,0,5,5
+universal basic income (ubi) -> salient thinkers,H53 -> B31,Public economics,History of economic thought,Cross-field boundary,0.3983666321126739,0.20163467189686976,0,5,5
+organizational equilibrium -> gradualist approach,L29 -> B52,Industrial organization,History of economic thought,Cross-field boundary,0.39836498811736915,0.2016324411513546,0,5,5
+supply shocks -> salient thinkers,Q31 -> B31,"Agriculture, natural resources, and environment",History of economic thought,Cross-field boundary,0.398347943882721,0.20160848749694985,0,5,5
+salient thinkers -> trade,B31 -> F19,History of economic thought,International economics,Cross-field boundary,0.3983412001516642,0.20159429023309625,0,5,5
+past sentiments -> financial instability,B14 -> F65,History of economic thought,International economics,Cross-field boundary,0.398332038595712,0.2015820902544765,0,5,5
+market size -> welles and godard,L25 -> B13,Industrial organization,History of economic thought,Cross-field boundary,0.398323494651559,0.20157482792869333,0,5,5
+salient thinkers -> public information,B31 -> H49,History of economic thought,Public economics,Cross-field boundary,0.39832053335875406,0.2015662473576317,0,5,5
+job satisfaction -> methodology,J28 -> B41,Labor and demographic economics,History of economic thought,Cross-field boundary,0.39831479663630787,0.20155846317003023,0,5,5
+government actions -> economic approach,H11 -> B55,Public economics,History of economic thought,Cross-field boundary,0.39831403949518146,0.20155743580141966,0,5,5
+financial integration -> salient thinkers,F30 -> B31,International economics,History of economic thought,Cross-field boundary,0.39831312253579115,0.20155619157460136,0,5,5
+government policies -> dual-track approach,J18 -> B50,Labor and demographic economics,History of economic thought,Cross-field boundary,0.39831202558327683,0.20155493449703368,0,5,5
+austria's growth model -> economic growth,B53 -> O00,History of economic thought,"Economic development, innovation, and growth",Cross-field boundary,0.3982994565207001,0.20153682184334049,0,5,5
+evolution of macroeconomic thought -> economic performance,B22 -> P17,History of economic thought,Economic systems,Cross-field boundary,0.39829507046604945,0.2015265021026119,0,5,5
+nasar's approach reveals the extent to which economists engage in empirical work -> herding behavior,B40 -> C92,History of economic thought,Mathematical and quantitative methods,Cross-field boundary,0.39828804901582127,0.20151652766410927,0,5,5
+overruling -> gradualist approach,L43 -> B52,Industrial organization,History of economic thought,Cross-field boundary,0.3982543011395205,0.20147028800336234,0,5,5
+austria's growth model -> rising unemployment,B53 -> F66,History of economic thought,International economics,Cross-field boundary,0.398253768290936,0.20146933359560446,0,5,5
+lower prices -> bb strategy,P22 -> B00,Economic systems,History of economic thought,Cross-field boundary,0.3982517214630603,0.20146655624454352,0,5,5
+trade openness -> gradualist approach,F43 -> B52,International economics,History of economic thought,Cross-field boundary,0.39825086747793603,0.20146995984575322,0,5,5
+labor market outcomes -> salient thinkers,J48 -> B31,Labor and demographic economics,History of economic thought,Cross-field boundary,0.3982461001080113,0.20145892859954473,0,5,5
+salient thinkers -> trade liberalization,B31 -> F13,History of economic thought,International economics,Cross-field boundary,0.3982262526291298,0.20142680292784432,0,5,5
+evolution of macroeconomic thought -> health improvements,B22 -> I12,History of economic thought,"Health, education, and welfare",Cross-field boundary,0.39822451595079167,0.20142444642025403,0,5,5
+austria's growth model -> higher wages,B53 -> J31,History of economic thought,Labor and demographic economics,Cross-field boundary,0.3982178769710879,0.20141543795523228,0,5,5
+salient thinkers -> increasing returns,B31 -> I26,History of economic thought,"Health, education, and welfare",Cross-field boundary,0.3982143880040996,0.20141070375834075,0,5,5
+emu -> dual-track approach,F36 -> B50,International economics,History of economic thought,Cross-field boundary,0.398207196153456,0.20140094509995407,0,5,5
+fixed exchange rate regime -> economic approach,F33 -> B55,International economics,History of economic thought,Cross-field boundary,0.39820495927152333,0.20139790986358533,0,5,5
+austria's growth model -> military spending,B53 -> H56,History of economic thought,Public economics,Cross-field boundary,0.39820408423287557,0.20139627552193531,0,5,5
+adjustment costs -> historical context,J30 -> B15,Labor and demographic economics,History of economic thought,Cross-field boundary,0.3982017244586709,0.20139352052972176,0,5,5
+methodology -> health capital,B41 -> I15,History of economic thought,"Health, education, and welfare",Cross-field boundary,0.39819558015632694,0.20138405791747796,0,5,5
+relevance of classical theories in modern contexts -> innovation incentives,B20 -> O31,History of economic thought,"Economic development, innovation, and growth",Cross-field boundary,0.3981882475473815,0.20137410826344207,0,5,5
+initial conditions -> understanding economic thought,Y20 -> B10,Miscellaneous,History of economic thought,Cross-field boundary,0.3981637468275119,0.20133566858559154,0,5,5
+gradualist approach -> risk premia,B52 -> G22,History of economic thought,Financial economics,Cross-field boundary,0.3981579699395049,0.20132782989713824,0,5,5
+evolution of macroeconomic thought -> selection effect,B22 -> C24,History of economic thought,Mathematical and quantitative methods,Cross-field boundary,0.39815230760917253,0.20132014665257092,0,5,5
+historical context -> selection effect,B15 -> C24,History of economic thought,Mathematical and quantitative methods,Cross-field boundary,0.3981493911920502,0.20131618935147827,0,5,5
+past sentiments -> innovation incentives,B14 -> O31,History of economic thought,"Economic development, innovation, and growth",Cross-field boundary,0.39814912749962494,0.20131583154589747,0,5,5
+black market premium -> gradualist approach,J46 -> B52,Labor and demographic economics,History of economic thought,Cross-field boundary,0.398141344478731,0.20130527072561846,0,5,5
+financial distress -> economic approach,G33 -> B55,Financial economics,History of economic thought,Cross-field boundary,0.39814070276377944,0.20130439997936625,0,5,5
+past sentiments -> interest rates,B14 -> E43,History of economic thought,Macroeconomics and monetary economics,Cross-field boundary,0.39813612496268447,0.2012977413406891,0,5,5
+property tax -> gradualist approach,H71 -> B52,Public economics,History of economic thought,Cross-field boundary,0.3981355269774195,0.20129737692876745,0,5,5
+retirement decisions -> economic approach,J26 -> B55,Labor and demographic economics,History of economic thought,Cross-field boundary,0.3981354704423391,0.20129730021603195,0,5,5
+government interventions -> the foundational importance of economic theory as a guiding framework has diminished,H81 -> B49,Public economics,History of economic thought,Cross-field boundary,0.39812428147343204,0.20128167085042886,0,5,5
+welfare -> salient thinkers,I38 -> B31,"Health, education, and welfare",History of economic thought,Cross-field boundary,0.3981206460270769,0.20127673789494632,0,5,5
+price volatility -> salient thinkers,G13 -> B31,Financial economics,History of economic thought,Cross-field boundary,0.39811907652274314,0.20127460822660515,0,5,5
+evolution of macroeconomic thought -> statistical discrimination,B22 -> J79,History of economic thought,Labor and demographic economics,Cross-field boundary,0.3980844664544937,0.20122177274285863,0,5,5
+participation rates -> salient thinkers,J49 -> B31,Labor and demographic economics,History of economic thought,Cross-field boundary,0.3980695143014495,0.20120148409103109,0,5,5
+external factors -> economic approach,F29 -> B55,International economics,History of economic thought,Cross-field boundary,0.39806606636410075,0.2011968055674643,0,5,5
+past sentiments -> systemic risk,B14 -> E44,History of economic thought,Macroeconomics and monetary economics,Cross-field boundary,0.3980096530596567,0.20111393816533413,0,5,5
+past sentiments -> consumption smoothing,B14 -> D15,History of economic thought,Microeconomics,Cross-field boundary,0.39800148155256876,0.2011028502061805,0,5,5
+fiscal capacity -> salient thinkers,H39 -> B31,Public economics,History of economic thought,Cross-field boundary,0.3979965445794057,0.20109615120241223,0,5,5
+financial stability -> evolution of macroeconomic thought,G28 -> B22,Financial economics,History of economic thought,Cross-field boundary,0.39794011411396796,0.20306023764234732,0,4,4
+human capital -> push towards radical political alternatives,J24 -> B51,Labor and demographic economics,History of economic thought,Cross-field boundary,0.39773390482577764,0.20271074634067762,0,4,4
+weak institutions -> evolution of macroeconomic thought,O17 -> B22,"Economic development, innovation, and growth",History of economic thought,Cross-field boundary,0.39769265850963526,0.20266685311495178,0,4,4
+nash equilibrium -> salient thinkers,C72 -> B31,Mathematical and quantitative methods,History of economic thought,Cross-field boundary,0.39760250081155984,0.2025212067686039,0,4,4
+methodology -> gender,B41 -> J16,History of economic thought,Labor and demographic economics,Cross-field boundary,0.39756362179612803,0.20247956973533016,0,4,4

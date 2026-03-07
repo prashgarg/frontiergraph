@@ -16,6 +16,7 @@ touch "$LOG_FILE"
 
 find_python() {
   local candidates=(
+    "$(command -v python3 2>/dev/null || true)"
     "/usr/bin/python3"
     "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3"
     "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3"
@@ -25,28 +26,14 @@ find_python() {
     "/usr/local/bin/python3.11"
     "/opt/homebrew/bin/python3.12"
     "/opt/homebrew/bin/python3.11"
-    "$HOME/Library/CloudStorage/Dropbox-PrashantGarg/Prashant Garg/CausalClaims/.venv/bin/python3.11"
-    "$HOME/Library/CloudStorage/Dropbox-PrashantGarg/Prashant Garg/CausalClaims/.venv/bin/python3"
   )
   local candidate
   for candidate in "${candidates[@]}"; do
-    if [[ -x "$candidate" ]]; then
-      printf '%s\n' "$candidate"
-      return 0
-    fi
-  done
-
-  if [[ -d "$HOME/Library/CloudStorage/Dropbox-PrashantGarg/Prashant Garg" ]]; then
-    candidate="$(
-      find "$HOME/Library/CloudStorage/Dropbox-PrashantGarg/Prashant Garg" \
-        -path '*/.venv/bin/python3.12' -o -path '*/.venv/bin/python3.11' -o -path '*/.venv/bin/python3' \
-        2>/dev/null | head -n 1
-    )"
     if [[ -n "$candidate" && -x "$candidate" ]]; then
       printf '%s\n' "$candidate"
       return 0
     fi
-  fi
+  done
   return 1
 }
 

@@ -78,8 +78,10 @@ def _load_openai_key(key_path: str | Path) -> str:
 def _extract_edges_with_llm(docs: list[dict[str, Any]], config: dict[str, Any]) -> AdapterResult:
     llm_cfg = config.get("llm", {})
     model = str(llm_cfg.get("model", "gpt-5-nano"))
-    key_path = llm_cfg.get("key_path", "../key/openai_key_prashant.txt")
-    api_key = _load_openai_key(key_path)
+    api_key = os.environ.get("OPENAI_API_KEY", "").strip()
+    if not api_key:
+        key_path = llm_cfg.get("key_path", os.environ.get("OPENAI_API_KEY_FILE", "../key/openai_api_key.txt"))
+        api_key = _load_openai_key(key_path)
     os.environ["OPENAI_API_KEY"] = api_key
 
     from openai import OpenAI
@@ -198,4 +200,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

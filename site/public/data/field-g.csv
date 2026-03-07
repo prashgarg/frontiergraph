@@ -1,0 +1,201 @@
+opportunity,code_pair,source_field,target_field,novelty,priority,base_score,prior_contact,mediators,motifs
+investment decisions -> monetary policy,G11 -> E52,Financial economics,Macroeconomics and monetary economics,Cross-field gap,0.5539077181452429,0.5485554919522055,100,171,171
+firm value -> unemployment,G32 -> J64,Financial economics,Labor and demographic economics,Cross-field gap,0.5212468461011268,0.45008672846733977,19,191,191
+economic growth -> financial fragility,O49 -> G51,"Economic development, innovation, and growth",Financial economics,Cross-field gap,0.493493373274838,0.4396700037722734,100,182,182
+coordination -> equity premium,E61 -> G12,Macroeconomics and monetary economics,Financial economics,Cross-field gap,0.478081582898676,0.401362379510097,29,138,138
+mergers -> fertility,G34 -> J13,Financial economics,Labor and demographic economics,Cross-field boundary,0.4591285924046646,0.2689186151289111,0,57,57
+human capital -> moral hazard,J24 -> G52,Labor and demographic economics,Financial economics,Cross-field gap,0.4461469080267677,0.34195605211161784,61,201,201
+ethnic diversity -> expected returns,J15 -> G17,Labor and demographic economics,Financial economics,Cross-field boundary,0.44362860173461044,0.24504448787548308,0,54,54
+trade liberalization -> less-confident households,F13 -> G59,International economics,Financial economics,Cross-field boundary,0.4411270061066243,0.2440351107744641,0,44,44
+unions -> financial fragility,J51 -> G51,Labor and demographic economics,Financial economics,Cross-field boundary,0.43869430954205435,0.2394602678722248,0,46,46
+financial literacy -> unemployment,G53 -> J64,Financial economics,Labor and demographic economics,Cross-field boundary,0.4366712487998451,0.24125891733148386,0,36,36
+fertility -> mergers,J13 -> G34,Labor and demographic economics,Financial economics,Cross-field boundary,0.4359328941902438,0.23327338174605255,0,52,52
+mergers -> home production,G34 -> D13,Financial economics,Microeconomics,Cross-field boundary,0.4338799591060412,0.23262345592254377,0,43,43
+interest rates -> transparency,E43 -> G38,Macroeconomics and monetary economics,Financial economics,Cross-field gap,0.43317559232208946,0.3352491658997452,45,136,136
+mergers -> high-skilled immigrants,G34 -> J61,Financial economics,Labor and demographic economics,Cross-field boundary,0.4325619141084013,0.23178017411932553,0,40,40
+leverage -> industry concentration,G24 -> L69,Financial economics,Industrial organization,Cross-field boundary,0.43105133534321255,0.23034889024058666,0,36,36
+increased immigration -> financial fragility,K37 -> G51,Law and economics,Financial economics,Cross-field boundary,0.43065572257674767,0.23058158992794545,0,34,34
+trade liberalization -> expected returns,F13 -> G17,International economics,Financial economics,Cross-field gap,0.42972389493439983,0.2606820295828523,2,153,153
+economic shocks -> financial fragility,F69 -> G51,International economics,Financial economics,Cross-field gap,0.428969377720861,0.33542682432706017,132,186,186
+monetary policy -> mergers,E52 -> G34,Macroeconomics and monetary economics,Financial economics,Cross-field gap,0.42841509483760093,0.28984061950740014,8,131,131
+financial stability -> employment,G28 -> J63,Financial economics,Labor and demographic economics,Cross-field gap,0.42737640540691624,0.28674746462075357,11,157,157
+expected returns -> ethnic diversity,G17 -> J15,Financial economics,Labor and demographic economics,Cross-field boundary,0.4264177520640451,0.2230591284538552,0,37,37
+transparency -> consumption,G38 -> E21,Financial economics,Macroeconomics and monetary economics,Cross-field gap,0.4259360745854262,0.29280032000044376,17,157,157
+ai -> financial fragility,C45 -> G51,Mathematical and quantitative methods,Financial economics,Cross-field boundary,0.4256143111069712,0.22596054277653765,0,26,26
+transparency -> home production,G38 -> D13,Financial economics,Microeconomics,Cross-field boundary,0.42538354959541824,0.22190236979493702,0,35,35
+terms of trade -> financial distress,F14 -> G33,International economics,Financial economics,Cross-field gap,0.4251707635712063,0.30739524980402183,39,172,172
+offshoring -> financial fragility,L24 -> G51,Industrial organization,Financial economics,Cross-field boundary,0.4246601995584047,0.22197626980083565,0,32,32
+financial stability -> high-skilled immigrants,G28 -> J61,Financial economics,Labor and demographic economics,Cross-field boundary,0.42418302330077934,0.22073943668571053,0,34,34
+unions -> leverage,J51 -> G24,Labor and demographic economics,Financial economics,Cross-field boundary,0.42354452417678623,0.22021342138199732,0,32,32
+fiscal policies -> mergers,H30 -> G34,Public economics,Financial economics,Cross-field boundary,0.42333321840249105,0.21982438492305037,0,32,32
+transparency -> terms of trade,G38 -> F14,Financial economics,International economics,Cross-field gap,0.4232132563379753,0.2706013524560185,9,182,182
+banks -> higher dependency ratio,G21 -> J19,Financial economics,Labor and demographic economics,Cross-field boundary,0.4227342252405534,0.21974353885656575,0,30,30
+financial stability -> industry concentration,G28 -> L69,Financial economics,Industrial organization,Cross-field boundary,0.4226926633271306,0.21928917553717564,0,31,31
+increased immigration -> expected returns,K37 -> G17,Law and economics,Financial economics,Cross-field boundary,0.42245587833895176,0.21905983373873472,0,31,31
+inflation forecasting targeting -> firm value,E47 -> G32,Macroeconomics and monetary economics,Financial economics,Cross-field boundary,0.4221390064408298,0.22885920035692678,0,14,14
+leverage -> higher wages,G24 -> J31,Financial economics,Labor and demographic economics,Cross-field gap,0.42197935047470586,0.2953419494012345,30,161,161
+high-skilled immigrants -> mergers,J61 -> G34,Labor and demographic economics,Financial economics,Cross-field boundary,0.4219633343353062,0.2177430079199245,0,32,32
+zero lower bound -> investment decisions,E49 -> G11,Macroeconomics and monetary economics,Financial economics,Cross-field gap,0.4218110424874345,0.3299590802979322,71,116,116
+immigration -> dividends,F22 -> G35,International economics,Financial economics,Cross-field boundary,0.4209709485201357,0.2178744119109348,0,28,28
+banks -> training,G21 -> M53,Financial economics,Business administration and business economics,Cross-field boundary,0.42090531979239487,0.21909060419574464,0,25,25
+unions -> financial intermediaries,J51 -> G23,Labor and demographic economics,Financial economics,Cross-field boundary,0.42076405969590946,0.21752551479722335,0,28,28
+high-skilled immigrants -> financial stability,J61 -> G28,Labor and demographic economics,Financial economics,Cross-field boundary,0.4207119927386121,0.21788800345776047,0,27,27
+expectations -> financial stability,D84 -> G28,Microeconomics,Financial economics,Cross-field gap,0.4205648226694743,0.3143535676003191,42,112,112
+financial fragility -> increased immigration,G51 -> K37,Financial economics,Law and economics,Cross-field boundary,0.4205219591164363,0.21902892092455747,0,24,24
+unions -> investor behavior,J51 -> G41,Labor and demographic economics,Financial economics,Cross-field boundary,0.419592934568809,0.2156815807310573,0,28,28
+leverage -> gender,G24 -> J16,Financial economics,Labor and demographic economics,Cross-field boundary,0.4193553118301525,0.21708746439666765,0,24,24
+public education -> equity premium,H52 -> G12,Public economics,Financial economics,Cross-field boundary,0.4192315635808993,0.21570677875152752,0,27,27
+carbon pricing -> financial crises,Q58 -> G01,"Agriculture, natural resources, and environment",Financial economics,Cross-field boundary,0.41921289288837105,0.21750004422418082,0,23,23
+mergers -> forecasts,G34 -> F17,Financial economics,International economics,Cross-field boundary,0.4191114856343685,0.21735767416486604,0,23,23
+mergers -> training,G34 -> M53,Financial economics,Business administration and business economics,Cross-field boundary,0.4187012921385533,0.21826905520184298,0,20,20
+transport costs -> equity premium,L91 -> G12,Industrial organization,Financial economics,Cross-field boundary,0.41860590361222316,0.21555846614575966,0,25,25
+fertility -> external financing,J13 -> G39,Labor and demographic economics,Financial economics,Cross-field boundary,0.4185590591249617,0.21474017431500703,0,27,27
+banks -> health capital,G21 -> I15,Financial economics,"Health, education, and welfare",Cross-field boundary,0.41853838064526216,0.215999500100915,0,24,24
+increased immigration -> market efficiency,K37 -> G14,Law and economics,Financial economics,Cross-field boundary,0.4179445789823285,0.21502590762459012,0,24,24
+less-confident households -> trade liberalization,G59 -> F13,Financial economics,International economics,Cross-field boundary,0.4178314949986108,0.21484090994034966,0,24,24
+emerging markets -> educational attainment,G15 -> I21,Financial economics,"Health, education, and welfare",Cross-field boundary,0.41780287516904235,0.21653010140633,0,21,21
+supply shocks -> financial crises,Q43 -> G01,"Agriculture, natural resources, and environment",Financial economics,Cross-field boundary,0.4175433532022381,0.2193086969779524,0,16,16
+gender -> leverage,J16 -> G24,Labor and demographic economics,Financial economics,Cross-field boundary,0.41742583841251407,0.21368941228590477,0,25,25
+financial literacy -> trade liberalization,G53 -> F13,Financial economics,International economics,Cross-field boundary,0.41730697060457245,0.21182757633875623,0,29,29
+price stickiness -> external financing,C54 -> G39,Mathematical and quantitative methods,Financial economics,Cross-field boundary,0.41685603269378857,0.21812781258695638,0,16,16
+capital mobility -> external financing,F20 -> G39,International economics,Financial economics,Cross-field boundary,0.416836320364281,0.21752895331034025,0,17,17
+ems membership -> financial distress,J60 -> G33,Labor and demographic economics,Financial economics,Cross-field boundary,0.4161503208518725,0.2155902370565464,0,18,18
+cultural factors -> financial distress,Z10 -> G33,Other special topics,Financial economics,Cross-field boundary,0.4161191499143055,0.2137563929435131,0,21,21
+educational policies -> equity premium,I28 -> G12,"Health, education, and welfare",Financial economics,Cross-field boundary,0.4157975180484253,0.2112524559390241,0,25,25
+dividends -> conflicts of interest,G35 -> F51,Financial economics,International economics,Cross-field boundary,0.4156772552804363,0.21150784971181308,0,24,24
+higher dependency ratio -> banks,J19 -> G21,Labor and demographic economics,Financial economics,Cross-field boundary,0.4155668539482278,0.21525552982901472,0,17,17
+educational attainment -> emerging markets,I21 -> G15,"Health, education, and welfare",Financial economics,Cross-field boundary,0.4155615751440994,0.21232360236565664,0,22,22
+legal aid -> banks,K36 -> G21,Law and economics,Financial economics,Cross-field boundary,0.41549077987193705,0.21073336104111492,0,25,25
+immigration -> external financing,F22 -> G39,International economics,Financial economics,Cross-field boundary,0.4153320212516976,0.21400946620174963,0,19,19
+efficiency -> expected returns,D61 -> G17,Microeconomics,Financial economics,Cross-field gap,0.41527772539495345,0.30371105157777845,76,168,168
+sustainability of collusion -> financial fragility,K21 -> G51,Law and economics,Financial economics,Cross-field boundary,0.4152683484731221,0.21292902108690337,0,20,20
+mergers -> monetary policy,G34 -> E52,Financial economics,Macroeconomics and monetary economics,Cross-field gap,0.41520913927428665,0.2628434094645519,8,139,139
+scc -> less-confident households,L96 -> G59,Industrial organization,Financial economics,Cross-field boundary,0.4151580665593746,0.21412505561854456,0,18,18
+public education -> mergers,H52 -> G34,Public economics,Financial economics,Cross-field boundary,0.4150603634504525,0.21101384095905681,0,23,23
+financial fragility -> unions,G51 -> J51,Financial economics,Labor and demographic economics,Cross-field boundary,0.41500376779703946,0.21202875821531664,0,21,21
+financial intermediaries -> sustainability of collusion,G23 -> K21,Financial economics,Law and economics,Cross-field boundary,0.4148572480024788,0.21303033525345014,0,19,19
+financial stability -> firm location decisions,G28 -> R30,Financial economics,"Urban, rural, and regional economics",Cross-field boundary,0.41475324277503917,0.21211162639721381,0,20,20
+transport costs -> investor behavior,L91 -> G41,Industrial organization,Financial economics,Cross-field boundary,0.4147116892902986,0.2121156567130409,0,20,20
+emerging markets -> managerial decisions,G15 -> M51,Financial economics,Business administration and business economics,Cross-field boundary,0.414618184229231,0.21085456479898823,0,22,22
+increased immigration -> investor behavior,K37 -> G41,Law and economics,Financial economics,Cross-field boundary,0.41453022476923757,0.21188716441901334,0,20,20
+cultural factors -> market efficiency,Z10 -> G14,Other special topics,Financial economics,Cross-field boundary,0.41419921274415694,0.21197618789734995,0,19,19
+local government decisions -> market efficiency,H70 -> G14,Public economics,Financial economics,Cross-field boundary,0.4141590686821772,0.20969297306260803,0,23,23
+financial stability -> increased immigration,G28 -> K37,Financial economics,Law and economics,Cross-field boundary,0.41391949377375675,0.21092091235739052,0,20,20
+financial crises -> carbon pricing,G01 -> Q58,Financial economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.4139084113757057,0.2103027438960029,0,21,21
+investor behavior -> unions,G41 -> J51,Financial economics,Labor and demographic economics,Cross-field boundary,0.41385848650449836,0.21030694457202992,0,21,21
+mergers -> fiscal policies,G34 -> H30,Financial economics,Public economics,Cross-field boundary,0.41377541335430845,0.2125418190647208,0,17,17
+cultural factors -> financial stability,Z10 -> G28,Other special topics,Financial economics,Cross-field boundary,0.4135471095816722,0.21158780002211885,0,18,18
+government policies -> dividends,J18 -> G35,Labor and demographic economics,Financial economics,Cross-field boundary,0.41349690889894763,0.20916500647425879,0,22,22
+financial intermediaries -> industry concentration,G23 -> L69,Financial economics,Industrial organization,Cross-field boundary,0.4132762500978393,0.2105022004809777,0,19,19
+high-skilled immigrants -> dividends,J61 -> G35,Labor and demographic economics,Financial economics,Cross-field boundary,0.41321568023224775,0.21179907769388262,0,17,17
+regulatory competition -> equity premium,K20 -> G12,Law and economics,Financial economics,Cross-field boundary,0.4131303372440519,0.21376351784127812,0,14,14
+mergers -> discrimination,G34 -> J71,Financial economics,Labor and demographic economics,Cross-field boundary,0.41311950470047265,0.21028403695964623,0,19,19
+expected returns -> increased immigration,G17 -> K37,Financial economics,Law and economics,Cross-field boundary,0.413045763574897,0.2114413522107716,0,17,17
+financial intermediaries -> unions,G23 -> J51,Financial economics,Labor and demographic economics,Cross-field boundary,0.41302346323951966,0.2100805468853167,0,19,19
+mergers -> public education,G34 -> H52,Financial economics,Public economics,Cross-field boundary,0.4129343785060366,0.2115642099399398,0,17,17
+international competition -> equity premium,Z28 -> G12,Other special topics,Financial economics,Cross-field boundary,0.41280729866172977,0.21320950961843071,0,14,14
+international cooperation -> dividends,F53 -> G35,International economics,Financial economics,Cross-field boundary,0.41280083763782327,0.21036074075955044,0,18,18
+patents -> financial crises,O34 -> G01,"Economic development, innovation, and growth",Financial economics,Cross-field boundary,0.4127765756640128,0.2116783289010852,0,16,16
+leverage -> unions,G24 -> J51,Financial economics,Labor and demographic economics,Cross-field boundary,0.4125649709770262,0.20884030404685866,0,20,20
+personalized medicine -> financial crises,I11 -> G01,"Health, education, and welfare",Financial economics,Cross-field boundary,0.412530786839157,0.21200300067066158,0,15,15
+investment -> consumption decisions,G31 -> D12,Financial economics,Microeconomics,Cross-field gap,0.41242254057400435,0.2981603397957317,81,182,182
+unions -> price volatility,J51 -> G13,Labor and demographic economics,Financial economics,Cross-field boundary,0.41239312779214504,0.21037304610060517,0,17,17
+cultural factors -> expected returns,Z10 -> G17,Other special topics,Financial economics,Cross-field boundary,0.41232669105876757,0.20905882196091244,0,19,19
+conflicts of interest -> dividends,F51 -> G35,International economics,Financial economics,Cross-field boundary,0.4121417036753227,0.20819505660333007,0,20,20
+high-skilled immigrants -> external financing,J61 -> G39,Labor and demographic economics,Financial economics,Cross-field boundary,0.41213421019148916,0.21333645203981502,0,13,13
+ppi targeting -> investor behavior,L65 -> G41,Industrial organization,Financial economics,Cross-field boundary,0.4117962946679852,0.20942346199857861,0,17,17
+lower tobin's q -> banks,R42 -> G21,"Urban, rural, and regional economics",Financial economics,Cross-field boundary,0.4117190818749716,0.21074478631513013,0,15,15
+age -> emerging markets,J14 -> G15,Labor and demographic economics,Financial economics,Cross-field boundary,0.41165266465436706,0.21068027861651623,0,15,15
+mergers -> energy prices,G34 -> Q41,Financial economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.41156639496237823,0.2098090433047027,0,16,16
+antidumping measures -> emerging markets,F18 -> G15,International economics,Financial economics,Cross-field boundary,0.4115248994043816,0.21311778638958703,0,12,12
+transparency -> monetary transfers,G38 -> F24,Financial economics,International economics,Cross-field boundary,0.41149309460073474,0.21051558309799898,0,15,15
+transparency -> health capital,G38 -> I15,Financial economics,"Health, education, and welfare",Cross-field boundary,0.4114855842353138,0.20840055160809973,0,18,18
+industry concentration -> leverage,L69 -> G24,Industrial organization,Financial economics,Cross-field boundary,0.411330708025308,0.20871889552157907,0,17,17
+optimal policy -> firm value,C61 -> G32,Mathematical and quantitative methods,Financial economics,Cross-field gap,0.4113156537807613,0.2999282998672804,68,132,132
+forecasts -> mergers,F17 -> G34,International economics,Financial economics,Cross-field boundary,0.41116294508252954,0.20982588832946944,0,15,15
+financial intermediaries -> home production,G23 -> D13,Financial economics,Microeconomics,Cross-field boundary,0.41112836309297,0.2077962779974106,0,18,18
+market efficiency -> increased immigration,G14 -> K37,Financial economics,Law and economics,Cross-field boundary,0.4111063890801717,0.20909388763304274,0,16,16
+affirmative action -> expected returns,J78 -> G17,Labor and demographic economics,Financial economics,Cross-field boundary,0.4110419930648556,0.2114926932825642,0,13,13
+emerging markets -> entrepreneurship,G15 -> M13,Financial economics,Business administration and business economics,Cross-field boundary,0.41099882714762415,0.2089067713809494,0,16,16
+proposed reforms -> investment decisions,E69 -> G11,Macroeconomics and monetary economics,Financial economics,Cross-field gap,0.4109237050435608,0.28367644589580415,41,165,165
+mergers -> stubborn beliefs,G34 -> Z12,Financial economics,Other special topics,Cross-field boundary,0.4108628428175421,0.21012289273362672,0,14,14
+banks -> teacher effectiveness,G21 -> A21,Financial economics,General economics and teaching,Cross-field boundary,0.41085099450472135,0.20939194671408953,0,15,15
+public education -> investor behavior,H52 -> G41,Public economics,Financial economics,Cross-field boundary,0.4108439038155337,0.206793169755306,0,19,19
+competition -> equity premium,L13 -> G12,Industrial organization,Financial economics,Cross-field gap,0.4108207332433114,0.2646224279953264,11,130,130
+transparency -> commodity prices,G38 -> Q02,Financial economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.4107422476849464,0.20859269884355172,0,16,16
+increased immigration -> financial stability,K37 -> G28,Law and economics,Financial economics,Cross-field boundary,0.4107337138067438,0.20783516977592553,0,17,17
+space -> expected returns,C49 -> G17,Mathematical and quantitative methods,Financial economics,Cross-field boundary,0.41068500601773056,0.2125948871048751,0,11,11
+banks -> geoengineering breakthroughs,G21 -> Q55,Financial economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.4105274449833859,0.2082043182966465,0,16,16
+price volatility -> firm location decisions,G13 -> R30,Financial economics,"Urban, rural, and regional economics",Cross-field boundary,0.4105248958266462,0.20894064604213408,0,15,15
+leverage -> durability,G24 -> L68,Financial economics,Industrial organization,Cross-field boundary,0.410489058024043,0.20880633825916636,0,15,15
+financial distress -> ems membership,G33 -> J60,Financial economics,Labor and demographic economics,Cross-field boundary,0.4104013610294777,0.20876342327224118,0,15,15
+hac rule -> financial crises,I18 -> G01,"Health, education, and welfare",Financial economics,Cross-field boundary,0.4103969369683167,0.20799002843355405,0,16,16
+training -> mergers,M53 -> G34,Business administration and business economics,Financial economics,Cross-field boundary,0.4103369436946649,0.20931344254451703,0,14,14
+increased immigration -> external financing,K37 -> G39,Law and economics,Financial economics,Cross-field boundary,0.4103337221452215,0.21027362640900446,0,13,13
+banks -> green assets,G21 -> Q48,Financial economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.4102519595975267,0.20937212968318505,0,14,14
+stubborn beliefs -> mergers,Z12 -> G34,Other special topics,Financial economics,Cross-field boundary,0.41024979418694707,0.2084701139408693,0,15,15
+financial innovations -> carbon pricing,G29 -> Q58,Financial economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.41020823050196503,0.2070569740689998,0,17,17
+leverage -> us,G24 -> L87,Financial economics,Industrial organization,Cross-field boundary,0.4100764776938585,0.20825890185298856,0,15,15
+geoengineering breakthroughs -> banks,Q55 -> G21,"Agriculture, natural resources, and environment",Financial economics,Cross-field boundary,0.41007108618759347,0.20892844572641028,0,14,14
+financial stability -> predation,G28 -> Q57,Financial economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.4100451985236198,0.2067795100747314,0,17,17
+health capital -> banks,I15 -> G21,"Health, education, and welfare",Financial economics,Cross-field boundary,0.4099897347686969,0.20881949077507972,0,14,14
+economic health -> expected returns,I10 -> G17,"Health, education, and welfare",Financial economics,Cross-field boundary,0.40996416804089547,0.20807331706100432,0,15,15
+equity premium -> early entry agreements,G12 -> Z22,Financial economics,Other special topics,Cross-field boundary,0.4099420363136533,0.20880343359980347,0,14,14
+financial fragility -> training,G51 -> M53,Financial economics,Business administration and business economics,Cross-field boundary,0.4099127903456537,0.20954890792962483,0,13,13
+public education -> financial stability,H52 -> G28,Public economics,Financial economics,Cross-field boundary,0.40963860313809614,0.20558699020281693,0,18,18
+corporate income tax -> financial crises,K34 -> G01,Law and economics,Financial economics,Cross-field boundary,0.4096155519241007,0.21202886348111363,0,10,10
+limited liability -> less-confident households,K13 -> G59,Law and economics,Financial economics,Cross-field boundary,0.40960602232321114,0.20999557629476667,0,12,12
+expected returns -> economic health,G17 -> I10,Financial economics,"Health, education, and welfare",Cross-field boundary,0.409577061305596,0.20899982308338882,0,13,13
+overruling -> expected returns,L43 -> G17,Industrial organization,Financial economics,Cross-field boundary,0.40955418556676026,0.20747224481626675,0,15,15
+labor market institutions -> market efficiency,J08 -> G14,Labor and demographic economics,Financial economics,Cross-field boundary,0.4095301947645797,0.2081038316721903,0,14,14
+financial intermediaries -> economic development,G23 -> O29,Financial economics,"Economic development, innovation, and growth",Cross-field boundary,0.40944394332197204,0.2072603557700119,0,15,15
+mergers -> commodity prices,G34 -> Q02,Financial economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.40937101777631624,0.20793772633320615,0,14,14
+constitutional reforms -> investment,K10 -> G31,Law and economics,Financial economics,Cross-field boundary,0.40936904768603877,0.20641824372500686,0,16,16
+dividends -> immigration,G35 -> F22,Financial economics,International economics,Cross-field boundary,0.4093469509207892,0.20781160706027163,0,14,14
+emerging markets -> economic development,G15 -> O29,Financial economics,"Economic development, innovation, and growth",Cross-field boundary,0.4091742589659443,0.20771395618824207,0,14,14
+offshoring -> risk premia,L24 -> G22,Industrial organization,Financial economics,Cross-field boundary,0.4090922289643436,0.2074583221634068,0,14,14
+carbon pricing -> financial innovations,Q58 -> G29,"Agriculture, natural resources, and environment",Financial economics,Cross-field boundary,0.40908004136151405,0.20826897036368278,0,13,13
+dividends -> sustainability of collusion,G35 -> K21,Financial economics,Law and economics,Cross-field boundary,0.40901665540972804,0.2091884148785892,0,12,12
+price volatility -> unions,G13 -> J51,Financial economics,Labor and demographic economics,Cross-field boundary,0.4090037360611459,0.2058771940345963,0,16,16
+legal aid -> leverage,K36 -> G24,Law and economics,Financial economics,Cross-field boundary,0.40898948206687796,0.20586599940251826,0,16,16
+technology -> market behavior,L63 -> G40,Industrial organization,Financial economics,Cross-field boundary,0.40896297582706886,0.2065221545811969,0,15,15
+financial stability -> higher dependency ratio,G28 -> J19,Financial economics,Labor and demographic economics,Cross-field boundary,0.4089285030855637,0.20717685249168907,0,14,14
+increased immigration -> market behavior,K37 -> G40,Law and economics,Financial economics,Cross-field boundary,0.4088698571831374,0.2063669919663167,0,15,15
+education -> market liquidity,I29 -> G10,"Health, education, and welfare",Financial economics,Cross-field boundary,0.40883832089651945,0.20632008901120455,0,15,15
+financial stability -> antidumping measures,G28 -> F18,Financial economics,International economics,Cross-field boundary,0.40883351134559487,0.20563306833842832,0,16,16
+space -> equity premium,C49 -> G12,Mathematical and quantitative methods,Financial economics,Cross-field boundary,0.4088286543653761,0.2087323928018915,0,12,12
+financial intermediaries -> gender,G23 -> J16,Financial economics,Labor and demographic economics,Cross-field boundary,0.4087743684859531,0.20623089389245305,0,15,15
+simultaneous report mechanism -> market behavior,C30 -> G40,Mathematical and quantitative methods,Financial economics,Cross-field boundary,0.40870430411056224,0.2094761475333573,0,11,11
+age -> price volatility,J14 -> G13,Labor and demographic economics,Financial economics,Cross-field boundary,0.40861192352586195,0.20754025517525784,0,13,13
+educational policies -> market liquidity,I28 -> G10,"Health, education, and welfare",Financial economics,Cross-field boundary,0.4085908682057463,0.205934703652513,0,15,15
+financial crises -> personalized medicine,G01 -> I11,Financial economics,"Health, education, and welfare",Cross-field boundary,0.4085782775977022,0.2066812273102489,0,14,14
+mergers -> monitoring costs,G34 -> C82,Financial economics,Mathematical and quantitative methods,Cross-field boundary,0.4085649290498606,0.20662159278159228,0,14,14
+investor behavior -> ppi targeting,G41 -> L65,Financial economics,Industrial organization,Cross-field boundary,0.4085424704491209,0.2065986842536837,0,14,14
+discrimination -> mergers,J71 -> G34,Labor and demographic economics,Financial economics,Cross-field boundary,0.4084398741180137,0.20722313844859758,0,13,13
+standards -> asset prices,J80 -> G19,Labor and demographic economics,Financial economics,Cross-field boundary,0.40843740854980404,0.2064229903738038,0,14,14
+world war i -> moral hazard,N44 -> G52,Economic history,Financial economics,Cross-field boundary,0.40829311560913,0.20791708859697808,0,12,12
+equity premium -> public education,G12 -> H52,Financial economics,Public economics,Cross-field boundary,0.40819697114122855,0.2069437068206091,0,13,13
+price volatility -> early entry agreements,G13 -> Z22,Financial economics,Other special topics,Cross-field boundary,0.4081782251574341,0.20867006925580192,0,11,11
+cultural factors -> investor behavior,Z10 -> G41,Other special topics,Financial economics,Cross-field boundary,0.40814963342100624,0.20777344521494226,0,12,12
+public education -> risk premia,H52 -> G22,Public economics,Financial economics,Cross-field boundary,0.40810856475309465,0.20676977545604824,0,13,13
+technology -> investor behavior,L63 -> G41,Industrial organization,Financial economics,Cross-field boundary,0.4080847279684164,0.2059350454880539,0,14,14
+overruling -> investor behavior,L43 -> G41,Industrial organization,Financial economics,Cross-field boundary,0.4080533773088419,0.2066773015092269,0,13,13
+financial innovations -> unions,G29 -> J51,Financial economics,Labor and demographic economics,Cross-field boundary,0.4080431124096096,0.205128586635166,0,15,15
+financial literacy -> monopoly power,G53 -> L12,Financial economics,Industrial organization,Cross-field boundary,0.40800045329310625,0.20507336451485444,0,15,15
+dividends -> simultaneous report mechanism,G35 -> C30,Financial economics,Mathematical and quantitative methods,Cross-field boundary,0.40799616312789144,0.2058075035867101,0,14,14
+decline in agricultural employment -> firm value,J43 -> G32,Labor and demographic economics,Financial economics,Cross-field boundary,0.40799353242030867,0.20577863027227405,0,14,14
+financial fragility -> conceptual artists,G51 -> Z11,Financial economics,Other special topics,Cross-field boundary,0.40792246156194983,0.2065239284011311,0,13,13
+financial crises -> patents,G01 -> O34,Financial economics,"Economic development, innovation, and growth",Cross-field boundary,0.4078922647207639,0.20562126824060478,0,14,14
+industry concentration -> financial stability,L69 -> G28,Industrial organization,Financial economics,Cross-field boundary,0.40788932582732274,0.2056339688278404,0,14,14
+mergers -> health capital,G34 -> I15,Financial economics,"Health, education, and welfare",Cross-field boundary,0.40788345943581444,0.2064625662956918,0,13,13
+increased immigration -> dividends,K37 -> G35,Law and economics,Financial economics,Cross-field boundary,0.4078778843940329,0.20729731626158737,0,12,12
+financial literacy -> emu,G53 -> F36,Financial economics,International economics,Cross-field boundary,0.40787649405769544,0.20650324471824674,0,13,13
+emerging markets -> free riding,G15 -> H40,Financial economics,Public economics,Cross-field boundary,0.407860885091062,0.20558601484257577,0,14,14
+corruption -> financial innovations,H57 -> G29,Public economics,Financial economics,Cross-field boundary,0.4078571905666528,0.20558998440725218,0,14,14
+regulatory competition -> price volatility,K20 -> G13,Law and economics,Financial economics,Cross-field boundary,0.4078491084431153,0.20727422850219077,0,12,12
+property tax -> transparency,H71 -> G38,Public economics,Financial economics,Cross-field boundary,0.4078041443611612,0.20630534492477803,0,13,13
+trade liberalization -> financial literacy,F13 -> G53,International economics,Financial economics,Cross-field boundary,0.4077170635069188,0.20613412370140224,0,13,13
+banks -> lower tobin's q,G21 -> R42,Financial economics,"Urban, rural, and regional economics",Cross-field boundary,0.40771626353121654,0.20614133441371363,0,13,13
+financial innovations -> corruption,G29 -> H57,Financial economics,Public economics,Cross-field boundary,0.40759895472835944,0.20596675257765432,0,13,13
+early entry agreements -> equity premium,Z22 -> G12,Other special topics,Financial economics,Cross-field boundary,0.4075629414790957,0.21000398532426726,0,9,9
+expected returns -> affirmative action,G17 -> J78,Financial economics,Labor and demographic economics,Cross-field boundary,0.4075547825135829,0.20674370147351598,0,12,12

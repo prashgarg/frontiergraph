@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { data } from "../../lib/site-data";
+
+const slices = Object.values(data.discover);
+---
+
+<BaseLayout
+  title="Discover | FrontierGraph"
+  description="Static ranked discovery pages for cross-field bridges, frontier bets, fast-follow ideas, and underexplored gaps."
+>
+  <main>
+    <section class="page-hero">
+      <span class="eyebrow">Discovery layer</span>
+      <h1>Browse ranked opportunities without opening the app.</h1>
+      <p class="lede">
+        These static pages are generated from the current beta database. They give a fast, indexable way into the graph before moving into the deeper interactive app.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="card-grid">
+        {slices.map((slice: any) => (
+          <a class="card" href={`/discover/${slice.slug}/`}>
+            <span class="eyebrow">{slice.preset}</span>
+            <h3>{slice.title}</h3>
+            <p class="card-copy">{slice.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

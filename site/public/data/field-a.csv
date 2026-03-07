@@ -1,0 +1,201 @@
+opportunity,code_pair,source_field,target_field,novelty,priority,base_score,prior_contact,mediators,motifs
+inflation -> sentiments,E31 -> A13,Macroeconomics and monetary economics,General economics and teaching,Cross-field boundary,0.41899104287319255,0.21566005631491592,0,26,26
+social security -> sentiments,H55 -> A13,Public economics,General economics and teaching,Cross-field boundary,0.41406130418890486,0.21237292374170255,0,18,18
+citation counts -> trade patterns,A14 -> F10,General economics and teaching,International economics,Cross-field boundary,0.4127259649300206,0.21232277933399787,0,15,15
+social security -> teacher effectiveness,H55 -> A21,Public economics,General economics and teaching,Cross-field boundary,0.4115953828531679,0.21054174466583989,0,15,15
+trade -> citation counts,F19 -> A14,International economics,General economics and teaching,Cross-field boundary,0.4113865251445886,0.2095627922524652,0,16,16
+citation counts -> carbon tax,A14 -> H23,General economics and teaching,Public economics,Cross-field boundary,0.41124083047159044,0.21001737697514086,0,15,15
+trade liberalization -> citation counts,F13 -> A14,International economics,General economics and teaching,Cross-field boundary,0.4109123895041957,0.2087385706103691,0,16,16
+banks -> teacher effectiveness,G21 -> A21,Financial economics,General economics and teaching,Cross-field boundary,0.41085099450472135,0.20939194671408953,0,15,15
+borrowing constraints -> sentiments,F34 -> A13,International economics,General economics and teaching,Cross-field boundary,0.41075912248151836,0.2078712318153555,0,17,17
+public debt -> sentiments,H63 -> A13,Public economics,General economics and teaching,Cross-field boundary,0.4104258578193917,0.2087350051256534,0,15,15
+teacher effectiveness -> income,A21 -> E25,General economics and teaching,Macroeconomics and monetary economics,Cross-field boundary,0.4090564785272791,0.2100772935056302,0,11,11
+citation counts -> capital inflows,A14 -> F21,General economics and teaching,International economics,Cross-field boundary,0.4087635590468874,0.20782111177075055,0,13,13
+sentiments -> inflation,A13 -> E31,General economics and teaching,Macroeconomics and monetary economics,Cross-field boundary,0.40849825490447883,0.20729542919864063,0,13,13
+coordination -> citation counts,E61 -> A14,Macroeconomics and monetary economics,General economics and teaching,Cross-field boundary,0.40823011586221114,0.20621152556330402,0,14,14
+monetary policy -> citation counts,E52 -> A14,Macroeconomics and monetary economics,General economics and teaching,Cross-field boundary,0.40818056667493424,0.20686605157686289,0,13,13
+data accumulation -> sentiments,C80 -> A13,Mathematical and quantitative methods,General economics and teaching,Cross-field boundary,0.40810941124208794,0.20599359890888122,0,14,14
+trade -> teacher effectiveness,F19 -> A21,International economics,General economics and teaching,Cross-field boundary,0.408069808870579,0.20757994590144035,0,12,12
+emu -> sentiments,F36 -> A13,International economics,General economics and teaching,Cross-field boundary,0.4079816621837016,0.20575843620157575,0,14,14
+borrowing constraints -> citation counts,F34 -> A14,International economics,General economics and teaching,Cross-field boundary,0.4077821514741257,0.20548110084934007,0,14,14
+central bank independence -> citation counts,E58 -> A14,Macroeconomics and monetary economics,General economics and teaching,Cross-field boundary,0.40767805765834164,0.20609740543255922,0,13,13
+citation counts -> lower prices,A14 -> P22,General economics and teaching,Economic systems,Cross-field boundary,0.40752713569560356,0.2086208446167269,0,10,10
+high-skilled immigrants -> sentiments,J61 -> A13,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.40726785980648633,0.20546997248994442,0,13,13
+citation counts -> income,A14 -> E25,General economics and teaching,Macroeconomics and monetary economics,Cross-field boundary,0.4072357022310722,0.206333568258396,0,12,12
+exchange rates -> teacher effectiveness,F31 -> A21,International economics,General economics and teaching,Cross-field boundary,0.40721486191513234,0.20629635636720847,0,12,12
+citation counts -> monetary policy,A14 -> E52,General economics and teaching,Macroeconomics and monetary economics,Cross-field boundary,0.4068151171567604,0.2066243745332979,0,11,11
+institutional quality -> learning outcomes,L15 -> A22,Industrial organization,General economics and teaching,Cross-field boundary,0.40679980024948764,0.20657042830555636,0,11,11
+citation counts -> trade,A14 -> F19,General economics and teaching,International economics,Cross-field boundary,0.4067663666813643,0.20561539049105024,0,12,12
+patents -> sentiments,O34 -> A13,"Economic development, innovation, and growth",General economics and teaching,Cross-field boundary,0.406469421485756,0.20604414289401182,0,11,11
+teacher effectiveness -> average productivity,A21 -> O47,General economics and teaching,"Economic development, innovation, and growth",Cross-field boundary,0.4063082726949357,0.2079139368074589,0,9,9
+citation counts -> trade liberalization,A14 -> F13,General economics and teaching,International economics,Cross-field boundary,0.4061615684085606,0.2055661673645565,0,11,11
+teacher effectiveness -> counterfeiting,A21 -> K42,General economics and teaching,Law and economics,Cross-field boundary,0.40613800940104844,0.20659568657683394,0,10,10
+city size -> sentiments,R12 -> A13,"Urban, rural, and regional economics",General economics and teaching,Cross-field boundary,0.4060613108374891,0.20450038177509944,0,12,12
+capital taxation -> sentiments,H24 -> A13,Public economics,General economics and teaching,Cross-field boundary,0.40598154886351734,0.20438103868484825,0,12,12
+universal basic income (ubi) -> teacher effectiveness,H53 -> A21,Public economics,General economics and teaching,Cross-field boundary,0.4059064177611386,0.20622132648727504,0,10,10
+teacher effectiveness -> economic outcomes,A21 -> F61,General economics and teaching,International economics,Cross-field boundary,0.4058838514028436,0.20731597094360232,0,9,9
+increased uncertainty -> learning outcomes,D89 -> A22,Microeconomics,General economics and teaching,Cross-field boundary,0.40579315990066717,0.20502731392286344,0,11,11
+government intervention -> sentiments,L59 -> A13,Industrial organization,General economics and teaching,Cross-field boundary,0.4057761476581041,0.20496969772088908,0,11,11
+stricter roos -> sentiments,L42 -> A13,Industrial organization,General economics and teaching,Cross-field boundary,0.4057162880912368,0.2058531168286509,0,10,10
+citation counts -> government revenue,A14 -> H27,General economics and teaching,Public economics,Cross-field boundary,0.40567990361274797,0.20394905248606376,0,12,12
+firm value -> total effort,G32 -> A39,Financial economics,General economics and teaching,Cross-field boundary,0.40561631143773025,0.2047515925675102,0,11,11
+foreign aid -> teacher effectiveness,F35 -> A21,International economics,General economics and teaching,Cross-field boundary,0.4055441603577613,0.205633986218426,0,10,10
+citation counts -> counterfeiting,A14 -> K42,General economics and teaching,Law and economics,Cross-field boundary,0.40553585847530954,0.2046441546667198,0,11,11
+financial fragility -> teacher effectiveness,G51 -> A21,Financial economics,General economics and teaching,Cross-field boundary,0.40552054565815565,0.20674935921033977,0,9,9
+carbon tax -> citation counts,H23 -> A14,Public economics,General economics and teaching,Cross-field boundary,0.40551537374337504,0.20459167652147464,0,11,11
+optimal contracts -> teacher effectiveness,D86 -> A21,Microeconomics,General economics and teaching,Cross-field boundary,0.4054876600651281,0.20669951361486436,0,9,9
+teacher effectiveness -> capital inflows,A21 -> F21,General economics and teaching,International economics,Cross-field boundary,0.4054705804811401,0.20666333696199563,0,9,9
+labor force participation -> sentiments,J21 -> A13,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.40543568227192617,0.20445551891416194,0,11,11
+government spending -> teacher effectiveness,H59 -> A21,Public economics,General economics and teaching,Cross-field boundary,0.4054321767814492,0.20547408848996054,0,10,10
+counterfeiting -> citation counts,K42 -> A14,Law and economics,General economics and teaching,Cross-field boundary,0.4052159757082381,0.2051202524312561,0,10,10
+international cooperation -> sentiments,F53 -> A13,International economics,General economics and teaching,Cross-field boundary,0.40517928553252014,0.2040831225059948,0,11,11
+income -> teacher effectiveness,E25 -> A21,Macroeconomics and monetary economics,General economics and teaching,Cross-field boundary,0.4049603700877907,0.2047494824829159,0,10,10
+citation counts -> coordination,A14 -> E61,General economics and teaching,Macroeconomics and monetary economics,Cross-field boundary,0.40493991377456034,0.20474229904085095,0,10,10
+trade patterns -> citation counts,F10 -> A14,International economics,General economics and teaching,Cross-field boundary,0.4049114280554356,0.20369471536308598,0,11,11
+banks -> total effort,G21 -> A39,Financial economics,General economics and teaching,Cross-field boundary,0.40481842268171936,0.2045354347566226,0,10,10
+optimal policy -> citation counts,C61 -> A14,Mathematical and quantitative methods,General economics and teaching,Cross-field boundary,0.4047821104026847,0.20445508769831028,0,10,10
+leverage -> teacher effectiveness,G24 -> A21,Financial economics,General economics and teaching,Cross-field boundary,0.4047530191807573,0.20444146915969796,0,10,10
+tax policy -> total effort,H29 -> A39,Public economics,General economics and teaching,Cross-field boundary,0.40474676177789765,0.20551556966734655,0,9,9
+external factors -> sentiments,F29 -> A13,International economics,General economics and teaching,Cross-field boundary,0.40465961030112235,0.2033202864238343,0,11,11
+sentiments -> unemployment,A13 -> J64,General economics and teaching,Labor and demographic economics,Cross-field boundary,0.4046223588652711,0.20424660067451425,0,10,10
+citation counts -> joint ownership,A14 -> R21,General economics and teaching,"Urban, rural, and regional economics",Cross-field boundary,0.40461173434705894,0.20422376678471635,0,10,10
+trade -> learning outcomes,F19 -> A22,International economics,General economics and teaching,Cross-field boundary,0.4045428531887569,0.2041034272609344,0,10,10
+government interventions -> teacher effectiveness,H81 -> A21,Public economics,General economics and teaching,Cross-field boundary,0.40454158319693995,0.2041264869353233,0,10,10
+reputation -> learning outcomes,L14 -> A22,Industrial organization,General economics and teaching,Cross-field boundary,0.40441113617953534,0.20495438150808817,0,9,9
+borrowing constraints -> teacher effectiveness,F34 -> A21,International economics,General economics and teaching,Cross-field boundary,0.4043673334202097,0.20495315995451704,0,9,9
+democratization -> fame of individual works,D72 -> A31,Microeconomics,General economics and teaching,Cross-field boundary,0.4042780881041782,0.2047650480814843,0,9,9
+capital accumulation -> learning outcomes,E22 -> A22,Macroeconomics and monetary economics,General economics and teaching,Cross-field boundary,0.4042561317679086,0.20367213993178063,0,10,10
+teacher effectiveness -> terms of trade,A21 -> F14,General economics and teaching,International economics,Cross-field boundary,0.40422265967153986,0.20597303671161712,0,8,8
+counterfeiting -> teacher effectiveness,K42 -> A21,Law and economics,General economics and teaching,Cross-field boundary,0.40421171201118594,0.20468686704868452,0,9,9
+retailer integration -> citation counts,L81 -> A14,Industrial organization,General economics and teaching,Cross-field boundary,0.4042047821949977,0.202646468855267,0,11,11
+privatization -> sentiments,L33 -> A13,Industrial organization,General economics and teaching,Cross-field boundary,0.4041097077728992,0.20345655341794613,0,10,10
+teacher effectiveness -> financial instability,A21 -> F65,General economics and teaching,International economics,Cross-field boundary,0.40407396220556585,0.20450776890601785,0,9,9
+mergers -> learning outcomes,G34 -> A22,Financial economics,General economics and teaching,Cross-field boundary,0.40405923911270214,0.2056497820379738,0,8,8
+competition -> learning outcomes,L13 -> A22,Industrial organization,General economics and teaching,Cross-field boundary,0.40391742189530594,0.20425323433384682,0,9,9
+moral hazard -> blunt bunching,G52 -> A30,Financial economics,General economics and teaching,Cross-field boundary,0.4037483215787343,0.20522413449918744,0,8,8
+affirmative action -> teacher effectiveness,J78 -> A21,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.4037150701809576,0.20656607935445062,0,7,7
+blockchain technology -> sentiments,E42 -> A13,Macroeconomics and monetary economics,General economics and teaching,Cross-field boundary,0.40371323794508396,0.2039200827254507,0,9,9
+vertical integration -> teacher effectiveness,L22 -> A21,Industrial organization,General economics and teaching,Cross-field boundary,0.40366943916962883,0.20512194643406795,0,8,8
+international cooperation -> citation counts,F53 -> A14,International economics,General economics and teaching,Cross-field boundary,0.403668881951533,0.20281071830361022,0,10,10
+carbon pricing -> citation counts,Q58 -> A14,"Agriculture, natural resources, and environment",General economics and teaching,Cross-field boundary,0.4036166536581529,0.20380219076503914,0,9,9
+teacher effectiveness -> financial fragility,A21 -> G51,General economics and teaching,Financial economics,Cross-field boundary,0.40356123882071715,0.20625201791281528,0,7,7
+government spending -> sentiments,H59 -> A13,Public economics,General economics and teaching,Cross-field boundary,0.40354623405187356,0.2048793814072003,0,8,8
+consumption behavior -> total effort,D10 -> A39,Microeconomics,General economics and teaching,Cross-field boundary,0.40354604648163517,0.20367036038124306,0,9,9
+market size -> total effort,L25 -> A39,Industrial organization,General economics and teaching,Cross-field boundary,0.40350096119330336,0.2036121458356599,0,9,9
+demographic changes -> learning outcomes,J11 -> A22,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.40347380738129784,0.20475365524080846,0,8,8
+trade liberalization -> learning outcomes,F13 -> A22,International economics,General economics and teaching,Cross-field boundary,0.40339357950610505,0.2034553038997146,0,9,9
+labor mobility -> learning outcomes,J62 -> A22,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.4033699315914678,0.20341394088986522,0,9,9
+policy coordination -> sentiments,F42 -> A13,International economics,General economics and teaching,Cross-field boundary,0.40335973146432313,0.20341285870041306,0,9,9
+unemployment -> sentiments,J64 -> A13,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.4032920447765784,0.20330574899015913,0,9,9
+consumer surplus -> total effort,D11 -> A39,Microeconomics,General economics and teaching,Cross-field boundary,0.4032586176194026,0.20325060055337446,0,9,9
+seller revenue -> citation counts,L85 -> A14,Industrial organization,General economics and teaching,Cross-field boundary,0.4032470182508568,0.20440584701776698,0,8,8
+trade liberalization -> teacher effectiveness,F13 -> A21,International economics,General economics and teaching,Cross-field boundary,0.40311072236167605,0.20421670882499154,0,8,8
+capital inflows -> citation counts,F21 -> A14,International economics,General economics and teaching,Cross-field boundary,0.4030780010825583,0.20298803788201783,0,9,9
+protection -> total effort,D18 -> A39,Microeconomics,General economics and teaching,Cross-field boundary,0.4030505790700963,0.20294143642029433,0,9,9
+faculty quality -> investment decisions,A29 -> G11,General economics and teaching,Financial economics,Cross-field boundary,0.4030322345003733,0.2040889071724219,0,8,8
+moral hazard -> total effort,G52 -> A39,Financial economics,General economics and teaching,Cross-field boundary,0.40300104327276476,0.20403931063080885,0,8,8
+trade -> total effort,F19 -> A39,International economics,General economics and teaching,Cross-field boundary,0.4029488835306104,0.20279184728118374,0,9,9
+financial instability -> teacher effectiveness,F65 -> A21,International economics,General economics and teaching,Cross-field boundary,0.40294854813781755,0.2027907600353708,0,9,9
+capital taxation -> teacher effectiveness,H24 -> A21,Public economics,General economics and teaching,Cross-field boundary,0.4029343159972568,0.20395904583536156,0,8,8
+capital accumulation -> increased publication lags,E22 -> A19,Macroeconomics and monetary economics,General economics and teaching,Cross-field boundary,0.4029081645997912,0.2039053493538601,0,8,8
+sentiments -> labor force participation,A13 -> J21,General economics and teaching,Labor and demographic economics,Cross-field boundary,0.4028605774982187,0.2038602111287162,0,8,8
+state policies -> citation counts,H79 -> A14,Public economics,General economics and teaching,Cross-field boundary,0.4028139180410397,0.20259630350096872,0,9,9
+regulatory changes -> total effort,G18 -> A39,Financial economics,General economics and teaching,Cross-field boundary,0.40273879985837746,0.20366702129048325,0,8,8
+search frictions -> learning outcomes,F12 -> A22,International economics,General economics and teaching,Cross-field boundary,0.40267099404737394,0.20356914233608045,0,8,8
+monopoly power -> sentiments,D42 -> A13,Microeconomics,General economics and teaching,Cross-field boundary,0.40257927314110814,0.20342118222680894,0,8,8
+teacher effectiveness -> social security,A21 -> H55,General economics and teaching,Public economics,Cross-field boundary,0.40255070964470197,0.20631581298487006,0,6,6
+joint ownership -> citation counts,R21 -> A14,"Urban, rural, and regional economics",General economics and teaching,Cross-field boundary,0.40254721772658286,0.2033764489373821,0,8,8
+city size -> total effort,R12 -> A39,"Urban, rural, and regional economics",General economics and teaching,Cross-field boundary,0.40250338699934796,0.20330256402781524,0,8,8
+borrowing costs -> sentiments,H74 -> A13,Public economics,General economics and teaching,Cross-field boundary,0.402482096507362,0.20327370456651872,0,8,8
+home production -> teacher effectiveness,D13 -> A21,Microeconomics,General economics and teaching,Cross-field boundary,0.4024299184037859,0.20452812821022728,0,7,7
+universal basic income (ubi) -> citation counts,H53 -> A14,Public economics,General economics and teaching,Cross-field boundary,0.4024066148163145,0.20316816229234105,0,8,8
+limited liability -> citation counts,K13 -> A14,Law and economics,General economics and teaching,Cross-field boundary,0.40237941669962474,0.2031059898147707,0,8,8
+demographic changes -> blunt bunching,J11 -> A30,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.4023725148907229,0.20311320672647862,0,8,8
+trade openness -> citation counts,F41 -> A14,International economics,General economics and teaching,Cross-field boundary,0.4023382097365503,0.2030567886582088,0,8,8
+terms of trade -> teacher effectiveness,F14 -> A21,International economics,General economics and teaching,Cross-field boundary,0.4023331568109378,0.20438584801475065,0,7,7
+unions -> sentiments,J51 -> A13,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.40226174344048643,0.2029427289979187,0,8,8
+blockchain technology -> citation counts,E42 -> A14,Macroeconomics and monetary economics,General economics and teaching,Cross-field boundary,0.402200417154621,0.2028487837538815,0,8,8
+citation counts -> optimal policy,A14 -> C61,General economics and teaching,Mathematical and quantitative methods,Cross-field boundary,0.4021884468676492,0.20418499021264822,0,7,7
+consumption decisions -> total effort,D12 -> A39,Microeconomics,General economics and teaching,Cross-field boundary,0.4021512414378069,0.20276789241430207,0,8,8
+capital inflows -> ideological biases of economists,F21 -> A11,International economics,General economics and teaching,Cross-field boundary,0.40204777136890785,0.202616425921035,0,8,8
+capital inflows -> total effort,F21 -> A39,International economics,General economics and teaching,Cross-field boundary,0.4020416245091334,0.2026162043670243,0,8,8
+citation counts -> universal basic income (ubi),A14 -> H53,General economics and teaching,Public economics,Cross-field boundary,0.4020002267062646,0.2025497293219029,0,8,8
+price discrimination -> learning outcomes,D40 -> A22,Microeconomics,General economics and teaching,Cross-field boundary,0.4019829424843763,0.20383701462559223,0,7,7
+negative externalities -> learning outcomes,D62 -> A22,Microeconomics,General economics and teaching,Cross-field boundary,0.40197322824515885,0.20251309497395087,0,8,8
+fixed exchange rate regime -> citation counts,F33 -> A14,International economics,General economics and teaching,Cross-field boundary,0.4019594315760343,0.20249344292351557,0,8,8
+managerial power -> learning outcomes,M54 -> A22,Business administration and business economics,General economics and teaching,Cross-field boundary,0.4019436753531898,0.20376975264027777,0,7,7
+education for mastery of scientific knowledge -> democratization,A23 -> D72,General economics and teaching,Microeconomics,Cross-field boundary,0.4019324977605773,0.2037696861322244,0,7,7
+military spending -> teacher effectiveness,H56 -> A21,Public economics,General economics and teaching,Cross-field boundary,0.4019238310758427,0.20243949490050256,0,8,8
+citation counts -> public goods provision,A14 -> H42,General economics and teaching,Public economics,Cross-field boundary,0.40192228861578266,0.20243784892597122,0,8,8
+teacher effectiveness -> segregation,A21 -> R28,General economics and teaching,"Urban, rural, and regional economics",Cross-field boundary,0.40186475431242125,0.20526926253347869,0,6,6
+ownership -> sentiments,H13 -> A13,Public economics,General economics and teaching,Cross-field boundary,0.4018216379305541,0.20228994622366178,0,8,8
+financial intermediaries -> sentiments,G23 -> A13,Financial economics,General economics and teaching,Cross-field boundary,0.4018031256982447,0.20356259660209677,0,7,7
+teacher effectiveness -> trade liberalization,A21 -> F13,General economics and teaching,International economics,Cross-field boundary,0.4017557502956816,0.20218902852724993,0,8,8
+price volatility -> citation counts,G13 -> A14,Financial economics,General economics and teaching,Cross-field boundary,0.40172292461847536,0.20345974117074064,0,7,7
+government behavior -> sentiments,H10 -> A13,Public economics,General economics and teaching,Cross-field boundary,0.40171699315955495,0.20213643877389598,0,8,8
+financial distress -> teacher effectiveness,G33 -> A21,Financial economics,General economics and teaching,Cross-field boundary,0.40169281244340943,0.20341772155828391,0,7,7
+market size -> learning outcomes,L25 -> A22,Industrial organization,General economics and teaching,Cross-field boundary,0.4016684271632857,0.20335410114411212,0,7,7
+economic conditions -> increased publication lags,E66 -> A19,Macroeconomics and monetary economics,General economics and teaching,Cross-field boundary,0.4016533011295059,0.20204369483230622,0,8,8
+citation counts -> fixed exchange rate regime,A14 -> F33,General economics and teaching,International economics,Cross-field boundary,0.4016041230615304,0.20197109195630575,0,8,8
+leverage -> ideological biases of economists,G24 -> A11,Financial economics,General economics and teaching,Cross-field boundary,0.4015249250483307,0.2018573078680256,0,8,8
+market size -> increased publication lags,L25 -> A19,Industrial organization,General economics and teaching,Cross-field boundary,0.4014938121069019,0.20309491041927463,0,7,7
+teacher effectiveness -> joint ownership,A21 -> R21,General economics and teaching,"Urban, rural, and regional economics",Cross-field boundary,0.4014799050820149,0.20308443355252534,0,7,7
+joint ownership -> teacher effectiveness,R21 -> A21,"Urban, rural, and regional economics",General economics and teaching,Cross-field boundary,0.4014594886869435,0.20455354175116516,0,6,6
+immigration -> learning outcomes,F22 -> A22,International economics,General economics and teaching,Cross-field boundary,0.4014536920864515,0.20305111125002803,0,7,7
+public debt -> citation counts,H63 -> A14,Public economics,General economics and teaching,Cross-field boundary,0.40145252279462434,0.20303775286608072,0,7,7
+rising unemployment -> learning outcomes,F66 -> A22,International economics,General economics and teaching,Cross-field boundary,0.4014048016490516,0.20296359163997027,0,7,7
+fdi -> learning outcomes,F23 -> A22,International economics,General economics and teaching,Cross-field boundary,0.4013893818689966,0.20295076609608545,0,7,7
+financial integration -> sentiments,F30 -> A13,International economics,General economics and teaching,Cross-field boundary,0.40132082310847705,0.20285123252020434,0,7,7
+exchange rates -> fame of individual works,F31 -> A31,International economics,General economics and teaching,Cross-field boundary,0.4013140372528094,0.20283280253847477,0,7,7
+higher prices -> total effort,D49 -> A39,Microeconomics,General economics and teaching,Cross-field boundary,0.4012781260682254,0.20277890803735507,0,7,7
+inequality -> learning outcomes,D63 -> A22,Microeconomics,General economics and teaching,Cross-field boundary,0.4012394694952338,0.20273871320091502,0,7,7
+citation counts -> price level,A14 -> E30,General economics and teaching,Macroeconomics and monetary economics,Cross-field boundary,0.4011864567350262,0.20419764230438694,0,6,6
+coordination -> teacher effectiveness,E61 -> A21,Macroeconomics and monetary economics,General economics and teaching,Cross-field boundary,0.40116953371760683,0.2042005934644793,0,6,6
+sentiments -> borrowing constraints,A13 -> F34,General economics and teaching,International economics,Cross-field boundary,0.4011539978762348,0.20260197736931132,0,7,7
+measurement errors -> learning outcomes,C83 -> A22,Mathematical and quantitative methods,General economics and teaching,Cross-field boundary,0.4011504051664383,0.20421151303125742,0,6,6
+government spending -> ideological biases of economists,H59 -> A11,Public economics,General economics and teaching,Cross-field boundary,0.40110618996920216,0.2025322551930213,0,7,7
+citation counts -> financial constraints,A14 -> D20,General economics and teaching,Microeconomics,Cross-field boundary,0.40105791597112334,0.20245693290917138,0,7,7
+horizontal mergers -> citation counts,L41 -> A14,Industrial organization,General economics and teaching,Cross-field boundary,0.4010379264657053,0.20242501002236385,0,7,7
+public debt -> total effort,H63 -> A39,Public economics,General economics and teaching,Cross-field boundary,0.4010371557518408,0.2024199657318663,0,7,7
+trade -> fame of individual works,F19 -> A31,International economics,General economics and teaching,Cross-field boundary,0.4010309296777623,0.20241113829136273,0,7,7
+capital flows -> increased publication lags,F32 -> A19,International economics,General economics and teaching,Cross-field boundary,0.40099958116335543,0.20236777508765694,0,7,7
+business groups -> sentiments,L39 -> A13,Industrial organization,General economics and teaching,Cross-field boundary,0.40099133733847103,0.20235215297096162,0,7,7
+offshoring -> sentiments,L24 -> A13,Industrial organization,General economics and teaching,Cross-field boundary,0.4009907983130118,0.20235530556240197,0,7,7
+education for mastery of scientific knowledge -> distortions,A23 -> H31,General economics and teaching,Public economics,Cross-field boundary,0.40098947892689707,0.202353136031527,0,7,7
+consumer behavior -> total effort,D19 -> A39,Microeconomics,General economics and teaching,Cross-field boundary,0.40096316376069024,0.20231261357150235,0,7,7
+labor market outcomes -> learning outcomes,J48 -> A22,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.4009203791993576,0.20225388060446095,0,7,7
+optimal contracts -> total effort,D86 -> A39,Microeconomics,General economics and teaching,Cross-field boundary,0.4008936167466941,0.20220804097488157,0,7,7
+increased publication lags -> consumption decisions,A19 -> D12,General economics and teaching,Microeconomics,Cross-field boundary,0.4008783610336936,0.2036787650233237,0,6,6
+faculty quality -> rising unemployment,A29 -> F66,General economics and teaching,International economics,Cross-field boundary,0.4008699909763916,0.20369994428836613,0,6,6
+trade liberalization -> total effort,F13 -> A39,International economics,General economics and teaching,Cross-field boundary,0.40086421303127734,0.20216746454510573,0,7,7
+increased publication lags -> overall welfare,A19 -> I31,General economics and teaching,"Health, education, and welfare",Cross-field boundary,0.4008213053188676,0.20210292294887788,0,7,7
+capital taxation -> increased publication lags,H24 -> A19,Public economics,General economics and teaching,Cross-field boundary,0.40079518247929186,0.20206747673619319,0,7,7
+labor force participation -> fame of individual works,J21 -> A31,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.40079343675418383,0.20206036042272277,0,7,7
+financial distress -> total effort,G33 -> A39,Financial economics,General economics and teaching,Cross-field boundary,0.4007621716471551,0.20202137364191755,0,7,7
+mergers -> fame of individual works,G34 -> A31,Financial economics,General economics and teaching,Cross-field boundary,0.40075114930036765,0.2035274668618246,0,6,6
+sentiments -> unions,A13 -> J51,General economics and teaching,Labor and demographic economics,Cross-field boundary,0.4007247467902251,0.20196083475942037,0,7,7
+increased publication lags -> economic output,A19 -> E23,General economics and teaching,Macroeconomics and monetary economics,Cross-field boundary,0.40072382503084575,0.2034563812732674,0,6,6
+retirement decisions -> blunt bunching,J26 -> A30,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.4006811386166356,0.20190053723145818,0,7,7
+budget rules -> sentiments,H61 -> A13,Public economics,General economics and teaching,Cross-field boundary,0.4006762942385012,0.2018941952531789,0,7,7
+conflicts of interest -> citation counts,F51 -> A14,International economics,General economics and teaching,Cross-field boundary,0.4006533218558207,0.20185759800093545,0,7,7
+fertility -> increased publication lags,J13 -> A19,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.40064117684879524,0.2018406713823909,0,7,7
+foreign aid -> ideological biases of economists,F35 -> A11,International economics,General economics and teaching,Cross-field boundary,0.4006407900183249,0.20184059348747446,0,7,7
+health -> ideological biases of economists,I19 -> A11,"Health, education, and welfare",General economics and teaching,Cross-field boundary,0.40063849783487937,0.20183703621490579,0,7,7
+structural transformation -> sentiments,L16 -> A13,Industrial organization,General economics and teaching,Cross-field boundary,0.40062462466316867,0.20181821163828798,0,7,7
+increased publication lags -> consumption,A19 -> E21,General economics and teaching,Macroeconomics and monetary economics,Cross-field boundary,0.4005739041936991,0.20322759430882778,0,6,6
+dsge models -> citation counts,E13 -> A14,Macroeconomics and monetary economics,General economics and teaching,Cross-field boundary,0.400526747469187,0.20317127261693718,0,6,6
+sentiments -> social security,A13 -> H55,General economics and teaching,Public economics,Cross-field boundary,0.40051870358699243,0.20314204155794838,0,6,6
+price volatility -> teacher effectiveness,G13 -> A21,Financial economics,General economics and teaching,Cross-field boundary,0.4005137114436173,0.20315325674340423,0,6,6
+citation counts -> borrowing constraints,A14 -> F34,General economics and teaching,International economics,Cross-field boundary,0.4004636497326078,0.203070768926855,0,6,6
+sentiments -> blockchain technology,A13 -> E42,General economics and teaching,Macroeconomics and monetary economics,Cross-field boundary,0.4004531176377315,0.2015669801733541,0,7,7
+economic integration -> teacher effectiveness,F15 -> A21,International economics,General economics and teaching,Cross-field boundary,0.40042552305162576,0.2030138401136935,0,6,6
+fertility -> fame of individual works,J13 -> A31,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.4003609564600262,0.20289233868126394,0,6,6
+theoretical models -> sentiments,O41 -> A13,"Economic development, innovation, and growth",General economics and teaching,Cross-field boundary,0.40034164141416595,0.20287690388249,0,6,6
+sentiments -> public debt,A13 -> H63,General economics and teaching,Public economics,Cross-field boundary,0.4002972648160321,0.20280629441771564,0,6,6
+sentiments -> improved decision-making,A13 -> D87,General economics and teaching,Microeconomics,Cross-field boundary,0.4002584741324122,0.20275234861383085,0,6,6
+immigration -> blunt bunching,F22 -> A30,International economics,General economics and teaching,Cross-field boundary,0.4002533634046565,0.2027541097531866,0,6,6
+higher dependency ratio -> sentiments,J19 -> A13,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.40023534960352164,0.2027041747130604,0,6,6
+financial constraints -> citation counts,D20 -> A14,Microeconomics,General economics and teaching,Cross-field boundary,0.4002321768461493,0.20272069419317662,0,6,6
+employment -> blunt bunching,J68 -> A30,Labor and demographic economics,General economics and teaching,Cross-field boundary,0.4002192829724652,0.20269854438784363,0,6,6
+risk aversion -> ideological biases of economists,D81 -> A11,Microeconomics,General economics and teaching,Cross-field boundary,0.40016675040589705,0.2026040601360687,0,6,6
+city size -> fame of individual works,R12 -> A31,"Urban, rural, and regional economics",General economics and teaching,Cross-field boundary,0.4001654840151364,0.202610578842276,0,6,6

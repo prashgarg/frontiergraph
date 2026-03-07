@@ -1,27 +1,58 @@
-# Missing Claims
+# FrontierGraph
 
-Domain-agnostic missing-claim recommender and Streamlit webtool built from claim graphs.
+FrontierGraph is a deterministic metascience tool for ranking what economics should work on next.
 
-## What It Does
+- Public site: `https://frontiergraph.com`
+- Public beta app: `https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app`
+- Repository: `https://github.com/prashgarg/frontiergraph`
 
-- Builds a normalized claim corpus from adapters (`demo`, `causalclaims`, `generic`).
-- Computes three transparent signals for missing claims:
-  - underexplored concept-pair gaps,
-  - path-implied missing direct edges,
-  - motif completion (open triads).
-- Scores and ranks candidates with score decomposition.
-- Backtests retrospectively for horizons 1/3/5 years.
-- Stores outputs in SQLite for a lightweight Streamlit UI.
+The project has three public layers:
+
+1. an Astro-based public website,
+2. a static discovery layer with ranked pages by field and discovery mode,
+3. a Streamlit app for deeper interactive inspection.
+
+AI is used only to convert text into graph structure. Everything after graph extraction is deterministic and inspectable.
+
+## Public release contents
+
+- `site/`: Astro marketing site and static discovery pages
+- `app/`: Streamlit beta app
+- `scripts/export_site_data.py`: exports site-ready JSON/CSV from the beta SQLite database
+- `data/demo/`: small demo dataset kept in the repo
+- `site/public/downloads/`: checksum and manifest for the full beta database package
+
+See [DATA_README.md](DATA_README.md) and [DATA_PROVENANCE.md](DATA_PROVENANCE.md) for data packaging details.
 
 ## Quickstart
 
-Install dependencies:
+Install the package:
 
 ```bash
 python -m pip install -e '.[dev]'
 ```
 
-Run the default $0 pipeline with demo data:
+Run the app locally:
+
+```bash
+frontiergraph
+```
+
+The legacy alias still works:
+
+```bash
+economics-ranker
+```
+
+Useful flags:
+
+```bash
+frontiergraph --db data/processed/app_causalclaims.db
+frontiergraph --port 8502
+frontiergraph --headless
+```
+
+## Run the demo pipeline
 
 ```bash
 python -m src.build_corpus --adapter demo --out data/processed/corpus.parquet --config config/config.yaml
@@ -29,66 +60,59 @@ python -m src.features_pairs --in data/processed/corpus.parquet --out data/proce
 python -m src.features_paths --in data/processed/corpus.parquet --out data/processed/missing_edges.parquet --max_len 2
 python -m src.features_motifs --in data/processed/corpus.parquet --out data/processed/motif_gaps.parquet
 python -m src.scoring --pairs data/processed/pairs.parquet --paths data/processed/missing_edges.parquet --motifs data/processed/motif_gaps.parquet --out data/processed/candidates.parquet
-python -m src.backtest --corpus data/processed/corpus.parquet --out outputs/tables/backtest.parquet --figdir outputs/figures
 python -m src.store_sqlite --corpus data/processed/corpus.parquet --candidates data/processed/candidates.parquet --out data/processed/app.db
-streamlit run app/streamlit_app.py
+frontiergraph --db data/processed/app.db
 ```
 
-Cleaner launcher after `pip install -e '.[dev]'`:
+## Build the static site data
+
+The public site is backed by generated JSON/CSV derived from the full beta SQLite database.
 
 ```bash
-economics-ranker
+PYTHONPATH=. python scripts/export_site_data.py
 ```
 
-Useful options:
+This writes:
+
+- `site/src/generated/site-data.json`
+- `site/public/data/*.csv`
+- `site/public/downloads/frontiergraph-economics-beta.manifest.json`
+- `site/public/downloads/frontiergraph-economics-beta.sha256.txt`
+
+If you have a public mirror for the full beta DB, set:
 
 ```bash
-economics-ranker --db data/processed/app_causalclaims.db
-economics-ranker --port 8502
-economics-ranker --headless
+export FRONTIERGRAPH_PUBLIC_DB_URL="https://..."
 ```
 
-No-terminal launcher on macOS:
+before running the export so the downloads page points to the live artifact.
 
-- Double-click `launchers/Economics Opportunity Ranker.app`
-- If Python 3.9+ is not installed yet, the launcher opens the Python download page.
+## Build the Astro site
 
-## Public Beta Deployment
-
-Stage 1 deployment assets now live in:
-
-- `Dockerfile`
-- `cloudbuild.yaml`
-- `scripts/deploy_cloud_run.sh`
-- `scripts/upload_ranker_db_to_gcs.sh`
-- `deploy/public_beta.env.example`
-- `site/`
-
-Recommended public beta architecture:
-
-- static landing page on Cloudflare Pages
-- interactive app on Google Cloud Run
-- economics SQLite database mounted read-only from Google Cloud Storage
-
-See `deploy/PUBLIC_BETA.md` for the exact setup flow.
-
-## Optional CausalClaims Adapter
+Node is required locally for the Astro build.
 
 ```bash
-python -m src.build_corpus --adapter causalclaims --out data/processed/corpus.parquet --config config/config.yaml
+cd site
+npm install
+npm run build
 ```
 
-The adapter tries to clone:
+Cloudflare Pages should use:
 
-`https://github.com/prashgarg/CausalClaimsInEconomics`
+- Root directory: `site`
+- Build command: `npm install && npm run build`
+- Build output directory: `dist`
 
-If unavailable/materialization fails, it falls back to the demo dataset.
+## Deployment architecture
 
-Then run the same feature/scoring/backtest/storage commands against that corpus.
+- `frontiergraph.com`: Astro site on Cloudflare Pages
+- beta app: Streamlit on Google Cloud Run
+- beta SQLite database: mounted read-only from Google Cloud Storage
+- public static discovery layer: generated into the Astro site from the SQLite DB
 
-For larger corpora, tune `features.max_neighbors_per_mediator` in `config/config.yaml` to control runtime in path/motif computations and backtests.
+See [deploy/PUBLIC_BETA.md](deploy/PUBLIC_BETA.md) for deployment notes.
 
-Production CausalClaims run (recommended file names):
+## Optional larger economics build
 
 ```bash
 python -m src.build_corpus --adapter causalclaims --out data/processed/corpus_causalclaims.parquet --config config/config_causalclaims.yaml
@@ -96,59 +120,33 @@ python -m src.features_pairs --in data/processed/corpus_causalclaims.parquet --o
 python -m src.features_paths --in data/processed/corpus_causalclaims.parquet --out data/processed/missing_edges_causalclaims.parquet --max_len 2 --max_neighbors_per_mediator 120
 python -m src.features_motifs --in data/processed/corpus_causalclaims.parquet --out data/processed/motif_gaps_causalclaims.parquet --max_neighbors_per_mediator 120
 python -m src.scoring --pairs data/processed/pairs_causalclaims.parquet --paths data/processed/missing_edges_causalclaims.parquet --motifs data/processed/motif_gaps_causalclaims.parquet --out data/processed/candidates_causalclaims.parquet --config config/config_causalclaims.yaml
-python -m src.backtest --corpus data/processed/corpus_causalclaims.parquet --out outputs/tables/backtest_causalclaims.parquet --figdir outputs/figures --resume --verbose --config config/config_causalclaims.yaml
 python -m src.store_sqlite --corpus data/processed/corpus_causalclaims.parquet --candidates data/processed/candidates_causalclaims.parquet --out data/processed/app_causalclaims.db --config config/config_causalclaims.yaml
 ```
 
-## Optional LLM Extractor (OFF By Default)
+## Optional LLM extractor
 
-Estimate-only mode (no spend):
+Estimate-only mode:
 
 ```bash
 python -m src.adapters.llm_extractor_adapter --in data/raw/custom_docs.jsonl --out data/processed/corpus_llm.parquet --estimate_cost
 ```
 
-Execution mode (requires explicit spend permission via flag):
+Execution mode:
 
 ```bash
 python -m src.adapters.llm_extractor_adapter --in data/raw/custom_docs.jsonl --out data/processed/corpus_llm.parquet --estimate_cost --execute
 ```
 
+The extractor uses `OPENAI_API_KEY` if present, otherwise it reads the configured key-path file.
+
 ## Tests
 
 ```bash
 python -m pytest -q
+PYTHONPYCACHEPREFIX=/tmp/pycache python3 -m py_compile app/streamlit_app.py src/run_ranker.py src/opportunity_data.py scripts/export_site_data.py
 ```
 
-## Paper Analysis CLIs
+## Citation and license
 
-```bash
-python -m src.analysis.eval_stats --backtest outputs/tables/backtest_causalclaims.parquet --out outputs/paper/02_eval
-python -m src.analysis.model_search --corpus data/processed/corpus_causalclaims.parquet --config config/config_causalclaims.yaml --out outputs/paper/03_model_search
-python -m src.analysis.vintage_exercise --corpus data/processed/corpus_causalclaims.parquet --years 1990 2000 2010 2015 --h 5 --out outputs/paper/04_vintage_exercise
-python -m src.analysis.benchmark_enrichment --benchdir data/external/CausalClaimsInEconomics/analysis_data/core/benchmarks --corpus data/processed/corpus_causalclaims.parquet --candidates data/processed/candidates_causalclaims.parquet --out outputs/paper/05_benchmarks
-python -m src.analysis.field_heterogeneity --corpus data/processed/corpus_causalclaims.parquet --candidates data/processed/candidates_causalclaims.parquet --out outputs/paper/06_findings
-```
-
-## Substantive Analysis CLIs (Workstreams 07-12)
-
-```bash
-python -m src.analysis.attention_allocation --corpus data/processed/corpus_causalclaims.parquet --config config/config_causalclaims.yaml --best_config outputs/paper/03_model_search/best_config.yaml --years 1980 1985 1990 1995 2000 2005 2008 --horizons 3,5,10,15 --k_values 50 100 500 1000 --out outputs/paper/07_attention_allocation
-python -m src.analysis.impact_weighted_eval --corpus data/processed/corpus_causalclaims.parquet --config config/config_causalclaims.yaml --best_config outputs/paper/03_model_search/best_config.yaml --years 1980 1985 1990 1995 2000 2005 2008 --horizons 3,5,10,15 --k_values 50 100 500 1000 --out outputs/paper/08_impact_weighted
-python -m src.analysis.gap_boundary --corpus data/processed/corpus_causalclaims.parquet --config config/config_causalclaims.yaml --best_config outputs/paper/03_model_search/best_config.yaml --years 1980 1985 1990 1995 2000 2005 2008 --horizons 3,5,10,15 --max_k 1000 --k_values 100 500 1000 --out outputs/paper/09_gap_boundary
-python -m src.analysis.external_transfer_design --backtest outputs/tables/backtest_causalclaims.parquet --out outputs/paper/10_external_transfer_design
-python -m src.analysis.expert_validation_pack --corpus data/processed/corpus_causalclaims.parquet --candidates data/processed/candidates_causalclaims.parquet --n_per_arm 40 --seed 42 --out outputs/paper/11_expert_validation
-python -m src.analysis.prospective_challenge --corpus data/processed/corpus_causalclaims.parquet --config config/config_causalclaims.yaml --best_config outputs/paper/03_model_search/best_config.yaml --horizons 5,10 --k_values 100 500 --out outputs/paper/12_prospective_challenge
-```
-
-Targeted long-horizon/boundary retune (overwrites `best_config.yaml` if `--overwrite_best` is passed):
-
-```bash
-python -m src.analysis.targeted_model_search --corpus data/processed/corpus_causalclaims.parquet --config config/config_causalclaims.yaml --best_config outputs/paper/03_model_search/best_config.yaml --years 1980 1985 1990 1995 2000 2005 2008 --horizons 5,10,15 --n_trials 90 --seed 42 --out outputs/paper/03_model_search_targeted --overwrite_best
-```
-
-Constrained boundary-aware reranker search (quota + score bonus for boundary candidates):
-
-```bash
-python -m src.analysis.constrained_reranker_search --corpus data/processed/corpus_causalclaims.parquet --config config/config_causalclaims.yaml --best_config outputs/paper/03_model_search/best_config.yaml --targeted_trials outputs/paper/03_model_search_targeted/targeted_trials.csv --top_weight_trials 4 --years 1985 1995 2000 2005 2008 --horizons 5,10,15 --k_ref 100 --boundary_bonus_grid 0 0.05 --boundary_quota_grid 0 0.1 --quota_max_rank 1000 --min_overall_pass_horizons 2 --min_boundary_pass_horizons 1 --out outputs/paper/03_model_search_constrained_fast
-```
+- Citation: [CITATION.cff](CITATION.cff)
+- Code license: Apache-2.0 in [LICENSE](LICENSE)

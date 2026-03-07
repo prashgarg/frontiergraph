@@ -1,0 +1,201 @@
+opportunity,code_pair,source_field,target_field,novelty,priority,base_score,prior_contact,mediators,motifs
+economic growth -> financial fragility,O49 -> G51,"Economic development, innovation, and growth",Financial economics,Cross-field gap,0.493493373274838,0.4396700037722734,100,182,182
+patents -> unemployment,O34 -> J64,"Economic development, innovation, and growth",Labor and demographic economics,Cross-field boundary,0.45160645608704203,0.2583024374866058,0,52,52
+patents -> monetary policy,O34 -> E52,"Economic development, innovation, and growth",Macroeconomics and monetary economics,Cross-field boundary,0.4411900486851613,0.24599850948159668,0,39,39
+legal reform -> growth,K41 -> O40,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4404752383210124,0.24205341341811765,0,46,46
+patents -> demand shocks,O34 -> E39,"Economic development, innovation, and growth",Macroeconomics and monetary economics,Cross-field boundary,0.43745212171898584,0.2389600411955046,0,41,41
+economic growth -> median voter preferences,O49 -> D79,"Economic development, innovation, and growth",Microeconomics,Cross-field gap,0.4352657712708036,0.33442112222085885,87,205,205
+central bank independence -> growth rate,E58 -> O44,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.4284092444139652,0.2272272589356365,0,34,34
+monetary policy -> r&d investment,E52 -> O32,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.4282427932301049,0.22780476888351142,0,31,31
+antidumping measures -> innovation incentives,F18 -> O31,International economics,"Economic development, innovation, and growth",Cross-field boundary,0.42757153219065647,0.22880580835447123,0,27,27
+patents -> systemic risk,O34 -> E44,"Economic development, innovation, and growth",Macroeconomics and monetary economics,Cross-field boundary,0.42668106023181934,0.22601371566664838,0,30,30
+r&d investment -> monetary policy,O32 -> E52,"Economic development, innovation, and growth",Macroeconomics and monetary economics,Cross-field boundary,0.42393208816433736,0.22519661277193279,0,23,23
+central bank independence -> patents,E58 -> O34,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.4229821011671313,0.21794451830126266,0,36,36
+patents -> minimum wage,O34 -> J38,"Economic development, innovation, and growth",Labor and demographic economics,Cross-field boundary,0.42275194940281147,0.22103173033381943,0,27,27
+central bank independence -> r&d investment,E58 -> O32,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.4215900690794579,0.21872149803968582,0,28,28
+state policies -> innovation incentives,H79 -> O31,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.42158874518358813,0.21609445008156217,0,35,35
+corporate income tax -> technological progress,K34 -> O39,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.42154247668381556,0.22276749949772223,0,20,20
+hegemony -> innovation incentives,F54 -> O31,International economics,"Economic development, innovation, and growth",Cross-field boundary,0.42150227797163575,0.21820768995800477,0,29,29
+fiscal capacity -> innovation incentives,H39 -> O31,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.4215002124393639,0.21709339339015182,0,32,32
+polarization -> economic stagnation,C46 -> O52,Mathematical and quantitative methods,"Economic development, innovation, and growth",Cross-field boundary,0.420496128929216,0.21795670076108617,0,26,26
+blockchain technology -> r&d investment,E42 -> O32,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.41969840776610856,0.216285966420987,0,27,27
+legal reform -> average productivity,K41 -> O47,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.41968225610390225,0.2150683977064299,0,30,30
+patents -> reputational equilibrium,O34 -> C73,"Economic development, innovation, and growth",Mathematical and quantitative methods,Cross-field boundary,0.41967407468352813,0.21822415047982277,0,23,23
+r&d subsidies -> labor supply,O38 -> J22,"Economic development, innovation, and growth",Labor and demographic economics,Cross-field boundary,0.41922552359998927,0.22052597205189595,0,19,19
+legal reform -> growth rate,K41 -> O44,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4184937928926131,0.21570297050651863,0,24,24
+counterfeiting -> average productivity,K42 -> O47,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.41805911128041545,0.21384243675330405,0,27,27
+unions -> economic benefits,J51 -> O22,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.41786274950994656,0.21306760200657784,0,28,28
+monetary policy -> patents,E52 -> O34,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.4176798984993451,0.2145419653729894,0,24,24
+media freedom -> weak institutions,L82 -> O17,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.4168978057980606,0.21982991196935125,0,15,15
+limited liability -> average productivity,K13 -> O47,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4159509596205552,0.21339367037344434,0,21,21
+ownership -> average productivity,H13 -> O47,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.41564253747690916,0.2137629894663895,0,20,20
+stricter roos -> average productivity,L42 -> O47,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.4154717078530756,0.2145020556039826,0,18,18
+theoretical models -> personalized medicine,O41 -> I11,"Economic development, innovation, and growth","Health, education, and welfare",Cross-field boundary,0.41539137904431506,0.21320212720017598,0,20,20
+patents -> unions,O34 -> J51,"Economic development, innovation, and growth",Labor and demographic economics,Cross-field boundary,0.4153811608882878,0.21375005496058871,0,19,19
+knowledge spillovers -> multiple equilibria,O36 -> D59,"Economic development, innovation, and growth",Microeconomics,Cross-field gap,0.4153347461701943,0.294210608710753,65,193,193
+financial development -> forecast targeting,O16 -> C53,"Economic development, innovation, and growth",Mathematical and quantitative methods,Cross-field boundary,0.41522319597496,0.21487219925516293,0,17,17
+compliance -> r&d investment,K40 -> O32,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4149139974424573,0.2118099842378003,0,21,21
+patents -> increase in public debt,O34 -> H69,"Economic development, innovation, and growth",Public economics,Cross-field boundary,0.4147902817607178,0.21278388818908836,0,19,19
+knowledge spillovers -> consumption,O36 -> E21,"Economic development, innovation, and growth",Macroeconomics and monetary economics,Cross-field gap,0.414774980323592,0.28007038365413284,20,159,159
+patents -> central bank independence,O34 -> E58,"Economic development, innovation, and growth",Macroeconomics and monetary economics,Cross-field boundary,0.4140136206636998,0.21112814032347843,0,20,20
+patents -> emu,O34 -> F36,"Economic development, innovation, and growth",International economics,Cross-field boundary,0.4134448749380673,0.20962536115369834,0,21,21
+expectations -> dismal economic growth performance of africa,D84 -> O55,Microeconomics,"Economic development, innovation, and growth",Cross-field boundary,0.41343025315214127,0.21144323795891182,0,18,18
+increased uncertainty -> knowledge spillovers,D89 -> O36,Microeconomics,"Economic development, innovation, and growth",Cross-field gap,0.41329079436447935,0.2955465083222162,84,188,188
+r&d investment -> pollution,O32 -> Q53,"Economic development, innovation, and growth","Agriculture, natural resources, and environment",Cross-field boundary,0.4132262227887784,0.2158001664110142,0,12,12
+nominal wage contracts -> growth,J41 -> O40,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4129147364716359,0.2111850176117855,0,17,17
+legal aid -> knowledge spillovers,K36 -> O36,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.41286465924544846,0.20925950814776215,0,20,20
+patents -> financial crises,O34 -> G01,"Economic development, innovation, and growth",Financial economics,Cross-field boundary,0.4127765756640128,0.2116783289010852,0,16,16
+bankruptcy -> growth,K35 -> O40,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4126913042708046,0.21022886471826804,0,18,18
+managerial power -> economic development,M54 -> O29,Business administration and business economics,"Economic development, innovation, and growth",Cross-field boundary,0.4125704377990879,0.2106055914940667,0,17,17
+patents -> perturbation methods,O34 -> C60,"Economic development, innovation, and growth",Mathematical and quantitative methods,Cross-field boundary,0.41256701470421114,0.21464414001096407,0,12,12
+r&d subsidies -> personalized medicine,O38 -> I11,"Economic development, innovation, and growth","Health, education, and welfare",Cross-field boundary,0.41230238911801476,0.20960370929854188,0,18,18
+network structure -> money growth,D85 -> O42,Microeconomics,"Economic development, innovation, and growth",Cross-field boundary,0.4122297373117443,0.20829613839095049,0,20,20
+personalized medicine -> growth trap,I11 -> O11,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4120006209267407,0.20988957785878387,0,17,17
+demand shocks -> patents,E39 -> O34,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.4119480179569383,0.20904695295422876,0,18,18
+optimal contracts -> us economic growth,D86 -> O51,Microeconomics,"Economic development, innovation, and growth",Cross-field boundary,0.4117342871545223,0.2081494937023489,0,19,19
+institutional changes -> price level,O43 -> E30,"Economic development, innovation, and growth",Macroeconomics and monetary economics,Cross-field boundary,0.4117312511785796,0.21177345395620856,0,14,14
+monetary transfers -> innovation,F24 -> O35,International economics,"Economic development, innovation, and growth",Cross-field boundary,0.4115138041915798,0.2096589174031688,0,16,16
+property tax -> growth,H71 -> O40,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.4114806818399141,0.2104215460377432,0,15,15
+r&d subsidies -> housing prices,O38 -> R31,"Economic development, innovation, and growth","Urban, rural, and regional economics",Cross-field boundary,0.4112465336077967,0.21111487439481394,0,14,14
+horizontal mergers -> average productivity,L41 -> O47,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.4112074918736527,0.20996225199868818,0,15,15
+personalized medicine -> theoretical models,I11 -> O41,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4108748540004449,0.2074287771000049,0,18,18
+government policy changes -> educational attainment,O24 -> I21,"Economic development, innovation, and growth","Health, education, and welfare",Cross-field boundary,0.4107667670450815,0.2078718046057909,0,17,17
+unemployment -> patents,J64 -> O34,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4101814717613461,0.20698584156697686,0,17,17
+unions -> patents,J51 -> O34,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4101776948365815,0.20698518967458443,0,17,17
+sustainability of collusion -> growth,K21 -> O40,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4100929163344689,0.2082611968919538,0,15,15
+asymmetric information -> human wealth,D82 -> O15,Microeconomics,"Economic development, innovation, and growth",Cross-field boundary,0.4100082391750097,0.2089047372422008,0,14,14
+uncertainty -> dismal economic growth performance of africa,D80 -> O55,Microeconomics,"Economic development, innovation, and growth",Cross-field boundary,0.4097689611100079,0.20930187076521078,0,13,13
+patents -> gradualist approach,O34 -> B52,"Economic development, innovation, and growth",History of economic thought,Cross-field boundary,0.40958529698145973,0.20750086842099494,0,15,15
+reputational equilibrium -> patents,C73 -> O34,Mathematical and quantitative methods,"Economic development, innovation, and growth",Cross-field boundary,0.40953857429921675,0.20817317110935107,0,14,14
+union bargaining power -> innovation incentives,J50 -> O31,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4095267693948961,0.20991619033696438,0,12,12
+corporate income tax -> weak institutions,K34 -> O17,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4094927908330953,0.20806718938472282,0,14,14
+financial intermediaries -> economic development,G23 -> O29,Financial economics,"Economic development, innovation, and growth",Cross-field boundary,0.40944394332197204,0.2072603557700119,0,15,15
+emu -> patents,F36 -> O34,International economics,"Economic development, innovation, and growth",Cross-field boundary,0.40938127851369543,0.20646027378265736,0,16,16
+immigration -> money growth,F22 -> O42,International economics,"Economic development, innovation, and growth",Cross-field boundary,0.409369656714971,0.20642391012705116,0,16,16
+constitutional reforms -> knowledge spillovers,K10 -> O36,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4093101498030315,0.20699888988036916,0,15,15
+blockchain technology -> r&d subsidies,E42 -> O38,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.40919809148451486,0.2068820277543375,0,15,15
+emerging markets -> economic development,G15 -> O29,Financial economics,"Economic development, innovation, and growth",Cross-field boundary,0.4091742589659443,0.20771395618824207,0,14,14
+decline in agricultural employment -> innovation incentives,J43 -> O31,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.40901737342398525,0.2065848258237985,0,15,15
+labor market outcomes -> human wealth,J48 -> O15,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4090103207548953,0.20829708119962262,0,13,13
+r&d subsidies -> economic downturns,O38 -> F44,"Economic development, innovation, and growth",International economics,Cross-field boundary,0.4089997470521291,0.20844829311316865,0,13,13
+hac rule -> growth trap,I18 -> O11,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4089871295366779,0.20813139591767424,0,13,13
+patents -> sustainability,O34 -> Q01,"Economic development, innovation, and growth","Agriculture, natural resources, and environment",Cross-field boundary,0.40893498012796053,0.20820140013565627,0,13,13
+technological progress -> child labor,O39 -> J82,"Economic development, innovation, and growth",Labor and demographic economics,Cross-field boundary,0.4087613681397551,0.20692254037804383,0,14,14
+path dependence -> precautionary savings,O30 -> D14,"Economic development, innovation, and growth",Microeconomics,Cross-field boundary,0.4086968332877511,0.20609336899426547,0,15,15
+regulatory competition -> growth,K20 -> O40,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.40868139557974986,0.20681333422344572,0,14,14
+unions -> growth rate,J51 -> O44,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4086280610306953,0.20753366948674157,0,13,13
+financial constraints -> patents,H60 -> O34,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.40855511458053606,0.20589282861550431,0,15,15
+institutional changes -> housing prices,O43 -> R31,"Economic development, innovation, and growth","Urban, rural, and regional economics",Cross-field boundary,0.4084909028869415,0.20949971768215694,0,11,11
+public funding -> human wealth,I22 -> O15,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4084689915620318,0.21026033819786366,0,10,10
+hac rule -> industrialization,I18 -> O14,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4082468960491989,0.2061843831096631,0,14,14
+economic incentives -> institutional changes,M52 -> O43,Business administration and business economics,"Economic development, innovation, and growth",Cross-field boundary,0.40822367635680584,0.20692535195084297,0,13,13
+labor market dynamics -> low economic growth,J29 -> O54,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4080962903843316,0.20675659822875198,0,13,13
+hac rule -> patents,I18 -> O34,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.40808540744180893,0.20854165514966566,0,11,11
+weak institutions -> firm location decisions,O17 -> R30,"Economic development, innovation, and growth","Urban, rural, and regional economics",Cross-field boundary,0.4080684608947792,0.20844748346639944,0,11,11
+competition -> human wealth,L13 -> O15,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.4080635679856664,0.20761295957602852,0,12,12
+unions -> industrial growth,J51 -> O25,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4080276345304421,0.20748834256157359,0,12,12
+bounded rationality -> average productivity,D01 -> O47,Microeconomics,"Economic development, innovation, and growth",Cross-field boundary,0.4079738409315924,0.20578094090599156,0,14,14
+forecast targeting -> financial development,C53 -> O16,Mathematical and quantitative methods,"Economic development, innovation, and growth",Cross-field boundary,0.4078944540974538,0.20927663772799981,0,10,10
+financial crises -> patents,G01 -> O34,Financial economics,"Economic development, innovation, and growth",Cross-field boundary,0.4078922647207639,0.20562126824060478,0,14,14
+dsge models -> innovation incentives,E13 -> O31,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.40773222829485084,0.20617302502456225,0,13,13
+dynamic price index (dpi) -> institutional changes,C43 -> O43,Mathematical and quantitative methods,"Economic development, innovation, and growth",Cross-field boundary,0.4076890468039947,0.20611274470534324,0,13,13
+blockchain technology -> human wealth,E42 -> O15,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.4076786503262056,0.20458888535864736,0,15,15
+joining the ems -> average productivity,J45 -> O47,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4075567953471837,0.20513858879377955,0,14,14
+offshoring -> economic stagnation,L24 -> O52,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.4075360595579069,0.20866189396655302,0,10,10
+patents -> economic downturns,O34 -> F44,"Economic development, innovation, and growth",International economics,Cross-field boundary,0.40749179280268766,0.20766908967947753,0,11,11
+patents -> hac rule,O34 -> I18,"Economic development, innovation, and growth","Health, education, and welfare",Cross-field boundary,0.4074903090211666,0.20780311289533732,0,11,11
+bounded rationality -> economic stagnation,D01 -> O52,Microeconomics,"Economic development, innovation, and growth",Cross-field boundary,0.40748322830559963,0.206674736801713,0,12,12
+property tax -> technological advancements,H71 -> O33,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.40739395698958014,0.2048793744242751,0,14,14
+bayesian learning -> economic growth,C11 -> O00,Mathematical and quantitative methods,"Economic development, innovation, and growth",Cross-field boundary,0.40735996877335795,0.20747746424659677,0,11,11
+hegemony -> r&d investment,F54 -> O32,International economics,"Economic development, innovation, and growth",Cross-field boundary,0.40731141461221165,0.2047686286631928,0,14,14
+institutional changes -> economic incentives,O43 -> M52,"Economic development, innovation, and growth",Business administration and business economics,Cross-field boundary,0.4072533173652792,0.20837156443947127,0,10,10
+economic stagnation -> polarization,O52 -> C46,"Economic development, innovation, and growth",Mathematical and quantitative methods,Cross-field boundary,0.4072508933243407,0.20625503393753652,0,12,12
+higher fines -> patents,K49 -> O34,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4071981713575547,0.20621881638894948,0,12,12
+fiscal deficits -> economic development,H68 -> O29,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.4071670928076108,0.20533848497329962,0,13,13
+minimum wage -> patents,J38 -> O34,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4071470848296514,0.2061069847523807,0,12,12
+nominal wage contracts -> economic growth,J41 -> O00,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.40709657746736155,0.20607044772338104,0,12,12
+anticipated ramsey reforms -> growth,H00 -> O40,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.40706962884915,0.2092557700753669,0,9,9
+wicksellian rules -> growth rate,E12 -> O44,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.4070323258652776,0.20598141103170045,0,12,12
+bureaucracy -> us economic growth,D73 -> O51,Microeconomics,"Economic development, innovation, and growth",Cross-field boundary,0.4070130233825164,0.2059248377703179,0,12,12
+hac rule -> theoretical models,I18 -> O41,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4069808768986413,0.20505115828406112,0,13,13
+patents -> forecasts,O34 -> F17,"Economic development, innovation, and growth",International economics,Cross-field boundary,0.4069735961435023,0.20685327017716235,0,11,11
+increased immigration -> r&d investment,K37 -> O32,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.40687169337529633,0.20768964378484683,0,10,10
+technological progress -> commodity prices,O39 -> Q02,"Economic development, innovation, and growth","Agriculture, natural resources, and environment",Cross-field boundary,0.4068576026741989,0.20671423019646215,0,11,11
+stubborn beliefs -> economic stagnation,Z12 -> O52,Other special topics,"Economic development, innovation, and growth",Cross-field boundary,0.4068549532046775,0.20484582176360416,0,13,13
+unions -> economic development,J51 -> O29,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.40677779129445146,0.2047482305439096,0,13,13
+education -> patents,I29 -> O34,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.40670279626266265,0.2054652850711892,0,12,12
+oil prices -> growth trap,L71 -> O11,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.40668453089859513,0.20459659267357824,0,13,13
+risk-taking behavior -> dismal economic growth performance of africa,D91 -> O55,Microeconomics,"Economic development, innovation, and growth",Cross-field boundary,0.4066562912668848,0.20846884410015154,0,9,9
+r&d investment -> central bank independence,O32 -> E58,"Economic development, innovation, and growth",Macroeconomics and monetary economics,Cross-field boundary,0.40661339881474845,0.20623205884050108,0,11,11
+systemic risk -> patents,E44 -> O34,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.4066094669330309,0.20621816435509058,0,11,11
+existence of money -> economic growth,E40 -> O00,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.4066016307779053,0.20725719920597285,0,10,10
+foreign disturbances -> economic benefits,F59 -> O22,International economics,"Economic development, innovation, and growth",Cross-field boundary,0.4065766517455885,0.20444778391282328,0,13,13
+country characteristics -> ceo compensation,O57 -> M12,"Economic development, innovation, and growth",Business administration and business economics,Cross-field boundary,0.4065373287105244,0.20614688519498123,0,11,11
+network structure -> dismal economic growth performance of africa,D85 -> O55,Microeconomics,"Economic development, innovation, and growth",Cross-field boundary,0.4065147159894397,0.2071217806626067,0,10,10
+patents -> sentiments,O34 -> A13,"Economic development, innovation, and growth",General economics and teaching,Cross-field boundary,0.406469421485756,0.20604414289401182,0,11,11
+compliance with ntpos -> economic growth,L31 -> O00,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.40645995365547843,0.2042727698376213,0,13,13
+moral hazard -> emerging economies,G52 -> O53,Financial economics,"Economic development, innovation, and growth",Cross-field boundary,0.4064545462974568,0.20514124924988297,0,12,12
+union bargaining power -> innovation,J50 -> O35,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4064233592109212,0.20598853356109578,0,11,11
+government policy changes -> fiscal capacity,O24 -> H39,"Economic development, innovation, and growth",Public economics,Cross-field boundary,0.4063809190153943,0.20498453881042833,0,12,12
+vertical integration -> human wealth,L22 -> O15,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.4063218250413024,0.2058944832820474,0,11,11
+teacher effectiveness -> average productivity,A21 -> O47,General economics and teaching,"Economic development, innovation, and growth",Cross-field boundary,0.4063082726949357,0.2079139368074589,0,9,9
+hac rule -> growth rate,I18 -> O44,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4062072106722293,0.20560605877099594,0,11,11
+union bargaining power -> technological progress,J50 -> O39,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.40615336290965187,0.20658086428779016,0,10,10
+world war i -> economic development,N44 -> O29,Economic history,"Economic development, innovation, and growth",Cross-field boundary,0.4060894980780612,0.2045420990595844,0,12,12
+r&d investment -> conceptual artists,O32 -> Z11,"Economic development, innovation, and growth",Other special topics,Cross-field boundary,0.4060867391570705,0.21394345335502093,0,5,5
+r&d subsidies -> conceptual artists,O38 -> Z11,"Economic development, innovation, and growth",Other special topics,Cross-field boundary,0.40600153225671404,0.21183775408494987,0,6,6
+financial literacy -> economic stagnation,G53 -> O52,Financial economics,"Economic development, innovation, and growth",Cross-field boundary,0.40599495500594457,0.20440367456549313,0,12,12
+investor behavior -> economic development,G41 -> O29,Financial economics,"Economic development, innovation, and growth",Cross-field boundary,0.40591874304820263,0.20429352329105688,0,12,12
+urban development -> deadweight loss,O18 -> H21,"Economic development, innovation, and growth",Public economics,Cross-field boundary,0.40590591933715175,0.2051534655960736,0,11,11
+local government decisions -> theoretical models,H70 -> O41,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.40587740938852307,0.204236083124341,0,12,12
+fiscal capacity -> patents,H39 -> O34,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.405821233983955,0.20414586637605142,0,12,12
+r&d investment -> compliance,O32 -> K40,"Economic development, innovation, and growth",Law and economics,Cross-field boundary,0.4058159115679285,0.2060949926748937,0,10,10
+public drug insurance -> money growth,H51 -> O42,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.4057937712314084,0.20501528439324718,0,11,11
+market share -> institutional changes,L17 -> O43,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.40571659153255846,0.2049081444332826,0,11,11
+commodity prices -> technological progress,Q02 -> O39,"Agriculture, natural resources, and environment","Economic development, innovation, and growth",Cross-field boundary,0.4057098148804476,0.20488129557332196,0,11,11
+local government decisions -> patents,H70 -> O34,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.40567354349080986,0.20393209659997466,0,12,12
+personalized medicine -> industrial growth,I11 -> O25,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4056406899061423,0.20476565677512387,0,11,11
+two-part instrument (2pi) -> growth,C36 -> O40,Mathematical and quantitative methods,"Economic development, innovation, and growth",Cross-field boundary,0.40559043860112465,0.2047202036244275,0,11,11
+patents -> less-confident households,O34 -> G59,"Economic development, innovation, and growth",Financial economics,Cross-field boundary,0.40556878143651487,0.20675411652631007,0,9,9
+autarky -> innovation incentives,F00 -> O31,International economics,"Economic development, innovation, and growth",Cross-field boundary,0.4055675195866082,0.2046592043828659,0,11,11
+patents -> program complexity,O34 -> C88,"Economic development, innovation, and growth",Mathematical and quantitative methods,Cross-field boundary,0.4055358163347889,0.20461101841248786,0,11,11
+inflation forecasting targeting -> growth,E47 -> O40,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.40552213791741454,0.20810309394214183,0,8,8
+ppi targeting -> growth rate,L65 -> O44,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.405484093394507,0.20551799533678702,0,10,10
+cultural factors -> r&d investment,Z10 -> O32,Other special topics,"Economic development, innovation, and growth",Cross-field boundary,0.4054327702926382,0.20540858724097905,0,10,10
+state policies -> dismal economic growth performance of africa,H79 -> O55,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.40541555652359457,0.20443218352468776,0,11,11
+fiscal deficits -> patents,H68 -> O34,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.4054101644723388,0.20442011949288935,0,11,11
+antidumping measures -> r&d investment,F18 -> O32,International economics,"Economic development, innovation, and growth",Cross-field boundary,0.4054091309627715,0.20443532234429598,0,11,11
+increase in public debt -> patents,H69 -> O34,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.40540482303750314,0.204420886968034,0,11,11
+constitutional reforms -> growth,K10 -> O40,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.405389088101542,0.20437789910511694,0,11,11
+uniform policy -> economic growth,L67 -> O00,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.40538153875812594,0.2053745367874281,0,10,10
+altruism -> dismal economic growth performance of africa,D64 -> O55,Microeconomics,"Economic development, innovation, and growth",Cross-field boundary,0.40537168591348116,0.2053612044195672,0,10,10
+capital taxation -> dismal economic growth performance of africa,H24 -> O55,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.4052711390835725,0.2051813673621086,0,10,10
+differences in credit markets between the us and europe -> growth,N23 -> O40,Economic history,"Economic development, innovation, and growth",Cross-field boundary,0.4052522780515199,0.20418367104955318,0,11,11
+r&d subsidies -> economic indicators,O38 -> E01,"Economic development, innovation, and growth",Macroeconomics and monetary economics,Cross-field boundary,0.4051814859125173,0.20760233634194358,0,8,8
+majority rule -> dismal economic growth performance of africa,D71 -> O55,Microeconomics,"Economic development, innovation, and growth",Cross-field boundary,0.4051413145781508,0.20499641104271016,0,10,10
+media freedom -> country characteristics,L82 -> O57,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.40509812007731266,0.20495754410055853,0,10,10
+limited liability -> economic development,K13 -> O29,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4050459008429973,0.20388060790999338,0,11,11
+state policies -> patents,H79 -> O34,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.4050275025552454,0.20385564318061172,0,11,11
+dismal economic growth performance of africa -> risk-taking behavior,O55 -> D91,"Economic development, innovation, and growth",Microeconomics,Cross-field boundary,0.4049596699680647,0.2037525987456865,0,11,11
+r&d subsidies -> external financing,O38 -> G39,"Economic development, innovation, and growth",Financial economics,Cross-field boundary,0.40495636866813967,0.20475183309745776,0,10,10
+budget rules -> industrialization,H61 -> O14,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.4049370576936348,0.20372168465371432,0,11,11
+existence of money -> growth,E40 -> O40,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.4049221373760927,0.2058357979484355,0,9,9
+workers' bargaining power -> money growth,J52 -> O42,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4049087007570413,0.20867888826646558,0,7,7
+market power -> emerging economies,L11 -> O53,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.40488991087056636,0.20366009267608717,0,11,11
+patents -> higher fines,O34 -> K49,"Economic development, innovation, and growth",Law and economics,Cross-field boundary,0.40487204029279106,0.20458860523727254,0,10,10
+labor force participation -> money growth,J21 -> O42,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4047800739767603,0.20449094921822053,0,10,10
+advertising -> country characteristics,M37 -> O57,Business administration and business economics,"Economic development, innovation, and growth",Cross-field boundary,0.4047659231545275,0.20551413027549262,0,9,9
+competition among jurisdictions yields higher transfers to the government -> r&d investment,H73 -> O32,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.4047285130405994,0.2043821512859605,0,10,10
+advertising -> weak institutions,M37 -> O17,Business administration and business economics,"Economic development, innovation, and growth",Cross-field boundary,0.4047099909831749,0.20433900128258944,0,10,10
+public education -> patents,H52 -> O34,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.40465809427397575,0.20427155969841893,0,10,10
+antidumping measures -> growth trap,F18 -> O11,International economics,"Economic development, innovation, and growth",Cross-field boundary,0.4046260367568639,0.20326462225151956,0,11,11
+sustainability of collusion -> theoretical models,K21 -> O41,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4045114675009128,0.20407694503703513,0,10,10
+eis -> innovation incentives,F50 -> O31,International economics,"Economic development, innovation, and growth",Cross-field boundary,0.4045032825035891,0.20403964145445466,0,10,10
+health insurance -> economic development,I13 -> O29,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4044744582602877,0.20507587853336906,0,9,9
+money growth -> network structure,O42 -> D85,"Economic development, innovation, and growth",Microeconomics,Cross-field boundary,0.4044603974440726,0.2050528105720091,0,9,9
+world war i -> innovation incentives,N44 -> O31,Economic history,"Economic development, innovation, and growth",Cross-field boundary,0.4044557684092573,0.20396539651831364,0,10,10
+family background -> low economic growth,J12 -> O54,Labor and demographic economics,"Economic development, innovation, and growth",Cross-field boundary,0.4044165495375543,0.20391971925945834,0,10,10
+dsge models -> economic stagnation,E13 -> O52,Macroeconomics and monetary economics,"Economic development, innovation, and growth",Cross-field boundary,0.40440414172847733,0.2049792536814026,0,9,9
+seller revenue -> us economic growth,L85 -> O51,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.4043808510130848,0.20388702794478925,0,10,10
+overruling -> r&d investment,L43 -> O32,Industrial organization,"Economic development, innovation, and growth",Cross-field boundary,0.40437496007381246,0.20494153293045853,0,9,9
+growth trap -> personalized medicine,O11 -> I11,"Economic development, innovation, and growth","Health, education, and welfare",Cross-field boundary,0.4043511666424071,0.2049055089589844,0,9,9

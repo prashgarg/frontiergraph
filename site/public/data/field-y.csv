@@ -1,0 +1,201 @@
+opportunity,code_pair,source_field,target_field,novelty,priority,base_score,prior_contact,mediators,motifs
+trade -> truthful reporting,F19 -> Y30,International economics,Miscellaneous,Cross-field boundary,0.4210163748028032,0.21674710174951267,0,31,31
+trade liberalization -> truthful reporting,F13 -> Y30,International economics,Miscellaneous,Cross-field boundary,0.4168177759541641,0.21326024734864651,0,24,24
+redistribution -> truthful reporting,D39 -> Y30,Microeconomics,Miscellaneous,Cross-field boundary,0.41532561824903735,0.21148831183243813,0,23,23
+training -> output,M53 -> Y10,Business administration and business economics,Miscellaneous,Cross-field boundary,0.41484181081645566,0.21441479532489563,0,17,17
+categorization -> agglomeration,Y90 -> R11,Miscellaneous,"Urban, rural, and regional economics",Cross-field boundary,0.41092185119036356,0.20952593375652237,0,15,15
+property tax -> need for further research,H71 -> Y50,Public economics,Miscellaneous,Cross-field boundary,0.4088991907464821,0.20639945403744483,0,15,15
+truthful reporting -> redistribution,Y30 -> D39,Miscellaneous,Microeconomics,Cross-field boundary,0.4079771362598764,0.2074476611671262,0,12,12
+immigration -> truthful reporting,F22 -> Y30,International economics,Miscellaneous,Cross-field boundary,0.40526096009782386,0.20420872232892423,0,11,11
+external factors -> truthful reporting,F29 -> Y30,International economics,Miscellaneous,Cross-field boundary,0.4049951103071618,0.2038064439524705,0,11,11
+agglomeration -> categorization,R11 -> Y90,"Urban, rural, and regional economics",Miscellaneous,Cross-field boundary,0.40458804079395605,0.20415302039563107,0,10,10
+decline in agricultural employment -> need for further research,J43 -> Y50,Labor and demographic economics,Miscellaneous,Cross-field boundary,0.40445813338890807,0.20397695610494826,0,10,10
+output -> training,Y10 -> M53,Miscellaneous,Business administration and business economics,Cross-field boundary,0.4044177770362138,0.20498532413037485,0,9,9
+public discussion -> economic indicators,Y70 -> E01,Miscellaneous,Macroeconomics and monetary economics,Cross-field boundary,0.4036743137920782,0.20281823666180152,0,10,10
+higher wages -> narratives,J31 -> Y92,Labor and demographic economics,Miscellaneous,Cross-field boundary,0.4033193594010982,0.20453820448005747,0,8,8
+truthful reporting -> trade,Y30 -> F19,Miscellaneous,International economics,Cross-field boundary,0.40328742705561077,0.20586541935705985,0,7,7
+globalization -> categorization,F60 -> Y90,International economics,Miscellaneous,Cross-field boundary,0.40318738281759703,0.20314441616909473,0,9,9
+trade openness -> misleading conclusions,F43 -> Y40,International economics,Miscellaneous,Cross-field boundary,0.4031745540742245,0.20315575265328725,0,9,9
+nonrivalry -> misleading conclusions,H41 -> Y40,Public economics,Miscellaneous,Cross-field boundary,0.40286071356430286,0.20266525695486926,0,9,9
+public-private partnerships -> truthful reporting,H44 -> Y30,Public economics,Miscellaneous,Cross-field boundary,0.40265483969595933,0.2023630619524787,0,9,9
+output -> a ban on child labor,Y10 -> J88,Miscellaneous,Labor and demographic economics,Cross-field boundary,0.40260696843052973,0.20344688143252038,0,8,8
+banks -> narratives,G21 -> Y92,Financial economics,Miscellaneous,Cross-field boundary,0.40247220724612454,0.20457711723331376,0,7,7
+monetary transfers -> misleading conclusions,F24 -> Y40,International economics,Miscellaneous,Cross-field boundary,0.4017242787033005,0.20344378259705156,0,7,7
+output -> tax on agricultural goods,Y10 -> Q17,Miscellaneous,"Agriculture, natural resources, and environment",Cross-field boundary,0.4014722854140648,0.2030908325648804,0,7,7
+tso behavior (withholding capacity) -> truthful reporting,L90 -> Y30,Industrial organization,Miscellaneous,Cross-field boundary,0.40146734267786677,0.20177285415432075,0,8,8
+truthful reporting -> immigration,Y30 -> F22,Miscellaneous,International economics,Cross-field boundary,0.40138052241265604,0.20292926874387227,0,7,7
+recursive preferences -> energy prices,Y80 -> Q41,Miscellaneous,"Agriculture, natural resources, and environment",Cross-field boundary,0.40113959491317847,0.20256984822912402,0,7,7
+credit constraints -> narratives,E51 -> Y92,Macroeconomics and monetary economics,Miscellaneous,Cross-field boundary,0.4011380824087681,0.20257650409331912,0,7,7
+experience -> do-calculus,Y60 -> C65,Miscellaneous,Mathematical and quantitative methods,Cross-field boundary,0.4010621177747669,0.20399352258534098,0,6,6
+output -> employment protection in germany,Y10 -> J53,Miscellaneous,Labor and demographic economics,Cross-field boundary,0.401026813593413,0.20240530025532735,0,7,7
+truthful reporting -> trade liberalization,Y30 -> F13,Miscellaneous,International economics,Cross-field boundary,0.40101472992665077,0.20569370095195738,0,5,5
+financial fragility -> narratives,G51 -> Y92,Financial economics,Miscellaneous,Cross-field boundary,0.40094813202657276,0.20229221693571534,0,7,7
+offshoring -> truthful reporting,L24 -> Y30,Industrial organization,Miscellaneous,Cross-field boundary,0.4008824737011481,0.2021968049180199,0,7,7
+weak institutions -> narratives,O17 -> Y92,"Economic development, innovation, and growth",Miscellaneous,Cross-field boundary,0.40088193367770786,0.2021919567768613,0,7,7
+categorization -> public education,Y90 -> H52,Miscellaneous,Public economics,Cross-field boundary,0.4008572078139917,0.20367882619458397,0,6,6
+public investment -> truthful reporting,H54 -> Y30,Public economics,Miscellaneous,Cross-field boundary,0.4007798061945353,0.20204623332870159,0,7,7
+public education -> categorization,H52 -> Y90,Public economics,Miscellaneous,Cross-field boundary,0.4006163669867,0.20334079854668255,0,6,6
+labor market institutions -> need for further research,J08 -> Y50,Labor and demographic economics,Miscellaneous,Cross-field boundary,0.4003912152321336,0.2029533544053839,0,6,6
+public discussion -> stigma,Y70 -> J70,Miscellaneous,Labor and demographic economics,Cross-field boundary,0.4002008725591764,0.20268112713332376,0,6,6
+initial conditions -> agriculture's gdp share,Y20 -> Q19,Miscellaneous,"Agriculture, natural resources, and environment",Cross-field boundary,0.4001597439699766,0.20258624542103973,0,6,6
+experience -> neofisherianism,Y60 -> Q22,Miscellaneous,"Agriculture, natural resources, and environment",Cross-field boundary,0.40015392205362765,0.2025868009220191,0,6,6
+output -> access to critical resources,Y10 -> Q34,Miscellaneous,"Agriculture, natural resources, and environment",Cross-field boundary,0.4000869417706754,0.2024850848116691,0,6,6
+social security -> narratives,H55 -> Y92,Public economics,Miscellaneous,Cross-field boundary,0.39999351584563814,0.20236345510770268,0,6,6
+overspending -> misleading conclusions,H72 -> Y40,Public economics,Miscellaneous,Cross-field boundary,0.3999220406543997,0.20224400769537443,0,6,6
+constitutional reforms -> output,K10 -> Y10,Law and economics,Miscellaneous,Cross-field boundary,0.39988678848281717,0.20219516824121658,0,6,6
+optimal security design -> categorization,K24 -> Y90,Law and economics,Miscellaneous,Cross-field boundary,0.39986377934647965,0.2021545173473828,0,6,6
+monetary expansion -> categorization,E59 -> Y90,Macroeconomics and monetary economics,Miscellaneous,Cross-field boundary,0.39985232613073557,0.20213897642121317,0,6,6
+education -> categorization,I29 -> Y90,"Health, education, and welfare",Miscellaneous,Cross-field boundary,0.39983166711154833,0.20211401075813598,0,6,6
+truthful reporting -> public drug insurance,Y30 -> H51,Miscellaneous,Public economics,Cross-field boundary,0.39982656830911595,0.20209818988150105,0,6,6
+a ban on child labor -> output,J88 -> Y10,Labor and demographic economics,Miscellaneous,Cross-field boundary,0.3998037415280926,0.20206246857700647,0,6,6
+nonrivalry -> recursive preferences,H41 -> Y80,Public economics,Miscellaneous,Cross-field boundary,0.39975038072644503,0.20198913175573963,0,6,6
+high-skilled immigrants -> truthful reporting,J61 -> Y30,Labor and demographic economics,Miscellaneous,Cross-field boundary,0.3997472120353924,0.20198463804601685,0,6,6
+fdi -> narratives,F23 -> Y92,International economics,Miscellaneous,Cross-field boundary,0.39974136929566273,0.20197189472466415,0,6,6
+truthful reporting -> coordination failures,Y30 -> P11,Miscellaneous,Economic systems,Cross-field boundary,0.3997347967795217,0.20370522455313828,0,5,5
+categorization -> gaming,Y90 -> L83,Miscellaneous,Industrial organization,Cross-field boundary,0.39969808923075445,0.20364570305476887,0,5,5
+economic indicators -> public discussion,E01 -> Y70,Macroeconomics and monetary economics,Miscellaneous,Cross-field boundary,0.39965867772415103,0.20185337020950217,0,6,6
+truthful reporting -> high-skilled immigrants,Y30 -> J61,Miscellaneous,Labor and demographic economics,Cross-field boundary,0.39964223656381637,0.201825419591308,0,6,6
+public education -> truthful reporting,H52 -> Y30,Public economics,Miscellaneous,Cross-field boundary,0.3994310491284907,0.20152079257549763,0,6,6
+conflicts of interest -> narratives,F51 -> Y92,International economics,Miscellaneous,Cross-field boundary,0.39941822405108585,0.2015029431660276,0,6,6
+misleading conclusions -> dismal economic growth performance of africa,Y40 -> O55,Miscellaneous,"Economic development, innovation, and growth",Cross-field boundary,0.3990413815724632,0.20265483428348963,0,5,5
+firm value -> narratives,G32 -> Y92,Financial economics,Miscellaneous,Cross-field boundary,0.3989296001658926,0.20246187223442483,0,5,5
+narratives -> higher wages,Y92 -> J31,Miscellaneous,Labor and demographic economics,Cross-field boundary,0.3988014312579602,0.20228804634808364,0,5,5
+public discussion -> local government decisions,Y70 -> H70,Miscellaneous,Public economics,Cross-field boundary,0.39874566188088495,0.20221863260365502,0,5,5
+energy prices -> recursive preferences,Q41 -> Y80,"Agriculture, natural resources, and environment",Miscellaneous,Cross-field boundary,0.39859102677227426,0.20197142753503183,0,5,5
+labor market institutions -> misleading conclusions,J08 -> Y40,Labor and demographic economics,Miscellaneous,Cross-field boundary,0.3985441914126257,0.2018937364743913,0,5,5
+misleading conclusions -> overspending,Y40 -> H72,Miscellaneous,Public economics,Cross-field boundary,0.3985439718595264,0.20189718943161628,0,5,5
+transparency -> landschaften,G38 -> Y91,Financial economics,Miscellaneous,Cross-field boundary,0.39851850863481947,0.20186219125637325,0,5,5
+public discussion -> us economic growth,Y70 -> O51,Miscellaneous,"Economic development, innovation, and growth",Cross-field boundary,0.3985138831874555,0.2018642654973585,0,5,5
+search frictions -> narratives,J69 -> Y92,Labor and demographic economics,Miscellaneous,Cross-field boundary,0.39850569695972243,0.20183556250143736,0,5,5
+emu -> narratives,F36 -> Y92,International economics,Miscellaneous,Cross-field boundary,0.39849321404833193,0.20182719052435227,0,5,5
+adjustment costs -> narratives,J39 -> Y92,Labor and demographic economics,Miscellaneous,Cross-field boundary,0.3983941644171345,0.20167703999478814,0,5,5
+misleading conclusions -> cross-country income differences,Y40 -> F40,Miscellaneous,International economics,Cross-field boundary,0.39839271426521716,0.2016833334680969,0,5,5
+public discussion -> ems membership,Y70 -> J60,Miscellaneous,Labor and demographic economics,Cross-field boundary,0.39839172636586584,0.20167353769387095,0,5,5
+public drug insurance -> truthful reporting,H51 -> Y30,Public economics,Miscellaneous,Cross-field boundary,0.39838746236738753,0.20166794594970683,0,5,5
+public discussion -> predation,Y70 -> Q57,Miscellaneous,"Agriculture, natural resources, and environment",Cross-field boundary,0.3983704986478553,0.20163991841794546,0,5,5
+employment -> narratives,J68 -> Y92,Labor and demographic economics,Miscellaneous,Cross-field boundary,0.3983309654129112,0.20158496504242632,0,5,5
+joining the ems -> public discussion,J45 -> Y70,Labor and demographic economics,Miscellaneous,Cross-field boundary,0.39832410107527705,0.2015756507880929,0,5,5
+public discussion -> public education,Y70 -> H52,Miscellaneous,Public economics,Cross-field boundary,0.3983181782756746,0.20156305173353115,0,5,5
+higher dependency ratio -> categorization,J19 -> Y90,Labor and demographic economics,Miscellaneous,Cross-field boundary,0.39830820077128837,0.2015495132075408,0,5,5
+financial mercantilism -> recursive preferences,F39 -> Y80,International economics,Miscellaneous,Cross-field boundary,0.3982712649306337,0.2014942002516216,0,5,5
+misleading conclusions -> nonrivalry,Y40 -> H41,Miscellaneous,Public economics,Cross-field boundary,0.3982620947818339,0.2014851942310001,0,5,5
+local government decisions -> public discussion,H70 -> Y70,Public economics,Miscellaneous,Cross-field boundary,0.39823770729355923,0.20144754034731327,0,5,5
+output -> rtas,Y10 -> R49,Miscellaneous,"Urban, rural, and regional economics",Cross-field boundary,0.3982134058739889,0.20140937110104343,0,5,5
+mergers -> narratives,G34 -> Y92,Financial economics,Miscellaneous,Cross-field boundary,0.3981886705345917,0.20137536059704586,0,5,5
+initial conditions -> understanding economic thought,Y20 -> B10,Miscellaneous,History of economic thought,Cross-field boundary,0.3981637468275119,0.20133566858559154,0,5,5
+alcohol consumption -> truthful reporting,L66 -> Y30,Industrial organization,Miscellaneous,Cross-field boundary,0.3981400575367849,0.20130352446760535,0,5,5
+overruling -> truthful reporting,L43 -> Y30,Industrial organization,Miscellaneous,Cross-field boundary,0.3981373534212561,0.2012998552396151,0,5,5
+bankruptcy -> truthful reporting,K35 -> Y30,Law and economics,Miscellaneous,Cross-field boundary,0.3980684043667657,0.20119997801506434,0,5,5
+gaming -> public discussion,L83 -> Y70,Industrial organization,Miscellaneous,Cross-field boundary,0.39800937837595185,0.20111356544563058,0,5,5
+intermediary's policy -> misleading conclusions,L53 -> Y40,Industrial organization,Miscellaneous,Cross-field boundary,0.39800707131493657,0.2011104349829109,0,5,5
+categorization -> ceo compensation,Y90 -> M12,Miscellaneous,Business administration and business economics,Cross-field boundary,0.3979211020381246,0.20307924365740362,0,4,4
+categorization -> increased immigration,Y90 -> K37,Miscellaneous,Law and economics,Cross-field boundary,0.39780500191909685,0.20285183815021243,0,4,4
+public discussion -> gaming,Y70 -> L83,Miscellaneous,Industrial organization,Cross-field boundary,0.3975936420920552,0.20252517172901968,0,4,4
+narratives -> employment,Y92 -> J68,Miscellaneous,Labor and demographic economics,Cross-field boundary,0.39757723985764903,0.20252722329605835,0,4,4
+narratives -> banks,Y92 -> G21,Miscellaneous,Financial economics,Cross-field boundary,0.39750489472518685,0.20238900039384913,0,4,4
+public discussion -> aggregate demand,Y70 -> E00,Miscellaneous,Macroeconomics and monetary economics,Cross-field boundary,0.3974792885208543,0.20234556848667595,0,4,4
+narratives -> weak institutions,Y92 -> O17,Miscellaneous,"Economic development, innovation, and growth",Cross-field boundary,0.39744618583961694,0.20231195117816658,0,4,4
+categorization -> teacher effectiveness,Y90 -> A21,Miscellaneous,General economics and teaching,Cross-field boundary,0.39736314911402104,0.2021714487547709,0,4,4
+ppi targeting -> public discussion,L65 -> Y70,Industrial organization,Miscellaneous,Cross-field boundary,0.39729655954164256,0.20205408302387637,0,4,4
+firm location decisions -> misleading conclusions,R30 -> Y40,"Urban, rural, and regional economics",Miscellaneous,Cross-field boundary,0.39728597727255355,0.20203529463955447,0,4,4
+narratives -> mergers,Y92 -> G34,Miscellaneous,Financial economics,Cross-field boundary,0.3972788891031499,0.20203377430015548,0,4,4
+narratives -> firm value,Y92 -> G32,Miscellaneous,Financial economics,Cross-field boundary,0.39724933919768884,0.20200973768257272,0,4,4
+misleading conclusions -> equality before the law,Y40 -> K38,Miscellaneous,Law and economics,Cross-field boundary,0.3971685010620907,0.20186407701398681,0,4,4
+output -> socioeconomic conditions,Y10 -> P36,Miscellaneous,Economic systems,Cross-field boundary,0.39714653150554635,0.20183810079836276,0,4,4
+narratives -> electoral outcomes,Y92 -> K16,Miscellaneous,Law and economics,Cross-field boundary,0.3970990966268919,0.201776189069313,0,4,4
+higher fines -> categorization,K49 -> Y90,Law and economics,Miscellaneous,Cross-field boundary,0.3970762640527654,0.2017364346325267,0,4,4
+terms of trade -> narratives,F14 -> Y92,International economics,Miscellaneous,Cross-field boundary,0.3970588183566247,0.2016990514150565,0,4,4
+public discussion -> learning outcomes,Y70 -> A22,Miscellaneous,General economics and teaching,Cross-field boundary,0.39705031264458274,0.2017086618068356,0,4,4
+universal basic income (ubi) -> narratives,H53 -> Y92,Public economics,Miscellaneous,Cross-field boundary,0.3970299822538869,0.2016634372233938,0,4,4
+landschaften -> health outcomes,Y91 -> I14,Miscellaneous,"Health, education, and welfare",Cross-field boundary,0.39700147819445536,0.20161537335230575,0,4,4
+categorization -> learning outcomes,Y90 -> A22,Miscellaneous,General economics and teaching,Cross-field boundary,0.39694296092848047,0.20153456460749222,0,4,4
+landschaften -> depreciation,Y91 -> D25,Miscellaneous,Microeconomics,Cross-field boundary,0.3969261572953516,0.20150228776175466,0,4,4
+fiscal policy -> narratives,E62 -> Y92,Macroeconomics and monetary economics,Miscellaneous,Cross-field boundary,0.3969218363530035,0.20150522218442907,0,4,4
+union bargaining power -> misleading conclusions,J50 -> Y40,Labor and demographic economics,Miscellaneous,Cross-field boundary,0.39692058124618673,0.20149928397046765,0,4,4
+landschaften -> economic performance,Y91 -> P17,Miscellaneous,Economic systems,Cross-field boundary,0.39691908676596305,0.20149269372479053,0,4,4
+bureaucracy -> landschaften,D73 -> Y91,Microeconomics,Miscellaneous,Cross-field boundary,0.39690106709715217,0.20146761059571652,0,4,4
+misleading conclusions -> firm location decisions,Y40 -> R30,Miscellaneous,"Urban, rural, and regional economics",Cross-field boundary,0.3968867643540222,0.20144820313147477,0,4,4
+antidumping measures -> truthful reporting,F18 -> Y30,International economics,Miscellaneous,Cross-field boundary,0.39685338891436495,0.2014060256049561,0,4,4
+accuracy of predictions for macroeconomic indicators -> misleading conclusions,E37 -> Y40,Macroeconomics and monetary economics,Miscellaneous,Cross-field boundary,0.39684864727309954,0.2013907941168992,0,4,4
+political institutions -> narratives,D02 -> Y92,Microeconomics,Miscellaneous,Cross-field boundary,0.3968460639590637,0.20138758793598402,0,4,4
+misleading conclusions -> monetary transfers,Y40 -> F24,Miscellaneous,International economics,Cross-field boundary,0.39684224987488503,0.20138211345501777,0,4,4
+the common law concept of the interests of the corporation captures this ambiguity -> output,K22 -> Y10,Law and economics,Miscellaneous,Cross-field boundary,0.3968420950938295,0.2013773872843789,0,4,4
+fdi -> landschaften,F23 -> Y91,International economics,Miscellaneous,Cross-field boundary,0.3968377829368931,0.20137590437796435,0,4,4
+output -> accountability issues,Y10 -> H83,Miscellaneous,Public economics,Cross-field boundary,0.3968301786052968,0.2013651017388301,0,4,4
+increased immigration -> truthful reporting,K37 -> Y30,Law and economics,Miscellaneous,Cross-field boundary,0.39682957544515457,0.2013685184609889,0,4,4
+rbc models -> public discussion,R15 -> Y70,"Urban, rural, and regional economics",Miscellaneous,Cross-field boundary,0.39682907733047507,0.2013636074134739,0,4,4
+emerging economies -> truthful reporting,O53 -> Y30,"Economic development, innovation, and growth",Miscellaneous,Cross-field boundary,0.3968270307726879,0.20136083042889744,0,4,4
+landschaften -> blockchain technology,Y91 -> E42,Miscellaneous,Macroeconomics and monetary economics,Cross-field boundary,0.396823273148931,0.20135573169028256,0,4,4
+industrial growth -> categorization,O25 -> Y90,"Economic development, innovation, and growth",Miscellaneous,Cross-field boundary,0.39682003973412755,0.20134678187550953,0,4,4
+economic integration -> narratives,F15 -> Y92,International economics,Miscellaneous,Cross-field boundary,0.39681776484063913,0.20134369506106914,0,4,4
+landschaften -> labor supply,Y91 -> J22,Miscellaneous,Labor and demographic economics,Cross-field boundary,0.396812692685779,0.20133681262857475,0,4,4
+production efficiency -> narratives,D24 -> Y92,Microeconomics,Miscellaneous,Cross-field boundary,0.396812175982556,0.20133611151136732,0,4,4
+industrialization -> narratives,O14 -> Y92,"Economic development, innovation, and growth",Miscellaneous,Cross-field boundary,0.39677235615162126,0.20127688525450113,0,4,4
+lower tobin's q -> misleading conclusions,R42 -> Y40,"Urban, rural, and regional economics",Miscellaneous,Cross-field boundary,0.3967597582481426,0.20126322809627928,0,4,4
+categorization -> political support for the union,Y90 -> J58,Miscellaneous,Labor and demographic economics,Cross-field boundary,0.3967578163164193,0.20126059307933625,0,4,4
+market liquidity -> narratives,G10 -> Y92,Financial economics,Miscellaneous,Cross-field boundary,0.39675455019972905,0.20125227727133457,0,4,4
+landschaften -> expected profits,Y91 -> D33,Miscellaneous,Microeconomics,Cross-field boundary,0.396753504290024,0.20125017969105782,0,4,4
+narratives -> growth,Y92 -> O40,Miscellaneous,"Economic development, innovation, and growth",Cross-field boundary,0.3967520643568798,0.20124822583851693,0,4,4
+intermediation costs -> need for further research,G00 -> Y50,Financial economics,Miscellaneous,Cross-field boundary,0.39674168954621963,0.20123437958846888,0,4,4
+state policies -> truthful reporting,H79 -> Y30,Public economics,Miscellaneous,Cross-field boundary,0.3967349646446262,0.20122502315277407,0,4,4
+hac rule -> narratives,I18 -> Y92,"Health, education, and welfare",Miscellaneous,Cross-field boundary,0.3967341244534803,0.2012238830931734,0,4,4
+capital inflows -> narratives,F21 -> Y92,International economics,Miscellaneous,Cross-field boundary,0.39670787093019255,0.20118743330859695,0,4,4
+initial conditions -> inefficient enterprises continue to operate,Y20 -> L30,Miscellaneous,Industrial organization,Cross-field boundary,0.3966957850428836,0.20116621862882714,0,4,4
+regime shifts -> truthful reporting,P39 -> Y30,Economic systems,Miscellaneous,Cross-field boundary,0.39667387225365175,0.20113580667454736,0,4,4
+public discussion -> ideological biases of economists,Y70 -> A11,Miscellaneous,General economics and teaching,Cross-field boundary,0.39667374501137953,0.2011356340188668,0,4,4
+political changes -> truthful reporting,N40 -> Y30,Economic history,Miscellaneous,Cross-field boundary,0.3966710491444157,0.20113197598339586,0,4,4
+dismal economic growth performance of africa -> misleading conclusions,O55 -> Y40,"Economic development, innovation, and growth",Miscellaneous,Cross-field boundary,0.3966445438719802,0.20109081631806544,0,4,4
+bmw model -> need for further research,L62 -> Y50,Industrial organization,Miscellaneous,Cross-field boundary,0.3966430624739333,0.20108880620158898,0,4,4
+categorization -> education,Y90 -> I29,Miscellaneous,"Health, education, and welfare",Cross-field boundary,0.3966426998096825,0.20108831410063915,0,4,4
+foreign aid -> narratives,F35 -> Y92,International economics,Miscellaneous,Cross-field boundary,0.39663783073527636,0.20108170722903634,0,4,4
+durability -> public discussion,L68 -> Y70,Industrial organization,Miscellaneous,Cross-field boundary,0.39663561008243675,0.2010786940140058,0,4,4
+reduced labor usage -> truthful reporting,J89 -> Y30,Labor and demographic economics,Miscellaneous,Cross-field boundary,0.39661829400346027,0.20105475074186774,0,4,4
+autarky -> truthful reporting,F00 -> Y30,International economics,Miscellaneous,Cross-field boundary,0.39661773883705453,0.20105399743377356,0,4,4
+educational attainment -> landschaften,I21 -> Y91,"Health, education, and welfare",Miscellaneous,Cross-field boundary,0.3965676378524544,0.20098014224755345,0,4,4
+economic development -> truthful reporting,O29 -> Y30,"Economic development, innovation, and growth",Miscellaneous,Cross-field boundary,0.39656703337500954,0.20097932202906188,0,4,4
+nominal wage contracts -> categorization,J41 -> Y90,Labor and demographic economics,Miscellaneous,Cross-field boundary,0.3965639352519599,0.2009751181702806,0,4,4
+agricultural policies -> recursive preferences,Q18 -> Y80,"Agriculture, natural resources, and environment",Miscellaneous,Cross-field boundary,0.3965065764097881,0.200890967763242,0,4,4
+overspending -> truthful reporting,H72 -> Y30,Public economics,Miscellaneous,Cross-field boundary,0.3965017058944115,0.20088435893637915,0,4,4
+categorization -> occupational choices,Y90 -> J44,Miscellaneous,Labor and demographic economics,Cross-field boundary,0.39650084879085,0.20088319592823656,0,4,4
+legal aid -> truthful reporting,K36 -> Y30,Law and economics,Miscellaneous,Cross-field boundary,0.39650072330505637,0.20088302565593072,0,4,4
+narratives -> cooperation,Y92 -> P13,Miscellaneous,Economic systems,Cross-field boundary,0.39562912950930174,0.20204530109978538,0,3,3
+narratives -> institutional changes,Y92 -> O43,Miscellaneous,"Economic development, innovation, and growth",Cross-field boundary,0.3955333403461751,0.20190062913346862,0,3,3
+increased immigration -> categorization,K37 -> Y90,Law and economics,Miscellaneous,Cross-field boundary,0.3955011736886273,0.2018554252096296,0,3,3
+narratives -> political institutions,Y92 -> D02,Miscellaneous,Microeconomics,Cross-field boundary,0.39549674717218497,0.20184137662286675,0,3,3
+landschaften -> market value,Y91 -> D46,Miscellaneous,Microeconomics,Cross-field boundary,0.3954765264853364,0.20180844541247422,0,3,3
+budget deficits -> truthful reporting,H62 -> Y30,Public economics,Miscellaneous,Cross-field boundary,0.39545682813058847,0.20181112967434112,0,3,3
+public discussion -> property tax,Y70 -> H71,Miscellaneous,Public economics,Cross-field boundary,0.39544010459472156,0.20176691213369619,0,3,3
+recursive preferences -> a ban on child labor,Y80 -> J88,Miscellaneous,Labor and demographic economics,Cross-field boundary,0.3953780833957419,0.20166876319750546,0,3,3
+narratives -> majority rule,Y92 -> D71,Miscellaneous,Microeconomics,Cross-field boundary,0.39537654527838484,0.20168752967714318,0,3,3
+public discussion -> durability,Y70 -> L68,Miscellaneous,Industrial organization,Cross-field boundary,0.3953611163228328,0.2016491031505897,0,3,3
+landschaften -> increase in public debt,Y91 -> H69,Miscellaneous,Public economics,Cross-field boundary,0.3953306705407342,0.20160690608170456,0,3,3
+depreciation -> landschaften,D25 -> Y91,Microeconomics,Miscellaneous,Cross-field boundary,0.39522983582375615,0.20144204733273596,0,3,3
+narratives -> financial fragility,Y92 -> G51,Miscellaneous,Financial economics,Cross-field boundary,0.39521679252240743,0.20143230384380542,0,3,3
+narratives -> quotas,Y92 -> C21,Miscellaneous,Mathematical and quantitative methods,Cross-field boundary,0.3952110215577643,0.20142447319279433,0,3,3
+narratives -> citation counts,Y92 -> A14,Miscellaneous,General economics and teaching,Cross-field boundary,0.395199205297866,0.20139896373893082,0,3,3
+substitutes -> truthful reporting,Q42 -> Y30,"Agriculture, natural resources, and environment",Miscellaneous,Cross-field boundary,0.3951912076705172,0.20138739022635768,0,3,3
+money growth -> categorization,O42 -> Y90,"Economic development, innovation, and growth",Miscellaneous,Cross-field boundary,0.39517102284704186,0.20135597529908986,0,3,3
+landschaften -> mergers,Y91 -> G34,Miscellaneous,Financial economics,Cross-field boundary,0.39515612452923704,0.20133107754607577,0,3,3
+reallocation of resources from education spending to retirement benefits -> experience,H75 -> Y60,Public economics,Miscellaneous,Cross-field boundary,0.39514958788080007,0.20132246083530153,0,3,3
+categorization -> higher dependency ratio,Y90 -> J19,Miscellaneous,Labor and demographic economics,Cross-field boundary,0.3951459579601399,0.20132986816424864,0,3,3
+principal cannot condition teaching duties on research outcomes -> output,A20 -> Y10,General economics and teaching,Miscellaneous,Cross-field boundary,0.3951452532296062,0.20132891191183547,0,3,3
+landschaften -> coordination failures,Y91 -> P11,Miscellaneous,Economic systems,Cross-field boundary,0.395134182677739,0.20130062615706037,0,3,3
+truthful reporting -> regime shifts,Y30 -> P39,Miscellaneous,Economic systems,Cross-field boundary,0.3951189571046947,0.20127996650025667,0,3,3
+preindustrial characteristics of ancestors -> need for further research,N53 -> Y50,Economic history,Miscellaneous,Cross-field boundary,0.395118793259506,0.20128397933109016,0,3,3
+reallocation of resources from education spending to retirement benefits -> misleading conclusions,H75 -> Y40,Public economics,Miscellaneous,Cross-field boundary,0.39509146162560393,0.20123746321852481,0,3,3
+landschaften -> life expectancy,Y91 -> J17,Miscellaneous,Labor and demographic economics,Cross-field boundary,0.39508873479739165,0.2012337631715798,0,3,3
+increased education levels -> categorization,I25 -> Y90,"Health, education, and welfare",Miscellaneous,Cross-field boundary,0.39508551249035706,0.20123362596011934,0,3,3
+patents -> landschaften,O34 -> Y91,"Economic development, innovation, and growth",Miscellaneous,Cross-field boundary,0.39506419780325064,0.20119545942533096,0,3,3
+two-part instrument (2pi) -> landschaften,C36 -> Y91,Mathematical and quantitative methods,Miscellaneous,Cross-field boundary,0.3950622844369874,0.20119286316900456,0,3,3
+supply shocks -> truthful reporting,Q43 -> Y30,"Agriculture, natural resources, and environment",Miscellaneous,Cross-field boundary,0.39506109291375696,0.20119086713592188,0,3,3
+capital controls -> narratives,F38 -> Y92,International economics,Miscellaneous,Cross-field boundary,0.3950574511016278,0.2011863047918942,0,3,3
+landschaften -> educational attainment,Y91 -> I21,Miscellaneous,"Health, education, and welfare",Cross-field boundary,0.39504327142350026,0.20116998893860222,0,3,3
+truthful reporting -> increased immigration,Y30 -> K37,Miscellaneous,Law and economics,Cross-field boundary,0.3950288001236466,0.20114611760569684,0,3,3
+do-calculus -> need for further research,C65 -> Y50,Mathematical and quantitative methods,Miscellaneous,Cross-field boundary,0.3950252427812004,0.20114129062980177,0,3,3
+landschaften -> bureaucracy,Y91 -> D73,Miscellaneous,Microeconomics,Cross-field boundary,0.39502128767820405,0.20113592393061155,0,3,3
+categorization -> cross-country income differences,Y90 -> F40,Miscellaneous,International economics,Cross-field boundary,0.3950205993862641,0.20113922513700497,0,3,3
+truthful reporting -> external factors,Y30 -> F29,Miscellaneous,International economics,Cross-field boundary,0.39502000315920294,0.20113418096030472,0,3,3
+proposed reforms -> narratives,E69 -> Y92,Macroeconomics and monetary economics,Miscellaneous,Cross-field boundary,0.39501961047527767,0.2011378832787031,0,3,3
+landschaften -> overall welfare,Y91 -> I31,Miscellaneous,"Health, education, and welfare",Cross-field boundary,0.39501955753931167,0.20113357629642822,0,3,3
+landschaften -> fdi,Y91 -> F23,Miscellaneous,International economics,Cross-field boundary,0.39501928414063536,0.20112864294245722,0,3,3
+public funding -> narratives,I22 -> Y92,"Health, education, and welfare",Miscellaneous,Cross-field boundary,0.39501682832057033,0.20112987300576235,0,3,3

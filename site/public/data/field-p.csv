@@ -1,0 +1,201 @@
+opportunity,code_pair,source_field,target_field,novelty,priority,base_score,prior_contact,mediators,motifs
+property rights -> demand shocks,P14 -> E39,Economic systems,Macroeconomics and monetary economics,Cross-field boundary,0.4364733226081382,0.23804664481319054,0,39,39
+political risk -> carbon pricing,P26 -> Q58,Economic systems,"Agriculture, natural resources, and environment",Cross-field boundary,0.414689899889971,0.21344338027265403,0,18,18
+property rights -> economic indicators,P14 -> E01,Economic systems,Macroeconomics and monetary economics,Cross-field boundary,0.4142313638444506,0.21200988546744165,0,19,19
+limited liability -> political economy factors,K13 -> P19,Law and economics,Economic systems,Cross-field boundary,0.4134496720599538,0.2107722775223935,0,19,19
+optimal contracts -> gdp per capita,D86 -> P24,Microeconomics,Economic systems,Cross-field boundary,0.41266495367214673,0.21082573431273136,0,17,17
+demand shocks -> property rights,E39 -> P14,Macroeconomics and monetary economics,Economic systems,Cross-field boundary,0.4121824468049174,0.21072496254210424,0,16,16
+capital controls -> gdp per capita,F38 -> P24,International economics,Economic systems,Cross-field boundary,0.40968840325345957,0.20922644104368382,0,13,13
+limited liability -> political stability,K13 -> P16,Law and economics,Economic systems,Cross-field boundary,0.4095345964153314,0.2074200649395321,0,15,15
+legal aid -> economic outcomes,K36 -> P47,Law and economics,Economic systems,Cross-field boundary,0.4091557478694599,0.20682604892029732,0,15,15
+political risk -> personalized medicine,P26 -> I11,Economic systems,"Health, education, and welfare",Cross-field boundary,0.40848715178435047,0.20655148497976283,0,14,14
+emu -> cutthroat capitalism,F36 -> P12,International economics,Economic systems,Cross-field boundary,0.40846578675631107,0.20648762082982658,0,14,14
+increased unemployment -> gdp per capita,J65 -> P24,Labor and demographic economics,Economic systems,Cross-field boundary,0.4084586290520366,0.20726813083609685,0,13,13
+political risk -> labor force participation,P26 -> J21,Economic systems,Labor and demographic economics,Cross-field boundary,0.40816179364332544,0.20603224986056456,0,14,14
+political stability -> personalized medicine,P16 -> I11,Economic systems,"Health, education, and welfare",Cross-field boundary,0.4079589951515116,0.20655434745817208,0,13,13
+political factors -> gender,P23 -> J16,Economic systems,Labor and demographic economics,Cross-field boundary,0.40788266095420944,0.20822101735446083,0,11,11
+citation counts -> lower prices,A14 -> P22,General economics and teaching,Economic systems,Cross-field boundary,0.40752713569560356,0.2086208446167269,0,10,10
+property rights -> substitutes,P14 -> Q42,Economic systems,"Agriculture, natural resources, and environment",Cross-field boundary,0.4072837743980139,0.2072445864664611,0,11,11
+network structure -> gdp per capita,D85 -> P24,Microeconomics,Economic systems,Cross-field boundary,0.4071518779953445,0.2053130687045509,0,13,13
+globalization -> gdp per capita,F60 -> P24,International economics,Economic systems,Cross-field boundary,0.4070834734413474,0.2060191267118836,0,12,12
+economic indicators -> property rights,E01 -> P14,Macroeconomics and monetary economics,Economic systems,Cross-field boundary,0.4070389638185323,0.20596183617078337,0,12,12
+advertising -> economic performance,M37 -> P17,Business administration and business economics,Economic systems,Cross-field boundary,0.40667426728315925,0.20541225397214966,0,12,12
+legal aid -> lower prices,K36 -> P22,Law and economics,Economic systems,Cross-field boundary,0.406520918634384,0.20517486528137455,0,12,12
+labor market institutions -> lower prices,J08 -> P22,Labor and demographic economics,Economic systems,Cross-field boundary,0.40646039504471587,0.20599869124301234,0,11,11
+training -> lower prices,M53 -> P22,Business administration and business economics,Economic systems,Cross-field boundary,0.4064543294713317,0.20598174682124065,0,11,11
+dynamic price index (dpi) -> weak enforcement institutions,C43 -> P37,Mathematical and quantitative methods,Economic systems,Cross-field boundary,0.40638873009562704,0.2049755120134847,0,12,12
+corporate socialism -> educational attainment,P31 -> I21,Economic systems,"Health, education, and welfare",Cross-field boundary,0.40632214565328834,0.204882214963807,0,12,12
+vertical integration -> gdp per capita,L22 -> P24,Industrial organization,Economic systems,Cross-field boundary,0.40621997221960354,0.20563994969783184,0,11,11
+public education -> weak enforcement institutions,H52 -> P37,Public economics,Economic systems,Cross-field boundary,0.40616251600575876,0.20559733258278676,0,11,11
+corporate income tax -> property rights,K34 -> P14,Law and economics,Economic systems,Cross-field boundary,0.4061364602585017,0.20554525619082858,0,11,11
+three-account system -> higher wages,P00 -> J31,Economic systems,Labor and demographic economics,Cross-field boundary,0.40604827592357884,0.20761440143725407,0,9,9
+pbm services -> economic performance,L84 -> P17,Industrial organization,Economic systems,Cross-field boundary,0.40591181601105353,0.20523721657310465,0,11,11
+personalized medicine -> political risk,I11 -> P26,"Health, education, and welfare",Economic systems,Cross-field boundary,0.40584100294873443,0.20416520398264332,0,12,12
+corporate socialism -> efficiency wages,P31 -> J33,Economic systems,Labor and demographic economics,Cross-field boundary,0.4057910680761841,0.20600456619774898,0,10,10
+higher fines -> expected outcomes,K49 -> P27,Law and economics,Economic systems,Cross-field boundary,0.4055969978812089,0.20381384203192857,0,12,12
+lower prices -> training,P22 -> M53,Economic systems,Business administration and business economics,Cross-field boundary,0.4055839143904768,0.20680442874451688,0,9,9
+corporate income tax -> economic outcomes,K34 -> P47,Law and economics,Economic systems,Cross-field boundary,0.40547288719629765,0.20556046539976794,0,10,10
+retirement decisions -> cooperation,J26 -> P13,Labor and demographic economics,Economic systems,Cross-field boundary,0.40545617889905616,0.20449217153353416,0,11,11
+property rights -> trade openness,P14 -> F43,Economic systems,International economics,Cross-field boundary,0.4050826100688831,0.20496088536299256,0,10,10
+political economy factors -> neighborhood-based cost functions,P19 -> R20,Economic systems,"Urban, rural, and regional economics",Cross-field boundary,0.4050475406949344,0.2048580798514336,0,10,10
+property rights -> myopic behavior,P14 -> E71,Economic systems,Macroeconomics and monetary economics,Cross-field boundary,0.40504475741988044,0.20483720137701766,0,10,10
+electrification -> coordination failures,L94 -> P11,Industrial organization,Economic systems,Cross-field boundary,0.4047950202048682,0.20448250325325915,0,10,10
+budget deficits -> cutthroat capitalism,H62 -> P12,Public economics,Economic systems,Cross-field boundary,0.4047190191379939,0.20437350411485966,0,10,10
+electrification -> economic outcomes,L94 -> P47,Industrial organization,Economic systems,Cross-field boundary,0.4047128105704,0.2043640913561941,0,10,10
+reputation -> green transition,L14 -> P28,Industrial organization,Economic systems,Cross-field boundary,0.4047105683820113,0.20436858164499677,0,10,10
+better functioning financial systems -> aggregate output,P34 -> E10,Economic systems,Macroeconomics and monetary economics,Cross-field boundary,0.40460224333326517,0.20652479204661903,0,8,8
+property tax -> expected outcomes,H71 -> P27,Public economics,Economic systems,Cross-field boundary,0.4045909341125967,0.20320791277121536,0,11,11
+price volatility -> gdp per capita,G13 -> P24,Financial economics,Economic systems,Cross-field boundary,0.40452823461219184,0.2040997961834994,0,10,10
+corporate socialism -> trade patterns,P31 -> F10,Economic systems,International economics,Cross-field boundary,0.40438467252432947,0.2038919582077584,0,10,10
+autarky -> economic outcomes,F00 -> P47,International economics,Economic systems,Cross-field boundary,0.4042553942869446,0.2036751802964768,0,10,10
+corporate socialism -> counterfeiting,P31 -> K42,Economic systems,Law and economics,Cross-field boundary,0.40417672436382174,0.20462338966380808,0,9,9
+ptas -> counterfeiting,P30 -> K42,Economic systems,Law and economics,Cross-field boundary,0.4041429448086794,0.20457356593679768,0,9,9
+better functioning financial systems -> renegotiation,P34 -> C78,Economic systems,Mathematical and quantitative methods,Cross-field boundary,0.40408572312472585,0.20449062198380352,0,9,9
+corporate socialism -> fixed exchange rate regime,P31 -> F33,Economic systems,International economics,Cross-field boundary,0.4040166219137127,0.20331386880502852,0,10,10
+three-account system -> labor market dynamics,P00 -> J29,Economic systems,Labor and demographic economics,Cross-field boundary,0.40398636549124023,0.2056563598901093,0,8,8
+mixed system -> terms of trade,P40 -> F14,Economic systems,International economics,Cross-field boundary,0.40395461537509536,0.2032184487705147,0,10,10
+coordination failures -> gender,P11 -> J16,Economic systems,Labor and demographic economics,Cross-field boundary,0.4037480621481486,0.2029248574656835,0,10,10
+conceptual artists -> economic outcomes,Z11 -> P47,Other special topics,Economic systems,Cross-field boundary,0.4037027643125587,0.20509422561059928,0,8,8
+political economy factors -> limited liability,P19 -> K13,Economic systems,Law and economics,Cross-field boundary,0.4036318798760203,0.2049985191533362,0,8,8
+mixed system -> market efficiency,P40 -> G14,Economic systems,Financial economics,Cross-field boundary,0.403584232157781,0.2037612488399714,0,9,9
+political risk -> ceo compensation,P26 -> M12,Economic systems,Business administration and business economics,Cross-field boundary,0.403482503546407,0.2048074676548318,0,8,8
+mixed system -> consumption decisions,P40 -> D12,Economic systems,Microeconomics,Cross-field boundary,0.40348234330326305,0.2036028031486094,0,9,9
+neighborhood-based cost functions -> political economy factors,R20 -> P19,"Urban, rural, and regional economics",Economic systems,Cross-field boundary,0.4034778244464923,0.2048019533250194,0,8,8
+cultural factors -> coordination failures,Z10 -> P11,Other special topics,Economic systems,Cross-field boundary,0.40347773776792395,0.20622613932337014,0,7,7
+corporate income tax -> political stability,K34 -> P16,Law and economics,Economic systems,Cross-field boundary,0.40346568904832497,0.20480092351045084,0,8,8
+legal reform -> gdp per capita,K41 -> P24,Law and economics,Economic systems,Cross-field boundary,0.40331173763928746,0.20334127924460943,0,9,9
+limited liability -> cooperation,K13 -> P13,Law and economics,Economic systems,Cross-field boundary,0.40313813026124323,0.204250631924129,0,8,8
+decline in agricultural employment -> property rights,J43 -> P14,Labor and demographic economics,Economic systems,Cross-field boundary,0.4030128379202107,0.20407209768572288,0,8,8
+adjustment costs -> property rights,J30 -> P14,Labor and demographic economics,Economic systems,Cross-field boundary,0.403005902398719,0.20406692199485021,0,8,8
+coordination failures -> us economic growth,P11 -> O51,Economic systems,"Economic development, innovation, and growth",Cross-field boundary,0.40299465968904263,0.20285983408897854,0,9,9
+political risk -> conceptual artists,P26 -> Z11,Economic systems,Other special topics,Cross-field boundary,0.4029910850077338,0.20404217948373826,0,8,8
+antidumping measures -> political stability,F18 -> P16,International economics,Economic systems,Cross-field boundary,0.40291624262549397,0.20274673042601016,0,9,9
+mixed system -> labor market outcomes,P40 -> J48,Economic systems,Labor and demographic economics,Cross-field boundary,0.40283300536961286,0.20381424615883265,0,8,8
+industry concentration -> weak enforcement institutions,L69 -> P37,Industrial organization,Economic systems,Cross-field boundary,0.40281864480368035,0.2026031642663181,0,9,9
+market stability -> gdp per capita,D53 -> P24,Microeconomics,Economic systems,Cross-field boundary,0.40272684586878094,0.20498254156894383,0,7,7
+carbon pricing -> political risk,Q58 -> P26,"Agriculture, natural resources, and environment",Economic systems,Cross-field boundary,0.4027141344942925,0.20361120119659648,0,8,8
+gender -> coordination failures,J16 -> P11,Labor and demographic economics,Economic systems,Cross-field boundary,0.4026042503510962,0.20345999907928086,0,8,8
+compliance with ntpos -> economic performance,L31 -> P17,Industrial organization,Economic systems,Cross-field boundary,0.4025300082533685,0.20333532236724286,0,8,8
+coordination failures -> predation,P11 -> Q57,Economic systems,"Agriculture, natural resources, and environment",Cross-field boundary,0.4025221976062877,0.20332764123788258,0,8,8
+full history rating system -> economic outcomes,N20 -> P47,Economic history,Economic systems,Cross-field boundary,0.4024709113476174,0.20456287729832556,0,7,7
+ptas -> increased immigration,P30 -> K37,Economic systems,Law and economics,Cross-field boundary,0.40239391360963994,0.2031380150492321,0,8,8
+property rights -> gaming,P14 -> L83,Economic systems,Industrial organization,Cross-field boundary,0.40233121474629724,0.2030467022570019,0,8,8
+political stability -> r&d investment,P16 -> O32,Economic systems,"Economic development, innovation, and growth",Cross-field boundary,0.40229857589524176,0.2042992765740984,0,7,7
+cooperation -> adjustment costs,P13 -> J39,Economic systems,Labor and demographic economics,Cross-field boundary,0.4022654639236705,0.20294277690959484,0,8,8
+corporate socialism -> higher education,P31 -> I23,Economic systems,"Health, education, and welfare",Cross-field boundary,0.4022508696901276,0.20291436154176096,0,8,8
+property rights -> training,P14 -> M53,Economic systems,Business administration and business economics,Cross-field boundary,0.4022393244169535,0.2042094889143297,0,7,7
+fiscal policy -> green transition,E62 -> P28,Macroeconomics and monetary economics,Economic systems,Cross-field boundary,0.4022152425954719,0.20286082442988415,0,8,8
+ai -> political stability,C45 -> P16,Mathematical and quantitative methods,Economic systems,Cross-field boundary,0.40220472689322345,0.20417818343376143,0,7,7
+labor force participation -> political risk,J21 -> P26,Labor and demographic economics,Economic systems,Cross-field boundary,0.4021859754671,0.20282499571368692,0,8,8
+property rights -> decline in agricultural employment,P14 -> J43,Economic systems,Labor and demographic economics,Cross-field boundary,0.4021432138465019,0.20276050448379657,0,8,8
+cutthroat capitalism -> emu,P12 -> F36,Economic systems,International economics,Cross-field boundary,0.4021330110183161,0.2040778985130242,0,7,7
+distortions -> green transition,H31 -> P28,Public economics,Economic systems,Cross-field boundary,0.4020822817051685,0.20267233169561982,0,8,8
+consumption -> green transition,E21 -> P28,Macroeconomics and monetary economics,Economic systems,Cross-field boundary,0.40201406133048356,0.20257344322036985,0,8,8
+labor market dynamics -> green transition,J29 -> P28,Labor and demographic economics,Economic systems,Cross-field boundary,0.4019862262020873,0.2025263636861527,0,8,8
+mixed system -> fertility,P40 -> J13,Economic systems,Labor and demographic economics,Cross-field boundary,0.40197913096822874,0.2038478646397897,0,7,7
+capital flows -> green transition,F32 -> P28,International economics,Economic systems,Cross-field boundary,0.40190517019465183,0.20240961147883096,0,8,8
+child labor -> economic performance,J82 -> P17,Labor and demographic economics,Economic systems,Cross-field boundary,0.4019044554699913,0.2037150145400926,0,7,7
+political stability -> limited liability,P16 -> K13,Economic systems,Law and economics,Cross-field boundary,0.40186375388716716,0.2036873485080113,0,7,7
+better functioning financial systems -> educational attainment,P34 -> I21,Economic systems,"Health, education, and welfare",Cross-field boundary,0.4018621352231136,0.2036337156940035,0,7,7
+gaming -> property rights,L83 -> P14,Industrial organization,Economic systems,Cross-field boundary,0.4018283430368002,0.20360529997937377,0,7,7
+corporate income tax -> expected outcomes,K34 -> P27,Law and economics,Economic systems,Cross-field boundary,0.4017399380447547,0.20353347487418583,0,7,7
+financial constraints -> gdp per capita,H60 -> P24,Public economics,Economic systems,Cross-field boundary,0.4016998296435442,0.20211247113238717,0,8,8
+wicksellian rules -> weak enforcement institutions,E12 -> P37,Macroeconomics and monetary economics,Economic systems,Cross-field boundary,0.40169940735517196,0.20211189812716643,0,8,8
+trade openness -> property rights,F43 -> P14,International economics,Economic systems,Cross-field boundary,0.4016885750015521,0.20344467973889246,0,7,7
+capital taxation -> cooperation,H24 -> P13,Public economics,Economic systems,Cross-field boundary,0.40166901186261245,0.2033594728200662,0,7,7
+rtas -> lower prices,R49 -> P22,"Urban, rural, and regional economics",Economic systems,Cross-field boundary,0.4016660571834297,0.20496487049952417,0,6,6
+nonrivalry -> expected outcomes,H41 -> P27,Public economics,Economic systems,Cross-field boundary,0.4016659502445118,0.2020613054775102,0,8,8
+political factors -> job satisfaction,P23 -> J28,Economic systems,Labor and demographic economics,Cross-field boundary,0.4016527717151197,0.20337429601328497,0,7,7
+three-account system -> employment,P00 -> J63,Economic systems,Labor and demographic economics,Cross-field boundary,0.4016505083415075,0.20490921329463194,0,6,6
+corporate socialism -> economic downturns,P31 -> F44,Economic systems,International economics,Cross-field boundary,0.4016041762522633,0.2019711641310793,0,8,8
+economic factors -> electoral outcomes,P42 -> K16,Economic systems,Law and economics,Cross-field boundary,0.4015524150991742,0.20319288770957936,0,7,7
+weak enforcement institutions -> r&d investment,P37 -> O32,Economic systems,"Economic development, innovation, and growth",Cross-field boundary,0.4014978644623485,0.2031051343428865,0,7,7
+retailer integration -> weak enforcement institutions,L81 -> P37,Industrial organization,Economic systems,Cross-field boundary,0.40148161920248315,0.20308260095900996,0,7,7
+community size -> investment decisions,P32 -> G11,Economic systems,Financial economics,Cross-field boundary,0.40143026571934803,0.20300257321535783,0,7,7
+limited liability -> gdp per capita,K13 -> P24,Law and economics,Economic systems,Cross-field boundary,0.4013613181562841,0.20290293589719247,0,7,7
+ptas -> location choices,P30 -> R32,Economic systems,"Urban, rural, and regional economics",Cross-field boundary,0.4013313441366257,0.20440893703133603,0,6,6
+government spending -> socioeconomic conditions,H59 -> P36,Public economics,Economic systems,Cross-field boundary,0.40131953451763946,0.20284510759005958,0,7,7
+constitutional reforms -> lower prices,K10 -> P22,Law and economics,Economic systems,Cross-field boundary,0.4011977847020974,0.20265949443305845,0,7,7
+cutthroat capitalism -> carbon pricing,P12 -> Q58,Economic systems,"Agriculture, natural resources, and environment",Cross-field boundary,0.401144503587616,0.20418363807309448,0,6,6
+consumption decisions -> green transition,D12 -> P28,Microeconomics,Economic systems,Cross-field boundary,0.4011345882934697,0.20257176291065973,0,7,7
+access to financial services -> economic performance,G20 -> P17,Financial economics,Economic systems,Cross-field boundary,0.4011062366620615,0.20251964262291625,0,7,7
+monopoly power -> green transition,D42 -> P28,Microeconomics,Economic systems,Cross-field boundary,0.4010961760458471,0.20250997357482714,0,7,7
+employment protection in germany -> economic performance,J53 -> P17,Labor and demographic economics,Economic systems,Cross-field boundary,0.40107936271095046,0.2024822459426413,0,7,7
+personalized medicine -> political stability,I11 -> P16,"Health, education, and welfare",Economic systems,Cross-field boundary,0.40106006803099725,0.20245561789686528,0,7,7
+compliance with ntpos -> expected outcomes,L31 -> P27,Industrial organization,Economic systems,Cross-field boundary,0.4010260548970676,0.20240850592962814,0,7,7
+cutthroat capitalism -> globotics,P12 -> F01,Economic systems,International economics,Cross-field boundary,0.40101823182098406,0.2023936093745801,0,7,7
+audit frequency -> economic outcomes,M42 -> P47,Business administration and business economics,Economic systems,Cross-field boundary,0.40101434877349174,0.20389706327590879,0,6,6
+timing of waterworks construction -> economic outcomes,L95 -> P47,Industrial organization,Economic systems,Cross-field boundary,0.40100292531130677,0.20236681912037593,0,7,7
+commodity prices -> coordination failures,Q02 -> P11,"Agriculture, natural resources, and environment",Economic systems,Cross-field boundary,0.40098732743918053,0.20234648053557572,0,7,7
+auction outcomes -> better functioning financial systems,D44 -> P34,Microeconomics,Economic systems,Cross-field boundary,0.4009667635642216,0.20232620635211068,0,7,7
+cooperation -> retirement decisions,P13 -> J26,Economic systems,Labor and demographic economics,Cross-field boundary,0.40096429514649995,0.2023183839078057,0,7,7
+r&d subsidies -> political risk,O38 -> P26,"Economic development, innovation, and growth",Economic systems,Cross-field boundary,0.40096385821399666,0.2023222640677468,0,7,7
+gdp per capita -> network structure,P24 -> D85,Economic systems,Microeconomics,Cross-field boundary,0.4009625604775621,0.20231179497358504,0,7,7
+corporate socialism -> emu,P31 -> F36,Economic systems,International economics,Cross-field boundary,0.4009500502631345,0.20231117042873975,0,7,7
+compliance with ntpos -> political stability,L31 -> P16,Industrial organization,Economic systems,Cross-field boundary,0.40089685519939305,0.20221220386484337,0,7,7
+counterfeiting -> ptas,K42 -> P30,Law and economics,Economic systems,Cross-field boundary,0.4008941578113197,0.2022173412964962,0,7,7
+political stability -> test scores,P16 -> C12,Economic systems,Mathematical and quantitative methods,Cross-field boundary,0.4008910569903005,0.2022043362457015,0,7,7
+corporate socialism -> capital controls,P31 -> F38,Economic systems,International economics,Cross-field boundary,0.40088108189530686,0.20219035399172985,0,7,7
+three-account system -> consumption decisions,P00 -> D12,Economic systems,Microeconomics,Cross-field boundary,0.4008720631349237,0.20367540601745426,0,6,6
+health -> cutthroat capitalism,I19 -> P12,"Health, education, and welfare",Economic systems,Cross-field boundary,0.40084583221079545,0.20214184513702446,0,7,7
+terms of trade -> mixed system,F14 -> P40,International economics,Economic systems,Cross-field boundary,0.4008025712485719,0.20355354577882573,0,6,6
+unions -> gdp per capita,J51 -> P24,Labor and demographic economics,Economic systems,Cross-field boundary,0.40079236420365955,0.20206365260378295,0,7,7
+market failures -> green transition,D52 -> P28,Microeconomics,Economic systems,Cross-field boundary,0.40077420085069443,0.20203381213102678,0,7,7
+mixed system -> rising unemployment,P40 -> F66,Economic systems,International economics,Cross-field boundary,0.4007075886610494,0.20342559790618295,0,6,6
+cap-and-trade systems -> rising unemployment,P18 -> F66,Economic systems,International economics,Cross-field boundary,0.40067392553090414,0.20337472570764903,0,6,6
+horizontal mergers -> gdp per capita,L41 -> P24,Industrial organization,Economic systems,Cross-field boundary,0.4006419318636104,0.2018421428630975,0,7,7
+better functioning financial systems -> immigration,P34 -> F22,Economic systems,International economics,Cross-field boundary,0.40063161992729673,0.2033038166100148,0,6,6
+mixed system -> financial constraints,P40 -> D20,Economic systems,Microeconomics,Cross-field boundary,0.40052445983532803,0.20167010466584737,0,7,7
+optimal contracts -> green transition,D86 -> P28,Microeconomics,Economic systems,Cross-field boundary,0.4005096655219055,0.2031256041062645,0,6,6
+paps -> economic integration,P10 -> F15,Economic systems,International economics,Cross-field boundary,0.40050689088097785,0.2016462652631385,0,7,7
+political risk -> high volatility,P26 -> C58,Economic systems,Mathematical and quantitative methods,Cross-field boundary,0.40043162201944454,0.20303498014664487,0,6,6
+corporate socialism -> trade openness,P31 -> F41,Economic systems,International economics,Cross-field boundary,0.4003979992693349,0.20295454216817505,0,6,6
+political factors -> housing prices,P23 -> R31,Economic systems,"Urban, rural, and regional economics",Cross-field boundary,0.4003533178808492,0.2028799960489123,0,6,6
+community size -> investment,P32 -> G31,Economic systems,Financial economics,Cross-field boundary,0.4003257621788017,0.20285336835809528,0,6,6
+cooperation -> managerial decisions,P13 -> M51,Economic systems,Business administration and business economics,Cross-field boundary,0.40031634678372907,0.20284143136428393,0,6,6
+trade -> green transition,F19 -> P28,International economics,Economic systems,Cross-field boundary,0.4002987963446079,0.20280364975553833,0,6,6
+myopic behavior -> property rights,E71 -> P14,Macroeconomics and monetary economics,Economic systems,Cross-field boundary,0.4002755344676966,0.20276814713055172,0,6,6
+lower prices -> environmental quality,P22 -> Q50,Economic systems,"Agriculture, natural resources, and environment",Cross-field boundary,0.4002410261190614,0.20271611235880285,0,6,6
+corporate socialism -> demand shocks,P31 -> E39,Economic systems,Macroeconomics and monetary economics,Cross-field boundary,0.40023651589612846,0.2027137805704702,0,6,6
+political stability -> green assets,P16 -> Q48,Economic systems,"Agriculture, natural resources, and environment",Cross-field boundary,0.4002066167984544,0.20267222623051215,0,6,6
+location choices -> weak enforcement institutions,R32 -> P37,"Urban, rural, and regional economics",Economic systems,Cross-field boundary,0.40016328350664004,0.2026080912670718,0,6,6
+economic integration -> cap-and-trade systems,F15 -> P18,International economics,Economic systems,Cross-field boundary,0.4001555061447445,0.20259723240201596,0,6,6
+higher education -> cooperation,I23 -> P13,"Health, education, and welfare",Economic systems,Cross-field boundary,0.40010379092816384,0.20251260570658874,0,6,6
+community size -> deadweight loss,P32 -> H21,Economic systems,Public economics,Cross-field boundary,0.40008978615274604,0.2024848943671845,0,6,6
+efficiency wages -> corporate socialism,J33 -> P31,Labor and demographic economics,Economic systems,Cross-field boundary,0.4000619731533207,0.20246671507938369,0,6,6
+better functioning financial systems -> family background,P34 -> J12,Economic systems,Labor and demographic economics,Cross-field boundary,0.40005684503634126,0.20244312102373282,0,6,6
+corporate socialism -> labor force participation,P31 -> J21,Economic systems,Labor and demographic economics,Cross-field boundary,0.4000543952355693,0.20243556172352206,0,6,6
+political risk -> r&d subsidies,P26 -> O38,Economic systems,"Economic development, innovation, and growth",Cross-field boundary,0.40005070217925665,0.20419346573208658,0,5,5
+increased uncertainty -> socioeconomic conditions,D89 -> P36,Microeconomics,Economic systems,Cross-field boundary,0.4000422389840048,0.20242330199770012,0,6,6
+coordination failures -> electrification,P11 -> L94,Economic systems,Industrial organization,Cross-field boundary,0.40003856555469314,0.2042527385136036,0,5,5
+cooperation -> causal identification,P13 -> C32,Economic systems,Mathematical and quantitative methods,Cross-field boundary,0.40000290537337035,0.20235612311682843,0,6,6
+cap-and-trade systems -> statistical discrimination,P18 -> J79,Economic systems,Labor and demographic economics,Cross-field boundary,0.3999775711710451,0.20233746548852752,0,6,6
+bureaucracy -> economic factors,D73 -> P42,Microeconomics,Economic systems,Cross-field boundary,0.3999713920336075,0.20231205197750254,0,6,6
+globotics -> cutthroat capitalism,F01 -> P12,International economics,Economic systems,Cross-field boundary,0.3999501288360839,0.20228305197123406,0,6,6
+family background -> cap-and-trade systems,J12 -> P18,Labor and demographic economics,Economic systems,Cross-field boundary,0.39994362833222763,0.20228244881074334,0,6,6
+union bargaining power -> political stability,J50 -> P16,Labor and demographic economics,Economic systems,Cross-field boundary,0.39994059517662245,0.20226570118910817,0,6,6
+carbon pricing -> cutthroat capitalism,Q58 -> P12,"Agriculture, natural resources, and environment",Economic systems,Cross-field boundary,0.399926072757934,0.20224516939948958,0,6,6
+optimal security design -> expected outcomes,K24 -> P27,Law and economics,Economic systems,Cross-field boundary,0.39990293864892507,0.2022089633320098,0,6,6
+compliance with ntpos -> economic outcomes,L31 -> P47,Industrial organization,Economic systems,Cross-field boundary,0.39989753284623286,0.20220974732208905,0,6,6
+mixed system -> budget deficits,P40 -> H62,Economic systems,Public economics,Cross-field boundary,0.39988914825556193,0.20220220461512953,0,6,6
+property rights -> total effort,P14 -> A39,Economic systems,General economics and teaching,Cross-field boundary,0.39988106093815173,0.2021828803595474,0,6,6
+substitutes -> coordination failures,Q42 -> P11,"Agriculture, natural resources, and environment",Economic systems,Cross-field boundary,0.3998771910061582,0.20217271569599804,0,6,6
+patents -> green transition,O34 -> P28,"Economic development, innovation, and growth",Economic systems,Cross-field boundary,0.3998729649044434,0.2021630972794781,0,6,6
+government interventions -> political factors,H81 -> P23,Public economics,Economic systems,Cross-field boundary,0.3998723885871003,0.202170434422569,0,6,6
+social planner -> cooperation,P21 -> C71,Economic systems,Mathematical and quantitative methods,Cross-field boundary,0.39986957474559,0.20216694353157472,0,6,6
+mixed system -> expected profits,P40 -> D33,Economic systems,Microeconomics,Cross-field boundary,0.39985896840806884,0.20214365836570386,0,6,6
+monetary policy -> socioeconomic conditions,E52 -> P36,Macroeconomics and monetary economics,Economic systems,Cross-field boundary,0.3998557786750017,0.20389591180986397,0,5,5
+ptas -> home production,P30 -> D13,Economic systems,Microeconomics,Cross-field boundary,0.39984728193984526,0.202131684935872,0,6,6
+retailer integration -> political risk,L81 -> P26,Industrial organization,Economic systems,Cross-field boundary,0.39984658998463524,0.20212663063772912,0,6,6
+corporate socialism -> fertility,P31 -> J13,Economic systems,Labor and demographic economics,Cross-field boundary,0.3998465656963084,0.2021301491884478,0,6,6
+three-account system -> labor supply,P00 -> J22,Economic systems,Labor and demographic economics,Cross-field boundary,0.399843036559625,0.203924995683332,0,5,5
+terms of trade -> green transition,F14 -> P28,International economics,Economic systems,Cross-field boundary,0.39982937014786096,0.2020983018096757,0,6,6
+political factors -> less-confident households,P23 -> G59,Economic systems,Financial economics,Cross-field boundary,0.39980127926581105,0.20206339076791502,0,6,6
+health insurance -> gdp per capita,I13 -> P24,"Health, education, and welfare",Economic systems,Cross-field boundary,0.3997906877284376,0.20204901905746955,0,6,6
+health insurance -> regime shifts,I13 -> P39,"Health, education, and welfare",Economic systems,Cross-field boundary,0.3997796974098549,0.20203410623879128,0,6,6
+property rights -> learning outcomes,P14 -> A22,Economic systems,General economics and teaching,Cross-field boundary,0.39977407394150094,0.20202214473113708,0,6,6
+political economy factors -> advertising,P19 -> M37,Economic systems,Business administration and business economics,Cross-field boundary,0.3997710103278493,0.2020166771685639,0,6,6
+increased immigration -> gdp per capita,K37 -> P24,Law and economics,Economic systems,Cross-field boundary,0.39976034245580844,0.20200264887652183,0,6,6
+political risk -> us economic growth,P26 -> O51,Economic systems,"Economic development, innovation, and growth",Cross-field boundary,0.3997580284585041,0.20199950900191663,0,6,6
+seller revenue -> gdp per capita,L85 -> P24,Industrial organization,Economic systems,Cross-field boundary,0.3997541341254846,0.20199422476181422,0,6,6
+gdp per capita -> majority rule,P24 -> D71,Economic systems,Microeconomics,Cross-field boundary,0.39974818838597204,0.20198570996060344,0,6,6

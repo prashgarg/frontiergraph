@@ -1,0 +1,45 @@
+---
+import type { Opportunity } from "../lib/site-data";
+
+interface Props {
+  items: Opportunity[];
+  title?: string;
+  caption?: string;
+}
+
+const { items, title, caption } = Astro.props;
+---
+
+<section class="table-section">
+  {title && <h2>{title}</h2>}
+  {caption && <p class="section-copy">{caption}</p>}
+  <div class="table-shell">
+    <table class="opportunity-table">
+      <thead>
+        <tr>
+          <th>Opportunity</th>
+          <th>Type</th>
+          <th>Priority</th>
+          <th>Target</th>
+          <th>Mediators</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {items.map((item) => (
+          <tr>
+            <td>
+              <div class="opportunity-name">{item.opportunity}</div>
+              <div class="opportunity-sub">{item.code_pair}</div>
+            </td>
+            <td>{item.novelty}</td>
+            <td>{item.priority.toFixed(3)}</td>
+            <td>{item.target_field_name}</td>
+            <td>{item.mediators}</td>
+            <td><a href={item.app_link}>Open in app</a></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>

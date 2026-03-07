@@ -1,0 +1,201 @@
+opportunity,code_pair,source_field,target_field,novelty,priority,base_score,prior_contact,mediators,motifs
+trade liberalization -> ceo compensation,F13 -> M12,International economics,Business administration and business economics,Cross-field boundary,0.43744167663785993,0.23830404199986463,0,42,42
+ai -> managerial decisions,C45 -> M51,Mathematical and quantitative methods,Business administration and business economics,Cross-field boundary,0.43098507063220487,0.2335332541128948,0,28,28
+fixed exchange rate regime -> entrepreneurship,F33 -> M13,International economics,Business administration and business economics,Cross-field boundary,0.4288284526232305,0.2272513717131114,0,36,36
+monetary policy -> ceo compensation,E52 -> M12,Macroeconomics and monetary economics,Business administration and business economics,Cross-field boundary,0.4285673896083716,0.2285340556067148,0,31,31
+central bank independence -> ceo compensation,E58 -> M12,Macroeconomics and monetary economics,Business administration and business economics,Cross-field boundary,0.4267005717436571,0.225608100919008,0,31,31
+trade liberalization -> training,F13 -> M53,International economics,Business administration and business economics,Cross-field boundary,0.42537967616645483,0.22821104544399778,0,21,21
+advertising -> financial instability,M37 -> F65,Business administration and business economics,International economics,Cross-field boundary,0.4243375343133709,0.2241143808433046,0,26,26
+foreign aid -> managerial decisions,F35 -> M51,International economics,Business administration and business economics,Cross-field boundary,0.42126004939486633,0.2169857178992519,0,31,31
+network structure -> ceo compensation,D85 -> M12,Microeconomics,Business administration and business economics,Cross-field boundary,0.42095136425778557,0.22017587363156854,0,23,23
+banks -> training,G21 -> M53,Financial economics,Business administration and business economics,Cross-field boundary,0.42090531979239487,0.21909060419574464,0,25,25
+training -> health outcomes,M53 -> I14,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.4208250095360973,0.2213945957717711,0,21,21
+ceo compensation -> monetary policy,M12 -> E52,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.4201573399415696,0.22280685108885886,0,17,17
+globalization -> entrepreneurship,F60 -> M13,International economics,Business administration and business economics,Cross-field boundary,0.4199990851553023,0.21635015414339395,0,28,28
+training -> precautionary savings,M53 -> D14,Business administration and business economics,Microeconomics,Cross-field boundary,0.41922628137502754,0.2186614974899172,0,21,21
+training -> distance to jobs,M53 -> R23,Business administration and business economics,"Urban, rural, and regional economics",Cross-field boundary,0.4188595614173446,0.22093692307602097,0,17,17
+entrepreneurship -> personalized medicine,M13 -> I11,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.41877209338746463,0.21782313887520163,0,21,21
+mergers -> training,G34 -> M53,Financial economics,Business administration and business economics,Cross-field boundary,0.4187012921385533,0.21826905520184298,0,20,20
+corporate culture -> unemployment,M14 -> J64,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.418698758311636,0.21721651910833514,0,22,22
+personalized medicine -> entrepreneurship,I11 -> M13,"Health, education, and welfare",Business administration and business economics,Cross-field boundary,0.4178003332649627,0.21336102081613903,0,27,27
+zero lower bound -> entrepreneurship,E49 -> M13,Macroeconomics and monetary economics,Business administration and business economics,Cross-field boundary,0.41705280644971654,0.21601794879948383,0,20,20
+ceo compensation -> unemployment,M12 -> J64,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.41664766115642576,0.2163673329459907,0,18,18
+corporate culture -> aggregate output,M14 -> E10,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.41622945224849695,0.21334617557777452,0,22,22
+fixed exchange rate regime -> ceo compensation,F33 -> M12,International economics,Business administration and business economics,Cross-field boundary,0.4160989658132151,0.2131842328794772,0,22,22
+emu -> ceo compensation,F36 -> M12,International economics,Business administration and business economics,Cross-field boundary,0.4151269441011762,0.21270022340617892,0,20,20
+advertising -> rising unemployment,M37 -> F66,Business administration and business economics,International economics,Cross-field boundary,0.41489693735685573,0.21295872960588058,0,19,19
+training -> output,M53 -> Y10,Business administration and business economics,Miscellaneous,Cross-field boundary,0.41484181081645566,0.21441479532489563,0,17,17
+distance to jobs -> training,R23 -> M53,"Urban, rural, and regional economics",Business administration and business economics,Cross-field boundary,0.4148266023843622,0.21554874876702926,0,15,15
+emerging markets -> managerial decisions,G15 -> M51,Financial economics,Business administration and business economics,Cross-field boundary,0.414618184229231,0.21085456479898823,0,22,22
+workers' bargaining power -> training,J52 -> M53,Labor and demographic economics,Business administration and business economics,Cross-field boundary,0.41456053597421433,0.21791836608849835,0,12,12
+ceo compensation -> welfare implications,M12 -> I30,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.4144268398888415,0.21603764413285959,0,14,14
+significant -> managerial decisions,C55 -> M51,Mathematical and quantitative methods,Business administration and business economics,Cross-field boundary,0.4141251386326906,0.21309854164251185,0,17,17
+monetary policy -> training,E52 -> M53,Macroeconomics and monetary economics,Business administration and business economics,Cross-field boundary,0.41410477024061887,0.21303493134560814,0,17,17
+unions -> ceo compensation,J51 -> M12,Labor and demographic economics,Business administration and business economics,Cross-field boundary,0.41379268080885634,0.21256693350564373,0,17,17
+advertising -> unemployment,M37 -> J64,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.41338860960768015,0.21343140913414355,0,15,15
+budget deficits -> entrepreneurship,H62 -> M13,Public economics,Business administration and business economics,Cross-field boundary,0.4132483213970139,0.21109714499644713,0,18,18
+ceo compensation -> consumer behavior,M12 -> D19,Business administration and business economics,Microeconomics,Cross-field boundary,0.4132119829861706,0.21164125141706006,0,17,17
+ceo compensation -> educational attainment,M12 -> I21,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.41308417935943476,0.2128651450467167,0,15,15
+workers' bargaining power -> entrepreneurship,J52 -> M13,Labor and demographic economics,Business administration and business economics,Cross-field boundary,0.41305244665904883,0.21072013793713892,0,18,18
+advertising -> liquidity,M37 -> E41,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.41279431817416057,0.21167353973986072,0,16,16
+carbon pricing -> entrepreneurship,Q58 -> M13,"Agriculture, natural resources, and environment",Business administration and business economics,Cross-field boundary,0.41278271691365226,0.21089814725484404,0,17,17
+corporate income tax -> economic incentives,K34 -> M52,Law and economics,Business administration and business economics,Cross-field boundary,0.41278027672052486,0.21496351415629011,0,12,12
+educational attainment -> ceo compensation,I21 -> M12,"Health, education, and welfare",Business administration and business economics,Cross-field boundary,0.4127640795754934,0.21125697164015472,0,17,17
+managerial power -> economic development,M54 -> O29,Business administration and business economics,"Economic development, innovation, and growth",Cross-field boundary,0.4125704377990879,0.2106055914940667,0,17,17
+training -> monetary policy,M53 -> E52,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.41249400169771794,0.21296912570038565,0,14,14
+ceo compensation -> trade liberalization,M12 -> F13,Business administration and business economics,International economics,Cross-field boundary,0.4118625998748212,0.21169107278231306,0,14,14
+advertising -> capital flows,M37 -> F32,Business administration and business economics,International economics,Cross-field boundary,0.4118604335847736,0.21101094315155813,0,15,15
+advertising -> economic recovery,M37 -> E65,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.4116482394071808,0.2106320149904959,0,15,15
+central bank independence -> training,E58 -> M53,Macroeconomics and monetary economics,Business administration and business economics,Cross-field boundary,0.411403030737686,0.2110445967179404,0,14,14
+unemployment -> ceo compensation,J64 -> M12,Labor and demographic economics,Business administration and business economics,Cross-field boundary,0.41108111823212284,0.2084279266501159,0,17,17
+public-private partnerships -> managerial decisions,H44 -> M51,Public economics,Business administration and business economics,Cross-field boundary,0.4110327233463705,0.20769701298562152,0,18,18
+corporate culture -> educational attainment,M14 -> I21,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.411030283024055,0.21043557955027867,0,14,14
+emerging markets -> entrepreneurship,G15 -> M13,Financial economics,Business administration and business economics,Cross-field boundary,0.41099882714762415,0.2089067713809494,0,16,16
+consumer behavior -> ceo compensation,D19 -> M12,Microeconomics,Business administration and business economics,Cross-field boundary,0.4104720662561425,0.20958222696314238,0,14,14
+advertising -> borrowing constraints,M37 -> F34,Business administration and business economics,International economics,Cross-field boundary,0.41045795941173097,0.20959241360996497,0,14,14
+training -> workers' bargaining power,M53 -> J52,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.41042919488502416,0.21235604258860613,0,11,11
+trade openness -> training,F41 -> M53,International economics,Business administration and business economics,Cross-field boundary,0.41040596094127735,0.21119035753205934,0,12,12
+audit frequency -> economic shocks,M42 -> F69,Business administration and business economics,International economics,Cross-field boundary,0.41039421479941074,0.21029832095628156,0,13,13
+training -> mergers,M53 -> G34,Business administration and business economics,Financial economics,Cross-field boundary,0.4103369436946649,0.20931344254451703,0,14,14
+advertising -> systemic risk,M37 -> E44,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.41018527774188285,0.21085916069616598,0,12,12
+cafe regulation -> rising unemployment,M38 -> F66,Business administration and business economics,International economics,Cross-field boundary,0.4100874653948494,0.20751889270625556,0,16,16
+financial fragility -> training,G51 -> M53,Financial economics,Business administration and business economics,Cross-field boundary,0.4099127903456537,0.20954890792962483,0,13,13
+advertising -> educational attainment,M37 -> I21,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.4093907655797785,0.2096732016751572,0,12,12
+ceo compensation -> lower welfare,M12 -> I39,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.4093691053506839,0.20964815652565033,0,12,12
+capital controls -> ceo compensation,F38 -> M12,International economics,Business administration and business economics,Cross-field boundary,0.4093059470329055,0.20777593783812054,0,14,14
+capital taxation -> training,H24 -> M53,Public economics,Business administration and business economics,Cross-field boundary,0.4092958600036806,0.2094747420081955,0,12,12
+globalization -> training,F60 -> M53,International economics,Business administration and business economics,Cross-field boundary,0.4092816526881209,0.21043295875306547,0,11,11
+local government decisions -> managerial decisions,H70 -> M51,Public economics,Business administration and business economics,Cross-field boundary,0.4091215288485197,0.20672911208947714,0,15,15
+cafe regulation -> adjustment costs,M38 -> J39,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.4090282771627362,0.20659974173302367,0,15,15
+investment subsidies -> ceo compensation,H25 -> M12,Public economics,Business administration and business economics,Cross-field boundary,0.4090270318038798,0.20902880532443224,0,12,12
+retailer integration -> ceo compensation,L81 -> M12,Industrial organization,Business administration and business economics,Cross-field boundary,0.4090141449148801,0.20820258407722558,0,13,13
+advertising -> excess burden,M37 -> H22,Business administration and business economics,Public economics,Cross-field boundary,0.40899066894206343,0.20816522227699052,0,13,13
+advertising -> price stickiness,M37 -> C54,Business administration and business economics,Mathematical and quantitative methods,Cross-field boundary,0.40898668672869104,0.20811792965996453,0,13,13
+educational attainment -> corporate culture,I21 -> M14,"Health, education, and welfare",Business administration and business economics,Cross-field boundary,0.4089695529392757,0.2058384882033389,0,16,16
+public investment -> ceo compensation,H54 -> M12,Public economics,Business administration and business economics,Cross-field boundary,0.4089568543925708,0.20724146899510287,0,14,14
+advertising -> credit constraints,M37 -> E51,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.4089529809494813,0.2089263860898121,0,12,12
+precautionary savings -> training,D14 -> M53,Microeconomics,Business administration and business economics,Cross-field boundary,0.40879352136300334,0.21075621062441177,0,10,10
+fiscal deficits -> managerial power,H68 -> M54,Public economics,Business administration and business economics,Cross-field boundary,0.4086688049621395,0.20684926878839877,0,14,14
+training -> increased immigration,M53 -> K37,Business administration and business economics,Law and economics,Cross-field boundary,0.40866752817533153,0.21173479542679774,0,9,9
+enhanced cooperation -> ceo compensation,F55 -> M12,International economics,Business administration and business economics,Cross-field boundary,0.4085145113056955,0.2073373357933545,0,13,13
+advertising -> poverty,M37 -> I32,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.40844842944796894,0.20724895889189796,0,13,13
+increased immigration -> training,K37 -> M53,Law and economics,Business administration and business economics,Cross-field boundary,0.4083110754826202,0.21375976826183166,0,7,7
+economic incentives -> institutional changes,M52 -> O43,Business administration and business economics,"Economic development, innovation, and growth",Cross-field boundary,0.40822367635680584,0.20692535195084297,0,13,13
+corporate income tax -> managerial power,K34 -> M54,Law and economics,Business administration and business economics,Cross-field boundary,0.4081408065370452,0.21086996538279443,0,9,9
+international cooperation -> ceo compensation,F53 -> M12,International economics,Business administration and business economics,Cross-field boundary,0.40807863092178,0.20754683281130512,0,12,12
+managerial decisions -> foreign aid,M51 -> F35,Business administration and business economics,International economics,Cross-field boundary,0.40805666105938665,0.20664798037269563,0,13,13
+accounting -> counterfeiting,M41 -> K42,Business administration and business economics,Law and economics,Cross-field boundary,0.40805133597338045,0.20588742038565142,0,14,14
+financial instability -> advertising,F65 -> M37,International economics,Business administration and business economics,Cross-field boundary,0.4079901407769307,0.20753289377160053,0,12,12
+health insurance -> entrepreneurship,I13 -> M13,"Health, education, and welfare",Business administration and business economics,Cross-field boundary,0.4079420166616789,0.20650210580941397,0,13,13
+contracting costs -> exchange rates,M55 -> F31,Business administration and business economics,International economics,Cross-field boundary,0.40793418513296986,0.21044422357417006,0,9,9
+accountability -> employment,M48 -> J63,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.4078793920241156,0.20726038482610568,0,12,12
+legal aid -> managerial power,K36 -> M54,Law and economics,Business administration and business economics,Cross-field boundary,0.4078355133762607,0.20555041284603787,0,14,14
+entrepreneurship -> carbon pricing,M13 -> Q58,Business administration and business economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.40777475383401574,0.20711632538904903,0,12,12
+audit frequency -> higher wages,M42 -> J31,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.40774758175132014,0.20903840365745563,0,10,10
+income inequality -> market segmentation,D31 -> M31,Microeconomics,Business administration and business economics,Cross-field boundary,0.4076351638678712,0.2060039901913769,0,13,13
+antidumping measures -> entrepreneurship,F18 -> M13,International economics,Business administration and business economics,Cross-field boundary,0.40761997199613575,0.20690951341829708,0,12,12
+increase in public debt -> ceo compensation,H69 -> M12,Public economics,Business administration and business economics,Cross-field boundary,0.40759296358258856,0.20685994469466504,0,12,12
+ceo compensation -> enhanced cooperation,M12 -> F55,Business administration and business economics,International economics,Cross-field boundary,0.4075867090887219,0.20680033423592903,0,12,12
+audit frequency -> inflation,M42 -> E31,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.4075482068581042,0.20987341839289433,0,9,9
+managerial power -> fiscal deficits,M54 -> H68,Business administration and business economics,Public economics,Cross-field boundary,0.40753251984661837,0.20770941409802912,0,11,11
+human capital -> market segmentation,J24 -> M31,Labor and demographic economics,Business administration and business economics,Cross-field boundary,0.4074891018159639,0.20504542457031036,0,14,14
+credit constraints -> advertising,E51 -> M37,Macroeconomics and monetary economics,Business administration and business economics,Cross-field boundary,0.4074294004580573,0.20656989602309903,0,12,12
+entrepreneurship -> emerging markets,M13 -> G15,Business administration and business economics,Financial economics,Cross-field boundary,0.4074269978747957,0.20863857794902263,0,10,10
+advertising -> fertility,M37 -> J13,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.40741886886399575,0.20758025160776014,0,11,11
+model misspecification -> managerial decisions,C50 -> M51,Mathematical and quantitative methods,Business administration and business economics,Cross-field boundary,0.40739923822767876,0.20965882949934564,0,9,9
+public debt -> training,H63 -> M53,Public economics,Business administration and business economics,Cross-field boundary,0.4072857702982716,0.20548979231371067,0,13,13
+institutional changes -> economic incentives,O43 -> M52,"Economic development, innovation, and growth",Business administration and business economics,Cross-field boundary,0.4072533173652792,0.20837156443947127,0,10,10
+advertising -> capital inflows,M37 -> F21,Business administration and business economics,International economics,Cross-field boundary,0.40724653012188516,0.20718486041467712,0,11,11
+public debt -> advertising,H63 -> M37,Public economics,Business administration and business economics,Cross-field boundary,0.4072352658673622,0.20544873227030996,0,13,13
+unions -> corporate culture,J51 -> M14,Labor and demographic economics,Business administration and business economics,Cross-field boundary,0.4070728601412197,0.206028022006921,0,12,12
+ceo compensation -> central bank independence,M12 -> E58,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.4070659181660079,0.2092159769296648,0,9,9
+training -> trade liberalization,M53 -> F13,Business administration and business economics,International economics,Cross-field boundary,0.4070338691941388,0.20512394883061616,0,13,13
+entrepreneurship -> zero lower bound,M13 -> E49,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.40697534191001417,0.20685239344829526,0,11,11
+ai -> ceo compensation,C45 -> M12,Mathematical and quantitative methods,Business administration and business economics,Cross-field boundary,0.4069440357278685,0.20776074848952789,0,10,10
+cafe regulation -> unemployment,M38 -> J64,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.4069391789551048,0.20498818388864246,0,13,13
+ceo compensation -> universal basic income (ubi),M12 -> H53,Business administration and business economics,Public economics,Cross-field boundary,0.40692663069930507,0.20676590568539946,0,11,11
+fiscal deficits -> entrepreneurship,H68 -> M13,Public economics,Business administration and business economics,Cross-field boundary,0.4068867872129972,0.20575878352214919,0,12,12
+dynamic price index (dpi) -> training,C43 -> M53,Mathematical and quantitative methods,Business administration and business economics,Cross-field boundary,0.4068105465170067,0.20560631351265954,0,12,12
+accountability -> borrowing constraints,M48 -> F34,Business administration and business economics,International economics,Cross-field boundary,0.4068101668378348,0.2087672804287995,0,9,9
+market segmentation -> income inequality,M31 -> D31,Business administration and business economics,Microeconomics,Cross-field boundary,0.40671414365449765,0.20742954183268256,0,10,10
+audit frequency -> fiscal policy,M42 -> E62,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.4066982119634453,0.20740461587951223,0,10,10
+managerial decisions -> significant,M51 -> C55,Business administration and business economics,Mathematical and quantitative methods,Cross-field boundary,0.40668520003667336,0.20543734610588954,0,12,12
+advertising -> economic performance,M37 -> P17,Business administration and business economics,Economic systems,Cross-field boundary,0.40667426728315925,0.20541225397214966,0,12,12
+consumption behavior -> accountability,D10 -> M48,Microeconomics,Business administration and business economics,Cross-field boundary,0.4065949804681864,0.2062092543329469,0,11,11
+country characteristics -> ceo compensation,O57 -> M12,"Economic development, innovation, and growth",Business administration and business economics,Cross-field boundary,0.4065373287105244,0.20614688519498123,0,11,11
+training -> lower prices,M53 -> P22,Business administration and business economics,Economic systems,Cross-field boundary,0.4064543294713317,0.20598174682124065,0,11,11
+public education -> entrepreneurship,H52 -> M13,Public economics,Business administration and business economics,Cross-field boundary,0.40645235740142516,0.20604501366046266,0,11,11
+accounting -> rising unemployment,M41 -> F66,Business administration and business economics,International economics,Cross-field boundary,0.406407088517849,0.2059666638492091,0,11,11
+exchange rates -> managerial decisions,F31 -> M51,International economics,Business administration and business economics,Cross-field gap,0.4062964944814234,0.20907226507931564,1,78,78
+leverage -> training,G24 -> M53,Financial economics,Business administration and business economics,Cross-field boundary,0.4062428117840786,0.20781397087351508,0,9,9
+training -> trade openness,M53 -> F41,Business administration and business economics,International economics,Cross-field boundary,0.40624177426928104,0.2093445726947998,0,8,8
+ceo compensation -> improves welfare,M12 -> D60,Business administration and business economics,Microeconomics,Cross-field boundary,0.4062251070149974,0.20788872277982073,0,9,9
+clustering -> managerial decisions,C38 -> M51,Mathematical and quantitative methods,Business administration and business economics,Cross-field boundary,0.4061601974360076,0.20773806588725732,0,9,9
+training -> financial fragility,M53 -> G51,Business administration and business economics,Financial economics,Cross-field boundary,0.4061395101402798,0.2077429139723447,0,9,9
+training -> capital taxation,M53 -> H24,Business administration and business economics,Public economics,Cross-field boundary,0.4061335922028042,0.20911874757673993,0,8,8
+entrepreneurship -> fixed exchange rate regime,M13 -> F33,Business administration and business economics,International economics,Cross-field boundary,0.4060912646045184,0.20456237212473638,0,12,12
+agricultural productivity -> managerial decisions,Q11 -> M51,"Agriculture, natural resources, and environment",Business administration and business economics,Cross-field boundary,0.4060513020723401,0.20902080513002425,0,8,8
+public debt -> market segmentation,H63 -> M31,Public economics,Business administration and business economics,Cross-field boundary,0.4059920430708599,0.20440373361630126,0,12,12
+managerial power -> historical shocks,M54 -> N13,Business administration and business economics,Economic history,Cross-field boundary,0.4059888592421518,0.2076984531095806,0,9,9
+health outcomes -> training,I14 -> M53,"Health, education, and welfare",Business administration and business economics,Cross-field boundary,0.40598348531157086,0.20745387285391315,0,9,9
+fertility -> ceo compensation,J13 -> M12,Labor and demographic economics,Business administration and business economics,Cross-field boundary,0.4059487241545369,0.2052549867073362,0,11,11
+tenure -> entrepreneurship,Q15 -> M13,"Agriculture, natural resources, and environment",Business administration and business economics,Cross-field boundary,0.4058985550719387,0.2051596616780651,0,11,11
+corporate culture -> industry concentration,M14 -> L69,Business administration and business economics,Industrial organization,Cross-field boundary,0.4058683835978384,0.2072112767676826,0,9,9
+training -> emu,M53 -> F36,Business administration and business economics,International economics,Cross-field boundary,0.40580177347548674,0.20726188162625794,0,9,9
+accounting -> aggregate shocks,M41 -> E19,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.4057737330926126,0.2072494236348007,0,9,9
+inventory behavior -> expected profits,M11 -> D33,Business administration and business economics,Microeconomics,Cross-field boundary,0.4056813307369161,0.20483826201293207,0,11,11
+capital mobility -> ceo compensation,F20 -> M12,International economics,Business administration and business economics,Cross-field boundary,0.40559985547852506,0.20381771952012973,0,12,12
+corporate culture -> increased unemployment,M14 -> J65,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.40559755599316005,0.20470071890412697,0,11,11
+lower prices -> training,P22 -> M53,Economic systems,Business administration and business economics,Cross-field boundary,0.4055839143904768,0.20680442874451688,0,9,9
+cafe regulation -> excess burden,M38 -> H22,Business administration and business economics,Public economics,Cross-field boundary,0.4055134246500427,0.2045750431091487,0,11,11
+wicksellian rules -> managerial power,E12 -> M54,Macroeconomics and monetary economics,Business administration and business economics,Cross-field boundary,0.40542114876143737,0.20354876560935836,0,12,12
+training -> demand shocks,M53 -> E39,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.40532298985514514,0.20653070801893023,0,9,9
+ceo compensation -> increase in public debt,M12 -> H69,Business administration and business economics,Public economics,Cross-field boundary,0.40532120410981975,0.20773486693380427,0,8,8
+cafe regulation -> income,M38 -> E25,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.4051692158880097,0.20406920605416962,0,11,11
+entrepreneurship -> public education,M13 -> H52,Business administration and business economics,Public economics,Cross-field boundary,0.4051536331344837,0.20507276328555746,0,10,10
+training -> aggregate demand,M53 -> E00,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.40507710817496567,0.2062105978481806,0,9,9
+advertising -> home production,M37 -> D13,Business administration and business economics,Microeconomics,Cross-field boundary,0.4050044410697874,0.20593175767967517,0,9,9
+managerial power -> higher dependency ratio,M54 -> J19,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.4050036268631584,0.20589484938337374,0,9,9
+financial intermediaries -> training,G23 -> M53,Financial economics,Business administration and business economics,Cross-field boundary,0.4049840217412576,0.20476534249411477,0,10,10
+public trust -> managerial decisions,H82 -> M51,Public economics,Business administration and business economics,Cross-field boundary,0.40498261361708265,0.20476393768056783,0,10,10
+advertising -> comparative advantage,M37 -> F11,Business administration and business economics,International economics,Cross-field boundary,0.4049307034454682,0.20472911964610674,0,10,10
+universal basic income (ubi) -> ceo compensation,H53 -> M12,Public economics,Business administration and business economics,Cross-field boundary,0.4048836750886982,0.20461754429146106,0,10,10
+audit frequency -> fdi,M42 -> F23,Business administration and business economics,International economics,Cross-field boundary,0.4048099682803608,0.20691535746981735,0,8,8
+advertising -> public debt,M37 -> H63,Business administration and business economics,Public economics,Cross-field boundary,0.4048090227735414,0.2045136363213785,0,10,10
+government actions -> training,H11 -> M53,Public economics,Business administration and business economics,Cross-field boundary,0.4047902497343916,0.20448039845889196,0,10,10
+ceo compensation -> free riding,M12 -> H40,Business administration and business economics,Public economics,Cross-field boundary,0.404774525935978,0.20847977158840142,0,7,7
+property tax -> managerial decisions,H71 -> M51,Public economics,Business administration and business economics,Cross-field boundary,0.40476607407522497,0.20346751078743894,0,11,11
+advertising -> country characteristics,M37 -> O57,Business administration and business economics,"Economic development, innovation, and growth",Cross-field boundary,0.4047659231545275,0.20551413027549262,0,9,9
+demand shocks -> training,E39 -> M53,Macroeconomics and monetary economics,Business administration and business economics,Cross-field boundary,0.4047549499810921,0.20555755055012595,0,9,9
+training -> leverage,M53 -> G24,Business administration and business economics,Financial economics,Cross-field boundary,0.40471399789535256,0.20437871864346452,0,10,10
+advertising -> weak institutions,M37 -> O17,Business administration and business economics,"Economic development, innovation, and growth",Cross-field boundary,0.4047099909831749,0.20433900128258944,0,10,10
+ceo compensation -> default probabilities,M12 -> C25,Business administration and business economics,Mathematical and quantitative methods,Cross-field boundary,0.404684602599069,0.2066149615799026,0,8,8
+increased unemployment -> corporate culture,J65 -> M14,Labor and demographic economics,Business administration and business economics,Cross-field boundary,0.4046374963968704,0.20533487390672545,0,9,9
+advertising -> labor supply,M37 -> J20,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.40461862388640607,0.20533436255332743,0,9,9
+cafe regulation -> location choices,M38 -> R32,Business administration and business economics,"Urban, rural, and regional economics",Cross-field boundary,0.4045739304317732,0.20524697667396513,0,9,9
+accounting -> market failures,M41 -> D52,Business administration and business economics,Microeconomics,Cross-field boundary,0.40455876032996657,0.20521374766460432,0,9,9
+output -> training,Y10 -> M53,Miscellaneous,Business administration and business economics,Cross-field boundary,0.4044177770362138,0.20498532413037485,0,9,9
+price volatility -> training,G13 -> M53,Financial economics,Business administration and business economics,Cross-field boundary,0.40438474489679577,0.20387566938751447,0,10,10
+advertising -> retirement decisions,M37 -> J26,Business administration and business economics,Labor and demographic economics,Cross-field boundary,0.4043826830029725,0.20498594061170694,0,9,9
+emu -> corporate culture,F36 -> M14,International economics,Business administration and business economics,Cross-field boundary,0.40432167626953847,0.20617590391254098,0,8,8
+comparative advantage -> ceo compensation,F11 -> M12,International economics,Business administration and business economics,Cross-field boundary,0.4043027937456765,0.20374065033217043,0,10,10
+accountability -> consumption behavior,M48 -> D10,Business administration and business economics,Microeconomics,Cross-field boundary,0.4042414174274358,0.2059400943166603,0,8,8
+cafe regulation -> comparative advantage,M38 -> F11,Business administration and business economics,International economics,Cross-field boundary,0.4042385710545273,0.20478575953872336,0,9,9
+capital controls -> advertising,F38 -> M37,International economics,Business administration and business economics,Cross-field boundary,0.40420161107819375,0.20468121557997476,0,9,9
+borrowing constraints -> accountability,F34 -> M48,International economics,Business administration and business economics,Cross-field boundary,0.40405700389944854,0.20447581852309324,0,9,9
+country characteristics -> advertising,O57 -> M37,"Economic development, innovation, and growth",Business administration and business economics,Cross-field boundary,0.4040405801104412,0.20577931467728852,0,8,8
+audit frequency -> entrepreneurial activity,M42 -> L26,Business administration and business economics,Industrial organization,Cross-field boundary,0.40403848313143054,0.2056454827996718,0,8,8
+public investment -> corporate culture,H54 -> M14,Public economics,Business administration and business economics,Cross-field boundary,0.40400388815120714,0.20438141071971555,0,9,9
+emu -> training,F36 -> M53,International economics,Business administration and business economics,Cross-field boundary,0.40397661294277465,0.20435116536975476,0,9,9
+optimal security design -> managerial power,K24 -> M54,Law and economics,Business administration and business economics,Cross-field boundary,0.4039730734506842,0.20433033780048296,0,9,9
+disaster risk -> training,H84 -> M53,Public economics,Business administration and business economics,Cross-field boundary,0.403906249524315,0.20424998781357578,0,9,9
+cafe regulation -> liquidity,M38 -> E41,Business administration and business economics,Macroeconomics and monetary economics,Cross-field boundary,0.4038964431997482,0.20419484403829866,0,9,9
+educational policies -> training,I28 -> M53,"Health, education, and welfare",Business administration and business economics,Cross-field boundary,0.4038931638413384,0.2054781702401062,0,8,8
+audit frequency -> equity premium,M42 -> G12,Business administration and business economics,Financial economics,Cross-field boundary,0.40388676123393336,0.205404708308021,0,8,8
+public debt -> inventory behavior,H63 -> M11,Public economics,Business administration and business economics,Cross-field boundary,0.40388670252038805,0.2042017225338553,0,9,9
+economic recovery -> advertising,E65 -> M37,Macroeconomics and monetary economics,Business administration and business economics,Cross-field boundary,0.40384064481004117,0.20305769724583314,0,10,10
+ema -> managerial decisions,E17 -> M51,Macroeconomics and monetary economics,Business administration and business economics,Cross-field boundary,0.4038165088822696,0.20531836162405118,0,8,8
+blockchain technology -> inventory behavior,E42 -> M11,Macroeconomics and monetary economics,Business administration and business economics,Cross-field boundary,0.40379116509430235,0.2040602226774758,0,9,9
+zero lower bound -> advertising,E49 -> M37,Macroeconomics and monetary economics,Business administration and business economics,Cross-field boundary,0.4037750430990963,0.20403474365736854,0,9,9
+technology -> training,L63 -> M53,Industrial organization,Business administration and business economics,Cross-field boundary,0.4037338170835773,0.2065803108980915,0,7,7
+managerial decisions -> human wealth,M51 -> O15,Business administration and business economics,"Economic development, innovation, and growth",Cross-field boundary,0.40370653231380366,0.20518987095755378,0,8,8

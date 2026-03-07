@@ -1,0 +1,201 @@
+opportunity,code_pair,source_field,target_field,novelty,priority,base_score,prior_contact,mediators,motifs
+limited liability -> human capital,K13 -> J24,Law and economics,Labor and demographic economics,Cross-field boundary,0.45428200603048163,0.25883761122280363,0,64,64
+limited liability -> unemployment,K13 -> J64,Law and economics,Labor and demographic economics,Cross-field boundary,0.4450865866478685,0.24688789932156696,0,54,54
+legal reform -> growth,K41 -> O40,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4404752383210124,0.24205341341811765,0,46,46
+limited liability -> labor supply,K13 -> J22,Law and economics,Labor and demographic economics,Cross-field boundary,0.4388553675124152,0.24001997893714988,0,44,44
+limited liability -> monetary policy,K13 -> E52,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4387930216232418,0.2419363545047799,0,38,38
+limited liability -> educational attainment,K13 -> I21,Law and economics,"Health, education, and welfare",Cross-field boundary,0.4351878219706976,0.23489170095454795,0,42,42
+limited liability -> family background,K13 -> J12,Law and economics,Labor and demographic economics,Cross-field boundary,0.4309168568148395,0.23074297981101602,0,35,35
+increased immigration -> financial fragility,K37 -> G51,Law and economics,Financial economics,Cross-field boundary,0.43065572257674767,0.23058158992794545,0,34,34
+legal reform -> income,K41 -> E25,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.429199227112699,0.22725816943215182,0,37,37
+limited liability -> statistical discrimination,K13 -> J79,Law and economics,Labor and demographic economics,Cross-field boundary,0.4289766367501444,0.22679464913686773,0,37,37
+corporate income tax -> asymmetric information,K34 -> D82,Law and economics,Microeconomics,Cross-field boundary,0.42736810307029816,0.22982326753227408,0,24,24
+limited liability -> macroeconomic stability,K13 -> E60,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4271460417962226,0.2245955688614024,0,35,35
+asymmetric information -> increased immigration,D82 -> K37,Microeconomics,Law and economics,Cross-field boundary,0.4270695104179517,0.22669002400506655,0,30,30
+unions -> increased immigration,J51 -> K37,Labor and demographic economics,Law and economics,Cross-field boundary,0.42455314836148295,0.22513135779141777,0,25,25
+electoral outcomes -> aggregate demand,K16 -> E00,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4237049045788195,0.2221617238781997,0,28,28
+human capital -> limited liability,J24 -> K13,Labor and demographic economics,Law and economics,Cross-field boundary,0.42331846426532155,0.2203033088384016,0,31,31
+increased immigration -> asymmetric information,K37 -> D82,Law and economics,Microeconomics,Cross-field boundary,0.4227163513090061,0.21978643442258827,0,30,30
+limited liability -> ethnic diversity,K13 -> J15,Law and economics,Labor and demographic economics,Cross-field boundary,0.4226903488950683,0.22001458635724783,0,29,29
+increased immigration -> expected returns,K37 -> G17,Law and economics,Financial economics,Cross-field boundary,0.42245587833895176,0.21905983373873472,0,31,31
+central bank independence -> increased immigration,E58 -> K37,Macroeconomics and monetary economics,Law and economics,Cross-field boundary,0.42233310467980534,0.22158240820265104,0,25,25
+increased immigration -> gender,K37 -> J16,Law and economics,Labor and demographic economics,Cross-field boundary,0.42232312945906936,0.22193807957379216,0,24,24
+monetary policy -> limited liability,E52 -> K13,Macroeconomics and monetary economics,Law and economics,Cross-field boundary,0.42204722392903427,0.22240458010745118,0,22,22
+increased immigration -> bureaucracy,K37 -> D73,Law and economics,Microeconomics,Cross-field boundary,0.4218507905837782,0.21806955455353652,0,31,31
+corporate income tax -> technological progress,K34 -> O39,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.42154247668381556,0.22276749949772223,0,20,20
+regulatory competition -> exchange rates,K20 -> F31,Law and economics,International economics,Cross-field boundary,0.42127793567669186,0.22029194247267816,0,24,24
+financial fragility -> increased immigration,G51 -> K37,Financial economics,Law and economics,Cross-field boundary,0.4205219591164363,0.21902892092455747,0,24,24
+counterfeiting -> aggregate demand,K42 -> E00,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4202973585949003,0.21827982009486965,0,25,25
+corporate income tax -> imperfect information,K34 -> D83,Law and economics,Microeconomics,Cross-field boundary,0.4198556601657414,0.21851961308824902,0,23,23
+legal reform -> average productivity,K41 -> O47,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.41968225610390225,0.2150683977064299,0,30,30
+increased immigration -> unions,K37 -> J51,Law and economics,Labor and demographic economics,Cross-field boundary,0.4196461755505439,0.21902584214346424,0,22,22
+dynamic price index (dpi) -> legal reform,C43 -> K41,Mathematical and quantitative methods,Law and economics,Cross-field boundary,0.41952926027956067,0.21613983304736825,0,27,27
+increased immigration -> price level,K37 -> E30,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4188230319651309,0.21749869125800825,0,22,22
+legal reform -> dynamic price index (dpi),K41 -> C43,Law and economics,Mathematical and quantitative methods,Cross-field boundary,0.4186516880184557,0.2161358271398228,0,24,24
+legal reform -> growth rate,K41 -> O44,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4184937928926131,0.21570297050651863,0,24,24
+high volatility -> legal reform,C58 -> K41,Mathematical and quantitative methods,Law and economics,Cross-field boundary,0.41838118194613005,0.21907193676662906,0,18,18
+compliance -> aggregate demand,K40 -> E00,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.418319687483412,0.21560906688206527,0,24,24
+counterfeiting -> average productivity,K42 -> O47,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.41805911128041545,0.21384243675330405,0,27,27
+credit constraints -> increased immigration,E51 -> K37,Macroeconomics and monetary economics,Law and economics,Cross-field boundary,0.4180427336930148,0.21520790655341157,0,24,24
+increased immigration -> market efficiency,K37 -> G14,Law and economics,Financial economics,Cross-field boundary,0.4179445789823285,0.21502590762459012,0,24,24
+legal reform -> high volatility,K41 -> C58,Law and economics,Mathematical and quantitative methods,Cross-field boundary,0.4177465545090876,0.21736260780741976,0,19,19
+corporate income tax -> inequality,K34 -> I24,Law and economics,"Health, education, and welfare",Cross-field boundary,0.41729758373096465,0.21607543190526074,0,20,20
+fiscal policy -> sustainability of collusion,E62 -> K21,Macroeconomics and monetary economics,Law and economics,Cross-field boundary,0.4172897889358069,0.21392397628362592,0,24,24
+capital mobility -> counterfeiting,F20 -> K42,International economics,Law and economics,Cross-field boundary,0.41722643856701686,0.2134350835313037,0,25,25
+limited liability -> improved decision-making,K13 -> D87,Law and economics,Microeconomics,Cross-field boundary,0.4170227939070576,0.21631313579528308,0,19,19
+increased immigration -> monitoring costs,K37 -> Q52,Law and economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.41663561848043557,0.21520169458373065,0,20,20
+limited liability -> trade openness,K13 -> F41,Law and economics,International economics,Cross-field boundary,0.41611649721499955,0.21222744837075172,0,24,24
+legal aid -> economic output,K36 -> E23,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4160984126847315,0.21164751143388105,0,25,25
+limited liability -> average productivity,K13 -> O47,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4159509596205552,0.21339367037344434,0,21,21
+limited liability -> quotas,K13 -> C21,Law and economics,Mathematical and quantitative methods,Cross-field boundary,0.4157759615582595,0.213162188200927,0,21,21
+emu -> limited liability,F36 -> K13,International economics,Law and economics,Cross-field boundary,0.4157329869937289,0.2148031058311343,0,18,18
+vertical integration -> increased immigration,L22 -> K37,Industrial organization,Law and economics,Cross-field boundary,0.415728454998452,0.21257061891704743,0,22,22
+legal aid -> banks,K36 -> G21,Law and economics,Financial economics,Cross-field boundary,0.41549077987193705,0.21073336104111492,0,25,25
+sustainability of collusion -> financial fragility,K21 -> G51,Law and economics,Financial economics,Cross-field boundary,0.4152683484731221,0.21292902108690337,0,20,20
+legal aid -> terms of trade,K36 -> F14,Law and economics,International economics,Cross-field boundary,0.41526272767530653,0.21087683359030282,0,24,24
+constitutional reforms -> trade liberalization,K10 -> F13,Law and economics,International economics,Cross-field boundary,0.41525199634993654,0.212369982158878,0,21,21
+legal aid -> welfare implications,K36 -> I30,Law and economics,"Health, education, and welfare",Cross-field boundary,0.4151997253218742,0.21031795656607719,0,25,25
+compliance -> r&d investment,K40 -> O32,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4149139974424573,0.2118099842378003,0,21,21
+financial intermediaries -> sustainability of collusion,G23 -> K21,Financial economics,Law and economics,Cross-field boundary,0.4148572480024788,0.21303033525345014,0,19,19
+demographic changes -> sustainability of collusion,J11 -> K21,Labor and demographic economics,Law and economics,Cross-field boundary,0.41478947387422493,0.21061820115331187,0,23,23
+increased immigration -> aggregate shocks,K37 -> E19,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4146559212324151,0.21256348888535254,0,19,19
+increased immigration -> investor behavior,K37 -> G41,Law and economics,Financial economics,Cross-field boundary,0.41453022476923757,0.21188716441901334,0,20,20
+contract design -> educational attainment,K12 -> I21,Law and economics,"Health, education, and welfare",Cross-field boundary,0.41449766663533505,0.21308514940060316,0,18,18
+electoral outcomes -> full employment,K16 -> E24,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.41414938933442735,0.21243586553345506,0,18,18
+investment subsidies -> legal reform,H25 -> K41,Public economics,Law and economics,Cross-field boundary,0.41405434333906044,0.20957424312010484,0,23,23
+financial stability -> increased immigration,G28 -> K37,Financial economics,Law and economics,Cross-field boundary,0.41391949377375675,0.21092091235739052,0,20,20
+legal aid -> unemployment,K36 -> J64,Law and economics,Labor and demographic economics,Cross-field boundary,0.41369967673006247,0.2111173125108516,0,19,19
+gender -> increased immigration,J16 -> K37,Labor and demographic economics,Law and economics,Cross-field boundary,0.4136680358747723,0.21236176225175,0,17,17
+limited liability -> higher education,K13 -> I23,Law and economics,"Health, education, and welfare",Cross-field boundary,0.41364878020011636,0.2110251692217427,0,19,19
+ethnic diversity -> limited liability,J15 -> K13,Labor and demographic economics,Law and economics,Cross-field boundary,0.4135840501700537,0.21092402617125558,0,19,19
+trade openness -> limited liability,F41 -> K13,International economics,Law and economics,Cross-field boundary,0.4135353012253343,0.21030499727600074,0,20,20
+income -> legal reform,E25 -> K41,Macroeconomics and monetary economics,Law and economics,Cross-field boundary,0.41349905491870004,0.2107827396859997,0,19,19
+regulatory competition -> consumption,K20 -> E21,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4134664655579515,0.21276389186604622,0,16,16
+limited liability -> political economy factors,K13 -> P19,Law and economics,Economic systems,Cross-field boundary,0.4134496720599538,0.2107722775223935,0,19,19
+legal aid -> negative externalities,K36 -> D62,Law and economics,Microeconomics,Cross-field boundary,0.4133401814075472,0.20893372103493196,0,22,22
+regulatory competition -> equity premium,K20 -> G12,Law and economics,Financial economics,Cross-field boundary,0.4131303372440519,0.21376351784127812,0,14,14
+expected returns -> increased immigration,G17 -> K37,Financial economics,Law and economics,Cross-field boundary,0.413045763574897,0.2114413522107716,0,17,17
+constitutional reforms -> employment,K10 -> J68,Law and economics,Labor and demographic economics,Cross-field boundary,0.41288835747081903,0.20925911573347641,0,20,20
+legal aid -> knowledge spillovers,K36 -> O36,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.41286465924544846,0.20925950814776215,0,20,20
+corporate income tax -> economic incentives,K34 -> M52,Law and economics,Business administration and business economics,Cross-field boundary,0.41278027672052486,0.21496351415629011,0,12,12
+increased immigration -> vertical integration,K37 -> L22,Law and economics,Industrial organization,Cross-field boundary,0.4127552257571243,0.20915374319460453,0,20,20
+increased immigration -> financial constraints,K37 -> D20,Law and economics,Microeconomics,Cross-field boundary,0.4127196577670278,0.20914513214358135,0,20,20
+bankruptcy -> growth,K35 -> O40,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4126913042708046,0.21022886471826804,0,18,18
+sustainability of collusion -> fiscal policy,K21 -> E62,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4126436258383052,0.21136822852175888,0,16,16
+bankruptcy -> income,K35 -> E25,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4125662636178629,0.20937887824035367,0,19,19
+limited liability -> immigration,K13 -> F22,Law and economics,International economics,Cross-field boundary,0.4124984642936468,0.21142342278263085,0,16,16
+fiscal policies -> legal reform,H30 -> K41,Public economics,Law and economics,Cross-field boundary,0.4124473743871909,0.20931170924187206,0,19,19
+sustainability of collusion -> credit constraints,K21 -> E51,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4124342729794324,0.21043805125410578,0,17,17
+corporate income tax -> renegotiation,K34 -> C78,Law and economics,Mathematical and quantitative methods,Cross-field boundary,0.41231175600465636,0.21247879011194595,0,14,14
+contract design -> network structure,K12 -> D85,Law and economics,Microeconomics,Cross-field boundary,0.4122687413488089,0.20959640927471698,0,18,18
+technology -> counterfeiting,L63 -> K42,Industrial organization,Law and economics,Cross-field boundary,0.4122294008894539,0.21009097804560956,0,17,17
+corporate income tax -> aggregate output,K34 -> E10,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4122058069023045,0.21312834830109653,0,13,13
+financial constraints -> legal reform,H60 -> K41,Public economics,Law and economics,Cross-field boundary,0.4120893107576109,0.21076294530672884,0,16,16
+regulatory competition -> consumption growth,K20 -> F62,Law and economics,International economics,Cross-field boundary,0.4120479218273666,0.20861789460608565,0,19,19
+capital mobility -> compliance,F20 -> K40,International economics,Law and economics,Cross-field boundary,0.4120415495363209,0.20928755312094138,0,18,18
+social security -> sustainability of collusion,H55 -> K21,Public economics,Law and economics,Cross-field boundary,0.41200743294145786,0.20917014184016003,0,18,18
+credit constraints -> sustainability of collusion,E51 -> K21,Macroeconomics and monetary economics,Law and economics,Cross-field boundary,0.4119751467130355,0.209697035872195,0,17,17
+family background -> limited liability,J12 -> K13,Labor and demographic economics,Law and economics,Cross-field boundary,0.4118345198295608,0.20950561314129923,0,17,17
+bureaucracy -> increased immigration,D73 -> K37,Microeconomics,Law and economics,Cross-field boundary,0.4117958862168311,0.20881442021023167,0,18,18
+offshoring -> increased immigration,L24 -> K37,Industrial organization,Law and economics,Cross-field boundary,0.4117273191378802,0.21243764461261144,0,13,13
+agricultural productivity -> counterfeiting,Q11 -> K42,"Agriculture, natural resources, and environment",Law and economics,Cross-field boundary,0.41169430663097845,0.2106793435970983,0,15,15
+corporate income tax -> output,K34 -> C67,Law and economics,Mathematical and quantitative methods,Cross-field boundary,0.41169331617136184,0.21154448314638458,0,14,14
+legal reform -> full employment,K41 -> E24,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.41162205276557134,0.20985699485480197,0,16,16
+legal reform -> supply shocks,K41 -> Q31,Law and economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.4115576980218273,0.20843751278010444,0,18,18
+legal reform -> model misspecification,K41 -> C50,Law and economics,Mathematical and quantitative methods,Cross-field boundary,0.41152900284047644,0.21199637916216757,0,13,13
+increased immigration -> aggregate demand,K37 -> E00,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.41144618202793104,0.21205978430401368,0,13,13
+increased immigration -> central bank independence,K37 -> E58,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.41144513453293796,0.20898176504526317,0,17,17
+limited liability -> higher domestic demand,K13 -> R22,Law and economics,"Urban, rural, and regional economics",Cross-field boundary,0.4112957042582243,0.20745257164894643,0,19,19
+macroeconomic stability -> limited liability,E60 -> K13,Macroeconomics and monetary economics,Law and economics,Cross-field boundary,0.41120782601376726,0.20854468457694508,0,17,17
+corporate income tax -> unemployment,K34 -> J64,Law and economics,Labor and demographic economics,Cross-field boundary,0.4111487893092127,0.21335034621292623,0,11,11
+market efficiency -> increased immigration,G14 -> K37,Financial economics,Law and economics,Cross-field boundary,0.4111063890801717,0.20909388763304274,0,16,16
+increased immigration -> liquidity,K37 -> E41,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4109530703714737,0.20822453342107852,0,17,17
+corporate income tax -> competition,K34 -> L13,Law and economics,Industrial organization,Cross-field boundary,0.41082995017681156,0.21097433757249445,0,13,13
+legal aid -> depreciation,K36 -> D25,Law and economics,Microeconomics,Cross-field boundary,0.41074059697543885,0.20781561946301863,0,17,17
+increased immigration -> financial stability,K37 -> G28,Law and economics,Financial economics,Cross-field boundary,0.4107337138067438,0.20783516977592553,0,17,17
+counterfeiting -> higher dependency ratio,K42 -> J19,Law and economics,Labor and demographic economics,Cross-field boundary,0.41072515969559664,0.20995606916508736,0,14,14
+legal reform -> financial constraints,K41 -> H60,Law and economics,Public economics,Cross-field boundary,0.410640384592098,0.20833141210008216,0,16,16
+increased immigration -> budget rules,K37 -> H61,Law and economics,Public economics,Cross-field boundary,0.4104551981714863,0.20810193440074481,0,16,16
+constitutional reforms -> fdi,K10 -> F23,Law and economics,International economics,Cross-field boundary,0.41043106038370686,0.206757474461153,0,18,18
+increased immigration -> external financing,K37 -> G39,Law and economics,Financial economics,Cross-field boundary,0.4103337221452215,0.21027362640900446,0,13,13
+limited liability -> labor force participation,K13 -> J21,Law and economics,Labor and demographic economics,Cross-field boundary,0.4102203180998493,0.20923958787898897,0,14,14
+higher dependency ratio -> counterfeiting,J19 -> K42,Labor and demographic economics,Law and economics,Cross-field boundary,0.41021233761184284,0.20912487817387504,0,14,14
+legal aid -> rising unemployment,K36 -> F66,Law and economics,International economics,Cross-field boundary,0.41019360358112017,0.20766630524673282,0,16,16
+increased immigration -> lack of government commitment,K37 -> H19,Law and economics,Public economics,Cross-field boundary,0.41014940181207926,0.2107083062291999,0,12,12
+increased immigration -> market stability,K37 -> D53,Law and economics,Microeconomics,Cross-field boundary,0.41014603071837885,0.20694532774893948,0,17,17
+sustainability of collusion -> growth,K21 -> O40,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4100929163344689,0.2082611968919538,0,15,15
+immigration -> limited liability,F22 -> K13,International economics,Law and economics,Cross-field boundary,0.4100533439581432,0.2074683685344097,0,16,16
+legal reform -> fiscal policies,K41 -> H30,Law and economics,Public economics,Cross-field boundary,0.4100203537959404,0.21272924417581834,0,10,10
+legal reform -> sustainability,K41 -> Q01,Law and economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.40998674819724934,0.20669833597115347,0,17,17
+constitutional reforms -> higher prices,K10 -> D49,Law and economics,Microeconomics,Cross-field boundary,0.4099681505222955,0.2073331606454035,0,16,16
+limited liability -> economic health,K13 -> I10,Law and economics,"Health, education, and welfare",Cross-field boundary,0.40991021212308404,0.2114087935576246,0,11,11
+constitutional reforms -> capital accumulation,K10 -> E22,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.40989588139873173,0.20787396258203225,0,15,15
+limited liability -> health capital,K13 -> I15,Law and economics,"Health, education, and welfare",Cross-field boundary,0.40988532075792294,0.2104436426945234,0,12,12
+union bargaining power -> counterfeiting,J50 -> K42,Labor and demographic economics,Law and economics,Cross-field boundary,0.4098710028281365,0.20874814643198625,0,14,14
+constitutional reforms -> trade,K10 -> F19,Law and economics,International economics,Cross-field boundary,0.4098279765912174,0.20648218943788665,0,17,17
+aggregate demand -> counterfeiting,E00 -> K42,Macroeconomics and monetary economics,Law and economics,Cross-field boundary,0.40967910600019725,0.20833540081825283,0,14,14
+limited liability -> unions,K13 -> J51,Law and economics,Labor and demographic economics,Cross-field boundary,0.4096177079694792,0.20678820314014865,0,16,16
+corporate income tax -> financial crises,K34 -> G01,Law and economics,Financial economics,Cross-field boundary,0.4096155519241007,0.21202886348111363,0,10,10
+limited liability -> less-confident households,K13 -> G59,Law and economics,Financial economics,Cross-field boundary,0.40960602232321114,0.20999557629476667,0,12,12
+corporate income tax -> automation,K34 -> L23,Law and economics,Industrial organization,Cross-field boundary,0.40957018864799133,0.20987419760705486,0,12,12
+limited liability -> political stability,K13 -> P16,Law and economics,Economic systems,Cross-field boundary,0.4095345964153314,0.2074200649395321,0,15,15
+corporate income tax -> weak institutions,K34 -> O17,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4094927908330953,0.20806718938472282,0,14,14
+constitutional reforms -> investment,K10 -> G31,Law and economics,Financial economics,Cross-field boundary,0.40936904768603877,0.20641824372500686,0,16,16
+constitutional reforms -> knowledge spillovers,K10 -> O36,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.4093101498030315,0.20699888988036916,0,15,15
+sustainability of collusion -> economic activity,K21 -> E20,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.40927562790335154,0.2077800934298405,0,14,14
+compliance -> public education,K40 -> H52,Law and economics,Public economics,Cross-field boundary,0.40920449835263295,0.20694910726472632,0,15,15
+constitutional reforms -> human capital,K10 -> J24,Law and economics,Labor and demographic economics,Cross-field boundary,0.4091967330405653,0.20616165974194633,0,16,16
+legal aid -> network structure,K36 -> D85,Law and economics,Microeconomics,Cross-field boundary,0.40918686908192015,0.20617390938170746,0,16,16
+perturbation methods -> counterfeiting,C60 -> K42,Mathematical and quantitative methods,Law and economics,Cross-field boundary,0.40916634955914377,0.21016809529706018,0,11,11
+legal aid -> economic outcomes,K36 -> P47,Law and economics,Economic systems,Cross-field boundary,0.4091557478694599,0.20682604892029732,0,15,15
+public education -> compliance,H52 -> K40,Public economics,Law and economics,Cross-field boundary,0.40906218229243313,0.20831953916185414,0,13,13
+dividends -> sustainability of collusion,G35 -> K21,Financial economics,Law and economics,Cross-field boundary,0.40901665540972804,0.2091884148785892,0,12,12
+legal aid -> leverage,K36 -> G24,Law and economics,Financial economics,Cross-field boundary,0.40898948206687796,0.20586599940251826,0,16,16
+financial constraints -> sustainability of collusion,H60 -> K21,Public economics,Law and economics,Cross-field boundary,0.4089604307634644,0.20649281607620765,0,15,15
+constitutional reforms -> monetary policy,K10 -> E52,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.408959129892114,0.20722696143897243,0,14,14
+fertility -> sustainability of collusion,J13 -> K21,Labor and demographic economics,Law and economics,Cross-field boundary,0.4089517817364708,0.20646802596595837,0,15,15
+increased immigration -> public drug insurance,K37 -> H51,Law and economics,Public economics,Cross-field boundary,0.4089437354624829,0.20983692426994627,0,11,11
+bankruptcy -> labor supply,K35 -> J22,Law and economics,Labor and demographic economics,Cross-field boundary,0.40894272543886295,0.20888969239718772,0,12,12
+increased immigration -> market behavior,K37 -> G40,Law and economics,Financial economics,Cross-field boundary,0.4088698571831374,0.2063669919663167,0,15,15
+corporate income tax -> equilibrium outcomes,K34 -> D51,Law and economics,Microeconomics,Cross-field boundary,0.408857749361347,0.2088283956350578,0,12,12
+regulatory competition -> growth,K20 -> O40,Law and economics,"Economic development, innovation, and growth",Cross-field boundary,0.40868139557974986,0.20681333422344572,0,14,14
+constitutional reforms -> capital inflows,K10 -> F21,Law and economics,International economics,Cross-field boundary,0.40867850512554244,0.20606826755190608,0,15,15
+training -> increased immigration,M53 -> K37,Business administration and business economics,Law and economics,Cross-field boundary,0.40866752817533153,0.21173479542679774,0,9,9
+higher education -> limited liability,I23 -> K13,"Health, education, and welfare",Law and economics,Cross-field boundary,0.4086653251328787,0.20680310826688483,0,14,14
+limited liability -> energy prices,K13 -> Q41,Law and economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.4086162406330858,0.20752921706870814,0,13,13
+sustainability of collusion -> poverty,K21 -> I32,Law and economics,"Health, education, and welfare",Cross-field boundary,0.4085988333438095,0.2074673404400445,0,13,13
+limited liability -> gender,K13 -> J16,Law and economics,Labor and demographic economics,Cross-field boundary,0.4085523354926103,0.2074161347617001,0,13,13
+constitutional reforms -> interest rates,K10 -> E43,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4085175443893057,0.20583169755533667,0,15,15
+network structure -> contract design,D85 -> K12,Microeconomics,Law and economics,Cross-field boundary,0.40839734029953506,0.2072203782477023,0,13,13
+educational attainment -> limited liability,I21 -> K13,"Health, education, and welfare",Law and economics,Cross-field boundary,0.40835626483049264,0.20635320325751974,0,14,14
+statistical discrimination -> limited liability,J79 -> K13,Labor and demographic economics,Law and economics,Cross-field boundary,0.40832517489269815,0.2070912676977532,0,13,13
+increased immigration -> training,K37 -> M53,Law and economics,Business administration and business economics,Cross-field boundary,0.4083110754826202,0.21375976826183166,0,7,7
+legal aid -> higher education,K36 -> I23,Law and economics,"Health, education, and welfare",Cross-field boundary,0.40826483302660116,0.2069557722019434,0,13,13
+wicksellian rules -> counterfeiting,E12 -> K42,Macroeconomics and monetary economics,Law and economics,Cross-field boundary,0.40826472768173444,0.206184130640993,0,14,14
+joining the ems -> legal reform,J45 -> K41,Labor and demographic economics,Law and economics,Cross-field boundary,0.4081979784290032,0.20608326864328486,0,14,14
+corporate income tax -> managerial power,K34 -> M54,Law and economics,Business administration and business economics,Cross-field boundary,0.4081408065370452,0.21086996538279443,0,9,9
+limited liability -> segregation,K13 -> R28,Law and economics,"Urban, rural, and regional economics",Cross-field boundary,0.40811514026366974,0.20853263099575614,0,11,11
+accounting -> counterfeiting,M41 -> K42,Business administration and business economics,Law and economics,Cross-field boundary,0.40805133597338045,0.20588742038565142,0,14,14
+health insurance -> electoral outcomes,I13 -> K16,"Health, education, and welfare",Law and economics,Cross-field boundary,0.4080118065105604,0.20742243999147827,0,12,12
+constitutional reforms -> precautionary savings,K10 -> D14,Law and economics,Microeconomics,Cross-field boundary,0.40800416753910584,0.20578074017358924,0,14,14
+increased immigration -> dividends,K37 -> G35,Law and economics,Financial economics,Cross-field boundary,0.4078778843940329,0.20729731626158737,0,12,12
+aggregate shocks -> increased immigration,E19 -> K37,Macroeconomics and monetary economics,Law and economics,Cross-field boundary,0.40785519220644834,0.20814798441937318,0,11,11
+regulatory competition -> price volatility,K20 -> G13,Law and economics,Financial economics,Cross-field boundary,0.4078491084431153,0.20727422850219077,0,12,12
+legal aid -> auction outcomes,K36 -> D44,Law and economics,Microeconomics,Cross-field boundary,0.4078391756099778,0.20557647722346636,0,14,14
+legal aid -> managerial power,K36 -> M54,Law and economics,Business administration and business economics,Cross-field boundary,0.4078355133762607,0.20555041284603787,0,14,14
+electoral outcomes -> economic expansion,K16 -> N12,Law and economics,Economic history,Cross-field boundary,0.407809693039552,0.207142695182028,0,12,12
+regulatory environment -> time,K23 -> C41,Law and economics,Mathematical and quantitative methods,Cross-field boundary,0.40779201353824623,0.20632146835349377,0,13,13
+contract design -> measurement errors,K12 -> C83,Law and economics,Mathematical and quantitative methods,Cross-field boundary,0.40778667672920665,0.20626523767204152,0,13,13
+age -> limited liability,J14 -> K13,Labor and demographic economics,Law and economics,Cross-field boundary,0.4077653284489552,0.20803915279203034,0,11,11
+limited liability -> high-skilled immigrants,K13 -> J61,Law and economics,Labor and demographic economics,Cross-field boundary,0.4077496833130978,0.2072182748418146,0,12,12
+lack of government commitment -> increased immigration,H19 -> K37,Public economics,Law and economics,Cross-field boundary,0.40767474037176377,0.20606708727042916,0,13,13
+optimal security design -> aggregate output,K24 -> E10,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4076554543265267,0.20526760024975796,0,14,14
+public drug insurance -> increased immigration,H51 -> K37,Public economics,Law and economics,Cross-field boundary,0.4075922591004003,0.2067824902873084,0,12,12
+corporate income tax -> economic downturns,K34 -> F44,Law and economics,International economics,Cross-field boundary,0.40755278758447083,0.20777020837065713,0,11,11
+unions -> limited liability,J51 -> K13,Labor and demographic economics,Law and economics,Cross-field boundary,0.4075323501626666,0.20585738157267539,0,13,13
+regulatory competition -> educational attainment,K20 -> I21,Law and economics,"Health, education, and welfare",Cross-field boundary,0.4075111699045997,0.20507545576839412,0,14,14
+trade openness -> counterfeiting,F43 -> K42,International economics,Law and economics,Cross-field boundary,0.4074480328605691,0.2057532630012902,0,13,13
+bankruptcy -> fiscal deficits,K35 -> H68,Law and economics,Public economics,Cross-field boundary,0.40744740804111,0.20860588749269798,0,10,10
+constitutional reforms -> depreciation,K10 -> D25,Law and economics,Microeconomics,Cross-field boundary,0.4074190889470609,0.2049139231013492,0,14,14
+increased immigration -> collusive behavior,K37 -> D26,Law and economics,Microeconomics,Cross-field boundary,0.40732241127742974,0.20557493797595797,0,13,13
+monitoring -> legal reform,E50 -> K41,Macroeconomics and monetary economics,Law and economics,Cross-field boundary,0.4073192740101866,0.2064045645072018,0,12,12

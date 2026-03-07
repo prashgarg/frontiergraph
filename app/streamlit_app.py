@@ -3,52 +3,31 @@ from __future__ import annotations
 import os
 import sqlite3
 from pathlib import Path
-from urllib.parse import quote
 
 import numpy as np
 import pandas as pd
 import streamlit as st
 
 from src.explain import build_idea_brief_markdown
+from src.opportunity_data import (
+    JEL_FIELD_NAMES,
+    NOVELTY_LABELS,
+    PRESET_HELP,
+    compute_priority_score,
+    connect_readonly,
+    load_candidate_summary,
+    load_nodes,
+    recommendation_play,
+    to_float,
+    to_int,
+    why_now,
+)
 
-
-JEL_FIELD_NAMES = {
-    "A": "General economics and teaching",
-    "B": "History of economic thought",
-    "C": "Mathematical and quantitative methods",
-    "D": "Microeconomics",
-    "E": "Macroeconomics and monetary economics",
-    "F": "International economics",
-    "G": "Financial economics",
-    "H": "Public economics",
-    "I": "Health, education, and welfare",
-    "J": "Labor and demographic economics",
-    "K": "Law and economics",
-    "L": "Industrial organization",
-    "M": "Business administration and business economics",
-    "N": "Economic history",
-    "O": "Economic development, innovation, and growth",
-    "P": "Economic systems",
-    "Q": "Agriculture, natural resources, and environment",
-    "R": "Urban, rural, and regional economics",
-    "Y": "Miscellaneous",
-    "Z": "Other special topics",
-}
-
-NOVELTY_LABELS = {
-    "gap_internal": "Within-field gap",
-    "gap_crossfield": "Cross-field gap",
-    "boundary_internal": "Within-field boundary",
-    "boundary_crossfield": "Cross-field boundary",
-}
-
-PRESET_HELP = {
-    "Balanced": "A broad default that keeps the base graph score central while still rewarding low-contact opportunities.",
-    "Bold frontier": "Pushes toward boundary and cross-field links that could open fresh lines of work.",
-    "Fast follow": "Favors ideas that already have strong graph support and look tractable now.",
-    "Underexplored": "Pushes toward thinly connected areas where direct work has lagged the surrounding graph.",
-    "Bridge builder": "Looks for ideas that connect literatures and shift the field map.",
-}
+SITE_URL = "https://frontiergraph.com"
+METHOD_URL = f"{SITE_URL}/method/"
+DOWNLOADS_URL = f"{SITE_URL}/downloads/"
+DISCOVER_URL = f"{SITE_URL}/discover/"
+REPO_URL = "https://github.com/prashgarg/frontiergraph"
 
 
 def inject_css() -> None:
@@ -91,6 +70,16 @@ def inject_css() -> None:
             line-height: 1.55;
             font-size: 0.98rem;
         }
+        .app-nav {
+            margin: 0.2rem 0 1rem;
+            color: #5d696f;
+            font-size: 0.95rem;
+        }
+        .app-nav a {
+            color: #2e5f8a;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
         .muted {
             color: #5d696f;
             font-size: 0.92rem;
@@ -112,86 +101,14 @@ def inject_css() -> None:
     )
 
 
-def connect_readonly(db_path: str) -> sqlite3.Connection:
-    path = Path(db_path).expanduser().resolve()
-    uri = f"file:{quote(str(path))}?mode=ro"
-    return sqlite3.connect(uri, uri=True, check_same_thread=False, timeout=30)
-
-
 @st.cache_data(show_spinner=False)
-def load_nodes(db_path: str) -> pd.DataFrame:
-    with connect_readonly(db_path) as conn:
-        return pd.read_sql_query("SELECT code, label FROM nodes ORDER BY label, code", conn)
+def load_nodes_cached(db_path: str) -> pd.DataFrame:
+    return load_nodes(db_path)
 
 
 @st.cache_data(show_spinner="Loading ranked economics opportunities...")
-def load_candidate_summary(db_path: str) -> pd.DataFrame:
-    sql = """
-        SELECT
-            c.u,
-            c.v,
-            c.score,
-            c.rank,
-            c.path_support_norm,
-            c.gap_bonus,
-            c.motif_bonus_norm,
-            c.hub_penalty,
-            c.mediator_count,
-            c.motif_count,
-            c.cooc_count,
-            c.first_year_seen,
-            c.last_year_seen,
-            nu.label AS u_label,
-            nv.label AS v_label
-        FROM candidates c
-        LEFT JOIN nodes nu ON c.u = nu.code
-        LEFT JOIN nodes nv ON c.v = nv.code
-    """
-    with connect_readonly(db_path) as conn:
-        df = pd.read_sql_query(sql, conn)
-
-    for col in [
-        "score",
-        "rank",
-        "path_support_norm",
-        "gap_bonus",
-        "motif_bonus_norm",
-        "hub_penalty",
-        "mediator_count",
-        "motif_count",
-        "cooc_count",
-        "first_year_seen",
-        "last_year_seen",
-    ]:
-        df[col] = pd.to_numeric(df[col], errors="coerce")
-
-    df["u"] = df["u"].astype(str)
-    df["v"] = df["v"].astype(str)
-    df["u_label"] = df["u_label"].fillna(df["u"]).astype(str)
-    df["v_label"] = df["v_label"].fillna(df["v"]).astype(str)
-    df["source_field"] = df["u"].str[0]
-    df["target_field"] = df["v"].str[0]
-    df["source_field_name"] = df["source_field"].map(JEL_FIELD_NAMES).fillna("Unmapped field")
-    df["target_field_name"] = df["target_field"].map(JEL_FIELD_NAMES).fillna("Unmapped field")
-    df["cross_field"] = df["source_field"] != df["target_field"]
-    df["boundary_flag"] = df["cross_field"] & (df["cooc_count"].fillna(0) <= 0)
-    df["novelty_type"] = df.apply(classify_novelty, axis=1)
-    df["novelty_label"] = df["novelty_type"].map(NOVELTY_LABELS).fillna("Other")
-    df["opportunity"] = df["u_label"] + " -> " + df["v_label"]
-    df["code_pair"] = df["u"] + " -> " + df["v"]
-
-    cooc_log = np.log1p(df["cooc_count"].fillna(0).clip(lower=0))
-    mediator_log = np.log1p(df["mediator_count"].fillna(0).clip(lower=0))
-    motif_log = np.log1p(df["motif_count"].fillna(0).clip(lower=0))
-    last_seen = df["last_year_seen"].fillna(0)
-
-    df["low_contact_norm"] = 1.0 - normalize_series(cooc_log)
-    df["mediator_norm"] = normalize_series(mediator_log)
-    df["motif_count_norm"] = normalize_series(motif_log)
-    df["staleness_norm"] = 1.0 - normalize_series(last_seen)
-    df["boundary_norm"] = df["boundary_flag"].astype(float)
-    df["cross_field_norm"] = df["cross_field"].astype(float)
-    return df
+def load_candidate_summary_cached(db_path: str) -> pd.DataFrame:
+    return load_candidate_summary(db_path)
 
 
 def query_df(db_path: str, sql: str, params: tuple = ()) -> pd.DataFrame:
@@ -264,99 +181,31 @@ def load_candidate_bundle(db_path: str, u: str, v: str) -> dict[str, pd.DataFram
         "neighborhood_row": neighborhood_row,
     }
 
-
-def normalize_series(series: pd.Series) -> pd.Series:
-    s = pd.to_numeric(series, errors="coerce").fillna(0.0).astype(float)
-    if s.empty:
-        return s
-    s_min = float(s.min())
-    s_max = float(s.max())
-    if np.isclose(s_min, s_max):
-        if s_max <= 0:
-            return pd.Series(np.zeros(len(s)), index=s.index)
-        return pd.Series(np.ones(len(s)), index=s.index)
-    return (s - s_min) / (s_max - s_min)
-
-
-def to_float(value: object, default: float = 0.0) -> float:
-    numeric = pd.to_numeric(pd.Series([value]), errors="coerce").iloc[0]
-    return default if pd.isna(numeric) else float(numeric)
-
-
-def to_int(value: object, default: int = 0) -> int:
-    numeric = pd.to_numeric(pd.Series([value]), errors="coerce").iloc[0]
-    return default if pd.isna(numeric) else int(numeric)
-
-
-def classify_novelty(row: pd.Series) -> str:
-    cooc_count = to_float(row.get("cooc_count", 0), default=0.0)
-    cross_field = str(row.get("u", ""))[:1] != str(row.get("v", ""))[:1]
-    if cooc_count <= 0:
-        return "boundary_crossfield" if cross_field else "boundary_internal"
-    return "gap_crossfield" if cross_field else "gap_internal"
-
-
-def compute_priority_score(df: pd.DataFrame, preset: str) -> pd.Series:
-    base = df["score"].fillna(0.0)
-    path = df["path_support_norm"].fillna(0.0)
-    gap = df["gap_bonus"].fillna(0.0)
-    motif = df["motif_bonus_norm"].fillna(0.0)
-    hub = df["hub_penalty"].fillna(0.0)
-    low_contact = df["low_contact_norm"].fillna(0.0)
-    mediator = df["mediator_norm"].fillna(0.0)
-    staleness = df["staleness_norm"].fillna(0.0)
-    cross = df["cross_field_norm"].fillna(0.0)
-    boundary = df["boundary_norm"].fillna(0.0)
-
-    if preset == "Bold frontier":
-        return 0.38 * base + 0.24 * boundary + 0.16 * cross + 0.12 * low_contact + 0.10 * (1.0 - hub)
-    if preset == "Fast follow":
-        return 0.42 * path + 0.20 * motif + 0.16 * base + 0.12 * mediator + 0.10 * (1.0 - low_contact)
-    if preset == "Underexplored":
-        return 0.28 * base + 0.26 * gap + 0.20 * low_contact + 0.14 * staleness + 0.12 * (1.0 - hub)
-    if preset == "Bridge builder":
-        return 0.34 * base + 0.24 * cross + 0.18 * boundary + 0.14 * path + 0.10 * (1.0 - hub)
-    return 0.72 * base + 0.10 * cross + 0.08 * low_contact + 0.06 * (1.0 - hub) + 0.04 * mediator
-
-
-def recommendation_play(row: pd.Series) -> str:
-    novelty = str(row.get("novelty_type", ""))
-    path_support = to_float(row.get("path_support_norm", 0.0), default=0.0)
-    gap_bonus = to_float(row.get("gap_bonus", 0.0), default=0.0)
-    mediator_count = to_int(row.get("mediator_count", 0), default=0)
-    motif_count = to_int(row.get("motif_count", 0), default=0)
-
-    if novelty == "boundary_crossfield" and path_support >= 0.7:
-        return "Build a bridge paper across literatures."
-    if novelty == "boundary_crossfield":
-        return "Start with a scoping review before a bridge paper."
-    if gap_bonus >= 0.4 and mediator_count >= 25:
-        return "Convert scattered hints into a direct empirical test."
-    if gap_bonus >= 0.4:
-        return "Commission a short synthesis and pilot design."
-    if path_support >= 0.8 and motif_count >= 100:
-        return "This is a strong candidate for a flagship empirical paper."
-    if path_support >= 0.7:
-        return "Test the direct link with a focused empirical design."
-    return "Use this as a seminar seed or targeted replication map."
-
-
-def why_now(row: pd.Series) -> str:
-    source_label = str(row.get("u_label", row.get("u", "")))
-    target_label = str(row.get("v_label", row.get("v", "")))
-    mediator_count = to_int(row.get("mediator_count", 0), default=0)
-    motif_count = to_int(row.get("motif_count", 0), default=0)
-    cooc_count = to_int(row.get("cooc_count", 0), default=0)
-    novelty = str(row.get("novelty_label", ""))
-    return (
-        f"{source_label} -> {target_label} has {mediator_count} mediators and {motif_count} supporting motifs, "
-        f"while direct contact remains at {cooc_count} prior co-occurrences. In the current graph it looks like a "
-        f"{novelty.lower()}."
-    )
-
-
 def field_option_label(field_code: str) -> str:
     return f"{field_code} | {JEL_FIELD_NAMES.get(field_code, 'Unmapped field')}"
+
+
+def query_param(name: str) -> str:
+    if not hasattr(st, "query_params"):
+        return ""
+    value = st.query_params.get(name, "")
+    if isinstance(value, list):
+        return str(value[0]) if value else ""
+    return str(value)
+
+
+def normalize_preset(value: str) -> str:
+    normalized = value.strip().lower()
+    for candidate in PRESET_HELP:
+        if candidate.lower() == normalized:
+            return candidate
+    return "Balanced"
+
+
+def parse_flag(value: str, default: bool = False) -> bool:
+    if not value:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "y", "on"}
 
 
 def candidate_option_label(row: pd.Series) -> str:
@@ -744,6 +593,19 @@ def main() -> None:
     inject_css()
 
     st.markdown(
+        f"""
+        <div class="app-nav">
+            <a href="{SITE_URL}">Site</a>
+            <a href="{DISCOVER_URL}">Discover</a>
+            <a href="{METHOD_URL}">Method</a>
+            <a href="{DOWNLOADS_URL}">Downloads</a>
+            <a href="{REPO_URL}">GitHub</a>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
         """
         <div class="hero-shell">
             <div class="eyebrow">FrontierGraph beta</div>
@@ -775,11 +637,17 @@ def main() -> None:
         st.error(f"Database not found: {db_path}")
         st.stop()
 
-    nodes_df = load_nodes(db_path)
-    candidates_df = load_candidate_summary(db_path)
+    nodes_df = load_nodes_cached(db_path)
+    candidates_df = load_candidate_summary_cached(db_path)
     if nodes_df.empty or candidates_df.empty:
         st.error("The database is missing the node or candidate tables needed by the app.")
         st.stop()
+
+    default_preset = normalize_preset(query_param("preset"))
+    default_search = query_param("search")
+    default_source_field = query_param("source_field").upper()
+    default_target_field = query_param("target_field").upper()
+    default_cross_field = parse_flag(query_param("only_cross_field"), default=False)
 
     available_fields = sorted(set(candidates_df["source_field"]) | set(candidates_df["target_field"]))
     novelty_options = list(NOVELTY_LABELS.values())
@@ -790,12 +658,23 @@ def main() -> None:
     with st.expander("Refine the ranking", expanded=False):
         col1, col2, col3 = st.columns(3)
         with col1:
-            preset = st.selectbox("Ranking mode", options=list(PRESET_HELP.keys()), index=0)
-            search_text = st.text_input("Keyword filter", value="")
+            preset_options = list(PRESET_HELP.keys())
+            preset = st.selectbox("Ranking mode", options=preset_options, index=preset_options.index(default_preset))
+            search_text = st.text_input("Keyword filter", value=default_search)
             top_n = st.slider("Shortlist size", min_value=10, max_value=150, value=30, step=10)
         with col2:
-            source_fields = st.multiselect("From fields", options=available_fields, format_func=field_option_label)
-            target_fields = st.multiselect("To fields", options=available_fields, format_func=field_option_label)
+            source_fields = st.multiselect(
+                "From fields",
+                options=available_fields,
+                default=[default_source_field] if default_source_field in available_fields else [],
+                format_func=field_option_label,
+            )
+            target_fields = st.multiselect(
+                "To fields",
+                options=available_fields,
+                default=[default_target_field] if default_target_field in available_fields else [],
+                format_func=field_option_label,
+            )
             novelty_filter = st.multiselect("Novelty lens", options=novelty_options, default=novelty_options)
         with col3:
             min_score = st.slider(
@@ -812,7 +691,7 @@ def main() -> None:
                 else None
             )
             min_mediators = st.slider("Minimum mediator count", min_value=0, max_value=100, value=5)
-            only_cross_field = st.checkbox("Only cross-field ideas", value=False)
+            only_cross_field = st.checkbox("Only cross-field ideas", value=default_cross_field)
 
     filtered_df = filter_candidates(
         candidates_df,

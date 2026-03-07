@@ -1,0 +1,19 @@
+opportunity,code_pair,source_field,target_field,novelty,priority,base_score,prior_contact,mediators,motifs
+fdi -> fertility,F23 -> J13,International economics,Labor and demographic economics,Cross-field boundary,0.4581913984250716,0.268300491790645,0,57,57
+mergers -> fertility,G34 -> J13,Financial economics,Labor and demographic economics,Cross-field boundary,0.4591285924046646,0.2689186151289111,0,57,57
+age -> terms of trade,J14 -> F14,Labor and demographic economics,International economics,Cross-field boundary,0.45450179336872193,0.26117926518931567,0,61,61
+public debt -> personalized medicine,H63 -> I11,Public economics,"Health, education, and welfare",Cross-field boundary,0.453131089208723,0.2592459132733995,0,58,58
+patents -> unemployment,O34 -> J64,"Economic development, innovation, and growth",Labor and demographic economics,Cross-field boundary,0.45160645608704203,0.2583024374866058,0,52,52
+limited liability -> human capital,K13 -> J24,Law and economics,Labor and demographic economics,Cross-field boundary,0.45428200603048163,0.25883761122280363,0,64,64
+central bank independence -> immigration,E58 -> F22,Macroeconomics and monetary economics,International economics,Cross-field boundary,0.44934469709525027,0.25539752875608474,0,52,52
+emu -> life expectancy,F36 -> J17,International economics,Labor and demographic economics,Cross-field boundary,0.44801424853887517,0.2532867479690263,0,50,50
+ethnic diversity -> public debt,J15 -> H63,Labor and demographic economics,Public economics,Cross-field boundary,0.44736920508307565,0.2511528699527238,0,56,56
+clustering -> economic stability,C38 -> E63,Mathematical and quantitative methods,Macroeconomics and monetary economics,Cross-field boundary,0.43916782479337085,0.24674569759273224,0,30,30
+fertility -> fdi,J13 -> F23,Labor and demographic economics,International economics,Cross-field boundary,0.4468119109581596,0.2487042734508959,0,62,62
+vertical integration -> fertility,L22 -> J13,Industrial organization,Labor and demographic economics,Cross-field boundary,0.4422684036824366,0.24672774150051624,0,42,42
+patents -> monetary policy,O34 -> E52,"Economic development, innovation, and growth",Macroeconomics and monetary economics,Cross-field boundary,0.4411900486851613,0.24599850948159668,0,39,39
+limited liability -> unemployment,K13 -> J64,Law and economics,Labor and demographic economics,Cross-field boundary,0.4450865866478685,0.24688789932156696,0,54,54
+ethnic diversity -> expected returns,J15 -> G17,Labor and demographic economics,Financial economics,Cross-field boundary,0.44362860173461044,0.24504448787548308,0,54,54
+trade liberalization -> less-confident households,F13 -> G59,International economics,Financial economics,Cross-field boundary,0.4411270061066243,0.2440351107744641,0,44,44
+financial literacy -> unemployment,G53 -> J64,Financial economics,Labor and demographic economics,Cross-field boundary,0.4366712487998451,0.24125891733148386,0,36,36
+limited liability -> monetary policy,K13 -> E52,Law and economics,Macroeconomics and monetary economics,Cross-field boundary,0.4387930216232418,0.2419363545047799,0,38,38

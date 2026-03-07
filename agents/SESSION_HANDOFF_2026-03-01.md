@@ -1,7 +1,7 @@
 # Session Handoff (2026-03-01)
 
 ## Project Context
-- Repo: `missing-claims` pipeline + analysis stack for "Missing Claims" metascience paper.
+- Repo: `frontiergraph` pipeline + analysis stack for the FrontierGraph metascience paper and beta product.
 - Core data in use: `data/processed/corpus_causalclaims.parquet` and related outputs.
 - Objective in this phase: move from generic tuning to substantive, decision-gated analysis against strong baseline (`pref_attach`).
 

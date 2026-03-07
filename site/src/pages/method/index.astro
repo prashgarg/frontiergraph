@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Method | FrontierGraph"
+  description="How FrontierGraph turns the economics literature graph into deterministic ranked research opportunities."
+>
+  <main>
+    <section class="page-hero">
+      <span class="eyebrow">Method note</span>
+      <h1>How FrontierGraph works</h1>
+      <p class="lede">
+        The system is built around one hard constraint: AI may help convert text into graph structure, but the ranking
+        itself should remain deterministic, inspectable, and open to scrutiny.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="card-grid">
+        <article class="card">
+          <span class="eyebrow">1</span>
+          <h3>Build the graph</h3>
+          <p class="card-copy">
+            Papers become directed claim edges between coded economics concepts. This is the only stage where AI is
+            allowed.
+          </p>
+        </article>
+        <article class="card">
+          <span class="eyebrow">2</span>
+          <h3>Score missing links</h3>
+          <p class="card-copy">
+            The engine combines gap signals, path support, motif completion, hub penalties, field distance, and prior contact.
+          </p>
+        </article>
+        <article class="card">
+          <span class="eyebrow">3</span>
+          <h3>Inspect the evidence</h3>
+          <p class="card-copy">
+            Users move from a shortlist to mediators, paths, supporting papers, and exportable idea briefs.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section split-grid">
+      <article class="content-panel">
+        <span class="eyebrow">What drives the ranking</span>
+        <h2>Signals</h2>
+        <p class="section-copy">
+          Underexplored concept-pair gaps, path-implied missing direct edges, motif completion, low prior contact, field
+          distance, and hub penalties.
+        </p>
+      </article>
+      <article class="content-panel">
+        <span class="eyebrow">What the beta is not doing</span>
+        <h2>Current scope</h2>
+        <p class="section-copy">
+          No user accounts, no saved agendas, no downstream impact forecasting, and no custom frontend beyond Streamlit yet.
+        </p>
+      </article>
+      <article class="content-panel">
+        <span class="eyebrow">Stance</span>
+        <h2>Tool, not oracle</h2>
+        <p class="section-copy">
+          FrontierGraph is designed to assist judgment, not replace it. It surfaces structured opportunities and exposes the evidence.
+        </p>
+      </article>
+    </section>
+  </main>
+</BaseLayout>

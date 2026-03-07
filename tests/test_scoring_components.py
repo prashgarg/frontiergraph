@@ -73,7 +73,7 @@ def test_llm_estimate_and_budget_guardrails(tmp_path: Path) -> None:
                 "llm:",
                 "  model: gpt-5-nano",
                 "  max_budget_usd: 0",
-                "  key_path: ../key/openai_key_prashant.txt",
+                "  key_path: ../key/openai_api_key.txt",
                 "  pricing_per_million_tokens:",
                 "    input_usd: 1.0",
                 "    output_usd: 1.0",

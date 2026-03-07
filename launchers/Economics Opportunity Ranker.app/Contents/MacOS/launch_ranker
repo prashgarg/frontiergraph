@@ -1,7 +1,8 @@
 #!/bin/zsh
 set -euo pipefail
 
-REPO_DIR="/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant Garg/GraphDir"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO_DIR="$(cd "$SCRIPT_DIR/../../../.." && pwd)"
 LAUNCHER="$REPO_DIR/launchers/run_ranker_gui.sh"
 LOG_FILE="$REPO_DIR/.ranker_runtime/logs/launcher.log"
 

@@ -1,0 +1,201 @@
+opportunity,code_pair,source_field,target_field,novelty,priority,base_score,prior_contact,mediators,motifs
+public debt -> personalized medicine,H63 -> I11,Public economics,"Health, education, and welfare",Cross-field boundary,0.453131089208723,0.2592459132733995,0,58,58
+hac rule -> interest rates,I18 -> E43,"Health, education, and welfare",Macroeconomics and monetary economics,Cross-field boundary,0.44000630097575577,0.24110071686913467,0,48,48
+limited liability -> educational attainment,K13 -> I21,Law and economics,"Health, education, and welfare",Cross-field boundary,0.4351878219706976,0.23489170095454795,0,42,42
+educational policies -> consumption,I28 -> E21,"Health, education, and welfare",Macroeconomics and monetary economics,Cross-field boundary,0.43018788683689735,0.22851516558156584,0,38,38
+higher education -> public debt,I23 -> H63,"Health, education, and welfare",Public economics,Cross-field boundary,0.42966050758925556,0.22669070007336203,0,42,42
+exchange rates -> inequality,F31 -> I24,International economics,"Health, education, and welfare",Cross-field gap,0.4275616924518501,0.2810061841945504,11,178,178
+personalized medicine -> public debt,I11 -> H63,"Health, education, and welfare",Public economics,Cross-field boundary,0.4251992780096963,0.22209141895200218,0,34,34
+higher education -> price level,I23 -> E30,"Health, education, and welfare",Macroeconomics and monetary economics,Cross-field boundary,0.42481311410222394,0.22064106637481581,0,37,37
+public debt -> higher education,H63 -> I23,Public economics,"Health, education, and welfare",Cross-field boundary,0.42419894519532264,0.2201687801804208,0,35,35
+higher education -> emu,I23 -> F36,"Health, education, and welfare",International economics,Cross-field boundary,0.42224164522765695,0.21788316233729307,0,33,33
+public funding -> trade liberalization,I22 -> F13,"Health, education, and welfare",International economics,Cross-field boundary,0.4219793760347043,0.2167399345044163,0,35,35
+education -> consumption,I29 -> E21,"Health, education, and welfare",Macroeconomics and monetary economics,Cross-field boundary,0.4216465834944685,0.21846892060345302,0,29,29
+training -> health outcomes,M53 -> I14,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.4208250095360973,0.2213945957717711,0,21,21
+interest rates -> hac rule,E43 -> I18,Macroeconomics and monetary economics,"Health, education, and welfare",Cross-field boundary,0.42047546162969907,0.21845128921283957,0,25,25
+health insurance -> terms of trade,I13 -> F14,"Health, education, and welfare",International economics,Cross-field boundary,0.41987187620297994,0.21621656892084504,0,28,28
+entrepreneurship -> personalized medicine,M13 -> I11,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.41877209338746463,0.21782313887520163,0,21,21
+banks -> health capital,G21 -> I15,Financial economics,"Health, education, and welfare",Cross-field boundary,0.41853838064526216,0.215999500100915,0,24,24
+offshoring -> personalized medicine,L24 -> I11,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.41848667656658667,0.2153426509724459,0,25,25
+health insurance -> fdi,I13 -> F23,"Health, education, and welfare",International economics,Cross-field boundary,0.41845326954147277,0.2153707471284499,0,25,25
+emu -> increasing returns,F36 -> I26,International economics,"Health, education, and welfare",Cross-field boundary,0.4182998170749158,0.21294371666740272,0,30,30
+central bank independence -> increasing returns,E58 -> I26,Macroeconomics and monetary economics,"Health, education, and welfare",Cross-field boundary,0.4181386389556865,0.21403168758237212,0,27,27
+nominal wage contracts -> educational attainment,J41 -> I21,Labor and demographic economics,"Health, education, and welfare",Cross-field boundary,0.4178965495900094,0.2179181059600158,0,19,19
+emerging markets -> educational attainment,G15 -> I21,Financial economics,"Health, education, and welfare",Cross-field boundary,0.41780287516904235,0.21653010140633,0,21,21
+personalized medicine -> entrepreneurship,I11 -> M13,"Health, education, and welfare",Business administration and business economics,Cross-field boundary,0.4178003332649627,0.21336102081613903,0,27,27
+corporate income tax -> inequality,K34 -> I24,Law and economics,"Health, education, and welfare",Cross-field boundary,0.41729758373096465,0.21607543190526074,0,20,20
+hegemony -> welfare implications,F54 -> I30,International economics,"Health, education, and welfare",Cross-field boundary,0.4170128401760916,0.2146412608557919,0,22,22
+fiscal policy -> economic health,E62 -> I10,Macroeconomics and monetary economics,"Health, education, and welfare",Cross-field boundary,0.41696096760187923,0.2155469326014045,0,20,20
+emu -> higher education,F36 -> I23,International economics,"Health, education, and welfare",Cross-field boundary,0.41692939483154157,0.2129420862197629,0,25,25
+health insurance -> firm behavior,I13 -> D21,"Health, education, and welfare",Microeconomics,Cross-field boundary,0.4161870561741884,0.21290398007802566,0,23,23
+economic integration -> health insurance,F15 -> I13,International economics,"Health, education, and welfare",Cross-field boundary,0.41610008834660656,0.21562256192571588,0,18,18
+educational policies -> equity premium,I28 -> G12,"Health, education, and welfare",Financial economics,Cross-field boundary,0.4157975180484253,0.2112524559390241,0,25,25
+educational attainment -> emerging markets,I21 -> G15,"Health, education, and welfare",Financial economics,Cross-field boundary,0.4155615751440994,0.21232360236565664,0,22,22
+theoretical models -> personalized medicine,O41 -> I11,"Economic development, innovation, and growth","Health, education, and welfare",Cross-field boundary,0.41539137904431506,0.21320212720017598,0,20,20
+personalized medicine -> offshoring,I11 -> L24,"Health, education, and welfare",Industrial organization,Cross-field boundary,0.4153842766403206,0.2106077135383774,0,25,25
+legal aid -> welfare implications,K36 -> I30,Law and economics,"Health, education, and welfare",Cross-field boundary,0.4151997253218742,0.21031795656607719,0,25,25
+trade liberalization -> public funding,F13 -> I22,International economics,"Health, education, and welfare",Cross-field boundary,0.4150222946180524,0.21196416575787558,0,21,21
+contract design -> educational attainment,K12 -> I21,Law and economics,"Health, education, and welfare",Cross-field boundary,0.41449766663533505,0.21308514940060316,0,18,18
+ceo compensation -> welfare implications,M12 -> I30,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.4144268398888415,0.21603764413285959,0,14,14
+monetary policy -> health insurance,E52 -> I13,Macroeconomics and monetary economics,"Health, education, and welfare",Cross-field boundary,0.4142089429934675,0.21741826970122094,0,12,12
+public funding -> home production,I22 -> D13,"Health, education, and welfare",Microeconomics,Cross-field boundary,0.41415214176174764,0.21184643841409037,0,19,19
+forecast targeting -> lower welfare,C53 -> I39,Mathematical and quantitative methods,"Health, education, and welfare",Cross-field boundary,0.41406589547145567,0.21630083617191231,0,13,13
+health insurance -> agglomeration,I13 -> R11,"Health, education, and welfare","Urban, rural, and regional economics",Cross-field boundary,0.41403497738928724,0.2110966417328746,0,20,20
+terms of trade -> health insurance,F14 -> I13,International economics,"Health, education, and welfare",Cross-field boundary,0.41382193241023096,0.2141381955586901,0,15,15
+limited liability -> higher education,K13 -> I23,Law and economics,"Health, education, and welfare",Cross-field boundary,0.41364878020011636,0.2110251692217427,0,19,19
+fiscal capacity -> higher education,H39 -> I23,Public economics,"Health, education, and welfare",Cross-field boundary,0.4135571511633409,0.20924710075458655,0,22,22
+ceo compensation -> educational attainment,M12 -> I21,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.41308417935943476,0.2128651450467167,0,15,15
+increasing returns -> emu,I26 -> F36,"Health, education, and welfare",International economics,Cross-field boundary,0.41282004810526834,0.21100229726707898,0,17,17
+public debt -> economic health,H63 -> I10,Public economics,"Health, education, and welfare",Cross-field boundary,0.4128094926941955,0.21042382096677878,0,18,18
+educational attainment -> ceo compensation,I21 -> M12,"Health, education, and welfare",Business administration and business economics,Cross-field boundary,0.4127640795754934,0.21125697164015472,0,17,17
+higher dependency ratio -> welfare implications,J19 -> I30,Labor and demographic economics,"Health, education, and welfare",Cross-field boundary,0.41267826189713236,0.21216193443410875,0,15,15
+personalized medicine -> financial crises,I11 -> G01,"Health, education, and welfare",Financial economics,Cross-field boundary,0.412530786839157,0.21200300067066158,0,15,15
+increased education levels -> renegotiation,I25 -> C78,"Health, education, and welfare",Mathematical and quantitative methods,Cross-field boundary,0.41231293933584906,0.20841123366134465,0,20,20
+r&d subsidies -> personalized medicine,O38 -> I11,"Economic development, innovation, and growth","Health, education, and welfare",Cross-field boundary,0.41230238911801476,0.20960370929854188,0,18,18
+reputation -> health improvements,L14 -> I12,Industrial organization,"Health, education, and welfare",Cross-field gap,0.4120961344218246,0.2812222419643122,41,176,176
+fdi -> health insurance,F23 -> I13,International economics,"Health, education, and welfare",Cross-field boundary,0.4120638968855446,0.2099061294193018,0,17,17
+personalized medicine -> growth trap,I11 -> O11,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4120006209267407,0.20988957785878387,0,17,17
+health insurance -> proposed reforms,I13 -> E69,"Health, education, and welfare",Macroeconomics and monetary economics,Cross-field boundary,0.411995324652337,0.20908999847321366,0,18,18
+oil prices -> educational attainment,L71 -> I21,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.41190977154881225,0.20839666090638181,0,19,19
+fiscal deficits -> personalized medicine,H68 -> I11,Public economics,"Health, education, and welfare",Cross-field boundary,0.41185803299814505,0.20953127037495306,0,17,17
+decentralization -> health capital,H77 -> I15,Public economics,"Health, education, and welfare",Cross-field boundary,0.41183831525358483,0.2108756977258678,0,15,15
+competition -> health capital,L13 -> I15,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.41176810987993845,0.20943396143240428,0,17,17
+hac rule -> aggregate demand,I18 -> E00,"Health, education, and welfare",Macroeconomics and monetary economics,Cross-field boundary,0.411688572328004,0.20933343347894462,0,17,17
+public funding -> cooperation,I22 -> C71,"Health, education, and welfare",Mathematical and quantitative methods,Cross-field boundary,0.4115809660589253,0.20850347390416524,0,18,18
+conceptual artists -> health outcomes,Z11 -> I14,Other special topics,"Health, education, and welfare",Cross-field boundary,0.4115470682691898,0.20976899594968393,0,16,16
+increasing returns -> economic downturns,I26 -> F44,"Health, education, and welfare",International economics,Cross-field boundary,0.41150700625172054,0.2120873950945729,0,13,13
+transparency -> health capital,G38 -> I15,Financial economics,"Health, education, and welfare",Cross-field boundary,0.4114855842353138,0.20840055160809973,0,18,18
+geoengineering breakthroughs -> health outcomes,Q55 -> I14,"Agriculture, natural resources, and environment","Health, education, and welfare",Cross-field boundary,0.4113568029902993,0.2101261527669222,0,15,15
+health improvements -> firm location decisions,I12 -> R30,"Health, education, and welfare","Urban, rural, and regional economics",Cross-field boundary,0.4112410439955073,0.20801154987351256,0,18,18
+corporate culture -> educational attainment,M14 -> I21,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.411030283024055,0.21043557955027867,0,14,14
+personalized medicine -> theoretical models,I11 -> O41,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4108748540004449,0.2074287771000049,0,18,18
+borrowing constraints -> economic health,F34 -> I10,International economics,"Health, education, and welfare",Cross-field boundary,0.41085838069256064,0.20868500400711829,0,16,16
+government policy changes -> educational attainment,O24 -> I21,"Economic development, innovation, and growth","Health, education, and welfare",Cross-field boundary,0.4107667670450815,0.2078718046057909,0,17,17
+hac rule -> economic integration,I18 -> F15,"Health, education, and welfare",International economics,Cross-field boundary,0.4107187285844817,0.2066147248724649,0,19,19
+educational policies -> trade openness,I28 -> F41,"Health, education, and welfare",International economics,Cross-field boundary,0.41065937465104785,0.20770356161253714,0,17,17
+efficiency wages -> health capital,J33 -> I15,Labor and demographic economics,"Health, education, and welfare",Cross-field boundary,0.41060224217847735,0.2090385110360981,0,15,15
+public funding -> job satisfaction,I22 -> J28,"Health, education, and welfare",Labor and demographic economics,Cross-field boundary,0.4105382524217094,0.20819081651769059,0,16,16
+state competition -> increasing returns,L49 -> I26,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.4104627122312484,0.20748036080891674,0,17,17
+hac rule -> gender,I18 -> J16,"Health, education, and welfare",Labor and demographic economics,Cross-field boundary,0.4104052714794527,0.2080002037295717,0,16,16
+hac rule -> financial crises,I18 -> G01,"Health, education, and welfare",Financial economics,Cross-field boundary,0.4103969369683167,0.20799002843355405,0,16,16
+health insurance -> labor supply,I13 -> J20,"Health, education, and welfare",Labor and demographic economics,Cross-field boundary,0.4103755699965521,0.20940034736641977,0,14,14
+trade openness -> health insurance,F41 -> I13,International economics,"Health, education, and welfare",Cross-field boundary,0.41032697805409907,0.21123885502489012,0,12,12
+fixed exchange rate regime -> health insurance,F33 -> I13,International economics,"Health, education, and welfare",Cross-field boundary,0.41016470577900443,0.21218937086621167,0,11,11
+us -> inequality,L87 -> I24,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.41008095903395364,0.2074852686103949,0,16,16
+health capital -> banks,I15 -> G21,"Health, education, and welfare",Financial economics,Cross-field boundary,0.4099897347686969,0.20881949077507972,0,14,14
+economic health -> expected returns,I10 -> G17,"Health, education, and welfare",Financial economics,Cross-field boundary,0.40996416804089547,0.20807331706100432,0,15,15
+limited liability -> economic health,K13 -> I10,Law and economics,"Health, education, and welfare",Cross-field boundary,0.40991021212308404,0.2114087935576246,0,11,11
+limited liability -> health capital,K13 -> I15,Law and economics,"Health, education, and welfare",Cross-field boundary,0.40988532075792294,0.2104436426945234,0,12,12
+nominal wage contracts -> poverty,J41 -> I32,Labor and demographic economics,"Health, education, and welfare",Cross-field boundary,0.4097591182925108,0.2102639297921467,0,12,12
+higher education -> aggregate demand,I23 -> E00,"Health, education, and welfare",Macroeconomics and monetary economics,Cross-field boundary,0.4096011308653818,0.2076503832895509,0,15,15
+proposed reforms -> health insurance,E69 -> I13,Macroeconomics and monetary economics,"Health, education, and welfare",Cross-field boundary,0.4095883054694254,0.21078468240222245,0,11,11
+expected returns -> economic health,G17 -> I10,Financial economics,"Health, education, and welfare",Cross-field boundary,0.409577061305596,0.20899982308338882,0,13,13
+hac rule -> automation,I18 -> L23,"Health, education, and welfare",Industrial organization,Cross-field boundary,0.409552525028264,0.20825660056801054,0,14,14
+higher education -> price stickiness,I23 -> C54,"Health, education, and welfare",Mathematical and quantitative methods,Cross-field boundary,0.4094685139281301,0.20727833670344095,0,15,15
+capital mobility -> personalized medicine,F20 -> I11,International economics,"Health, education, and welfare",Cross-field boundary,0.4094625353587371,0.2059339664132172,0,17,17
+advertising -> educational attainment,M37 -> I21,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.4093907655797785,0.2096732016751572,0,12,12
+ceo compensation -> lower welfare,M12 -> I39,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.4093691053506839,0.20964815652565033,0,12,12
+gender -> hac rule,J16 -> I18,Labor and demographic economics,"Health, education, and welfare",Cross-field boundary,0.4091331806765916,0.20830794124356744,0,13,13
+economic health -> depreciation,I10 -> D25,"Health, education, and welfare",Microeconomics,Cross-field boundary,0.4091061378357069,0.2067123929386692,0,15,15
+public funding -> emu,I22 -> F36,"Health, education, and welfare",International economics,Cross-field boundary,0.4090891365371917,0.20746895459918022,0,14,14
+hac rule -> growth trap,I18 -> O11,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4089871295366779,0.20813139591767424,0,13,13
+overruling -> inequality,L43 -> I24,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.4089749458712578,0.2058376405184437,0,16,16
+educational attainment -> corporate culture,I21 -> M14,"Health, education, and welfare",Business administration and business economics,Cross-field boundary,0.4089695529392757,0.2058384882033389,0,16,16
+education -> market liquidity,I29 -> G10,"Health, education, and welfare",Financial economics,Cross-field boundary,0.40883832089651945,0.20632008901120455,0,15,15
+economic integration -> hac rule,F15 -> I18,International economics,"Health, education, and welfare",Cross-field boundary,0.40882317486241565,0.20704726387745812,0,14,14
+higher education -> limited liability,I23 -> K13,"Health, education, and welfare",Law and economics,Cross-field boundary,0.4086653251328787,0.20680310826688483,0,14,14
+sustainability of collusion -> poverty,K21 -> I32,Law and economics,"Health, education, and welfare",Cross-field boundary,0.4085988333438095,0.2074673404400445,0,13,13
+educational policies -> market liquidity,I28 -> G10,"Health, education, and welfare",Financial economics,Cross-field boundary,0.4085908682057463,0.205934703652513,0,15,15
+financial crises -> personalized medicine,G01 -> I11,Financial economics,"Health, education, and welfare",Cross-field boundary,0.4085782775977022,0.2066812273102489,0,14,14
+political risk -> personalized medicine,P26 -> I11,Economic systems,"Health, education, and welfare",Cross-field boundary,0.40848715178435047,0.20655148497976283,0,14,14
+educational attainment -> nominal wage contracts,I21 -> J41,"Health, education, and welfare",Labor and demographic economics,Cross-field boundary,0.40847032174543857,0.21299219382175114,0,8,8
+public funding -> human wealth,I22 -> O15,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4084689915620318,0.21026033819786366,0,10,10
+advertising -> poverty,M37 -> I32,Business administration and business economics,"Health, education, and welfare",Cross-field boundary,0.40844842944796894,0.20724895889189796,0,13,13
+market size -> increased education levels,L25 -> I25,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.4083988122786107,0.20644975195833123,0,14,14
+educational attainment -> limited liability,I21 -> K13,"Health, education, and welfare",Law and economics,Cross-field boundary,0.40835626483049264,0.20635320325751974,0,14,14
+increased education levels -> market size,I25 -> L25,"Health, education, and welfare",Industrial organization,Cross-field boundary,0.4083546683860379,0.20558546478856135,0,15,15
+educational policies -> price level,I28 -> E30,"Health, education, and welfare",Macroeconomics and monetary economics,Cross-field boundary,0.4083273106763313,0.20706941982734145,0,13,13
+electrification -> personalized medicine,L94 -> I11,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.4082994201504713,0.20627480395998837,0,14,14
+education -> increased unemployment,I29 -> J65,"Health, education, and welfare",Labor and demographic economics,Cross-field boundary,0.40827462850537216,0.20886257393056123,0,11,11
+legal aid -> higher education,K36 -> I23,Law and economics,"Health, education, and welfare",Cross-field boundary,0.40826483302660116,0.2069557722019434,0,13,13
+hac rule -> industrialization,I18 -> O14,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4082468960491989,0.2061843831096631,0,14,14
+higher education -> fiscal capacity,I23 -> H39,"Health, education, and welfare",Public economics,Cross-field boundary,0.40824433085718276,0.20543171980832492,0,15,15
+agglomeration -> health insurance,R11 -> I13,"Urban, rural, and regional economics","Health, education, and welfare",Cross-field boundary,0.40819748909323206,0.20877786845839666,0,11,11
+economic health -> fiscal policy,I10 -> E62,"Health, education, and welfare",Macroeconomics and monetary economics,Cross-field boundary,0.4081907276307026,0.2060681156983893,0,14,14
+higher education -> horizontal mergers,I23 -> L41,"Health, education, and welfare",Industrial organization,Cross-field boundary,0.40814762655335385,0.20602497204944772,0,14,14
+specificity of rolling stock -> health outcomes,L92 -> I14,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.40811577928898707,0.20675771670265441,0,13,13
+hac rule -> patents,I18 -> O34,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.40808540744180893,0.20854165514966566,0,11,11
+health insurance -> electoral outcomes,I13 -> K16,"Health, education, and welfare",Law and economics,Cross-field boundary,0.4080118065105604,0.20742243999147827,0,12,12
+political stability -> personalized medicine,P16 -> I11,Economic systems,"Health, education, and welfare",Cross-field boundary,0.4079589951515116,0.20655434745817208,0,13,13
+health insurance -> entrepreneurship,I13 -> M13,"Health, education, and welfare",Business administration and business economics,Cross-field boundary,0.4079420166616789,0.20650210580941397,0,13,13
+health insurance -> conflicts of interest,I13 -> F51,"Health, education, and welfare",International economics,Cross-field boundary,0.4079350237637586,0.20569377268944541,0,14,14
+mergers -> health capital,G34 -> I15,Financial economics,"Health, education, and welfare",Cross-field boundary,0.40788345943581444,0.2064625662956918,0,13,13
+educational policies -> aggregate shocks,I28 -> E19,"Health, education, and welfare",Macroeconomics and monetary economics,Cross-field boundary,0.40783509733657547,0.2071998163973664,0,12,12
+health insurance -> monetary policy,I13 -> E52,"Health, education, and welfare",Macroeconomics and monetary economics,Cross-field boundary,0.4077117486475769,0.20619011124832196,0,13,13
+fixed exchange rate regime -> economic health,F33 -> I10,International economics,"Health, education, and welfare",Cross-field boundary,0.40759208949940706,0.20594840293453617,0,13,13
+capital taxation -> economic health,H24 -> I10,Public economics,"Health, education, and welfare",Cross-field boundary,0.40755349676597713,0.20680808354201796,0,12,12
+education -> auction outcomes,I29 -> D44,"Health, education, and welfare",Microeconomics,Cross-field boundary,0.4075512970688614,0.205912479058819,0,13,13
+regulatory competition -> educational attainment,K20 -> I21,Law and economics,"Health, education, and welfare",Cross-field boundary,0.4075111699045997,0.20507545576839412,0,14,14
+patents -> hac rule,O34 -> I18,"Economic development, innovation, and growth","Health, education, and welfare",Cross-field boundary,0.4074903090211666,0.20780311289533732,0,11,11
+full history rating system -> welfare,N20 -> I38,Economic history,"Health, education, and welfare",Cross-field boundary,0.4074860739926276,0.20861462117192442,0,10,10
+health insurance -> budget deficits,I13 -> H62,"Health, education, and welfare",Public economics,Cross-field boundary,0.4074465549937529,0.2049647369799373,0,14,14
+monitoring -> educational attainment,E50 -> I21,Macroeconomics and monetary economics,"Health, education, and welfare",Cross-field boundary,0.40743101077022076,0.20570018491336003,0,13,13
+poverty -> sustainability of collusion,I32 -> K21,"Health, education, and welfare",Law and economics,Cross-field boundary,0.40730563480965193,0.2055553887121025,0,13,13
+health capital -> city size,I15 -> R12,"Health, education, and welfare","Urban, rural, and regional economics",Cross-field boundary,0.407276630220886,0.2063280057755353,0,12,12
+economic health -> city size,I10 -> R12,"Health, education, and welfare","Urban, rural, and regional economics",Cross-field boundary,0.40726812307584476,0.2054771441757933,0,13,13
+city size -> health capital,R12 -> I15,"Urban, rural, and regional economics","Health, education, and welfare",Cross-field boundary,0.40724492951462715,0.2062892214710099,0,12,12
+health -> emerging markets,I19 -> G15,"Health, education, and welfare",Financial economics,Cross-field boundary,0.40715441860126284,0.2052870565287008,0,13,13
+tenure -> personalized medicine,Q15 -> I11,"Agriculture, natural resources, and environment","Health, education, and welfare",Cross-field boundary,0.40711460314614806,0.20609500266805084,0,12,12
+emu -> public funding,F36 -> I22,International economics,"Health, education, and welfare",Cross-field boundary,0.4070374708792421,0.20595029231766057,0,12,12
+local government decisions -> personalized medicine,H70 -> I11,Public economics,"Health, education, and welfare",Cross-field boundary,0.4070180542679296,0.20508925013963533,0,13,13
+personalized medicine -> globotics,I11 -> F01,"Health, education, and welfare",International economics,Cross-field boundary,0.40698779581694644,0.20428278047088588,0,14,14
+hac rule -> theoretical models,I18 -> O41,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4069808768986413,0.20505115828406112,0,13,13
+health insurance -> high-skilled immigrants,I13 -> J61,"Health, education, and welfare",Labor and demographic economics,Cross-field boundary,0.40692491667411096,0.20578585803365432,0,12,12
+high-skilled immigrants -> health insurance,J61 -> I13,Labor and demographic economics,"Health, education, and welfare",Cross-field boundary,0.406914477929684,0.2077294835905107,0,10,10
+dsge models -> personalized medicine,E13 -> I11,Macroeconomics and monetary economics,"Health, education, and welfare",Cross-field boundary,0.4068696111775646,0.20667239074874103,0,11,11
+legal reform -> health capital,K41 -> I15,Law and economics,"Health, education, and welfare",Cross-field boundary,0.406850670043976,0.2057084191932139,0,12,12
+capital inflows -> economic health,F21 -> I10,International economics,"Health, education, and welfare",Cross-field boundary,0.4067094430060614,0.20466536369231816,0,13,13
+education -> patents,I29 -> O34,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.40670279626266265,0.2054652850711892,0,12,12
+electoral outcomes -> health capital,K16 -> I15,Law and economics,"Health, education, and welfare",Cross-field boundary,0.406700118402984,0.20546587331883667,0,12,12
+trade liberalization -> inequality,F13 -> I24,International economics,"Health, education, and welfare",Cross-field gap,0.4066998785827002,0.25910515458864963,17,165,165
+comparative advantage -> economic health,F11 -> I10,International economics,"Health, education, and welfare",Cross-field boundary,0.40666270444443986,0.20460858002082968,0,13,13
+hac rule -> industry concentration,I18 -> L69,"Health, education, and welfare",Industrial organization,Cross-field boundary,0.4065669296995309,0.20443047663889596,0,13,13
+policy coordination -> increasing returns,F42 -> I26,International economics,"Health, education, and welfare",Cross-field boundary,0.40652949330670796,0.20522506014096317,0,12,12
+supply shocks -> inequality,Q43 -> I24,"Agriculture, natural resources, and environment","Health, education, and welfare",Cross-field boundary,0.40650744273993944,0.20608512260981285,0,11,11
+educational policies -> fiscal capacity,I28 -> H39,"Health, education, and welfare",Public economics,Cross-field boundary,0.4064810720538708,0.20517451692128874,0,12,12
+corporate income tax -> educational attainment,K34 -> I21,Law and economics,"Health, education, and welfare",Cross-field boundary,0.40645670341934814,0.2081585427958966,0,9,9
+constitutional reforms -> educational attainment,K10 -> I21,Law and economics,"Health, education, and welfare",Cross-field boundary,0.40645367507163294,0.20509464308179282,0,12,12
+educational policies -> investor behavior,I28 -> G41,"Health, education, and welfare",Financial economics,Cross-field boundary,0.4064266178773145,0.2042187388210867,0,13,13
+increased education levels -> efficiency wages,I25 -> J33,"Health, education, and welfare",Labor and demographic economics,Cross-field boundary,0.4064096330083255,0.20501690796540095,0,12,12
+economic health -> capital inflows,I10 -> F21,"Health, education, and welfare",International economics,Cross-field boundary,0.40638781209664654,0.20499075907659667,0,12,12
+depreciation -> economic health,D25 -> I10,Microeconomics,"Health, education, and welfare",Cross-field boundary,0.4063824520434743,0.20592832435152952,0,11,11
+green assets -> health improvements,Q48 -> I12,"Agriculture, natural resources, and environment","Health, education, and welfare",Cross-field boundary,0.40635393895570243,0.20805385825171402,0,9,9
+excess burden -> health capital,H22 -> I15,Public economics,"Health, education, and welfare",Cross-field boundary,0.40635248718875044,0.20411561876704248,0,13,13
+corporate socialism -> educational attainment,P31 -> I21,Economic systems,"Health, education, and welfare",Cross-field boundary,0.40632214565328834,0.204882214963807,0,12,12
+higher education -> forecasts,I23 -> F17,"Health, education, and welfare",International economics,Cross-field boundary,0.40628955752361284,0.20402042025726652,0,13,13
+public trust -> educational attainment,H82 -> I21,Public economics,"Health, education, and welfare",Cross-field boundary,0.40627108701124914,0.20480752959287016,0,12,12
+default probabilities -> health,C25 -> I19,Mathematical and quantitative methods,"Health, education, and welfare",Cross-field boundary,0.4062531739938077,0.20671080064020075,0,10,10
+hac rule -> growth rate,I18 -> O44,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4062072106722293,0.20560605877099594,0,11,11
+education -> public debt,I29 -> H63,"Health, education, and welfare",Public economics,Cross-field boundary,0.40620428540674014,0.204714743411503,0,12,12
+price volatility -> economic health,G13 -> I10,Financial economics,"Health, education, and welfare",Cross-field boundary,0.4061852504754359,0.2047341328650806,0,12,12
+educational attainment -> predation,I21 -> Q57,"Health, education, and welfare","Agriculture, natural resources, and environment",Cross-field boundary,0.40614064389118854,0.20461755836567824,0,12,12
+scc -> hac rule,L96 -> I18,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.4061062524786444,0.20549858990916273,0,11,11
+increased education levels -> monetary policy,I25 -> E52,"Health, education, and welfare",Macroeconomics and monetary economics,Cross-field boundary,0.4060500788448588,0.2044760905961271,0,12,12
+inflation forecasting targeting -> overall welfare,E47 -> I31,Macroeconomics and monetary economics,"Health, education, and welfare",Cross-field boundary,0.4060160599686186,0.21017753321217852,0,7,7
+competition -> economic health,L13 -> I10,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.40600945075214645,0.2063623424083207,0,10,10
+health outcomes -> training,I14 -> M53,"Health, education, and welfare",Business administration and business economics,Cross-field boundary,0.40598348531157086,0.20745387285391315,0,9,9
+high volatility -> lower welfare,C58 -> I39,Mathematical and quantitative methods,"Health, education, and welfare",Cross-field boundary,0.4059592050322064,0.20745084398895794,0,9,9
+health insurance -> comparative advantage,I13 -> F11,"Health, education, and welfare",International economics,Cross-field boundary,0.40591986497080984,0.2052198165673416,0,11,11
+inequality -> computational efficiency,I24 -> C63,"Health, education, and welfare",Mathematical and quantitative methods,Cross-field boundary,0.40585711168311933,0.2084598538160285,0,8,8
+personalized medicine -> political risk,I11 -> P26,"Health, education, and welfare",Economic systems,Cross-field boundary,0.40584100294873443,0.20416520398264332,0,12,12
+hac rule -> scc,I18 -> L96,"Health, education, and welfare",Industrial organization,Cross-field boundary,0.4058387962505979,0.20508538290195819,0,11,11
+health -> financial constraints,I19 -> H60,"Health, education, and welfare",Public economics,Cross-field boundary,0.405835115443875,0.205063450564871,0,11,11
+increased education levels -> equity premium,I25 -> G12,"Health, education, and welfare",Financial economics,Cross-field boundary,0.40581624052589177,0.20414332588083317,0,12,12
+higher education -> a ban on child labor,I23 -> J88,"Health, education, and welfare",Labor and demographic economics,Cross-field boundary,0.4057753001752484,0.20599239769026723,0,10,10
+existence of money -> overall welfare,E40 -> I31,Macroeconomics and monetary economics,"Health, education, and welfare",Cross-field boundary,0.40574251408618117,0.2070362044311155,0,9,9
+fiscal deficits -> higher education,H68 -> I23,Public economics,"Health, education, and welfare",Cross-field boundary,0.4056810881455266,0.20482840731678081,0,11,11
+efficiency wages -> increased education levels,J33 -> I25,Labor and demographic economics,"Health, education, and welfare",Cross-field boundary,0.4056590948613546,0.205832285788625,0,10,10
+increasing returns -> central bank independence,I26 -> E58,"Health, education, and welfare",Macroeconomics and monetary economics,Cross-field boundary,0.4056516597094161,0.20479644918271273,0,11,11
+specificity of rolling stock -> educational attainment,L92 -> I21,Industrial organization,"Health, education, and welfare",Cross-field boundary,0.40564730509024627,0.20478164320961303,0,11,11
+personalized medicine -> industrial growth,I11 -> O25,"Health, education, and welfare","Economic development, innovation, and growth",Cross-field boundary,0.4056406899061423,0.20476565677512387,0,11,11
+antidumping measures -> higher education,F18 -> I23,International economics,"Health, education, and welfare",Cross-field boundary,0.40563490465091645,0.20386591006844418,0,12,12

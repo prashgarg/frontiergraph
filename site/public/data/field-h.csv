@@ -1,0 +1,201 @@
+opportunity,code_pair,source_field,target_field,novelty,priority,base_score,prior_contact,mediators,motifs
+reputation -> distortions,L14 -> H31,Industrial organization,Public economics,Cross-field gap,0.46832004204280153,0.3835667131880918,76,208,208
+public debt -> calibrated model,H63 -> C51,Public economics,Mathematical and quantitative methods,Cross-field gap,0.46618094262902016,0.37947993049807505,39,157,157
+higher wages -> public debt,J31 -> H63,Labor and demographic economics,Public economics,Cross-field gap,0.45409277572872986,0.34309412602452605,17,160,160
+public debt -> personalized medicine,H63 -> I11,Public economics,"Health, education, and welfare",Cross-field boundary,0.453131089208723,0.2592459132733995,0,58,58
+trade -> public debt,F19 -> H63,International economics,Public economics,Cross-field gap,0.45286740313665524,0.3474981421041723,23,161,161
+public debt -> market power,H63 -> L11,Public economics,Industrial organization,Cross-field gap,0.4513674825884599,0.3440287480550159,25,163,163
+ethnic diversity -> public debt,J15 -> H63,Labor and demographic economics,Public economics,Cross-field boundary,0.44736920508307565,0.2511528699527238,0,56,56
+public debt -> ethnic diversity,H63 -> J15,Public economics,Labor and demographic economics,Cross-field boundary,0.4413943014001126,0.24011233571480367,0,60,60
+public debt -> home production,H63 -> D13,Public economics,Microeconomics,Cross-field boundary,0.43232331502359417,0.23268807971206562,0,37,37
+public debt -> price discrimination,H63 -> D40,Public economics,Microeconomics,Cross-field gap,0.4304947905355766,0.30482154171971143,23,165,165
+social security -> pollution,H55 -> Q53,Public economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.429970869942088,0.2295045882411765,0,35,35
+higher education -> public debt,I23 -> H63,"Health, education, and welfare",Public economics,Cross-field boundary,0.42966050758925556,0.22669070007336203,0,42,42
+fiscal deficits -> entrepreneurial activity,H68 -> L26,Public economics,Industrial organization,Cross-field boundary,0.42688645832711514,0.22718628612034295,0,28,28
+monetary policy -> social security,E52 -> H55,Macroeconomics and monetary economics,Public economics,Cross-field gap,0.42681437785498333,0.2918960066111301,9,124,124
+public debt -> location choices,H63 -> R32,Public economics,"Urban, rural, and regional economics",Cross-field boundary,0.4261307352504854,0.22369943593386418,0,34,34
+investment subsidies -> family background,H25 -> J12,Public economics,Labor and demographic economics,Cross-field boundary,0.42594075868965053,0.22460064478215527,0,31,31
+personalized medicine -> public debt,I11 -> H63,"Health, education, and welfare",Public economics,Cross-field boundary,0.4251992780096963,0.22209141895200218,0,34,34
+emu -> corruption,F36 -> H57,International economics,Public economics,Cross-field boundary,0.42420653387088497,0.22178084024978337,0,31,31
+public debt -> higher education,H63 -> I23,Public economics,"Health, education, and welfare",Cross-field boundary,0.42419894519532264,0.2201687801804208,0,35,35
+public debt -> industry concentration,H63 -> L69,Public economics,Industrial organization,Cross-field boundary,0.4239224513350776,0.22011429080732017,0,34,34
+ownership -> unemployment,H13 -> J64,Public economics,Labor and demographic economics,Cross-field boundary,0.4238272167379128,0.22069819652614717,0,32,32
+fiscal policies -> mergers,H30 -> G34,Public economics,Financial economics,Cross-field boundary,0.42333321840249105,0.21982438492305037,0,32,32
+trade liberalization -> public education,F13 -> H52,International economics,Public economics,Cross-field boundary,0.42300204359517746,0.2240677894575179,0,23,23
+capital mobility -> discount factor,F20 -> H43,International economics,Public economics,Cross-field boundary,0.42293745667032867,0.22352786831647284,0,23,23
+institutional quality -> covid-19 pandemic,L15 -> H12,Industrial organization,Public economics,Cross-field gap,0.4226871533190054,0.30924116744809205,68,190,190
+property tax -> economic downturns,H71 -> E32,Public economics,Macroeconomics and monetary economics,Cross-field boundary,0.4220834821571834,0.21830563551327758,0,31,31
+state policies -> innovation incentives,H79 -> O31,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.42158874518358813,0.21609445008156217,0,35,35
+fiscal capacity -> innovation incentives,H39 -> O31,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.4215002124393639,0.21709339339015182,0,32,32
+wicksellian rules -> borrowing costs,E12 -> H74,Macroeconomics and monetary economics,Public economics,Cross-field boundary,0.4214715226899721,0.2240916938374626,0,18,18
+public investment -> centrality measures,H54 -> C10,Public economics,Mathematical and quantitative methods,Cross-field boundary,0.4212068986940324,0.2155987742742784,0,35,35
+public education -> exchange rates,H52 -> F31,Public economics,International economics,Cross-field boundary,0.42117034386438873,0.21690403979347259,0,31,31
+tax policy -> conceptual artists,H29 -> Z11,Public economics,Other special topics,Cross-field boundary,0.42106011915746244,0.21844221601860084,0,27,27
+competition -> fiscal deficits,L13 -> H68,Industrial organization,Public economics,Cross-field boundary,0.42098002442747323,0.22147171907034488,0,21,21
+public education -> trade liberalization,H52 -> F13,Public economics,International economics,Cross-field boundary,0.42092669475418065,0.21584008892400539,0,33,33
+public education -> city size,H52 -> R12,Public economics,"Urban, rural, and regional economics",Cross-field boundary,0.42001421858410204,0.21885911167751226,0,23,23
+inflation forecasting targeting -> covid-19 pandemic,E47 -> H12,Macroeconomics and monetary economics,Public economics,Cross-field boundary,0.41985757896042275,0.22389282108690142,0,15,15
+public education -> equity premium,H52 -> G12,Public economics,Financial economics,Cross-field boundary,0.4192315635808993,0.21570677875152752,0,27,27
+globalization -> government revenue,F60 -> H27,International economics,Public economics,Cross-field boundary,0.4189248958098098,0.2149527230928639,0,28,28
+unions -> government revenue,J51 -> H27,Labor and demographic economics,Public economics,Cross-field boundary,0.4186813208121,0.21386874937002853,0,29,29
+government interventions -> higher domestic demand,H81 -> R22,Public economics,"Urban, rural, and regional economics",Cross-field boundary,0.4185436075667796,0.21459670043228768,0,27,27
+fiscal deficits -> tougher competition,H68 -> L19,Public economics,Industrial organization,Cross-field boundary,0.4185276702667673,0.21644503756677821,0,23,23
+corruption -> emu,H57 -> F36,Public economics,International economics,Cross-field boundary,0.418377996642417,0.21510366492754573,0,25,25
+corruption -> offshoring,H57 -> L24,Public economics,Industrial organization,Cross-field boundary,0.4180988914796646,0.21571109142049236,0,23,23
+investment subsidies -> centrality measures,H25 -> C10,Public economics,Mathematical and quantitative methods,Cross-field boundary,0.41800748589147896,0.2132897275970226,0,28,28
+free riding -> price level,H40 -> E30,Public economics,Macroeconomics and monetary economics,Cross-field boundary,0.41789255642251055,0.21326953060056153,0,28,28
+social security -> economic activity,H55 -> E29,Public economics,Macroeconomics and monetary economics,Cross-field boundary,0.4178476739465687,0.21644495957087034,0,21,21
+exchange rates -> public education,F31 -> H52,International economics,Public economics,Cross-field boundary,0.4175081220709838,0.2165744178783663,0,20,20
+home production -> public debt,D13 -> H63,Microeconomics,Public economics,Cross-field boundary,0.41713054393986204,0.21721775227021822,0,18,18
+location choices -> public debt,R32 -> H63,"Urban, rural, and regional economics",Public economics,Cross-field boundary,0.4169924779355963,0.2173776694635249,0,18,18
+cultural factors -> covid-19 pandemic,Z10 -> H12,Other special topics,Public economics,Cross-field boundary,0.4169247429531926,0.21501145624653997,0,21,21
+subsidies -> conceptual artists,H20 -> Z11,Public economics,Other special topics,Cross-field boundary,0.41675568124281004,0.21362898725096086,0,23,23
+social security -> oil prices,H55 -> L71,Public economics,Industrial organization,Cross-field boundary,0.41673792470336946,0.2149096981672911,0,21,21
+corruption -> immigration,H57 -> F22,Public economics,International economics,Cross-field boundary,0.41673031005985056,0.21097743565256355,0,29,29
+public debt -> gender,H63 -> J16,Public economics,Labor and demographic economics,Cross-field boundary,0.41670369613470204,0.21218552073885813,0,26,26
+immigration -> budget rules,F22 -> H61,International economics,Public economics,Cross-field boundary,0.4166011047758422,0.21511213257759715,0,20,20
+monetary expansion -> social security,E59 -> H55,Macroeconomics and monetary economics,Public economics,Cross-field boundary,0.4166009601073187,0.2196427626923899,0,14,14
+gender -> public debt,J16 -> H63,Labor and demographic economics,Public economics,Cross-field boundary,0.41629916325112193,0.2134029627233019,0,22,22
+discount factor -> unions,H43 -> J51,Public economics,Labor and demographic economics,Cross-field boundary,0.41622089379366645,0.2106007854905545,0,28,28
+deadweight loss -> conceptual artists,H21 -> Z11,Public economics,Other special topics,Cross-field boundary,0.4161801040505665,0.21229891966710415,0,24,24
+anticipated ramsey reforms -> economic output,H00 -> E23,Public economics,Macroeconomics and monetary economics,Cross-field boundary,0.41613565457955,0.21629737634170998,0,17,17
+state policies -> international cooperation,H79 -> F53,Public economics,International economics,Cross-field boundary,0.4160939857664039,0.21121049872942949,0,26,26
+gender -> increase in public debt,J16 -> H69,Labor and demographic economics,Public economics,Cross-field boundary,0.41605422917975154,0.21304513247089285,0,22,22
+public debt -> firm location decisions,H63 -> R30,Public economics,"Urban, rural, and regional economics",Cross-field boundary,0.4158673987909094,0.2122268587034656,0,23,23
+ownership -> average productivity,H13 -> O47,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.41564253747690916,0.2137629894663895,0,20,20
+labor force participation -> government revenue,J21 -> H27,Labor and demographic economics,Public economics,Cross-field boundary,0.41561823600466036,0.2123331512331185,0,22,22
+wicksellian rules -> discount factor,E12 -> H43,Macroeconomics and monetary economics,Public economics,Cross-field boundary,0.4155948244259764,0.21557721138790678,0,17,17
+entrepreneurial activity -> fiscal deficits,L26 -> H68,Industrial organization,Public economics,Cross-field boundary,0.41521436617905827,0.21482701746583147,0,17,17
+subsidies -> predation,H20 -> Q57,Public economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.4151999599470184,0.21032557702676483,0,25,25
+unions -> discount factor,J51 -> H43,Labor and demographic economics,Public economics,Cross-field boundary,0.41510287251407063,0.21156852024133463,0,22,22
+public education -> mergers,H52 -> G34,Public economics,Financial economics,Cross-field boundary,0.4150603634504525,0.21101384095905681,0,23,23
+public education -> nash equilibrium,H52 -> C72,Public economics,Mathematical and quantitative methods,Cross-field boundary,0.41504862640326334,0.21155998814539367,0,22,22
+immigration -> corruption,F22 -> H57,International economics,Public economics,Cross-field boundary,0.4149992149220847,0.2115714310924499,0,22,22
+government behavior -> aggregate demand,H10 -> E00,Public economics,Macroeconomics and monetary economics,Cross-field boundary,0.41492085351914443,0.2124809489040371,0,20,20
+public debt -> trade,H63 -> F19,Public economics,International economics,Cross-field gap,0.41489608249439947,0.277485286937987,23,173,173
+industry concentration -> public debt,L69 -> H63,Industrial organization,Public economics,Cross-field boundary,0.4148894219686833,0.2140423108846326,0,18,18
+patents -> increase in public debt,O34 -> H69,"Economic development, innovation, and growth",Public economics,Cross-field boundary,0.4147902817607178,0.21278388818908836,0,19,19
+investment subsidies -> selection effect,H25 -> C24,Public economics,Mathematical and quantitative methods,Cross-field boundary,0.41465960412876357,0.21096228102641681,0,22,22
+excess burden -> economic downturns,H22 -> F44,Public economics,International economics,Cross-field boundary,0.4143967276017045,0.21167966163782215,0,20,20
+unions -> budget deficits,J51 -> H62,Labor and demographic economics,Public economics,Cross-field boundary,0.4143134065611958,0.21091987277508362,0,21,21
+conceptual artists -> deadweight loss,Z11 -> H21,Other special topics,Public economics,Cross-field boundary,0.41428320217026976,0.21393412421855806,0,16,16
+local government decisions -> market efficiency,H70 -> G14,Public economics,Financial economics,Cross-field boundary,0.4141590686821772,0.20969297306260803,0,23,23
+fiscal deficits -> competition,H68 -> L13,Public economics,Industrial organization,Cross-field boundary,0.4141203257796088,0.20963955717066168,0,23,23
+social security -> sentiments,H55 -> A13,Public economics,General economics and teaching,Cross-field boundary,0.41406130418890486,0.21237292374170255,0,18,18
+investment subsidies -> legal reform,H25 -> K41,Public economics,Law and economics,Cross-field boundary,0.41405434333906044,0.20957424312010484,0,23,23
+property tax -> job creation,H71 -> J23,Public economics,Labor and demographic economics,Cross-field boundary,0.413941951453332,0.21149752380721545,0,19,19
+pollution -> social security,Q53 -> H55,"Agriculture, natural resources, and environment",Public economics,Cross-field boundary,0.4139295538969755,0.21355701324388138,0,16,16
+gender -> government revenue,J16 -> H27,Labor and demographic economics,Public economics,Cross-field boundary,0.41390871334905144,0.21085859146960212,0,20,20
+financial constraints -> climate change,H60 -> Q54,Public economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.41383374621028624,0.21075575591086773,0,20,20
+public investment -> forecast targeting,H54 -> C53,Public economics,Mathematical and quantitative methods,Cross-field boundary,0.4138146081169698,0.20915206574135276,0,23,23
+oil prices -> social security,L71 -> H55,Industrial organization,Public economics,Cross-field boundary,0.41377589585716706,0.2113112695345378,0,19,19
+mergers -> fiscal policies,G34 -> H30,Financial economics,Public economics,Cross-field boundary,0.41377541335430845,0.2125418190647208,0,17,17
+investment subsidies -> labor force participation,H25 -> J21,Public economics,Labor and demographic economics,Cross-field boundary,0.41364153772942325,0.20938500263620002,0,22,22
+tax competition -> conceptual artists,H26 -> Z11,Public economics,Other special topics,Cross-field boundary,0.4135659301695985,0.21039834471415456,0,20,20
+fiscal capacity -> higher education,H39 -> I23,Public economics,"Health, education, and welfare",Cross-field boundary,0.4135571511633409,0.20924710075458655,0,22,22
+public investment -> unions,H54 -> J51,Public economics,Labor and demographic economics,Cross-field boundary,0.41352108488078365,0.21030206241426405,0,20,20
+auction outcomes -> public education,D44 -> H52,Microeconomics,Public economics,Cross-field boundary,0.41351435038265744,0.21155490266296625,0,18,18
+state policies -> economic integration,H79 -> F15,Public economics,International economics,Cross-field boundary,0.41343505041118883,0.2091108905068936,0,22,22
+media freedom -> government spending,L82 -> H59,Industrial organization,Public economics,Cross-field boundary,0.4134348746007979,0.2130612169404051,0,16,16
+budget deficits -> entrepreneurship,H62 -> M13,Public economics,Business administration and business economics,Cross-field boundary,0.4132483213970139,0.21109714499644713,0,18,18
+public debt -> early entry agreements,H63 -> Z22,Public economics,Other special topics,Cross-field boundary,0.41323056222621407,0.21045491275500205,0,19,19
+media freedom -> social security,L82 -> H55,Industrial organization,Public economics,Cross-field boundary,0.41318566767179066,0.21433651987255337,0,14,14
+public drug insurance -> housing prices,H51 -> R31,Public economics,"Urban, rural, and regional economics",Cross-field boundary,0.4131762847969969,0.21094833763116413,0,18,18
+budget rules -> immigration,H61 -> F22,Public economics,International economics,Cross-field boundary,0.4131290083823874,0.20914256154414054,0,21,21
+ownership -> immigration,H13 -> F22,Public economics,International economics,Cross-field boundary,0.41308325389151,0.20905811577996378,0,21,21
+capital taxation -> collusive behavior,H24 -> D26,Public economics,Microeconomics,Cross-field boundary,0.41304496891109255,0.20850367404897174,0,22,22
+public education -> majority rule,H52 -> D71,Public economics,Microeconomics,Cross-field boundary,0.4130116864269663,0.2090056821258044,0,21,21
+mergers -> public education,G34 -> H52,Financial economics,Public economics,Cross-field boundary,0.4129343785060366,0.2115642099399398,0,17,17
+borrowing costs -> pollution,H74 -> Q53,Public economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.41285046215351384,0.20985239676628564,0,19,19
+public debt -> economic health,H63 -> I10,Public economics,"Health, education, and welfare",Cross-field boundary,0.4128094926941955,0.21042382096677878,0,18,18
+budget deficits -> unions,H62 -> J51,Public economics,Labor and demographic economics,Cross-field boundary,0.4128066930345715,0.20979250774388516,0,19,19
+social security -> conceptual artists,H55 -> Z11,Public economics,Other special topics,Cross-field boundary,0.41278153652857935,0.21111089785812565,0,17,17
+anticipated ramsey reforms -> market power,H00 -> L11,Public economics,Industrial organization,Cross-field boundary,0.41273602291590056,0.21235609650977605,0,15,15
+subsidies -> monetary policy,H20 -> E52,Public economics,Macroeconomics and monetary economics,Cross-field gap,0.41270654624869463,0.27801208432693914,23,158,158
+property tax -> firm behavior,H71 -> D21,Public economics,Microeconomics,Cross-field boundary,0.41262745152534025,0.20956085550324968,0,19,19
+capital taxation -> horizontal mergers,H24 -> L41,Public economics,Industrial organization,Cross-field boundary,0.4126273200097301,0.21136399602169745,0,16,16
+local government decisions -> protection,H70 -> D18,Public economics,Microeconomics,Cross-field boundary,0.4126147748057377,0.20786067347196485,0,22,22
+borrowing costs -> wicksellian rules,H74 -> E12,Public economics,Macroeconomics and monetary economics,Cross-field boundary,0.41259107274942963,0.21311366878307594,0,14,14
+offshoring -> corruption,L24 -> H57,Industrial organization,Public economics,Cross-field boundary,0.4125176193866717,0.20931245296743037,0,19,19
+fiscal policies -> legal reform,H30 -> K41,Public economics,Law and economics,Cross-field boundary,0.4124473743871909,0.20931170924187206,0,19,19
+public debt -> conceptual artists,H63 -> Z11,Public economics,Other special topics,Cross-field boundary,0.4124433744626477,0.20862872951042538,0,20,20
+fiscal transfers -> labor force participation,H87 -> J21,Public economics,Labor and demographic economics,Cross-field boundary,0.4123052856346739,0.20844561624847976,0,20,20
+property tax -> risk aversion,H71 -> D81,Public economics,Microeconomics,Cross-field boundary,0.41226960447404876,0.20839697389716297,0,20,20
+public debt -> commuting costs,H63 -> R48,Public economics,"Urban, rural, and regional economics",Cross-field boundary,0.4122147375530881,0.2094233275138191,0,18,18
+financial constraints -> legal reform,H60 -> K41,Public economics,Law and economics,Cross-field boundary,0.4120893107576109,0.21076294530672884,0,16,16
+corruption -> labor force participation,H57 -> J21,Public economics,Labor and demographic economics,Cross-field boundary,0.4120086810522112,0.20854619204886396,0,19,19
+social security -> sustainability of collusion,H55 -> K21,Public economics,Law and economics,Cross-field boundary,0.41200743294145786,0.20917014184016003,0,18,18
+property tax -> qe,H71 -> C22,Public economics,Mathematical and quantitative methods,Cross-field boundary,0.41190573033038397,0.2083744888294137,0,19,19
+borrowing costs -> home production,H74 -> D13,Public economics,Microeconomics,Cross-field boundary,0.41189970689523114,0.21039904734077003,0,16,16
+city size -> public education,R12 -> H52,"Urban, rural, and regional economics",Public economics,Cross-field boundary,0.41186630506511485,0.21265415247998662,0,13,13
+fiscal deficits -> personalized medicine,H68 -> I11,Public economics,"Health, education, and welfare",Cross-field boundary,0.41185803299814505,0.20953127037495306,0,17,17
+decentralization -> health capital,H77 -> I15,Public economics,"Health, education, and welfare",Cross-field boundary,0.41183831525358483,0.2108756977258678,0,15,15
+fiscal transfers -> home production,H87 -> D13,Public economics,Microeconomics,Cross-field boundary,0.411766662839026,0.21018859274290394,0,16,16
+inflation forecasting targeting -> increase in public debt,E47 -> H69,Macroeconomics and monetary economics,Public economics,Cross-field boundary,0.4117519012317339,0.21701345685755738,0,9,9
+corruption -> causal identification,H57 -> C32,Public economics,Mathematical and quantitative methods,Cross-field boundary,0.41173013608547315,0.2081311049949754,0,19,19
+borrowing costs -> labor force participation,H74 -> J21,Public economics,Labor and demographic economics,Cross-field boundary,0.41163399371126846,0.2085679089311997,0,18,18
+social security -> teacher effectiveness,H55 -> A21,Public economics,General economics and teaching,Cross-field boundary,0.4115953828531679,0.21054174466583989,0,15,15
+public trust -> rising unemployment,H82 -> F66,Public economics,International economics,Cross-field boundary,0.411537305977526,0.20987050531804907,0,16,16
+csf spending -> terms of trade,H76 -> F14,Public economics,International economics,Cross-field boundary,0.41150881435131814,0.20837277543385815,0,18,18
+property tax -> growth,H71 -> O40,Public economics,"Economic development, innovation, and growth",Cross-field boundary,0.4114806818399141,0.2104215460377432,0,15,15
+distortions -> computational efficiency,H31 -> C63,Public economics,Mathematical and quantitative methods,Cross-field boundary,0.4114792514867364,0.21399084364016566,0,11,11
+cultural factors -> increase in public debt,Z10 -> H69,Other special topics,Public economics,Cross-field boundary,0.41145331753608455,0.20975486169373864,0,16,16
+fiscal policies -> conflicts of interest,H30 -> F51,Public economics,International economics,Cross-field boundary,0.41143760321400463,0.20889219936228304,0,17,17
+monetary policy -> public education,E52 -> H52,Macroeconomics and monetary economics,Public economics,Cross-field boundary,0.4114096948693619,0.21036926767941366,0,15,15
+price stickiness -> public goods provision,C54 -> H42,Mathematical and quantitative methods,Public economics,Cross-field boundary,0.4113946628547931,0.20889997354296444,0,17,17
+conceptual artists -> tax policy,Z11 -> H29,Other special topics,Public economics,Cross-field boundary,0.41134338102712803,0.2094150617663132,0,16,16
+majority rule -> public education,D71 -> H52,Microeconomics,Public economics,Cross-field boundary,0.4112964832713802,0.2123760794689692,0,13,13
+public education -> automation,H52 -> L23,Public economics,Industrial organization,Cross-field boundary,0.41128582469927916,0.2110035305586155,0,14,14
+corruption -> participation rates,H57 -> J49,Public economics,Labor and demographic economics,Cross-field boundary,0.41124573073520254,0.2073706061463974,0,19,19
+citation counts -> carbon tax,A14 -> H23,General economics and teaching,Public economics,Cross-field boundary,0.41124083047159044,0.21001737697514086,0,15,15
+public trust -> improves welfare,H82 -> D60,Public economics,Microeconomics,Cross-field boundary,0.41123540989800045,0.21076335029476861,0,14,14
+corruption -> unions,H57 -> J51,Public economics,Labor and demographic economics,Cross-field boundary,0.41122572491006787,0.20794373514365047,0,18,18
+wicksellian rules -> government revenue,E12 -> H27,Macroeconomics and monetary economics,Public economics,Cross-field boundary,0.4111847998793107,0.2120013898399179,0,13,13
+borrowing costs -> industry concentration,H74 -> L69,Public economics,Industrial organization,Cross-field boundary,0.4111605090026975,0.20848207663826662,0,17,17
+overspending -> aggregate demand,H72 -> E00,Public economics,Macroeconomics and monetary economics,Cross-field boundary,0.4111159909525597,0.2106974177131441,0,14,14
+public-private partnerships -> managerial decisions,H44 -> M51,Public economics,Business administration and business economics,Cross-field boundary,0.4110327233463705,0.20769701298562152,0,18,18
+stubborn beliefs -> increase in public debt,Z12 -> H69,Other special topics,Public economics,Cross-field boundary,0.4110027668088377,0.2082369297126714,0,17,17
+csf spending -> exchange rates,H76 -> F31,Public economics,International economics,Cross-field boundary,0.4109653808800426,0.20814256726886865,0,17,17
+data availability -> carbon tax,C81 -> H23,Mathematical and quantitative methods,Public economics,Cross-field boundary,0.4108902707717999,0.20945525703482432,0,15,15
+public education -> investor behavior,H52 -> G41,Public economics,Financial economics,Cross-field boundary,0.4108439038155337,0.206793169755306,0,19,19
+public information -> government revenue,L86 -> H27,Industrial organization,Public economics,Cross-field boundary,0.41071538214096787,0.20916249993574534,0,15,15
+higher dependency ratio -> government revenue,J19 -> H27,Labor and demographic economics,Public economics,Cross-field boundary,0.4106997102677789,0.20914062225466537,0,15,15
+legal reform -> financial constraints,K41 -> H60,Law and economics,Public economics,Cross-field boundary,0.410640384592098,0.20833141210008216,0,16,16
+world war i -> deadweight loss,N44 -> H21,Economic history,Public economics,Cross-field boundary,0.4106326727212186,0.20832945052828844,0,16,16
+public education -> monitoring costs,H52 -> Q52,Public economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.41050578714145003,0.2074691285130192,0,17,17
+increased immigration -> budget rules,K37 -> H61,Law and economics,Public economics,Cross-field boundary,0.4104551981714863,0.20810193440074481,0,16,16
+public education -> auction outcomes,H52 -> D44,Public economics,Microeconomics,Cross-field boundary,0.41043052719498296,0.20738149208542803,0,17,17
+public debt -> sentiments,H63 -> A13,Public economics,General economics and teaching,Cross-field boundary,0.4104258578193917,0.2087350051256534,0,15,15
+social security -> panic of 1837,H55 -> N11,Public economics,Economic history,Cross-field boundary,0.4104166882959104,0.20735749746203366,0,17,17
+fiscal transfers -> gender,H87 -> J16,Public economics,Labor and demographic economics,Cross-field boundary,0.41031521356823947,0.20938325462732402,0,14,14
+central bank independence -> public education,E58 -> H52,Macroeconomics and monetary economics,Public economics,Cross-field boundary,0.41029474024779317,0.20871831420631098,0,15,15
+black market premium -> discount factor,J46 -> H43,Labor and demographic economics,Public economics,Cross-field boundary,0.4102620779990357,0.20712320069456117,0,17,17
+public education -> transaction costs,H52 -> D23,Public economics,Microeconomics,Cross-field boundary,0.4102513216981284,0.20591576140035214,0,19,19
+increased immigration -> lack of government commitment,K37 -> H19,Law and economics,Public economics,Cross-field boundary,0.41014940181207926,0.2107083062291999,0,12,12
+fiscal policies -> globotics,H30 -> F01,Public economics,International economics,Cross-field boundary,0.4101426645915631,0.2083353319588551,0,15,15
+public education -> monetary policy,H52 -> E52,Public economics,Macroeconomics and monetary economics,Cross-field boundary,0.41009858790255255,0.20626293173860547,0,18,18
+commuting costs -> public debt,R48 -> H63,"Urban, rural, and regional economics",Public economics,Cross-field boundary,0.41005001792133905,0.20896861755168641,0,14,14
+local government decisions -> selection effect,H70 -> C24,Public economics,Mathematical and quantitative methods,Cross-field boundary,0.41003477028067475,0.20617032233737276,0,18,18
+legal reform -> fiscal policies,K41 -> H30,Law and economics,Public economics,Cross-field boundary,0.4100203537959404,0.21272924417581834,0,10,10
+nonrivalry -> financial instability,H41 -> F65,Public economics,International economics,Cross-field boundary,0.4099456279389978,0.20664615244140863,0,17,17
+overspending -> protectionism,H72 -> F52,Public economics,International economics,Cross-field boundary,0.4099215176971654,0.2079806833699343,0,15,15
+government actions -> oil prices,H11 -> L71,Public economics,Industrial organization,Cross-field boundary,0.4099051502928869,0.20878182510071908,0,14,14
+public debt -> transport costs,H63 -> L91,Public economics,Industrial organization,Cross-field boundary,0.40987577153087484,0.20866340173555634,0,14,14
+property tax -> uncertainty,H71 -> D80,Public economics,Microeconomics,Cross-field boundary,0.409823473744597,0.20584778862995423,0,18,18
+immigration -> ownership,F22 -> H13,International economics,Public economics,Cross-field boundary,0.4098227365580364,0.20860589686463343,0,14,14
+state policies -> aggregate demand,H79 -> E00,Public economics,Macroeconomics and monetary economics,Cross-field boundary,0.40982048971397944,0.20785280587273058,0,15,15
+investment subsidies -> gender,H25 -> J16,Public economics,Labor and demographic economics,Cross-field boundary,0.40981440944930303,0.2064542545919698,0,17,17
+public education -> financial stability,H52 -> G28,Public economics,Financial economics,Cross-field boundary,0.40963860313809614,0.20558699020281693,0,18,18
+renegotiation -> overspending,C78 -> H72,Mathematical and quantitative methods,Public economics,Cross-field boundary,0.40963581894347345,0.21017213177970373,0,12,12
+unions -> corruption,J51 -> H57,Labor and demographic economics,Public economics,Cross-field boundary,0.40962223342700316,0.20680340076403778,0,16,16
+economic integration -> state policies,F15 -> H79,International economics,Public economics,Cross-field boundary,0.4095906215833317,0.20611392115889582,0,17,17
+fiscal deficits -> monopoly power,H68 -> L12,Public economics,Industrial organization,Cross-field boundary,0.4095839183600673,0.2074285164389836,0,15,15
+anticipated ramsey reforms -> monitoring costs,H00 -> Q52,Public economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.4094459384087186,0.21081982040528593,0,11,11
+government interventions -> early entry agreements,H81 -> Z22,Public economics,Other special topics,Cross-field boundary,0.40941958948331986,0.20792943923615864,0,14,14
+budget rules -> distance to jobs,H61 -> R23,Public economics,"Urban, rural, and regional economics",Cross-field boundary,0.4094194239739193,0.20584907576449313,0,17,17
+public education -> network structure,H52 -> D85,Public economics,Microeconomics,Cross-field boundary,0.40939863073505034,0.20646816674806664,0,16,16
+public debt -> geoengineering breakthroughs,H63 -> Q55,Public economics,"Agriculture, natural resources, and environment",Cross-field boundary,0.40936468828059647,0.20800146053711077,0,14,14
+overspending -> renegotiation,H72 -> C78,Public economics,Mathematical and quantitative methods,Cross-field boundary,0.40933182767526893,0.2063537946435433,0,16,16
+capital taxation -> training,H24 -> M53,Public economics,Business administration and business economics,Cross-field boundary,0.4092958600036806,0.2094747420081955,0,12,12
+transport costs -> public debt,L91 -> H63,Industrial organization,Public economics,Cross-field boundary,0.40924306068707816,0.2062543984992695,0,16,16
+compliance -> public education,K40 -> H52,Law and economics,Public economics,Cross-field boundary,0.40920449835263295,0.20694910726472632,0,15,15

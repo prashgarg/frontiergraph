@@ -3,9 +3,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "missing-claims"
+name = "frontiergraph"
 version = "0.1.0"
-description = "Missing-claim recommender + webtool for claim graphs"
+description = "FrontierGraph: deterministic research-priority ranking from claim graphs"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
@@ -19,6 +19,7 @@ dependencies = [
 ]
 
 [project.scripts]
+frontiergraph = "src.run_ranker:main"
 economics-ranker = "src.run_ranker:main"
 
 [project.optional-dependencies]

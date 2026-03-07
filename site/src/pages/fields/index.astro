@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { data, formatNumber } from "../../lib/site-data";
+---
+
+<BaseLayout
+  title="Fields | FrontierGraph"
+  description="Browse ranked economics opportunities by top-level JEL field."
+>
+  <main>
+    <section class="page-hero">
+      <span class="eyebrow">Economics subfields</span>
+      <h1>Field pages for the current beta graph</h1>
+      <p class="lede">
+        Each field page shows the strongest opportunities targeting that field, originating from that field, and the
+        highest-priority corridors that touch it.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="fields-grid">
+        {data.fields_index.map((field: any) => (
+          <a class="field-card" href={`/fields/${field.code.toLowerCase()}/`}>
+            <span class="eyebrow">{field.code}</span>
+            <h3>{field.name}</h3>
+            <div class="button-row">
+              <span class="field-pill">{formatNumber(field.ideas)} ideas</span>
+              <span class="field-pill">{field.median_priority.toFixed(3)} median priority</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

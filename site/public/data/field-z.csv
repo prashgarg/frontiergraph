@@ -1,0 +1,201 @@
+opportunity,code_pair,source_field,target_field,novelty,priority,base_score,prior_contact,mediators,motifs
+cultural factors -> exchange rates,Z10 -> F31,Other special topics,International economics,Cross-field boundary,0.4225592634372969,0.22063554440171437,0,27,27
+tax policy -> conceptual artists,H29 -> Z11,Public economics,Other special topics,Cross-field boundary,0.42106011915746244,0.21844221601860084,0,27,27
+cultural factors -> nash equilibrium,Z10 -> C72,Other special topics,Mathematical and quantitative methods,Cross-field boundary,0.4193522874151188,0.21818637734686072,0,22,22
+cultural factors -> monetary policy,Z10 -> E52,Other special topics,Macroeconomics and monetary economics,Cross-field boundary,0.418559207676351,0.21599781836438292,0,24,24
+exchange rates -> conceptual artists,F31 -> Z11,International economics,Other special topics,Cross-field boundary,0.41853843688849296,0.21446819591518831,0,27,27
+cultural factors -> qe,Z10 -> C22,Other special topics,Mathematical and quantitative methods,Cross-field boundary,0.4172415031766351,0.2143929409773086,0,23,23
+cultural factors -> covid-19 pandemic,Z10 -> H12,Other special topics,Public economics,Cross-field boundary,0.4169247429531926,0.21501145624653997,0,21,21
+subsidies -> conceptual artists,H20 -> Z11,Public economics,Other special topics,Cross-field boundary,0.41675568124281004,0.21362898725096086,0,23,23
+deadweight loss -> conceptual artists,H21 -> Z11,Public economics,Other special topics,Cross-field boundary,0.4161801040505665,0.21229891966710415,0,24,24
+cultural factors -> financial distress,Z10 -> G33,Other special topics,Financial economics,Cross-field boundary,0.4161191499143055,0.2137563929435131,0,21,21
+vertical integration -> conceptual artists,L22 -> Z11,Industrial organization,Other special topics,Cross-field boundary,0.41536350514644194,0.21318490686207014,0,20,20
+conceptual artists -> exchange rates,Z11 -> F31,Other special topics,International economics,Cross-field boundary,0.4145571872158122,0.21259852899360604,0,19,19
+conceptual artists -> deadweight loss,Z11 -> H21,Other special topics,Public economics,Cross-field boundary,0.41428320217026976,0.21393412421855806,0,16,16
+cultural factors -> market efficiency,Z10 -> G14,Other special topics,Financial economics,Cross-field boundary,0.41419921274415694,0.21197618789734995,0,19,19
+tax competition -> conceptual artists,H26 -> Z11,Public economics,Other special topics,Cross-field boundary,0.4135659301695985,0.21039834471415456,0,20,20
+cultural factors -> financial stability,Z10 -> G28,Other special topics,Financial economics,Cross-field boundary,0.4135471095816722,0.21158780002211885,0,18,18
+optimal contracts -> conceptual artists,D86 -> Z11,Microeconomics,Other special topics,Cross-field boundary,0.4133693712717137,0.20950930730461595,0,21,21
+public debt -> early entry agreements,H63 -> Z22,Public economics,Other special topics,Cross-field boundary,0.41323056222621407,0.21045491275500205,0,19,19
+economic integration -> conceptual artists,F15 -> Z11,International economics,Other special topics,Cross-field boundary,0.413007166209416,0.20949548160160536,0,20,20
+auction outcomes -> stubborn beliefs,D44 -> Z12,Microeconomics,Other special topics,Cross-field boundary,0.4128136998554613,0.2110584550832384,0,17,17
+international competition -> equity premium,Z28 -> G12,Other special topics,Financial economics,Cross-field boundary,0.41280729866172977,0.21320950961843071,0,14,14
+social security -> conceptual artists,H55 -> Z11,Public economics,Other special topics,Cross-field boundary,0.41278153652857935,0.21111089785812565,0,17,17
+capital inflows -> conceptual artists,F21 -> Z11,International economics,Other special topics,Cross-field boundary,0.41244983702374177,0.21053441230468853,0,17,17
+public debt -> conceptual artists,H63 -> Z11,Public economics,Other special topics,Cross-field boundary,0.4124433744626477,0.20862872951042538,0,20,20
+cultural factors -> expected returns,Z10 -> G17,Other special topics,Financial economics,Cross-field boundary,0.41232669105876757,0.20905882196091244,0,19,19
+blockchain technology -> conceptual artists,E42 -> Z11,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.4118515300919391,0.20834011169053515,0,19,19
+borrowing constraints -> conceptual artists,F34 -> Z11,International economics,Other special topics,Cross-field boundary,0.41184376838144166,0.2088799038179745,0,18,18
+conceptual artists -> health outcomes,Z11 -> I14,Other special topics,"Health, education, and welfare",Cross-field boundary,0.4115470682691898,0.20976899594968393,0,16,16
+cultural factors -> increase in public debt,Z10 -> H69,Other special topics,Public economics,Cross-field boundary,0.41145331753608455,0.20975486169373864,0,16,16
+conceptual artists -> tax policy,Z11 -> H29,Other special topics,Public economics,Cross-field boundary,0.41134338102712803,0.2094150617663132,0,16,16
+conceptual artists -> firm productivity,Z11 -> D22,Other special topics,Microeconomics,Cross-field boundary,0.4110708539397015,0.209017189826035,0,16,16
+stubborn beliefs -> increase in public debt,Z12 -> H69,Other special topics,Public economics,Cross-field boundary,0.4110027668088377,0.2082369297126714,0,17,17
+mergers -> stubborn beliefs,G34 -> Z12,Financial economics,Other special topics,Cross-field boundary,0.4108628428175421,0.21012289273362672,0,14,14
+conceptual artists -> economic stability,Z11 -> E63,Other special topics,Macroeconomics and monetary economics,Cross-field boundary,0.41063841648159966,0.20770532800150857,0,17,17
+stubborn beliefs -> mergers,Z12 -> G34,Other special topics,Financial economics,Cross-field boundary,0.41024979418694707,0.2084701139408693,0,15,15
+economic conditions -> conceptual artists,E66 -> Z11,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.41020404064478816,0.20642493251368788,0,18,18
+central bank independence -> conceptual artists,E58 -> Z11,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.4100827879371866,0.2068473204876906,0,17,17
+borrowing constraints -> early entry agreements,F34 -> Z22,International economics,Other special topics,Cross-field boundary,0.4100600674318349,0.20819428828172043,0,15,15
+equity premium -> early entry agreements,G12 -> Z22,Financial economics,Other special topics,Cross-field boundary,0.4099420363136533,0.20880343359980347,0,14,14
+conceptual artists -> optimal contracts,Z11 -> D86,Other special topics,Microeconomics,Cross-field boundary,0.4098591269898359,0.20788655554655652,0,15,15
+cultural factors -> central bank independence,Z10 -> E58,Other special topics,Macroeconomics and monetary economics,Cross-field boundary,0.4098295957857108,0.20952240038938336,0,13,13
+qe -> cultural factors,C22 -> Z10,Mathematical and quantitative methods,Other special topics,Cross-field boundary,0.409812290162113,0.20707503016399675,0,16,16
+exchange rates -> cultural factors,F31 -> Z10,International economics,Other special topics,Cross-field boundary,0.40978342595870326,0.20704651085238357,0,16,16
+capital controls -> early entry agreements,F38 -> Z22,International economics,Other special topics,Cross-field boundary,0.4097455439375702,0.2063434789731492,0,17,17
+fixed exchange rate regime -> conceptual artists,F33 -> Z11,International economics,Other special topics,Cross-field boundary,0.40969043322949805,0.20564400503650468,0,18,18
+early entry agreements -> consumption,Z22 -> E21,Other special topics,Macroeconomics and monetary economics,Cross-field boundary,0.40957576770965215,0.21186486169312996,0,10,10
+government interventions -> early entry agreements,H81 -> Z22,Public economics,Other special topics,Cross-field boundary,0.40941958948331986,0.20792943923615864,0,14,14
+proposed reforms -> conceptual artists,E69 -> Z11,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.40924817127135926,0.20626641839713844,0,16,16
+credit constraints -> early entry agreements,E51 -> Z22,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.40914066917203906,0.20753734226550874,0,14,14
+capital taxation -> conceptual artists,H24 -> Z11,Public economics,Other special topics,Cross-field boundary,0.409094627178968,0.20829593214899422,0,13,13
+conceptual artists -> tax competition,Z11 -> H26,Other special topics,Public economics,Cross-field boundary,0.4090527855679994,0.20816793995091917,0,13,13
+conceptual artists -> seller revenue,Z11 -> L85,Other special topics,Industrial organization,Cross-field boundary,0.40892110059873943,0.20887732492163102,0,12,12
+family background -> conceptual artists,J12 -> Z11,Labor and demographic economics,Other special topics,Cross-field boundary,0.40874533072980174,0.20617621788848994,0,15,15
+capital flows -> conceptual artists,F32 -> Z11,International economics,Other special topics,Cross-field boundary,0.40870623953432184,0.20612218794035228,0,15,15
+dynamic price index (dpi) -> conceptual artists,C43 -> Z11,Mathematical and quantitative methods,Other special topics,Cross-field boundary,0.40863921336330583,0.2053334282572841,0,16,16
+conceptual artists -> unemployment,Z11 -> J64,Other special topics,Labor and demographic economics,Cross-field boundary,0.4085385581264001,0.20742925583537963,0,13,13
+deregulation -> conceptual artists,L51 -> Z11,Industrial organization,Other special topics,Cross-field boundary,0.4084547798516345,0.20650563409883077,0,14,14
+cultural factors -> fixed exchange rate regime,Z10 -> F33,Other special topics,International economics,Cross-field boundary,0.4082625406199143,0.20618092792746165,0,14,14
+price volatility -> early entry agreements,G13 -> Z22,Financial economics,Other special topics,Cross-field boundary,0.4081782251574341,0.20867006925580192,0,11,11
+cultural factors -> investor behavior,Z10 -> G41,Other special topics,Financial economics,Cross-field boundary,0.40814963342100624,0.20777344521494226,0,12,12
+seller revenue -> conceptual artists,L85 -> Z11,Industrial organization,Other special topics,Cross-field boundary,0.40797182489144135,0.20743827191150987,0,12,12
+financial fragility -> conceptual artists,G51 -> Z11,Financial economics,Other special topics,Cross-field boundary,0.40792246156194983,0.2065239284011311,0,13,13
+cultural factors -> reputational equilibrium,Z10 -> C73,Other special topics,Mathematical and quantitative methods,Cross-field boundary,0.40775880477204207,0.20707604014564457,0,12,12
+higher corporate tax rates -> conceptual artists,H32 -> Z11,Public economics,Other special topics,Cross-field boundary,0.40759402412701023,0.2068236538003693,0,12,12
+early entry agreements -> equity premium,Z22 -> G12,Other special topics,Financial economics,Cross-field boundary,0.4075629414790957,0.21000398532426726,0,9,9
+firm productivity -> conceptual artists,D22 -> Z11,Microeconomics,Other special topics,Cross-field boundary,0.40755372728743877,0.20679257618328648,0,12,12
+economic stability -> conceptual artists,E63 -> Z11,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.4075455205124619,0.20510160173902833,0,14,14
+financial intermediaries -> conceptual artists,G23 -> Z11,Financial economics,Other special topics,Cross-field boundary,0.40751939991450603,0.2050703475223543,0,14,14
+decentralization -> conceptual artists,H77 -> Z11,Public economics,Other special topics,Cross-field boundary,0.40739762284427206,0.20749947530327933,0,11,11
+cultural factors -> blockchain technology,Z10 -> E42,Other special topics,Macroeconomics and monetary economics,Cross-field boundary,0.40739311786477517,0.20567254828569678,0,13,13
+transaction costs -> conceptual artists,D23 -> Z11,Microeconomics,Other special topics,Cross-field boundary,0.407310661607511,0.20556233594822348,0,13,13
+cultural factors -> budget deficits,Z10 -> H62,Other special topics,Public economics,Cross-field boundary,0.4070544714776037,0.20802393616783452,0,10,10
+conceptual artists -> capital flows,Z11 -> F32,Other special topics,International economics,Cross-field boundary,0.4069164999803761,0.2058082248832303,0,12,12
+stubborn beliefs -> economic stagnation,Z12 -> O52,Other special topics,"Economic development, innovation, and growth",Cross-field boundary,0.4068549532046775,0.20484582176360416,0,13,13
+emu -> conceptual artists,F36 -> Z11,International economics,Other special topics,Cross-field boundary,0.4068487895878011,0.20483751374343567,0,13,13
+government intervention -> conceptual artists,L59 -> Z11,Industrial organization,Other special topics,Cross-field boundary,0.4068188245800889,0.2065831519733463,0,11,11
+immigration -> conceptual artists,F22 -> Z11,International economics,Other special topics,Cross-field boundary,0.4066987925801029,0.20644151692505627,0,11,11
+stubborn beliefs -> fdi,Z12 -> F23,Other special topics,International economics,Cross-field boundary,0.4066881166782967,0.20634279653391788,0,11,11
+stubborn beliefs -> search frictions,Z12 -> F12,Other special topics,International economics,Cross-field boundary,0.4065918797264913,0.20621367187278297,0,11,11
+search frictions -> stubborn beliefs,F12 -> Z12,International economics,Other special topics,Cross-field boundary,0.4065418532367329,0.20522152054200277,0,12,12
+consumption -> early entry agreements,E21 -> Z22,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.4064774285521979,0.20511956674903867,0,12,12
+government actions -> conceptual artists,H11 -> Z11,Public economics,Other special topics,Cross-field boundary,0.40636421574740944,0.20412318277357464,0,13,13
+early entry agreements -> public debt,Z22 -> H63,Other special topics,Public economics,Cross-field boundary,0.40634662949280914,0.20797032176655578,0,9,9
+monetary policy -> cultural factors,E52 -> Z10,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.40628530439269467,0.20576785429164052,0,11,11
+offshoring -> conceptual artists,L24 -> Z11,Industrial organization,Other special topics,Cross-field boundary,0.406150426909027,0.20893521718870367,0,8,8
+stubborn beliefs -> increased unemployment,Z12 -> J65,Other special topics,Labor and demographic economics,Cross-field boundary,0.406089899239975,0.20454739092847962,0,12,12
+r&d investment -> conceptual artists,O32 -> Z11,"Economic development, innovation, and growth",Other special topics,Cross-field boundary,0.4060867391570705,0.21394345335502093,0,5,5
+r&d subsidies -> conceptual artists,O38 -> Z11,"Economic development, innovation, and growth",Other special topics,Cross-field boundary,0.40600153225671404,0.21183775408494987,0,6,6
+increase in public debt -> conceptual artists,H69 -> Z11,Public economics,Other special topics,Cross-field boundary,0.4059754291193661,0.2044011589871797,0,12,12
+fixed exchange rate regime -> cultural factors,F33 -> Z10,International economics,Other special topics,Cross-field boundary,0.40594443467468166,0.20432050244596864,0,12,12
+central bank independence -> cultural factors,E58 -> Z10,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.40587384954442884,0.20513413142549475,0,11,11
+cultural factors -> disaster risk,Z10 -> H84,Other special topics,Public economics,Cross-field boundary,0.40585983357177113,0.2051274028492976,0,11,11
+trust -> a ban on child labor,Z13 -> J88,Other special topics,Labor and demographic economics,Cross-field boundary,0.40578531174506466,0.2070535579061348,0,9,9
+cultural factors -> public drug insurance,Z10 -> H51,Other special topics,Public economics,Cross-field boundary,0.40571185187874753,0.20487103586315542,0,11,11
+conceptual artists -> subsidies,Z11 -> H20,Other special topics,Public economics,Cross-field boundary,0.40569408564337855,0.20486370336219648,0,11,11
+conceptual artists -> decentralization,Z11 -> H77,Other special topics,Public economics,Cross-field boundary,0.4056717022307578,0.20391607227282604,0,12,12
+conceptual artists -> equilibrium outcomes,Z11 -> D51,Other special topics,Microeconomics,Cross-field boundary,0.40554511066394516,0.20674542904273963,0,9,9
+health outcomes -> conceptual artists,I14 -> Z11,"Health, education, and welfare",Other special topics,Cross-field boundary,0.40548275061089467,0.2055438355358031,0,10,10
+stubborn beliefs -> auction outcomes,Z12 -> D44,Other special topics,Microeconomics,Cross-field boundary,0.4054621732532857,0.20552087355032933,0,10,10
+entry restrictions -> consumption,Z38 -> E21,Other special topics,Macroeconomics and monetary economics,Cross-field boundary,0.40545607108663057,0.2066172162644158,0,9,9
+cultural factors -> r&d investment,Z10 -> O32,Other special topics,"Economic development, innovation, and growth",Cross-field boundary,0.4054327702926382,0.20540858724097905,0,10,10
+government policies -> conceptual artists,J18 -> Z11,Labor and demographic economics,Other special topics,Cross-field boundary,0.40542872326613105,0.20544890421317435,0,10,10
+data accumulation -> conceptual artists,C80 -> Z11,Mathematical and quantitative methods,Other special topics,Cross-field boundary,0.4053945469916853,0.20442278889895193,0,11,11
+international cooperation -> conceptual artists,F53 -> Z11,International economics,Other special topics,Cross-field boundary,0.40537954312094643,0.20349118532865076,0,12,12
+conceptual artists -> market stability,Z11 -> D53,Other special topics,Microeconomics,Cross-field boundary,0.4053318601644732,0.2053319691866743,0,10,10
+covid-19 pandemic -> cultural factors,H12 -> Z10,Public economics,Other special topics,Cross-field boundary,0.40530544351357833,0.20426965572530267,0,11,11
+gender -> conceptual artists,J16 -> Z11,Labor and demographic economics,Other special topics,Cross-field boundary,0.40529232408680027,0.2033601975716251,0,12,12
+conceptual artists -> borrowing constraints,Z11 -> F34,Other special topics,International economics,Cross-field boundary,0.4052589370199899,0.20519719713023615,0,10,10
+conceptual artists -> optimal policy,Z11 -> C61,Other special topics,Mathematical and quantitative methods,Cross-field boundary,0.4051941096311265,0.2061712315413598,0,9,9
+blockchain technology -> early entry agreements,E42 -> Z22,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.4050977491935868,0.20491965322594233,0,10,10
+conceptual artists -> proposed reforms,Z11 -> E69,Other special topics,Macroeconomics and monetary economics,Cross-field boundary,0.40509248683860144,0.2049785086292325,0,10,10
+entry restrictions -> unemployment,Z38 -> J64,Other special topics,Labor and demographic economics,Cross-field boundary,0.405089648027976,0.206033818338933,0,9,9
+conceptual artists -> life expectancy,Z11 -> J17,Other special topics,Labor and demographic economics,Cross-field boundary,0.4050398703201429,0.20485508454190318,0,10,10
+conceptual artists -> public debt,Z11 -> H63,Other special topics,Public economics,Cross-field boundary,0.40503959028463193,0.2038886999187094,0,11,11
+financial distress -> cultural factors,G33 -> Z10,Financial economics,Other special topics,Cross-field boundary,0.4049467709654172,0.20373909979434845,0,11,11
+cultural factors -> public investment,Z10 -> H54,Other special topics,Public economics,Cross-field boundary,0.404937369722763,0.2057973788656697,0,9,9
+cultural factors -> carbon pricing,Z10 -> Q58,Other special topics,"Agriculture, natural resources, and environment",Cross-field boundary,0.404920834123171,0.20585111807368695,0,9,9
+resource allocation -> early entry agreements,D45 -> Z22,Microeconomics,Other special topics,Cross-field boundary,0.40488842143339815,0.20580382858955407,0,9,9
+retailer integration -> specialization,L81 -> Z00,Industrial organization,Other special topics,Cross-field boundary,0.4048788971205852,0.2056801939219405,0,9,9
+fdi -> stubborn beliefs,F23 -> Z12,International economics,Other special topics,Cross-field boundary,0.40485175059071454,0.2035949008664942,0,11,11
+conceptual artists -> capital inflows,Z11 -> F21,Other special topics,International economics,Cross-field boundary,0.40485046137533526,0.20568566933901206,0,9,9
+demographic changes -> early entry agreements,J11 -> Z22,Labor and demographic economics,Other special topics,Cross-field boundary,0.40483412657908974,0.20453667076573603,0,10,10
+equilibrium outcomes -> conceptual artists,D51 -> Z11,Microeconomics,Other special topics,Cross-field boundary,0.4046678758012062,0.20332315138873136,0,11,11
+labor supply -> conceptual artists,J22 -> Z11,Labor and demographic economics,Other special topics,Cross-field boundary,0.4046252900523533,0.20422897259184225,0,10,10
+aggregate shocks -> conceptual artists,E19 -> Z11,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.4046067829496523,0.20323333942186553,0,11,11
+financial integration -> conceptual artists,F30 -> Z11,International economics,Other special topics,Cross-field boundary,0.4045795048242661,0.20320454950183098,0,11,11
+conceptual artists -> macroeconomic stability,Z11 -> E60,Other special topics,Macroeconomics and monetary economics,Cross-field boundary,0.40453668866686293,0.20313187094529853,0,11,11
+cultural factors -> increased emissions,Z10 -> F64,Other special topics,International economics,Cross-field boundary,0.40451175132066886,0.20407213562592175,0,10,10
+dividends -> conceptual artists,G35 -> Z11,Financial economics,Other special topics,Cross-field boundary,0.40447596858277407,0.2040102442076568,0,10,10
+conceptual artists -> electoral outcomes,Z11 -> K16,Other special topics,Law and economics,Cross-field boundary,0.40445088666950046,0.20397428277148275,0,10,10
+conceptual artists -> vertical integration,Z11 -> L22,Other special topics,Industrial organization,Cross-field boundary,0.40444583809001533,0.20503115052584653,0,9,9
+stubborn beliefs -> state competition,Z12 -> L49,Other special topics,Industrial organization,Cross-field boundary,0.4044458184251204,0.20396415716153882,0,10,10
+stubborn beliefs -> tougher competition,Z12 -> L19,Other special topics,Industrial organization,Cross-field boundary,0.40444212387837647,0.20503558561279536,0,9,9
+blockchain technology -> cultural factors,E42 -> Z10,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.40432042462873086,0.20377328195530298,0,10,10
+universal basic income (ubi) -> conceptual artists,H53 -> Z11,Public economics,Other special topics,Cross-field boundary,0.40431806950742405,0.20376086571320196,0,10,10
+fixed exchange rate regime -> early entry agreements,F33 -> Z22,International economics,Other special topics,Cross-field boundary,0.40429755468477335,0.20373777657722084,0,10,10
+master settlement agreement (msa) -> economic activity,Z23 -> E20,Other special topics,Macroeconomics and monetary economics,Cross-field boundary,0.40428320191638484,0.20374653930331602,0,10,10
+master settlement agreement (msa) -> statistical discrimination,Z23 -> J79,Other special topics,Labor and demographic economics,Cross-field boundary,0.40427963807031575,0.20275436107477027,0,11,11
+central bank independence -> civic culture,E58 -> Z18,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.40427118483322527,0.20476031690196905,0,9,9
+stubborn beliefs -> firm behavior,Z12 -> D21,Other special topics,Microeconomics,Cross-field boundary,0.4042586313828964,0.2047554009979764,0,9,9
+trade openness -> conceptual artists,F41 -> Z11,International economics,Other special topics,Cross-field boundary,0.40423092320327964,0.2036357602095075,0,10,10
+cultural factors -> liquidity,Z10 -> E41,Other special topics,Macroeconomics and monetary economics,Cross-field boundary,0.4041451512949358,0.20457710854593686,0,9,9
+conceptual artists -> r&d investment,Z11 -> O32,Other special topics,"Economic development, innovation, and growth",Cross-field boundary,0.4041352443907414,0.2072506023485247,0,7,7
+conceptual artists -> government actions,Z11 -> H11,Other special topics,Public economics,Cross-field boundary,0.40391807283404296,0.20317663200798455,0,10,10
+early entry agreements -> borrowing constraints,Z22 -> F34,Other special topics,International economics,Cross-field boundary,0.40388106963000775,0.20538597582208476,0,8,8
+health insurance -> conceptual artists,I13 -> Z11,"Health, education, and welfare",Other special topics,Cross-field boundary,0.40381698760235546,0.20531197791599237,0,8,8
+economic policies -> early entry agreements,E64 -> Z22,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.40375574872186104,0.20399149847114897,0,9,9
+cultural factors -> borrowing costs,Z10 -> H74,Other special topics,Public economics,Cross-field boundary,0.40374544293365133,0.20397654348397065,0,9,9
+nash equilibrium -> cultural factors,C72 -> Z10,Mathematical and quantitative methods,Other special topics,Cross-field boundary,0.4037195992756452,0.20512780272666428,0,8,8
+master settlement agreement (msa) -> vertical integration,Z23 -> L22,Other special topics,Industrial organization,Cross-field boundary,0.40371702542368815,0.2039916980219212,0,9,9
+conceptual artists -> economic outcomes,Z11 -> P47,Other special topics,Economic systems,Cross-field boundary,0.4037027643125587,0.20509422561059928,0,8,8
+conceptual artists -> forecast targeting,Z11 -> C53,Other special topics,Mathematical and quantitative methods,Cross-field boundary,0.40367064250486767,0.202808738926237,0,10,10
+government spending -> stubborn beliefs,H59 -> Z12,Public economics,Other special topics,Cross-field boundary,0.4036653028176656,0.20386098444295234,0,9,9
+financial crises -> conceptual artists,G01 -> Z11,Financial economics,Other special topics,Cross-field boundary,0.4036471435494851,0.20277640607794048,0,10,10
+equity premium -> international competition,G12 -> Z28,Financial economics,Other special topics,Cross-field boundary,0.4036444481987169,0.20382012253597517,0,9,9
+entry restrictions -> distance to jobs,Z38 -> R23,Other special topics,"Urban, rural, and regional economics",Cross-field boundary,0.40363160177168544,0.2049931389931399,0,8,8
+cultural factors -> financial integration,Z10 -> F30,Other special topics,International economics,Cross-field boundary,0.4035824221460738,0.20494148798229894,0,8,8
+capital mobility -> conceptual artists,F20 -> Z11,International economics,Other special topics,Cross-field boundary,0.403531896113988,0.2026126487175165,0,10,10
+capital controls -> conceptual artists,F38 -> Z11,International economics,Other special topics,Cross-field boundary,0.40349230232144423,0.20359624390219574,0,9,9
+cultural factors -> coordination failures,Z10 -> P11,Other special topics,Economic systems,Cross-field boundary,0.40347773776792395,0.20622613932337014,0,7,7
+cultural factors -> full employment,Z10 -> E24,Other special topics,Macroeconomics and monetary economics,Cross-field boundary,0.40341296023556944,0.20349016785750468,0,9,9
+trust -> neofisherianism,Z13 -> Q22,Other special topics,"Agriculture, natural resources, and environment",Cross-field boundary,0.40335351668641833,0.20340283299617334,0,9,9
+electoral outcomes -> conceptual artists,K16 -> Z11,Law and economics,Other special topics,Cross-field boundary,0.4033428961287086,0.20457651634982102,0,8,8
+government policies -> early entry agreements,J18 -> Z22,Labor and demographic economics,Other special topics,Cross-field boundary,0.4033316091099114,0.20336489605178062,0,9,9
+managerial decisions -> conceptual artists,M51 -> Z11,Business administration and business economics,Other special topics,Cross-field boundary,0.40328684516196256,0.2032854656476422,0,9,9
+financial stability -> cultural factors,G28 -> Z10,Financial economics,Other special topics,Cross-field boundary,0.4032746187851166,0.20327311076847232,0,9,9
+trust -> computational efficiency,Z13 -> C63,Other special topics,Mathematical and quantitative methods,Cross-field boundary,0.4032693847026837,0.20747981542834773,0,6,6
+public drug insurance -> conceptual artists,H51 -> Z11,Public economics,Other special topics,Cross-field boundary,0.40325251772690945,0.20582610927282552,0,7,7
+increase in public debt -> stubborn beliefs,H69 -> Z12,Public economics,Other special topics,Cross-field boundary,0.4032491183382558,0.20326673920075194,0,9,9
+offshoring -> early entry agreements,L24 -> Z22,Industrial organization,Other special topics,Cross-field boundary,0.40323689529393414,0.20442538250224643,0,8,8
+cultural factors -> fiscal deficits,Z10 -> H68,Other special topics,Public economics,Cross-field boundary,0.4031895219620991,0.20442304632056138,0,8,8
+stubborn beliefs -> reduced labor usage,Z12 -> J89,Other special topics,Labor and demographic economics,Cross-field boundary,0.4031756531897736,0.20429817535424877,0,8,8
+civic culture -> entrepreneurial activity,Z18 -> L26,Other special topics,Industrial organization,Cross-field boundary,0.40315360397800815,0.2042793865245176,0,8,8
+macroeconomic stability -> conceptual artists,E60 -> Z11,Macroeconomics and monetary economics,Other special topics,Cross-field boundary,0.40312000277456606,0.20304615556702482,0,9,9
+stubborn beliefs -> hegemony,Z12 -> F54,Other special topics,International economics,Cross-field boundary,0.40311143403270466,0.20302961506468278,0,9,9
+entry restrictions -> average productivity,Z38 -> O47,Other special topics,"Economic development, innovation, and growth",Cross-field boundary,0.4031038821897136,0.20421173685504806,0,8,8
+conceptual artists -> data accumulation,Z11 -> C80,Other special topics,Mathematical and quantitative methods,Cross-field boundary,0.4030854531552126,0.20298721532956507,0,9,9
+cultural factors -> policy instruments,Z10 -> L52,Other special topics,Industrial organization,Cross-field boundary,0.4030216785715395,0.205514065846185,0,7,7
+conceptual artists -> transaction costs,Z11 -> D23,Other special topics,Microeconomics,Cross-field boundary,0.4030092749722276,0.20288354963819902,0,9,9
+cultural factors -> improves welfare,Z10 -> D60,Other special topics,Microeconomics,Cross-field boundary,0.4030083370842527,0.20288295539340506,0,9,9
+political risk -> conceptual artists,P26 -> Z11,Economic systems,Other special topics,Cross-field boundary,0.4029910850077338,0.20404217948373826,0,8,8
+conceptual artists -> improves welfare,Z11 -> D60,Other special topics,Microeconomics,Cross-field boundary,0.40293115545606345,0.2039800484276963,0,8,8
+public trust -> conceptual artists,H82 -> Z11,Public economics,Other special topics,Cross-field boundary,0.4029211211581482,0.20274921323331882,0,9,9
+tso behavior (withholding capacity) -> trust,L90 -> Z13,Industrial organization,Other special topics,Cross-field boundary,0.4029176045157761,0.20274376310343314,0,9,9
+distance to jobs -> conceptual artists,R23 -> Z11,"Urban, rural, and regional economics",Other special topics,Cross-field boundary,0.4028331314700707,0.20379357562016637,0,8,8
+master settlement agreement (msa) -> personalized medicine,Z23 -> I11,Other special topics,"Health, education, and welfare",Cross-field boundary,0.402829377902305,0.20519848927206344,0,7,7
+stubborn beliefs -> economic development,Z12 -> O29,Other special topics,"Economic development, innovation, and growth",Cross-field boundary,0.4027934138419151,0.2037172202052497,0,8,8
+limited liability -> specialization,K13 -> Z00,Law and economics,Other special topics,Cross-field boundary,0.40279299627174114,0.20374169336205303,0,8,8
+fiscal capacity -> conceptual artists,H39 -> Z11,Public economics,Other special topics,Cross-field boundary,0.4026646776381998,0.20237685810318842,0,9,9
+conceptual artists -> gender,Z11 -> J16,Other special topics,Labor and demographic economics,Cross-field boundary,0.4026258516226051,0.20347152661997586,0,8,8
+conceptual artists -> dynamic price index (dpi),Z11 -> C43,Other special topics,Mathematical and quantitative methods,Cross-field boundary,0.4025704308787164,0.20339954408656333,0,8,8
+conceptual artists -> economic conditions,Z11 -> E66,Other special topics,Macroeconomics and monetary economics,Cross-field boundary,0.40255826809322354,0.20340276988870945,0,8,8
+conceptual artists -> offshoring,Z11 -> L24,Other special topics,Industrial organization,Cross-field boundary,0.4025532305046344,0.20475312851949234,0,7,7
+investor behavior -> cultural factors,G41 -> Z10,Financial economics,Other special topics,Cross-field boundary,0.4025370161449007,0.20337889615765906,0,8,8
+cultural factors -> systemic risk,Z10 -> E44,Other special topics,Macroeconomics and monetary economics,Cross-field boundary,0.4025009715426926,0.2046356871066806,0,7,7
+conceptual artists -> international cooperation,Z11 -> F53,Other special topics,International economics,Cross-field boundary,0.4024961446283437,0.2033181230907063,0,8,8
+privatization -> conceptual artists,L33 -> Z11,Industrial organization,Other special topics,Cross-field boundary,0.4024831681665822,0.2046015515707673,0,7,7
+majority rule -> conceptual artists,D71 -> Z11,Microeconomics,Other special topics,Cross-field boundary,0.4024725989268785,0.20324590893020758,0,8,8
+increase in public debt -> early entry agreements,H69 -> Z22,Public economics,Other special topics,Cross-field boundary,0.40246566992365546,0.20324239560686522,0,8,8
+monopoly power -> stubborn beliefs,L12 -> Z12,Industrial organization,Other special topics,Cross-field boundary,0.4024505779388202,0.20322100745362148,0,8,8
