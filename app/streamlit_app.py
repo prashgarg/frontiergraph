@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import html
 import os
 import sqlite3
 from pathlib import Path
@@ -57,126 +56,55 @@ def inject_css() -> None:
         """
         <style>
         .stApp {
-            background:
-                radial-gradient(circle at top left, rgba(180, 139, 83, 0.10), transparent 30%),
-                linear-gradient(180deg, #f5f1e8 0%, #f7f4ee 45%, #eff2ef 100%);
+            background: #f8f7f3;
         }
         .block-container {
             max-width: 1180px;
-            padding-top: 2rem;
+            padding-top: 1.35rem;
             padding-bottom: 3rem;
         }
         h1, h2, h3 {
-            font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+            font-family: Georgia, "Times New Roman", serif;
             color: #182226;
-            letter-spacing: -0.02em;
-        }
-        .stMarkdown, .stText, .stMetric, .stDataFrame, .stCaption, .stSelectbox, .stMultiSelect, .stSlider {
-            font-family: "Avenir Next", "Work Sans", "Helvetica Neue", sans-serif;
         }
         .hero-shell {
-            padding: 0.35rem 0 1.2rem 0;
+            padding: 0 0 1rem 0;
             border-bottom: 1px solid rgba(24, 34, 38, 0.10);
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
         .eyebrow {
             font-size: 0.74rem;
             letter-spacing: 0.14em;
             text-transform: uppercase;
             color: #5b666c;
-            margin-bottom: 0.55rem;
+            margin-bottom: 0.35rem;
         }
         .hero-title {
-            font-size: 3rem;
-            line-height: 0.96;
+            font-size: 2.2rem;
+            line-height: 1.04;
             margin: 0;
-            max-width: 14ch;
         }
         .hero-copy {
-            max-width: 50rem;
-            margin-top: 0.8rem;
+            max-width: 46rem;
+            margin-top: 0.55rem;
             color: #546066;
-            line-height: 1.7;
-            font-size: 1.02rem;
-        }
-        .note-box {
-            border: 1px solid rgba(24, 34, 38, 0.10);
-            background: rgba(255, 252, 247, 0.82);
-            border-radius: 16px;
-            padding: 1rem 1.05rem;
-            box-shadow: 0 12px 32px rgba(44, 38, 31, 0.05);
-        }
-        .note-kicker {
-            font-size: 0.74rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #6d6557;
-            margin-bottom: 0.45rem;
-        }
-        .note-title {
-            font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-            font-size: 1.45rem;
-            line-height: 1.08;
-            margin: 0 0 0.55rem 0;
-        }
-        .note-copy {
-            color: #4f5c61;
-            line-height: 1.65;
-            margin: 0;
-        }
-        .detail-box {
-            border: 1px solid rgba(24, 34, 38, 0.10);
-            background: rgba(255, 255, 255, 0.70);
-            border-radius: 16px;
-            padding: 1rem 1.05rem;
-        }
-        .detail-box h3 {
-            font-size: 1.4rem;
-            line-height: 1.08;
-            margin: 0 0 0.45rem 0;
-        }
-        .detail-meta {
-            color: #667178;
-            font-size: 0.88rem;
-            margin-bottom: 0.7rem;
-        }
-        .detail-copy {
-            color: #435158;
-            line-height: 1.65;
-            margin-bottom: 0.65rem;
+            line-height: 1.55;
+            font-size: 0.98rem;
         }
         .muted {
             color: #5d696f;
             font-size: 0.92rem;
         }
-        .stTabs [data-baseweb="tab-list"] {
-            gap: 0.5rem;
-        }
-        .stTabs [data-baseweb="tab"] {
-            border-radius: 999px;
-            border: 1px solid rgba(24, 34, 38, 0.10);
-            background: rgba(255, 255, 255, 0.55);
-            padding: 0.45rem 0.9rem;
-        }
-        .stTabs [aria-selected="true"] {
-            background: #1f4f4a;
-            color: #f7faf8;
-        }
         [data-testid="stMetric"] {
             border: 1px solid rgba(24, 34, 38, 0.10);
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.58);
+            border-radius: 8px;
+            background: #ffffff;
             padding: 0.8rem 0.9rem;
         }
         [data-testid="stExpander"] {
             border: 1px solid rgba(24, 34, 38, 0.10);
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.58);
-        }
-        .section-rule {
-            height: 1px;
-            background: rgba(24, 34, 38, 0.10);
-            margin: 1.2rem 0;
+            border-radius: 8px;
+            background: #ffffff;
         }
         </style>
         """,
@@ -538,22 +466,8 @@ def filter_candidates(
     return filtered_df
 
 
-def render_lead_box(row: pd.Series) -> None:
-    st.markdown(
-        f"""
-        <div class="note-box">
-            <div class="note-kicker">Current top recommendation</div>
-            <div class="note-title">{html.escape(str(row['opportunity']))}</div>
-            <p class="note-copy"><strong>Suggested move:</strong> {html.escape(recommendation_play(row))}</p>
-            <p class="note-copy">{html.escape(why_now(row))}</p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
 def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, preset: str, top_n: int) -> None:
-    st.subheader("Ranked agenda")
+    st.subheader("Shortlist")
     st.caption(PRESET_HELP[preset])
 
     if filtered_df.empty:
@@ -561,20 +475,17 @@ def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, preset: str, top_
         return
 
     shortlist_df = filtered_df.head(int(top_n)).reset_index(drop=True)
-    lead_row = shortlist_df.iloc[0]
 
-    lead_cols = st.columns([1.7, 1, 1, 1])
-    with lead_cols[0]:
-        render_lead_box(lead_row)
-    with lead_cols[1]:
+    top_cols = st.columns(4)
+    with top_cols[0]:
         st.metric("Ideas in play", f"{len(filtered_df):,}")
-    with lead_cols[2]:
+    with top_cols[1]:
         st.metric("Cross-field share", f"{100 * filtered_df['cross_field'].mean():.1f}%")
-    with lead_cols[3]:
+    with top_cols[2]:
         st.metric("Median priority", f"{filtered_df['priority_score'].median():.3f}")
+    with top_cols[3]:
+        st.metric("Top idea", shortlist_df.iloc[0]["opportunity"])
 
-    st.markdown("<div class='section-rule'></div>", unsafe_allow_html=True)
-    st.markdown("### Shortlist")
     st.dataframe(shortlist_view(shortlist_df), use_container_width=True, hide_index=True)
 
     options_df = shortlist_df.head(min(100, len(shortlist_df))).reset_index(drop=True)
@@ -606,22 +517,18 @@ def render_candidate_detail(db_path: str, row: pd.Series) -> None:
         return
 
     st.markdown("### Selected opportunity")
-    top_cols = st.columns([1.6, 1, 1, 1])
-    top_cols[0].markdown(
-        f"""
-        <div class="detail-box">
-            <h3>{html.escape(str(row['opportunity']))}</h3>
-            <div class="detail-meta">{html.escape(str(row['code_pair']))}</div>
-            <div class="detail-copy"><strong>Project shape:</strong> {html.escape(recommendation_play(row))}</div>
-            <div class="detail-copy">{html.escape(why_now(row))}</div>
-            <div class="muted">Source field: {html.escape(str(row['source_field_name']))} | Target field: {html.escape(str(row['target_field_name']))}</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
+    st.markdown(f"**{row['opportunity']}**")
+    st.caption(
+        f"{row['code_pair']} | {row['source_field_name']} -> {row['target_field_name']}"
     )
-    top_cols[1].metric("Priority", f"{to_float(row['priority_score']):.3f}")
-    top_cols[2].metric("Base score", f"{to_float(candidate_row['score']):.3f}")
-    top_cols[3].metric("Prior contact", f"{to_int(candidate_row.get('cooc_count', 0))}")
+    st.write(f"Suggested move: {recommendation_play(row)}")
+    st.write(why_now(row))
+
+    top_cols = st.columns(4)
+    top_cols[0].metric("Priority", f"{to_float(row['priority_score']):.3f}")
+    top_cols[1].metric("Base score", f"{to_float(candidate_row['score']):.3f}")
+    top_cols[2].metric("Prior contact", f"{to_int(candidate_row.get('cooc_count', 0))}")
+    top_cols[3].metric("Mediators", f"{to_int(candidate_row.get('mediator_count', 0))}")
 
     summary_tab, evidence_tab, papers_tab, export_tab = st.tabs(["Summary", "Evidence", "Papers", "Export"])
 
@@ -840,11 +747,10 @@ def main() -> None:
         """
         <div class="hero-shell">
             <div class="eyebrow">FrontierGraph beta</div>
-            <h1 class="hero-title">Where should economics go next?</h1>
+            <h1 class="hero-title">Economics research ranker</h1>
             <p class="hero-copy">
-                FrontierGraph ranks missing links in the economics literature, then lets you inspect why each one looks
-                promising. The interface is meant to get busy researchers from a broad graph to a credible shortlist
-                quickly.
+                FrontierGraph turns the economics literature graph into a shortlist of candidate research links. AI
+                extracts the graph; the ranking itself is deterministic and inspectable.
             </p>
         </div>
         """,

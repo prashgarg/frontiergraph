@@ -8,192 +8,104 @@
       name="description"
       content="FrontierGraph ranks what economics should work on next using a deterministic graph-native metascience engine."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="./styles.css" />
     <script src="./config.js"></script>
   </head>
   <body>
     <div class="page">
       <header class="masthead">
-        <a class="brand" href="./">
-          <span class="brand-mark"></span>
-          <span class="brand-text">
-            <span class="eyebrow">Public beta</span>
-            <span class="brand-title">FrontierGraph</span>
-          </span>
-        </a>
+        <a class="brand" href="./">FrontierGraph</a>
         <nav class="mastnav">
           <a href="./method/">Method</a>
           <a href="mailto:prashant.garg@imperial.ac.uk">Contact</a>
-          <a id="repo-link" href="https://github.com/prashgarg/frontiergraph">Repo</a>
-          <a class="nav-cta" id="open-app-link" href="https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app">
-            Open the ranker
-          </a>
+          <a id="repo-link" href="https://github.com/prashgarg/frontiergraph">GitHub</a>
+          <a class="nav-cta" id="open-app-link" href="https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app">Open app</a>
         </nav>
       </header>
 
-      <main>
+      <main class="narrow">
         <section class="hero">
-          <div class="hero-copy">
-            <p class="eyebrow">Deterministic metascience for economics</p>
-            <h1>FrontierGraph ranks what economics should work on next.</h1>
-            <p class="lede">
-              The system turns the literature graph into a ranked research agenda. AI is used only to extract text into
-              graph structure. The ranking itself is deterministic, inspectable, and built for busy researchers who
-              want the evidence quickly.
-            </p>
-            <div class="hero-actions">
-              <a class="button button-primary" id="open-app-link-hero" href="https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app">
-                Open the beta app
-              </a>
-              <a class="button button-secondary" id="method-link" href="./method/">Read the method</a>
-            </div>
-            <div class="signal-strip">
-              <div class="signal-item">
-                <span class="signal-value">856</span>
-                <span class="signal-label">concept nodes</span>
-              </div>
-              <div class="signal-item">
-                <span class="signal-value">30,896</span>
-                <span class="signal-label">economics papers</span>
-              </div>
-              <div class="signal-item">
-                <span class="signal-value">387,555</span>
-                <span class="signal-label">candidate missing links</span>
-              </div>
-            </div>
+          <p class="eyebrow">Public beta</p>
+          <h1>Ranked economics research opportunities.</h1>
+          <p class="lede">
+            FrontierGraph turns the economics literature graph into a shortlist of underexplored links. AI is used
+            only to extract graph structure from text. The ranking itself is deterministic and inspectable.
+          </p>
+          <div class="actions">
+            <a class="button button-primary" id="open-app-link-hero" href="https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app">Open the ranker</a>
+            <a class="button button-secondary" href="./method/">Read the method</a>
           </div>
-          <aside class="preview-panel">
-            <p class="panel-kicker">Current graph snapshot</p>
-            <h2>Sample top-ranked opportunities</h2>
-            <table class="preview-table">
-              <thead>
-                <tr>
-                  <th>Rank</th>
-                  <th>Opportunity</th>
-                  <th>Priority</th>
-                  <th>Mediators</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>inflation -> human capital</td>
-                  <td>0.609</td>
-                  <td>225</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>exchange rates -> human capital</td>
-                  <td>0.602</td>
-                  <td>219</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>investment decisions -> monetary policy</td>
-                  <td>0.554</td>
-                  <td>171</td>
-                </tr>
-              </tbody>
-            </table>
-            <p class="panel-note">
-              These rows come from the live economics graph snapshot now powering the public beta.
-            </p>
-          </aside>
         </section>
 
-        <section class="section two-column">
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Current graph snapshot</p>
+              <h2>Live beta snapshot</h2>
+            </div>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Opportunity</th>
+                <th>Priority</th>
+                <th>Mediators</th>
+                <th>Prior contact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>inflation -> human capital</td>
+                <td>0.609</td>
+                <td>225</td>
+                <td>27</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>exchange rates -> human capital</td>
+                <td>0.602</td>
+                <td>219</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>investment decisions -> monetary policy</td>
+                <td>0.554</td>
+                <td>171</td>
+                <td>100</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="section split">
+          <div>
+            <p class="eyebrow">What it is for</p>
+            <h2>A fast first pass on where the literature may be leaving room.</h2>
+            <p class="body-copy">
+              FrontierGraph is meant for researchers who want a structured shortlist rather than a black-box answer.
+              The interface is intentionally compact: shortlist first, evidence second.
+            </p>
+          </div>
           <div>
             <p class="eyebrow">Why trust it</p>
-            <h2>Not a black-box recommender</h2>
-            <p class="body-copy">
-              FrontierGraph is designed to be legible. Users can inspect the mediators, paths, supporting papers, and
-              prior contact behind every recommended research direction.
-            </p>
-          </div>
-          <div class="list-card">
-            <ul class="trust-list">
-              <li>AI only extracts graph structure from text.</li>
-              <li>Ranking is deterministic once the graph exists.</li>
-              <li>Each idea comes with evidence you can inspect.</li>
-              <li>The tool is meant to assist judgment, not replace it.</li>
+            <ul class="plain-list">
+              <li>AI extracts the graph. It does not decide the ranking logic.</li>
+              <li>Each suggestion can be inspected through mediators, paths, and papers.</li>
+              <li>The current beta is focused on being legible before it tries to be broad.</li>
             </ul>
-          </div>
-        </section>
-
-        <section class="section example-section">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">One live example</p>
-              <h2>Exchange rates -> human capital</h2>
-            </div>
-            <div class="example-metrics">
-              <div>
-                <span class="mini-label">priority</span>
-                <strong>0.602</strong>
-              </div>
-              <div>
-                <span class="mini-label">mediators</span>
-                <strong>219</strong>
-              </div>
-              <div>
-                <span class="mini-label">prior co-occurrences</span>
-                <strong>7</strong>
-              </div>
-            </div>
-          </div>
-          <p class="body-copy">
-            This is the kind of result the tool is built to surface: a plausible bridge where the graph already finds
-            many indirect routes, but the direct link remains thin in the existing literature. The point is not that
-            the system knows the answer. The point is that it can quickly show researchers where the field may be
-            leaving structured opportunity on the table.
-          </p>
-        </section>
-
-        <section class="section three-up">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">How it works</p>
-              <h2>A short pipeline</h2>
-            </div>
-          </div>
-          <div class="steps">
-            <article class="step">
-              <span class="step-number">1</span>
-              <h3>Extract the graph</h3>
-              <p>Convert papers into directed causal-claim edges. This is the only stage where AI is allowed.</p>
-            </article>
-            <article class="step">
-              <span class="step-number">2</span>
-              <h3>Score missing links</h3>
-              <p>Use underexplored pairs, path support, motif completion, hub penalties, and field distance.</p>
-            </article>
-            <article class="step">
-              <span class="step-number">3</span>
-              <h3>Inspect the evidence</h3>
-              <p>Move from a ranked shortlist to mediators, paths, papers, and exportable research briefs.</p>
-            </article>
           </div>
         </section>
       </main>
 
       <footer class="footer">
-        <div>
-          <span class="footer-title">FrontierGraph</span>
-          <p class="footer-copy">
-            A public beta for deterministic research-priority ranking in economics.
-          </p>
-        </div>
+        <span>FrontierGraph</span>
         <div class="footer-links">
-          <a id="footer-app-link" href="https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app">Open the ranker</a>
+          <a id="footer-app-link" href="https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app">Open app</a>
           <a href="./method/">Method</a>
           <a href="mailto:prashant.garg@imperial.ac.uk">prashant.garg@imperial.ac.uk</a>
-          <a id="footer-repo-link" href="https://github.com/prashgarg/frontiergraph">GitHub</a>
         </div>
       </footer>
     </div>
@@ -206,10 +118,6 @@
           document.getElementById("open-app-link-hero"),
           document.getElementById("footer-app-link"),
         ];
-        var repoLinks = [
-          document.getElementById("repo-link"),
-          document.getElementById("footer-repo-link"),
-        ];
         if (config.appUrl) {
           appLinks.forEach(function (link) {
             if (link) {
@@ -218,11 +126,7 @@
           });
         }
         if (config.docsUrl) {
-          repoLinks.forEach(function (link) {
-            if (link) {
-              link.href = config.docsUrl;
-            }
-          });
+          document.getElementById("repo-link").href = config.docsUrl;
         }
       })();
     </script>
