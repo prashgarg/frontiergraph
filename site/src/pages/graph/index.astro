@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import GraphWorkbench from "../../components/GraphWorkbench.astro";
+import { data, formatNumber, formatPercent } from "../../lib/site-data";
+
+const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`;
+---
+
+<BaseLayout
+  title="Graph | FrontierGraph"
+  description="Explore the observed baseline concept graph of the economics literature."
+>
+  <main>
+    <section class="page-hero">
+      <span class="eyebrow">Observed concept graph</span>
+      <h1>Explore the baseline literature network.</h1>
+      <p class="lede">
+        This viewer starts from the observed baseline concept graph rather than the recommendation layer. It shows a
+        backbone view of the network, then expands local neighborhoods and nearby opportunities when you click into a
+        concept.
+      </p>
+      <div class="button-row">
+        <span class="field-pill">{defaultRegime}</span>
+        <a class="button-secondary" href="/opportunities/">See ranked opportunities</a>
+        <a class="button-tertiary" href={data.app_url}>Open deeper explorer</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="metrics-grid">
+        <article class="metric-card">
+          <div class="metric-value">{formatNumber(data.home.graph_snapshot.nodes)}</div>
+          <div class="metric-label">concepts in the public backbone view</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-value">{formatNumber(data.home.graph_snapshot.edges)}</div>
+          <div class="metric-label">observed backbone edges rendered at first load</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-value">{formatPercent(data.metrics.baseline_soft_coverage)}</div>
+          <div class="metric-label">exploratory mapping coverage in the default ontology view</div>
+        </article>
+      </div>
+    </section>
+
+    <GraphWorkbench
+      graphPath={data.graph.backbone_path}
+      conceptIndexPath={data.graph.concept_index_path}
+      neighborhoodsIndexPath={data.graph.concept_neighborhoods_index_path}
+      opportunitiesIndexPath={data.graph.concept_opportunities_index_path}
+      centralConceptsPath={data.graph.central_concepts_path}
+    />
+  </main>
+</BaseLayout>

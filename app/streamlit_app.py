@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import os
 import sqlite3
 from pathlib import Path
@@ -10,11 +11,14 @@ import streamlit as st
 
 from src.explain import build_idea_brief_markdown
 from src.opportunity_data import (
+    CONCEPT_BUCKET_NAMES,
     JEL_FIELD_NAMES,
     NOVELTY_LABELS,
     PRESET_HELP,
     compute_priority_score,
     connect_readonly,
+    is_concept_mode,
+    load_app_mode,
     load_candidate_summary,
     load_nodes,
     recommendation_play,
@@ -24,9 +28,11 @@ from src.opportunity_data import (
 )
 
 SITE_URL = "https://frontiergraph.com"
+GRAPH_URL = f"{SITE_URL}/graph/"
+OPPORTUNITIES_URL = f"{SITE_URL}/opportunities/"
+COMPARE_URL = f"{SITE_URL}/compare/"
 METHOD_URL = f"{SITE_URL}/method/"
 DOWNLOADS_URL = f"{SITE_URL}/downloads/"
-DISCOVER_URL = f"{SITE_URL}/discover/"
 REPO_URL = "https://github.com/prashgarg/frontiergraph"
 
 
@@ -116,6 +122,13 @@ def query_df(db_path: str, sql: str, params: tuple = ()) -> pd.DataFrame:
         return pd.read_sql_query(sql, conn, params=params)
 
 
+def format_rank(value: object) -> str:
+    numeric = pd.to_numeric(pd.Series([value]), errors="coerce").iloc[0]
+    if pd.isna(numeric):
+        return "NA"
+    return str(int(numeric))
+
+
 @st.cache_data(show_spinner=False)
 def load_candidate_bundle(db_path: str, u: str, v: str) -> dict[str, pd.DataFrame | pd.Series | None]:
     candidate_df = query_df(
@@ -172,6 +185,30 @@ def load_candidate_bundle(db_path: str, u: str, v: str) -> dict[str, pd.DataFram
     )
     neighborhood_row = neighborhood_df.iloc[0] if not neighborhood_df.empty else None
     candidate_row = candidate_df.iloc[0] if not candidate_df.empty else None
+    try:
+        source_detail_df = query_df(
+            db_path,
+            """
+            SELECT *
+            FROM node_details
+            WHERE concept_id = ?
+            LIMIT 1
+            """,
+            (u,),
+        )
+        target_detail_df = query_df(
+            db_path,
+            """
+            SELECT *
+            FROM node_details
+            WHERE concept_id = ?
+            LIMIT 1
+            """,
+            (v,),
+        )
+    except Exception:
+        source_detail_df = pd.DataFrame()
+        target_detail_df = pd.DataFrame()
     return {
         "candidate_df": candidate_df,
         "candidate_row": candidate_row,
@@ -179,9 +216,13 @@ def load_candidate_bundle(db_path: str, u: str, v: str) -> dict[str, pd.DataFram
         "paths_df": paths_df,
         "papers_df": papers_df,
         "neighborhood_row": neighborhood_row,
+        "source_detail_row": source_detail_df.iloc[0] if not source_detail_df.empty else None,
+        "target_detail_row": target_detail_df.iloc[0] if not target_detail_df.empty else None,
     }
 
-def field_option_label(field_code: str) -> str:
+def field_option_label(field_code: str, app_mode: str) -> str:
+    if is_concept_mode(app_mode):
+        return f"{field_code} | {CONCEPT_BUCKET_NAMES.get(field_code, field_code)}"
     return f"{field_code} | {JEL_FIELD_NAMES.get(field_code, 'Unmapped field')}"
 
 
@@ -315,7 +356,7 @@ def filter_candidates(
     return filtered_df
 
 
-def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, preset: str, top_n: int) -> None:
+def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, preset: str, top_n: int, app_mode: str) -> None:
     st.subheader("Shortlist")
     st.caption(PRESET_HELP[preset])
 
@@ -343,7 +384,7 @@ def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, preset: str, top_
         options=options_df.index,
         format_func=lambda i: candidate_option_label(options_df.loc[i]),
     )
-    render_candidate_detail(db_path, options_df.loc[int(selected_idx)])
+    render_candidate_detail(db_path, options_df.loc[int(selected_idx)], app_mode=app_mode)
 
     st.download_button(
         label="Download current shortlist as CSV",
@@ -353,13 +394,15 @@ def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, preset: str, top_
     )
 
 
-def render_candidate_detail(db_path: str, row: pd.Series) -> None:
+def render_candidate_detail(db_path: str, row: pd.Series, app_mode: str) -> None:
     bundle = load_candidate_bundle(db_path, str(row["u"]), str(row["v"]))
     candidate_row = bundle["candidate_row"]
     mediators_df = bundle["mediators_df"]
     paths_df = bundle["paths_df"]
     papers_df = bundle["papers_df"]
     neighborhood_row = bundle["neighborhood_row"]
+    source_detail_row = bundle["source_detail_row"]
+    target_detail_row = bundle["target_detail_row"]
 
     if candidate_row is None:
         st.warning("Candidate details were not found in the database.")
@@ -373,11 +416,18 @@ def render_candidate_detail(db_path: str, row: pd.Series) -> None:
     st.write(f"Suggested move: {recommendation_play(row)}")
     st.write(why_now(row))
 
-    top_cols = st.columns(4)
+    has_suppression = "base_score" in candidate_row.index
+    top_cols = st.columns(5 if has_suppression else 4)
     top_cols[0].metric("Priority", f"{to_float(row['priority_score']):.3f}")
-    top_cols[1].metric("Base score", f"{to_float(candidate_row['score']):.3f}")
-    top_cols[2].metric("Prior contact", f"{to_int(candidate_row.get('cooc_count', 0))}")
-    top_cols[3].metric("Mediators", f"{to_int(candidate_row.get('mediator_count', 0))}")
+    if has_suppression:
+        top_cols[1].metric("Adjusted score", f"{to_float(candidate_row.get('score', 0.0)):.3f}")
+        top_cols[2].metric("Base score", f"{to_float(candidate_row.get('base_score', 0.0)):.3f}")
+        top_cols[3].metric("Prior contact", f"{to_int(candidate_row.get('cooc_count', 0))}")
+        top_cols[4].metric("Mediators", f"{to_int(candidate_row.get('mediator_count', 0))}")
+    else:
+        top_cols[1].metric("Base score", f"{to_float(candidate_row['score']):.3f}")
+        top_cols[2].metric("Prior contact", f"{to_int(candidate_row.get('cooc_count', 0))}")
+        top_cols[3].metric("Mediators", f"{to_int(candidate_row.get('mediator_count', 0))}")
 
     summary_tab, evidence_tab, papers_tab, export_tab = st.tabs(["Summary", "Evidence", "Papers", "Export"])
 
@@ -387,11 +437,21 @@ def render_candidate_detail(db_path: str, row: pd.Series) -> None:
             summary_df = pd.DataFrame(
                 [
                     {"Metric": "Novelty", "Value": row["novelty_label"]},
+                    *(
+                        [
+                            {"Metric": "Base rank", "Value": format_rank(candidate_row.get("base_rank"))},
+                            {"Metric": "Adjusted rank", "Value": format_rank(candidate_row.get("rank"))},
+                            {"Metric": "Duplicate penalty", "Value": f"{to_float(candidate_row.get('duplicate_penalty', 0.0)):.3f}"},
+                            {"Metric": "Hard suppression reason", "Value": str(candidate_row.get("hard_same_family_reason", "") or "NA")},
+                        ]
+                        if has_suppression
+                        else []
+                    ),
                     {"Metric": "Path support", "Value": f"{to_float(candidate_row.get('path_support_norm', 0.0)):.3f}"},
                     {"Metric": "Gap bonus", "Value": f"{to_float(candidate_row.get('gap_bonus', 0.0)):.3f}"},
                     {"Metric": "Motif bonus", "Value": f"{to_float(candidate_row.get('motif_bonus_norm', 0.0)):.3f}"},
                     {"Metric": "Hub penalty", "Value": f"{to_float(candidate_row.get('hub_penalty', 0.0)):.3f}"},
-                    {"Metric": "Base-model rank", "Value": str(to_int(candidate_row.get('rank', 0)))},
+                    {"Metric": "Displayed rank", "Value": format_rank(candidate_row.get('rank'))},
                 ]
             )
             st.dataframe(summary_df, use_container_width=True, hide_index=True)
@@ -404,6 +464,42 @@ def render_candidate_detail(db_path: str, row: pd.Series) -> None:
                 ]
             )
             st.dataframe(evidence_df, use_container_width=True, hide_index=True)
+            if is_concept_mode(app_mode) and source_detail_row is not None and target_detail_row is not None:
+                with st.expander("Inspect concept metadata", expanded=False):
+                    st.markdown("**Source concept**")
+                    st.code(
+                        json.dumps(
+                            {
+                                "aliases_json": source_detail_row.get("aliases_json", "[]"),
+                                "bucket_hint": source_detail_row.get("bucket_hint", ""),
+                                "instance_support": to_int(source_detail_row.get("instance_support", 0)),
+                                "mean_confidence": to_float(source_detail_row.get("mean_confidence", 0.0)),
+                                "low_confidence_share": to_float(source_detail_row.get("low_confidence_share", 0.0)),
+                                "mapping_sources_json": source_detail_row.get("mapping_sources_json", "[]"),
+                                "representative_contexts_json": source_detail_row.get("representative_contexts_json", "[]"),
+                                "representative_years_json": source_detail_row.get("representative_years_json", "[]"),
+                            },
+                            ensure_ascii=False,
+                            indent=2,
+                        )
+                    )
+                    st.markdown("**Target concept**")
+                    st.code(
+                        json.dumps(
+                            {
+                                "aliases_json": target_detail_row.get("aliases_json", "[]"),
+                                "bucket_hint": target_detail_row.get("bucket_hint", ""),
+                                "instance_support": to_int(target_detail_row.get("instance_support", 0)),
+                                "mean_confidence": to_float(target_detail_row.get("mean_confidence", 0.0)),
+                                "low_confidence_share": to_float(target_detail_row.get("low_confidence_share", 0.0)),
+                                "mapping_sources_json": target_detail_row.get("mapping_sources_json", "[]"),
+                                "representative_contexts_json": target_detail_row.get("representative_contexts_json", "[]"),
+                                "representative_years_json": target_detail_row.get("representative_years_json", "[]"),
+                            },
+                            ensure_ascii=False,
+                            indent=2,
+                        )
+                    )
             if neighborhood_row is not None:
                 with st.expander("Inspect local neighborhood", expanded=False):
                     st.markdown("**Top outgoing neighbors of the source concept**")
@@ -443,8 +539,8 @@ def render_candidate_detail(db_path: str, row: pd.Series) -> None:
         )
 
 
-def render_field_radar_tab(filtered_df: pd.DataFrame) -> None:
-    st.subheader("Field map")
+def render_field_radar_tab(filtered_df: pd.DataFrame, app_mode: str) -> None:
+    st.subheader("Bucket map" if is_concept_mode(app_mode) else "Field map")
     if filtered_df.empty:
         st.warning("No ideas to summarize under the current filters.")
         return
@@ -559,9 +655,9 @@ def render_method_tab(filtered_df: pd.DataFrame, preset: str) -> None:
     st.subheader("Method")
     st.markdown(
         """
-        1. AI extracts graph structure from papers.
-        2. The app scores missing links with deterministic graph signals.
-        3. Users re-rank and inspect the evidence rather than receiving a black-box recommendation.
+        1. AI extracts paper-local graph structure from titles and abstracts.
+        2. FrontierGraph maps those local graphs into concept regimes and ranks missing links with deterministic graph signals.
+        3. The public default is Baseline exploratory, with duplicate cleanup applied to the recommendation surface before it is shown.
         """
     )
     st.caption(f"Current preset: {preset}. {PRESET_HELP[preset]}")
@@ -586,7 +682,7 @@ def render_method_tab(filtered_df: pd.DataFrame, preset: str) -> None:
 
 def main() -> None:
     st.set_page_config(
-        page_title="FrontierGraph | Economics ranker",
+        page_title="FrontierGraph | Concept explorer",
         layout="wide",
         initial_sidebar_state="collapsed",
     )
@@ -596,8 +692,10 @@ def main() -> None:
         f"""
         <div class="app-nav">
             <a href="{SITE_URL}">Site</a>
-            <a href="{DISCOVER_URL}">Discover</a>
+            <a href="{GRAPH_URL}">Graph</a>
+            <a href="{OPPORTUNITIES_URL}">Opportunities</a>
             <a href="{METHOD_URL}">Method</a>
+            <a href="{COMPARE_URL}">Compare</a>
             <a href="{DOWNLOADS_URL}">Downloads</a>
             <a href="{REPO_URL}">GitHub</a>
         </div>
@@ -608,11 +706,12 @@ def main() -> None:
     st.markdown(
         """
         <div class="hero-shell">
-            <div class="eyebrow">FrontierGraph beta</div>
-            <h1 class="hero-title">Economics research ranker</h1>
+            <div class="eyebrow">FrontierGraph explorer</div>
+            <h1 class="hero-title">Explore the concept graph and ranked opportunities.</h1>
             <p class="hero-copy">
-                FrontierGraph turns the economics literature graph into a shortlist of candidate research links. AI
-                extracts the graph; the ranking itself is deterministic and inspectable.
+                FrontierGraph maps the literature into a concept graph, ranks underexplored links, and keeps ontology
+                comparison visible. The default product surface is Baseline exploratory with deterministic duplicate
+                cleanup on the public recommendation layer.
             </p>
         </div>
         """,
@@ -620,16 +719,99 @@ def main() -> None:
     )
 
     env_db = os.environ.get("ECON_OPPORTUNITY_DB", "").strip()
+    concept_env_db = os.environ.get("ECON_CONCEPT_DB", "").strip()
     db_default = env_db or (
         "data/processed/app_causalclaims.db"
         if Path("data/processed/app_causalclaims.db").exists()
         else "data/processed/app.db"
     )
+    concept_default = concept_env_db or (
+        "data/production/frontiergraph_concept_beta/concept_beta_app.sqlite"
+        if Path("data/production/frontiergraph_concept_beta/concept_beta_app.sqlite").exists()
+        else ""
+    )
+    concept_strict_default = (
+        "data/production/frontiergraph_concept_v3/concept_hard_app.sqlite"
+        if Path("data/production/frontiergraph_concept_v3/concept_hard_app.sqlite").exists()
+        else ""
+    )
+    concept_exploratory_default = (
+        "data/production/frontiergraph_concept_v3/concept_exploratory_app.sqlite"
+        if Path("data/production/frontiergraph_concept_v3/concept_exploratory_app.sqlite").exists()
+        else ""
+    )
+    compare_root = Path("data/production/frontiergraph_concept_compare_v1")
+    regime_db_map: dict[str, dict[str, str]] = {}
+    selected_ontology = "Legacy JEL"
+    selected_mapping = ""
+    for regime_name, regime_label in [
+        ("broad", "Broad"),
+        ("baseline", "Baseline"),
+        ("conservative", "Conservative"),
+    ]:
+        regime_dir = compare_root / regime_name
+        strict_db = regime_dir / "concept_hard_app.sqlite"
+        exploratory_db = regime_dir / "concept_exploratory_app.sqlite"
+        if regime_name == "baseline":
+            suppression_dir = regime_dir / "suppression"
+            suppressed_topk = suppression_dir / "concept_exploratory_suppressed_top100k_app.sqlite"
+            suppressed_exploratory = suppression_dir / "concept_exploratory_suppressed_app.sqlite"
+            if suppressed_topk.exists():
+                exploratory_db = suppressed_topk
+            elif suppressed_exploratory.exists():
+                exploratory_db = suppressed_exploratory
+        if strict_db.exists() or exploratory_db.exists():
+            regime_db_map[regime_label] = {
+                "Strict": str(strict_db) if strict_db.exists() else "",
+                "Exploratory": str(exploratory_db) if exploratory_db.exists() else "",
+            }
 
     with st.expander("Advanced settings", expanded=False):
+        ontology_options = ["Legacy JEL"]
+        ontology_options.extend(label for label in ["Baseline", "Broad", "Conservative"] if label in regime_db_map)
+        if not regime_db_map:
+            if concept_exploratory_default or concept_strict_default:
+                ontology_options.append("Concept beta")
+            elif concept_default and Path(concept_default).exists():
+                ontology_options.append("Concept beta")
+        default_ontology = "Baseline" if "Baseline" in ontology_options else ("Concept beta" if "Concept beta" in ontology_options else "Legacy JEL")
+        selected_ontology = st.radio(
+            "Ontology",
+            options=ontology_options,
+            horizontal=True,
+            index=ontology_options.index(default_ontology),
+        )
+        if selected_ontology == "Legacy JEL":
+            db_value = db_default
+        elif selected_ontology in regime_db_map:
+            available_mapping_modes = [mode for mode, path in regime_db_map[selected_ontology].items() if path]
+            default_mapping = "Exploratory" if "Exploratory" in available_mapping_modes else available_mapping_modes[0]
+            selected_mapping = st.radio(
+                "Concept mapping",
+                options=available_mapping_modes,
+                horizontal=True,
+                index=available_mapping_modes.index(default_mapping),
+            )
+            db_value = regime_db_map[selected_ontology][selected_mapping]
+        else:
+            concept_mode_options = []
+            if concept_exploratory_default:
+                concept_mode_options.append(("Exploratory", concept_exploratory_default))
+            if concept_strict_default:
+                concept_mode_options.append(("Strict", concept_strict_default))
+            if concept_default and Path(concept_default).exists():
+                concept_mode_options.append(("Beta", concept_default))
+            labels = [label for label, _path in concept_mode_options]
+            selected_mapping = st.radio(
+                "Concept mapping",
+                options=labels,
+                horizontal=True,
+                index=0,
+            )
+            db_value = dict(concept_mode_options)[selected_mapping]
         db_path = st.text_input(
             "SQLite DB path",
-            value=db_default,
+            value=db_value,
             help="Change this only if you are pointing the app at a different local SQLite build.",
         )
 
@@ -637,16 +819,25 @@ def main() -> None:
         st.error(f"Database not found: {db_path}")
         st.stop()
 
+    app_mode = load_app_mode(db_path)
     nodes_df = load_nodes_cached(db_path)
     candidates_df = load_candidate_summary_cached(db_path)
     if nodes_df.empty or candidates_df.empty:
         st.error("The database is missing the node or candidate tables needed by the app.")
         st.stop()
 
+    if is_concept_mode(app_mode):
+        mode_label = f"{selected_ontology} {selected_mapping}".strip()
+        st.caption(
+            f"Default concept surface: {mode_label}. Use Advanced settings only when you want to compare ontology regimes or switch to the legacy JEL view."
+        )
+    else:
+        st.caption("Legacy JEL is available as a coarse fallback browse layer. The public product default lives in the concept regimes.")
+
     default_preset = normalize_preset(query_param("preset"))
     default_search = query_param("search")
-    default_source_field = query_param("source_field").upper()
-    default_target_field = query_param("target_field").upper()
+    default_source_field = query_param("source_field")
+    default_target_field = query_param("target_field")
     default_cross_field = parse_flag(query_param("only_cross_field"), default=False)
 
     available_fields = sorted(set(candidates_df["source_field"]) | set(candidates_df["target_field"]))
@@ -664,16 +855,16 @@ def main() -> None:
             top_n = st.slider("Shortlist size", min_value=10, max_value=150, value=30, step=10)
         with col2:
             source_fields = st.multiselect(
-                "From fields",
+                "From groups" if is_concept_mode(app_mode) else "From fields",
                 options=available_fields,
                 default=[default_source_field] if default_source_field in available_fields else [],
-                format_func=field_option_label,
+                format_func=lambda code: field_option_label(code, app_mode=app_mode),
             )
             target_fields = st.multiselect(
-                "To fields",
+                "To groups" if is_concept_mode(app_mode) else "To fields",
                 options=available_fields,
                 default=[default_target_field] if default_target_field in available_fields else [],
-                format_func=field_option_label,
+                format_func=lambda code: field_option_label(code, app_mode=app_mode),
             )
             novelty_filter = st.multiselect("Novelty lens", options=novelty_options, default=novelty_options)
         with col3:
@@ -691,7 +882,10 @@ def main() -> None:
                 else None
             )
             min_mediators = st.slider("Minimum mediator count", min_value=0, max_value=100, value=5)
-            only_cross_field = st.checkbox("Only cross-field ideas", value=default_cross_field)
+            only_cross_field = st.checkbox(
+                "Only cross-bucket ideas" if is_concept_mode(app_mode) else "Only cross-field ideas",
+                value=default_cross_field,
+            )
 
     filtered_df = filter_candidates(
         candidates_df,
@@ -715,13 +909,15 @@ def main() -> None:
         filtered_df["priority_score"] = pd.Series(dtype=float)
         filtered_df["priority_rank"] = pd.Series(dtype=int)
 
-    ranker_tab, radar_tab, concept_tab, method_tab = st.tabs(["Ranker", "Field map", "Concepts", "Method"])
+    ranker_tab, radar_tab, concept_tab, method_tab = st.tabs(
+        ["Ranker", "Bucket map" if is_concept_mode(app_mode) else "Field map", "Concepts", "Method"]
+    )
 
     with ranker_tab:
-        render_ranker_tab(db_path, filtered_df, preset, top_n=top_n)
+        render_ranker_tab(db_path, filtered_df, preset, top_n=top_n, app_mode=app_mode)
 
     with radar_tab:
-        render_field_radar_tab(filtered_df)
+        render_field_radar_tab(filtered_df, app_mode=app_mode)
 
     with concept_tab:
         render_concept_tab(db_path, nodes_df)

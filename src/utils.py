@@ -6,7 +6,10 @@ from typing import Any, Iterable
 
 import numpy as np
 import pandas as pd
-import yaml
+try:
+    import yaml
+except ModuleNotFoundError:  # pragma: no cover - optional in lightweight runtime contexts
+    yaml = None
 
 NODES_REQUIRED_COLUMNS = ["code", "label"]
 PAPERS_REQUIRED_COLUMNS = ["paper_id", "year", "title", "authors", "venue", "source"]
@@ -44,6 +47,8 @@ def load_config(config_path: str | Path) -> dict[str, Any]:
     path = Path(config_path)
     if not path.exists():
         raise FileNotFoundError(f"Config file not found: {path}")
+    if yaml is None:
+        raise ModuleNotFoundError("PyYAML is required to load YAML config files.")
     with path.open("r", encoding="utf-8") as f:
         return yaml.safe_load(f) or {}
 

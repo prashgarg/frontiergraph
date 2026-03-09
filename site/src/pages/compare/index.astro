@@ -1,0 +1,132 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { data, formatNumber, formatPercent, titleCase } from "../../lib/site-data";
+
+const regimes = data.compare.regimes;
+const baseline = regimes.find((regime) => regime.regime === "baseline") ?? regimes[0];
+const broad = regimes.find((regime) => regime.regime === "broad");
+const conservative = regimes.find((regime) => regime.regime === "conservative");
+---
+
+<BaseLayout
+  title="Compare | FrontierGraph"
+  description="Compare Broad, Baseline, and Conservative ontology regimes and see why Baseline exploratory is the default public view."
+>
+  <main>
+    <section class="page-hero">
+      <span class="eyebrow">Ontology comparison</span>
+      <h1>Ontology sensitivity is visible rather than hidden.</h1>
+      <p class="lede">
+        FrontierGraph exposes multiple concept regimes because ontology choice changes what the graph compresses and
+        what it leaves in the tail. The public default is <strong>{baseline.label} exploratory</strong>, but users can
+        inspect how Broad and Conservative change coverage, candidate density, and recommendation overlap.
+      </p>
+      <div class="button-row">
+        <span class="field-pill">Default: {baseline.label} exploratory</span>
+        <a class="button-secondary" href="/method/">Read the method</a>
+        <a class="button-tertiary" href={data.app_url}>Open the explorer</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card-grid compare-regime-grid">
+        {regimes.map((regime) => (
+          <article class="card compare-card">
+            <span class="eyebrow">{regime.label}</span>
+            <h3>{formatNumber(regime.head_count)} head concepts</h3>
+            <p class="card-copy">
+              Hard coverage {formatPercent(regime.hard_coverage)} · exploratory coverage {formatPercent(regime.soft_coverage)}
+            </p>
+            <div class="pill-row">
+              <span class="field-pill">Strict rows {formatNumber(regime.strict_candidate_rows)}</span>
+              <span class="field-pill">Exploratory rows {formatNumber(regime.exploratory_candidate_rows)}</span>
+            </div>
+            <p class="mini-copy">
+              Strict edges {formatNumber(regime.strict_concept_edges)} · exploratory edges {formatNumber(regime.exploratory_concept_edges)}
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section split-section compare-note-grid">
+      <article class="content-panel">
+        <span class="eyebrow">Why Baseline exploratory</span>
+        <h2>{data.compare.default_reason}</h2>
+        <p class="card-copy">
+          Baseline keeps the head inventory compact enough to remain legible, while exploratory mapping reaches soft
+          coverage that is essentially on par with the broader regimes.
+        </p>
+      </article>
+      <article class="content-panel">
+        <span class="eyebrow">Best strict comparison</span>
+        <h2>{data.compare.strict_reason}</h2>
+        <p class="card-copy">
+          Broad strict remains the useful comparison point when a user wants a tighter concept identity view without
+          collapsing all the way to the conservative tail.
+        </p>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Top-100 overlap</span>
+          <h2>How much the leading recommendations agree</h2>
+        </div>
+        <p class="section-copy">
+          Overlap is measured on the top 100 candidate pairs surfaced by each regime/mapping combination.
+        </p>
+      </div>
+      <div class="table-shell">
+        <table class="opportunity-table compare-table">
+          <thead>
+            <tr>
+              <th>Left</th>
+              <th>Right</th>
+              <th>Intersection</th>
+              <th>Jaccard</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.compare.overlaps_preview.map((row) => (
+              <tr>
+                <td>{titleCase(row.left.replaceAll("::", " "))}</td>
+                <td>{titleCase(row.right.replaceAll("::", " "))}</td>
+                <td>{formatNumber(row.intersection_top100)}</td>
+                <td>{(row.jaccard_top100 * 100).toFixed(1)}%</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section split-section compare-regime-copy">
+      <article class="card">
+        <span class="eyebrow">Broad</span>
+        <h3>{broad?.label ?? "Broad"} surfaces more heads</h3>
+        <p class="card-copy">
+          Useful when you want a wider concept inventory and a richer strict comparison view. It is not the default
+          public narrative because the product gets harder to read for first-time users.
+        </p>
+      </article>
+      <article class="card">
+        <span class="eyebrow">Baseline</span>
+        <h3>{baseline.label} is the main public surface</h3>
+        <p class="card-copy">
+          This is the regime the site and app are optimized for. It balances concept compression, exploratory coverage,
+          and recommendation legibility better than the alternatives.
+        </p>
+      </article>
+      <article class="card">
+        <span class="eyebrow">Conservative</span>
+        <h3>{conservative?.label ?? "Conservative"} is the narrowest view</h3>
+        <p class="card-copy">
+          Useful for sensitivity checks and for users who want stricter concept identity, but too brittle to lead the
+          public experience.
+        </p>
+      </article>
+    </section>
+  </main>
+</BaseLayout>

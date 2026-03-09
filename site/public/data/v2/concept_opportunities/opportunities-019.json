@@ -1,0 +1,706 @@
+{
+  "FG3C005959": [
+    {
+      "pair_key": "FG3C005959__FG3C006644",
+      "source_id": "FG3C005959",
+      "source_label": "econometric methods",
+      "target_id": "FG3C006644",
+      "target_label": "Method of Moments Quantile Regression (MMQR)",
+      "score": -0.064953,
+      "base_score": 0.202231,
+      "duplicate_penalty": 0.267184,
+      "cooc_count": 0,
+      "mediator_count": 4,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=econometric%20methods%20-%3E%20Method%20of%20Moments%20Quantile%20Regression%20%28MMQR%29"
+    }
+  ],
+  "FG3C006539": [
+    {
+      "pair_key": "FG3C000019__FG3C006539",
+      "source_id": "FG3C006539",
+      "source_label": "Real Estate Investment Trusts (REITs)",
+      "target_id": "FG3C000019",
+      "target_label": "investment",
+      "score": -0.067431,
+      "base_score": 0.202442,
+      "duplicate_penalty": 0.269873,
+      "cooc_count": 0,
+      "mediator_count": 2,
+      "motif_count": 2,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=Real%20Estate%20Investment%20Trusts%20%28REITs%29%20-%3E%20investment"
+    }
+  ],
+  "FG3C005801": [
+    {
+      "pair_key": "FG3C000009__FG3C005801",
+      "source_id": "FG3C005801",
+      "source_label": "employer size",
+      "target_id": "FG3C000009",
+      "target_label": "unemployment",
+      "score": -0.068867,
+      "base_score": 0.202376,
+      "duplicate_penalty": 0.271243,
+      "cooc_count": 0,
+      "mediator_count": 2,
+      "motif_count": 2,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=employer%20size%20-%3E%20unemployment"
+    },
+    {
+      "pair_key": "FG3C000007__FG3C005801",
+      "source_id": "FG3C005801",
+      "source_label": "employer size",
+      "target_id": "FG3C000007",
+      "target_label": "employment",
+      "score": -0.21086,
+      "base_score": 0.202135,
+      "duplicate_penalty": 0.412996,
+      "cooc_count": 0,
+      "mediator_count": 2,
+      "motif_count": 2,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=employer%20size%20-%3E%20employment"
+    }
+  ],
+  "FG3C005310": [
+    {
+      "pair_key": "FG3C000001__FG3C005310",
+      "source_id": "FG3C005310",
+      "source_label": "balanced growth path",
+      "target_id": "FG3C000001",
+      "target_label": "economic growth",
+      "score": -0.06899,
+      "base_score": 0.202145,
+      "duplicate_penalty": 0.271135,
+      "cooc_count": 0,
+      "mediator_count": 4,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=balanced%20growth%20path%20-%3E%20economic%20growth"
+    }
+  ],
+  "FG3C005031": [
+    {
+      "pair_key": "FG3C000303__FG3C005031",
+      "source_id": "FG3C000303",
+      "source_label": "inflation targeting",
+      "target_id": "FG3C005031",
+      "target_label": "household inflation expectations",
+      "score": -0.082731,
+      "base_score": 0.202254,
+      "duplicate_penalty": 0.284985,
+      "cooc_count": 0,
+      "mediator_count": 4,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20targeting%20-%3E%20household%20inflation%20expectations"
+    },
+    {
+      "pair_key": "FG3C000002__FG3C005031",
+      "source_id": "FG3C000002",
+      "source_label": "inflation",
+      "target_id": "FG3C005031",
+      "target_label": "household inflation expectations",
+      "score": -0.129814,
+      "base_score": 0.201815,
+      "duplicate_penalty": 0.331629,
+      "cooc_count": 0,
+      "mediator_count": 3,
+      "motif_count": 3,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20-%3E%20household%20inflation%20expectations"
+    }
+  ],
+  "FG3C004598": [
+    {
+      "pair_key": "FG3C000259__FG3C004598",
+      "source_id": "FG3C004598",
+      "source_label": "bank capital requirements",
+      "target_id": "FG3C000259",
+      "target_label": "bank profitability",
+      "score": -0.091356,
+      "base_score": 0.20217,
+      "duplicate_penalty": 0.293526,
+      "cooc_count": 0,
+      "mediator_count": 4,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=bank%20capital%20requirements%20-%3E%20bank%20profitability"
+    }
+  ],
+  "FG3C004702": [
+    {
+      "pair_key": "FG3C000523__FG3C004702",
+      "source_id": "FG3C004702",
+      "source_label": "stated preference survey",
+      "target_id": "FG3C000523",
+      "target_label": "preference heterogeneity",
+      "score": -0.096542,
+      "base_score": 0.201812,
+      "duplicate_penalty": 0.298354,
+      "cooc_count": 0,
+      "mediator_count": 2,
+      "motif_count": 2,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=stated%20preference%20survey%20-%3E%20preference%20heterogeneity"
+    }
+  ],
+  "FG3C006312": [
+    {
+      "pair_key": "FG3C000034__FG3C006312",
+      "source_id": "FG3C000034",
+      "source_label": "oil prices",
+      "target_id": "FG3C006312",
+      "target_label": "volatility of stock prices",
+      "score": -0.09753,
+      "base_score": 0.201848,
+      "duplicate_penalty": 0.299378,
+      "cooc_count": 0,
+      "mediator_count": 1,
+      "motif_count": 1,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=oil%20prices%20-%3E%20volatility%20of%20stock%20prices"
+    }
+  ],
+  "FG3C005734": [
+    {
+      "pair_key": "FG3C000010__FG3C005734",
+      "source_id": "FG3C005734",
+      "source_label": "CO2 intensity",
+      "target_id": "FG3C000010",
+      "target_label": "carbon emissions",
+      "score": -0.098282,
+      "base_score": 0.202067,
+      "duplicate_penalty": 0.300349,
+      "cooc_count": 0,
+      "mediator_count": 1,
+      "motif_count": 1,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20intensity%20-%3E%20carbon%20emissions"
+    },
+    {
+      "pair_key": "FG3C000003__FG3C005734",
+      "source_id": "FG3C000003",
+      "source_label": "CO2 emissions",
+      "target_id": "FG3C005734",
+      "target_label": "CO2 intensity",
+      "score": -0.187746,
+      "base_score": 0.203397,
+      "duplicate_penalty": 0.391143,
+      "cooc_count": 0,
+      "mediator_count": 3,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emissions%20-%3E%20CO2%20intensity"
+    },
+    {
+      "pair_key": "FG3C000003__FG3C005734",
+      "source_id": "FG3C005734",
+      "source_label": "CO2 intensity",
+      "target_id": "FG3C000003",
+      "target_label": "CO2 emissions",
+      "score": -0.188424,
+      "base_score": 0.202719,
+      "duplicate_penalty": 0.391143,
+      "cooc_count": 0,
+      "mediator_count": 1,
+      "motif_count": 1,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20intensity%20-%3E%20CO2%20emissions"
+    }
+  ],
+  "FG3C002214": [
+    {
+      "pair_key": "FG3C000094__FG3C002214",
+      "source_id": "FG3C002214",
+      "source_label": "technology level",
+      "target_id": "FG3C000094",
+      "target_label": "green technology innovation",
+      "score": -0.111468,
+      "base_score": 0.201798,
+      "duplicate_penalty": 0.313266,
+      "cooc_count": 0,
+      "mediator_count": 3,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=technology%20level%20-%3E%20green%20technology%20innovation"
+    }
+  ],
+  "FG3C001837": [
+    {
+      "pair_key": "FG3C000020__FG3C001837",
+      "source_id": "FG3C000020",
+      "source_label": "firm size",
+      "target_id": "FG3C001837",
+      "target_label": "firm output",
+      "score": -0.141366,
+      "base_score": 0.202255,
+      "duplicate_penalty": 0.343621,
+      "cooc_count": 0,
+      "mediator_count": 4,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=firm%20size%20-%3E%20firm%20output"
+    }
+  ],
+  "FG3C002439": [
+    {
+      "pair_key": "FG3C001999__FG3C002439",
+      "source_id": "FG3C001999",
+      "source_label": "green bond market",
+      "target_id": "FG3C002439",
+      "target_label": "cryptocurrency market",
+      "score": -0.146465,
+      "base_score": 0.202214,
+      "duplicate_penalty": 0.348679,
+      "cooc_count": 0,
+      "mediator_count": 4,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20bond%20market%20-%3E%20cryptocurrency%20market"
+    },
+    {
+      "pair_key": "FG3C000559__FG3C002439",
+      "source_id": "FG3C002439",
+      "source_label": "cryptocurrency market",
+      "target_id": "FG3C000559",
+      "target_label": "Chinese stock market",
+      "score": -0.170327,
+      "base_score": 0.202597,
+      "duplicate_penalty": 0.372924,
+      "cooc_count": 0,
+      "mediator_count": 5,
+      "motif_count": 5,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=cryptocurrency%20market%20-%3E%20Chinese%20stock%20market"
+    }
+  ],
+  "FG3C003731": [
+    {
+      "pair_key": "FG3C000254__FG3C003731",
+      "source_id": "FG3C003731",
+      "source_label": "foreign interest rates",
+      "target_id": "FG3C000254",
+      "target_label": "real interest rates",
+      "score": -0.150295,
+      "base_score": 0.201993,
+      "duplicate_penalty": 0.352288,
+      "cooc_count": 0,
+      "mediator_count": 2,
+      "motif_count": 2,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=foreign%20interest%20rates%20-%3E%20real%20interest%20rates"
+    }
+  ],
+  "FG3C002389": [
+    {
+      "pair_key": "FG3C001061__FG3C002389",
+      "source_id": "FG3C002389",
+      "source_label": "U.S. stock market",
+      "target_id": "FG3C001061",
+      "target_label": "oil market",
+      "score": -0.163884,
+      "base_score": 0.201834,
+      "duplicate_penalty": 0.365718,
+      "cooc_count": 0,
+      "mediator_count": 4,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=U.S.%20stock%20market%20-%3E%20oil%20market"
+    },
+    {
+      "pair_key": "FG3C000284__FG3C002389",
+      "source_id": "FG3C002389",
+      "source_label": "U.S. stock market",
+      "target_id": "FG3C000284",
+      "target_label": "stock market",
+      "score": -0.338602,
+      "base_score": 0.201796,
+      "duplicate_penalty": 0.540398,
+      "cooc_count": 0,
+      "mediator_count": 3,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=U.S.%20stock%20market%20-%3E%20stock%20market"
+    }
+  ],
+  "FG3C005267": [
+    {
+      "pair_key": "FG3C000002__FG3C005267",
+      "source_id": "FG3C005267",
+      "source_label": "inflation targets",
+      "target_id": "FG3C000002",
+      "target_label": "inflation",
+      "score": -0.166451,
+      "base_score": 0.20237,
+      "duplicate_penalty": 0.368821,
+      "cooc_count": 0,
+      "mediator_count": 4,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20targets%20-%3E%20inflation"
+    }
+  ],
+  "FG3C006126": [
+    {
+      "pair_key": "FG3C000034__FG3C006126",
+      "source_id": "FG3C000034",
+      "source_label": "oil prices",
+      "target_id": "FG3C006126",
+      "target_label": "foreign prices",
+      "score": -0.177362,
+      "base_score": 0.202247,
+      "duplicate_penalty": 0.379609,
+      "cooc_count": 0,
+      "mediator_count": 2,
+      "motif_count": 2,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=oil%20prices%20-%3E%20foreign%20prices"
+    }
+  ],
+  "FG3C004847": [
+    {
+      "pair_key": "FG3C000001__FG3C004847",
+      "source_id": "FG3C000001",
+      "source_label": "economic growth",
+      "target_id": "FG3C004847",
+      "target_label": "immiserizing growth",
+      "score": -0.184171,
+      "base_score": 0.201795,
+      "duplicate_penalty": 0.385966,
+      "cooc_count": 0,
+      "mediator_count": 4,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20growth%20-%3E%20immiserizing%20growth"
+    }
+  ],
+  "FG3C005070": [
+    {
+      "pair_key": "FG3C000002__FG3C005070",
+      "source_id": "FG3C000002",
+      "source_label": "inflation",
+      "target_id": "FG3C005070",
+      "target_label": "Realized inflation",
+      "score": -0.197063,
+      "base_score": 0.201761,
+      "duplicate_penalty": 0.398824,
+      "cooc_count": 0,
+      "mediator_count": 3,
+      "motif_count": 3,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20-%3E%20Realized%20inflation"
+    }
+  ],
+  "FG3C004968": [
+    {
+      "pair_key": "FG3C000735__FG3C004968",
+      "source_id": "FG3C000735",
+      "source_label": "future prices",
+      "target_id": "FG3C004968",
+      "target_label": "futures contracts",
+      "score": -0.209532,
+      "base_score": 0.201989,
+      "duplicate_penalty": 0.411521,
+      "cooc_count": 0,
+      "mediator_count": 1,
+      "motif_count": 1,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=future%20prices%20-%3E%20futures%20contracts"
+    }
+  ],
+  "FG3C003193": [
+    {
+      "pair_key": "FG3C000002__FG3C003193",
+      "source_id": "FG3C003193",
+      "source_label": "unanticipated inflation",
+      "target_id": "FG3C000002",
+      "target_label": "inflation",
+      "score": -0.218979,
+      "base_score": 0.204002,
+      "duplicate_penalty": 0.422982,
+      "cooc_count": 0,
+      "mediator_count": 6,
+      "motif_count": 6,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=unanticipated%20inflation%20-%3E%20inflation"
+    },
+    {
+      "pair_key": "FG3C000002__FG3C003193",
+      "source_id": "FG3C000002",
+      "source_label": "inflation",
+      "target_id": "FG3C003193",
+      "target_label": "unanticipated inflation",
+      "score": -0.220036,
+      "base_score": 0.202946,
+      "duplicate_penalty": 0.422982,
+      "cooc_count": 0,
+      "mediator_count": 4,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20-%3E%20unanticipated%20inflation"
+    }
+  ],
+  "FG3C004781": [
+    {
+      "pair_key": "FG3C004781__FG3C004911",
+      "source_id": "FG3C004911",
+      "source_label": "patent citations",
+      "target_id": "FG3C004781",
+      "target_label": "patent data",
+      "score": -0.224893,
+      "base_score": 0.201997,
+      "duplicate_penalty": 0.42689,
+      "cooc_count": 0,
+      "mediator_count": 4,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=patent%20citations%20-%3E%20patent%20data"
+    }
+  ],
+  "FG3C004547": [
+    {
+      "pair_key": "FG3C000168__FG3C004547",
+      "source_id": "FG3C004547",
+      "source_label": "stock market crashes",
+      "target_id": "FG3C000168",
+      "target_label": "stock market returns",
+      "score": -0.226427,
+      "base_score": 0.202073,
+      "duplicate_penalty": 0.428499,
+      "cooc_count": 0,
+      "mediator_count": 5,
+      "motif_count": 5,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=stock%20market%20crashes%20-%3E%20stock%20market%20returns"
+    }
+  ],
+  "FG3C003921": [
+    {
+      "pair_key": "FG3C000404__FG3C003921",
+      "source_id": "FG3C003921",
+      "source_label": "interest rate expectations",
+      "target_id": "FG3C000404",
+      "target_label": "short-term interest rate",
+      "score": -0.232761,
+      "base_score": 0.202169,
+      "duplicate_penalty": 0.43493,
+      "cooc_count": 0,
+      "mediator_count": 3,
+      "motif_count": 3,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=interest%20rate%20expectations%20-%3E%20short-term%20interest%20rate"
+    }
+  ],
+  "FG3C005991": [
+    {
+      "pair_key": "FG3C000003__FG3C005991",
+      "source_id": "FG3C000003",
+      "source_label": "CO2 emissions",
+      "target_id": "FG3C005991",
+      "target_label": "aggregate emissions",
+      "score": -0.23705,
+      "base_score": 0.202177,
+      "duplicate_penalty": 0.439227,
+      "cooc_count": 0,
+      "mediator_count": 2,
+      "motif_count": 2,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emissions%20-%3E%20aggregate%20emissions"
+    }
+  ],
+  "FG3C005378": [
+    {
+      "pair_key": "FG3C000160__FG3C005378",
+      "source_id": "FG3C005378",
+      "source_label": "wind energy consumption",
+      "target_id": "FG3C000160",
+      "target_label": "electricity consumption",
+      "score": -0.259107,
+      "base_score": 0.201795,
+      "duplicate_penalty": 0.460902,
+      "cooc_count": 0,
+      "mediator_count": 3,
+      "motif_count": 3,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=wind%20energy%20consumption%20-%3E%20electricity%20consumption"
+    },
+    {
+      "pair_key": "FG3C000014__FG3C005378",
+      "source_id": "FG3C005378",
+      "source_label": "wind energy consumption",
+      "target_id": "FG3C000014",
+      "target_label": "energy consumption",
+      "score": -0.363965,
+      "base_score": 0.201813,
+      "duplicate_penalty": 0.565779,
+      "cooc_count": 0,
+      "mediator_count": 3,
+      "motif_count": 2,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=wind%20energy%20consumption%20-%3E%20energy%20consumption"
+    }
+  ],
+  "FG3C006138": [
+    {
+      "pair_key": "FG3C000002__FG3C006138",
+      "source_id": "FG3C006138",
+      "source_label": "actual inflation",
+      "target_id": "FG3C000002",
+      "target_label": "inflation",
+      "score": -0.261018,
+      "base_score": 0.203603,
+      "duplicate_penalty": 0.464622,
+      "cooc_count": 0,
+      "mediator_count": 3,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=actual%20inflation%20-%3E%20inflation"
+    }
+  ],
+  "FG3C005637": [
+    {
+      "pair_key": "FG3C000011__FG3C005637",
+      "source_id": "FG3C005637",
+      "source_label": "expected output",
+      "target_id": "FG3C000011",
+      "target_label": "output",
+      "score": -0.265079,
+      "base_score": 0.201867,
+      "duplicate_penalty": 0.466946,
+      "cooc_count": 0,
+      "mediator_count": 2,
+      "motif_count": 2,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=expected%20output%20-%3E%20output"
+    }
+  ],
+  "FG3C003315": [
+    {
+      "pair_key": "FG3C000404__FG3C003315",
+      "source_id": "FG3C000404",
+      "source_label": "short-term interest rate",
+      "target_id": "FG3C003315",
+      "target_label": "short rate",
+      "score": -0.275423,
+      "base_score": 0.201787,
+      "duplicate_penalty": 0.47721,
+      "cooc_count": 0,
+      "mediator_count": 2,
+      "motif_count": 2,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=short-term%20interest%20rate%20-%3E%20short%20rate"
+    }
+  ],
+  "FG3C005091": [
+    {
+      "pair_key": "FG3C001347__FG3C005091",
+      "source_id": "FG3C001347",
+      "source_label": "health care reform",
+      "target_id": "FG3C005091",
+      "target_label": "health care",
+      "score": -0.276726,
+      "base_score": 0.201965,
+      "duplicate_penalty": 0.478691,
+      "cooc_count": 0,
+      "mediator_count": 4,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=health%20care%20reform%20-%3E%20health%20care"
+    }
+  ],
+  "FG3C001561": [
+    {
+      "pair_key": "FG3C000035__FG3C001561",
+      "source_id": "FG3C001561",
+      "source_label": "market return",
+      "target_id": "FG3C000035",
+      "target_label": "stock returns",
+      "score": -0.288495,
+      "base_score": 0.202143,
+      "duplicate_penalty": 0.490638,
+      "cooc_count": 0,
+      "mediator_count": 3,
+      "motif_count": 3,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=market%20return%20-%3E%20stock%20returns"
+    }
+  ],
+  "FG3C002369": [
+    {
+      "pair_key": "FG3C001408__FG3C002369",
+      "source_id": "FG3C001408",
+      "source_label": "policy",
+      "target_id": "FG3C002369",
+      "target_label": "policy analysis",
+      "score": -0.291101,
+      "base_score": 0.201779,
+      "duplicate_penalty": 0.492879,
+      "cooc_count": 0,
+      "mediator_count": 1,
+      "motif_count": 1,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=policy%20-%3E%20policy%20analysis"
+    }
+  ],
+  "FG3C004791": [
+    {
+      "pair_key": "FG3C000010__FG3C004791",
+      "source_id": "FG3C004791",
+      "source_label": "carbon emissions reduction",
+      "target_id": "FG3C000010",
+      "target_label": "carbon emissions",
+      "score": -0.305574,
+      "base_score": 0.202304,
+      "duplicate_penalty": 0.507879,
+      "cooc_count": 0,
+      "mediator_count": 2,
+      "motif_count": 2,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20emissions%20reduction%20-%3E%20carbon%20emissions"
+    }
+  ],
+  "FG3C001154": [
+    {
+      "pair_key": "FG3C001154__FG3C003006",
+      "source_id": "FG3C003006",
+      "source_label": "Emission Trading Scheme (ETS)",
+      "target_id": "FG3C001154",
+      "target_label": "emissions trading",
+      "score": -0.339455,
+      "base_score": 0.201936,
+      "duplicate_penalty": 0.54139,
+      "cooc_count": 0,
+      "mediator_count": 3,
+      "motif_count": 3,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=Emission%20Trading%20Scheme%20%28ETS%29%20-%3E%20emissions%20trading"
+    }
+  ],
+  "FG3C004123": [
+    {
+      "pair_key": "FG3C000009__FG3C004123",
+      "source_id": "FG3C000009",
+      "source_label": "unemployment",
+      "target_id": "FG3C004123",
+      "target_label": "unemployment fluctuations",
+      "score": -0.372564,
+      "base_score": 0.201854,
+      "duplicate_penalty": 0.574418,
+      "cooc_count": 0,
+      "mediator_count": 3,
+      "motif_count": 3,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=unemployment%20-%3E%20unemployment%20fluctuations"
+    }
+  ],
+  "FG3C005010": [
+    {
+      "pair_key": "FG3C000072__FG3C005010",
+      "source_id": "FG3C005010",
+      "source_label": "forward exchange rates",
+      "target_id": "FG3C000072",
+      "target_label": "exchange rates",
+      "score": -0.373328,
+      "base_score": 0.202146,
+      "duplicate_penalty": 0.575474,
+      "cooc_count": 0,
+      "mediator_count": 3,
+      "motif_count": 3,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=forward%20exchange%20rates%20-%3E%20exchange%20rates"
+    }
+  ],
+  "FG3C006667": [
+    {
+      "pair_key": "FG3C002163__FG3C006667",
+      "source_id": "FG3C002163",
+      "source_label": "cross-sectional stock returns",
+      "target_id": "FG3C006667",
+      "target_label": "cross-section of expected returns",
+      "score": -0.425418,
+      "base_score": 0.202435,
+      "duplicate_penalty": 0.627853,
+      "cooc_count": 0,
+      "mediator_count": 4,
+      "motif_count": 4,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=cross-sectional%20stock%20returns%20-%3E%20cross-section%20of%20expected%20returns"
+    }
+  ],
+  "FG3C004482": [
+    {
+      "pair_key": "FG3C000009__FG3C004482",
+      "source_id": "FG3C004482",
+      "source_label": "local unemployment rates",
+      "target_id": "FG3C000009",
+      "target_label": "unemployment",
+      "score": -0.47873,
+      "base_score": 0.201982,
+      "duplicate_penalty": 0.680712,
+      "cooc_count": 0,
+      "mediator_count": 3,
+      "motif_count": 2,
+      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=local%20unemployment%20rates%20-%3E%20unemployment"
+    }
+  ]
+}

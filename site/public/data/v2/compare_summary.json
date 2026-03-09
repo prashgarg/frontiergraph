@@ -1,0 +1,141 @@
+{
+  "default_view": {
+    "regime": "baseline",
+    "mapping": "exploratory"
+  },
+  "best_strict_view": {
+    "regime": "broad",
+    "mapping": "strict"
+  },
+  "summary": [
+    {
+      "regime": "broad",
+      "label": "Broad",
+      "head_count": 16505,
+      "hard_coverage": 0.1748382492917911,
+      "soft_coverage": 0.2667340935210091,
+      "strict_candidate_rows": 1120829,
+      "exploratory_candidate_rows": 2524480,
+      "strict_concept_edges": 63913,
+      "exploratory_concept_edges": 124845
+    },
+    {
+      "regime": "baseline",
+      "label": "Baseline",
+      "head_count": 6752,
+      "hard_coverage": 0.137322749245844,
+      "soft_coverage": 0.2672582304818543,
+      "strict_candidate_rows": 711624,
+      "exploratory_candidate_rows": 2793106,
+      "strict_concept_edges": 41738,
+      "exploratory_concept_edges": 117814
+    },
+    {
+      "regime": "conservative",
+      "label": "Conservative",
+      "head_count": 4025,
+      "hard_coverage": 0.117664209727392,
+      "soft_coverage": 0.26976262948849,
+      "strict_candidate_rows": 514532,
+      "exploratory_candidate_rows": 2819362,
+      "strict_concept_edges": 31547,
+      "exploratory_concept_edges": 112629
+    }
+  ],
+  "overlaps": [
+    {
+      "left": "baseline::exploratory",
+      "right": "baseline::strict",
+      "intersection_top100": 70,
+      "jaccard_top100": 0.5384615384615384
+    },
+    {
+      "left": "baseline::exploratory",
+      "right": "broad::exploratory",
+      "intersection_top100": 31,
+      "jaccard_top100": 0.1834319526627219
+    },
+    {
+      "left": "baseline::exploratory",
+      "right": "broad::strict",
+      "intersection_top100": 29,
+      "jaccard_top100": 0.1695906432748538
+    },
+    {
+      "left": "baseline::exploratory",
+      "right": "conservative::exploratory",
+      "intersection_top100": 22,
+      "jaccard_top100": 0.1235955056179775
+    },
+    {
+      "left": "baseline::exploratory",
+      "right": "conservative::strict",
+      "intersection_top100": 25,
+      "jaccard_top100": 0.1428571428571428
+    },
+    {
+      "left": "baseline::strict",
+      "right": "broad::exploratory",
+      "intersection_top100": 35,
+      "jaccard_top100": 0.2121212121212121
+    },
+    {
+      "left": "baseline::strict",
+      "right": "broad::strict",
+      "intersection_top100": 36,
+      "jaccard_top100": 0.2195121951219512
+    },
+    {
+      "left": "baseline::strict",
+      "right": "conservative::exploratory",
+      "intersection_top100": 22,
+      "jaccard_top100": 0.1235955056179775
+    },
+    {
+      "left": "baseline::strict",
+      "right": "conservative::strict",
+      "intersection_top100": 37,
+      "jaccard_top100": 0.2269938650306748
+    },
+    {
+      "left": "broad::exploratory",
+      "right": "broad::strict",
+      "intersection_top100": 81,
+      "jaccard_top100": 0.680672268907563
+    },
+    {
+      "left": "broad::exploratory",
+      "right": "conservative::exploratory",
+      "intersection_top100": 9,
+      "jaccard_top100": 0.0471204188481675
+    },
+    {
+      "left": "broad::exploratory",
+      "right": "conservative::strict",
+      "intersection_top100": 16,
+      "jaccard_top100": 0.0869565217391304
+    },
+    {
+      "left": "broad::strict",
+      "right": "conservative::exploratory",
+      "intersection_top100": 10,
+      "jaccard_top100": 0.0526315789473684
+    },
+    {
+      "left": "broad::strict",
+      "right": "conservative::strict",
+      "intersection_top100": 18,
+      "jaccard_top100": 0.0989010989010989
+    },
+    {
+      "left": "conservative::exploratory",
+      "right": "conservative::strict",
+      "intersection_top100": 53,
+      "jaccard_top100": 0.3605442176870748
+    }
+  ],
+  "narrative": {
+    "default_reason": "Baseline exploratory keeps the head inventory compact while reaching essentially the same exploratory coverage as the other regimes.",
+    "strict_reason": "Broad strict is the clearest strict comparison view because it preserves more observed structure without fragmenting concepts as aggressively as the conservative regime."
+  }
+}

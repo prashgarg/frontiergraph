@@ -1,19 +1,20 @@
 ---
+import { data } from "../lib/site-data";
+
 const links = [
-  { href: "/discover/", label: "Discover" },
-  { href: "/fields/", label: "Fields" },
+  { href: "/graph/", label: "Graph" },
+  { href: "/opportunities/", label: "Opportunities" },
   { href: "/method/", label: "Method" },
+  { href: "/compare/", label: "Compare" },
   { href: "/downloads/", label: "Downloads" },
 ];
-
-const appUrl = "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app";
 ---
 
 <header class="site-header">
   <a href="/" class="brand-lockup">
     <span class="brand-mark" aria-hidden="true"></span>
     <span>
-      <span class="brand-kicker">Public beta</span>
+      <span class="brand-kicker">Concept graph of economics</span>
       <span class="brand-name">FrontierGraph</span>
     </span>
   </a>
@@ -21,6 +22,6 @@ const appUrl = "https://economics-opportunity-ranker-beta-1058669339361.us-centr
     {links.map((link) => (
       <a href={link.href}>{link.label}</a>
     ))}
-    <a href={appUrl} class="header-cta">Open app</a>
+    <a href={data.app_url} class="header-cta">Open app</a>
   </nav>
 </header>

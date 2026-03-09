@@ -1,0 +1,49 @@
+---
+import { formatPercent, shortList, type Opportunity } from "../lib/site-data";
+
+interface Props {
+  items: Opportunity[];
+  title?: string;
+  caption?: string;
+  compact?: boolean;
+}
+
+const { items, title, caption, compact = false } = Astro.props;
+---
+
+<section class="section">
+  {title && (
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">Ranked opportunities</span>
+        <h2>{title}</h2>
+      </div>
+      {caption && <p class="section-copy">{caption}</p>}
+    </div>
+  )}
+  <div class:list={["opportunity-cards", compact && "compact"]}>
+    {items.map((item) => (
+      <article class="opportunity-card">
+        <div class="opportunity-kicker">
+          <span>{item.source_bucket} → {item.target_bucket}</span>
+          <span>score {item.score.toFixed(3)}</span>
+        </div>
+        <h3>{item.source_label} → {item.target_label}</h3>
+        <p class="card-copy">
+          Path support {formatPercent(item.path_support_norm)} · gap bonus {item.gap_bonus.toFixed(2)} · mediators {item.mediator_count}
+        </p>
+        <div class="pill-row">
+          <span class="field-pill">co-occurrence {item.cooc_count}</span>
+          <span class="field-pill">motifs {item.motif_count}</span>
+          <span class="field-pill">dup penalty {item.duplicate_penalty.toFixed(3)}</span>
+        </div>
+        <p class="opportunity-context">
+          Source context: {shortList(item.top_countries_source)} · Target context: {shortList(item.top_countries_target)}
+        </p>
+        <div class="button-row">
+          <a class="button-secondary" href={item.app_link}>Open in app</a>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

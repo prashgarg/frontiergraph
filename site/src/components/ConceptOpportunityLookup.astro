@@ -1,0 +1,243 @@
+---
+interface Props {
+  conceptIndexPath: string;
+  neighborhoodsIndexPath: string;
+  opportunitiesIndexPath: string;
+  title?: string;
+  caption?: string;
+}
+
+const {
+  conceptIndexPath,
+  neighborhoodsIndexPath,
+  opportunitiesIndexPath,
+  title = "Search the concept graph",
+  caption = "Look up a concept by label or alias, inspect its local neighborhood, and jump into the explorer for the full ranked context.",
+} = Astro.props;
+---
+
+<section
+  class="lookup-shell"
+  data-concept-index-path={conceptIndexPath}
+  data-neighborhoods-index-path={neighborhoodsIndexPath}
+  data-opportunities-index-path={opportunitiesIndexPath}
+>
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">Concept lookup</span>
+      <h2>{title}</h2>
+    </div>
+    <p class="section-copy">{caption}</p>
+  </div>
+
+  <div class="lookup-grid">
+    <div class="lookup-card">
+      <label class="search-shell lookup-search">
+        <span>Find a concept</span>
+        <input type="search" placeholder="Search labels or aliases" data-role="search-input" />
+        <div class="search-results" data-role="search-results"></div>
+      </label>
+      <div class="lookup-actions">
+        <a class="button-secondary" href="/graph/">Open graph viewer</a>
+        <a class="button-primary" data-role="open-app" href="https://frontiergraph.com">Open explorer</a>
+      </div>
+    </div>
+
+    <div class="lookup-card" data-role="concept-panel">
+      <h3>Selected concept</h3>
+      <p class="card-copy">Search above to inspect a concept and see the strongest opportunities touching it.</p>
+    </div>
+
+    <div class="lookup-card" data-role="opportunities-panel">
+      <h3>Top opportunities around this concept</h3>
+      <p class="card-copy">Ranked links touching the selected concept will appear here.</p>
+    </div>
+
+    <div class="lookup-card" data-role="neighbors-panel">
+      <h3>Observed neighborhood</h3>
+      <p class="card-copy">Top incoming and outgoing observed links will appear here.</p>
+    </div>
+  </div>
+</section>
+
+<script type="module">
+  const root = document.currentScript?.previousElementSibling;
+  if (!(root instanceof HTMLElement)) throw new Error("Concept lookup root missing");
+
+  const conceptIndexPath = root.dataset.conceptIndexPath;
+  const neighborhoodsIndexPath = root.dataset.neighborhoodsIndexPath;
+  const opportunitiesIndexPath = root.dataset.opportunitiesIndexPath;
+
+  const searchInput = root.querySelector('[data-role="search-input"]');
+  const searchResults = root.querySelector('[data-role="search-results"]');
+  const conceptPanel = root.querySelector('[data-role="concept-panel"]');
+  const opportunitiesPanel = root.querySelector('[data-role="opportunities-panel"]');
+  const neighborsPanel = root.querySelector('[data-role="neighbors-panel"]');
+  const openAppLink = root.querySelector('[data-role="open-app"]');
+
+  const cache = new Map();
+  let concepts = [];
+  let conceptMap = new Map();
+  let neighborhoodIndex = {};
+  let opportunitiesIndex = {};
+
+  const escapeHtml = (value) =>
+    String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
+
+  const formatNumber = (value) => new Intl.NumberFormat("en-US").format(value);
+
+  const fetchJson = async (path) => {
+    if (cache.has(path)) return cache.get(path);
+    const response = await fetch(path);
+    const payload = await response.json();
+    cache.set(path, payload);
+    return payload;
+  };
+
+  const renderConcept = (concept) => {
+    conceptPanel.innerHTML = `
+      <div class="selected-title-row">
+        <h3>${escapeHtml(concept.label)}</h3>
+        <span class="field-pill">${escapeHtml(concept.bucket_hint)}</span>
+      </div>
+      <p class="card-copy">
+        ${formatNumber(concept.instance_support)} node instances · ${formatNumber(concept.distinct_paper_support)} papers
+      </p>
+      <p class="mini-copy">Top countries: ${escapeHtml((concept.top_countries || []).slice(0, 3).join(", ") || "NA")}</p>
+      <p class="mini-copy">Top units: ${escapeHtml((concept.top_units || []).slice(0, 3).join(", ") || "NA")}</p>
+      <p class="mini-copy">Aliases: ${escapeHtml((concept.aliases || []).slice(0, 8).join(", ") || "NA")}</p>
+    `;
+    if (openAppLink instanceof HTMLAnchorElement) {
+      openAppLink.href = concept.app_link;
+    }
+  };
+
+  const renderOpportunities = async (conceptId) => {
+    const shardPath = opportunitiesIndex[conceptId];
+    if (!shardPath) {
+      opportunitiesPanel.innerHTML = `<h3>Top opportunities around this concept</h3><p class="card-copy">No suppressed top-slice opportunities currently touch this concept.</p>`;
+      return;
+    }
+    const shard = await fetchJson(shardPath);
+    const opportunities = shard[conceptId] || [];
+    opportunitiesPanel.innerHTML = `
+      <h3>Top opportunities around this concept</h3>
+      ${opportunities
+        .slice(0, 6)
+        .map(
+          (item) => `
+            <article class="mini-opportunity">
+              <strong>${escapeHtml(item.source_label)} → ${escapeHtml(item.target_label)}</strong>
+              <div class="mini-copy">score ${Number(item.score).toFixed(3)} · penalty ${Number(item.duplicate_penalty).toFixed(3)} · mediators ${escapeHtml(item.mediator_count)}</div>
+              <a class="text-link" href="${escapeHtml(item.app_link)}">Open in explorer</a>
+            </article>
+          `,
+        )
+        .join("")}
+    `;
+  };
+
+  const renderNeighbors = async (conceptId) => {
+    const shardPath = neighborhoodIndex[conceptId];
+    if (!shardPath) {
+      neighborsPanel.innerHTML = `<h3>Observed neighborhood</h3><p class="card-copy">No precomputed neighborhood is available for this concept.</p>`;
+      return;
+    }
+    const shard = await fetchJson(shardPath);
+    const neighborhood = shard[conceptId];
+    if (!neighborhood) {
+      neighborsPanel.innerHTML = `<h3>Observed neighborhood</h3><p class="card-copy">No precomputed neighborhood is available for this concept.</p>`;
+      return;
+    }
+    const renderItems = (items) =>
+      items
+        .slice(0, 5)
+        .map(
+          (item) => `<li><strong>${escapeHtml(item.label)}</strong><span>${formatNumber(item.support_count)} supports</span></li>`,
+        )
+        .join("");
+    neighborsPanel.innerHTML = `
+      <h3>Observed neighborhood</h3>
+      <div class="neighbor-group">
+        <h4>Incoming</h4>
+        <ul class="neighbor-list">${renderItems(neighborhood.incoming || [])}</ul>
+      </div>
+      <div class="neighbor-group">
+        <h4>Outgoing</h4>
+        <ul class="neighbor-list">${renderItems(neighborhood.outgoing || [])}</ul>
+      </div>
+    `;
+  };
+
+  const selectConcept = async (conceptId) => {
+    const concept = conceptMap.get(conceptId);
+    if (!concept) return;
+    renderConcept(concept);
+    await Promise.all([renderOpportunities(conceptId), renderNeighbors(conceptId)]);
+  };
+
+  const runSearch = (query) => {
+    const normalized = query.trim().toLowerCase();
+    if (!normalized) {
+      searchResults.innerHTML = "";
+      return;
+    }
+    const matches = concepts
+      .filter((concept) => (concept.search_terms || []).some((term) => term.includes(normalized)))
+      .sort((a, b) => b.weighted_degree - a.weighted_degree)
+      .slice(0, 10);
+    searchResults.innerHTML = matches
+      .map(
+        (concept) => `
+          <button class="search-hit" data-concept-id="${escapeHtml(concept.concept_id)}">
+            <strong>${escapeHtml(concept.label)}</strong>
+            <span>${formatNumber(concept.distinct_paper_support)} papers</span>
+          </button>
+        `,
+      )
+      .join("");
+    for (const button of searchResults.querySelectorAll("[data-concept-id]")) {
+      button.addEventListener("click", () => {
+        const conceptId = button.dataset.conceptId;
+        if (!conceptId) return;
+        searchResults.innerHTML = "";
+        if (searchInput instanceof HTMLInputElement) searchInput.value = "";
+        selectConcept(conceptId);
+      });
+    }
+  };
+
+  const bootstrap = async () => {
+    const [conceptPayload, neighborhoodsPayload, opportunitiesPayload] = await Promise.all([
+      fetchJson(conceptIndexPath),
+      fetchJson(neighborhoodsIndexPath),
+      fetchJson(opportunitiesIndexPath),
+    ]);
+    concepts = conceptPayload;
+    conceptMap = new Map(concepts.map((concept) => [concept.concept_id, concept]));
+    neighborhoodIndex = neighborhoodsPayload;
+    opportunitiesIndex = opportunitiesPayload;
+
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("q");
+    const exact = query
+      ? concepts.find((concept) => concept.label.toLowerCase() === query.toLowerCase())
+      : concepts[0];
+    if (exact) {
+      await selectConcept(exact.concept_id);
+    }
+  };
+
+  if (searchInput instanceof HTMLInputElement) {
+    searchInput.addEventListener("input", (event) => runSearch(event.target.value));
+  }
+
+  bootstrap().catch((error) => {
+    console.error(error);
+    conceptPanel.innerHTML = `<h3>Selected concept</h3><p class="card-copy">Lookup data failed to load.</p>`;
+  });
+</script>

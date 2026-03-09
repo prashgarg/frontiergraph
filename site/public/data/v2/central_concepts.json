@@ -1,0 +1,4399 @@
+[
+  {
+    "concept_id": "FG3C000001",
+    "label": "economic growth",
+    "bucket_hint": "adjacent",
+    "instance_support": 3949,
+    "distinct_paper_support": 3942,
+    "weighted_degree": 6342.0,
+    "pagerank": 0.02176391,
+    "in_degree": 1085,
+    "out_degree": 438,
+    "top_countries": [
+      "China",
+      "India",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20growth"
+  },
+  {
+    "concept_id": "FG3C000003",
+    "label": "CO2 emissions",
+    "bucket_hint": "adjacent",
+    "instance_support": 1547,
+    "distinct_paper_support": 1547,
+    "weighted_degree": 4912.0,
+    "pagerank": 0.01734411,
+    "in_degree": 713,
+    "out_degree": 208,
+    "top_countries": [
+      "China",
+      "India",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emissions"
+  },
+  {
+    "concept_id": "FG3C000010",
+    "label": "carbon emissions",
+    "bucket_hint": "adjacent",
+    "instance_support": 1290,
+    "distinct_paper_support": 1286,
+    "weighted_degree": 3464.0,
+    "pagerank": 0.01240466,
+    "in_degree": 726,
+    "out_degree": 175,
+    "top_countries": [
+      "China",
+      "CHN",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20emissions"
+  },
+  {
+    "concept_id": "FG3C000018",
+    "label": "renewable energy consumption",
+    "bucket_hint": "adjacent",
+    "instance_support": 1076,
+    "distinct_paper_support": 1076,
+    "weighted_degree": 2304.0,
+    "pagerank": 0.00663863,
+    "in_degree": 337,
+    "out_degree": 222,
+    "top_countries": [
+      "China",
+      "India",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=renewable%20energy%20consumption"
+  },
+  {
+    "concept_id": "FG3C000014",
+    "label": "energy consumption",
+    "bucket_hint": "adjacent",
+    "instance_support": 1121,
+    "distinct_paper_support": 1115,
+    "weighted_degree": 2071.0,
+    "pagerank": 0.0062846,
+    "in_degree": 303,
+    "out_degree": 213,
+    "top_countries": [
+      "China",
+      "India",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=energy%20consumption"
+  },
+  {
+    "concept_id": "FG3C000006",
+    "label": "financial development",
+    "bucket_hint": "adjacent",
+    "instance_support": 1239,
+    "distinct_paper_support": 1231,
+    "weighted_degree": 1902.0,
+    "pagerank": 0.00311897,
+    "in_degree": 223,
+    "out_degree": 351,
+    "top_countries": [
+      "China",
+      "India",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=financial%20development"
+  },
+  {
+    "concept_id": "FG3C000064",
+    "label": "ecological footprint",
+    "bucket_hint": "adjacent",
+    "instance_support": 434,
+    "distinct_paper_support": 428,
+    "weighted_degree": 1801.0,
+    "pagerank": 0.00601709,
+    "in_degree": 331,
+    "out_degree": 81,
+    "top_countries": [
+      "China",
+      "India",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=ecological%20footprint"
+  },
+  {
+    "concept_id": "FG3C000002",
+    "label": "inflation",
+    "bucket_hint": "core",
+    "instance_support": 1689,
+    "distinct_paper_support": 1677,
+    "weighted_degree": 1481.0,
+    "pagerank": 0.00420888,
+    "in_degree": 419,
+    "out_degree": 333,
+    "top_countries": [
+      "United States",
+      "China",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "other",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation"
+  },
+  {
+    "concept_id": "FG3C000017",
+    "label": "trade openness",
+    "bucket_hint": "adjacent",
+    "instance_support": 905,
+    "distinct_paper_support": 903,
+    "weighted_degree": 1192.0,
+    "pagerank": 0.00187405,
+    "in_degree": 108,
+    "out_degree": 310,
+    "top_countries": [
+      "China",
+      "India",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "industry"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=trade%20openness"
+  },
+  {
+    "concept_id": "FG3C000012",
+    "label": "urbanization",
+    "bucket_hint": "adjacent",
+    "instance_support": 1001,
+    "distinct_paper_support": 998,
+    "weighted_degree": 1187.0,
+    "pagerank": 0.00197306,
+    "in_degree": 107,
+    "out_degree": 251,
+    "top_countries": [
+      "China",
+      "India",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=urbanization"
+  },
+  {
+    "concept_id": "FG3C000013",
+    "label": "technological innovation",
+    "bucket_hint": "adjacent",
+    "instance_support": 870,
+    "distinct_paper_support": 869,
+    "weighted_degree": 1124.0,
+    "pagerank": 0.00164879,
+    "in_degree": 225,
+    "out_degree": 242,
+    "top_countries": [
+      "China",
+      "CHN",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=technological%20innovation"
+  },
+  {
+    "concept_id": "FG3C000015",
+    "label": "foreign direct investments",
+    "bucket_hint": "adjacent",
+    "instance_support": 801,
+    "distinct_paper_support": 801,
+    "weighted_degree": 992.0,
+    "pagerank": 0.00129308,
+    "in_degree": 136,
+    "out_degree": 290,
+    "top_countries": [
+      "China",
+      "India",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=foreign%20direct%20investments"
+  },
+  {
+    "concept_id": "FG3C006644",
+    "label": "Method of Moments Quantile Regression (MMQR)",
+    "bucket_hint": "core",
+    "instance_support": 2281,
+    "distinct_paper_support": 2191,
+    "weighted_degree": 988.0,
+    "pagerank": 0.00215178,
+    "in_degree": 311,
+    "out_degree": 426,
+    "top_countries": [
+      "United States",
+      "China",
+      "USA"
+    ],
+    "top_units": [
+      "individual",
+      "country",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=Method%20of%20Moments%20Quantile%20Regression%20%28MMQR%29"
+  },
+  {
+    "concept_id": "FG3C000068",
+    "label": "digital economy",
+    "bucket_hint": "adjacent",
+    "instance_support": 334,
+    "distinct_paper_support": 334,
+    "weighted_degree": 870.0,
+    "pagerank": 0.00034225,
+    "in_degree": 65,
+    "out_degree": 257,
+    "top_countries": [
+      "China",
+      "CHN",
+      "G7"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=digital%20economy"
+  },
+  {
+    "concept_id": "FG3C000053",
+    "label": "green innovation",
+    "bucket_hint": "adjacent",
+    "instance_support": 562,
+    "distinct_paper_support": 539,
+    "weighted_degree": 856.0,
+    "pagerank": 0.00179027,
+    "in_degree": 263,
+    "out_degree": 172,
+    "top_countries": [
+      "China",
+      "CHN",
+      "OECD"
+    ],
+    "top_units": [
+      "firm",
+      "country",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20innovation"
+  },
+  {
+    "concept_id": "FG3C004594",
+    "label": "carbon emissions (CO2 emissions)",
+    "bucket_hint": "adjacent",
+    "instance_support": 641,
+    "distinct_paper_support": 614,
+    "weighted_degree": 830.0,
+    "pagerank": 0.00310435,
+    "in_degree": 351,
+    "out_degree": 111,
+    "top_countries": [
+      "China",
+      "United States",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20emissions%20%28CO2%20emissions%29"
+  },
+  {
+    "concept_id": "FG3C000038",
+    "label": "energy efficiency",
+    "bucket_hint": "adjacent",
+    "instance_support": 546,
+    "distinct_paper_support": 542,
+    "weighted_degree": 797.0,
+    "pagerank": 0.00196444,
+    "in_degree": 295,
+    "out_degree": 143,
+    "top_countries": [
+      "China",
+      "CHN",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=energy%20efficiency"
+  },
+  {
+    "concept_id": "FG3C000011",
+    "label": "output",
+    "bucket_hint": "core",
+    "instance_support": 1053,
+    "distinct_paper_support": 1045,
+    "weighted_degree": 794.0,
+    "pagerank": 0.00335874,
+    "in_degree": 432,
+    "out_degree": 83,
+    "top_countries": [
+      "United States",
+      "USA",
+      "China"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=output"
+  },
+  {
+    "concept_id": "FG3C000059",
+    "label": "renewable energy",
+    "bucket_hint": "adjacent",
+    "instance_support": 566,
+    "distinct_paper_support": 563,
+    "weighted_degree": 787.0,
+    "pagerank": 0.00153894,
+    "in_degree": 148,
+    "out_degree": 160,
+    "top_countries": [
+      "China",
+      "India",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=renewable%20energy"
+  },
+  {
+    "concept_id": "FG3C000009",
+    "label": "unemployment",
+    "bucket_hint": "core",
+    "instance_support": 1101,
+    "distinct_paper_support": 1071,
+    "weighted_degree": 774.0,
+    "pagerank": 0.00326818,
+    "in_degree": 341,
+    "out_degree": 159,
+    "top_countries": [
+      "United States",
+      "United Kingdom",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "individual",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=unemployment"
+  },
+  {
+    "concept_id": "FG3C000091",
+    "label": "economic growth (GDP)",
+    "bucket_hint": "adjacent",
+    "instance_support": 328,
+    "distinct_paper_support": 328,
+    "weighted_degree": 766.0,
+    "pagerank": 0.00305385,
+    "in_degree": 164,
+    "out_degree": 114,
+    "top_countries": [
+      "China",
+      "India",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "industry"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20growth%20%28GDP%29"
+  },
+  {
+    "concept_id": "FG3C000016",
+    "label": "human capital",
+    "bucket_hint": "adjacent",
+    "instance_support": 789,
+    "distinct_paper_support": 789,
+    "weighted_degree": 743.0,
+    "pagerank": 0.000762,
+    "in_degree": 104,
+    "out_degree": 286,
+    "top_countries": [
+      "China",
+      "CHN",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=human%20capital"
+  },
+  {
+    "concept_id": "FG3C000063",
+    "label": "green finance",
+    "bucket_hint": "adjacent",
+    "instance_support": 413,
+    "distinct_paper_support": 405,
+    "weighted_degree": 722.0,
+    "pagerank": 0.0009518,
+    "in_degree": 127,
+    "out_degree": 212,
+    "top_countries": [
+      "China",
+      "CHN",
+      "OECD"
+    ],
+    "top_units": [
+      "region",
+      "country",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20finance"
+  },
+  {
+    "concept_id": "FG3C000025",
+    "label": "income inequality",
+    "bucket_hint": "core",
+    "instance_support": 627,
+    "distinct_paper_support": 616,
+    "weighted_degree": 718.0,
+    "pagerank": 0.00212326,
+    "in_degree": 289,
+    "out_degree": 121,
+    "top_countries": [
+      "China",
+      "United States",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "household"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=income%20inequality"
+  },
+  {
+    "concept_id": "FG3C000041",
+    "label": "energy intensity",
+    "bucket_hint": "adjacent",
+    "instance_support": 531,
+    "distinct_paper_support": 529,
+    "weighted_degree": 711.0,
+    "pagerank": 0.00172512,
+    "in_degree": 231,
+    "out_degree": 97,
+    "top_countries": [
+      "China",
+      "CHN",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=energy%20intensity"
+  },
+  {
+    "concept_id": "FG3C000004",
+    "label": "welfare",
+    "bucket_hint": "core",
+    "instance_support": 1306,
+    "distinct_paper_support": 1304,
+    "weighted_degree": 683.0,
+    "pagerank": 0.00306156,
+    "in_degree": 467,
+    "out_degree": 14,
+    "top_countries": [
+      "United States",
+      "China",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "household",
+      "individual"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=welfare"
+  },
+  {
+    "concept_id": "FG3C000019",
+    "label": "investment",
+    "bucket_hint": "core",
+    "instance_support": 927,
+    "distinct_paper_support": 914,
+    "weighted_degree": 676.0,
+    "pagerank": 0.00239472,
+    "in_degree": 316,
+    "out_degree": 149,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "industry"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=investment"
+  },
+  {
+    "concept_id": "FG3C000007",
+    "label": "employment",
+    "bucket_hint": "core",
+    "instance_support": 957,
+    "distinct_paper_support": 955,
+    "weighted_degree": 668.0,
+    "pagerank": 0.00282998,
+    "in_degree": 378,
+    "out_degree": 71,
+    "top_countries": [
+      "United States",
+      "China",
+      "USA"
+    ],
+    "top_units": [
+      "individual",
+      "firm",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=employment"
+  },
+  {
+    "concept_id": "FG3C000021",
+    "label": "productivity",
+    "bucket_hint": "core",
+    "instance_support": 948,
+    "distinct_paper_support": 941,
+    "weighted_degree": 668.0,
+    "pagerank": 0.00233906,
+    "in_degree": 349,
+    "out_degree": 138,
+    "top_countries": [
+      "China",
+      "United States",
+      "United Kingdom"
+    ],
+    "top_units": [
+      "firm",
+      "country",
+      "industry"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=productivity"
+  },
+  {
+    "concept_id": "FG3C000040",
+    "label": "environmental regulation",
+    "bucket_hint": "adjacent",
+    "instance_support": 544,
+    "distinct_paper_support": 533,
+    "weighted_degree": 668.0,
+    "pagerank": 0.00023876,
+    "in_degree": 57,
+    "out_degree": 250,
+    "top_countries": [
+      "China",
+      "CHN",
+      "United States"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20regulation"
+  },
+  {
+    "concept_id": "FG3C000005",
+    "label": "COVID-19 pandemic",
+    "bucket_hint": "adjacent",
+    "instance_support": 1067,
+    "distinct_paper_support": 1067,
+    "weighted_degree": 638.0,
+    "pagerank": 0.0001361,
+    "in_degree": 20,
+    "out_degree": 433,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "individual",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=COVID-19%20pandemic"
+  },
+  {
+    "concept_id": "FG3C000024",
+    "label": "monetary policy",
+    "bucket_hint": "core",
+    "instance_support": 837,
+    "distinct_paper_support": 827,
+    "weighted_degree": 633.0,
+    "pagerank": 0.00093699,
+    "in_degree": 142,
+    "out_degree": 297,
+    "top_countries": [
+      "United States",
+      "China",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "policy_unit",
+      "organization"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=monetary%20policy"
+  },
+  {
+    "concept_id": "FG3C000081",
+    "label": "environmental quality",
+    "bucket_hint": "adjacent",
+    "instance_support": 381,
+    "distinct_paper_support": 380,
+    "weighted_degree": 629.0,
+    "pagerank": 0.00278368,
+    "in_degree": 278,
+    "out_degree": 43,
+    "top_countries": [
+      "China",
+      "India",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20quality"
+  },
+  {
+    "concept_id": "FG3C000035",
+    "label": "stock returns",
+    "bucket_hint": "core",
+    "instance_support": 680,
+    "distinct_paper_support": 672,
+    "weighted_degree": 598.0,
+    "pagerank": 0.0025645,
+    "in_degree": 263,
+    "out_degree": 61,
+    "top_countries": [
+      "China",
+      "USA",
+      "United States"
+    ],
+    "top_units": [
+      "firm",
+      "market",
+      "product"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=stock%20returns"
+  },
+  {
+    "concept_id": "FG3C000134",
+    "label": "environmental sustainability",
+    "bucket_hint": "adjacent",
+    "instance_support": 327,
+    "distinct_paper_support": 327,
+    "weighted_degree": 581.0,
+    "pagerank": 0.00281949,
+    "in_degree": 246,
+    "out_degree": 44,
+    "top_countries": [
+      "China",
+      "India",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20sustainability"
+  },
+  {
+    "concept_id": "FG3C000167",
+    "label": "carbon dioxide (CO2) emissions",
+    "bucket_hint": "adjacent",
+    "instance_support": 200,
+    "distinct_paper_support": 199,
+    "weighted_degree": 581.0,
+    "pagerank": 0.00222338,
+    "in_degree": 207,
+    "out_degree": 40,
+    "top_countries": [
+      "China",
+      "OECD",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20dioxide%20%28CO2%29%20emissions"
+  },
+  {
+    "concept_id": "FG3C000030",
+    "label": "innovation",
+    "bucket_hint": "core",
+    "instance_support": 587,
+    "distinct_paper_support": 583,
+    "weighted_degree": 580.0,
+    "pagerank": 0.00101222,
+    "in_degree": 196,
+    "out_degree": 173,
+    "top_countries": [
+      "China",
+      "Italy",
+      "CHN"
+    ],
+    "top_units": [
+      "firm",
+      "country",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=innovation"
+  },
+  {
+    "concept_id": "FG3C001420",
+    "label": "environmental quality (CO2 emissions)",
+    "bucket_hint": "adjacent",
+    "instance_support": 336,
+    "distinct_paper_support": 335,
+    "weighted_degree": 557.0,
+    "pagerank": 0.00196882,
+    "in_degree": 204,
+    "out_degree": 83,
+    "top_countries": [
+      "China",
+      "United States",
+      "Italy"
+    ],
+    "top_units": [
+      "country",
+      "location",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20quality%20%28CO2%20emissions%29"
+  },
+  {
+    "concept_id": "FG3C000022",
+    "label": "wages",
+    "bucket_hint": "core",
+    "instance_support": 834,
+    "distinct_paper_support": 828,
+    "weighted_degree": 556.0,
+    "pagerank": 0.00218234,
+    "in_degree": 271,
+    "out_degree": 96,
+    "top_countries": [
+      "United States",
+      "China",
+      "USA"
+    ],
+    "top_units": [
+      "individual",
+      "firm",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=wages"
+  },
+  {
+    "concept_id": "FG3C000034",
+    "label": "oil prices",
+    "bucket_hint": "adjacent",
+    "instance_support": 473,
+    "distinct_paper_support": 473,
+    "weighted_degree": 551.0,
+    "pagerank": 0.00079606,
+    "in_degree": 90,
+    "out_degree": 180,
+    "top_countries": [
+      "United States",
+      "USA",
+      "China"
+    ],
+    "top_units": [
+      "country",
+      "market",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=oil%20prices"
+  },
+  {
+    "concept_id": "FG3C000046",
+    "label": "exports",
+    "bucket_hint": "core",
+    "instance_support": 530,
+    "distinct_paper_support": 523,
+    "weighted_degree": 549.0,
+    "pagerank": 0.00155636,
+    "in_degree": 161,
+    "out_degree": 129,
+    "top_countries": [
+      "China",
+      "USA",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=exports"
+  },
+  {
+    "concept_id": "FG3C000036",
+    "label": "institutional quality",
+    "bucket_hint": "adjacent",
+    "instance_support": 557,
+    "distinct_paper_support": 556,
+    "weighted_degree": 548.0,
+    "pagerank": 0.0003296,
+    "in_degree": 47,
+    "out_degree": 227,
+    "top_countries": [
+      "China",
+      "India",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=institutional%20quality"
+  },
+  {
+    "concept_id": "FG3C000008",
+    "label": "income",
+    "bucket_hint": "adjacent",
+    "instance_support": 857,
+    "distinct_paper_support": 856,
+    "weighted_degree": 547.0,
+    "pagerank": 0.00078806,
+    "in_degree": 84,
+    "out_degree": 210,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "individual",
+      "country",
+      "household"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=income"
+  },
+  {
+    "concept_id": "FG3C000094",
+    "label": "green technology innovation",
+    "bucket_hint": "adjacent",
+    "instance_support": 316,
+    "distinct_paper_support": 315,
+    "weighted_degree": 530.0,
+    "pagerank": 0.0010324,
+    "in_degree": 141,
+    "out_degree": 107,
+    "top_countries": [
+      "China",
+      "CHN",
+      "India"
+    ],
+    "top_units": [
+      "location",
+      "firm",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20technology%20innovation"
+  },
+  {
+    "concept_id": "FG3C000065",
+    "label": "sustainable development",
+    "bucket_hint": "adjacent",
+    "instance_support": 398,
+    "distinct_paper_support": 398,
+    "weighted_degree": 528.0,
+    "pagerank": 0.0020883,
+    "in_degree": 271,
+    "out_degree": 42,
+    "top_countries": [
+      "China",
+      "European Union",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=sustainable%20development"
+  },
+  {
+    "concept_id": "FG3C000026",
+    "label": "economic development",
+    "bucket_hint": "adjacent",
+    "instance_support": 540,
+    "distinct_paper_support": 540,
+    "weighted_degree": 509.0,
+    "pagerank": 0.00161287,
+    "in_degree": 203,
+    "out_degree": 128,
+    "top_countries": [
+      "China",
+      "CHN",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20development"
+  },
+  {
+    "concept_id": "FG3C000039",
+    "label": "globalization",
+    "bucket_hint": "adjacent",
+    "instance_support": 473,
+    "distinct_paper_support": 470,
+    "weighted_degree": 496.0,
+    "pagerank": 0.00045819,
+    "in_degree": 34,
+    "out_degree": 174,
+    "top_countries": [
+      "China",
+      "India",
+      "G7"
+    ],
+    "top_units": [
+      "country",
+      "other",
+      "industry"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=globalization"
+  },
+  {
+    "concept_id": "FG3C000124",
+    "label": "natural resources",
+    "bucket_hint": "adjacent",
+    "instance_support": 402,
+    "distinct_paper_support": 400,
+    "weighted_degree": 489.0,
+    "pagerank": 0.00062827,
+    "in_degree": 67,
+    "out_degree": 144,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=natural%20resources"
+  },
+  {
+    "concept_id": "FG3C000130",
+    "label": "environmental degradation",
+    "bucket_hint": "adjacent",
+    "instance_support": 209,
+    "distinct_paper_support": 209,
+    "weighted_degree": 475.0,
+    "pagerank": 0.00201955,
+    "in_degree": 159,
+    "out_degree": 37,
+    "top_countries": [
+      "China",
+      "India",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20degradation"
+  },
+  {
+    "concept_id": "FG3C000033",
+    "label": "consumption",
+    "bucket_hint": "core",
+    "instance_support": 809,
+    "distinct_paper_support": 798,
+    "weighted_degree": 473.0,
+    "pagerank": 0.00188926,
+    "in_degree": 250,
+    "out_degree": 100,
+    "top_countries": [
+      "United States",
+      "China",
+      "USA"
+    ],
+    "top_units": [
+      "household",
+      "country",
+      "individual"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=consumption"
+  },
+  {
+    "concept_id": "FG3C000160",
+    "label": "electricity consumption",
+    "bucket_hint": "adjacent",
+    "instance_support": 220,
+    "distinct_paper_support": 219,
+    "weighted_degree": 473.0,
+    "pagerank": 0.00142091,
+    "in_degree": 85,
+    "out_degree": 69,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Algeria"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "household"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=electricity%20consumption"
+  },
+  {
+    "concept_id": "FG3C000096",
+    "label": "stock prices",
+    "bucket_hint": "core",
+    "instance_support": 551,
+    "distinct_paper_support": 542,
+    "weighted_degree": 450.0,
+    "pagerank": 0.0014541,
+    "in_degree": 198,
+    "out_degree": 102,
+    "top_countries": [
+      "United States",
+      "USA",
+      "China"
+    ],
+    "top_units": [
+      "market",
+      "firm",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=stock%20prices"
+  },
+  {
+    "concept_id": "FG3C000203",
+    "label": "environmental pollution",
+    "bucket_hint": "adjacent",
+    "instance_support": 257,
+    "distinct_paper_support": 256,
+    "weighted_degree": 442.0,
+    "pagerank": 0.00146232,
+    "in_degree": 206,
+    "out_degree": 53,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Germany"
+    ],
+    "top_units": [
+      "region",
+      "country",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20pollution"
+  },
+  {
+    "concept_id": "FG3C000103",
+    "label": "financial inclusion",
+    "bucket_hint": "adjacent",
+    "instance_support": 272,
+    "distinct_paper_support": 270,
+    "weighted_degree": 442.0,
+    "pagerank": 0.00061743,
+    "in_degree": 116,
+    "out_degree": 128,
+    "top_countries": [
+      "China",
+      "Africa",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "household"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=financial%20inclusion"
+  },
+  {
+    "concept_id": "FG3C000048",
+    "label": "foreign direct investment",
+    "bucket_hint": "adjacent",
+    "instance_support": 410,
+    "distinct_paper_support": 410,
+    "weighted_degree": 440.0,
+    "pagerank": 0.00074791,
+    "in_degree": 61,
+    "out_degree": 157,
+    "top_countries": [
+      "China",
+      "CHN",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=foreign%20direct%20investment"
+  },
+  {
+    "concept_id": "FG3C000215",
+    "label": "green total factor productivity (GTFP)",
+    "bucket_hint": "adjacent",
+    "instance_support": 174,
+    "distinct_paper_support": 174,
+    "weighted_degree": 438.0,
+    "pagerank": 0.00130565,
+    "in_degree": 206,
+    "out_degree": 19,
+    "top_countries": [
+      "China",
+      "CHN",
+      "OECD"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20total%20factor%20productivity%20%28GTFP%29"
+  },
+  {
+    "concept_id": "FG3C000072",
+    "label": "exchange rates",
+    "bucket_hint": "core",
+    "instance_support": 556,
+    "distinct_paper_support": 545,
+    "weighted_degree": 433.0,
+    "pagerank": 0.00136518,
+    "in_degree": 130,
+    "out_degree": 126,
+    "top_countries": [
+      "China",
+      "USA",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "market",
+      "country_pair"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=exchange%20rates"
+  },
+  {
+    "concept_id": "FG3C000055",
+    "label": "trade",
+    "bucket_hint": "core",
+    "instance_support": 431,
+    "distinct_paper_support": 429,
+    "weighted_degree": 429.0,
+    "pagerank": 0.00106466,
+    "in_degree": 114,
+    "out_degree": 145,
+    "top_countries": [
+      "China",
+      "United States",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "country_pair",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=trade"
+  },
+  {
+    "concept_id": "FG3C000323",
+    "label": "willingness to pay (WTP)",
+    "bucket_hint": "adjacent",
+    "instance_support": 620,
+    "distinct_paper_support": 604,
+    "weighted_degree": 423.0,
+    "pagerank": 0.00226167,
+    "in_degree": 189,
+    "out_degree": 37,
+    "top_countries": [
+      "China",
+      "United States",
+      "Spain"
+    ],
+    "top_units": [
+      "individual",
+      "household",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=willingness%20to%20pay%20%28WTP%29"
+  },
+  {
+    "concept_id": "FG3C000110",
+    "label": "output growth",
+    "bucket_hint": "core",
+    "instance_support": 508,
+    "distinct_paper_support": 498,
+    "weighted_degree": 420.0,
+    "pagerank": 0.00209052,
+    "in_degree": 238,
+    "out_degree": 66,
+    "top_countries": [
+      "United States",
+      "China",
+      "United Kingdom"
+    ],
+    "top_units": [
+      "country",
+      "industry",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=output%20growth"
+  },
+  {
+    "concept_id": "FG3C000037",
+    "label": "GDP",
+    "bucket_hint": "adjacent",
+    "instance_support": 485,
+    "distinct_paper_support": 483,
+    "weighted_degree": 411.0,
+    "pagerank": 0.0010993,
+    "in_degree": 118,
+    "out_degree": 106,
+    "top_countries": [
+      "China",
+      "India",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=GDP"
+  },
+  {
+    "concept_id": "FG3C000411",
+    "label": "model parameters",
+    "bucket_hint": "core",
+    "instance_support": 1079,
+    "distinct_paper_support": 1055,
+    "weighted_degree": 409.0,
+    "pagerank": 0.00058247,
+    "in_degree": 96,
+    "out_degree": 246,
+    "top_countries": [
+      "USA",
+      "China",
+      "United States"
+    ],
+    "top_units": [
+      "individual",
+      "region",
+      "market"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=model%20parameters"
+  },
+  {
+    "concept_id": "FG3C000074",
+    "label": "economic policy uncertainty (EPU)",
+    "bucket_hint": "core",
+    "instance_support": 346,
+    "distinct_paper_support": 334,
+    "weighted_degree": 403.0,
+    "pagerank": 0.00033976,
+    "in_degree": 64,
+    "out_degree": 197,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "organization"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20policy%20uncertainty%20%28EPU%29"
+  },
+  {
+    "concept_id": "FG3C000097",
+    "label": "industrial structure upgrading",
+    "bucket_hint": "adjacent",
+    "instance_support": 298,
+    "distinct_paper_support": 298,
+    "weighted_degree": 400.0,
+    "pagerank": 0.0004941,
+    "in_degree": 105,
+    "out_degree": 96,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Italy"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=industrial%20structure%20upgrading"
+  },
+  {
+    "concept_id": "FG3C000020",
+    "label": "firm size",
+    "bucket_hint": "core",
+    "instance_support": 735,
+    "distinct_paper_support": 733,
+    "weighted_degree": 398.0,
+    "pagerank": 0.00044891,
+    "in_degree": 77,
+    "out_degree": 193,
+    "top_countries": [
+      "China",
+      "Italy",
+      "Spain"
+    ],
+    "top_units": [
+      "firm",
+      "organization",
+      "establishment"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=firm%20size"
+  },
+  {
+    "concept_id": "FG3C000044",
+    "label": "industrial structure",
+    "bucket_hint": "adjacent",
+    "instance_support": 505,
+    "distinct_paper_support": 504,
+    "weighted_degree": 396.0,
+    "pagerank": 0.00041091,
+    "in_degree": 81,
+    "out_degree": 131,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Brazil"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=industrial%20structure"
+  },
+  {
+    "concept_id": "FG3C000027",
+    "label": "interest rates",
+    "bucket_hint": "core",
+    "instance_support": 728,
+    "distinct_paper_support": 727,
+    "weighted_degree": 392.0,
+    "pagerank": 0.00104022,
+    "in_degree": 152,
+    "out_degree": 142,
+    "top_countries": [
+      "United States",
+      "USA",
+      "China"
+    ],
+    "top_units": [
+      "country",
+      "market",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=interest%20rates"
+  },
+  {
+    "concept_id": "FG3C000060",
+    "label": "GDP per capita",
+    "bucket_hint": "adjacent",
+    "instance_support": 425,
+    "distinct_paper_support": 423,
+    "weighted_degree": 381.0,
+    "pagerank": 0.00105755,
+    "in_degree": 72,
+    "out_degree": 116,
+    "top_countries": [
+      "China",
+      "India",
+      "BRICS"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=GDP%20per%20capita"
+  },
+  {
+    "concept_id": "FG3C000117",
+    "label": "oil price",
+    "bucket_hint": "adjacent",
+    "instance_support": 363,
+    "distinct_paper_support": 356,
+    "weighted_degree": 378.0,
+    "pagerank": 0.00051915,
+    "in_degree": 81,
+    "out_degree": 152,
+    "top_countries": [
+      "USA",
+      "United States",
+      "China"
+    ],
+    "top_units": [
+      "country",
+      "market",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=oil%20price"
+  },
+  {
+    "concept_id": "FG3C000071",
+    "label": "economic policy uncertainty",
+    "bucket_hint": "core",
+    "instance_support": 325,
+    "distinct_paper_support": 321,
+    "weighted_degree": 372.0,
+    "pagerank": 0.00037685,
+    "in_degree": 53,
+    "out_degree": 185,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20policy%20uncertainty"
+  },
+  {
+    "concept_id": "FG3C000045",
+    "label": "technological progress",
+    "bucket_hint": "adjacent",
+    "instance_support": 434,
+    "distinct_paper_support": 432,
+    "weighted_degree": 371.0,
+    "pagerank": 0.00052664,
+    "in_degree": 103,
+    "out_degree": 144,
+    "top_countries": [
+      "China",
+      "CHN",
+      "India"
+    ],
+    "top_units": [
+      "region",
+      "country",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=technological%20progress"
+  },
+  {
+    "concept_id": "FG3C000070",
+    "label": "productivity growth",
+    "bucket_hint": "core",
+    "instance_support": 420,
+    "distinct_paper_support": 412,
+    "weighted_degree": 367.0,
+    "pagerank": 0.00148275,
+    "in_degree": 211,
+    "out_degree": 61,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "industry",
+      "firm",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=productivity%20growth"
+  },
+  {
+    "concept_id": "FG3C000249",
+    "label": "natural resource rents",
+    "bucket_hint": "adjacent",
+    "instance_support": 252,
+    "distinct_paper_support": 251,
+    "weighted_degree": 363.0,
+    "pagerank": 0.0004464,
+    "in_degree": 61,
+    "out_degree": 115,
+    "top_countries": [
+      "China",
+      "India",
+      "BRICS"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=natural%20resource%20rents"
+  },
+  {
+    "concept_id": "FG3C000246",
+    "label": "green growth",
+    "bucket_hint": "adjacent",
+    "instance_support": 147,
+    "distinct_paper_support": 145,
+    "weighted_degree": 359.0,
+    "pagerank": 0.00139112,
+    "in_degree": 151,
+    "out_degree": 27,
+    "top_countries": [
+      "China",
+      "OECD",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20growth"
+  },
+  {
+    "concept_id": "FG3C000123",
+    "label": "oil price shocks",
+    "bucket_hint": "core",
+    "instance_support": 306,
+    "distinct_paper_support": 293,
+    "weighted_degree": 359.0,
+    "pagerank": 0.00023398,
+    "in_degree": 46,
+    "out_degree": 166,
+    "top_countries": [
+      "United States",
+      "USA",
+      "Iran"
+    ],
+    "top_units": [
+      "country",
+      "market",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=oil%20price%20shocks"
+  },
+  {
+    "concept_id": "FG3C000121",
+    "label": "greenhouse gas emissions",
+    "bucket_hint": "adjacent",
+    "instance_support": 256,
+    "distinct_paper_support": 255,
+    "weighted_degree": 348.0,
+    "pagerank": 0.00169727,
+    "in_degree": 175,
+    "out_degree": 38,
+    "top_countries": [
+      "China",
+      "Canada",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=greenhouse%20gas%20emissions"
+  },
+  {
+    "concept_id": "FG3C000029",
+    "label": "education",
+    "bucket_hint": "adjacent",
+    "instance_support": 535,
+    "distinct_paper_support": 533,
+    "weighted_degree": 348.0,
+    "pagerank": 0.00051563,
+    "in_degree": 49,
+    "out_degree": 179,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "individual",
+      "country",
+      "household"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=education"
+  },
+  {
+    "concept_id": "FG3C000042",
+    "label": "trading volume",
+    "bucket_hint": "core",
+    "instance_support": 500,
+    "distinct_paper_support": 495,
+    "weighted_degree": 347.0,
+    "pagerank": 0.00130422,
+    "in_degree": 128,
+    "out_degree": 85,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "market",
+      "firm",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=trading%20volume"
+  },
+  {
+    "concept_id": "FG3C002284",
+    "label": "firm total factor productivity (TFP)",
+    "bucket_hint": "core",
+    "instance_support": 259,
+    "distinct_paper_support": 257,
+    "weighted_degree": 346.0,
+    "pagerank": 0.00140391,
+    "in_degree": 185,
+    "out_degree": 34,
+    "top_countries": [
+      "China",
+      "CHN",
+      "United States"
+    ],
+    "top_units": [
+      "firm",
+      "country",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=firm%20total%20factor%20productivity%20%28TFP%29"
+  },
+  {
+    "concept_id": "FG3C000028",
+    "label": "prices",
+    "bucket_hint": "core",
+    "instance_support": 583,
+    "distinct_paper_support": 579,
+    "weighted_degree": 344.0,
+    "pagerank": 0.00117446,
+    "in_degree": 194,
+    "out_degree": 73,
+    "top_countries": [
+      "United States",
+      "USA",
+      "China"
+    ],
+    "top_units": [
+      "country",
+      "market",
+      "industry"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=prices"
+  },
+  {
+    "concept_id": "FG3C000232",
+    "label": "non-renewable energy consumption",
+    "bucket_hint": "adjacent",
+    "instance_support": 188,
+    "distinct_paper_support": 188,
+    "weighted_degree": 344.0,
+    "pagerank": 0.00093936,
+    "in_degree": 70,
+    "out_degree": 65,
+    "top_countries": [
+      "China",
+      "OECD",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=non-renewable%20energy%20consumption"
+  },
+  {
+    "concept_id": "FG3C000173",
+    "label": "energy use",
+    "bucket_hint": "adjacent",
+    "instance_support": 226,
+    "distinct_paper_support": 226,
+    "weighted_degree": 340.0,
+    "pagerank": 0.0011476,
+    "in_degree": 72,
+    "out_degree": 76,
+    "top_countries": [
+      "China",
+      "India",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "individual",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=energy%20use"
+  },
+  {
+    "concept_id": "FG3C000061",
+    "label": "total factor productivity (TFP)",
+    "bucket_hint": "core",
+    "instance_support": 283,
+    "distinct_paper_support": 283,
+    "weighted_degree": 339.0,
+    "pagerank": 0.00107973,
+    "in_degree": 185,
+    "out_degree": 55,
+    "top_countries": [
+      "China",
+      "Italy",
+      "United States"
+    ],
+    "top_units": [
+      "firm",
+      "country",
+      "industry"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=total%20factor%20productivity%20%28TFP%29"
+  },
+  {
+    "concept_id": "FG3C000384",
+    "label": "information and communication technology (ICT)",
+    "bucket_hint": "adjacent",
+    "instance_support": 270,
+    "distinct_paper_support": 269,
+    "weighted_degree": 338.0,
+    "pagerank": 0.00051418,
+    "in_degree": 42,
+    "out_degree": 145,
+    "top_countries": [
+      "China",
+      "United Kingdom",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "industry"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=information%20and%20communication%20technology%20%28ICT%29"
+  },
+  {
+    "concept_id": "FG3C000089",
+    "label": "R&D investment",
+    "bucket_hint": "adjacent",
+    "instance_support": 275,
+    "distinct_paper_support": 275,
+    "weighted_degree": 334.0,
+    "pagerank": 0.00062388,
+    "in_degree": 124,
+    "out_degree": 111,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Korea"
+    ],
+    "top_units": [
+      "firm",
+      "region",
+      "organization"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=R%26D%20investment"
+  },
+  {
+    "concept_id": "FG3C000051",
+    "label": "house prices",
+    "bucket_hint": "core",
+    "instance_support": 471,
+    "distinct_paper_support": 470,
+    "weighted_degree": 333.0,
+    "pagerank": 0.00144535,
+    "in_degree": 153,
+    "out_degree": 63,
+    "top_countries": [
+      "United States",
+      "USA",
+      "China"
+    ],
+    "top_units": [
+      "location",
+      "household",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=house%20prices"
+  },
+  {
+    "concept_id": "FG3C000050",
+    "label": "housing prices",
+    "bucket_hint": "core",
+    "instance_support": 341,
+    "distinct_paper_support": 340,
+    "weighted_degree": 332.0,
+    "pagerank": 0.0012428,
+    "in_degree": 166,
+    "out_degree": 66,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "location",
+      "other",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=housing%20prices"
+  },
+  {
+    "concept_id": "FG3C000202",
+    "label": "green bonds",
+    "bucket_hint": "core",
+    "instance_support": 272,
+    "distinct_paper_support": 257,
+    "weighted_degree": 331.0,
+    "pagerank": 0.00052591,
+    "in_degree": 86,
+    "out_degree": 141,
+    "top_countries": [
+      "China",
+      "United States",
+      "CHN"
+    ],
+    "top_units": [
+      "market",
+      "firm",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20bonds"
+  },
+  {
+    "concept_id": "FG3C000242",
+    "label": "digital finance",
+    "bucket_hint": "adjacent",
+    "instance_support": 139,
+    "distinct_paper_support": 131,
+    "weighted_degree": 328.0,
+    "pagerank": 0.00011486,
+    "in_degree": 30,
+    "out_degree": 148,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Malaysia"
+    ],
+    "top_units": [
+      "location",
+      "region",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=digital%20finance"
+  },
+  {
+    "concept_id": "FG3C000267",
+    "label": "energy transition",
+    "bucket_hint": "adjacent",
+    "instance_support": 188,
+    "distinct_paper_support": 186,
+    "weighted_degree": 325.0,
+    "pagerank": 0.0008381,
+    "in_degree": 140,
+    "out_degree": 64,
+    "top_countries": [
+      "China",
+      "OECD",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=energy%20transition"
+  },
+  {
+    "concept_id": "FG3C000043",
+    "label": "volatility",
+    "bucket_hint": "core",
+    "instance_support": 529,
+    "distinct_paper_support": 523,
+    "weighted_degree": 322.0,
+    "pagerank": 0.00114762,
+    "in_degree": 143,
+    "out_degree": 86,
+    "top_countries": [
+      "USA",
+      "United States",
+      "China"
+    ],
+    "top_units": [
+      "market",
+      "firm",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=volatility"
+  },
+  {
+    "concept_id": "FG3C004120",
+    "label": "uncertainty measures",
+    "bucket_hint": "core",
+    "instance_support": 459,
+    "distinct_paper_support": 444,
+    "weighted_degree": 321.0,
+    "pagerank": 0.00043601,
+    "in_degree": 69,
+    "out_degree": 179,
+    "top_countries": [
+      "United States",
+      "USA",
+      "China"
+    ],
+    "top_units": [
+      "firm",
+      "country",
+      "individual"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=uncertainty%20measures"
+  },
+  {
+    "concept_id": "FG3C000101",
+    "label": "gold",
+    "bucket_hint": "core",
+    "instance_support": 323,
+    "distinct_paper_support": 318,
+    "weighted_degree": 320.0,
+    "pagerank": 0.00046251,
+    "in_degree": 63,
+    "out_degree": 104,
+    "top_countries": [
+      "United States",
+      "United Kingdom",
+      "China"
+    ],
+    "top_units": [
+      "market",
+      "product",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=gold"
+  },
+  {
+    "concept_id": "FG3C000491",
+    "label": "environmental efficiency",
+    "bucket_hint": "adjacent",
+    "instance_support": 163,
+    "distinct_paper_support": 160,
+    "weighted_degree": 319.0,
+    "pagerank": 0.00123215,
+    "in_degree": 173,
+    "out_degree": 29,
+    "top_countries": [
+      "China",
+      "CHN",
+      "United States"
+    ],
+    "top_units": [
+      "region",
+      "country",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20efficiency"
+  },
+  {
+    "concept_id": "FG3C001218",
+    "label": "ecological footprints",
+    "bucket_hint": "adjacent",
+    "instance_support": 86,
+    "distinct_paper_support": 86,
+    "weighted_degree": 317.0,
+    "pagerank": 0.00113337,
+    "in_degree": 129,
+    "out_degree": 23,
+    "top_countries": [
+      "India",
+      "China",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "other",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=ecological%20footprints"
+  },
+  {
+    "concept_id": "FG3C000085",
+    "label": "gross domestic product (GDP)",
+    "bucket_hint": "adjacent",
+    "instance_support": 319,
+    "distinct_paper_support": 319,
+    "weighted_degree": 311.0,
+    "pagerank": 0.00102892,
+    "in_degree": 87,
+    "out_degree": 83,
+    "top_countries": [
+      "China",
+      "United States",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=gross%20domestic%20product%20%28GDP%29"
+  },
+  {
+    "concept_id": "FG3C003006",
+    "label": "Emission Trading Scheme (ETS)",
+    "bucket_hint": "adjacent",
+    "instance_support": 259,
+    "distinct_paper_support": 254,
+    "weighted_degree": 311.0,
+    "pagerank": 0.00022152,
+    "in_degree": 30,
+    "out_degree": 160,
+    "top_countries": [
+      "China",
+      "CHN",
+      "European Union"
+    ],
+    "top_units": [
+      "location",
+      "region",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=Emission%20Trading%20Scheme%20%28ETS%29"
+  },
+  {
+    "concept_id": "FG3C000090",
+    "label": "financing constraints",
+    "bucket_hint": "adjacent",
+    "instance_support": 295,
+    "distinct_paper_support": 295,
+    "weighted_degree": 306.0,
+    "pagerank": 0.00039679,
+    "in_degree": 93,
+    "out_degree": 90,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Italy"
+    ],
+    "top_units": [
+      "firm",
+      "organization",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=financing%20constraints"
+  },
+  {
+    "concept_id": "FG3C000226",
+    "label": "digital transformation",
+    "bucket_hint": "adjacent",
+    "instance_support": 136,
+    "distinct_paper_support": 136,
+    "weighted_degree": 306.0,
+    "pagerank": 0.00019926,
+    "in_degree": 43,
+    "out_degree": 121,
+    "top_countries": [
+      "China",
+      "CHN",
+      "ten Asian countries with significant pollution"
+    ],
+    "top_units": [
+      "firm",
+      "organization",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=digital%20transformation"
+  },
+  {
+    "concept_id": "FG3C000056",
+    "label": "exchange rate",
+    "bucket_hint": "core",
+    "instance_support": 337,
+    "distinct_paper_support": 337,
+    "weighted_degree": 303.0,
+    "pagerank": 0.00060277,
+    "in_degree": 101,
+    "out_degree": 101,
+    "top_countries": [
+      "United States",
+      "Nigeria",
+      "China"
+    ],
+    "top_units": [
+      "country",
+      "market",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=exchange%20rate"
+  },
+  {
+    "concept_id": "FG3C000184",
+    "label": "carbon intensity",
+    "bucket_hint": "adjacent",
+    "instance_support": 164,
+    "distinct_paper_support": 164,
+    "weighted_degree": 301.0,
+    "pagerank": 0.00086433,
+    "in_degree": 147,
+    "out_degree": 31,
+    "top_countries": [
+      "China",
+      "CHN",
+      "OECD"
+    ],
+    "top_units": [
+      "region",
+      "country",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20intensity"
+  },
+  {
+    "concept_id": "FG3C000120",
+    "label": "environmental regulations",
+    "bucket_hint": "adjacent",
+    "instance_support": 299,
+    "distinct_paper_support": 296,
+    "weighted_degree": 295.0,
+    "pagerank": 0.00022387,
+    "in_degree": 42,
+    "out_degree": 154,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Brazil"
+    ],
+    "top_units": [
+      "region",
+      "country",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20regulations"
+  },
+  {
+    "concept_id": "FG3C000140",
+    "label": "income distribution",
+    "bucket_hint": "core",
+    "instance_support": 499,
+    "distinct_paper_support": 495,
+    "weighted_degree": 293.0,
+    "pagerank": 0.00083109,
+    "in_degree": 141,
+    "out_degree": 100,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "household",
+      "individual",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=income%20distribution"
+  },
+  {
+    "concept_id": "FG3C000347",
+    "label": "carbon emission intensity",
+    "bucket_hint": "adjacent",
+    "instance_support": 124,
+    "distinct_paper_support": 124,
+    "weighted_degree": 292.0,
+    "pagerank": 0.00116836,
+    "in_degree": 141,
+    "out_degree": 10,
+    "top_countries": [
+      "China",
+      "CHN",
+      "HKG"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20emission%20intensity"
+  },
+  {
+    "concept_id": "FG3C000126",
+    "label": "imports",
+    "bucket_hint": "core",
+    "instance_support": 296,
+    "distinct_paper_support": 291,
+    "weighted_degree": 289.0,
+    "pagerank": 0.00079514,
+    "in_degree": 78,
+    "out_degree": 78,
+    "top_countries": [
+      "China",
+      "United States",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "industry",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=imports"
+  },
+  {
+    "concept_id": "FG3C000054",
+    "label": "population growth",
+    "bucket_hint": "adjacent",
+    "instance_support": 393,
+    "distinct_paper_support": 393,
+    "weighted_degree": 286.0,
+    "pagerank": 0.00069319,
+    "in_degree": 53,
+    "out_degree": 121,
+    "top_countries": [
+      "China",
+      "United States",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "location",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=population%20growth"
+  },
+  {
+    "concept_id": "FG3C005161",
+    "label": "state of the business cycle",
+    "bucket_hint": "core",
+    "instance_support": 547,
+    "distinct_paper_support": 541,
+    "weighted_degree": 283.0,
+    "pagerank": 0.00086084,
+    "in_degree": 104,
+    "out_degree": 128,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "firm",
+      "country",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=state%20of%20the%20business%20cycle"
+  },
+  {
+    "concept_id": "FG3C000292",
+    "label": "coal consumption",
+    "bucket_hint": "adjacent",
+    "instance_support": 166,
+    "distinct_paper_support": 163,
+    "weighted_degree": 283.0,
+    "pagerank": 0.00067035,
+    "in_degree": 67,
+    "out_degree": 67,
+    "top_countries": [
+      "China",
+      "India",
+      "South Africa"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=coal%20consumption"
+  },
+  {
+    "concept_id": "FG3C000156",
+    "label": "crude oil prices",
+    "bucket_hint": "adjacent",
+    "instance_support": 273,
+    "distinct_paper_support": 268,
+    "weighted_degree": 283.0,
+    "pagerank": 0.00050612,
+    "in_degree": 72,
+    "out_degree": 90,
+    "top_countries": [
+      "United States",
+      "USA",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "market",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=crude%20oil%20prices"
+  },
+  {
+    "concept_id": "FG3C000227",
+    "label": "green technological innovation",
+    "bucket_hint": "adjacent",
+    "instance_support": 219,
+    "distinct_paper_support": 209,
+    "weighted_degree": 279.0,
+    "pagerank": 0.00049407,
+    "in_degree": 79,
+    "out_degree": 80,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Brazil"
+    ],
+    "top_units": [
+      "firm",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20technological%20innovation"
+  },
+  {
+    "concept_id": "FG3C000069",
+    "label": "competition",
+    "bucket_hint": "core",
+    "instance_support": 385,
+    "distinct_paper_support": 382,
+    "weighted_degree": 279.0,
+    "pagerank": 0.00043463,
+    "in_degree": 71,
+    "out_degree": 142,
+    "top_countries": [
+      "China",
+      "United States",
+      "India"
+    ],
+    "top_units": [
+      "market",
+      "industry",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=competition"
+  },
+  {
+    "concept_id": "FG3C000199",
+    "label": "economic complexity",
+    "bucket_hint": "adjacent",
+    "instance_support": 199,
+    "distinct_paper_support": 196,
+    "weighted_degree": 278.0,
+    "pagerank": 0.00035582,
+    "in_degree": 50,
+    "out_degree": 87,
+    "top_countries": [
+      "China",
+      "G7",
+      "South Africa"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "industry"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20complexity"
+  },
+  {
+    "concept_id": "FG3C000164",
+    "label": "government subsidies",
+    "bucket_hint": "adjacent",
+    "instance_support": 230,
+    "distinct_paper_support": 228,
+    "weighted_degree": 278.0,
+    "pagerank": 0.00015362,
+    "in_degree": 36,
+    "out_degree": 122,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Taiwan"
+    ],
+    "top_units": [
+      "firm",
+      "organization",
+      "policy_unit"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=government%20subsidies"
+  },
+  {
+    "concept_id": "FG3C000753",
+    "label": "high-speed rail",
+    "bucket_hint": "adjacent",
+    "instance_support": 196,
+    "distinct_paper_support": 193,
+    "weighted_degree": 276.0,
+    "pagerank": 8.878e-05,
+    "in_degree": 13,
+    "out_degree": 169,
+    "top_countries": [
+      "China",
+      "Spain",
+      "CHN"
+    ],
+    "top_units": [
+      "location",
+      "other",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=high-speed%20rail"
+  },
+  {
+    "concept_id": "FG3C005776",
+    "label": "rate of growth",
+    "bucket_hint": "core",
+    "instance_support": 450,
+    "distinct_paper_support": 440,
+    "weighted_degree": 275.0,
+    "pagerank": 0.0008979,
+    "in_degree": 143,
+    "out_degree": 78,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=rate%20of%20growth"
+  },
+  {
+    "concept_id": "FG3C000058",
+    "label": "population",
+    "bucket_hint": "adjacent",
+    "instance_support": 404,
+    "distinct_paper_support": 404,
+    "weighted_degree": 274.0,
+    "pagerank": 0.00041777,
+    "in_degree": 33,
+    "out_degree": 121,
+    "top_countries": [
+      "China",
+      "United States",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "location",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=population"
+  },
+  {
+    "concept_id": "FG3C000436",
+    "label": "geopolitical risks",
+    "bucket_hint": "adjacent",
+    "instance_support": 256,
+    "distinct_paper_support": 241,
+    "weighted_degree": 274.0,
+    "pagerank": 0.00033167,
+    "in_degree": 42,
+    "out_degree": 139,
+    "top_countries": [
+      "China",
+      "Russia",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "other",
+      "market"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=geopolitical%20risks"
+  },
+  {
+    "concept_id": "FG3C001408",
+    "label": "policy",
+    "bucket_hint": "adjacent",
+    "instance_support": 477,
+    "distinct_paper_support": 469,
+    "weighted_degree": 269.0,
+    "pagerank": 0.00067553,
+    "in_degree": 89,
+    "out_degree": 126,
+    "top_countries": [
+      "China",
+      "United States",
+      "United Kingdom"
+    ],
+    "top_units": [
+      "location",
+      "policy_unit",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=policy"
+  },
+  {
+    "concept_id": "FG3C000087",
+    "label": "fiscal policy",
+    "bucket_hint": "core",
+    "instance_support": 366,
+    "distinct_paper_support": 359,
+    "weighted_degree": 269.0,
+    "pagerank": 0.00035886,
+    "in_degree": 76,
+    "out_degree": 130,
+    "top_countries": [
+      "United States",
+      "China",
+      "Japan"
+    ],
+    "top_units": [
+      "country",
+      "policy_unit",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=fiscal%20policy"
+  },
+  {
+    "concept_id": "FG3C000118",
+    "label": "industrialization",
+    "bucket_hint": "adjacent",
+    "instance_support": 248,
+    "distinct_paper_support": 248,
+    "weighted_degree": 266.0,
+    "pagerank": 0.00045821,
+    "in_degree": 43,
+    "out_degree": 88,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "location",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=industrialization"
+  },
+  {
+    "concept_id": "FG3C000067",
+    "label": "profitability",
+    "bucket_hint": "core",
+    "instance_support": 375,
+    "distinct_paper_support": 374,
+    "weighted_degree": 263.0,
+    "pagerank": 0.00130932,
+    "in_degree": 146,
+    "out_degree": 63,
+    "top_countries": [
+      "China",
+      "United States",
+      "CHN"
+    ],
+    "top_units": [
+      "firm",
+      "organization",
+      "industry"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=profitability"
+  },
+  {
+    "concept_id": "FG3C000144",
+    "label": "economic performance",
+    "bucket_hint": "adjacent",
+    "instance_support": 206,
+    "distinct_paper_support": 205,
+    "weighted_degree": 263.0,
+    "pagerank": 0.00102819,
+    "in_degree": 123,
+    "out_degree": 41,
+    "top_countries": [
+      "China",
+      "India",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20performance"
+  },
+  {
+    "concept_id": "FG3C000078",
+    "label": "international trade",
+    "bucket_hint": "core",
+    "instance_support": 299,
+    "distinct_paper_support": 297,
+    "weighted_degree": 262.0,
+    "pagerank": 0.00056967,
+    "in_degree": 82,
+    "out_degree": 116,
+    "top_countries": [
+      "China",
+      "developing countries",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "industry"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=international%20trade"
+  },
+  {
+    "concept_id": "FG3C000168",
+    "label": "stock market returns",
+    "bucket_hint": "core",
+    "instance_support": 251,
+    "distinct_paper_support": 244,
+    "weighted_degree": 260.0,
+    "pagerank": 0.00094086,
+    "in_degree": 126,
+    "out_degree": 42,
+    "top_countries": [
+      "United States",
+      "USA",
+      "China"
+    ],
+    "top_units": [
+      "market",
+      "country",
+      "industry"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=stock%20market%20returns"
+  },
+  {
+    "concept_id": "FG3C000674",
+    "label": "price changes",
+    "bucket_hint": "core",
+    "instance_support": 519,
+    "distinct_paper_support": 502,
+    "weighted_degree": 258.0,
+    "pagerank": 0.00072295,
+    "in_degree": 120,
+    "out_degree": 93,
+    "top_countries": [
+      "United States",
+      "China",
+      "India"
+    ],
+    "top_units": [
+      "product",
+      "market",
+      "individual"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=price%20changes"
+  },
+  {
+    "concept_id": "FG3C000599",
+    "label": "US stock market",
+    "bucket_hint": "core",
+    "instance_support": 322,
+    "distinct_paper_support": 309,
+    "weighted_degree": 256.0,
+    "pagerank": 0.00094284,
+    "in_degree": 87,
+    "out_degree": 77,
+    "top_countries": [
+      "United States",
+      "USA",
+      "China"
+    ],
+    "top_units": [
+      "market",
+      "country",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=US%20stock%20market"
+  },
+  {
+    "concept_id": "FG3C000083",
+    "label": "trade liberalization",
+    "bucket_hint": "core",
+    "instance_support": 281,
+    "distinct_paper_support": 280,
+    "weighted_degree": 254.0,
+    "pagerank": 0.00014368,
+    "in_degree": 21,
+    "out_degree": 161,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Brazil"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=trade%20liberalization"
+  },
+  {
+    "concept_id": "FG3C000098",
+    "label": "per capita income",
+    "bucket_hint": "adjacent",
+    "instance_support": 301,
+    "distinct_paper_support": 301,
+    "weighted_degree": 253.0,
+    "pagerank": 0.00060056,
+    "in_degree": 56,
+    "out_degree": 102,
+    "top_countries": [
+      "China",
+      "United States",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=per%20capita%20income"
+  },
+  {
+    "concept_id": "FG3C000023",
+    "label": "social welfare",
+    "bucket_hint": "core",
+    "instance_support": 597,
+    "distinct_paper_support": 596,
+    "weighted_degree": 251.0,
+    "pagerank": 0.00130089,
+    "in_degree": 191,
+    "out_degree": 7,
+    "top_countries": [
+      "China",
+      "United States",
+      "Italy"
+    ],
+    "top_units": [
+      "country",
+      "market",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=social%20welfare"
+  },
+  {
+    "concept_id": "FG3C000104",
+    "label": "capital",
+    "bucket_hint": "core",
+    "instance_support": 315,
+    "distinct_paper_support": 313,
+    "weighted_degree": 250.0,
+    "pagerank": 0.00048002,
+    "in_degree": 57,
+    "out_degree": 82,
+    "top_countries": [
+      "China",
+      "United States",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "industry"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=capital"
+  },
+  {
+    "concept_id": "FG3C000494",
+    "label": "digital economy development",
+    "bucket_hint": "adjacent",
+    "instance_support": 101,
+    "distinct_paper_support": 101,
+    "weighted_degree": 248.0,
+    "pagerank": 0.00019004,
+    "in_degree": 44,
+    "out_degree": 102,
+    "top_countries": [
+      "China",
+      "CHN",
+      "European Union"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=digital%20economy%20development"
+  },
+  {
+    "concept_id": "FG3C006328",
+    "label": "number of agents",
+    "bucket_hint": "core",
+    "instance_support": 529,
+    "distinct_paper_support": 513,
+    "weighted_degree": 244.0,
+    "pagerank": 0.00055383,
+    "in_degree": 78,
+    "out_degree": 111,
+    "top_countries": [
+      "China",
+      "United States",
+      "Germany"
+    ],
+    "top_units": [
+      "individual",
+      "firm",
+      "organization"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=number%20of%20agents"
+  },
+  {
+    "concept_id": "FG3C000138",
+    "label": "systemic risk",
+    "bucket_hint": "core",
+    "instance_support": 285,
+    "distinct_paper_support": 284,
+    "weighted_degree": 243.0,
+    "pagerank": 0.00139404,
+    "in_degree": 157,
+    "out_degree": 22,
+    "top_countries": [
+      "China",
+      "United States",
+      "Europe"
+    ],
+    "top_units": [
+      "market",
+      "organization",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=systemic%20risk"
+  },
+  {
+    "concept_id": "FG3C000052",
+    "label": "unemployment rate",
+    "bucket_hint": "core",
+    "instance_support": 358,
+    "distinct_paper_support": 358,
+    "weighted_degree": 241.0,
+    "pagerank": 0.00078784,
+    "in_degree": 111,
+    "out_degree": 65,
+    "top_countries": [
+      "United States",
+      "USA",
+      "Spain"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "individual"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=unemployment%20rate"
+  },
+  {
+    "concept_id": "FG3C001033",
+    "label": "environmental degradation (CO2 emissions)",
+    "bucket_hint": "adjacent",
+    "instance_support": 70,
+    "distinct_paper_support": 70,
+    "weighted_degree": 239.0,
+    "pagerank": 0.00105649,
+    "in_degree": 94,
+    "out_degree": 22,
+    "top_countries": [
+      "China",
+      "Pakistan",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20degradation%20%28CO2%20emissions%29"
+  },
+  {
+    "concept_id": "FG3C000112",
+    "label": "inflation rate",
+    "bucket_hint": "core",
+    "instance_support": 291,
+    "distinct_paper_support": 289,
+    "weighted_degree": 238.0,
+    "pagerank": 0.00065344,
+    "in_degree": 86,
+    "out_degree": 79,
+    "top_countries": [
+      "United States",
+      "China",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20rate"
+  },
+  {
+    "concept_id": "FG3C000100",
+    "label": "investor sentiment",
+    "bucket_hint": "core",
+    "instance_support": 301,
+    "distinct_paper_support": 299,
+    "weighted_degree": 235.0,
+    "pagerank": 0.00034044,
+    "in_degree": 49,
+    "out_degree": 118,
+    "top_countries": [
+      "China",
+      "CHN",
+      "United States"
+    ],
+    "top_units": [
+      "market",
+      "firm",
+      "individual"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=investor%20sentiment"
+  },
+  {
+    "concept_id": "FG3C000165",
+    "label": "geopolitical risk",
+    "bucket_hint": "adjacent",
+    "instance_support": 191,
+    "distinct_paper_support": 191,
+    "weighted_degree": 235.0,
+    "pagerank": 0.00024234,
+    "in_degree": 33,
+    "out_degree": 123,
+    "top_countries": [
+      "China",
+      "India",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "market",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=geopolitical%20risk"
+  },
+  {
+    "concept_id": "FG3C001307",
+    "label": "load capacity factor (LCF)",
+    "bucket_hint": "adjacent",
+    "instance_support": 53,
+    "distinct_paper_support": 53,
+    "weighted_degree": 233.0,
+    "pagerank": 0.00083857,
+    "in_degree": 106,
+    "out_degree": 14,
+    "top_countries": [
+      "India",
+      "Brazil",
+      "China"
+    ],
+    "top_units": [
+      "country",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=load%20capacity%20factor%20%28LCF%29"
+  },
+  {
+    "concept_id": "FG3C005346",
+    "label": "income tax rate",
+    "bucket_hint": "core",
+    "instance_support": 410,
+    "distinct_paper_support": 386,
+    "weighted_degree": 233.0,
+    "pagerank": 0.00041011,
+    "in_degree": 48,
+    "out_degree": 123,
+    "top_countries": [
+      "United States",
+      "China",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "individual",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=income%20tax%20rate"
+  },
+  {
+    "concept_id": "FG3C000467",
+    "label": "CO2 emissions per capita",
+    "bucket_hint": "adjacent",
+    "instance_support": 120,
+    "distinct_paper_support": 120,
+    "weighted_degree": 232.0,
+    "pagerank": 0.00096337,
+    "in_degree": 109,
+    "out_degree": 23,
+    "top_countries": [
+      "China",
+      "India",
+      "Chile"
+    ],
+    "top_units": [
+      "country",
+      "individual",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emissions%20per%20capita"
+  },
+  {
+    "concept_id": "FG3C000128",
+    "label": "total factor productivity",
+    "bucket_hint": "core",
+    "instance_support": 205,
+    "distinct_paper_support": 205,
+    "weighted_degree": 231.0,
+    "pagerank": 0.000846,
+    "in_degree": 118,
+    "out_degree": 51,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Italy"
+    ],
+    "top_units": [
+      "firm",
+      "country",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=total%20factor%20productivity"
+  },
+  {
+    "concept_id": "FG3C000730",
+    "label": "health",
+    "bucket_hint": "adjacent",
+    "instance_support": 432,
+    "distinct_paper_support": 422,
+    "weighted_degree": 229.0,
+    "pagerank": 0.0011786,
+    "in_degree": 109,
+    "out_degree": 69,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "individual",
+      "country",
+      "household"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=health"
+  },
+  {
+    "concept_id": "FG3C000077",
+    "label": "financial stability",
+    "bucket_hint": "core",
+    "instance_support": 325,
+    "distinct_paper_support": 325,
+    "weighted_degree": 228.0,
+    "pagerank": 0.00105833,
+    "in_degree": 127,
+    "out_degree": 35,
+    "top_countries": [
+      "China",
+      "Brazil",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "market",
+      "global"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=financial%20stability"
+  },
+  {
+    "concept_id": "FG3C000057",
+    "label": "liquidity",
+    "bucket_hint": "core",
+    "instance_support": 429,
+    "distinct_paper_support": 427,
+    "weighted_degree": 227.0,
+    "pagerank": 0.00068714,
+    "in_degree": 93,
+    "out_degree": 91,
+    "top_countries": [
+      "China",
+      "United States",
+      "CHN"
+    ],
+    "top_units": [
+      "firm",
+      "market",
+      "organization"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=liquidity"
+  },
+  {
+    "concept_id": "FG3C000423",
+    "label": "natural gas consumption",
+    "bucket_hint": "adjacent",
+    "instance_support": 109,
+    "distinct_paper_support": 109,
+    "weighted_degree": 227.0,
+    "pagerank": 0.00063327,
+    "in_degree": 65,
+    "out_degree": 44,
+    "top_countries": [
+      "China",
+      "India",
+      "Brazil"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=natural%20gas%20consumption"
+  },
+  {
+    "concept_id": "FG3C000206",
+    "label": "government spending",
+    "bucket_hint": "core",
+    "instance_support": 242,
+    "distinct_paper_support": 238,
+    "weighted_degree": 227.0,
+    "pagerank": 0.0003468,
+    "in_degree": 55,
+    "out_degree": 105,
+    "top_countries": [
+      "United States",
+      "USA",
+      "China"
+    ],
+    "top_units": [
+      "country",
+      "other",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=government%20spending"
+  },
+  {
+    "concept_id": "FG3C000149",
+    "label": "poverty",
+    "bucket_hint": "adjacent",
+    "instance_support": 267,
+    "distinct_paper_support": 265,
+    "weighted_degree": 226.0,
+    "pagerank": 0.00108039,
+    "in_degree": 111,
+    "out_degree": 46,
+    "top_countries": [
+      "United States",
+      "China",
+      "Pakistan"
+    ],
+    "top_units": [
+      "household",
+      "country",
+      "individual"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=poverty"
+  },
+  {
+    "concept_id": "FG3C000209",
+    "label": "Bitcoin",
+    "bucket_hint": "core",
+    "instance_support": 185,
+    "distinct_paper_support": 178,
+    "weighted_degree": 225.0,
+    "pagerank": 0.00036133,
+    "in_degree": 50,
+    "out_degree": 79,
+    "top_countries": [
+      "United States",
+      "Chile",
+      "Australia"
+    ],
+    "top_units": [
+      "market",
+      "product",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=Bitcoin"
+  },
+  {
+    "concept_id": "FG3C000211",
+    "label": "air pollution",
+    "bucket_hint": "adjacent",
+    "instance_support": 162,
+    "distinct_paper_support": 161,
+    "weighted_degree": 224.0,
+    "pagerank": 0.00045101,
+    "in_degree": 83,
+    "out_degree": 69,
+    "top_countries": [
+      "China",
+      "CHN",
+      "India"
+    ],
+    "top_units": [
+      "location",
+      "region",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=air%20pollution"
+  },
+  {
+    "concept_id": "FG3C002978",
+    "label": "low-carbon city pilot policy",
+    "bucket_hint": "adjacent",
+    "instance_support": 106,
+    "distinct_paper_support": 94,
+    "weighted_degree": 224.0,
+    "pagerank": 6.943e-05,
+    "in_degree": 14,
+    "out_degree": 108,
+    "top_countries": [
+      "China",
+      "CHN"
+    ],
+    "top_units": [
+      "location",
+      "region",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=low-carbon%20city%20pilot%20policy"
+  },
+  {
+    "concept_id": "FG3C000092",
+    "label": "economic activity",
+    "bucket_hint": "core",
+    "instance_support": 322,
+    "distinct_paper_support": 321,
+    "weighted_degree": 223.0,
+    "pagerank": 0.00088322,
+    "in_degree": 120,
+    "out_degree": 58,
+    "top_countries": [
+      "United States",
+      "USA",
+      "China"
+    ],
+    "top_units": [
+      "country",
+      "individual",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20activity"
+  },
+  {
+    "concept_id": "FG3C000084",
+    "label": "capital accumulation",
+    "bucket_hint": "core",
+    "instance_support": 332,
+    "distinct_paper_support": 332,
+    "weighted_degree": 222.0,
+    "pagerank": 0.00056175,
+    "in_degree": 99,
+    "out_degree": 74,
+    "top_countries": [
+      "United States",
+      "China",
+      "Mexico"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=capital%20accumulation"
+  },
+  {
+    "concept_id": "FG3C000031",
+    "label": "transaction costs",
+    "bucket_hint": "core",
+    "instance_support": 575,
+    "distinct_paper_support": 571,
+    "weighted_degree": 222.0,
+    "pagerank": 0.00037218,
+    "in_degree": 67,
+    "out_degree": 118,
+    "top_countries": [
+      "China",
+      "USA",
+      "Australia"
+    ],
+    "top_units": [
+      "firm",
+      "individual",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=transaction%20costs"
+  },
+  {
+    "concept_id": "FG3C000629",
+    "label": "CO2 emission",
+    "bucket_hint": "adjacent",
+    "instance_support": 78,
+    "distinct_paper_support": 78,
+    "weighted_degree": 220.0,
+    "pagerank": 0.00068614,
+    "in_degree": 84,
+    "out_degree": 31,
+    "top_countries": [
+      "China",
+      "Pakistan",
+      "Egypt"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "establishment"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emission"
+  },
+  {
+    "concept_id": "FG3C006136",
+    "label": "innovation level",
+    "bucket_hint": "adjacent",
+    "instance_support": 231,
+    "distinct_paper_support": 224,
+    "weighted_degree": 220.0,
+    "pagerank": 0.00051777,
+    "in_degree": 110,
+    "out_degree": 62,
+    "top_countries": [
+      "China",
+      "CHN",
+      "OECD"
+    ],
+    "top_units": [
+      "firm",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=innovation%20level"
+  },
+  {
+    "concept_id": "FG3C001814",
+    "label": "consumption-based carbon emissions",
+    "bucket_hint": "adjacent",
+    "instance_support": 54,
+    "distinct_paper_support": 54,
+    "weighted_degree": 219.0,
+    "pagerank": 0.00081354,
+    "in_degree": 78,
+    "out_degree": 10,
+    "top_countries": [
+      "China",
+      "Brazil",
+      "Turkey"
+    ],
+    "top_units": [
+      "country",
+      "individual",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=consumption-based%20carbon%20emissions"
+  },
+  {
+    "concept_id": "FG3C000422",
+    "label": "ESG performance",
+    "bucket_hint": "adjacent",
+    "instance_support": 123,
+    "distinct_paper_support": 123,
+    "weighted_degree": 218.0,
+    "pagerank": 0.00056661,
+    "in_degree": 68,
+    "out_degree": 79,
+    "top_countries": [
+      "China",
+      "CHN",
+      "BRA"
+    ],
+    "top_units": [
+      "firm",
+      "organization",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=ESG%20performance"
+  },
+  {
+    "concept_id": "FG3C000076",
+    "label": "climate change",
+    "bucket_hint": "adjacent",
+    "instance_support": 290,
+    "distinct_paper_support": 282,
+    "weighted_degree": 217.0,
+    "pagerank": 0.00058992,
+    "in_degree": 71,
+    "out_degree": 109,
+    "top_countries": [
+      "Asia",
+      "China",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=climate%20change"
+  },
+  {
+    "concept_id": "FG3C000727",
+    "label": "tourism",
+    "bucket_hint": "adjacent",
+    "instance_support": 188,
+    "distinct_paper_support": 177,
+    "weighted_degree": 217.0,
+    "pagerank": 0.00050956,
+    "in_degree": 59,
+    "out_degree": 76,
+    "top_countries": [
+      "China",
+      "OECD",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "other",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=tourism"
+  },
+  {
+    "concept_id": "FG3C000591",
+    "label": "per capita CO2 emissions",
+    "bucket_hint": "adjacent",
+    "instance_support": 113,
+    "distinct_paper_support": 111,
+    "weighted_degree": 216.0,
+    "pagerank": 0.00085647,
+    "in_degree": 93,
+    "out_degree": 21,
+    "top_countries": [
+      "China",
+      "CHN",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "location",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=per%20capita%20CO2%20emissions"
+  },
+  {
+    "concept_id": "FG3C000219",
+    "label": "price level",
+    "bucket_hint": "core",
+    "instance_support": 336,
+    "distinct_paper_support": 333,
+    "weighted_degree": 216.0,
+    "pagerank": 0.00084185,
+    "in_degree": 115,
+    "out_degree": 45,
+    "top_countries": [
+      "United States",
+      "China",
+      "United Kingdom"
+    ],
+    "top_units": [
+      "country",
+      "market",
+      "product"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=price%20level"
+  },
+  {
+    "concept_id": "FG3C000360",
+    "label": "environmental taxes",
+    "bucket_hint": "adjacent",
+    "instance_support": 168,
+    "distinct_paper_support": 166,
+    "weighted_degree": 215.0,
+    "pagerank": 0.00025991,
+    "in_degree": 21,
+    "out_degree": 94,
+    "top_countries": [
+      "China",
+      "OECD",
+      "European Union"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20taxes"
+  },
+  {
+    "concept_id": "FG3C000623",
+    "label": "high-quality economic development",
+    "bucket_hint": "adjacent",
+    "instance_support": 119,
+    "distinct_paper_support": 118,
+    "weighted_degree": 213.0,
+    "pagerank": 0.00082045,
+    "in_degree": 103,
+    "out_degree": 9,
+    "top_countries": [
+      "China",
+      "CHN"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=high-quality%20economic%20development"
+  },
+  {
+    "concept_id": "FG3C000113",
+    "label": "firm performance",
+    "bucket_hint": "core",
+    "instance_support": 206,
+    "distinct_paper_support": 206,
+    "weighted_degree": 212.0,
+    "pagerank": 0.00077066,
+    "in_degree": 148,
+    "out_degree": 15,
+    "top_countries": [
+      "China",
+      "Italy",
+      "United States"
+    ],
+    "top_units": [
+      "firm",
+      "organization",
+      "individual"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=firm%20performance"
+  },
+  {
+    "concept_id": "FG3C000472",
+    "label": "oil consumption",
+    "bucket_hint": "adjacent",
+    "instance_support": 131,
+    "distinct_paper_support": 130,
+    "weighted_degree": 210.0,
+    "pagerank": 0.00050582,
+    "in_degree": 55,
+    "out_degree": 47,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "organization"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=oil%20consumption"
+  },
+  {
+    "concept_id": "FG3C000678",
+    "label": "implied volatility",
+    "bucket_hint": "core",
+    "instance_support": 333,
+    "distinct_paper_support": 316,
+    "weighted_degree": 209.0,
+    "pagerank": 0.00051187,
+    "in_degree": 70,
+    "out_degree": 79,
+    "top_countries": [
+      "United States",
+      "USA",
+      "Germany"
+    ],
+    "top_units": [
+      "market",
+      "country",
+      "product"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=implied%20volatility"
+  },
+  {
+    "concept_id": "FG3C000208",
+    "label": "public debt",
+    "bucket_hint": "core",
+    "instance_support": 181,
+    "distinct_paper_support": 179,
+    "weighted_degree": 209.0,
+    "pagerank": 0.00044911,
+    "in_degree": 70,
+    "out_degree": 67,
+    "top_countries": [
+      "United States",
+      "Africa",
+      "China"
+    ],
+    "top_units": [
+      "country",
+      "other",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=public%20debt"
+  },
+  {
+    "concept_id": "FG3C000106",
+    "label": "financial constraints",
+    "bucket_hint": "core",
+    "instance_support": 291,
+    "distinct_paper_support": 288,
+    "weighted_degree": 209.0,
+    "pagerank": 0.00024739,
+    "in_degree": 51,
+    "out_degree": 108,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Korea"
+    ],
+    "top_units": [
+      "firm",
+      "organization",
+      "individual"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=financial%20constraints"
+  },
+  {
+    "concept_id": "FG3C000425",
+    "label": "digital inclusive finance",
+    "bucket_hint": "adjacent",
+    "instance_support": 82,
+    "distinct_paper_support": 82,
+    "weighted_degree": 207.0,
+    "pagerank": 5.366e-05,
+    "in_degree": 14,
+    "out_degree": 108,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Gulf countries"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=digital%20inclusive%20finance"
+  },
+  {
+    "concept_id": "FG3C000073",
+    "label": "firm productivity",
+    "bucket_hint": "core",
+    "instance_support": 287,
+    "distinct_paper_support": 287,
+    "weighted_degree": 205.0,
+    "pagerank": 0.00070858,
+    "in_degree": 127,
+    "out_degree": 31,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "firm",
+      "establishment",
+      "industry"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=firm%20productivity"
+  },
+  {
+    "concept_id": "FG3C000177",
+    "label": "United States",
+    "bucket_hint": "core",
+    "instance_support": 491,
+    "distinct_paper_support": 446,
+    "weighted_degree": 205.0,
+    "pagerank": 0.00064051,
+    "in_degree": 75,
+    "out_degree": 80,
+    "top_countries": [
+      "United States",
+      "USA",
+      "United States of America"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "individual"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=United%20States"
+  },
+  {
+    "concept_id": "FG3C000095",
+    "label": "household income",
+    "bucket_hint": "adjacent",
+    "instance_support": 387,
+    "distinct_paper_support": 386,
+    "weighted_degree": 205.0,
+    "pagerank": 0.00059357,
+    "in_degree": 56,
+    "out_degree": 98,
+    "top_countries": [
+      "China",
+      "United States",
+      "CHN"
+    ],
+    "top_units": [
+      "household",
+      "individual",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=household%20income"
+  },
+  {
+    "concept_id": "FG3C000437",
+    "label": "green investment",
+    "bucket_hint": "adjacent",
+    "instance_support": 138,
+    "distinct_paper_support": 135,
+    "weighted_degree": 205.0,
+    "pagerank": 0.00031706,
+    "in_degree": 68,
+    "out_degree": 73,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Russia"
+    ],
+    "top_units": [
+      "region",
+      "country",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20investment"
+  },
+  {
+    "concept_id": "FG3C000449",
+    "label": "artificial intelligence (AI)",
+    "bucket_hint": "adjacent",
+    "instance_support": 109,
+    "distinct_paper_support": 108,
+    "weighted_degree": 204.0,
+    "pagerank": 0.00012623,
+    "in_degree": 31,
+    "out_degree": 137,
+    "top_countries": [
+      "China",
+      "CHN",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=artificial%20intelligence%20%28AI%29"
+  },
+  {
+    "concept_id": "FG3C006446",
+    "label": "place of residence",
+    "bucket_hint": "adjacent",
+    "instance_support": 483,
+    "distinct_paper_support": 470,
+    "weighted_degree": 203.0,
+    "pagerank": 0.0005005,
+    "in_degree": 64,
+    "out_degree": 98,
+    "top_countries": [
+      "United States",
+      "China",
+      "USA"
+    ],
+    "top_units": [
+      "individual",
+      "location",
+      "household"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=place%20of%20residence"
+  },
+  {
+    "concept_id": "FG3C000159",
+    "label": "monetary policy shocks",
+    "bucket_hint": "core",
+    "instance_support": 189,
+    "distinct_paper_support": 187,
+    "weighted_degree": 203.0,
+    "pagerank": 0.0001271,
+    "in_degree": 26,
+    "out_degree": 113,
+    "top_countries": [
+      "United States",
+      "euro area",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "other",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=monetary%20policy%20shocks"
+  },
+  {
+    "concept_id": "FG3C000643",
+    "label": "equity returns",
+    "bucket_hint": "core",
+    "instance_support": 358,
+    "distinct_paper_support": 351,
+    "weighted_degree": 200.0,
+    "pagerank": 0.00087575,
+    "in_degree": 100,
+    "out_degree": 57,
+    "top_countries": [
+      "United States",
+      "USA",
+      "United Kingdom"
+    ],
+    "top_units": [
+      "market",
+      "firm",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=equity%20returns"
+  },
+  {
+    "concept_id": "FG3C000093",
+    "label": "GDP growth",
+    "bucket_hint": "core",
+    "instance_support": 233,
+    "distinct_paper_support": 233,
+    "weighted_degree": 199.0,
+    "pagerank": 0.00075089,
+    "in_degree": 100,
+    "out_degree": 54,
+    "top_countries": [
+      "China",
+      "USA",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=GDP%20growth"
+  },
+  {
+    "concept_id": "FG3C000222",
+    "label": "money supply",
+    "bucket_hint": "core",
+    "instance_support": 263,
+    "distinct_paper_support": 258,
+    "weighted_degree": 198.0,
+    "pagerank": 0.00040473,
+    "in_degree": 55,
+    "out_degree": 76,
+    "top_countries": [
+      "United States",
+      "China",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "global",
+      "organization"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=money%20supply"
+  },
+  {
+    "concept_id": "FG3C000047",
+    "label": "uncertainty",
+    "bucket_hint": "core",
+    "instance_support": 366,
+    "distinct_paper_support": 366,
+    "weighted_degree": 198.0,
+    "pagerank": 0.00022017,
+    "in_degree": 40,
+    "out_degree": 124,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "firm",
+      "country",
+      "household"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=uncertainty"
+  },
+  {
+    "concept_id": "FG3C000403",
+    "label": "human development",
+    "bucket_hint": "adjacent",
+    "instance_support": 122,
+    "distinct_paper_support": 122,
+    "weighted_degree": 197.0,
+    "pagerank": 0.00078924,
+    "in_degree": 82,
+    "out_degree": 41,
+    "top_countries": [
+      "Pakistan",
+      "BRICS",
+      "China"
+    ],
+    "top_units": [
+      "country",
+      "individual",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=human%20development"
+  },
+  {
+    "concept_id": "FG3C000080",
+    "label": "asset prices",
+    "bucket_hint": "core",
+    "instance_support": 327,
+    "distinct_paper_support": 326,
+    "weighted_degree": 197.0,
+    "pagerank": 0.00074326,
+    "in_degree": 119,
+    "out_degree": 44,
+    "top_countries": [
+      "China",
+      "euro area",
+      "United States"
+    ],
+    "top_units": [
+      "market",
+      "country",
+      "product"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=asset%20prices"
+  },
+  {
+    "concept_id": "FG3C000335",
+    "label": "digitalization",
+    "bucket_hint": "adjacent",
+    "instance_support": 124,
+    "distinct_paper_support": 123,
+    "weighted_degree": 197.0,
+    "pagerank": 0.00023635,
+    "in_degree": 30,
+    "out_degree": 100,
+    "top_countries": [
+      "China",
+      "CHN",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=digitalization"
+  },
+  {
+    "concept_id": "FG3C000122",
+    "label": "real exchange rate",
+    "bucket_hint": "core",
+    "instance_support": 212,
+    "distinct_paper_support": 212,
+    "weighted_degree": 196.0,
+    "pagerank": 0.00061296,
+    "in_degree": 98,
+    "out_degree": 61,
+    "top_countries": [
+      "USA",
+      "China",
+      "Chile"
+    ],
+    "top_units": [
+      "country",
+      "country_pair",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=real%20exchange%20rate"
+  },
+  {
+    "concept_id": "FG3C000475",
+    "label": "technological innovations",
+    "bucket_hint": "adjacent",
+    "instance_support": 226,
+    "distinct_paper_support": 226,
+    "weighted_degree": 196.0,
+    "pagerank": 0.00021927,
+    "in_degree": 47,
+    "out_degree": 86,
+    "top_countries": [
+      "China",
+      "India",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=technological%20innovations"
+  },
+  {
+    "concept_id": "FG3C000225",
+    "label": "industrial agglomeration",
+    "bucket_hint": "adjacent",
+    "instance_support": 163,
+    "distinct_paper_support": 163,
+    "weighted_degree": 194.0,
+    "pagerank": 0.00015352,
+    "in_degree": 37,
+    "out_degree": 81,
+    "top_countries": [
+      "China",
+      "CHN",
+      "148 countries"
+    ],
+    "top_units": [
+      "location",
+      "region",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=industrial%20agglomeration"
+  },
+  {
+    "concept_id": "FG3C000620",
+    "label": "renewable energy consumption (REC)",
+    "bucket_hint": "adjacent",
+    "instance_support": 80,
+    "distinct_paper_support": 80,
+    "weighted_degree": 193.0,
+    "pagerank": 0.00058283,
+    "in_degree": 74,
+    "out_degree": 34,
+    "top_countries": [
+      "China",
+      "BRICS",
+      "IND"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=renewable%20energy%20consumption%20%28REC%29"
+  },
+  {
+    "concept_id": "FG3C000150",
+    "label": "energy prices",
+    "bucket_hint": "adjacent",
+    "instance_support": 210,
+    "distinct_paper_support": 210,
+    "weighted_degree": 193.0,
+    "pagerank": 0.00022639,
+    "in_degree": 45,
+    "out_degree": 86,
+    "top_countries": [
+      "China",
+      "United States",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "market"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=energy%20prices"
+  },
+  {
+    "concept_id": "FG3C000722",
+    "label": "green credit",
+    "bucket_hint": "adjacent",
+    "instance_support": 118,
+    "distinct_paper_support": 114,
+    "weighted_degree": 192.0,
+    "pagerank": 0.00014548,
+    "in_degree": 29,
+    "out_degree": 85,
+    "top_countries": [
+      "China",
+      "CHN",
+      "VNM"
+    ],
+    "top_units": [
+      "region",
+      "firm",
+      "organization"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20credit"
+  },
+  {
+    "concept_id": "FG3C000259",
+    "label": "bank profitability",
+    "bucket_hint": "core",
+    "instance_support": 146,
+    "distinct_paper_support": 145,
+    "weighted_degree": 191.0,
+    "pagerank": 0.0010402,
+    "in_degree": 119,
+    "out_degree": 14,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "organization",
+      "firm",
+      "country"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=bank%20profitability"
+  },
+  {
+    "concept_id": "FG3C000152",
+    "label": "carbon tax",
+    "bucket_hint": "adjacent",
+    "instance_support": 186,
+    "distinct_paper_support": 185,
+    "weighted_degree": 191.0,
+    "pagerank": 9.515e-05,
+    "in_degree": 19,
+    "out_degree": 106,
+    "top_countries": [
+      "China",
+      "United States",
+      "Chile"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "policy_unit"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20tax"
+  },
+  {
+    "concept_id": "FG3C000158",
+    "label": "employment growth",
+    "bucket_hint": "core",
+    "instance_support": 233,
+    "distinct_paper_support": 231,
+    "weighted_degree": 190.0,
+    "pagerank": 0.00087782,
+    "in_degree": 122,
+    "out_degree": 21,
+    "top_countries": [
+      "United States",
+      "Germany",
+      "Italy"
+    ],
+    "top_units": [
+      "firm",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=employment%20growth"
+  },
+  {
+    "concept_id": "FG3C000190",
+    "label": "bid-ask spread",
+    "bucket_hint": "core",
+    "instance_support": 364,
+    "distinct_paper_support": 356,
+    "weighted_degree": 190.0,
+    "pagerank": 0.00082769,
+    "in_degree": 93,
+    "out_degree": 44,
+    "top_countries": [
+      "United States",
+      "China",
+      "USA"
+    ],
+    "top_units": [
+      "market",
+      "firm",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=bid-ask%20spread"
+  },
+  {
+    "concept_id": "FG3C000547",
+    "label": "renewable energy development",
+    "bucket_hint": "adjacent",
+    "instance_support": 75,
+    "distinct_paper_support": 75,
+    "weighted_degree": 189.0,
+    "pagerank": 0.00045146,
+    "in_degree": 82,
+    "out_degree": 28,
+    "top_countries": [
+      "China",
+      "CHN",
+      "European Union"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=renewable%20energy%20development"
+  },
+  {
+    "concept_id": "FG3C000318",
+    "label": "greenhouse gas (GHG) emissions",
+    "bucket_hint": "adjacent",
+    "instance_support": 113,
+    "distinct_paper_support": 113,
+    "weighted_degree": 188.0,
+    "pagerank": 0.00080709,
+    "in_degree": 114,
+    "out_degree": 9,
+    "top_countries": [
+      "China",
+      "United States",
+      "Denmark"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "organization"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=greenhouse%20gas%20%28GHG%29%20emissions"
+  },
+  {
+    "concept_id": "FG3C000114",
+    "label": "market concentration",
+    "bucket_hint": "core",
+    "instance_support": 283,
+    "distinct_paper_support": 283,
+    "weighted_degree": 187.0,
+    "pagerank": 0.00028611,
+    "in_degree": 35,
+    "out_degree": 103,
+    "top_countries": [
+      "China",
+      "United States",
+      "Italy"
+    ],
+    "top_units": [
+      "market",
+      "industry",
+      "firm"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=market%20concentration"
+  },
+  {
+    "concept_id": "FG3C000325",
+    "label": "real exchange rates",
+    "bucket_hint": "core",
+    "instance_support": 187,
+    "distinct_paper_support": 182,
+    "weighted_degree": 186.0,
+    "pagerank": 0.00048832,
+    "in_degree": 89,
+    "out_degree": 48,
+    "top_countries": [
+      "United States",
+      "United Kingdom",
+      "Japan"
+    ],
+    "top_units": [
+      "country",
+      "country_pair",
+      "other"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=real%20exchange%20rates"
+  },
+  {
+    "concept_id": "FG3C000362",
+    "label": "renewable energy use",
+    "bucket_hint": "adjacent",
+    "instance_support": 115,
+    "distinct_paper_support": 115,
+    "weighted_degree": 186.0,
+    "pagerank": 0.0004132,
+    "in_degree": 39,
+    "out_degree": 59,
+    "top_countries": [
+      "China",
+      "Brazil",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "other",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=renewable%20energy%20use"
+  },
+  {
+    "concept_id": "FG3C000162",
+    "label": "terms of trade",
+    "bucket_hint": "core",
+    "instance_support": 298,
+    "distinct_paper_support": 293,
+    "weighted_degree": 186.0,
+    "pagerank": 0.00040564,
+    "in_degree": 74,
+    "out_degree": 73,
+    "top_countries": [
+      "United States",
+      "China",
+      "CAN"
+    ],
+    "top_units": [
+      "country",
+      "country_pair",
+      "region"
+    ],
+    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=terms%20of%20trade"
+  }
+]

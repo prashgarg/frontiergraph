@@ -31,6 +31,13 @@ JEL_FIELD_NAMES = {
     "Z": "Other special topics",
 }
 
+CONCEPT_BUCKET_NAMES = {
+    "core": "Core-heavy",
+    "adjacent": "Adjacent-heavy",
+    "mixed": "Mixed support",
+    "unknown": "Unknown",
+}
+
 NOVELTY_LABELS = {
     "gap_internal": "Within-field gap",
     "gap_crossfield": "Cross-field gap",
@@ -51,6 +58,22 @@ def connect_readonly(db_path: str) -> sqlite3.Connection:
     path = Path(db_path).expanduser().resolve()
     uri = f"file:{quote(str(path))}?mode=ro"
     return sqlite3.connect(uri, uri=True, check_same_thread=False, timeout=30)
+
+
+def load_app_mode(db_path: str) -> str:
+    with connect_readonly(db_path) as conn:
+        tables = {
+            row[0]
+            for row in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        }
+        if "app_meta" not in tables:
+            return "legacy"
+        row = conn.execute("SELECT value FROM app_meta WHERE key = 'app_mode' LIMIT 1").fetchone()
+        return str(row[0]) if row and row[0] else "legacy"
+
+
+def is_concept_mode(app_mode: str) -> bool:
+    return app_mode.startswith("concept_") or app_mode == "concept_beta"
 
 
 def normalize_series(series: pd.Series) -> pd.Series:
@@ -78,7 +101,10 @@ def to_int(value: object, default: int = 0) -> int:
 
 def classify_novelty(row: pd.Series) -> str:
     cooc_count = to_float(row.get("cooc_count", 0), default=0.0)
-    cross_field = str(row.get("u", ""))[:1] != str(row.get("v", ""))[:1]
+    if "cross_field" in row.index:
+        cross_field = bool(row.get("cross_field"))
+    else:
+        cross_field = str(row.get("u", ""))[:1] != str(row.get("v", ""))[:1]
     if cooc_count <= 0:
         return "boundary_crossfield" if cross_field else "boundary_internal"
     return "gap_crossfield" if cross_field else "gap_internal"
@@ -143,16 +169,22 @@ def why_now(row: pd.Series) -> str:
     )
 
 
-def enrich_candidates(df: pd.DataFrame) -> pd.DataFrame:
+def enrich_candidates(df: pd.DataFrame, app_mode: str = "legacy") -> pd.DataFrame:
     working = df.copy()
     working["u"] = working["u"].astype(str)
     working["v"] = working["v"].astype(str)
     working["u_label"] = working["u_label"].fillna(working["u"]).astype(str)
     working["v_label"] = working["v_label"].fillna(working["v"]).astype(str)
-    working["source_field"] = working["u"].str[0]
-    working["target_field"] = working["v"].str[0]
-    working["source_field_name"] = working["source_field"].map(JEL_FIELD_NAMES).fillna("Unmapped field")
-    working["target_field_name"] = working["target_field"].map(JEL_FIELD_NAMES).fillna("Unmapped field")
+    if is_concept_mode(app_mode):
+        working["source_field"] = working.get("u_bucket_hint", pd.Series("mixed", index=working.index)).fillna("mixed").astype(str)
+        working["target_field"] = working.get("v_bucket_hint", pd.Series("mixed", index=working.index)).fillna("mixed").astype(str)
+        working["source_field_name"] = working["source_field"].map(CONCEPT_BUCKET_NAMES).fillna(working["source_field"])
+        working["target_field_name"] = working["target_field"].map(CONCEPT_BUCKET_NAMES).fillna(working["target_field"])
+    else:
+        working["source_field"] = working["u"].str[0]
+        working["target_field"] = working["v"].str[0]
+        working["source_field_name"] = working["source_field"].map(JEL_FIELD_NAMES).fillna("Unmapped field")
+        working["target_field_name"] = working["target_field"].map(JEL_FIELD_NAMES).fillna("Unmapped field")
     working["cross_field"] = working["source_field"] != working["target_field"]
     working["boundary_flag"] = working["cross_field"] & (working["cooc_count"].fillna(0) <= 0)
     working["novelty_type"] = working.apply(classify_novelty, axis=1)
@@ -180,28 +212,65 @@ def load_nodes(db_path: str) -> pd.DataFrame:
 
 
 def load_candidate_summary(db_path: str) -> pd.DataFrame:
-    sql = """
-        SELECT
-            c.u,
-            c.v,
-            c.score,
-            c.rank,
-            c.path_support_norm,
-            c.gap_bonus,
-            c.motif_bonus_norm,
-            c.hub_penalty,
-            c.mediator_count,
-            c.motif_count,
-            c.cooc_count,
-            c.first_year_seen,
-            c.last_year_seen,
-            nu.label AS u_label,
-            nv.label AS v_label
-        FROM candidates c
-        LEFT JOIN nodes nu ON c.u = nu.code
-        LEFT JOIN nodes nv ON c.v = nv.code
-    """
     with connect_readonly(db_path) as conn:
+        tables = {
+            row[0]
+            for row in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        }
+        candidate_columns = {
+            row[1]
+            for row in conn.execute("PRAGMA table_info(candidates)")
+        }
+        app_mode = "legacy"
+        if "app_meta" in tables:
+            row = conn.execute("SELECT value FROM app_meta WHERE key = 'app_mode' LIMIT 1").fetchone()
+            if row and row[0]:
+                app_mode = str(row[0])
+        if is_concept_mode(app_mode) and {
+            "u_preferred_label",
+            "v_preferred_label",
+            "u_bucket_hint",
+            "v_bucket_hint",
+        }.issubset(candidate_columns):
+            sql = """
+                SELECT
+                    c.*,
+                    COALESCE(c.u_preferred_label, nu.label) AS u_label,
+                    COALESCE(c.v_preferred_label, nv.label) AS v_label
+                FROM candidates c
+                LEFT JOIN nodes nu ON c.u = nu.code
+                LEFT JOIN nodes nv ON c.v = nv.code
+            """
+        elif "node_details" in tables:
+            sql = """
+                SELECT
+                    c.*,
+                    nu.label AS u_label,
+                    nv.label AS v_label,
+                    du.bucket_hint AS u_bucket_hint,
+                    dv.bucket_hint AS v_bucket_hint,
+                    du.instance_support AS u_instance_support,
+                    dv.instance_support AS v_instance_support,
+                    du.aliases_json AS u_aliases_json,
+                    dv.aliases_json AS v_aliases_json,
+                    du.representative_contexts_json AS u_contexts_json,
+                    dv.representative_contexts_json AS v_contexts_json
+                FROM candidates c
+                LEFT JOIN nodes nu ON c.u = nu.code
+                LEFT JOIN nodes nv ON c.v = nv.code
+                LEFT JOIN node_details du ON c.u = du.concept_id
+                LEFT JOIN node_details dv ON c.v = dv.concept_id
+            """
+        else:
+            sql = """
+                SELECT
+                    c.*,
+                    nu.label AS u_label,
+                    nv.label AS v_label
+                FROM candidates c
+                LEFT JOIN nodes nu ON c.u = nu.code
+                LEFT JOIN nodes nv ON c.v = nv.code
+            """
         df = pd.read_sql_query(sql, conn)
 
     for col in [
@@ -219,4 +288,4 @@ def load_candidate_summary(db_path: str) -> pd.DataFrame:
     ]:
         df[col] = pd.to_numeric(df[col], errors="coerce")
 
-    return enrich_candidates(df)
+    return enrich_candidates(df, app_mode=app_mode)

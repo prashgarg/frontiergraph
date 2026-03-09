@@ -1,57 +1,37 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { data } from "../../lib/site-data";
+import { data, formatCompact, formatNumber } from "../../lib/site-data";
 
 const betaDb = data.downloads.beta_db;
-const demoRepoPath = `${data.repo_url}/tree/main/data/demo`;
+const artifacts = data.downloads.artifacts;
 const publicReady = Boolean(betaDb.public_url);
 ---
 
 <BaseLayout
   title="Downloads | FrontierGraph"
-  description="Download the FrontierGraph source code, demo dataset, and public beta database package."
+  description="Download the FrontierGraph code, beta database, graph assets, and comparison summaries."
 >
   <main>
     <section class="page-hero">
-      <span class="eyebrow">Open release</span>
-      <h1>Code and data</h1>
+      <span class="eyebrow">Downloads</span>
+      <h1>Code, data, graph assets, and comparison summaries.</h1>
       <p class="lede">
-        The public release includes the repository, the demo dataset, and the full beta economics database package with
-        checksum and provenance metadata.
+        The public release exposes the repository, the current beta database package, the graph assets used by the site,
+        and the comparison summaries used to choose the default concept view.
       </p>
+      <div class="button-row">
+        <a class="button-primary" href={data.repo_url}>Open repository</a>
+        <a class="button-secondary" href="/method/">Read the method</a>
+      </div>
     </section>
 
     <section class="section download-stack">
       <article class="download-panel">
-        <span class="eyebrow">Source code</span>
-        <h3>Public repository</h3>
-        <p class="download-copy">
-          Clone the code, run the demo dataset locally, inspect the build pipeline, and reproduce the beta app.
-        </p>
-        <div class="button-row">
-          <a class="button-primary" href={data.repo_url}>Open GitHub repo</a>
-          <a class="button-secondary" href="/method/">Read the method</a>
-        </div>
-      </article>
-
-      <article class="download-panel">
-        <span class="eyebrow">Demo data</span>
-        <h3>Small reproducible starter dataset</h3>
-        <p class="download-copy">
-          Use the in-repo demo data to run the full pipeline without needing the larger economics beta database.
-        </p>
-        <div class="button-row">
-          <a class="button-primary" href={demoRepoPath}>Open demo data</a>
-          <a class="button-secondary" href={`${data.repo_url}/blob/main/README.md`}>Quickstart README</a>
-        </div>
-      </article>
-
-      <article class="download-panel">
-        <span class="eyebrow">Full beta database</span>
+        <span class="eyebrow">Main database</span>
         <h3>{betaDb.filename}</h3>
         <div class="download-meta">
           <div>
-            <span class="tiny-label">Size</span>
+            <span class="tiny-label">Approximate size</span>
             <div class="big-number">{betaDb.db_size_gb} GB</div>
           </div>
           <div>
@@ -60,21 +40,68 @@ const publicReady = Boolean(betaDb.public_url);
           </div>
         </div>
         <p class="download-copy">
-          This is the exact database package used for the public economics beta. It is distributed with manifest and checksum files.
+          The public beta database package behind the release. It is accompanied by manifest and checksum files so users
+          can verify the bundle they download.
         </p>
-        {!publicReady && (
-          <p class="warning-note">
-            Public mirror pending: the database metadata is live, but the object itself still needs public bucket access enabled.
-          </p>
-        )}
+        {!publicReady && <p class="warning-note">Public mirror pending. The metadata is live, but the object is not yet public.</p>}
         <div class="button-row">
           {publicReady ? (
             <a class="button-primary" href={betaDb.public_url}>Download beta DB</a>
           ) : (
-            <span class="download-badge">Mirror pending cloud publish</span>
+            <span class="download-badge">Mirror pending</span>
           )}
           <a class="button-secondary" href={data.downloads.checksum_path}>Checksum</a>
           <a class="button-secondary" href={data.downloads.manifest_path}>Manifest</a>
+        </div>
+      </article>
+
+      <article class="download-panel">
+        <span class="eyebrow">Site assets</span>
+        <h3>Graph, opportunity, and comparison artifacts</h3>
+        <p class="download-copy">
+          These are the same static assets the public site uses for the graph viewer, top opportunities, central concept
+          tables, and ontology comparison summaries.
+        </p>
+        <div class="card-grid download-artifact-grid">
+          <a class="card artifact-card" href={artifacts.graph_backbone_json}>
+            <span class="eyebrow">Graph asset</span>
+            <h3>Graph backbone JSON</h3>
+            <p class="card-copy">Observed baseline backbone used on the public graph page.</p>
+          </a>
+          <a class="card artifact-card" href={artifacts.central_concepts_csv}>
+            <span class="eyebrow">Concept export</span>
+            <h3>Central concepts CSV</h3>
+            <p class="card-copy">Weighted-degree and support statistics for the public central concept table.</p>
+          </a>
+          <a class="card artifact-card" href={artifacts.top_opportunities_csv}>
+            <span class="eyebrow">Opportunity export</span>
+            <h3>Top opportunities CSV</h3>
+            <p class="card-copy">The current suppressed baseline opportunity surface in a lightweight tabular form.</p>
+          </a>
+          <a class="card artifact-card" href={artifacts.compare_summary_json}>
+            <span class="eyebrow">Comparison export</span>
+            <h3>Compare summary JSON</h3>
+            <p class="card-copy">Broad, Baseline, and Conservative regime summaries used on the comparison page.</p>
+          </a>
+        </div>
+      </article>
+
+      <article class="download-panel">
+        <span class="eyebrow">Working facts</span>
+        <h3>Current public build at a glance</h3>
+        <div class="metrics-grid">
+          <article class="metric-card">
+            <div class="metric-value">{formatCompact(data.metrics.papers)}</div>
+            <div class="metric-label">papers</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-value">{formatCompact(data.metrics.baseline_head_concepts)}</div>
+            <div class="metric-label">baseline head concepts</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-value">{formatCompact(data.metrics.suppressed_candidate_count)}</div>
+            <div class="metric-label">visible candidates in the default public surface</div>
+          </article>
         </div>
       </article>
     </section>
