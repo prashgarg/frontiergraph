@@ -14,9 +14,12 @@ const {
   opportunitiesIndexPath,
   centralConceptsPath,
 } = Astro.props;
+
+const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
 ---
 
 <section
+  id={rootId}
   class="graph-workbench"
   data-graph-path={graphPath}
   data-concept-index-path={conceptIndexPath}
@@ -74,8 +77,8 @@ const {
   </div>
 </section>
 
-<script type="module">
-  const root = document.currentScript?.previousElementSibling;
+<script is:inline define:vars={{ rootId }} type="module">
+  const root = document.getElementById(rootId);
   if (!(root instanceof HTMLElement)) throw new Error("Graph workbench root missing");
 
   const graphPath = root.dataset.graphPath;

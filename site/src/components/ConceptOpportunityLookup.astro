@@ -14,9 +14,12 @@ const {
   title = "Search the concept graph",
   caption = "Look up a concept by label or alias, inspect its local neighborhood, and jump into the explorer for the full ranked context.",
 } = Astro.props;
+
+const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
 ---
 
 <section
+  id={rootId}
   class="lookup-shell"
   data-concept-index-path={conceptIndexPath}
   data-neighborhoods-index-path={neighborhoodsIndexPath}
@@ -60,8 +63,8 @@ const {
   </div>
 </section>
 
-<script type="module">
-  const root = document.currentScript?.previousElementSibling;
+<script is:inline define:vars={{ rootId }} type="module">
+  const root = document.getElementById(rootId);
   if (!(root instanceof HTMLElement)) throw new Error("Concept lookup root missing");
 
   const conceptIndexPath = root.dataset.conceptIndexPath;

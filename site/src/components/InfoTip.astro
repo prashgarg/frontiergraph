@@ -1,0 +1,13 @@
+---
+interface Props {
+  detail: string;
+  label?: string;
+}
+
+const { detail, label = "?" } = Astro.props;
+---
+
+<span class="info-tip" tabindex="0">
+  <span class="info-tip-trigger" aria-hidden="true">{label}</span>
+  <span class="info-tip-panel" role="tooltip">{detail}</span>
+</span>
