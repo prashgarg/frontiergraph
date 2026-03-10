@@ -31,6 +31,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     <div>
       <span class="eyebrow">Observed concept graph</span>
       <h2>Explore the baseline concept network</h2>
+      <p class="card-copy">The first view shows a filtered backbone. Click a concept to brighten its local neighborhood and nearby opportunities.</p>
     </div>
     <label class="search-shell">
       <span>Find a concept</span>
@@ -42,7 +43,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   <div class="graph-layout">
     <div class="graph-panel">
       <div class="graph-status" data-role="hover-card">
-        Hover a node or edge to inspect it. Click a node to load its local neighborhood and nearby opportunities.
+        Click a labeled node to focus its neighborhood. The background graph will dim so local structure is easier to read.
       </div>
       <svg class="graph-canvas" data-role="graph-canvas" viewBox="0 0 1000 700" aria-label="Concept graph"></svg>
     </div>
@@ -125,7 +126,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
 
   const renderCentralList = () => {
     centralList.innerHTML = centralConcepts
-      .slice(0, 12)
+      .slice(0, 8)
       .map(
         (concept) => `
           <button class="list-link" data-concept-id="${escapeHtml(concept.concept_id)}">
@@ -146,8 +147,9 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const nodeMarkup = [];
     const edgeMarkup = [];
     const selectedNeighbors = new Set();
+    const selectedActive = Boolean(selectedId);
 
-    if (selectedId) {
+    if (selectedActive) {
       for (const edge of graph.edges) {
         if (edge.source === selectedId) selectedNeighbors.add(edge.target);
         if (edge.target === selectedId) selectedNeighbors.add(edge.source);
@@ -157,18 +159,29 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     for (const edge of graph.edges) {
       const source = graph.nodeMap.get(edge.source);
       const target = graph.nodeMap.get(edge.target);
-      const isSelected = selectedId && (edge.source === selectedId || edge.target === selectedId);
+      const isSelected = selectedActive && (edge.source === selectedId || edge.target === selectedId);
+      const isDimmed = selectedActive && !isSelected;
       edgeMarkup.push(
-        `<line class="graph-edge${isSelected ? " is-selected" : ""}" data-edge-id="${escapeHtml(edge.id)}" x1="${source.x * width}" y1="${source.y * height}" x2="${target.x * width}" y2="${target.y * height}"></line>`,
+        `<line class="graph-edge${isSelected ? " is-selected" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edge.strength || 0.3};" data-edge-id="${escapeHtml(edge.id)}" x1="${source.x * width}" y1="${source.y * height}" x2="${target.x * width}" y2="${target.y * height}"></line>`,
       );
     }
 
     for (const node of graph.nodes) {
       const isSelected = node.id === selectedId;
       const isNeighbor = selectedNeighbors.has(node.id);
-      const radius = Math.max(3, Math.min(14, 3 + Math.log10(node.weighted_degree + 1) * 2.7));
+      const isDimmed = selectedActive && !isSelected && !isNeighbor;
+      const radius = Math.max(2.6, Math.min(22, 2.6 + Math.log10(node.weighted_degree + 1) * 4.1));
+      const showLabel =
+        node.show_label ||
+        isSelected ||
+        (isNeighbor && selectedNeighbors.size <= 16) ||
+        (isNeighbor && node.weighted_degree >= 65);
+      const labelY = node.y * height - (radius + 6);
       nodeMarkup.push(
-        `<circle class="graph-node${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}" data-node-id="${escapeHtml(node.id)}" cx="${node.x * width}" cy="${node.y * height}" r="${radius}"></circle>`,
+        `<g class="graph-node-group${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeHtml(node.id)}">
+          <circle class="graph-node bucket-${escapeHtml(node.bucket_group || "mixed")}" cx="${node.x * width}" cy="${node.y * height}" r="${radius}"></circle>
+          ${showLabel ? `<text class="graph-label${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}" x="${node.x * width}" y="${labelY}">${escapeHtml(node.label)}</text>` : ""}
+        </g>`,
       );
     }
 
@@ -182,7 +195,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         const node = graph.nodeMap.get(nodeElement.dataset.nodeId);
         hoverCard.innerHTML = `
           <strong>${escapeHtml(node.label)}</strong><br />
-          ${formatNumber(node.instance_support)} node instances · ${formatNumber(node.distinct_paper_support)} papers · ${escapeHtml(node.bucket_hint)}
+          ${formatNumber(node.instance_support)} node instances · ${formatNumber(node.distinct_paper_support)} papers · ${escapeHtml(node.bucket_hint)} · weighted degree ${formatNumber(Math.round(node.weighted_degree))}
         `;
       });
       nodeElement.addEventListener("click", () => selectConcept(nodeElement.dataset.nodeId));
@@ -298,7 +311,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const matches = concepts
       .filter((concept) => concept.search_terms.some((term) => term.includes(normalized)))
       .sort((a, b) => b.weighted_degree - a.weighted_degree)
-      .slice(0, 12);
+      .slice(0, 8);
     searchResults.innerHTML = matches
       .map(
         (concept) => `

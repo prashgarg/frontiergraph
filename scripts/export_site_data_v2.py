@@ -131,8 +131,10 @@ REMOVED_BY_HARD_BLOCK_PATH = (
     / "removed_by_hard_block.csv"
 )
 
-BACKBONE_NODE_LIMIT = 1200
-BACKBONE_EDGE_LIMIT = 8000
+BACKBONE_NODE_LIMIT = 650
+BACKBONE_EDGE_LIMIT = 2200
+BACKBONE_MIN_SUPPORT = 4
+BACKBONE_LABEL_LIMIT = 24
 NEIGHBOR_LIMIT = 15
 CONCEPT_OPPORTUNITY_LIMIT = 12
 FEATURED_OPPORTUNITY_LIMIT = 12
@@ -329,6 +331,15 @@ def scale_positions(raw_positions: dict[str, tuple[float, float]]) -> dict[str, 
     return scaled
 
 
+def node_bucket_group(bucket_hint: str | None) -> str:
+    value = (bucket_hint or "").lower()
+    if "core" in value and "adjacent" not in value and "mixed" not in value:
+        return "core"
+    if "adjacent" in value and "core" not in value and "mixed" not in value:
+        return "adjacent"
+    return "mixed"
+
+
 def build_backbone(
     nodes_df: pd.DataFrame,
     edges_df: pd.DataFrame,
@@ -341,6 +352,7 @@ def build_backbone(
     edges_subset = edges_df[
         edges_df["source_concept_id"].isin(top_node_ids) & edges_df["target_concept_id"].isin(top_node_ids)
     ].copy()
+    edges_subset = edges_subset[edges_subset["support_count"] >= BACKBONE_MIN_SUPPORT].copy()
     edges_subset.sort_values(["support_count", "distinct_papers"], ascending=[False, False], inplace=True)
     edges_subset = edges_subset.head(BACKBONE_EDGE_LIMIT)
 
@@ -381,6 +393,8 @@ def build_backbone(
             }
         )
 
+    label_nodes = set(node_metrics_df[node_metrics_df["concept_id"].isin(component_nodes)].head(BACKBONE_LABEL_LIMIT)["concept_id"])
+
     backbone_nodes: list[dict[str, Any]] = []
     for concept_id in component_nodes:
         detail = node_details.get(concept_id, {})
@@ -404,6 +418,8 @@ def build_backbone(
                 "pagerank": round(float(metrics.get("pagerank", 0.0)), 8),
                 "in_degree": int(metrics.get("in_degree", 0) or 0),
                 "out_degree": int(metrics.get("out_degree", 0) or 0),
+                "bucket_group": node_bucket_group(detail.get("bucket_hint", "unknown")),
+                "show_label": concept_id in label_nodes,
             }
         )
 
@@ -420,6 +436,7 @@ def build_backbone(
                 "support_count": int(row.support_count),
                 "distinct_papers": int(row.distinct_papers),
                 "avg_stability": round(float(row.avg_stability), 4),
+                "strength": round(min(1.0, 0.22 + math.log1p(float(row.support_count)) / 3.4), 4),
                 "directionality_mix": parse_json_list(getattr(profile, "directionality_json", "[]")) if profile else [],
                 "relationship_type_mix": parse_json_list(getattr(profile, "relationship_type_json", "[]")) if profile else [],
                 "edge_role_mix": parse_json_list(getattr(profile, "edge_role_json", "[]")) if profile else [],

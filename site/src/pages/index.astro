@@ -8,31 +8,26 @@ const actions = [
   {
     href: "/graph/",
     title: "Explore the graph",
-    copy: "See the observed concept network, then expand local neighborhoods when something looks interesting.",
+    copy: "Start from the observed backbone, then expand local neighborhoods when a concept looks interesting.",
   },
   {
     href: "/opportunities/",
     title: "See ranked opportunities",
-    copy: "Open the cleaned recommendation surface and inspect the strongest underexplored links the graph implies.",
+    copy: "Inspect the cleaned recommendation surface and the strongest underexplored links it surfaces.",
   },
   {
     href: "/method/",
     title: "Read the method",
-    copy: "Get the short version first, then open the deeper protocol details only if you want them.",
+    copy: "Read the short version first, then open the protocol details only if you want them.",
   },
   {
     href: "/compare/",
     title: "Compare ontology views",
-    copy: "Compare Broad, Baseline, and Conservative views and see why Baseline exploratory is the public default.",
-  },
-  {
-    href: "/downloads/",
-    title: "Download the artifacts",
-    copy: "Download the code, data package, comparison summaries, and graph assets behind the release.",
+    copy: "See why Baseline exploratory is the default and how the other ontology views differ.",
   },
 ];
 
-const featuredConcepts = data.home.featured_central_concepts.slice(0, 6);
+const featuredConcepts = data.home.featured_central_concepts.slice(0, 4);
 ---
 
 <BaseLayout
@@ -82,7 +77,7 @@ const featuredConcepts = data.home.featured_central_concepts.slice(0, 6);
           </div>
         </div>
         <div class="hero-snapshot-list">
-          {featuredConcepts.slice(0, 3).map((concept) => (
+          {featuredConcepts.slice(0, 2).map((concept) => (
             <article class="mini-snapshot-card">
               <strong>{concept.label}</strong>
               <div class="mini-copy">
@@ -96,34 +91,22 @@ const featuredConcepts = data.home.featured_central_concepts.slice(0, 6);
     </section>
 
     <section class="section">
-      <div class="metrics-grid metrics-grid-seven">
+      <div class="metrics-grid">
         <article class="metric-card">
           <div class="metric-value">{formatNumber(data.metrics.papers)}</div>
-          <div class="metric-label">papers in the current public production corpus</div>
+          <div class="metric-label">papers in the current production corpus</div>
         </article>
         <article class="metric-card">
           <div class="metric-value">{formatNumber(data.metrics.node_instances)}</div>
           <div class="metric-label">extracted node instances across paper-local graphs</div>
         </article>
         <article class="metric-card">
-          <div class="metric-value">{formatNumber(data.metrics.edges)}</div>
-          <div class="metric-label">extracted concept relationships from titles and abstracts</div>
-        </article>
-        <article class="metric-card">
           <div class="metric-value">{formatNumber(data.metrics.baseline_head_concepts)}</div>
-          <div class="metric-label">baseline head concepts in the default ontology view</div>
-        </article>
-        <article class="metric-card">
-          <div class="metric-value">{formatPercent(data.metrics.baseline_soft_coverage)}</div>
-          <div class="metric-label">baseline exploratory coverage of extracted node instances</div>
+          <div class="metric-label">head concepts in the default ontology view</div>
         </article>
         <article class="metric-card">
           <div class="metric-value">{formatNumber(data.metrics.suppressed_candidate_count)}</div>
-          <div class="metric-label">suppressed top-slice candidate links available to browse</div>
-        </article>
-        <article class="metric-card">
-          <div class="metric-value">{formatNumber(data.metrics.duplicate_loops_removed_top100)}</div>
-          <div class="metric-label">near-duplicate top-100 loops removed by deterministic cleanup</div>
+          <div class="metric-label">cleaned candidate links in the public recommendation surface</div>
         </article>
       </div>
     </section>
@@ -165,21 +148,21 @@ const featuredConcepts = data.home.featured_central_concepts.slice(0, 6);
             <h3>Persistent map, not one answer</h3>
             <InfoTip detail="A chat model answers one prompt at a time. FrontierGraph keeps a shared, updateable map of the literature, so concepts, neighborhoods, and missing links can be inspected and revisited across sessions." />
           </div>
-          <p class="card-copy">A conversational model gives you advice once. FrontierGraph keeps a reusable map of the literature.</p>
+          <p class="card-copy">FrontierGraph keeps a shared, inspectable map of the literature instead of answering one prompt at a time.</p>
         </article>
         <article class="card">
           <div class="card-title-row">
             <h3>Deterministic ranking, not just prose</h3>
             <InfoTip detail="AI extracts graph structure from text, but the ranking, ontology comparison, and duplicate cleanup layers are deterministic. That means they can be benchmarked, inspected, and changed without treating the entire system as a black box." />
           </div>
-          <p class="card-copy">The graph is the ranking engine. It makes bridges, missing links, and repeated structures measurable rather than purely conversational.</p>
+          <p class="card-copy">The graph is the ranking engine, so bridges, missing links, and repeated structures become measurable rather than conversational.</p>
         </article>
         <article class="card">
           <div class="card-title-row">
             <h3>Inspectable structure, not just a picture</h3>
             <InfoTip detail="The graph is not there for decoration. It is the object used to detect local neighborhoods, missing adjacencies, repeated motifs, and underexplored bridges, and to inspect how those recommendations change under different ontology choices." />
           </div>
-          <p class="card-copy">The graph is more than a visualization. It is the object the system reasons over and the user can inspect.</p>
+          <p class="card-copy">The graph is the object the system reasons over, not just the picture shown on the site.</p>
         </article>
       </div>
     </section>
@@ -218,10 +201,6 @@ const featuredConcepts = data.home.featured_central_concepts.slice(0, 6);
       <div class="cta-band">
         <span class="eyebrow">Open release</span>
         <h2>Code, data, comparison summaries, and graph assets are part of the product.</h2>
-        <p class="section-copy">
-          FrontierGraph is designed to be inspected. The public release includes the repo, the current beta database,
-          graph assets, central concept exports, and comparison summaries for the ontology regimes.
-        </p>
         <div class="button-row">
           <a class="button-primary" href="/downloads/">Open downloads</a>
           <a class="button-secondary" href={data.repo_url}>View repository</a>

@@ -15,7 +15,7 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
       <span class="eyebrow">Observed concept graph</span>
       <h1>Explore the baseline literature network.</h1>
       <p class="lede">
-        Start from the observed graph, not the recommendation layer. Click into a concept to expand its local neighborhood and nearby opportunities.
+        Start from the observed graph. Click a concept to brighten its neighborhood and inspect the nearby opportunity surface.
       </p>
       <div class="button-row">
         <span class="field-pill">{defaultRegime}</span>
@@ -28,15 +28,15 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
       <div class="metrics-grid">
         <article class="metric-card">
           <div class="metric-value">{formatNumber(data.home.graph_snapshot.nodes)}</div>
-          <div class="metric-label">concepts in the public backbone view</div>
+          <div class="metric-label">concepts in the public backbone</div>
         </article>
         <article class="metric-card">
           <div class="metric-value">{formatNumber(data.home.graph_snapshot.edges)}</div>
-          <div class="metric-label">observed backbone edges rendered at first load</div>
+          <div class="metric-label">observed backbone edges shown at first load</div>
         </article>
         <article class="metric-card">
           <div class="metric-value">{formatPercent(data.metrics.baseline_soft_coverage)}</div>
-          <div class="metric-label">exploratory mapping coverage in the default ontology view</div>
+          <div class="metric-label">exploratory coverage in the default ontology view</div>
         </article>
       </div>
     </section>

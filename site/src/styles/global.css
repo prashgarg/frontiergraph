@@ -747,7 +747,7 @@ h3 {
 .graph-panel {
   border: 1px solid var(--line);
   border-radius: 1.4rem;
-  background: rgba(8, 14, 25, 0.82);
+  background: rgba(6, 10, 19, 0.86);
   box-shadow: var(--shadow);
   padding: 1rem;
 }
@@ -768,8 +768,9 @@ h3 {
   min-height: 38rem;
   border-radius: 1rem;
   background:
-    radial-gradient(circle at 20% 20%, rgba(100, 197, 255, 0.18), transparent 25%),
-    linear-gradient(180deg, rgba(5, 8, 14, 0.96), rgba(11, 18, 30, 0.96));
+    radial-gradient(circle at 18% 18%, rgba(100, 197, 255, 0.12), transparent 22%),
+    radial-gradient(circle at 82% 16%, rgba(85, 255, 204, 0.08), transparent 24%),
+    linear-gradient(180deg, rgba(4, 7, 13, 0.985), rgba(8, 13, 22, 0.975));
   border: 1px solid rgba(143, 176, 232, 0.12);
 }
 
@@ -778,30 +779,79 @@ h3 {
   gap: 1rem;
 }
 
-.graph-node {
-  fill: rgba(119, 255, 215, 0.9);
-  stroke: rgba(5, 11, 20, 0.95);
-  stroke-width: 1.8;
-  cursor: pointer;
-  transition: fill 120ms ease, opacity 120ms ease, r 120ms ease;
-}
-
-.graph-node.is-neighbor {
-  fill: rgba(100, 197, 255, 0.92);
-}
-
-.graph-node.is-selected {
-  fill: #ffd77d;
-}
-
 .graph-edge {
-  stroke: rgba(143, 176, 232, 0.18);
-  stroke-width: 1.1;
+  stroke: rgb(133 164 214 / 1);
+  stroke-opacity: calc(0.04 + (var(--edge-strength, 0.3) * 0.16));
+  stroke-width: calc(0.25px + (var(--edge-strength, 0.3) * 1.25px));
+  transition: stroke 120ms ease, opacity 120ms ease, stroke-width 120ms ease;
 }
 
 .graph-edge.is-selected {
-  stroke: rgba(255, 215, 125, 0.55);
-  stroke-width: 1.4;
+  stroke: rgb(255 214 126 / 1);
+  stroke-opacity: 0.72;
+  stroke-width: calc(1px + (var(--edge-strength, 0.3) * 1.7px));
+}
+
+.graph-edge.is-dimmed {
+  opacity: 0.12;
+}
+
+.graph-node-group {
+  transition: opacity 120ms ease;
+}
+
+.graph-node-group.is-dimmed {
+  opacity: 0.18;
+}
+
+.graph-node {
+  stroke: rgba(4, 8, 15, 0.98);
+  stroke-width: 1.8;
+  cursor: pointer;
+  transition: fill 120ms ease, stroke 120ms ease, opacity 120ms ease, r 120ms ease;
+}
+
+.graph-node.bucket-core {
+  fill: rgba(97, 173, 255, 0.92);
+}
+
+.graph-node.bucket-mixed {
+  fill: rgba(111, 235, 203, 0.92);
+}
+
+.graph-node.bucket-adjacent {
+  fill: rgba(144, 226, 132, 0.92);
+}
+
+.graph-node-group.is-neighbor .graph-node {
+  stroke: rgba(239, 250, 255, 0.92);
+  stroke-width: 2.2;
+}
+
+.graph-node-group.is-selected .graph-node {
+  fill: #ffd77d;
+  stroke: rgba(255, 248, 221, 0.96);
+  stroke-width: 2.4;
+}
+
+.graph-label {
+  fill: rgba(223, 233, 246, 0.82);
+  font-size: 12px;
+  font-weight: 600;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: rgba(4, 8, 15, 0.96);
+  stroke-width: 3px;
+  letter-spacing: 0.01em;
+  pointer-events: none;
+}
+
+.graph-label.is-neighbor {
+  fill: rgba(240, 248, 255, 0.96);
+}
+
+.graph-label.is-selected {
+  fill: #fff4cf;
 }
 
 .selected-title-row {
@@ -961,5 +1011,9 @@ h3 {
   .hero-stat-strip {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .graph-canvas {
+    min-height: 28rem;
   }
 }

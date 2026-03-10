@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-09T23:33:10.308491+00:00",
+  "generated_at": "2026-03-10T20:09:02.761244+00:00",
   "app_url": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app",
   "repo_url": "https://github.com/prashgarg/frontiergraph",
   "default_view": {
@@ -366,8 +366,8 @@
       }
     ],
     "graph_snapshot": {
-      "nodes": 1191,
-      "edges": 8000,
+      "nodes": 518,
+      "edges": 2107,
       "path": "/data/v2/graph_backbone.json"
     }
   },
