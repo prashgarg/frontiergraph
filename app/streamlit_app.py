@@ -742,7 +742,7 @@ def main() -> None:
     )
     compare_root = Path("data/production/frontiergraph_concept_compare_v1")
     regime_db_map: dict[str, dict[str, str]] = {}
-    selected_ontology = "Legacy JEL"
+    selected_ontology = "Baseline"
     selected_mapping = ""
     for regime_name, regime_label in [
         ("broad", "Broad"),
@@ -767,7 +767,7 @@ def main() -> None:
             }
 
     with st.expander("Advanced settings", expanded=False):
-        ontology_options = ["Legacy JEL"]
+        ontology_options: list[str] = []
         ontology_options.extend(label for label in ["Baseline", "Broad", "Conservative"] if label in regime_db_map)
         env_concept_exists = bool(concept_env_db and Path(concept_env_db).exists())
         if not regime_db_map:
@@ -777,7 +777,9 @@ def main() -> None:
                 ontology_options.append("Concept beta")
             elif concept_default and Path(concept_default).exists():
                 ontology_options.append("Concept beta")
-        default_ontology = "Baseline" if "Baseline" in ontology_options else ("Concept beta" if "Concept beta" in ontology_options else "Legacy JEL")
+        if not ontology_options:
+            ontology_options = ["Legacy JEL"]
+        default_ontology = "Baseline" if "Baseline" in ontology_options else ("Concept beta" if "Concept beta" in ontology_options else ontology_options[0])
         selected_ontology = st.radio(
             "Ontology",
             options=ontology_options,
@@ -840,10 +842,10 @@ def main() -> None:
     if is_concept_mode(app_mode):
         mode_label = f"{selected_ontology} {selected_mapping}".strip()
         st.caption(
-            f"Default concept surface: {mode_label}. Use Advanced settings only when you want to compare ontology regimes or switch to the legacy JEL view."
+            f"Default concept surface: {mode_label}. Use Advanced settings only when you want to compare ontology regimes."
         )
     else:
-        st.caption("Legacy JEL is available as a coarse fallback browse layer. The public product default lives in the concept regimes.")
+        st.caption("This database is using the legacy browse surface because no concept graph database is configured.")
 
     default_preset = normalize_preset(query_param("preset"))
     default_search = query_param("search")
