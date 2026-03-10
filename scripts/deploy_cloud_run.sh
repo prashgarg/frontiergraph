@@ -84,9 +84,13 @@ deploy_args=(
 
 if [[ -n "${DATA_BUCKET:-}" ]]; then
   DB_FILENAME="${DB_FILENAME:-app_causalclaims.db}"
+  CONCEPT_DB_FILENAME="${CONCEPT_DB_FILENAME:-}"
   MOUNT_PATH="${MOUNT_PATH:-/mnt/ranker-data}"
   VOLUME_NAME="${VOLUME_NAME:-ranker-data}"
   env_vars+=("ECON_OPPORTUNITY_DB=${MOUNT_PATH}/${DB_FILENAME}")
+  if [[ -n "$CONCEPT_DB_FILENAME" ]]; then
+    env_vars+=("ECON_CONCEPT_DB=${MOUNT_PATH}/${CONCEPT_DB_FILENAME}")
+  fi
   deploy_args+=(
     --add-volume "name=${VOLUME_NAME},type=cloud-storage,bucket=${DATA_BUCKET},readonly=true"
     --add-volume-mount "volume=${VOLUME_NAME},mount-path=${MOUNT_PATH}"

@@ -769,8 +769,11 @@ def main() -> None:
     with st.expander("Advanced settings", expanded=False):
         ontology_options = ["Legacy JEL"]
         ontology_options.extend(label for label in ["Baseline", "Broad", "Conservative"] if label in regime_db_map)
+        env_concept_exists = bool(concept_env_db and Path(concept_env_db).exists())
         if not regime_db_map:
-            if concept_exploratory_default or concept_strict_default:
+            if env_concept_exists:
+                ontology_options.append("Baseline")
+            elif concept_exploratory_default or concept_strict_default:
                 ontology_options.append("Concept beta")
             elif concept_default and Path(concept_default).exists():
                 ontology_options.append("Concept beta")
@@ -783,6 +786,14 @@ def main() -> None:
         )
         if selected_ontology == "Legacy JEL":
             db_value = db_default
+        elif selected_ontology == "Baseline" and not regime_db_map and env_concept_exists:
+            selected_mapping = st.radio(
+                "Concept mapping",
+                options=["Exploratory"],
+                horizontal=True,
+                index=0,
+            )
+            db_value = concept_env_db
         elif selected_ontology in regime_db_map:
             available_mapping_modes = [mode for mode, path in regime_db_map[selected_ontology].items() if path]
             default_mapping = "Exploratory" if "Exploratory" in available_mapping_modes else available_mapping_modes[0]
