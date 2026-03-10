@@ -57,9 +57,23 @@ def default_db_path(repo_root: Path) -> Path:
     return demo
 
 
+def resolve_repo_root() -> Path:
+    package_root = Path(__file__).resolve().parents[1]
+    candidates = [
+        Path(os.environ.get("FRONTIERGRAPH_REPO_ROOT", "")).expanduser() if os.environ.get("FRONTIERGRAPH_REPO_ROOT") else None,
+        Path.cwd(),
+        Path("/app"),
+        package_root,
+    ]
+    for candidate in candidates:
+        if candidate and (candidate / "app" / "streamlit_app.py").exists():
+            return candidate
+    return package_root
+
+
 def main() -> int:
     args = parse_args()
-    repo_root = Path(__file__).resolve().parents[1]
+    repo_root = resolve_repo_root()
     app_path = repo_root / "app" / "streamlit_app.py"
     env_db = os.environ.get("ECON_OPPORTUNITY_DB", "").strip()
     db_path = Path(args.db).expanduser() if args.db else Path(env_db).expanduser() if env_db else default_db_path(repo_root)

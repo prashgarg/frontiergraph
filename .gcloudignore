@@ -1,5 +1,9 @@
 .DS_Store
 .dockerignore
+.git/
+.github/
+.vscode/
+node_modules/
 .pytest_cache/
 .ranker_runtime/
 .venv/
@@ -8,11 +12,13 @@ __pycache__/
 *.py[cod]
 app/__pycache__/
 codex_run/
+data/raw/
+data/pilots/
+data/production/
 data/external/
 data/processed/*
 !data/processed/app.db
 launchers/
 outputs/
 paper/
-site/
 tests/
