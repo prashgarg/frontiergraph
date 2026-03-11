@@ -149,8 +149,8 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
           (item) => `
             <article class="mini-opportunity">
               <strong>${escapeHtml(item.source_label)} → ${escapeHtml(item.target_label)}</strong>
-              <div class="mini-copy">${escapeHtml(item.why_now)}</div>
-              <div class="mini-copy">${escapeHtml(item.recommended_move)}</div>
+              <div class="mini-copy">${escapeHtml(item.direct_link_status)} · supported by ${formatNumber(safeNumber(item.supporting_path_count))} nearby concepts</div>
+              <div class="mini-copy">Context: ${escapeHtml(item.source_context_summary)} on one side and ${escapeHtml(item.target_context_summary)} on the other.</div>
               <a class="text-link" href="${escapeHtml(item.app_link)}">Open in explorer</a>
             </article>
           `,

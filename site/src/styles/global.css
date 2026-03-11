@@ -298,6 +298,12 @@ h3 {
   color: var(--text);
 }
 
+.button-secondary.is-active {
+  border-color: var(--line-strong);
+  background: var(--panel-strong);
+  color: var(--text);
+}
+
 .button-tertiary,
 .theme-toggle,
 .field-pill,
@@ -1139,8 +1145,21 @@ h3 {
   gap: 0.8rem;
 }
 
+.curated-opportunity-card {
+  border-color: var(--line-strong);
+  background:
+    linear-gradient(180deg, rgba(255, 232, 192, 0.2), rgba(255, 232, 192, 0.04)),
+    var(--surface);
+}
+
 .opportunity-card h3 {
   margin: 0;
+}
+
+.opportunity-pair {
+  margin: -0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
 .opportunity-kicker,

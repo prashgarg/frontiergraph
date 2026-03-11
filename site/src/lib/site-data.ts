@@ -1,4 +1,5 @@
 import siteData from "../generated/site-data.json";
+import editorialSource from "../content/editorial-opportunities.json";
 
 export type MetricBundle = {
   papers: number;
@@ -37,6 +38,19 @@ export type Opportunity = {
   target_context_summary: string;
   app_link: string;
 };
+
+export type EditorialOpportunity = {
+  pair_key: string;
+  headline: string;
+  summary: string;
+  why_it_matters: string;
+  how_to_start: string;
+  homepage_featured: boolean;
+  opportunities_featured: boolean;
+  display_order: number;
+};
+
+export type CuratedOpportunity = Opportunity & EditorialOpportunity;
 
 export type CentralConcept = {
   concept_id: string;
@@ -123,6 +137,7 @@ export type SiteData = {
   metrics: MetricBundle;
   home: {
     featured_opportunities: Opportunity[];
+    curated_opportunities: CuratedOpportunity[];
     featured_central_concepts: CentralConcept[];
     graph_snapshot: {
       nodes: number;
@@ -140,6 +155,7 @@ export type SiteData = {
   opportunities: {
     slices_path: string;
     concept_opportunities_index_path: string;
+    curated_front_set: CuratedOpportunity[];
     top_slices: Record<string, Opportunity[]>;
   };
   compare: {
@@ -169,7 +185,75 @@ export type SiteData = {
   };
 };
 
-export const data = siteData as SiteData;
+function invariant(condition: unknown, message: string): asserts condition {
+  if (!condition) {
+    throw new Error(message);
+  }
+}
+
+function normalizeEditorialSource(): EditorialOpportunity[] {
+  const payload = editorialSource as Record<string, EditorialOpportunity>;
+  const items = Object.values(payload);
+  invariant(items.length > 0, "Editorial opportunities source is empty");
+  return items.sort((left, right) => left.display_order - right.display_order);
+}
+
+function validateCuratedSet(
+  actual: CuratedOpportunity[],
+  expected: EditorialOpportunity[],
+  label: string,
+): CuratedOpportunity[] {
+  invariant(actual.length === expected.length, `${label} is out of sync with editorial-opportunities.json`);
+  const actualByPair = new Map(actual.map((item) => [item.pair_key, item]));
+  const ordered: CuratedOpportunity[] = [];
+  for (const entry of expected) {
+    const item = actualByPair.get(entry.pair_key);
+    invariant(item, `${label} is missing curated pair_key ${entry.pair_key}`);
+    invariant(item.display_order === entry.display_order, `${label} has stale display order for ${entry.pair_key}`);
+    ordered.push(item);
+  }
+  return ordered;
+}
+
+function buildSiteData(): SiteData {
+  const payload = siteData as SiteData;
+  const editorialItems = normalizeEditorialSource();
+  const availablePairs = new Set(
+    Object.values(payload.opportunities.top_slices)
+      .flat()
+      .map((item) => item.pair_key),
+  );
+  for (const item of editorialItems) {
+    invariant(availablePairs.has(item.pair_key), `Curated pair_key ${item.pair_key} is not present in generated opportunity slices`);
+  }
+
+  const expectedHome = editorialItems.filter((item) => item.homepage_featured);
+  const expectedOpportunities = editorialItems.filter((item) => item.opportunities_featured);
+  invariant(expectedHome.length === 4, "Homepage curation must contain exactly 4 curated opportunities");
+  invariant(expectedOpportunities.length === 8, "Opportunities curation must contain exactly 8 curated opportunities");
+
+  return {
+    ...payload,
+    home: {
+      ...payload.home,
+      curated_opportunities: validateCuratedSet(
+        payload.home.curated_opportunities ?? [],
+        expectedHome,
+        "home.curated_opportunities",
+      ),
+    },
+    opportunities: {
+      ...payload.opportunities,
+      curated_front_set: validateCuratedSet(
+        payload.opportunities.curated_front_set ?? [],
+        expectedOpportunities,
+        "opportunities.curated_front_set",
+      ),
+    },
+  };
+}
+
+export const data = buildSiteData();
 
 export function formatNumber(value: number): string {
   return new Intl.NumberFormat("en-US").format(value);

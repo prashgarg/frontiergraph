@@ -29,11 +29,16 @@ async function main() {
 
   await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
-  await textDoesNotContain(page, [">NA<", "NaN"]);
+  await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError", "are close in the surrounding graph"]);
+  assert(await page.getByRole("heading", { name: "Where do we go next?" }).isVisible(), "Homepage hero did not update");
   assert(await page.locator("[data-theme-toggle]").isVisible(), "Theme toggle missing on home");
   assert(
     await page.getByRole("navigation").getByRole("link", { name: /^Advanced$/ }).isVisible(),
     "Advanced nav missing on home",
+  );
+  assert(
+    (await page.locator('[data-role="home-curated-opportunities"] [data-role="curated-opportunity-card"]').count()) === 4,
+    "Homepage should show exactly 4 curated opportunity cards",
   );
   await page.getByPlaceholder("Search labels or aliases").fill("income / economic growth");
   await page.getByRole("button", { name: /income \/ economic growth/i }).first().click();
@@ -43,13 +48,36 @@ async function main() {
     waitUntil: "networkidle",
   });
   await page.waitForSelector(".lookup-shell");
-  await textDoesNotContain(page, [">NA<", "NaN"]);
+  await textDoesNotContain(page, [
+    "NaN",
+    "undefined",
+    "sqlite3.OperationalError",
+    "are close in the surrounding graph",
+    "Start with a bridge review or cross-field pilot.",
+  ]);
+  assert(
+    (await page.locator('[data-role="opportunities-curated-front-set"] [data-role="curated-opportunity-card"]').count()) === 8,
+    "Opportunities page should show exactly 8 curated opportunity cards",
+  );
   const lookupText = await page.locator('[data-role="concept-panel"]').innerText();
   assert(!/\bNA\b/.test(lookupText), "Concept lookup still renders NA");
   assert(/incoming|papers|nearby concepts/i.test(lookupText), "Concept lookup did not render readable metadata");
 
   await page.goto(`${baseUrl}/graph/`, { waitUntil: "networkidle" });
   await page.waitForSelector('[data-role="graph-canvas"]');
+  await page.getByRole("button", { name: /show full map/i }).waitFor();
+  await page.waitForTimeout(500);
+  const focusedNodeCount = await page.locator("[data-node-id]").count();
+  assert(focusedNodeCount > 0, "Focused graph mode rendered no nodes");
+  await page.getByRole("button", { name: /show full map/i }).click();
+  await page.waitForTimeout(400);
+  const globalNodeCount = await page.locator("[data-node-id]").count();
+  assert(globalNodeCount > focusedNodeCount, "Full map should render more nodes than focused mode");
+  await page.getByRole("button", { name: /return to focused view/i }).click();
+  await page.waitForTimeout(400);
+  const focusedNodeCountAgain = await page.locator("[data-node-id]").count();
+  assert(focusedNodeCountAgain === focusedNodeCount, "Returning to focused view should restore the smaller node set");
+
   const graphSearch = page.locator('[data-role="search-input"]');
   await graphSearch.fill("income / economic growth");
   await page.getByRole("button", { name: /income \/ economic growth/i }).first().click();
@@ -59,6 +87,10 @@ async function main() {
   assert(!/\bNA\b/.test(inspectorText), "Graph inspector still renders NA");
   assert(!/NaN/.test(inspectorText), "Graph inspector still renders NaN");
   assert(/incoming observed links/i.test(inspectorText), "Graph inspector missing readable link counts");
+  assert(
+    /Focus summary/i.test(await page.locator('[data-role="selection-list-view"]').innerText()),
+    "Graph text view did not render the keyboard-readable focus summary",
+  );
 
   const viewport = page.locator('[data-role="graph-viewport"]');
   const initialTransform = await viewport.getAttribute("transform");
@@ -66,7 +98,7 @@ async function main() {
   const canvasBox = await canvas.boundingBox();
   assert(canvasBox, "Graph canvas has no bounding box");
 
-  await page.getByRole("button", { name: /zoom in/i }).click();
+  await page.getByRole("button", { name: /zoom out/i }).click();
   await page.waitForTimeout(250);
   const zoomTransform = await viewport.getAttribute("transform");
   assert(zoomTransform && zoomTransform !== initialTransform, "Zoom button did not change graph viewport");

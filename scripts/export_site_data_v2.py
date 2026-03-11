@@ -18,6 +18,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 SITE_ROOT = ROOT / "site"
 GENERATED_DIR = SITE_ROOT / "src" / "generated"
+EDITORIAL_OPPORTUNITIES_PATH = SITE_ROOT / "src" / "content" / "editorial-opportunities.json"
 PUBLIC_DATA_DIR = SITE_ROOT / "public" / "data" / "v2"
 NEIGHBORHOOD_SHARDS_DIR = PUBLIC_DATA_DIR / "concept_neighborhoods"
 OPPORTUNITY_SHARDS_DIR = PUBLIC_DATA_DIR / "concept_opportunities"
@@ -142,6 +143,16 @@ NEIGHBOR_LIMIT = 15
 CONCEPT_OPPORTUNITY_LIMIT = 12
 FEATURED_OPPORTUNITY_LIMIT = 12
 SHARD_SIZE = 256
+EDITORIAL_REQUIRED_FIELDS = (
+    "pair_key",
+    "headline",
+    "summary",
+    "why_it_matters",
+    "how_to_start",
+    "homepage_featured",
+    "opportunities_featured",
+    "display_order",
+)
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -747,6 +758,60 @@ def diversify_featured_opportunities(
     return featured[:limit]
 
 
+def load_editorial_opportunities() -> dict[str, dict[str, Any]]:
+    payload = read_json(EDITORIAL_OPPORTUNITIES_PATH)
+    if not isinstance(payload, dict) or not payload:
+        raise ValueError("editorial-opportunities.json must be a non-empty object keyed by pair_key")
+
+    editorial: dict[str, dict[str, Any]] = {}
+    for pair_key, item in payload.items():
+        if not isinstance(item, dict):
+            raise ValueError(f"Editorial entry for {pair_key} must be an object")
+        entry = {**item}
+        entry.setdefault("pair_key", pair_key)
+        if entry["pair_key"] != pair_key:
+            raise ValueError(f"Editorial entry {pair_key} must keep pair_key in sync with its object key")
+        missing = [field for field in EDITORIAL_REQUIRED_FIELDS if field not in entry]
+        if missing:
+            raise ValueError(f"Editorial entry {pair_key} is missing required fields: {', '.join(missing)}")
+        editorial[pair_key] = entry
+    return editorial
+
+
+def build_curated_opportunities(
+    editorial: dict[str, dict[str, Any]],
+    candidates_df: pd.DataFrame,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    available_pair_keys = {str(value) for value in candidates_df["pair_key"].tolist()}
+    missing_pairs = [pair_key for pair_key in editorial if pair_key not in available_pair_keys]
+    if missing_pairs:
+        raise ValueError(
+            "Curated editorial pair_keys are missing from the exported opportunity set: "
+            + ", ".join(missing_pairs)
+        )
+
+    subset_df = candidates_df[candidates_df["pair_key"].isin(editorial.keys())].copy()
+    columns = list(subset_df.columns)
+    base_records = {
+        record["pair_key"]: record
+        for record in (
+            opportunity_record(tuple(row), columns)
+            for row in subset_df.itertuples(index=False, name=None)
+        )
+    }
+
+    curated_rows: list[dict[str, Any]] = []
+    for pair_key, entry in sorted(editorial.items(), key=lambda item: int(item[1]["display_order"])):
+        base_record = base_records.get(pair_key)
+        if not base_record:
+            raise ValueError(f"Curated editorial pair_key {pair_key} could not be resolved to an opportunity record")
+        curated_rows.append({**base_record, **entry})
+
+    home_rows = [row for row in curated_rows if bool(row["homepage_featured"])]
+    opportunity_rows = [row for row in curated_rows if bool(row["opportunities_featured"])]
+    return home_rows, opportunity_rows
+
+
 def build_compare_payload(regime_summary_df: pd.DataFrame, overlap_df: pd.DataFrame) -> dict[str, Any]:
     display_names = {"broad": "Broad", "baseline": "Baseline", "conservative": "Conservative"}
     summary_rows: list[dict[str, Any]] = []
@@ -813,6 +878,7 @@ def main() -> None:
     extraction_summary = read_json(EXTRACTION_SUMMARY_PATH)
     baseline_manifest = read_json(BASELINE_MANIFEST_PATH)
     suppression_summary = read_json(SUPPRESSION_SUMMARY_PATH)
+    editorial_opportunities = load_editorial_opportunities()
     regime_summary_df = pd.read_csv(REGIME_SUMMARY_PATH)
     overlap_df = pd.read_csv(RANKING_OVERLAP_PATH)
     top100_before_df = pd.read_csv(TOP100_BEFORE_PATH)
@@ -864,6 +930,7 @@ def main() -> None:
 
     slices = build_slices(candidates_df)
     featured_opportunities = diversify_featured_opportunities(slices, limit=FEATURED_OPPORTUNITY_LIMIT)
+    home_curated_opportunities, curated_front_set = build_curated_opportunities(editorial_opportunities, candidates_df)
 
     write_json(PUBLIC_DATA_DIR / "graph_backbone.json", backbone_payload)
     write_json(PUBLIC_DATA_DIR / "concept_index.json", search_index)
@@ -917,6 +984,7 @@ def main() -> None:
         },
         "home": {
             "featured_opportunities": featured_opportunities[:6],
+            "curated_opportunities": home_curated_opportunities,
             "featured_central_concepts": central_concepts_rows[:8],
             "graph_snapshot": {
                 "nodes": backbone_payload["counts"]["nodes"],
@@ -934,6 +1002,7 @@ def main() -> None:
         "opportunities": {
             "slices_path": "/data/v2/opportunity_slices.json",
             "concept_opportunities_index_path": "/data/v2/concept_opportunities_index.json",
+            "curated_front_set": curated_front_set,
             "top_slices": {
                 "overall": slices["overall"][:12],
                 "bridges": slices["bridges"][:12],

@@ -27,10 +27,10 @@ def test_concept_index_has_safe_defaults() -> None:
 def test_opportunity_export_includes_public_language_fields() -> None:
     with (ROOT / "site" / "src" / "generated" / "site-data.json").open() as handle:
         site_data = json.load(handle)
-    featured = site_data["home"]["featured_opportunities"]
-    assert featured, "featured opportunities should not be empty"
+    overall = site_data["opportunities"]["top_slices"]["overall"]
+    assert overall, "overall opportunities should not be empty"
 
-    row = featured[0]
+    row = overall[0]
     for field in (
         "direct_link_status",
         "supporting_path_count",
@@ -42,3 +42,51 @@ def test_opportunity_export_includes_public_language_fields() -> None:
     ):
         assert field in row, f"{field} should be present in exported opportunity rows"
         assert row[field] not in (None, "", "NA"), f"{field} should be human-readable"
+
+
+def test_curated_opportunities_are_present_in_expected_order() -> None:
+    with (ROOT / "site" / "src" / "generated" / "site-data.json").open() as handle:
+        site_data = json.load(handle)
+
+    expected_home = [
+        "FG3C000003__FG3C000208",
+        "FG3C000014__FG3C001221",
+        "FG3C000012__FG3C000110",
+        "FG3C000053__FG3C001307",
+    ]
+    expected_opportunities = [
+        "FG3C000003__FG3C000208",
+        "FG3C000014__FG3C001221",
+        "FG3C000012__FG3C000110",
+        "FG3C000053__FG3C001307",
+        "FG3C000010__FG3C000019",
+        "FG3C000030__FG3C001420",
+        "FG3C000014__FG3C000024",
+        "FG3C000046__FG3C000203",
+    ]
+
+    home = site_data["home"]["curated_opportunities"]
+    front_set = site_data["opportunities"]["curated_front_set"]
+
+    assert [row["pair_key"] for row in home] == expected_home
+    assert [row["pair_key"] for row in front_set] == expected_opportunities
+
+    for row in front_set:
+        for field in ("headline", "summary", "why_it_matters", "how_to_start"):
+            assert row[field] not in (None, "", "NA"), f"{field} should be present on curated opportunity rows"
+
+
+def test_excluded_pairs_do_not_appear_in_curated_sets() -> None:
+    with (ROOT / "site" / "src" / "generated" / "site-data.json").open() as handle:
+        site_data = json.load(handle)
+
+    excluded = {
+        "FG3C000003__FG3C000010",
+        "FG3C000014__FG3C000018",
+    }
+
+    home_pairs = {row["pair_key"] for row in site_data["home"]["curated_opportunities"]}
+    front_pairs = {row["pair_key"] for row in site_data["opportunities"]["curated_front_set"]}
+
+    assert home_pairs.isdisjoint(excluded)
+    assert front_pairs.isdisjoint(excluded)

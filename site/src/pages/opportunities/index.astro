@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ConceptOpportunityLookup from "../../components/ConceptOpportunityLookup.astro";
+import CuratedOpportunityCards from "../../components/CuratedOpportunityCards.astro";
 import OpportunityCards from "../../components/OpportunityCards.astro";
 import { data, formatNumber } from "../../lib/site-data";
 
@@ -10,36 +11,44 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
 
 <BaseLayout
   title="Opportunities | FrontierGraph"
-  description="Browse suppressed baseline opportunities from the concept graph of economics."
+  description="Browse curated and ranked FrontierGraph opportunities from the public Baseline exploratory surface."
 >
   <main>
     <section class="page-hero">
       <span class="eyebrow">Opportunities</span>
-      <h1>Browse the public opportunity surface in plain language.</h1>
+      <h1>Start with a few plausible next questions.</h1>
       <p class="lede">
-        These links come from the public <strong>{defaultRegime}</strong> ranking surface after deterministic near-synonym cleanup.
-        This page keeps the list readable for newcomers first. The app and Method page keep the deeper score mechanics and raw graph terms.
+        This page starts with a hand-curated front set from the public <strong>{defaultRegime}</strong> surface after deterministic near-synonym cleanup.
+        The ranked list stays below, but the first screen is meant to answer a simpler question: where might a researcher reasonably go next?
       </p>
       <div class="button-row">
         <span class="field-pill">{formatNumber(data.metrics.suppressed_candidate_count)} visible candidates</span>
-        <span class="field-pill">{formatNumber(data.metrics.duplicate_loops_removed_top100)} duplicate loops removed from the top 100</span>
+        <a class="button-secondary" href="/graph/">Read one neighborhood</a>
         <a class="button-secondary" href={data.app_url}>Open explorer</a>
       </div>
     </section>
+
+    <CuratedOpportunityCards
+      items={data.opportunities.curated_front_set}
+      title="Start here"
+      caption="These eight cards are manually curated from the current ranking. They are not claims of settled truth. They are candidate directions that look worth reading, scoping, or testing."
+      sectionId="opportunities-curated-front-set"
+    />
 
     <ConceptOpportunityLookup
       appUrl={data.app_url}
       conceptIndexPath={data.graph.concept_index_path}
       neighborhoodsIndexPath={data.graph.concept_neighborhoods_index_path}
       opportunitiesIndexPath={data.graph.concept_opportunities_index_path}
-      title="Search one concept and inspect the local opportunity surface"
-      caption="Use lexical search to jump to a concept, see the observed neighborhood around it, and open the strongest nearby ranked links."
+      title="Search one concept and inspect nearby opportunities"
+      caption="If you already have a concept in mind, use search to jump straight into its local neighborhood and the strongest nearby links."
     />
 
     <OpportunityCards
       items={slices.overall}
-      title="Top opportunities overall"
-      caption="This is the main public list. Secondary slices stay tucked behind a disclosure below, and the Method page explains the raw score terms."
+      title="Ranked list beyond the curated set"
+      caption="Below the editorial front set, the broader machine-ranked list stays available as structured facts only: the pair, whether direct work already exists, how much nearby support surrounds it, and the broad public context."
+      sectionId="overall-ranked-opportunities"
     />
 
     <section class="section">
@@ -47,7 +56,7 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
         <summary>
           <span>
             <span class="eyebrow">Secondary slices</span>
-            <strong>Open the narrower opportunity views</strong>
+            <strong>Open narrower ways of browsing the ranked list</strong>
           </span>
         </summary>
         <div class="method-body opportunity-slice-stack">
@@ -55,14 +64,14 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
             <OpportunityCards
               items={slices.bridges}
               title="Connect separate literatures"
-              caption="Links where the graph suggests separate literatures are ready to connect."
+              caption="Use this when you want questions that seem to sit between areas that are usually studied apart."
               compact={true}
               standalone={false}
             />
             <OpportunityCards
               items={slices.frontier}
               title="Missing direct link"
-              caption="Links where the surrounding literature is already close, but the public sample still shows little or no direct work."
+              caption="Use this when you want pairs that appear close in the surrounding literature but still have little or no direct work."
               compact={true}
               standalone={false}
             />
@@ -72,14 +81,14 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
             <OpportunityCards
               items={slices.fast_follow}
               title="Ready to follow through"
-              caption="Ideas that look ready for a direct follow-through because the surrounding graph is already strong."
+              caption="Use this when you want ideas that already seem surrounded by enough nearby work to support a more direct next paper."
               compact={true}
               standalone={false}
             />
             <OpportunityCards
               items={slices.underexplored}
               title="Early but promising"
-              caption="Pairs where nearby evidence looks richer than the direct connection itself."
+              caption="Use this when you want questions that still look early, but not arbitrary, because the nearby evidence is richer than the direct connection."
               compact={true}
               standalone={false}
             />

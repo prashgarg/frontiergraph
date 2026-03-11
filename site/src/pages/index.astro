@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import QuickConceptSearch from "../components/QuickConceptSearch.astro";
-import OpportunityCards from "../components/OpportunityCards.astro";
-import { data, formatCompact, formatNumber } from "../lib/site-data";
+import CuratedOpportunityCards from "../components/CuratedOpportunityCards.astro";
+import { data } from "../lib/site-data";
 
 const actions = [
   {
@@ -25,39 +25,25 @@ const actions = [
 
 <BaseLayout
   title="FrontierGraph"
-  description="A concept graph of economics with deterministic ranking for where the literature still looks incomplete."
+  description="FrontierGraph surfaces a few plausible next research directions in economics."
 >
   <main>
     <section class="hero hero-home">
       <div class="hero-panel hero-copy-panel">
-        <span class="eyebrow">Concept graph of economics</span>
-        <h1>Find the next research link worth checking.</h1>
+        <span class="eyebrow">FrontierGraph</span>
+        <h1>Where do we go next?</h1>
         <p class="lede">
-          FrontierGraph turns paper text into a reusable concept graph and highlights links that still look incomplete.
-          The public default is <strong>{data.default_view.regime} {data.default_view.mapping}</strong>, with complexity held back unless you ask for it.
+          FrontierGraph is built to surface a few plausible next research directions, not to make you decode a full graph on first contact.
+          The public default is <strong>{data.default_view.regime} {data.default_view.mapping}</strong>: start with opportunities, use the graph to read one neighborhood, and leave the heavier mechanics for later.
         </p>
         <div class="hero-actions">
           <a class="button-primary" href="/opportunities/">Browse opportunities</a>
-          <a class="button-secondary" href="/graph/">Open the graph</a>
+          <a class="button-secondary" href="/graph/">Read one neighborhood</a>
           <a class="button-tertiary" href={data.app_url}>Open app</a>
         </div>
         <p class="hero-note">
-          Broad and Conservative stay available as advanced comparison views, but they no longer lead the public path.
+          The cards below are hand-curated starting points from the current ranked surface. Broad and Conservative stay available, but only behind Advanced.
         </p>
-        <div class="hero-stat-strip hero-stat-strip-compact">
-          <div>
-            <span class="tiny-label">Production corpus</span>
-            <strong>{formatCompact(data.metrics.papers)}</strong>
-          </div>
-          <div>
-            <span class="tiny-label">Default view</span>
-            <strong>{data.default_view.regime} {data.default_view.mapping}</strong>
-          </div>
-          <div>
-            <span class="tiny-label">Visible links</span>
-            <strong>{formatNumber(data.metrics.suppressed_candidate_count)}</strong>
-          </div>
-        </div>
       </div>
 
       <div class="hero-panel hero-visual-panel">
@@ -69,9 +55,9 @@ const actions = [
       <div class="section-heading">
         <div>
           <span class="eyebrow">How to use it</span>
-          <h2>One clear first path, plus two secondary ones</h2>
+          <h2>Start with one question, not the whole machine</h2>
         </div>
-        <p class="section-copy">Most people should start on Opportunities. Graph is for local reading. Method is for definitions and scoring terms.</p>
+        <p class="section-copy">Most people should start on Opportunities. Graph is for local reading. Method and Advanced are there when you want to inspect the machinery.</p>
       </div>
       <div class="card-grid action-grid">
         {actions.map((action) => (
@@ -84,31 +70,32 @@ const actions = [
       </div>
     </section>
 
-    <OpportunityCards
-      items={data.home.featured_opportunities}
-      title="A few examples from the default surface"
-      caption="These examples come from the cleaned Baseline exploratory ranking surface, but they are described here in plain language rather than raw graph metrics."
+    <CuratedOpportunityCards
+      items={data.home.curated_opportunities}
+      title="A few places to start"
+      caption="These four examples are manually selected from the current public ranking. They are meant to show the kind of next-step question FrontierGraph is useful for, without asking newcomers to read internal graph metrics."
+      sectionId="home-curated-opportunities"
     />
 
     <section class="section">
       <div class="section-heading">
         <div>
-          <span class="eyebrow">What the product does</span>
-          <h2>Lead with use, then let experts open the machinery.</h2>
+          <span class="eyebrow">Use first</span>
+          <h2>Let the useful part prove itself before the technical part asks for attention.</h2>
         </div>
       </div>
       <div class="trust-grid why-grid">
         <article class="card">
-          <h3>Search one concept</h3>
-          <p class="card-copy">Start from a term you already know, then read its local graph and the nearby opportunity surface in one place.</p>
-        </article>
-        <article class="card">
           <h3>Open one opportunity</h3>
-          <p class="card-copy">The public cards explain why a link is surfaced and what kind of follow-up it suggests before exposing raw graph terms.</p>
+          <p class="card-copy">Start from a plausible next question and decide whether it looks worth reading or testing further.</p>
         </article>
         <article class="card">
-          <h3>Check method only when needed</h3>
-          <p class="card-copy">Baseline exploratory is the default. Compare and downloads remain available, but they now live under Advanced instead of the main path.</p>
+          <h3>Read one neighborhood</h3>
+          <p class="card-copy">Use the graph to orient yourself around a concept you already care about, then switch to the full map only if you need broader context.</p>
+        </article>
+        <article class="card">
+          <h3>Open the method later</h3>
+          <p class="card-copy">Baseline exploratory is the default. Compare, downloads, and score-language stay available, but they no longer interrupt the first-time path.</p>
         </article>
       </div>
     </section>
