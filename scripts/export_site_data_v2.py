@@ -135,6 +135,9 @@ BACKBONE_NODE_LIMIT = 650
 BACKBONE_EDGE_LIMIT = 2200
 BACKBONE_MIN_SUPPORT = 4
 BACKBONE_LABEL_LIMIT = 24
+BACKBONE_LAYOUT_ITERATIONS = 140
+BACKBONE_LAYOUT_K_MULTIPLIER = 2.8
+BACKBONE_LAYOUT_SPREAD = 1.38
 NEIGHBOR_LIMIT = 15
 CONCEPT_OPPORTUNITY_LIMIT = 12
 FEATURED_OPPORTUNITY_LIMIT = 12
@@ -424,7 +427,7 @@ def compute_centrality(nodes_df: pd.DataFrame, edges_df: pd.DataFrame) -> tuple[
     return metrics_df, graph
 
 
-def scale_positions(raw_positions: dict[str, tuple[float, float]]) -> dict[str, dict[str, float]]:
+def scale_positions(raw_positions: dict[str, tuple[float, float]], spread: float = 1.0) -> dict[str, dict[str, float]]:
     xs = [float(pos[0]) for pos in raw_positions.values()]
     ys = [float(pos[1]) for pos in raw_positions.values()]
     x_min, x_max = min(xs), max(xs)
@@ -433,9 +436,11 @@ def scale_positions(raw_positions: dict[str, tuple[float, float]]) -> dict[str, 
     y_span = max(y_max - y_min, 1e-9)
     scaled: dict[str, dict[str, float]] = {}
     for node, (x, y) in raw_positions.items():
+        x_norm = (float(x) - x_min) / x_span
+        y_norm = (float(y) - y_min) / y_span
         scaled[node] = {
-            "x": round((float(x) - x_min) / x_span, 6),
-            "y": round((float(y) - y_min) / y_span, 6),
+            "x": round(0.5 + ((x_norm - 0.5) * spread), 6),
+            "y": round(0.5 + ((y_norm - 0.5) * spread), 6),
         }
     return scaled
 
@@ -475,8 +480,15 @@ def build_backbone(
         edges_subset["source_concept_id"].isin(component_nodes) & edges_subset["target_concept_id"].isin(component_nodes)
     ].copy()
     layout_graph = undirected.subgraph(component_nodes).copy()
-    positions_raw = nx.spring_layout(layout_graph, seed=7, weight="weight", iterations=60)
-    positions = scale_positions(positions_raw)
+    layout_k = BACKBONE_LAYOUT_K_MULTIPLIER / math.sqrt(max(layout_graph.number_of_nodes(), 1))
+    positions_raw = nx.spring_layout(
+        layout_graph,
+        seed=7,
+        weight="weight",
+        iterations=BACKBONE_LAYOUT_ITERATIONS,
+        k=layout_k,
+    )
+    positions = scale_positions(positions_raw, spread=BACKBONE_LAYOUT_SPREAD)
 
     node_details = nodes_df.set_index("concept_id").to_dict("index")
     central_metrics = node_metrics_df.set_index("concept_id").to_dict("index")

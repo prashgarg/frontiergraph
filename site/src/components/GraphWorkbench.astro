@@ -64,9 +64,9 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
           <button class="button-tertiary" type="button" data-role="reset-focus">Reset focus</button>
         </div>
       </div>
-      <svg class="graph-canvas" data-role="graph-canvas" viewBox="0 0 1000 760" aria-label="Concept graph"></svg>
+      <svg class="graph-canvas" data-role="graph-canvas" viewBox="0 0 1120 860" aria-label="Concept graph"></svg>
       <div class="graph-help-row">
-        <span class="mini-copy">Wheel or pinch to zoom. Drag the background to pan. Search and quick starts work with keyboard only.</span>
+        <span class="mini-copy">Wheel or pinch to zoom. Drag the background to pan. Use Reset view if you want to return to the default reading frame.</span>
       </div>
     </div>
 
@@ -108,10 +108,14 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const root = document.getElementById(rootId);
   if (!(root instanceof HTMLElement)) throw new Error("Graph workbench root missing");
 
-  const GRAPH_WIDTH = 1000;
-  const GRAPH_HEIGHT = 760;
-  const MIN_SCALE = 0.7;
-  const MAX_SCALE = 3.4;
+  const GRAPH_WIDTH = 1120;
+  const GRAPH_HEIGHT = 860;
+  const MIN_SCALE = 0.55;
+  const MAX_SCALE = 4;
+  const LAYOUT_MIN_X = -0.24;
+  const LAYOUT_MAX_X = 1.24;
+  const LAYOUT_MIN_Y = -0.2;
+  const LAYOUT_MAX_Y = 1.2;
 
   const graphPath = root.dataset.graphPath;
   const conceptIndexPath = root.dataset.conceptIndexPath;
@@ -264,8 +268,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       const point = screenToCanvasPoint(clientX, clientY);
       const node = graph.nodeMap.get(interaction.nodeId);
       if (!node) return;
-      node.x = clamp(point.graphX / GRAPH_WIDTH, 0.03, 0.97);
-      node.y = clamp(point.graphY / GRAPH_HEIGHT, 0.04, 0.96);
+      node.x = clamp(point.graphX / GRAPH_WIDTH, LAYOUT_MIN_X, LAYOUT_MAX_X);
+      node.y = clamp(point.graphY / GRAPH_HEIGHT, LAYOUT_MIN_Y, LAYOUT_MAX_Y);
       renderGraph();
       restoreStatus();
     }
@@ -419,7 +423,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
 
     canvas.innerHTML = `
       <g data-role="graph-viewport">
-        <rect class="graph-pan-target" x="-600" y="-600" width="2200" height="2000"></rect>
+        <rect class="graph-pan-target" x="-900" y="-900" width="3200" height="2800"></rect>
         <g class="graph-edge-layer">${edgeMarkup.join("")}</g>
         <g class="graph-node-layer">${nodeMarkup.join("")}</g>
       </g>

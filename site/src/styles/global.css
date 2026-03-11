@@ -26,6 +26,11 @@
   --canvas-border: rgba(24, 42, 74, 0.12);
   --node-stroke: rgba(245, 248, 252, 0.98);
   --label-stroke: rgba(245, 248, 252, 0.98);
+  --graph-label: rgba(16, 32, 55, 0.82);
+  --graph-label-strong: rgba(16, 32, 55, 0.94);
+  --graph-label-selected: #6d4b06;
+  --graph-node-neighbor-stroke: rgba(24, 42, 74, 0.4);
+  --graph-node-selected-stroke: rgba(126, 92, 18, 0.8);
 }
 
 html[data-theme="dark"] {
@@ -56,6 +61,11 @@ html[data-theme="dark"] {
   --canvas-border: rgba(143, 176, 232, 0.12);
   --node-stroke: rgba(4, 8, 15, 0.98);
   --label-stroke: rgba(4, 8, 15, 0.96);
+  --graph-label: rgba(237, 244, 255, 0.84);
+  --graph-label-strong: rgba(244, 250, 255, 0.96);
+  --graph-label-selected: #fff4cf;
+  --graph-node-neighbor-stroke: rgba(239, 250, 255, 0.92);
+  --graph-node-selected-stroke: rgba(255, 248, 221, 0.96);
 }
 
 * {
@@ -867,7 +877,7 @@ h3 {
 }
 
 .graph-stage {
-  grid-template-columns: minmax(0, 2.25fr) minmax(320px, 0.75fr);
+  grid-template-columns: minmax(0, 2.75fr) minmax(320px, 0.68fr);
   align-items: start;
 }
 
@@ -918,7 +928,7 @@ h3 {
 
 .graph-canvas {
   width: 100%;
-  min-height: 46rem;
+  min-height: 52rem;
   border-radius: 1rem;
   background: var(--canvas-bg);
   border: 1px solid var(--canvas-border);
@@ -992,18 +1002,18 @@ h3 {
 }
 
 .graph-node-group.is-neighbor .graph-node {
-  stroke: rgba(239, 250, 255, 0.92);
+  stroke: var(--graph-node-neighbor-stroke);
   stroke-width: 2.2;
 }
 
 .graph-node-group.is-selected .graph-node {
   fill: #ffd77d;
-  stroke: rgba(255, 248, 221, 0.96);
+  stroke: var(--graph-node-selected-stroke);
   stroke-width: 2.4;
 }
 
 .graph-label {
-  fill: color-mix(in srgb, var(--text) 78%, transparent);
+  fill: var(--graph-label);
   font-size: 12px;
   font-weight: 600;
   text-anchor: middle;
@@ -1015,11 +1025,11 @@ h3 {
 }
 
 .graph-label.is-neighbor {
-  fill: rgba(240, 248, 255, 0.96);
+  fill: var(--graph-label-strong);
 }
 
 .graph-label.is-selected {
-  fill: #fff4cf;
+  fill: var(--graph-label-selected);
 }
 
 .selected-title-row {

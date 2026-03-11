@@ -1,6 +1,10 @@
 from __future__ import annotations
 
+import hashlib
+import os
+import shutil
 import sqlite3
+import tempfile
 from pathlib import Path
 from urllib.parse import quote
 
@@ -53,11 +57,84 @@ PRESET_HELP = {
     "Bridge builder": "Looks for ideas that connect literatures and shift the field map.",
 }
 
+_READONLY_DB_CACHE: dict[str, Path] = {}
+
+
+def _readonly_uri(path: Path) -> str:
+    return f"file:{quote(str(path))}?mode=ro&immutable=1"
+
+
+def _probe_connection(conn: sqlite3.Connection) -> None:
+    conn.execute("PRAGMA query_only = 1")
+    conn.execute("PRAGMA schema_version").fetchone()
+
+
+def _staged_db_path(source_path: Path) -> Path:
+    stat = source_path.stat()
+    fingerprint = hashlib.sha1(
+        f"{source_path}|{stat.st_size}|{int(stat.st_mtime)}".encode("utf-8"),
+    ).hexdigest()[:12]
+    cache_root = Path(os.environ.get("FRONTIERGRAPH_DB_CACHE_DIR", "")).expanduser() if os.environ.get("FRONTIERGRAPH_DB_CACHE_DIR") else Path(tempfile.gettempdir()) / "frontiergraph-db-cache"
+    cache_root.mkdir(parents=True, exist_ok=True)
+    suffix = source_path.suffix or ".sqlite"
+    return cache_root / f"{source_path.stem}-{fingerprint}{suffix}"
+
+
+def _stage_readonly_db(source_path: Path) -> Path:
+    target_path = _staged_db_path(source_path)
+    if target_path.exists() and target_path.stat().st_size == source_path.stat().st_size:
+        return target_path
+    shutil.copyfile(source_path, target_path)
+    target_path.chmod(0o644)
+    return target_path
+
 
 def connect_readonly(db_path: str) -> sqlite3.Connection:
     path = Path(db_path).expanduser().resolve()
-    uri = f"file:{quote(str(path))}?mode=ro"
-    return sqlite3.connect(uri, uri=True, check_same_thread=False, timeout=30)
+    cache_key = str(path)
+    cached_path = _READONLY_DB_CACHE.get(cache_key)
+    errors: list[Exception] = []
+
+    seen_candidates: set[Path] = set()
+    for candidate in [cached_path, path]:
+        if candidate is None or candidate in seen_candidates:
+            continue
+        seen_candidates.add(candidate)
+        conn: sqlite3.Connection | None = None
+        try:
+            conn = sqlite3.connect(_readonly_uri(candidate), uri=True, check_same_thread=False, timeout=30)
+            _probe_connection(conn)
+            _READONLY_DB_CACHE[cache_key] = candidate
+            return conn
+        except sqlite3.OperationalError as exc:
+            errors.append(exc)
+            try:
+                conn.close()
+            except Exception:
+                pass
+
+    try:
+        staged_path = _stage_readonly_db(path)
+    except OSError as exc:
+        errors.append(exc)
+        staged_path = None
+    if staged_path and staged_path != path:
+        conn = None
+        try:
+            conn = sqlite3.connect(_readonly_uri(staged_path), uri=True, check_same_thread=False, timeout=30)
+            _probe_connection(conn)
+            _READONLY_DB_CACHE[cache_key] = staged_path
+            return conn
+        except sqlite3.OperationalError as exc:
+            errors.append(exc)
+            try:
+                conn.close()
+            except Exception:
+                pass
+
+    if errors:
+        raise errors[-1]
+    raise sqlite3.OperationalError(f"unable to open database file: {path}")
 
 
 def load_app_mode(db_path: str) -> str:

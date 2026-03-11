@@ -832,9 +832,16 @@ def main() -> None:
         st.error(f"Database not found: {db_path}")
         st.stop()
 
-    app_mode = load_app_mode(db_path)
-    nodes_df = load_nodes_cached(db_path)
-    candidates_df = load_candidate_summary_cached(db_path)
+    try:
+        app_mode = load_app_mode(db_path)
+        nodes_df = load_nodes_cached(db_path)
+        candidates_df = load_candidate_summary_cached(db_path)
+    except sqlite3.Error as exc:
+        st.error(f"Could not open the configured database: {db_path}")
+        st.caption("The public app uses a read-only SQLite build. If the mounted copy cannot be read in place, FrontierGraph now retries from a local cache.")
+        st.code(str(exc))
+        st.stop()
+
     if nodes_df.empty or candidates_df.empty:
         st.error("The database is missing the node or candidate tables needed by the app.")
         st.stop()

@@ -11,6 +11,7 @@ substitutions:
   _MAX_INSTANCES: "3"
   _DATA_BUCKET: ""
   _DB_FILENAME: app_causalclaims.db
+  _CONCEPT_DB_FILENAME: ""
   _MOUNT_PATH: /mnt/ranker-data
   _VOLUME_NAME: ranker-data
 
@@ -68,6 +69,9 @@ steps:
         )
         if [[ -n "${_DATA_BUCKET}" ]]; then
           env_vars="${env_vars},ECON_OPPORTUNITY_DB=${_MOUNT_PATH}/${_DB_FILENAME}"
+          if [[ -n "${_CONCEPT_DB_FILENAME}" ]]; then
+            env_vars="${env_vars},ECON_CONCEPT_DB=${_MOUNT_PATH}/${_CONCEPT_DB_FILENAME}"
+          fi
           deploy_args+=(
             --add-volume "name=${_VOLUME_NAME},type=cloud-storage,bucket=${_DATA_BUCKET},readonly=true"
             --add-volume-mount "volume=${_VOLUME_NAME},mount-path=${_MOUNT_PATH}"
