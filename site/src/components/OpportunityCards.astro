@@ -6,14 +6,15 @@ interface Props {
   title?: string;
   caption?: string;
   compact?: boolean;
+  standalone?: boolean;
 }
 
-const { items, title, caption, compact = false } = Astro.props;
+const { items, title, caption, compact = false, standalone = true } = Astro.props;
 ---
 
-<section class="section">
+<section class:list={[standalone && "section"]}>
   {title && (
-    <div class="section-heading">
+    <div class:list={["section-heading", !standalone && "section-heading-compact"]}>
       <div>
         <span class="eyebrow">Ranked opportunities</span>
         <h2>{title}</h2>
@@ -30,19 +31,17 @@ const { items, title, caption, compact = false } = Astro.props;
         </div>
         <h3>{item.source_label} → {item.target_label}</h3>
         <p class="card-copy">
-          Path support {formatPercent(item.path_support_norm)} · gap bonus {item.gap_bonus.toFixed(2)} · mediators {item.mediator_count}
+          Path support {formatPercent(item.path_support_norm)} with {item.mediator_count} mediators and {item.cooc_count} direct co-occurrences in the current graph.
         </p>
-        <div class="pill-row">
-          <span class="field-pill">co-occurrence {item.cooc_count}</span>
-          <span class="field-pill">motifs {item.motif_count}</span>
-          <span class="field-pill">dup penalty {item.duplicate_penalty.toFixed(3)}</span>
+        <div class="opportunity-stat-row">
+          <span>Gap {item.gap_bonus.toFixed(2)}</span>
+          <span>Motifs {item.motif_count}</span>
+          <span>Co-occurrence {item.cooc_count}</span>
         </div>
         <p class="opportunity-context">
-          Source context: {shortList(item.top_countries_source)} · Target context: {shortList(item.top_countries_target)}
+          Source context {shortList(item.top_countries_source)} · Target context {shortList(item.top_countries_target)}
         </p>
-        <div class="button-row">
-          <a class="button-secondary" href={item.app_link}>Open in app</a>
-        </div>
+        <a class="text-link" href={item.app_link}>Open in app</a>
       </article>
     ))}
   </div>

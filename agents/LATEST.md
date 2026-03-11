@@ -57,7 +57,7 @@
 
 ## Decision Log
 - Last major deployment state:
-  - Site live on rewritten concept-graph framing
+  - Site live on simplified concept-graph framing with the page-by-page polish pass on homepage, graph, opportunities, method, and compare
   - App live on suppressed baseline DB
 - Last major product decision:
   - baseline exploratory is the product

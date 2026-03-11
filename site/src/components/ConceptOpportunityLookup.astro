@@ -3,6 +3,7 @@ interface Props {
   conceptIndexPath: string;
   neighborhoodsIndexPath: string;
   opportunitiesIndexPath: string;
+  appUrl?: string;
   title?: string;
   caption?: string;
 }
@@ -11,6 +12,7 @@ const {
   conceptIndexPath,
   neighborhoodsIndexPath,
   opportunitiesIndexPath,
+  appUrl = "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app",
   title = "Search the concept graph",
   caption = "Look up a concept by label or alias, inspect its local neighborhood, and jump into the explorer for the full ranked context.",
 } = Astro.props;
@@ -34,7 +36,7 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
   </div>
 
   <div class="lookup-grid">
-    <div class="lookup-card">
+    <div class="lookup-card lookup-card-search">
       <label class="search-shell lookup-search">
         <span>Find a concept</span>
         <input type="search" placeholder="Search labels or aliases" data-role="search-input" />
@@ -42,7 +44,7 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
       </label>
       <div class="lookup-actions">
         <a class="button-secondary" href="/graph/">Open graph viewer</a>
-        <a class="button-primary" data-role="open-app" href="https://frontiergraph.com">Open explorer</a>
+        <a class="button-primary" data-role="open-app" href={appUrl}>Open explorer</a>
       </div>
     </div>
 
@@ -111,7 +113,6 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
         ${formatNumber(concept.instance_support)} node instances · ${formatNumber(concept.distinct_paper_support)} papers
       </p>
       <p class="mini-copy">Top countries: ${escapeHtml((concept.top_countries || []).slice(0, 3).join(", ") || "NA")}</p>
-      <p class="mini-copy">Top units: ${escapeHtml((concept.top_units || []).slice(0, 3).join(", ") || "NA")}</p>
       <p class="mini-copy">Aliases: ${escapeHtml((concept.aliases || []).slice(0, 8).join(", ") || "NA")}</p>
     `;
     if (openAppLink instanceof HTMLAnchorElement) {

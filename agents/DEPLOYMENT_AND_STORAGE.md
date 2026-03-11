@@ -16,7 +16,7 @@ The Astro site is built and deployed through the connected GitHub repo.
 Important operational facts:
 
 - successful deploys come from pushes to `main`
-- the current rewritten site is already live
+- the current simplified concept-graph site is live
 
 ## Cloud Run
 
@@ -106,6 +106,7 @@ Archive or online-only:
 ## Decision Log
 
 - site redeployed from the rewritten concept graph version
+- site redeployed again with the simplification/polish pass across homepage, graph, opportunities, method, and compare
 - live app moved to the suppressed baseline DB
 - public bucket intentionally not changed at the same time
 
@@ -120,4 +121,3 @@ Archive or online-only:
 - leave rollback DB alone until there is no need for it
 - change the public bucket only when you want downloads to match the new live app more explicitly
 - preserve manifests and summaries before aggressive storage cleanup
-

@@ -14,36 +14,33 @@ const conservative = data.compare.regimes.find((regime) => regime.regime === "co
   <main>
     <section class="page-hero">
       <span class="eyebrow">Method</span>
-      <h1>How FrontierGraph turns the literature into a ranked concept graph.</h1>
+      <h1>One graph pipeline, one public default.</h1>
       <p class="lede">
-        AI extracts graph structure from paper text. The rest of the system is deterministic: ontology construction, ranking, comparison, and duplicate cleanup.
+        AI extracts graph structure from paper text. Ontology construction, ranking, comparison, and duplicate cleanup are deterministic and inspectable.
       </p>
+      <div class="button-row">
+        <span class="field-pill">Default: {data.default_view.regime} {data.default_view.mapping}</span>
+        <a class="button-secondary" href="/graph/">Open graph</a>
+        <a class="button-tertiary" href="/compare/">Open compare</a>
+      </div>
     </section>
 
     <section class="section">
-      <div class="card-grid method-top-grid">
-        <article class="card">
-          <span class="eyebrow">Corpus</span>
-          <h3>{formatNumber(data.metrics.papers)} papers</h3>
-          <p class="card-copy">
-            Published economics-relevant papers selected through the current source regime, then filtered to the extraction-ready subset.
-          </p>
-        </article>
-        <article class="card">
-          <span class="eyebrow">Extraction</span>
-          <h3>{formatNumber(data.metrics.node_instances)} node instances</h3>
-          <p class="card-copy">
-            Title/abstract extraction yields paper-local nodes and edges with direction, evidence-method, and claim metadata.
-          </p>
-        </article>
-        <article class="card">
-          <span class="eyebrow">Default view</span>
-          <h3>{data.default_view.regime} {data.default_view.mapping}</h3>
-          <p class="card-copy">
-            The public default keeps the ontology compact while still reaching exploratory coverage comparable to the other regimes.
-          </p>
-        </article>
-      </div>
+      <article class="content-panel summary-panel">
+        <span class="eyebrow">Short version</span>
+        <h2>FrontierGraph turns a published-paper corpus into a reusable concept map, then ranks the links that still look structurally incomplete.</h2>
+        <p class="card-copy">
+          The current public build uses <strong>{formatNumber(data.metrics.papers)}</strong> papers,
+          <strong> {formatNumber(data.metrics.node_instances)}</strong> extracted node instances, and
+          <strong> {formatNumber(data.metrics.edges)}</strong> extracted edges. The public surface defaults to
+          <strong> {baseline.label} exploratory</strong> because it stays compact without giving up much exploratory coverage.
+        </p>
+        <div class="pill-row">
+          <span class="field-pill">{formatPercent(baseline.soft_coverage)} exploratory coverage</span>
+          <span class="field-pill">{formatNumber(baseline.head_count)} baseline head concepts</span>
+          <span class="field-pill">{formatNumber(data.metrics.suppressed_candidate_count)} visible ranked links</span>
+        </div>
+      </article>
     </section>
 
     <section class="section method-stack">
@@ -56,13 +53,11 @@ const conservative = data.compare.regimes.find((regime) => regime.regime === "co
         </summary>
         <div class="method-body">
           <p>
-            The current public build uses the `FWCI core150 + adjacent150` source cut and the merged extraction corpus:
-            {` `}<strong>{formatNumber(data.metrics.papers)}</strong> papers,
-            {` `}<strong>{formatNumber(data.metrics.node_instances)}</strong> extracted node instances, and
-            {` `}<strong>{formatNumber(data.metrics.edges)}</strong> extracted edges.
+            The public build uses the current <strong>FWCI core150 + adjacent150</strong> source cut and its merged extraction corpus.
+            That keeps the graph tied to a curated published-paper sample rather than a broad scrape.
           </p>
           <p>
-            The site defaults to the concept graph rather than the older JEL browse layer. JEL remains a coarse fallback, not the core ontology.
+            Each paper contributes a local graph built from title and abstract text, so the final product is assembled from many paper-level structures rather than one global embedding pass.
           </p>
         </div>
       </details>
@@ -70,18 +65,16 @@ const conservative = data.compare.regimes.find((regime) => regime.regime === "co
       <details class="method-detail">
         <summary>
           <span>
-            <span class="eyebrow">Graph extraction</span>
-            <strong>What the model does</strong>
+            <span class="eyebrow">Extraction</span>
+            <strong>What the model does, and where it stops</strong>
           </span>
         </summary>
         <div class="method-body">
           <p>
-            The model extracts paper-local nodes and edges from titles and abstracts only. Nodes carry local study context
-            where available, while edges carry relation directionality, causal presentation, edge role, claim status,
-            evidence method, and supporting text.
+            The model extracts paper-local nodes and edges only. Nodes carry study-local context where available, while edges retain directionality, relation type, claim status, and evidence-method metadata.
           </p>
           <p>
-            AI stops at graph extraction. Ranking, ontology comparison, and duplicate cleanup are deterministic and inspectable.
+            AI stops there. Ranking, ontology comparison, and cleanup all happen in deterministic downstream layers.
           </p>
         </div>
       </details>
@@ -90,15 +83,14 @@ const conservative = data.compare.regimes.find((regime) => regime.regime === "co
         <summary>
           <span>
             <span class="eyebrow">Ontology</span>
-            <strong>How paper-local labels become reusable concepts</strong>
+            <strong>Why Baseline exploratory is the default</strong>
           </span>
         </summary>
         <div class="method-body">
           <p>
-            FrontierGraph compares three support-gated ontology regimes. The public default is
-            {` `}<strong>{baseline.label} exploratory</strong>, with
-            {` `}<strong>{formatNumber(baseline.head_count)}</strong> head concepts and
-            {` `}<strong>{formatPercent(baseline.soft_coverage)}</strong> exploratory coverage.
+            FrontierGraph keeps three support-gated ontology regimes visible. The public default is
+            <strong> {baseline.label} exploratory</strong>, with <strong>{formatNumber(baseline.head_count)}</strong> head concepts and
+            <strong> {formatPercent(baseline.soft_coverage)}</strong> exploratory coverage.
           </p>
           <div class="pill-row">
             {broad && <span class="field-pill">Broad: {formatNumber(broad.head_count)} heads</span>}
@@ -106,8 +98,7 @@ const conservative = data.compare.regimes.find((regime) => regime.regime === "co
             {conservative && <span class="field-pill">Conservative: {formatNumber(conservative.head_count)} heads</span>}
           </div>
           <p>
-            “Strict” mappings keep only high-confidence concept identity. “Exploratory” mappings include the strict map plus
-            nearest-head assignments for broader product-facing coverage.
+            “Strict” mappings keep only high-confidence concept identity. “Exploratory” mappings widen coverage by adding nearest-head assignments for product-facing navigation and ranking.
           </p>
         </div>
       </details>
@@ -115,62 +106,20 @@ const conservative = data.compare.regimes.find((regime) => regime.regime === "co
       <details class="method-detail">
         <summary>
           <span>
-            <span class="eyebrow">Ranking</span>
-            <strong>How missing links are scored</strong>
+            <span class="eyebrow">Ranking and cleanup</span>
+            <strong>How missing links become the public opportunity surface</strong>
           </span>
         </summary>
         <div class="method-body">
           <p>
-            The ranker combines deterministic graph signals such as path support, gap bonus, motif completion, mediator
-            structure, co-occurrence scarcity, and hub penalties. The goal is to surface concept pairs that look
-            structurally underconnected relative to the surrounding literature graph.
+            The ranker combines deterministic graph signals such as path support, gap bonus, motif completion, mediator structure, co-occurrence scarcity, and hub penalties.
           </p>
           <p>
-            The public opportunities page and app both use the same suppressed baseline exploratory top slice rather than a separate marketing list.
-          </p>
-        </div>
-      </details>
-
-      <details class="method-detail">
-        <summary>
-          <span>
-            <span class="eyebrow">Duplicate suppression</span>
-            <strong>How near-synonym loops are cleaned up</strong>
-          </span>
-        </summary>
-        <div class="method-body">
-          <p>
-            Ontology alone does not prevent recommendation loops such as concept variants ranking against one another. A
-            deterministic suppression layer therefore removes or down-ranks same-family duplicate pairs on the public
-            baseline surface.
-          </p>
-          <div class="pill-row">
-            <span class="field-pill">{formatNumber(data.metrics.suppressed_candidate_count)} visible candidates</span>
-            <span class="field-pill">{formatNumber(data.metrics.duplicate_loops_removed_top100)} duplicate loops removed in top 100</span>
-          </div>
-          <p>
-            The app keeps base score and adjusted score visible so the cleanup layer remains auditable.
-          </p>
-        </div>
-      </details>
-
-      <details class="method-detail">
-        <summary>
-          <span>
-            <span class="eyebrow">Regime comparison</span>
-            <strong>Why sensitivity is exposed rather than hidden</strong>
-          </span>
-        </summary>
-        <div class="method-body">
-          <p>{data.compare.default_reason}</p>
-          <p>{data.compare.strict_reason}</p>
-          <p>
-            The website and app treat ontology choice as an inspectable modeling decision. Baseline exploratory is the
-            default product view, but the other regimes remain available as advanced comparison surfaces.
+            A second deterministic suppression layer cleans near-synonym loops on the public Baseline exploratory top slice, leaving <strong>{formatNumber(data.metrics.suppressed_candidate_count)}</strong> visible candidates after cleanup.
           </p>
           <div class="button-row">
-            <a class="button-secondary" href="/compare/">Open comparison page</a>
-            <a class="button-tertiary" href="/downloads/">Download summaries</a>
+            <a class="button-secondary" href="/opportunities/">See opportunities</a>
+            <a class="button-tertiary" href="/compare/">Inspect regime comparison</a>
           </div>
         </div>
       </details>

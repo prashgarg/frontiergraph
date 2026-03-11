@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import GraphWorkbench from "../../components/GraphWorkbench.astro";
-import { data, formatNumber, formatPercent } from "../../lib/site-data";
+import { data, formatNumber } from "../../lib/site-data";
 
 const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`;
 ---
@@ -12,32 +12,16 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
 >
   <main>
     <section class="page-hero">
-      <span class="eyebrow">Observed concept graph</span>
-      <h1>Explore the baseline literature network.</h1>
+      <span class="eyebrow">Graph</span>
+      <h1>Read the literature as a network.</h1>
       <p class="lede">
-        Start from the observed graph. Click a concept to brighten its neighborhood and inspect the nearby opportunity surface.
+        The public graph starts on the observed Baseline exploratory backbone. Click a concept to dim the rest of the network and inspect one local neighborhood at a time.
       </p>
       <div class="button-row">
-        <span class="field-pill">{defaultRegime}</span>
+        <span class="field-pill">Default: {defaultRegime}</span>
+        <span class="field-pill">{formatNumber(data.home.graph_snapshot.nodes)} concepts in view</span>
         <a class="button-secondary" href="/opportunities/">See ranked opportunities</a>
         <a class="button-tertiary" href={data.app_url}>Open deeper explorer</a>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="metrics-grid">
-        <article class="metric-card">
-          <div class="metric-value">{formatNumber(data.home.graph_snapshot.nodes)}</div>
-          <div class="metric-label">concepts in the public backbone</div>
-        </article>
-        <article class="metric-card">
-          <div class="metric-value">{formatNumber(data.home.graph_snapshot.edges)}</div>
-          <div class="metric-label">observed backbone edges shown at first load</div>
-        </article>
-        <article class="metric-card">
-          <div class="metric-value">{formatPercent(data.metrics.baseline_soft_coverage)}</div>
-          <div class="metric-label">exploratory coverage in the default ontology view</div>
-        </article>
       </div>
     </section>
 

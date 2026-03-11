@@ -556,6 +556,12 @@ h3 {
   border-top: 1px solid var(--line);
 }
 
+.hero-note {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
 .hero-stat-strip div {
   min-width: 10rem;
 }
@@ -573,6 +579,7 @@ h3 {
 
 .graph-preview-card,
 .mini-snapshot-card,
+.opportunity-card,
 .lookup-card,
 .sidebar-card,
 .method-detail,
@@ -586,6 +593,7 @@ h3 {
 
 .graph-preview-card,
 .mini-snapshot-card,
+.opportunity-card,
 .lookup-card,
 .sidebar-card,
 .method-detail,
@@ -597,6 +605,7 @@ h3 {
 
 .graph-preview-card,
 .mini-snapshot-card,
+.opportunity-card,
 .lookup-card,
 .sidebar-card,
 .artifact-card {
@@ -606,6 +615,7 @@ h3 {
 .hero-snapshot-list,
 .lookup-grid,
 .graph-layout,
+.graph-stage,
 .download-artifact-grid,
 .compare-note-grid {
   display: grid;
@@ -613,11 +623,13 @@ h3 {
 }
 
 .hero-snapshot-list {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .mini-snapshot-card {
   min-height: 7rem;
+  display: grid;
+  gap: 0.4rem;
 }
 
 .mini-copy {
@@ -627,7 +639,7 @@ h3 {
 }
 
 .action-grid {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .action-card,
@@ -660,7 +672,11 @@ h3 {
 }
 
 .lookup-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.lookup-card-search {
+  grid-column: 1 / -1;
 }
 
 .lookup-card h3,
@@ -736,11 +752,25 @@ h3 {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
   gap: 1rem;
-  align-items: end;
+  align-items: start;
+}
+
+.graph-jumpbar {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  background: rgba(8, 14, 25, 0.72);
 }
 
 .graph-layout {
   grid-template-columns: minmax(0, 1.65fr) minmax(320px, 0.85fr);
+  align-items: start;
+}
+
+.graph-stage {
+  grid-template-columns: minmax(0, 1.9fr) minmax(300px, 0.75fr);
   align-items: start;
 }
 
@@ -752,15 +782,27 @@ h3 {
   padding: 1rem;
 }
 
-.graph-status {
-  min-height: 3.2rem;
+.graph-status-shell {
+  display: flex;
+  align-items: stretch;
+  gap: 0.8rem;
   margin-bottom: 0.85rem;
+}
+
+.graph-status {
+  flex: 1 1 auto;
+  min-height: 3.2rem;
   border: 1px solid var(--line);
   border-radius: 1rem;
   background: rgba(7, 12, 22, 0.9);
   padding: 0.9rem 1rem;
   color: var(--muted);
   line-height: 1.45;
+}
+
+.graph-reset {
+  flex: 0 0 auto;
+  min-width: 8rem;
 }
 
 .graph-canvas {
@@ -777,6 +819,23 @@ h3 {
 .graph-sidebar {
   display: grid;
   gap: 1rem;
+}
+
+.graph-inspector {
+  display: grid;
+  gap: 1rem;
+  align-self: start;
+}
+
+.central-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.central-list-inline .list-link {
+  width: auto;
+  min-width: 11rem;
 }
 
 .graph-edge {
@@ -866,6 +925,36 @@ h3 {
   margin: 0;
 }
 
+.inspector-card {
+  display: grid;
+  gap: 1rem;
+}
+
+.inspector-head h3 {
+  margin: 0.2rem 0 0;
+}
+
+.inspector-detail {
+  border-top: 1px solid var(--line);
+  padding-top: 0.9rem;
+}
+
+.inspector-detail summary {
+  cursor: pointer;
+  font-family: "Sora", sans-serif;
+  font-size: 0.98rem;
+  color: var(--text);
+  list-style: none;
+}
+
+.inspector-detail summary::-webkit-details-marker {
+  display: none;
+}
+
+.inspector-detail[open] summary {
+  margin-bottom: 0.85rem;
+}
+
 .neighbor-group + .neighbor-group {
   margin-top: 0.85rem;
 }
@@ -900,9 +989,66 @@ h3 {
   margin-bottom: 0.25rem;
 }
 
+.mini-opportunity .text-link {
+  display: inline-flex;
+  margin-top: 0.35rem;
+}
+
+.opportunity-cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.opportunity-cards.compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.opportunity-card {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.opportunity-card h3 {
+  margin: 0;
+}
+
+.opportunity-kicker,
+.opportunity-stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.opportunity-kicker {
+  justify-content: space-between;
+}
+
+.opportunity-stat-row span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(10, 18, 30, 0.44);
+}
+
+.opportunity-context {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
 .method-stack {
   display: grid;
   gap: 0.9rem;
+}
+
+.summary-panel h2 {
+  max-width: 48rem;
 }
 
 .method-top-grid {
@@ -941,6 +1087,11 @@ h3 {
   line-height: 1.65;
 }
 
+.opportunity-slice-stack {
+  display: grid;
+  gap: 1.25rem;
+}
+
 .split-section {
   display: grid;
   gap: 1rem;
@@ -953,6 +1104,11 @@ h3 {
 
 .compare-note-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.compare-card.is-default {
+  border-color: var(--line-strong);
+  background: rgba(14, 24, 39, 0.92);
 }
 
 .compare-table td {
@@ -971,6 +1127,10 @@ h3 {
   margin-top: 0;
 }
 
+.section-heading-compact {
+  margin-bottom: 0.75rem;
+}
+
 @media (max-width: 960px) {
   .hero,
   .metrics-grid,
@@ -982,6 +1142,7 @@ h3 {
   .corridor-grid,
   .graph-toolbar,
   .graph-layout,
+  .graph-stage,
   .lookup-grid,
   .method-top-grid,
   .compare-regime-grid,
@@ -1010,6 +1171,17 @@ h3 {
 
   .hero-stat-strip {
     display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .graph-status-shell {
+    flex-direction: column;
+  }
+
+  .central-list-inline .list-link,
+  .opportunity-cards,
+  .opportunity-cards.compact {
+    width: 100%;
     grid-template-columns: 1fr;
   }
 

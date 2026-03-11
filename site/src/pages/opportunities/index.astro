@@ -5,6 +5,7 @@ import OpportunityCards from "../../components/OpportunityCards.astro";
 import { data, formatNumber } from "../../lib/site-data";
 
 const slices = data.opportunities.top_slices;
+const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`;
 ---
 
 <BaseLayout
@@ -13,62 +14,78 @@ const slices = data.opportunities.top_slices;
 >
   <main>
     <section class="page-hero">
-      <span class="eyebrow">Suppressed recommendation surface</span>
-      <h1>Open the links the graph thinks economics has not finished yet.</h1>
+      <span class="eyebrow">Opportunities</span>
+      <h1>Open the cleaned recommendation surface.</h1>
       <p class="lede">
-        These opportunities come from the baseline exploratory concept graph after deterministic near-synonym cleanup.
-        The public surface shows the cleaned top slice, while the app lets you inspect raw score, duplicate penalty,
-        paths, mediators, and supporting context in more detail.
+        These links come from the public <strong>{defaultRegime}</strong> ranking surface after deterministic near-synonym cleanup.
+        This page keeps the list readable. The app keeps the deeper score mechanics and supporting context.
       </p>
       <div class="button-row">
         <span class="field-pill">{formatNumber(data.metrics.suppressed_candidate_count)} visible candidates</span>
-        <span class="field-pill">{formatNumber(data.metrics.duplicate_loops_removed_top100)} duplicate loops removed in the top 100</span>
+        <span class="field-pill">{formatNumber(data.metrics.duplicate_loops_removed_top100)} duplicate loops removed in top 100</span>
         <a class="button-secondary" href={data.app_url}>Open explorer</a>
       </div>
     </section>
 
     <ConceptOpportunityLookup
+      appUrl={data.app_url}
       conceptIndexPath={data.graph.concept_index_path}
       neighborhoodsIndexPath={data.graph.concept_neighborhoods_index_path}
       opportunitiesIndexPath={data.graph.concept_opportunities_index_path}
-      title="Search a concept and see what opens around it"
-      caption="This search is lexical and alias-based. Use it to jump to a concept, inspect its local observed neighborhood, and see the strongest suppressed opportunities touching it."
+      title="Search one concept and inspect the local opportunity surface"
+      caption="Use lexical search to jump to a concept, see the observed neighborhood around it, and open the strongest nearby ranked links."
     />
 
     <OpportunityCards
       items={slices.overall}
       title="Top opportunities overall"
-      caption="The default public list comes from the baseline exploratory recommendation surface after the duplicate-family cleanup layer."
+      caption="This is the main public list. Secondary slices stay tucked behind a disclosure below."
     />
 
-    <div class="section split-section">
-      <OpportunityCards
-        items={slices.bridges}
-        title="Cross-field bridges"
-        caption="Links where the graph suggests separate literatures are ready to connect."
-        compact={true}
-      />
-      <OpportunityCards
-        items={slices.frontier}
-        title="Frontier bets"
-        caption="Links with stronger path support and higher gap signals, even if they are not yet broadly explored."
-        compact={true}
-      />
-    </div>
+    <section class="section">
+      <details class="method-detail">
+        <summary>
+          <span>
+            <span class="eyebrow">Secondary slices</span>
+            <strong>Open the narrower opportunity views</strong>
+          </span>
+        </summary>
+        <div class="method-body opportunity-slice-stack">
+          <div class="split-section">
+            <OpportunityCards
+              items={slices.bridges}
+              title="Cross-field bridges"
+              caption="Links where the graph suggests separate literatures are ready to connect."
+              compact={true}
+              standalone={false}
+            />
+            <OpportunityCards
+              items={slices.frontier}
+              title="Frontier bets"
+              caption="Links with stronger path support and larger local gaps, even before they are broadly explored."
+              compact={true}
+              standalone={false}
+            />
+          </div>
 
-    <div class="section split-section">
-      <OpportunityCards
-        items={slices.fast_follow}
-        title="Fast follow"
-        caption="Ideas that look ripe for immediate follow-through because the local graph structure is already dense."
-        compact={true}
-      />
-      <OpportunityCards
-        items={slices.underexplored}
-        title="Underexplored links"
-        caption="Concept pairs where the graph still looks structurally incomplete relative to the surrounding neighborhood."
-        compact={true}
-      />
-    </div>
+          <div class="split-section">
+            <OpportunityCards
+              items={slices.fast_follow}
+              title="Fast follow"
+              caption="Ideas that look ready for immediate follow-through because the local graph is already dense."
+              compact={true}
+              standalone={false}
+            />
+            <OpportunityCards
+              items={slices.underexplored}
+              title="Underexplored links"
+              caption="Pairs where the surrounding neighborhood looks fuller than the direct connection itself."
+              compact={true}
+              standalone={false}
+            />
+          </div>
+        </div>
+      </details>
+    </section>
   </main>
 </BaseLayout>

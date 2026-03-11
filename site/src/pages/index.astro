@@ -1,29 +1,23 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import InfoTip from "../components/InfoTip.astro";
 import OpportunityCards from "../components/OpportunityCards.astro";
 import { data, formatCompact, formatNumber, formatPercent, shortList } from "../lib/site-data";
 
 const actions = [
   {
     href: "/graph/",
-    title: "Explore the graph",
-    copy: "Start from the observed backbone, then expand local neighborhoods when a concept looks interesting.",
+    title: "Start with the graph",
+    copy: "Open the observed backbone first, then isolate one local neighborhood at a time.",
   },
   {
     href: "/opportunities/",
-    title: "See ranked opportunities",
-    copy: "Inspect the cleaned recommendation surface and the strongest underexplored links it surfaces.",
+    title: "Open ranked links",
+    copy: "Browse the cleaned Baseline exploratory surface instead of a raw score dump.",
   },
   {
     href: "/method/",
-    title: "Read the method",
-    copy: "Read the short version first, then open the protocol details only if you want them.",
-  },
-  {
-    href: "/compare/",
-    title: "Compare ontology views",
-    copy: "See why Baseline exploratory is the default and how the other ontology views differ.",
+    title: "Check the method",
+    copy: "Read the short protocol first. Open the deeper machinery only if you need it.",
   },
 ];
 
@@ -38,85 +32,73 @@ const featuredConcepts = data.home.featured_central_concepts.slice(0, 4);
     <section class="hero hero-home">
       <div class="hero-panel hero-copy-panel">
         <span class="eyebrow">Concept graph of economics</span>
-        <h1>A concept graph of economics, ranked for where to go next.</h1>
+        <h1>A graph of economics that points to what to study next.</h1>
         <p class="lede">
-          FrontierGraph extracts concept relationships from the literature, builds a reusable concept map, and surfaces
-          underexplored links worth investigating. The public default is <strong>{data.default_view.regime} {data.default_view.mapping}</strong>.
+          FrontierGraph turns paper text into a reusable concept graph and ranks the links that still look underexplored.
+          The public default is <strong>{data.default_view.regime} {data.default_view.mapping}</strong>.
         </p>
         <div class="hero-actions">
-          <a class="button-primary" href={data.app_url}>Open the explorer</a>
-          <a class="button-secondary" href="/graph/">Explore the graph</a>
-          <a class="button-tertiary" href="/method/">Read the method</a>
+          <a class="button-primary" href="/graph/">Explore the graph</a>
+          <a class="button-secondary" href="/opportunities/">See opportunities</a>
+          <a class="button-tertiary" href={data.app_url}>Open deeper explorer</a>
         </div>
-        <div class="hero-stat-strip">
+        <p class="hero-note">
+          Broad and Conservative remain available as advanced comparison views. They do not lead the public product.
+        </p>
+        <div class="hero-stat-strip hero-stat-strip-compact">
           <div>
-            <span class="tiny-label">Papers</span>
+            <span class="tiny-label">Production corpus</span>
             <strong>{formatCompact(data.metrics.papers)}</strong>
           </div>
           <div>
-            <span class="tiny-label">Concept heads</span>
-            <strong>{formatNumber(data.metrics.baseline_head_concepts)}</strong>
+            <span class="tiny-label">Default view</span>
+            <strong>{data.default_view.regime} {data.default_view.mapping}</strong>
           </div>
           <div>
-            <span class="tiny-label">Exploratory coverage</span>
-            <strong>{formatPercent(data.metrics.baseline_soft_coverage)}</strong>
+            <span class="tiny-label">Visible links</span>
+            <strong>{formatNumber(data.metrics.suppressed_candidate_count)}</strong>
           </div>
         </div>
       </div>
 
       <div class="hero-panel hero-visual-panel">
         <div class="graph-preview-card">
-          <span class="eyebrow">Observed baseline graph</span>
-          <h3>{formatNumber(data.home.graph_snapshot.nodes)} concepts · {formatNumber(data.home.graph_snapshot.edges)} backbone edges</h3>
+          <span class="eyebrow">Graph-first public surface</span>
+          <h3>Start on the observed backbone, not a control panel.</h3>
           <p class="card-copy">
-            The graph page opens on a backbone view and expands local neighborhoods on click, so users see the network itself rather than a static mock-up.
+            The graph page opens on a filtered public backbone, then narrows to one concept and its local neighborhood when you click.
           </p>
+          <div class="pill-row">
+            <span class="field-pill">{formatNumber(data.home.graph_snapshot.nodes)} concepts</span>
+            <span class="field-pill">{formatNumber(data.home.graph_snapshot.edges)} backbone edges</span>
+            <span class="field-pill">{formatPercent(data.metrics.baseline_soft_coverage)} exploratory coverage</span>
+          </div>
           <div class="button-row">
             <a class="button-secondary" href="/graph/">Open graph viewer</a>
-            <span class="field-pill">{data.default_view.regime} {data.default_view.mapping}</span>
+            <a class="button-tertiary" href="/compare/">Advanced compare</a>
           </div>
         </div>
-        <div class="hero-snapshot-list">
-          {featuredConcepts.slice(0, 2).map((concept) => (
-            <article class="mini-snapshot-card">
+        <div class="hero-snapshot-list hero-snapshot-list-wide">
+          {featuredConcepts.map((concept) => (
+            <a class="mini-snapshot-card" href={`/graph/?q=${encodeURIComponent(concept.label)}`}>
               <strong>{concept.label}</strong>
               <div class="mini-copy">
                 {formatNumber(concept.distinct_paper_support)} papers · degree {formatNumber(Math.round(concept.weighted_degree))}
               </div>
               <div class="mini-copy">{shortList(concept.top_countries)}</div>
-            </article>
+            </a>
           ))}
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="metrics-grid">
-        <article class="metric-card">
-          <div class="metric-value">{formatNumber(data.metrics.papers)}</div>
-          <div class="metric-label">papers in the current production corpus</div>
-        </article>
-        <article class="metric-card">
-          <div class="metric-value">{formatNumber(data.metrics.node_instances)}</div>
-          <div class="metric-label">extracted node instances across paper-local graphs</div>
-        </article>
-        <article class="metric-card">
-          <div class="metric-value">{formatNumber(data.metrics.baseline_head_concepts)}</div>
-          <div class="metric-label">head concepts in the default ontology view</div>
-        </article>
-        <article class="metric-card">
-          <div class="metric-value">{formatNumber(data.metrics.suppressed_candidate_count)}</div>
-          <div class="metric-label">cleaned candidate links in the public recommendation surface</div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
       <div class="section-heading">
         <div>
-          <span class="eyebrow">What you can do</span>
-          <h2>Use FrontierGraph at the depth you want</h2>
+          <span class="eyebrow">Use the product</span>
+          <h2>Three clear entry points</h2>
         </div>
+        <p class="section-copy">Start with the graph or the cleaned opportunity surface. Open comparison only when you want a sensitivity check.</p>
       </div>
       <div class="card-grid action-grid">
         {actions.map((action) => (
@@ -131,79 +113,41 @@ const featuredConcepts = data.home.featured_central_concepts.slice(0, 4);
 
     <OpportunityCards
       items={data.home.featured_opportunities}
-      title="Featured opportunities from the default surface"
-      caption="These rows come from the baseline exploratory recommendation surface after deterministic duplicate suppression. They are the same kinds of opportunities shown in the app."
+      title="A few opportunities from the default surface"
+      caption="These examples come directly from the cleaned Baseline exploratory ranking surface used in the public app."
     />
 
     <section class="section">
       <div class="section-heading">
         <div>
-          <span class="eyebrow">Benchmark</span>
-          <h2>Why not just use ChatGPT, Gemini, or Claude?</h2>
+          <span class="eyebrow">Why not a chatbot</span>
+          <h2>The product is a persistent map, not a one-off answer.</h2>
         </div>
       </div>
       <div class="trust-grid why-grid">
         <article class="card">
-          <div class="card-title-row">
-            <h3>Persistent map, not one answer</h3>
-            <InfoTip detail="A chat model answers one prompt at a time. FrontierGraph keeps a shared, updateable map of the literature, so concepts, neighborhoods, and missing links can be inspected and revisited across sessions." />
-          </div>
-          <p class="card-copy">FrontierGraph keeps a shared, inspectable map of the literature instead of answering one prompt at a time.</p>
+          <h3>Shared graph, not one prompt</h3>
+          <p class="card-copy">FrontierGraph keeps a reusable map of concepts, neighborhoods, and bridges that can be inspected across sessions.</p>
         </article>
         <article class="card">
-          <div class="card-title-row">
-            <h3>Deterministic ranking, not just prose</h3>
-            <InfoTip detail="AI extracts graph structure from text, but the ranking, ontology comparison, and duplicate cleanup layers are deterministic. That means they can be benchmarked, inspected, and changed without treating the entire system as a black box." />
-          </div>
-          <p class="card-copy">The graph is the ranking engine, so bridges, missing links, and repeated structures become measurable rather than conversational.</p>
+          <h3>Deterministic ranking, not just prose</h3>
+          <p class="card-copy">AI extracts graph structure from text, but the ranking, ontology comparison, and cleanup layers are deterministic and inspectable.</p>
         </article>
         <article class="card">
-          <div class="card-title-row">
-            <h3>Inspectable structure, not just a picture</h3>
-            <InfoTip detail="The graph is not there for decoration. It is the object used to detect local neighborhoods, missing adjacencies, repeated motifs, and underexplored bridges, and to inspect how those recommendations change under different ontology choices." />
-          </div>
-          <p class="card-copy">The graph is the object the system reasons over, not just the picture shown on the site.</p>
+          <h3>Advanced views stay visible</h3>
+          <p class="card-copy">Baseline exploratory is the default, while Broad and Conservative stay available when you want to inspect ontology sensitivity.</p>
         </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">Central concepts</span>
-          <h2>What the baseline graph revolves around</h2>
-        </div>
-        <a class="text-link" href="/graph/">Open the full graph viewer</a>
-      </div>
-      <div class="fields-grid concept-grid">
-        {featuredConcepts.map((concept) => (
-          <article class="field-card concept-card">
-            <span class="eyebrow">{concept.bucket_hint}</span>
-            <h3>{concept.label}</h3>
-            <p class="card-copy">
-              {formatNumber(concept.instance_support)} node instances · {formatNumber(concept.distinct_paper_support)} papers
-            </p>
-            <div class="button-row">
-              <span class="field-pill">in {formatNumber(concept.in_degree)}</span>
-              <span class="field-pill">out {formatNumber(concept.out_degree)}</span>
-              <span class="field-pill">{shortList(concept.top_units, 2)}</span>
-            </div>
-            <div class="button-row">
-              <a class="button-secondary" href={`/graph/?q=${encodeURIComponent(concept.label)}`}>See in graph</a>
-              <a class="button-tertiary" href={concept.app_link}>Open in app</a>
-            </div>
-          </article>
-        ))}
       </div>
     </section>
 
     <section class="section">
       <div class="cta-band">
         <span class="eyebrow">Open release</span>
-        <h2>Code, data, comparison summaries, and graph assets are part of the product.</h2>
+        <h2>Use the graph first. Open the deeper app, method, or downloads only when you need them.</h2>
         <div class="button-row">
-          <a class="button-primary" href="/downloads/">Open downloads</a>
-          <a class="button-secondary" href={data.repo_url}>View repository</a>
+          <a class="button-primary" href={data.app_url}>Open deeper explorer</a>
+          <a class="button-secondary" href="/downloads/">Open downloads</a>
+          <a class="button-tertiary" href="/method/">Read the method</a>
         </div>
       </div>
     </section>
