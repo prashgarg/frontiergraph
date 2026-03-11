@@ -1,0 +1,12 @@
+{
+  "FG3C001307": {
+    "concept_id": "FG3C001307",
+    "plain_label": "load capacity factor",
+    "subtitle": "broad measure of ecological carrying capacity"
+  },
+  "FG3C001420": {
+    "concept_id": "FG3C001420",
+    "plain_label": "environmental quality",
+    "subtitle": "environmental outcomes measured through CO2 emissions"
+  }
+}

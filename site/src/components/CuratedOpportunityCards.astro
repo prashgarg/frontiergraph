@@ -1,5 +1,9 @@
 ---
-import type { CuratedOpportunity } from "../lib/site-data";
+import OpportunityEvidence from "./OpportunityEvidence.astro";
+import {
+  getPublicLabelSubtitle,
+  type CuratedOpportunity,
+} from "../lib/site-data";
 
 interface Props {
   items: CuratedOpportunity[];
@@ -16,6 +20,18 @@ const {
   sectionId = "curated-opportunities",
   standalone = true,
 } = Astro.props;
+
+const buildGlossNotes = (item: CuratedOpportunity) => {
+  const notes = [
+    getPublicLabelSubtitle(item.source_id)
+      ? `${item.public_source_label}: ${getPublicLabelSubtitle(item.source_id)}.`
+      : "",
+    getPublicLabelSubtitle(item.target_id)
+      ? `${item.public_target_label}: ${getPublicLabelSubtitle(item.target_id)}.`
+      : "",
+  ].filter(Boolean);
+  return notes.join(" ");
+};
 ---
 
 <section class:list={[standalone && "section"]} data-role={sectionId}>
@@ -36,7 +52,8 @@ const {
           <span>{item.direct_link_status}</span>
         </div>
         <h3>{item.headline}</h3>
-        <p class="opportunity-pair">{item.source_label} → {item.target_label}</p>
+        <p class="opportunity-pair">{item.public_source_label} → {item.public_target_label}</p>
+        {buildGlossNotes(item) && <p class="mini-copy opportunity-label-note">{buildGlossNotes(item)}</p>}
         <p class="card-copy">{item.summary}</p>
         <p class="opportunity-context">
           <strong>Why it matters:</strong> {item.why_it_matters}
@@ -44,12 +61,23 @@ const {
         <p class="mini-copy">
           <strong>How to start:</strong> {item.how_to_start}
         </p>
+        <p class="mini-copy">
+          <strong>Next study:</strong> {item.next_study}
+        </p>
         <div class="opportunity-summary-row">
           <span>Supported by {item.supporting_path_count} nearby concepts</span>
         </div>
         <p class="opportunity-context">
           Public context: {item.source_context_summary} on one side and {item.target_context_summary} on the other.
         </p>
+        <OpportunityEvidence
+          mediatorLabels={item.top_mediator_labels}
+          directLinkStatus={item.direct_link_status}
+          sourceLabel={item.public_source_label}
+          targetLabel={item.public_target_label}
+          sourceContextSummary={item.source_context_summary}
+          targetContextSummary={item.target_context_summary}
+        />
         <a class="text-link" href={item.app_link}>Open in app</a>
       </article>
     ))}

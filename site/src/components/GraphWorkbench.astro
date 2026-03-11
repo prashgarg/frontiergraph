@@ -187,6 +187,17 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   };
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
   const isInBackbone = (conceptId) => Boolean(graph?.nodeMap?.has(conceptId));
+  const conceptTitle = (concept) => concept?.plain_label || concept?.label || "";
+  const conceptSubtitle = (concept) => {
+    const value = String(concept?.subtitle ?? "").trim();
+    return value && !["na", "n/a", "nan", "null", "undefined", "none"].includes(value.toLowerCase()) ? value : "";
+  };
+  const conceptLabelNote = (conceptId) => {
+    const concept = conceptMap.get(conceptId);
+    if (!concept) return "";
+    const subtitle = conceptSubtitle(concept);
+    return subtitle ? `${conceptTitle(concept)}: ${subtitle}.` : "";
+  };
 
   const fetchJson = async (path) => {
     if (shardCache.has(path)) return shardCache.get(path);
@@ -404,7 +415,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
             : "Visible in the full public map."
           : "Outside the public backbone snapshot, but still available in search and inspector views.";
         hoverCard.innerHTML = `
-          <strong>${escapeHtml(concept.label)}</strong><br />
+          <strong>${escapeHtml(conceptTitle(concept))}</strong><br />
+          ${conceptSubtitle(concept) ? `${escapeHtml(conceptSubtitle(concept))}<br />` : ""}
           ${formatNumber(safeNumber(concept.distinct_paper_support))} papers · ${formatNumber(safeNumber(concept.instance_support))} node instances · ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts · ${escapeHtml(visibilityCopy)}
         `;
         return;
@@ -419,7 +431,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       .map(
         (concept) => `
           <button class="list-link" data-concept-id="${escapeHtml(concept.concept_id)}">
-            <span>${escapeHtml(concept.label)}</span>
+            <span>${escapeHtml(conceptTitle(concept))}</span>
             <span>${formatNumber(safeNumber(concept.distinct_paper_support))} papers</span>
           </button>
         `,
@@ -442,7 +454,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       <div class="neighbor-group">
         <h4>Focus summary</h4>
         <p class="card-copy">
-          ${escapeHtml(concept.label)} has ${formatNumber(safeNumber(concept.in_degree))} incoming observed links,
+          ${escapeHtml(conceptTitle(concept))} has ${formatNumber(safeNumber(concept.in_degree))} incoming observed links,
           ${formatNumber(safeNumber(concept.out_degree))} outgoing observed links,
           and ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts in the current public graph.
         </p>
@@ -472,7 +484,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
                 .map(
                   (item) => `
                     <article class="mini-opportunity">
-                      <strong>${escapeHtml(item.source_label)} → ${escapeHtml(item.target_label)}</strong>
+                      <strong>${escapeHtml(item.public_pair_label)}</strong>
+                      ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
                       <div class="mini-copy">${escapeHtml(item.direct_link_status)} · supported by ${formatNumber(safeNumber(item.supporting_path_count))} nearby concepts</div>
                     </article>
                   `,
@@ -537,7 +550,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       nodeElement.addEventListener("mouseenter", () => {
         const node = graph.nodeMap.get(nodeElement.dataset.nodeId);
         hoverCard.innerHTML = `
-          <strong>${escapeHtml(node.label)}</strong><br />
+          <strong>${escapeHtml(node.plain_label || node.label)}</strong><br />
+          ${node.subtitle ? `${escapeHtml(node.subtitle)}<br />` : ""}
           ${formatNumber(safeNumber(node.distinct_paper_support))} papers · ${formatNumber(safeNumber(node.instance_support))} node instances · ${formatNumber(safeNumber(node.neighbor_count))} nearby concepts · ${escapeHtml(listText(node.top_countries, "No dominant study setting in the current public sample"))}
         `;
       });
@@ -578,9 +592,10 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     selectedConcept.innerHTML = `
       <span class="eyebrow">Focus</span>
       <div class="selected-title-row">
-        <h4>${escapeHtml(concept.label)}</h4>
+        <h4>${escapeHtml(conceptTitle(concept))}</h4>
         <span class="field-pill">${escapeHtml(concept.bucket_hint)}</span>
       </div>
+      ${conceptSubtitle(concept) ? `<p class="mini-copy opportunity-label-note">${escapeHtml(conceptSubtitle(concept))}</p>` : ""}
       <p class="card-copy">
         ${formatNumber(safeNumber(concept.instance_support))} node instances · ${formatNumber(safeNumber(concept.distinct_paper_support))} papers · ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts
       </p>
@@ -671,7 +686,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       .map(
         (item) => `
           <article class="mini-opportunity">
-            <strong>${escapeHtml(item.source_label)} → ${escapeHtml(item.target_label)}</strong>
+            <strong>${escapeHtml(item.public_pair_label)}</strong>
+            ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
             <div class="mini-copy">${escapeHtml(item.direct_link_status)} · supported by ${formatNumber(safeNumber(item.supporting_path_count))} nearby concepts</div>
             <div class="mini-copy">Context: ${escapeHtml(item.source_context_summary)} on one side and ${escapeHtml(item.target_context_summary)} on the other.</div>
             <a class="text-link" href="${escapeHtml(item.app_link)}">Open in app</a>
@@ -714,7 +730,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       .map(
         (concept) => `
           <button class="search-hit" data-concept-id="${escapeHtml(concept.concept_id)}">
-            <strong>${escapeHtml(concept.label)}</strong>
+            <strong>${escapeHtml(conceptTitle(concept))}</strong>
             <span>${formatNumber(safeNumber(concept.distinct_paper_support))} papers</span>
           </button>
         `,

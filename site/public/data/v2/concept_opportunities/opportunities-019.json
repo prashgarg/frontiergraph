@@ -8,6 +8,7 @@
       "target_label": "Method of Moments Quantile Regression (MMQR)",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.064953,
       "base_score": 0.202231,
       "duplicate_penalty": 0.267184,
@@ -21,6 +22,12 @@
       "why_now": "econometric methods and Method of Moments Quantile Regression (MMQR) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "econometric methods and Method of Moments Quantile Regression (MMQR)",
+      "top_mediator_labels": [
+        "estimation",
+        "macroeconomic indicators",
+        "econometrics"
+      ],
       "top_countries_source": [
         "United States"
       ],
@@ -43,6 +50,7 @@
       "target_label": "investment",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.067431,
       "base_score": 0.202442,
       "duplicate_penalty": 0.269873,
@@ -56,6 +64,11 @@
       "why_now": "Real Estate Investment Trusts (REITs) and investment are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "investment and Real Estate Investment Trusts (REITs)",
+      "top_mediator_labels": [
+        "cash flow",
+        "stock prices"
+      ],
       "top_countries_source": [
         "United States",
         "Canada",
@@ -80,6 +93,7 @@
       "target_label": "unemployment",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.068867,
       "base_score": 0.202376,
       "duplicate_penalty": 0.271243,
@@ -93,6 +107,11 @@
       "why_now": "employer size and unemployment are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "employer size and unemployment",
+      "top_mediator_labels": [
+        "wages",
+        "wage"
+      ],
       "top_countries_source": [
         "United States",
         "Brazil",
@@ -115,6 +134,7 @@
       "target_label": "employment",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.21086,
       "base_score": 0.202135,
       "duplicate_penalty": 0.412996,
@@ -128,6 +148,11 @@
       "why_now": "employer size and employment are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "employer size and employment",
+      "top_mediator_labels": [
+        "wages",
+        "separations"
+      ],
       "top_countries_source": [
         "United States",
         "Brazil",
@@ -152,6 +177,7 @@
       "target_label": "economic growth",
       "source_bucket": "core",
       "target_bucket": "adjacent",
+      "cross_field": true,
       "score": -0.06899,
       "base_score": 0.202145,
       "duplicate_penalty": 0.271135,
@@ -165,6 +191,12 @@
       "why_now": "balanced growth path and economic growth are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Start with a bridge review or cross-field pilot.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "balanced growth path and economic growth",
+      "top_mediator_labels": [
+        "wealth distribution",
+        "volatility",
+        "gender inequality"
+      ],
       "top_countries_source": [],
       "top_countries_target": [
         "China",
@@ -185,6 +217,7 @@
       "target_label": "household inflation expectations",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.082731,
       "base_score": 0.202254,
       "duplicate_penalty": 0.284985,
@@ -198,6 +231,12 @@
       "why_now": "inflation targeting and household inflation expectations are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "household inflation expectations and inflation targeting",
+      "top_mediator_labels": [
+        "monetary policy",
+        "Inflation targeting (IT)",
+        "inflation level"
+      ],
       "top_countries_source": [
         "developing countries",
         "Latin America",
@@ -220,6 +259,7 @@
       "target_label": "household inflation expectations",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.129814,
       "base_score": 0.201815,
       "duplicate_penalty": 0.331629,
@@ -233,6 +273,12 @@
       "why_now": "inflation and household inflation expectations are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "household inflation expectations and inflation",
+      "top_mediator_labels": [
+        "monetary policy",
+        "product variety",
+        "fiscal policy"
+      ],
       "top_countries_source": [
         "United States",
         "China",
@@ -257,6 +303,7 @@
       "target_label": "bank profitability",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.091356,
       "base_score": 0.20217,
       "duplicate_penalty": 0.293526,
@@ -270,6 +317,12 @@
       "why_now": "bank capital requirements and bank profitability are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "bank capital requirements and bank profitability",
+      "top_mediator_labels": [
+        "bank market power",
+        "liquidity creation",
+        "bank interest margin"
+      ],
       "top_countries_source": [
         "United States",
         "Europe",
@@ -294,6 +347,7 @@
       "target_label": "preference heterogeneity",
       "source_bucket": "adjacent",
       "target_bucket": "core",
+      "cross_field": true,
       "score": -0.096542,
       "base_score": 0.201812,
       "duplicate_penalty": 0.298354,
@@ -307,6 +361,11 @@
       "why_now": "stated preference survey and preference heterogeneity are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Start with a bridge review or cross-field pilot.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "preference heterogeneity and stated preference survey",
+      "top_mediator_labels": [
+        "latent class model",
+        "mixed logit model"
+      ],
       "top_countries_source": [
         "China",
         "Aotearoa New Zealand",
@@ -331,6 +390,7 @@
       "target_label": "volatility of stock prices",
       "source_bucket": "adjacent",
       "target_bucket": "core",
+      "cross_field": true,
       "score": -0.09753,
       "base_score": 0.201848,
       "duplicate_penalty": 0.299378,
@@ -344,6 +404,10 @@
       "why_now": "oil prices and volatility of stock prices are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Start with a bridge review or cross-field pilot.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "volatility of stock prices and oil prices",
+      "top_mediator_labels": [
+        "stock prices"
+      ],
       "top_countries_source": [
         "United States",
         "USA",
@@ -368,6 +432,7 @@
       "target_label": "carbon emissions",
       "source_bucket": "adjacent",
       "target_bucket": "adjacent",
+      "cross_field": false,
       "score": -0.098282,
       "base_score": 0.202067,
       "duplicate_penalty": 0.300349,
@@ -381,6 +446,10 @@
       "why_now": "CO2 intensity and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "carbon emissions and CO2 intensity",
+      "top_mediator_labels": [
+        "energy use"
+      ],
       "top_countries_source": [
         "China",
         "Saudi Arabia",
@@ -403,6 +472,7 @@
       "target_label": "CO2 intensity",
       "source_bucket": "adjacent",
       "target_bucket": "adjacent",
+      "cross_field": false,
       "score": -0.187746,
       "base_score": 0.203397,
       "duplicate_penalty": 0.391143,
@@ -416,6 +486,12 @@
       "why_now": "CO2 emissions and CO2 intensity are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "CO2 emissions and CO2 intensity",
+      "top_mediator_labels": [
+        "GDP per capita",
+        "environmental innovation",
+        "inward foreign direct investment (FDI)"
+      ],
       "top_countries_source": [
         "China",
         "India",
@@ -429,41 +505,6 @@
       "source_context_summary": "China, India, and related settings",
       "target_context_summary": "China, Saudi Arabia, and related settings",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emissions%20-%3E%20CO2%20intensity"
-    },
-    {
-      "pair_key": "FG3C000003__FG3C005734",
-      "source_id": "FG3C005734",
-      "target_id": "FG3C000003",
-      "source_label": "CO2 intensity",
-      "target_label": "CO2 emissions",
-      "source_bucket": "adjacent",
-      "target_bucket": "adjacent",
-      "score": -0.188424,
-      "base_score": 0.202719,
-      "duplicate_penalty": 0.391143,
-      "path_support_norm": 0.001488,
-      "gap_bonus": 1.0,
-      "mediator_count": 1,
-      "motif_count": 1,
-      "cooc_count": 0,
-      "direct_link_status": "No direct papers yet",
-      "supporting_path_count": 1,
-      "why_now": "CO2 intensity and CO2 emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
-      "slice_label": "Missing direct link",
-      "top_countries_source": [
-        "China",
-        "Saudi Arabia",
-        "EU-28"
-      ],
-      "top_countries_target": [
-        "China",
-        "India",
-        "CHN"
-      ],
-      "source_context_summary": "China, Saudi Arabia, and related settings",
-      "target_context_summary": "China, India, and related settings",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20intensity%20-%3E%20CO2%20emissions"
     }
   ],
   "FG3C002214": [
@@ -475,6 +516,7 @@
       "target_label": "green technology innovation",
       "source_bucket": "adjacent",
       "target_bucket": "adjacent",
+      "cross_field": false,
       "score": -0.111468,
       "base_score": 0.201798,
       "duplicate_penalty": 0.313266,
@@ -488,6 +530,12 @@
       "why_now": "technology level and green technology innovation are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "green technology innovation and technology level",
+      "top_mediator_labels": [
+        "environmental regulation intensity",
+        "regional green development",
+        "innovation incentives"
+      ],
       "top_countries_source": [
         "China",
         "CHN",
@@ -512,6 +560,7 @@
       "target_label": "firm output",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.141366,
       "base_score": 0.202255,
       "duplicate_penalty": 0.343621,
@@ -525,6 +574,12 @@
       "why_now": "firm size and firm output are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "firm output and firm size",
+      "top_mediator_labels": [
+        "firm total factor productivity (TFP)",
+        "R&D activities",
+        "internet usage"
+      ],
       "top_countries_source": [
         "China",
         "Italy",
@@ -549,6 +604,7 @@
       "target_label": "cryptocurrency market",
       "source_bucket": "adjacent",
       "target_bucket": "core",
+      "cross_field": true,
       "score": -0.146465,
       "base_score": 0.202214,
       "duplicate_penalty": 0.348679,
@@ -562,6 +618,12 @@
       "why_now": "green bond market and cryptocurrency market are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Start with a bridge review or cross-field pilot.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "cryptocurrency market and green bond market",
+      "top_mediator_labels": [
+        "clean energy market",
+        "green bonds",
+        "carbon market"
+      ],
       "top_countries_source": [
         "China",
         "Europe",
@@ -582,6 +644,7 @@
       "target_label": "Chinese stock market",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.170327,
       "base_score": 0.202597,
       "duplicate_penalty": 0.372924,
@@ -595,6 +658,12 @@
       "why_now": "cryptocurrency market and Chinese stock market are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "Chinese stock market and cryptocurrency market",
+      "top_mediator_labels": [
+        "crude oil market",
+        "US stock market",
+        "China stock market"
+      ],
       "top_countries_source": [
         "Vietnam"
       ],
@@ -616,6 +685,7 @@
       "target_label": "real interest rates",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.150295,
       "base_score": 0.201993,
       "duplicate_penalty": 0.352288,
@@ -629,6 +699,11 @@
       "why_now": "foreign interest rates and real interest rates are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "foreign interest rates and real interest rates",
+      "top_mediator_labels": [
+        "nominal interest rates",
+        "transaction costs"
+      ],
       "top_countries_source": [
         "United States",
         "Lao PDR"
@@ -652,6 +727,7 @@
       "target_label": "oil market",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.163884,
       "base_score": 0.201834,
       "duplicate_penalty": 0.365718,
@@ -665,6 +741,12 @@
       "why_now": "U.S. stock market and oil market are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "oil market and U.S. stock market",
+      "top_mediator_labels": [
+        "BRICS stock markets",
+        "other markets",
+        "housing market"
+      ],
       "top_countries_source": [
         "USA",
         "United States"
@@ -686,6 +768,7 @@
       "target_label": "stock market",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.338602,
       "base_score": 0.201796,
       "duplicate_penalty": 0.540398,
@@ -699,6 +782,12 @@
       "why_now": "U.S. stock market and stock market are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "stock market and U.S. stock market",
+      "top_mediator_labels": [
+        "housing market",
+        "other markets",
+        "crude oil market"
+      ],
       "top_countries_source": [
         "USA",
         "United States"
@@ -722,6 +811,7 @@
       "target_label": "inflation",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.166451,
       "base_score": 0.20237,
       "duplicate_penalty": 0.368821,
@@ -735,6 +825,12 @@
       "why_now": "inflation targets and inflation are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "inflation and inflation targets",
+      "top_mediator_labels": [
+        "inflation expectations",
+        "level of inflation",
+        "greenhouse gas emissions"
+      ],
       "top_countries_source": [
         "Canada",
         "New Zealand",
@@ -759,6 +855,7 @@
       "target_label": "foreign prices",
       "source_bucket": "adjacent",
       "target_bucket": "core",
+      "cross_field": true,
       "score": -0.177362,
       "base_score": 0.202247,
       "duplicate_penalty": 0.379609,
@@ -772,6 +869,11 @@
       "why_now": "oil prices and foreign prices are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Start with a bridge review or cross-field pilot.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "foreign prices and oil prices",
+      "top_mediator_labels": [
+        "exchange rates",
+        "domestic prices"
+      ],
       "top_countries_source": [
         "United States",
         "USA",
@@ -795,6 +897,7 @@
       "target_label": "immiserizing growth",
       "source_bucket": "adjacent",
       "target_bucket": "core",
+      "cross_field": true,
       "score": -0.184171,
       "base_score": 0.201795,
       "duplicate_penalty": 0.385966,
@@ -808,6 +911,12 @@
       "why_now": "economic growth and immiserizing growth are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Start with a bridge review or cross-field pilot.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "immiserizing growth and economic growth",
+      "top_mediator_labels": [
+        "population growth",
+        "economic expansion",
+        "foreign investment"
+      ],
       "top_countries_source": [
         "China",
         "India",
@@ -828,6 +937,7 @@
       "target_label": "Realized inflation",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.197063,
       "base_score": 0.201761,
       "duplicate_penalty": 0.398824,
@@ -841,6 +951,12 @@
       "why_now": "inflation and Realized inflation are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "inflation and Realized inflation",
+      "top_mediator_labels": [
+        "inflation expectations",
+        "price of gold",
+        "long-term inflation expectations"
+      ],
       "top_countries_source": [
         "United States",
         "China",
@@ -865,6 +981,7 @@
       "target_label": "futures contracts",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.209532,
       "base_score": 0.201989,
       "duplicate_penalty": 0.411521,
@@ -878,6 +995,10 @@
       "why_now": "future prices and futures contracts are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "future prices and futures contracts",
+      "top_mediator_labels": [
+        "spot prices"
+      ],
       "top_countries_source": [
         "United States",
         "China",
@@ -900,6 +1021,7 @@
       "target_label": "inflation",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.218979,
       "base_score": 0.204002,
       "duplicate_penalty": 0.422982,
@@ -913,6 +1035,12 @@
       "why_now": "unanticipated inflation and inflation are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "inflation and unanticipated inflation",
+      "top_mediator_labels": [
+        "relative price variability",
+        "unemployment rate",
+        "exchange rates"
+      ],
       "top_countries_source": [
         "Finland",
         "Latin America",
@@ -926,41 +1054,6 @@
       "source_context_summary": "Finland, Latin America, and related settings",
       "target_context_summary": "United States, China, and related settings",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=unanticipated%20inflation%20-%3E%20inflation"
-    },
-    {
-      "pair_key": "FG3C000002__FG3C003193",
-      "source_id": "FG3C000002",
-      "target_id": "FG3C003193",
-      "source_label": "inflation",
-      "target_label": "unanticipated inflation",
-      "source_bucket": "core",
-      "target_bucket": "core",
-      "score": -0.220036,
-      "base_score": 0.202946,
-      "duplicate_penalty": 0.422982,
-      "path_support_norm": 0.000599,
-      "gap_bonus": 1.0,
-      "mediator_count": 4,
-      "motif_count": 4,
-      "cooc_count": 0,
-      "direct_link_status": "No direct papers yet",
-      "supporting_path_count": 4,
-      "why_now": "inflation and unanticipated inflation are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
-      "slice_label": "Missing direct link",
-      "top_countries_source": [
-        "United States",
-        "China",
-        "USA"
-      ],
-      "top_countries_target": [
-        "Finland",
-        "Latin America",
-        "United States"
-      ],
-      "source_context_summary": "United States, China, and related settings",
-      "target_context_summary": "Finland, Latin America, and related settings",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20-%3E%20unanticipated%20inflation"
     }
   ],
   "FG3C004781": [
@@ -972,6 +1065,7 @@
       "target_label": "patent data",
       "source_bucket": "core",
       "target_bucket": "adjacent",
+      "cross_field": true,
       "score": -0.224893,
       "base_score": 0.201997,
       "duplicate_penalty": 0.42689,
@@ -985,6 +1079,12 @@
       "why_now": "patent citations and patent data are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Start with a bridge review or cross-field pilot.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "patent citations and patent data",
+      "top_mediator_labels": [
+        "absorptive capacity",
+        "Internal R&D",
+        "firm size"
+      ],
       "top_countries_source": [
         "United States",
         "China",
@@ -1009,6 +1109,7 @@
       "target_label": "stock market returns",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.226427,
       "base_score": 0.202073,
       "duplicate_penalty": 0.428499,
@@ -1022,6 +1123,12 @@
       "why_now": "stock market crashes and stock market returns are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "stock market crashes and stock market returns",
+      "top_mediator_labels": [
+        "contagion",
+        "price pressure",
+        "detrended cross-correlation analysis (DCCA)"
+      ],
       "top_countries_source": [
         "China",
         "USA",
@@ -1046,6 +1153,7 @@
       "target_label": "short-term interest rate",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.232761,
       "base_score": 0.202169,
       "duplicate_penalty": 0.43493,
@@ -1059,6 +1167,12 @@
       "why_now": "interest rate expectations and short-term interest rate are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "interest rate expectations and short-term interest rate",
+      "top_mediator_labels": [
+        "long-term interest rate",
+        "Taylor rule",
+        "expectations hypothesis of the term structure"
+      ],
       "top_countries_source": [
         "USA",
         "United States",
@@ -1083,6 +1197,7 @@
       "target_label": "aggregate emissions",
       "source_bucket": "adjacent",
       "target_bucket": "adjacent",
+      "cross_field": false,
       "score": -0.23705,
       "base_score": 0.202177,
       "duplicate_penalty": 0.439227,
@@ -1096,6 +1211,11 @@
       "why_now": "CO2 emissions and aggregate emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "aggregate emissions and CO2 emissions",
+      "top_mediator_labels": [
+        "trade openness",
+        "climate policy"
+      ],
       "top_countries_source": [
         "China",
         "India",
@@ -1120,6 +1240,7 @@
       "target_label": "electricity consumption",
       "source_bucket": "adjacent",
       "target_bucket": "adjacent",
+      "cross_field": false,
       "score": -0.259107,
       "base_score": 0.201795,
       "duplicate_penalty": 0.460902,
@@ -1133,6 +1254,12 @@
       "why_now": "wind energy consumption and electricity consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "electricity consumption and wind energy consumption",
+      "top_mediator_labels": [
+        "industrial production",
+        "output (GDP)",
+        "energy prices"
+      ],
       "top_countries_source": [
         "Japan",
         "USA",
@@ -1155,6 +1282,7 @@
       "target_label": "energy consumption",
       "source_bucket": "adjacent",
       "target_bucket": "adjacent",
+      "cross_field": false,
       "score": -0.363965,
       "base_score": 0.201813,
       "duplicate_penalty": 0.565779,
@@ -1168,6 +1296,12 @@
       "why_now": "wind energy consumption and energy consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "energy consumption and wind energy consumption",
+      "top_mediator_labels": [
+        "energy prices",
+        "output (GDP)",
+        "carbon emissions (CO2 emissions)"
+      ],
       "top_countries_source": [
         "Japan",
         "USA",
@@ -1192,6 +1326,7 @@
       "target_label": "inflation",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.261018,
       "base_score": 0.203603,
       "duplicate_penalty": 0.464622,
@@ -1205,6 +1340,12 @@
       "why_now": "actual inflation and inflation are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "actual inflation and inflation",
+      "top_mediator_labels": [
+        "inflation expectations",
+        "stock returns",
+        "expected inflation"
+      ],
       "top_countries_source": [
         "United States",
         "Australia",
@@ -1229,6 +1370,7 @@
       "target_label": "output",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.265079,
       "base_score": 0.201867,
       "duplicate_penalty": 0.466946,
@@ -1242,6 +1384,11 @@
       "why_now": "expected output and output are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "expected output and output",
+      "top_mediator_labels": [
+        "investment",
+        "exchange rate changes"
+      ],
       "top_countries_source": [
         "Maine",
         "NLD"
@@ -1265,6 +1412,7 @@
       "target_label": "short rate",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.275423,
       "base_score": 0.201787,
       "duplicate_penalty": 0.47721,
@@ -1278,6 +1426,11 @@
       "why_now": "short-term interest rate and short rate are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "short rate and short-term interest rate",
+      "top_mediator_labels": [
+        "long-term interest rate",
+        "bond prices"
+      ],
       "top_countries_source": [
         "United States",
         "USA",
@@ -1301,6 +1454,7 @@
       "target_label": "health care",
       "source_bucket": "adjacent",
       "target_bucket": "adjacent",
+      "cross_field": false,
       "score": -0.276726,
       "base_score": 0.201965,
       "duplicate_penalty": 0.478691,
@@ -1314,6 +1468,12 @@
       "why_now": "health care reform and health care are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "health care and health care reform",
+      "top_mediator_labels": [
+        "health care costs",
+        "uninsured Americans",
+        "comparative effectiveness research"
+      ],
       "top_countries_source": [
         "United States",
         "USA",
@@ -1337,6 +1497,7 @@
       "target_label": "stock returns",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.288495,
       "base_score": 0.202143,
       "duplicate_penalty": 0.490638,
@@ -1350,6 +1511,12 @@
       "why_now": "market return and stock returns are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "market return and stock returns",
+      "top_mediator_labels": [
+        "trading volume",
+        "day-of-the-week effect",
+        "oil demand"
+      ],
       "top_countries_source": [
         "Turkey",
         "United States",
@@ -1374,6 +1541,7 @@
       "target_label": "policy analysis",
       "source_bucket": "adjacent",
       "target_bucket": "core",
+      "cross_field": true,
       "score": -0.291101,
       "base_score": 0.201779,
       "duplicate_penalty": 0.492879,
@@ -1387,6 +1555,10 @@
       "why_now": "policy and policy analysis are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Start with a bridge review or cross-field pilot.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "policy analysis and policy",
+      "top_mediator_labels": [
+        "economics"
+      ],
       "top_countries_source": [
         "China",
         "United States",
@@ -1411,6 +1583,7 @@
       "target_label": "carbon emissions",
       "source_bucket": "adjacent",
       "target_bucket": "adjacent",
+      "cross_field": false,
       "score": -0.305574,
       "base_score": 0.202304,
       "duplicate_penalty": 0.507879,
@@ -1424,6 +1597,11 @@
       "why_now": "carbon emissions reduction and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "carbon emissions and carbon emissions reduction",
+      "top_mediator_labels": [
+        "economic development",
+        "return on equity (ROE)"
+      ],
       "top_countries_source": [
         "China",
         "United States",
@@ -1448,6 +1626,7 @@
       "target_label": "emissions trading",
       "source_bucket": "adjacent",
       "target_bucket": "adjacent",
+      "cross_field": false,
       "score": -0.339455,
       "base_score": 0.201936,
       "duplicate_penalty": 0.54139,
@@ -1461,6 +1640,12 @@
       "why_now": "Emission Trading Scheme (ETS) and emissions trading are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "Emission Trading Scheme (ETS) and emissions trading",
+      "top_mediator_labels": [
+        "carbon tax",
+        "carbon pricing",
+        "transaction costs"
+      ],
       "top_countries_source": [
         "China",
         "CHN",
@@ -1485,6 +1670,7 @@
       "target_label": "unemployment fluctuations",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.372564,
       "base_score": 0.201854,
       "duplicate_penalty": 0.574418,
@@ -1498,6 +1684,12 @@
       "why_now": "unemployment and unemployment fluctuations are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "unemployment and unemployment fluctuations",
+      "top_mediator_labels": [
+        "wage rigidity",
+        "job-finding rate",
+        "wage rates"
+      ],
       "top_countries_source": [
         "United States",
         "United Kingdom",
@@ -1522,6 +1714,7 @@
       "target_label": "exchange rates",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.373328,
       "base_score": 0.202146,
       "duplicate_penalty": 0.575474,
@@ -1535,6 +1728,12 @@
       "why_now": "forward exchange rates and exchange rates are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "exchange rates and forward exchange rates",
+      "top_mediator_labels": [
+        "purchasing power parity (PPP)",
+        "economic fundamentals",
+        "exchange rate changes"
+      ],
       "top_countries_source": [
         "Germany"
       ],
@@ -1557,6 +1756,7 @@
       "target_label": "cross-section of expected returns",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.425418,
       "base_score": 0.202435,
       "duplicate_penalty": 0.627853,
@@ -1570,6 +1770,12 @@
       "why_now": "cross-sectional stock returns and cross-section of expected returns are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "cross-section of expected returns and cross-sectional stock returns",
+      "top_mediator_labels": [
+        "market beta",
+        "firm size",
+        "CAPM"
+      ],
       "top_countries_source": [
         "China",
         "United States",
@@ -1594,6 +1800,7 @@
       "target_label": "unemployment",
       "source_bucket": "core",
       "target_bucket": "core",
+      "cross_field": false,
       "score": -0.47873,
       "base_score": 0.201982,
       "duplicate_penalty": 0.680712,
@@ -1607,6 +1814,12 @@
       "why_now": "local unemployment rates and unemployment are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
+      "public_pair_label": "local unemployment rates and unemployment",
+      "top_mediator_labels": [
+        "regional unemployment rates",
+        "wages",
+        "real wages"
+      ],
       "top_countries_source": [
         "France",
         "ESP",

@@ -1,5 +1,10 @@
 ---
-import type { Opportunity } from "../lib/site-data";
+import OpportunityEvidence from "./OpportunityEvidence.astro";
+import {
+  getPublicLabel,
+  getPublicLabelSubtitle,
+  type Opportunity,
+} from "../lib/site-data";
 
 interface Props {
   items: Opportunity[];
@@ -8,6 +13,7 @@ interface Props {
   compact?: boolean;
   standalone?: boolean;
   sectionId?: string;
+  enableFilters?: boolean;
 }
 
 const {
@@ -17,10 +23,34 @@ const {
   compact = false,
   standalone = true,
   sectionId = "ranked-opportunities",
+  enableFilters = false,
 } = Astro.props;
+
+const rootId = `opportunity-cards-${Math.random().toString(36).slice(2, 10)}`;
+
+const filters = [
+  { id: "no-direct", label: "No direct papers yet" },
+  { id: "cross-field", label: "Cross-field" },
+  { id: "strong-support", label: "Strong surrounding evidence" },
+  { id: "ready-followup", label: "Ready for follow-up" },
+];
+
+const buildGlossNotes = (item: Opportunity) => {
+  const sourceDisplayLabel = getPublicLabel(item.source_id, item.source_label);
+  const targetDisplayLabel = getPublicLabel(item.target_id, item.target_label);
+  const notes = [
+    getPublicLabelSubtitle(item.source_id)
+      ? `${sourceDisplayLabel}: ${getPublicLabelSubtitle(item.source_id)}.`
+      : "",
+    getPublicLabelSubtitle(item.target_id)
+      ? `${targetDisplayLabel}: ${getPublicLabelSubtitle(item.target_id)}.`
+      : "",
+  ].filter(Boolean);
+  return notes.join(" ");
+};
 ---
 
-<section class:list={[standalone && "section"]} data-role={sectionId}>
+<section id={rootId} class:list={[standalone && "section"]} data-role={sectionId}>
   {title && (
     <div class:list={["section-heading", !standalone && "section-heading-compact"]}>
       <div>
@@ -30,22 +60,106 @@ const {
       {caption && <p class="section-copy">{caption}</p>}
     </div>
   )}
+  {enableFilters && (
+    <div class="opportunity-filter-bar" data-role="opportunity-filter-bar">
+      {filters.map((filter) => (
+        <button
+          class="button-tertiary opportunity-filter-chip"
+          type="button"
+          data-role="opportunity-filter-chip"
+          data-filter-id={filter.id}
+          aria-pressed="false"
+        >
+          {filter.label}
+        </button>
+      ))}
+    </div>
+  )}
   <div class:list={["opportunity-cards", compact && "compact"]}>
     {items.map((item) => (
-      <article class="opportunity-card" data-role="structured-opportunity-card">
+      <article
+        class="opportunity-card"
+        data-role="structured-opportunity-card"
+        data-no-direct={String(item.cooc_count === 0)}
+        data-cross-field={String(item.cross_field)}
+        data-strong-support={String(item.path_support_norm >= 0.7)}
+        data-ready-followup={String(item.cooc_count > 0 && item.path_support_norm >= 0.95)}
+      >
         <div class="opportunity-kicker">
           <span>{item.slice_label}</span>
           <span>{item.direct_link_status}</span>
         </div>
-        <h3>{item.source_label} → {item.target_label}</h3>
+        <h3>{item.public_pair_label}</h3>
+        {buildGlossNotes(item) && <p class="mini-copy opportunity-label-note">{buildGlossNotes(item)}</p>}
         <div class="opportunity-summary-row">
           <span class="field-pill">Supported by {item.supporting_path_count} nearby concepts</span>
         </div>
         <p class="opportunity-context">
           Public context: {item.source_context_summary} on one side and {item.target_context_summary} on the other.
         </p>
+        <OpportunityEvidence
+          mediatorLabels={item.top_mediator_labels}
+          directLinkStatus={item.direct_link_status}
+          sourceLabel={getPublicLabel(item.source_id, item.source_label)}
+          targetLabel={getPublicLabel(item.target_id, item.target_label)}
+          sourceContextSummary={item.source_context_summary}
+          targetContextSummary={item.target_context_summary}
+        />
         <a class="text-link" href={item.app_link}>Open in app</a>
       </article>
     ))}
   </div>
+  {enableFilters && (
+    <p class="card-copy opportunity-empty-state" data-role="opportunity-filter-empty" hidden>
+      No visible pairs match the current filter combination. Try clearing one of the chips or open the secondary slices for a different browsing mode.
+    </p>
+  )}
 </section>
+
+{enableFilters && (
+  <script is:inline define:vars={{ rootId }} type="module">
+    const root = document.getElementById(rootId);
+    if (!(root instanceof HTMLElement)) throw new Error("Opportunity cards root missing");
+
+    const cards = Array.from(root.querySelectorAll('[data-role="structured-opportunity-card"]'));
+    const chips = Array.from(root.querySelectorAll('[data-role="opportunity-filter-chip"]'));
+    const emptyState = root.querySelector('[data-role="opportunity-filter-empty"]');
+    const active = new Set();
+
+    const filterToDataset = {
+      "no-direct": "noDirect",
+      "cross-field": "crossField",
+      "strong-support": "strongSupport",
+      "ready-followup": "readyFollowup",
+    };
+
+    const applyFilters = () => {
+      let visibleCount = 0;
+      for (const card of cards) {
+        const visible = Array.from(active).every((filterId) => card.dataset[filterToDataset[filterId]] === "true");
+        card.hidden = !visible;
+        if (visible) visibleCount += 1;
+      }
+      if (emptyState instanceof HTMLElement) {
+        emptyState.hidden = visibleCount > 0;
+      }
+    };
+
+    for (const chip of chips) {
+      chip.addEventListener("click", () => {
+        const filterId = chip.dataset.filterId;
+        if (!filterId) return;
+        if (active.has(filterId)) {
+          active.delete(filterId);
+        } else {
+          active.add(filterId);
+        }
+        chip.setAttribute("aria-pressed", String(active.has(filterId)));
+        chip.classList.toggle("is-active", active.has(filterId));
+        applyFilters();
+      });
+    }
+
+    applyFilters();
+  </script>
+)}

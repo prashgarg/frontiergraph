@@ -34,6 +34,9 @@ def test_opportunity_export_includes_public_language_fields() -> None:
     for field in (
         "direct_link_status",
         "supporting_path_count",
+        "cross_field",
+        "public_pair_label",
+        "top_mediator_labels",
         "why_now",
         "recommended_move",
         "slice_label",
@@ -72,7 +75,7 @@ def test_curated_opportunities_are_present_in_expected_order() -> None:
     assert [row["pair_key"] for row in front_set] == expected_opportunities
 
     for row in front_set:
-        for field in ("headline", "summary", "why_it_matters", "how_to_start"):
+        for field in ("headline", "summary", "why_it_matters", "how_to_start", "public_source_label", "public_target_label", "next_study"):
             assert row[field] not in (None, "", "NA"), f"{field} should be present on curated opportunity rows"
 
 
@@ -90,3 +93,17 @@ def test_excluded_pairs_do_not_appear_in_curated_sets() -> None:
 
     assert home_pairs.isdisjoint(excluded)
     assert front_pairs.isdisjoint(excluded)
+
+
+def test_public_label_glossary_references_known_concepts() -> None:
+    concepts = load_json("concept_index.json")
+    concept_ids = {row["concept_id"] for row in concepts}
+
+    with (ROOT / "site" / "src" / "generated" / "site-data.json").open() as handle:
+        site_data = json.load(handle)
+
+    glossary = site_data["public_label_glossary"]
+    assert glossary, "public_label_glossary should not be empty"
+    for concept_id, entry in glossary.items():
+        assert concept_id in concept_ids, f"{concept_id} should exist in concept_index.json"
+        assert entry["subtitle"] not in (None, "", "NA"), f"{concept_id} should include a readable subtitle"

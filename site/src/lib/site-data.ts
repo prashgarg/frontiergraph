@@ -1,5 +1,6 @@
 import siteData from "../generated/site-data.json";
 import editorialSource from "../content/editorial-opportunities.json";
+import publicLabelGlossarySource from "../content/public-label-glossary.json";
 
 export type MetricBundle = {
   papers: number;
@@ -19,6 +20,7 @@ export type Opportunity = {
   target_label: string;
   source_bucket: string;
   target_bucket: string;
+  cross_field: boolean;
   score: number;
   base_score: number;
   duplicate_penalty: number;
@@ -32,11 +34,19 @@ export type Opportunity = {
   why_now: string;
   recommended_move: string;
   slice_label: string;
+  public_pair_label: string;
+  top_mediator_labels: string[];
   top_countries_source: string[];
   top_countries_target: string[];
   source_context_summary: string;
   target_context_summary: string;
   app_link: string;
+};
+
+export type PublicLabelGloss = {
+  concept_id: string;
+  plain_label?: string;
+  subtitle: string;
 };
 
 export type EditorialOpportunity = {
@@ -45,6 +55,9 @@ export type EditorialOpportunity = {
   summary: string;
   why_it_matters: string;
   how_to_start: string;
+  public_source_label: string;
+  public_target_label: string;
+  next_study: string;
   homepage_featured: boolean;
   opportunities_featured: boolean;
   display_order: number;
@@ -55,6 +68,8 @@ export type CuratedOpportunity = Opportunity & EditorialOpportunity;
 export type CentralConcept = {
   concept_id: string;
   label: string;
+  plain_label?: string;
+  subtitle?: string;
   bucket_hint: string;
   instance_support: number;
   distinct_paper_support: number;
@@ -71,6 +86,8 @@ export type CentralConcept = {
 export type ConceptLookupRecord = {
   concept_id: string;
   label: string;
+  plain_label?: string;
+  subtitle?: string;
   aliases: string[];
   bucket_hint: string;
   instance_support: number;
@@ -130,6 +147,7 @@ export type SiteData = {
   generated_at: string;
   app_url: string;
   repo_url: string;
+  public_label_glossary: Record<string, PublicLabelGloss>;
   default_view: {
     regime: string;
     mapping: string;
@@ -198,6 +216,15 @@ function normalizeEditorialSource(): EditorialOpportunity[] {
   return items.sort((left, right) => left.display_order - right.display_order);
 }
 
+function normalizePublicLabelGlossarySource(): Record<string, PublicLabelGloss> {
+  const payload = publicLabelGlossarySource as Record<string, PublicLabelGloss>;
+  for (const [conceptId, entry] of Object.entries(payload)) {
+    invariant(entry.concept_id === conceptId, `Glossary entry ${conceptId} must keep concept_id in sync with its object key`);
+    invariant(Boolean(entry.subtitle), `Glossary entry ${conceptId} must include a subtitle`);
+  }
+  return payload;
+}
+
 function validateCuratedSet(
   actual: CuratedOpportunity[],
   expected: EditorialOpportunity[],
@@ -218,6 +245,7 @@ function validateCuratedSet(
 function buildSiteData(): SiteData {
   const payload = siteData as SiteData;
   const editorialItems = normalizeEditorialSource();
+  const glossarySource = normalizePublicLabelGlossarySource();
   const availablePairs = new Set(
     Object.values(payload.opportunities.top_slices)
       .flat()
@@ -231,6 +259,16 @@ function buildSiteData(): SiteData {
   const expectedOpportunities = editorialItems.filter((item) => item.opportunities_featured);
   invariant(expectedHome.length === 4, "Homepage curation must contain exactly 4 curated opportunities");
   invariant(expectedOpportunities.length === 8, "Opportunities curation must contain exactly 8 curated opportunities");
+  invariant(
+    Object.keys(payload.public_label_glossary ?? {}).length === Object.keys(glossarySource).length,
+    "public_label_glossary is out of sync with public-label-glossary.json",
+  );
+  for (const [conceptId, entry] of Object.entries(glossarySource)) {
+    const actual = payload.public_label_glossary?.[conceptId];
+    invariant(actual, `public_label_glossary is missing ${conceptId}`);
+    invariant(actual.subtitle === entry.subtitle, `public_label_glossary has stale subtitle for ${conceptId}`);
+    invariant((actual.plain_label ?? "") === (entry.plain_label ?? ""), `public_label_glossary has stale plain_label for ${conceptId}`);
+  }
 
   return {
     ...payload,
@@ -254,6 +292,19 @@ function buildSiteData(): SiteData {
 }
 
 export const data = buildSiteData();
+
+export function getPublicLabelGloss(conceptId: string | undefined): PublicLabelGloss | null {
+  if (!conceptId) return null;
+  return data.public_label_glossary[conceptId] ?? null;
+}
+
+export function getPublicLabel(conceptId: string | undefined, rawLabel: string): string {
+  return getPublicLabelGloss(conceptId)?.plain_label || rawLabel;
+}
+
+export function getPublicLabelSubtitle(conceptId: string | undefined): string | null {
+  return getPublicLabelGloss(conceptId)?.subtitle || null;
+}
 
 export function formatNumber(value: number): string {
   return new Intl.NumberFormat("en-US").format(value);

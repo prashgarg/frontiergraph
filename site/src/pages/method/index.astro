@@ -117,6 +117,9 @@ const conservative = data.compare.regimes.find((regime) => regime.regime === "co
           <p>
             A second deterministic suppression layer cleans near-synonym loops on the public Baseline exploratory top slice, leaving <strong>{formatNumber(data.metrics.suppressed_candidate_count)}</strong> visible candidates after cleanup.
           </p>
+          <p>
+            On the public site, curated cards use editorial question order when they present a research direction, while the machine-ranked lists deliberately show neutral pair wording so the public surface does not imply causal direction from storage order alone.
+          </p>
           <div class="button-row">
             <a class="button-secondary" href="/opportunities/">See opportunities</a>
             <a class="button-tertiary" href="/compare/">Inspect regime comparison</a>

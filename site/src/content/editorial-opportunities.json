@@ -5,6 +5,9 @@
     "summary": "Fiscal stress can reshape public investment, energy policy, and the pace of adjustment, but those links are rarely studied as a direct emissions question.",
     "why_it_matters": "If debt limits a government's room to finance cleaner infrastructure or smooth energy transitions, that is a policy question with real macro and climate stakes.",
     "how_to_start": "Start with debt overhang or consolidation episodes and trace what happens to public investment, energy prices, and carbon-intensive activity.",
+    "public_source_label": "public debt",
+    "public_target_label": "CO2 emissions",
+    "next_study": "A debt-shock or consolidation design that tracks public investment, energy use, and emissions after fiscal tightening.",
     "homepage_featured": true,
     "opportunities_featured": true,
     "display_order": 1
@@ -15,6 +18,9 @@
     "summary": "Trade liberalisation can shift production patterns, freight intensity, and imported inputs, yet energy consumption is often treated as a side effect rather than the main outcome.",
     "why_it_matters": "This is a clean way to connect trade policy to resource use, not just to prices, growth, or competitiveness.",
     "how_to_start": "Begin with sectors most exposed to tariff or quota changes and ask whether energy intensity moves with the composition of trade.",
+    "public_source_label": "trade liberalisation",
+    "public_target_label": "energy consumption",
+    "next_study": "A sector-level trade reform paper that tests whether tariff exposure predicts changes in industrial or transport energy demand.",
     "homepage_featured": true,
     "opportunities_featured": true,
     "display_order": 2
@@ -25,6 +31,9 @@
     "summary": "Urbanization is often present in development stories without being tested head-on as a route to output growth.",
     "why_it_matters": "Cities can alter productivity, infrastructure use, worker matching, and firm scale, so this is a natural next question for growth research.",
     "how_to_start": "Start with urban expansion episodes or regional panels and ask when rising urban concentration turns into stronger output growth.",
+    "public_source_label": "urbanization",
+    "public_target_label": "output growth",
+    "next_study": "A regional panel or city-expansion study that asks when rising urban concentration translates into stronger output growth.",
     "homepage_featured": true,
     "opportunities_featured": true,
     "display_order": 3
@@ -35,6 +44,9 @@
     "summary": "A lot of green innovation work stops at cleaner production or lower emissions, while broader ecological capacity measures are studied elsewhere.",
     "why_it_matters": "That leaves open an important distinction between making production cleaner and improving the environment's ability to absorb pressure.",
     "how_to_start": "Start with green patenting or green R&D measures and pair them with broader environmental-capacity indicators rather than emissions alone.",
+    "public_source_label": "green innovation",
+    "public_target_label": "load capacity factor",
+    "next_study": "A green-patent or green-R&D paper that tests whether innovation predicts broader ecological carrying-capacity gains, not just lower emissions.",
     "homepage_featured": true,
     "opportunities_featured": true,
     "display_order": 4
@@ -45,6 +57,9 @@
     "summary": "Investment is central in growth and development research, but not all investment has the same carbon consequences and that distinction is still underplayed.",
     "why_it_matters": "A clearer literature could separate carbon-intensive capital deepening from cleaner investment paths and make climate transition debates more concrete.",
     "how_to_start": "Start by splitting public infrastructure, private fixed investment, and foreign-financed capital formation instead of treating investment as one block.",
+    "public_source_label": "investment",
+    "public_target_label": "carbon emissions",
+    "next_study": "An investment-composition paper that separates cleaner capital formation from carbon-intensive expansion and links each to emissions outcomes.",
     "homepage_featured": false,
     "opportunities_featured": true,
     "display_order": 5
@@ -55,6 +70,9 @@
     "summary": "Innovation is often treated as a growth engine first and an environmental channel second, which makes the net direction hard to see.",
     "why_it_matters": "That makes this a useful next question if you want to separate cleaner process change from scale effects that raise output and energy use.",
     "how_to_start": "Start with the direction of innovation: energy efficiency, cleaner production, and process innovation versus innovation that mainly expands scale.",
+    "public_source_label": "innovation",
+    "public_target_label": "environmental quality",
+    "next_study": "A paper that splits innovation by direction and tests whether cleaner innovation improves environmental quality while scale-expanding innovation does not.",
     "homepage_featured": false,
     "opportunities_featured": true,
     "display_order": 6
@@ -65,6 +83,9 @@
     "summary": "Interest-rate moves can change durable purchases, construction, and industrial borrowing, but energy consumption is rarely named as the main outcome.",
     "why_it_matters": "That could link macro stabilisation more directly to resource demand and make monetary transmission more tangible for applied policy work.",
     "how_to_start": "Start with rate shocks and trace household durables, firm borrowing, and sector-level energy use rather than stopping at output or inflation.",
+    "public_source_label": "monetary policy",
+    "public_target_label": "energy consumption",
+    "next_study": "A monetary-shock paper that follows rate changes through durables, construction, and sector energy demand.",
     "homepage_featured": false,
     "opportunities_featured": true,
     "display_order": 7
@@ -75,6 +96,9 @@
     "summary": "Export expansion can change what economies produce and where environmental costs show up, but pollution outcomes are often buried inside broader trade debates.",
     "why_it_matters": "A cleaner direct literature could separate scale effects from shifts in sector mix and production technique.",
     "how_to_start": "Start with export surges in pollution-intensive sectors and compare them with cases where export growth comes from cleaner industries.",
+    "public_source_label": "exports",
+    "public_target_label": "environmental pollution",
+    "next_study": "A sector-level export paper that separates pollution-intensive export booms from cleaner export expansion and compares their environmental outcomes.",
     "homepage_featured": false,
     "opportunities_featured": true,
     "display_order": 8

@@ -1,0 +1,38 @@
+---
+interface Props {
+  mediatorLabels?: string[];
+  directLinkStatus: string;
+  sourceLabel: string;
+  targetLabel: string;
+  sourceContextSummary: string;
+  targetContextSummary: string;
+}
+
+const {
+  mediatorLabels = [],
+  directLinkStatus,
+  sourceLabel,
+  targetLabel,
+  sourceContextSummary,
+  targetContextSummary,
+} = Astro.props;
+
+const uniqueMediatorLabels = Array.from(new Set(mediatorLabels.filter(Boolean)));
+---
+
+<details class="opportunity-detail" data-role="opportunity-evidence">
+  <summary>Why this is surfaced</summary>
+  <div class="method-stack opportunity-evidence">
+    {uniqueMediatorLabels.length > 0 && (
+      <p class="mini-copy">
+        <strong>Nearby linking ideas:</strong> {uniqueMediatorLabels.join(", ")}
+      </p>
+    )}
+    <p class="mini-copy">
+      <strong>Direct literature:</strong> {directLinkStatus}
+    </p>
+    <p class="mini-copy">
+      <strong>Typical settings:</strong> {sourceLabel} studies are common in {sourceContextSummary}; {targetLabel} studies are common in {targetContextSummary}.
+    </p>
+  </div>
+</details>

@@ -1162,6 +1162,11 @@ h3 {
   font-size: 0.95rem;
 }
 
+.opportunity-label-note {
+  margin: -0.15rem 0 0;
+  color: var(--muted);
+}
+
 .opportunity-kicker,
 .opportunity-summary-row,
 .opportunity-advanced {
@@ -1207,6 +1212,31 @@ h3 {
 
 .opportunity-detail[open] summary {
   margin-bottom: 0.65rem;
+}
+
+.opportunity-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.opportunity-filter-chip.is-active {
+  border-color: var(--line-strong);
+  background: var(--panel-strong);
+  color: var(--text);
+}
+
+.opportunity-empty-state {
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  border: 1px dashed var(--line-strong);
+  border-radius: 1rem;
+  background: var(--surface-muted);
+}
+
+.opportunity-evidence {
+  gap: 0.6rem;
 }
 
 .method-stack {

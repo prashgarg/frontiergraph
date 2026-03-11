@@ -40,6 +40,7 @@ async function main() {
     (await page.locator('[data-role="home-curated-opportunities"] [data-role="curated-opportunity-card"]').count()) === 4,
     "Homepage should show exactly 4 curated opportunity cards",
   );
+  assert(await page.getByText(/Next study:/i).first().isVisible(), "Curated cards should expose Next study");
   await page.getByPlaceholder("Search labels or aliases").fill("income / economic growth");
   await page.getByRole("button", { name: /income \/ economic growth/i }).first().click();
   await page.getByRole("link", { name: /see nearby opportunities/i }).waitFor();
@@ -59,9 +60,24 @@ async function main() {
     (await page.locator('[data-role="opportunities-curated-front-set"] [data-role="curated-opportunity-card"]').count()) === 8,
     "Opportunities page should show exactly 8 curated opportunity cards",
   );
+  assert(await page.getByText(/broad measure of ecological carrying capacity/i).first().isVisible(), "Glossary subtitle did not render");
+  const rankedSection = page.locator('[data-role="overall-ranked-opportunities"]');
+  assert(!((await rankedSection.innerText()).includes("→")), "Ranked opportunities should not use arrow syntax");
+  await page.getByRole("button", { name: /ready for follow-up/i }).click();
+  await page.waitForTimeout(250);
+  assert(await page.getByText(/No visible pairs match the current filter combination/i).isVisible(), "Filter empty state did not render");
+  await page.getByRole("button", { name: /ready for follow-up/i }).click();
+  await page.waitForTimeout(250);
+  const firstEvidence = page.locator('[data-role="overall-ranked-opportunities"] [data-role="opportunity-evidence"]').first();
+  await firstEvidence.locator("summary").click();
+  await page.waitForTimeout(200);
+  assert(/Nearby linking ideas:/i.test(await firstEvidence.innerText()), "Evidence drawer did not open with mediator labels");
+
   const lookupText = await page.locator('[data-role="concept-panel"]').innerText();
   assert(!/\bNA\b/.test(lookupText), "Concept lookup still renders NA");
   assert(/incoming|papers|nearby concepts/i.test(lookupText), "Concept lookup did not render readable metadata");
+  const lookupOpportunityText = await page.locator('[data-role="opportunities-panel"]').innerText();
+  assert(!lookupOpportunityText.includes("→"), "Concept lookup opportunities should not use arrow syntax");
 
   await page.goto(`${baseUrl}/graph/`, { waitUntil: "networkidle" });
   await page.waitForSelector('[data-role="graph-canvas"]');
@@ -91,6 +107,8 @@ async function main() {
     /Focus summary/i.test(await page.locator('[data-role="selection-list-view"]').innerText()),
     "Graph text view did not render the keyboard-readable focus summary",
   );
+  const graphOpportunitiesText = await page.locator('[data-role="selected-opportunities"]').innerText();
+  assert(!graphOpportunitiesText.includes("→"), "Graph nearby opportunities should not use arrow syntax");
 
   const viewport = page.locator('[data-role="graph-viewport"]');
   const initialTransform = await viewport.getAttribute("transform");

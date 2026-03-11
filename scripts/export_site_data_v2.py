@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE_ROOT = ROOT / "site"
 GENERATED_DIR = SITE_ROOT / "src" / "generated"
 EDITORIAL_OPPORTUNITIES_PATH = SITE_ROOT / "src" / "content" / "editorial-opportunities.json"
+PUBLIC_LABEL_GLOSSARY_PATH = SITE_ROOT / "src" / "content" / "public-label-glossary.json"
 PUBLIC_DATA_DIR = SITE_ROOT / "public" / "data" / "v2"
 NEIGHBORHOOD_SHARDS_DIR = PUBLIC_DATA_DIR / "concept_neighborhoods"
 OPPORTUNITY_SHARDS_DIR = PUBLIC_DATA_DIR / "concept_opportunities"
@@ -149,9 +150,17 @@ EDITORIAL_REQUIRED_FIELDS = (
     "summary",
     "why_it_matters",
     "how_to_start",
+    "public_source_label",
+    "public_target_label",
+    "next_study",
     "homepage_featured",
     "opportunities_featured",
     "display_order",
+)
+
+PUBLIC_LABEL_GLOSSARY_REQUIRED_FIELDS = (
+    "concept_id",
+    "subtitle",
 )
 
 
@@ -235,6 +244,44 @@ def uniq_keep_order(values: list[str], limit: int | None = None) -> list[str]:
     return out
 
 
+def bucket_priority(bucket_hint: str | None) -> tuple[int, str]:
+    normalized = clean_public_text(bucket_hint).lower()
+    if normalized == "core":
+        return (0, normalized)
+    if normalized == "mixed":
+        return (1, normalized)
+    if normalized == "adjacent":
+        return (2, normalized)
+    return (3, normalized)
+
+
+def stable_public_pair_label(
+    left_label: str,
+    right_label: str,
+    left_bucket: str | None,
+    right_bucket: str | None,
+) -> str:
+    left = (bucket_priority(left_bucket), clean_public_text(left_label).lower(), clean_public_text(left_label))
+    right = (bucket_priority(right_bucket), clean_public_text(right_label).lower(), clean_public_text(right_label))
+    ordered = sorted([left, right], key=lambda item: (item[0], item[1]))
+    return f"{ordered[0][2]} and {ordered[1][2]}"
+
+
+def public_label_payload(
+    concept_id: str | None,
+    raw_label: Any,
+    glossary: dict[str, dict[str, Any]],
+) -> dict[str, str]:
+    label = clean_public_text(raw_label) or str(concept_id or "")
+    entry = glossary.get(str(concept_id or ""), {})
+    plain_label = clean_public_text(entry.get("plain_label")) or label
+    subtitle = clean_public_text(entry.get("subtitle"))
+    return {
+        "plain_label": plain_label,
+        "subtitle": subtitle,
+    }
+
+
 def public_slice_label(values: dict[str, Any]) -> str:
     cooc_count = to_int(values.get("cooc_count", 0))
     path_support = to_float(values.get("path_support_norm", 0.0))
@@ -310,12 +357,45 @@ def why_now(values: dict[str, Any]) -> str:
     )
 
 
-def opportunity_record(row: sqlite3.Row | tuple[Any, ...], columns: list[str]) -> dict[str, Any]:
+def resolve_top_mediator_labels(
+    raw: Any,
+    concept_label_lookup: dict[str, str],
+    glossary: dict[str, dict[str, Any]],
+    limit: int = 3,
+) -> list[str]:
+    labels: list[str] = []
+    seen: set[str] = set()
+    for item in parse_json_list(raw):
+        if not isinstance(item, dict):
+            continue
+        concept_id = str(item.get("mediator", "")).strip()
+        if not concept_id:
+            continue
+        raw_label = concept_label_lookup.get(concept_id, concept_id)
+        public_label = public_label_payload(concept_id, raw_label, glossary)["plain_label"]
+        if not public_label or public_label in seen:
+            continue
+        seen.add(public_label)
+        labels.append(public_label)
+        if len(labels) >= limit:
+            break
+    return labels
+
+
+def opportunity_record(
+    row: sqlite3.Row | tuple[Any, ...],
+    columns: list[str],
+    concept_label_lookup: dict[str, str],
+    glossary: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
     values = dict(zip(columns, row))
     pair_query = quote(f"{values['u_preferred_label']} -> {values['v_preferred_label']}")
     cooc_count = to_int(values["cooc_count"])
     top_source = top_values(values["u_top_countries"], limit=3)
     top_target = top_values(values["v_top_countries"], limit=3)
+    source_public = public_label_payload(values["u"], values["u_preferred_label"], glossary)
+    target_public = public_label_payload(values["v"], values["v_preferred_label"], glossary)
+    cross_field = clean_public_text(values.get("u_bucket_hint")) != clean_public_text(values.get("v_bucket_hint"))
     return {
         "pair_key": values["pair_key"],
         "source_id": values["u"],
@@ -324,6 +404,7 @@ def opportunity_record(row: sqlite3.Row | tuple[Any, ...], columns: list[str]) -
         "target_label": values["v_preferred_label"],
         "source_bucket": values["u_bucket_hint"],
         "target_bucket": values["v_bucket_hint"],
+        "cross_field": cross_field,
         "score": round(to_float(values["score"]), 6),
         "base_score": round(to_float(values["base_score"]), 6),
         "duplicate_penalty": round(to_float(values.get("duplicate_penalty", 0.0)), 6),
@@ -337,6 +418,13 @@ def opportunity_record(row: sqlite3.Row | tuple[Any, ...], columns: list[str]) -
         "why_now": why_now(values),
         "recommended_move": recommended_move(values),
         "slice_label": public_slice_label(values),
+        "public_pair_label": stable_public_pair_label(
+            source_public["plain_label"],
+            target_public["plain_label"],
+            values.get("u_bucket_hint"),
+            values.get("v_bucket_hint"),
+        ),
+        "top_mediator_labels": resolve_top_mediator_labels(values.get("top_mediators_json"), concept_label_lookup, glossary, limit=3),
         "top_countries_source": top_source,
         "top_countries_target": top_target,
         "source_context_summary": plain_language_context(top_source, "No dominant source setting in the current public sample"),
@@ -384,16 +472,19 @@ def add_slice_flags(df: pd.DataFrame) -> pd.DataFrame:
     return working
 
 
-def build_slices(df: pd.DataFrame) -> dict[str, list[dict[str, Any]]]:
+def build_slices(
+    df: pd.DataFrame,
+    concept_label_lookup: dict[str, str],
+    glossary: dict[str, dict[str, Any]],
+) -> dict[str, list[dict[str, Any]]]:
     columns = list(df.columns)
-    rows = [tuple(row) for row in df.itertuples(index=False, name=None)]
     def top_records(mask: pd.Series | None, limit: int = 100) -> list[dict[str, Any]]:
         if mask is None:
             subset = df.head(limit)
         else:
             subset = df.loc[mask].head(limit)
         subset_rows = [tuple(row) for row in subset.itertuples(index=False, name=None)]
-        return [opportunity_record(row, columns) for row in subset_rows]
+        return [opportunity_record(row, columns, concept_label_lookup, glossary) for row in subset_rows]
 
     return {
         "overall": top_records(None),
@@ -472,6 +563,7 @@ def build_backbone(
     edge_profiles_df: pd.DataFrame,
     edge_contexts_df: pd.DataFrame,
     edge_exemplars_df: pd.DataFrame,
+    glossary: dict[str, dict[str, Any]],
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     top_node_ids = set(node_metrics_df.head(BACKBONE_NODE_LIMIT)["concept_id"])
     edges_subset = edges_df[
@@ -533,10 +625,13 @@ def build_backbone(
         metrics = central_metrics.get(concept_id, {})
         pos = positions.get(concept_id, {"x": 0.5, "y": 0.5})
         aliases = uniq_keep_order(parse_json_list(detail.get("aliases_json")), limit=8)
+        public_label = public_label_payload(concept_id, detail.get("preferred_label", concept_id), glossary)
         backbone_nodes.append(
             {
                 "id": concept_id,
                 "label": detail.get("preferred_label", concept_id),
+                "plain_label": public_label["plain_label"],
+                "subtitle": public_label["subtitle"],
                 "aliases": aliases,
                 "alias_count": len(parse_json_list(detail.get("aliases_json"))),
                 "bucket_hint": detail.get("bucket_hint", "unknown"),
@@ -656,33 +751,53 @@ def build_neighborhoods(
     return neighborhoods
 
 
-def build_concept_opportunities(candidates_df: pd.DataFrame) -> dict[str, list[dict[str, Any]]]:
+def build_concept_opportunities(
+    candidates_df: pd.DataFrame,
+    concept_label_lookup: dict[str, str],
+    glossary: dict[str, dict[str, Any]],
+) -> dict[str, list[dict[str, Any]]]:
     columns = list(candidates_df.columns)
-    concept_map: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    concept_map: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
     for row in candidates_df.itertuples(index=False):
-        record = opportunity_record(tuple(row), columns)
-        concept_map[row.u].append(record)
-        concept_map[row.v].append(record)
-    for concept_id, rows in list(concept_map.items()):
+        record = opportunity_record(tuple(row), columns, concept_label_lookup, glossary)
+        for concept_id in (row.u, row.v):
+            existing = concept_map[concept_id].get(record["pair_key"])
+            if existing is None or safe_number_for_sort(record["score"]) > safe_number_for_sort(existing["score"]):
+                concept_map[concept_id][record["pair_key"]] = record
+    out: dict[str, list[dict[str, Any]]] = {}
+    for concept_id, pair_rows in concept_map.items():
+        rows = list(pair_rows.values())
         rows.sort(key=lambda item: item["score"], reverse=True)
-        concept_map[concept_id] = rows[:CONCEPT_OPPORTUNITY_LIMIT]
-    return concept_map
+        out[concept_id] = rows[:CONCEPT_OPPORTUNITY_LIMIT]
+    return out
 
 
-def build_search_index(nodes_df: pd.DataFrame, node_metrics_df: pd.DataFrame) -> list[dict[str, Any]]:
+def safe_number_for_sort(value: Any) -> float:
+    numeric = to_float(value, 0.0)
+    return numeric if math.isfinite(numeric) else 0.0
+
+
+def build_search_index(
+    nodes_df: pd.DataFrame,
+    node_metrics_df: pd.DataFrame,
+    glossary: dict[str, dict[str, Any]],
+) -> list[dict[str, Any]]:
     metrics_map = node_metrics_df.set_index("concept_id").to_dict("index")
     records: list[dict[str, Any]] = []
     for row in nodes_df.itertuples(index=False):
         metrics = metrics_map.get(row.concept_id, {})
         aliases = uniq_keep_order(parse_json_list(row.aliases_json), limit=12)
         search_terms = uniq_keep_order(
-            [str(row.preferred_label).lower()] + [alias.lower() for alias in aliases],
+            [str(row.preferred_label).lower(), public_label_payload(row.concept_id, row.preferred_label, glossary)["plain_label"].lower()] + [alias.lower() for alias in aliases],
             limit=20,
         )
+        public_label = public_label_payload(row.concept_id, row.preferred_label, glossary)
         records.append(
             {
                 "concept_id": row.concept_id,
                 "label": row.preferred_label,
+                "plain_label": public_label["plain_label"],
+                "subtitle": public_label["subtitle"],
                 "aliases": aliases,
                 "bucket_hint": row.bucket_hint,
                 "instance_support": int(row.instance_support),
@@ -778,9 +893,37 @@ def load_editorial_opportunities() -> dict[str, dict[str, Any]]:
     return editorial
 
 
+def load_public_label_glossary(valid_concept_ids: set[str]) -> dict[str, dict[str, Any]]:
+    payload = read_json(PUBLIC_LABEL_GLOSSARY_PATH)
+    if not isinstance(payload, dict):
+        raise ValueError("public-label-glossary.json must be an object keyed by concept_id")
+
+    glossary: dict[str, dict[str, Any]] = {}
+    for concept_id, item in payload.items():
+        if not isinstance(item, dict):
+            raise ValueError(f"Public label glossary entry for {concept_id} must be an object")
+        entry = {**item}
+        entry.setdefault("concept_id", concept_id)
+        if entry["concept_id"] != concept_id:
+            raise ValueError(f"Public label glossary entry {concept_id} must keep concept_id in sync with its object key")
+        missing = [field for field in PUBLIC_LABEL_GLOSSARY_REQUIRED_FIELDS if field not in entry]
+        if missing:
+            raise ValueError(f"Public label glossary entry {concept_id} is missing required fields: {', '.join(missing)}")
+        if concept_id not in valid_concept_ids:
+            raise ValueError(f"Public label glossary concept_id {concept_id} is not present in the public concept index")
+        glossary[concept_id] = {
+            "concept_id": concept_id,
+            "plain_label": clean_public_text(entry.get("plain_label")),
+            "subtitle": clean_public_text(entry.get("subtitle")),
+        }
+    return glossary
+
+
 def build_curated_opportunities(
     editorial: dict[str, dict[str, Any]],
     candidates_df: pd.DataFrame,
+    concept_label_lookup: dict[str, str],
+    glossary: dict[str, dict[str, Any]],
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     available_pair_keys = {str(value) for value in candidates_df["pair_key"].tolist()}
     missing_pairs = [pair_key for pair_key in editorial if pair_key not in available_pair_keys]
@@ -792,19 +935,31 @@ def build_curated_opportunities(
 
     subset_df = candidates_df[candidates_df["pair_key"].isin(editorial.keys())].copy()
     columns = list(subset_df.columns)
-    base_records = {
-        record["pair_key"]: record
-        for record in (
-            opportunity_record(tuple(row), columns)
-            for row in subset_df.itertuples(index=False, name=None)
-        )
-    }
+    records_by_pair: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in subset_df.itertuples(index=False, name=None):
+        record = opportunity_record(tuple(row), columns, concept_label_lookup, glossary)
+        records_by_pair[record["pair_key"]].append(record)
 
     curated_rows: list[dict[str, Any]] = []
     for pair_key, entry in sorted(editorial.items(), key=lambda item: int(item[1]["display_order"])):
-        base_record = base_records.get(pair_key)
-        if not base_record:
+        candidates = records_by_pair.get(pair_key, [])
+        if not candidates:
             raise ValueError(f"Curated editorial pair_key {pair_key} could not be resolved to an opportunity record")
+        base_record = next(
+            (
+                candidate
+                for candidate in candidates
+                if clean_public_text(entry.get("public_source_label")) == public_label_payload(candidate["source_id"], candidate["source_label"], glossary)["plain_label"]
+                and clean_public_text(entry.get("public_target_label")) == public_label_payload(candidate["target_id"], candidate["target_label"], glossary)["plain_label"]
+            ),
+            None,
+        )
+        if base_record is None:
+            if len(candidates) > 1:
+                raise ValueError(
+                    f"Curated editorial pair_key {pair_key} did not match a public display order in editorial-opportunities.json"
+                )
+            base_record = candidates[0]
         curated_rows.append({**base_record, **entry})
 
     home_rows = [row for row in curated_rows if bool(row["homepage_featured"])]
@@ -887,6 +1042,11 @@ def main() -> None:
 
     candidates_df = add_slice_flags(load_candidates())
     node_details_df = load_node_details()
+    public_concept_ids = {str(value) for value in node_details_df["concept_id"].tolist()}
+    public_label_glossary = load_public_label_glossary(public_concept_ids)
+    concept_label_lookup = (
+        node_details_df.set_index("concept_id")["preferred_label"].to_dict()
+    )
     graph_edges_df, edge_profiles_df, edge_contexts_df, edge_exemplars_df = load_graph_tables()
 
     node_metrics_df, _graph = compute_centrality(node_details_df, graph_edges_df)
@@ -897,10 +1057,11 @@ def main() -> None:
         edge_profiles_df,
         edge_contexts_df,
         edge_exemplars_df,
+        public_label_glossary,
     )
     neighborhoods = build_neighborhoods(node_details_df, graph_edges_df, edge_profiles_df, edge_contexts_df)
-    concept_opportunities = build_concept_opportunities(candidates_df)
-    search_index = build_search_index(node_details_df, node_metrics_df)
+    concept_opportunities = build_concept_opportunities(candidates_df, concept_label_lookup, public_label_glossary)
+    search_index = build_search_index(node_details_df, node_metrics_df, public_label_glossary)
     compare_payload = build_compare_payload(regime_summary_df, overlap_df)
 
     central_concepts_df = (
@@ -910,10 +1071,13 @@ def main() -> None:
     )
     central_concepts_rows = []
     for row in central_concepts_df.head(200).itertuples(index=False):
+        public_label = public_label_payload(row.concept_id, row.preferred_label, public_label_glossary)
         central_concepts_rows.append(
             {
                 "concept_id": row.concept_id,
                 "label": row.preferred_label,
+                "plain_label": public_label["plain_label"],
+                "subtitle": public_label["subtitle"],
                 "bucket_hint": row.bucket_hint,
                 "instance_support": int(row.instance_support),
                 "distinct_paper_support": int(row.distinct_paper_support),
@@ -928,9 +1092,14 @@ def main() -> None:
             }
         )
 
-    slices = build_slices(candidates_df)
+    slices = build_slices(candidates_df, concept_label_lookup, public_label_glossary)
     featured_opportunities = diversify_featured_opportunities(slices, limit=FEATURED_OPPORTUNITY_LIMIT)
-    home_curated_opportunities, curated_front_set = build_curated_opportunities(editorial_opportunities, candidates_df)
+    home_curated_opportunities, curated_front_set = build_curated_opportunities(
+        editorial_opportunities,
+        candidates_df,
+        concept_label_lookup,
+        public_label_glossary,
+    )
 
     write_json(PUBLIC_DATA_DIR / "graph_backbone.json", backbone_payload)
     write_json(PUBLIC_DATA_DIR / "concept_index.json", search_index)
@@ -953,12 +1122,12 @@ def main() -> None:
     export_rows_csv(
         PUBLIC_DATA_DIR / "central_concepts.csv",
         central_concepts_rows,
-        ["concept_id", "label", "bucket_hint", "instance_support", "distinct_paper_support", "weighted_degree", "pagerank", "in_degree", "out_degree", "neighbor_count", "top_countries", "top_units", "app_link"],
+        ["concept_id", "label", "plain_label", "subtitle", "bucket_hint", "instance_support", "distinct_paper_support", "weighted_degree", "pagerank", "in_degree", "out_degree", "neighbor_count", "top_countries", "top_units", "app_link"],
     )
     export_rows_csv(
         PUBLIC_DATA_DIR / "top_opportunities.csv",
         slices["overall"],
-        ["pair_key", "source_id", "target_id", "source_label", "target_label", "source_bucket", "target_bucket", "score", "base_score", "duplicate_penalty", "path_support_norm", "gap_bonus", "mediator_count", "motif_count", "cooc_count", "direct_link_status", "supporting_path_count", "why_now", "recommended_move", "slice_label", "top_countries_source", "top_countries_target", "source_context_summary", "target_context_summary", "app_link"],
+        ["pair_key", "source_id", "target_id", "source_label", "target_label", "source_bucket", "target_bucket", "cross_field", "score", "base_score", "duplicate_penalty", "path_support_norm", "gap_bonus", "mediator_count", "motif_count", "cooc_count", "direct_link_status", "supporting_path_count", "why_now", "recommended_move", "slice_label", "public_pair_label", "top_mediator_labels", "top_countries_source", "top_countries_target", "source_context_summary", "target_context_summary", "app_link"],
     )
 
     baseline_exploratory = next(
@@ -968,6 +1137,7 @@ def main() -> None:
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "app_url": APP_URL,
         "repo_url": REPO_URL,
+        "public_label_glossary": public_label_glossary,
         "default_view": {
             "regime": "Baseline",
             "mapping": "Exploratory",

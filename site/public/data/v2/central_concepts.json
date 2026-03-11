@@ -2,6 +2,8 @@
   {
     "concept_id": "FG3C000001",
     "label": "economic growth",
+    "plain_label": "economic growth",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 3949,
     "distinct_paper_support": 3942,
@@ -25,6 +27,8 @@
   {
     "concept_id": "FG3C000003",
     "label": "CO2 emissions",
+    "plain_label": "CO2 emissions",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 1547,
     "distinct_paper_support": 1547,
@@ -48,6 +52,8 @@
   {
     "concept_id": "FG3C000010",
     "label": "carbon emissions",
+    "plain_label": "carbon emissions",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 1290,
     "distinct_paper_support": 1286,
@@ -71,6 +77,8 @@
   {
     "concept_id": "FG3C000018",
     "label": "renewable energy consumption",
+    "plain_label": "renewable energy consumption",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 1076,
     "distinct_paper_support": 1076,
@@ -94,6 +102,8 @@
   {
     "concept_id": "FG3C000014",
     "label": "energy consumption",
+    "plain_label": "energy consumption",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 1121,
     "distinct_paper_support": 1115,
@@ -117,6 +127,8 @@
   {
     "concept_id": "FG3C000006",
     "label": "financial development",
+    "plain_label": "financial development",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 1239,
     "distinct_paper_support": 1231,
@@ -140,6 +152,8 @@
   {
     "concept_id": "FG3C000064",
     "label": "ecological footprint",
+    "plain_label": "ecological footprint",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 434,
     "distinct_paper_support": 428,
@@ -163,6 +177,8 @@
   {
     "concept_id": "FG3C000002",
     "label": "inflation",
+    "plain_label": "inflation",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 1689,
     "distinct_paper_support": 1677,
@@ -186,6 +202,8 @@
   {
     "concept_id": "FG3C000017",
     "label": "trade openness",
+    "plain_label": "trade openness",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 905,
     "distinct_paper_support": 903,
@@ -209,6 +227,8 @@
   {
     "concept_id": "FG3C000012",
     "label": "urbanization",
+    "plain_label": "urbanization",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 1001,
     "distinct_paper_support": 998,
@@ -232,6 +252,8 @@
   {
     "concept_id": "FG3C000013",
     "label": "technological innovation",
+    "plain_label": "technological innovation",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 870,
     "distinct_paper_support": 869,
@@ -255,6 +277,8 @@
   {
     "concept_id": "FG3C000015",
     "label": "foreign direct investments",
+    "plain_label": "foreign direct investments",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 801,
     "distinct_paper_support": 801,
@@ -278,6 +302,8 @@
   {
     "concept_id": "FG3C006644",
     "label": "Method of Moments Quantile Regression (MMQR)",
+    "plain_label": "Method of Moments Quantile Regression (MMQR)",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 2281,
     "distinct_paper_support": 2191,
@@ -301,6 +327,8 @@
   {
     "concept_id": "FG3C000068",
     "label": "digital economy",
+    "plain_label": "digital economy",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 334,
     "distinct_paper_support": 334,
@@ -324,6 +352,8 @@
   {
     "concept_id": "FG3C000053",
     "label": "green innovation",
+    "plain_label": "green innovation",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 562,
     "distinct_paper_support": 539,
@@ -347,6 +377,8 @@
   {
     "concept_id": "FG3C004594",
     "label": "carbon emissions (CO2 emissions)",
+    "plain_label": "carbon emissions (CO2 emissions)",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 641,
     "distinct_paper_support": 614,
@@ -370,6 +402,8 @@
   {
     "concept_id": "FG3C000038",
     "label": "energy efficiency",
+    "plain_label": "energy efficiency",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 546,
     "distinct_paper_support": 542,
@@ -393,6 +427,8 @@
   {
     "concept_id": "FG3C000011",
     "label": "output",
+    "plain_label": "output",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 1053,
     "distinct_paper_support": 1045,
@@ -416,6 +452,8 @@
   {
     "concept_id": "FG3C000059",
     "label": "renewable energy",
+    "plain_label": "renewable energy",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 566,
     "distinct_paper_support": 563,
@@ -439,6 +477,8 @@
   {
     "concept_id": "FG3C000009",
     "label": "unemployment",
+    "plain_label": "unemployment",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 1101,
     "distinct_paper_support": 1071,
@@ -462,6 +502,8 @@
   {
     "concept_id": "FG3C000091",
     "label": "economic growth (GDP)",
+    "plain_label": "economic growth (GDP)",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 328,
     "distinct_paper_support": 328,
@@ -485,6 +527,8 @@
   {
     "concept_id": "FG3C000016",
     "label": "human capital",
+    "plain_label": "human capital",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 789,
     "distinct_paper_support": 789,
@@ -508,6 +552,8 @@
   {
     "concept_id": "FG3C000063",
     "label": "green finance",
+    "plain_label": "green finance",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 413,
     "distinct_paper_support": 405,
@@ -531,6 +577,8 @@
   {
     "concept_id": "FG3C000025",
     "label": "income inequality",
+    "plain_label": "income inequality",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 627,
     "distinct_paper_support": 616,
@@ -554,6 +602,8 @@
   {
     "concept_id": "FG3C000041",
     "label": "energy intensity",
+    "plain_label": "energy intensity",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 531,
     "distinct_paper_support": 529,
@@ -577,6 +627,8 @@
   {
     "concept_id": "FG3C000004",
     "label": "welfare",
+    "plain_label": "welfare",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 1306,
     "distinct_paper_support": 1304,
@@ -600,6 +652,8 @@
   {
     "concept_id": "FG3C000019",
     "label": "investment",
+    "plain_label": "investment",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 927,
     "distinct_paper_support": 914,
@@ -623,6 +677,8 @@
   {
     "concept_id": "FG3C000007",
     "label": "employment",
+    "plain_label": "employment",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 957,
     "distinct_paper_support": 955,
@@ -646,6 +702,8 @@
   {
     "concept_id": "FG3C000021",
     "label": "productivity",
+    "plain_label": "productivity",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 948,
     "distinct_paper_support": 941,
@@ -669,6 +727,8 @@
   {
     "concept_id": "FG3C000040",
     "label": "environmental regulation",
+    "plain_label": "environmental regulation",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 544,
     "distinct_paper_support": 533,
@@ -692,6 +752,8 @@
   {
     "concept_id": "FG3C000005",
     "label": "COVID-19 pandemic",
+    "plain_label": "COVID-19 pandemic",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 1067,
     "distinct_paper_support": 1067,
@@ -715,6 +777,8 @@
   {
     "concept_id": "FG3C000024",
     "label": "monetary policy",
+    "plain_label": "monetary policy",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 837,
     "distinct_paper_support": 827,
@@ -738,6 +802,8 @@
   {
     "concept_id": "FG3C000081",
     "label": "environmental quality",
+    "plain_label": "environmental quality",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 381,
     "distinct_paper_support": 380,
@@ -761,6 +827,8 @@
   {
     "concept_id": "FG3C000035",
     "label": "stock returns",
+    "plain_label": "stock returns",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 680,
     "distinct_paper_support": 672,
@@ -784,6 +852,8 @@
   {
     "concept_id": "FG3C000134",
     "label": "environmental sustainability",
+    "plain_label": "environmental sustainability",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 327,
     "distinct_paper_support": 327,
@@ -807,6 +877,8 @@
   {
     "concept_id": "FG3C000167",
     "label": "carbon dioxide (CO2) emissions",
+    "plain_label": "carbon dioxide (CO2) emissions",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 200,
     "distinct_paper_support": 199,
@@ -830,6 +902,8 @@
   {
     "concept_id": "FG3C000030",
     "label": "innovation",
+    "plain_label": "innovation",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 587,
     "distinct_paper_support": 583,
@@ -853,6 +927,8 @@
   {
     "concept_id": "FG3C001420",
     "label": "environmental quality (CO2 emissions)",
+    "plain_label": "environmental quality",
+    "subtitle": "environmental outcomes measured through CO2 emissions",
     "bucket_hint": "adjacent",
     "instance_support": 336,
     "distinct_paper_support": 335,
@@ -876,6 +952,8 @@
   {
     "concept_id": "FG3C000022",
     "label": "wages",
+    "plain_label": "wages",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 834,
     "distinct_paper_support": 828,
@@ -899,6 +977,8 @@
   {
     "concept_id": "FG3C000034",
     "label": "oil prices",
+    "plain_label": "oil prices",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 473,
     "distinct_paper_support": 473,
@@ -922,6 +1002,8 @@
   {
     "concept_id": "FG3C000046",
     "label": "exports",
+    "plain_label": "exports",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 530,
     "distinct_paper_support": 523,
@@ -945,6 +1027,8 @@
   {
     "concept_id": "FG3C000036",
     "label": "institutional quality",
+    "plain_label": "institutional quality",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 557,
     "distinct_paper_support": 556,
@@ -968,6 +1052,8 @@
   {
     "concept_id": "FG3C000008",
     "label": "income",
+    "plain_label": "income",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 857,
     "distinct_paper_support": 856,
@@ -991,6 +1077,8 @@
   {
     "concept_id": "FG3C000094",
     "label": "green technology innovation",
+    "plain_label": "green technology innovation",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 316,
     "distinct_paper_support": 315,
@@ -1014,6 +1102,8 @@
   {
     "concept_id": "FG3C000065",
     "label": "sustainable development",
+    "plain_label": "sustainable development",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 398,
     "distinct_paper_support": 398,
@@ -1037,6 +1127,8 @@
   {
     "concept_id": "FG3C000026",
     "label": "economic development",
+    "plain_label": "economic development",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 540,
     "distinct_paper_support": 540,
@@ -1060,6 +1152,8 @@
   {
     "concept_id": "FG3C000039",
     "label": "globalization",
+    "plain_label": "globalization",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 473,
     "distinct_paper_support": 470,
@@ -1083,6 +1177,8 @@
   {
     "concept_id": "FG3C000124",
     "label": "natural resources",
+    "plain_label": "natural resources",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 402,
     "distinct_paper_support": 400,
@@ -1106,6 +1202,8 @@
   {
     "concept_id": "FG3C000130",
     "label": "environmental degradation",
+    "plain_label": "environmental degradation",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 209,
     "distinct_paper_support": 209,
@@ -1129,6 +1227,8 @@
   {
     "concept_id": "FG3C000033",
     "label": "consumption",
+    "plain_label": "consumption",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 809,
     "distinct_paper_support": 798,
@@ -1152,6 +1252,8 @@
   {
     "concept_id": "FG3C000160",
     "label": "electricity consumption",
+    "plain_label": "electricity consumption",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 220,
     "distinct_paper_support": 219,
@@ -1175,6 +1277,8 @@
   {
     "concept_id": "FG3C000096",
     "label": "stock prices",
+    "plain_label": "stock prices",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 551,
     "distinct_paper_support": 542,
@@ -1198,6 +1302,8 @@
   {
     "concept_id": "FG3C000203",
     "label": "environmental pollution",
+    "plain_label": "environmental pollution",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 257,
     "distinct_paper_support": 256,
@@ -1221,6 +1327,8 @@
   {
     "concept_id": "FG3C000103",
     "label": "financial inclusion",
+    "plain_label": "financial inclusion",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 272,
     "distinct_paper_support": 270,
@@ -1244,6 +1352,8 @@
   {
     "concept_id": "FG3C000048",
     "label": "foreign direct investment",
+    "plain_label": "foreign direct investment",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 410,
     "distinct_paper_support": 410,
@@ -1267,6 +1377,8 @@
   {
     "concept_id": "FG3C000215",
     "label": "green total factor productivity (GTFP)",
+    "plain_label": "green total factor productivity (GTFP)",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 174,
     "distinct_paper_support": 174,
@@ -1290,6 +1402,8 @@
   {
     "concept_id": "FG3C000072",
     "label": "exchange rates",
+    "plain_label": "exchange rates",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 556,
     "distinct_paper_support": 545,
@@ -1313,6 +1427,8 @@
   {
     "concept_id": "FG3C000055",
     "label": "trade",
+    "plain_label": "trade",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 431,
     "distinct_paper_support": 429,
@@ -1336,6 +1452,8 @@
   {
     "concept_id": "FG3C000323",
     "label": "willingness to pay (WTP)",
+    "plain_label": "willingness to pay (WTP)",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 620,
     "distinct_paper_support": 604,
@@ -1359,6 +1477,8 @@
   {
     "concept_id": "FG3C000110",
     "label": "output growth",
+    "plain_label": "output growth",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 508,
     "distinct_paper_support": 498,
@@ -1382,6 +1502,8 @@
   {
     "concept_id": "FG3C000037",
     "label": "GDP",
+    "plain_label": "GDP",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 485,
     "distinct_paper_support": 483,
@@ -1405,6 +1527,8 @@
   {
     "concept_id": "FG3C000411",
     "label": "model parameters",
+    "plain_label": "model parameters",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 1079,
     "distinct_paper_support": 1055,
@@ -1428,6 +1552,8 @@
   {
     "concept_id": "FG3C000074",
     "label": "economic policy uncertainty (EPU)",
+    "plain_label": "economic policy uncertainty (EPU)",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 346,
     "distinct_paper_support": 334,
@@ -1451,6 +1577,8 @@
   {
     "concept_id": "FG3C000097",
     "label": "industrial structure upgrading",
+    "plain_label": "industrial structure upgrading",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 298,
     "distinct_paper_support": 298,
@@ -1474,6 +1602,8 @@
   {
     "concept_id": "FG3C000020",
     "label": "firm size",
+    "plain_label": "firm size",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 735,
     "distinct_paper_support": 733,
@@ -1497,6 +1627,8 @@
   {
     "concept_id": "FG3C000044",
     "label": "industrial structure",
+    "plain_label": "industrial structure",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 505,
     "distinct_paper_support": 504,
@@ -1520,6 +1652,8 @@
   {
     "concept_id": "FG3C000027",
     "label": "interest rates",
+    "plain_label": "interest rates",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 728,
     "distinct_paper_support": 727,
@@ -1543,6 +1677,8 @@
   {
     "concept_id": "FG3C000060",
     "label": "GDP per capita",
+    "plain_label": "GDP per capita",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 425,
     "distinct_paper_support": 423,
@@ -1566,6 +1702,8 @@
   {
     "concept_id": "FG3C000117",
     "label": "oil price",
+    "plain_label": "oil price",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 363,
     "distinct_paper_support": 356,
@@ -1589,6 +1727,8 @@
   {
     "concept_id": "FG3C000071",
     "label": "economic policy uncertainty",
+    "plain_label": "economic policy uncertainty",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 325,
     "distinct_paper_support": 321,
@@ -1612,6 +1752,8 @@
   {
     "concept_id": "FG3C000045",
     "label": "technological progress",
+    "plain_label": "technological progress",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 434,
     "distinct_paper_support": 432,
@@ -1635,6 +1777,8 @@
   {
     "concept_id": "FG3C000070",
     "label": "productivity growth",
+    "plain_label": "productivity growth",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 420,
     "distinct_paper_support": 412,
@@ -1658,6 +1802,8 @@
   {
     "concept_id": "FG3C000249",
     "label": "natural resource rents",
+    "plain_label": "natural resource rents",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 252,
     "distinct_paper_support": 251,
@@ -1681,6 +1827,8 @@
   {
     "concept_id": "FG3C000246",
     "label": "green growth",
+    "plain_label": "green growth",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 147,
     "distinct_paper_support": 145,
@@ -1704,6 +1852,8 @@
   {
     "concept_id": "FG3C000123",
     "label": "oil price shocks",
+    "plain_label": "oil price shocks",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 306,
     "distinct_paper_support": 293,
@@ -1727,6 +1877,8 @@
   {
     "concept_id": "FG3C000121",
     "label": "greenhouse gas emissions",
+    "plain_label": "greenhouse gas emissions",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 256,
     "distinct_paper_support": 255,
@@ -1750,6 +1902,8 @@
   {
     "concept_id": "FG3C000029",
     "label": "education",
+    "plain_label": "education",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 535,
     "distinct_paper_support": 533,
@@ -1773,6 +1927,8 @@
   {
     "concept_id": "FG3C000042",
     "label": "trading volume",
+    "plain_label": "trading volume",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 500,
     "distinct_paper_support": 495,
@@ -1796,6 +1952,8 @@
   {
     "concept_id": "FG3C002284",
     "label": "firm total factor productivity (TFP)",
+    "plain_label": "firm total factor productivity (TFP)",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 259,
     "distinct_paper_support": 257,
@@ -1819,6 +1977,8 @@
   {
     "concept_id": "FG3C000028",
     "label": "prices",
+    "plain_label": "prices",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 583,
     "distinct_paper_support": 579,
@@ -1842,6 +2002,8 @@
   {
     "concept_id": "FG3C000232",
     "label": "non-renewable energy consumption",
+    "plain_label": "non-renewable energy consumption",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 188,
     "distinct_paper_support": 188,
@@ -1865,6 +2027,8 @@
   {
     "concept_id": "FG3C000173",
     "label": "energy use",
+    "plain_label": "energy use",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 226,
     "distinct_paper_support": 226,
@@ -1888,6 +2052,8 @@
   {
     "concept_id": "FG3C000061",
     "label": "total factor productivity (TFP)",
+    "plain_label": "total factor productivity (TFP)",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 283,
     "distinct_paper_support": 283,
@@ -1911,6 +2077,8 @@
   {
     "concept_id": "FG3C000384",
     "label": "information and communication technology (ICT)",
+    "plain_label": "information and communication technology (ICT)",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 270,
     "distinct_paper_support": 269,
@@ -1934,6 +2102,8 @@
   {
     "concept_id": "FG3C000089",
     "label": "R&D investment",
+    "plain_label": "R&D investment",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 275,
     "distinct_paper_support": 275,
@@ -1957,6 +2127,8 @@
   {
     "concept_id": "FG3C000051",
     "label": "house prices",
+    "plain_label": "house prices",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 471,
     "distinct_paper_support": 470,
@@ -1980,6 +2152,8 @@
   {
     "concept_id": "FG3C000050",
     "label": "housing prices",
+    "plain_label": "housing prices",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 341,
     "distinct_paper_support": 340,
@@ -2003,6 +2177,8 @@
   {
     "concept_id": "FG3C000202",
     "label": "green bonds",
+    "plain_label": "green bonds",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 272,
     "distinct_paper_support": 257,
@@ -2026,6 +2202,8 @@
   {
     "concept_id": "FG3C000242",
     "label": "digital finance",
+    "plain_label": "digital finance",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 139,
     "distinct_paper_support": 131,
@@ -2049,6 +2227,8 @@
   {
     "concept_id": "FG3C000267",
     "label": "energy transition",
+    "plain_label": "energy transition",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 188,
     "distinct_paper_support": 186,
@@ -2072,6 +2252,8 @@
   {
     "concept_id": "FG3C000043",
     "label": "volatility",
+    "plain_label": "volatility",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 529,
     "distinct_paper_support": 523,
@@ -2095,6 +2277,8 @@
   {
     "concept_id": "FG3C004120",
     "label": "uncertainty measures",
+    "plain_label": "uncertainty measures",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 459,
     "distinct_paper_support": 444,
@@ -2118,6 +2302,8 @@
   {
     "concept_id": "FG3C000101",
     "label": "gold",
+    "plain_label": "gold",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 323,
     "distinct_paper_support": 318,
@@ -2141,6 +2327,8 @@
   {
     "concept_id": "FG3C000491",
     "label": "environmental efficiency",
+    "plain_label": "environmental efficiency",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 163,
     "distinct_paper_support": 160,
@@ -2164,6 +2352,8 @@
   {
     "concept_id": "FG3C001218",
     "label": "ecological footprints",
+    "plain_label": "ecological footprints",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 86,
     "distinct_paper_support": 86,
@@ -2187,6 +2377,8 @@
   {
     "concept_id": "FG3C000085",
     "label": "gross domestic product (GDP)",
+    "plain_label": "gross domestic product (GDP)",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 319,
     "distinct_paper_support": 319,
@@ -2210,6 +2402,8 @@
   {
     "concept_id": "FG3C003006",
     "label": "Emission Trading Scheme (ETS)",
+    "plain_label": "Emission Trading Scheme (ETS)",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 259,
     "distinct_paper_support": 254,
@@ -2233,6 +2427,8 @@
   {
     "concept_id": "FG3C000090",
     "label": "financing constraints",
+    "plain_label": "financing constraints",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 295,
     "distinct_paper_support": 295,
@@ -2256,6 +2452,8 @@
   {
     "concept_id": "FG3C000226",
     "label": "digital transformation",
+    "plain_label": "digital transformation",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 136,
     "distinct_paper_support": 136,
@@ -2279,6 +2477,8 @@
   {
     "concept_id": "FG3C000056",
     "label": "exchange rate",
+    "plain_label": "exchange rate",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 337,
     "distinct_paper_support": 337,
@@ -2302,6 +2502,8 @@
   {
     "concept_id": "FG3C000184",
     "label": "carbon intensity",
+    "plain_label": "carbon intensity",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 164,
     "distinct_paper_support": 164,
@@ -2325,6 +2527,8 @@
   {
     "concept_id": "FG3C000120",
     "label": "environmental regulations",
+    "plain_label": "environmental regulations",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 299,
     "distinct_paper_support": 296,
@@ -2348,6 +2552,8 @@
   {
     "concept_id": "FG3C000140",
     "label": "income distribution",
+    "plain_label": "income distribution",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 499,
     "distinct_paper_support": 495,
@@ -2371,6 +2577,8 @@
   {
     "concept_id": "FG3C000347",
     "label": "carbon emission intensity",
+    "plain_label": "carbon emission intensity",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 124,
     "distinct_paper_support": 124,
@@ -2394,6 +2602,8 @@
   {
     "concept_id": "FG3C000126",
     "label": "imports",
+    "plain_label": "imports",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 296,
     "distinct_paper_support": 291,
@@ -2417,6 +2627,8 @@
   {
     "concept_id": "FG3C000054",
     "label": "population growth",
+    "plain_label": "population growth",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 393,
     "distinct_paper_support": 393,
@@ -2440,6 +2652,8 @@
   {
     "concept_id": "FG3C005161",
     "label": "state of the business cycle",
+    "plain_label": "state of the business cycle",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 547,
     "distinct_paper_support": 541,
@@ -2463,6 +2677,8 @@
   {
     "concept_id": "FG3C000292",
     "label": "coal consumption",
+    "plain_label": "coal consumption",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 166,
     "distinct_paper_support": 163,
@@ -2486,6 +2702,8 @@
   {
     "concept_id": "FG3C000156",
     "label": "crude oil prices",
+    "plain_label": "crude oil prices",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 273,
     "distinct_paper_support": 268,
@@ -2509,6 +2727,8 @@
   {
     "concept_id": "FG3C000227",
     "label": "green technological innovation",
+    "plain_label": "green technological innovation",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 219,
     "distinct_paper_support": 209,
@@ -2532,6 +2752,8 @@
   {
     "concept_id": "FG3C000069",
     "label": "competition",
+    "plain_label": "competition",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 385,
     "distinct_paper_support": 382,
@@ -2555,6 +2777,8 @@
   {
     "concept_id": "FG3C000199",
     "label": "economic complexity",
+    "plain_label": "economic complexity",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 199,
     "distinct_paper_support": 196,
@@ -2578,6 +2802,8 @@
   {
     "concept_id": "FG3C000164",
     "label": "government subsidies",
+    "plain_label": "government subsidies",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 230,
     "distinct_paper_support": 228,
@@ -2601,6 +2827,8 @@
   {
     "concept_id": "FG3C000753",
     "label": "high-speed rail",
+    "plain_label": "high-speed rail",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 196,
     "distinct_paper_support": 193,
@@ -2624,6 +2852,8 @@
   {
     "concept_id": "FG3C005776",
     "label": "rate of growth",
+    "plain_label": "rate of growth",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 450,
     "distinct_paper_support": 440,
@@ -2647,6 +2877,8 @@
   {
     "concept_id": "FG3C000058",
     "label": "population",
+    "plain_label": "population",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 404,
     "distinct_paper_support": 404,
@@ -2670,6 +2902,8 @@
   {
     "concept_id": "FG3C000436",
     "label": "geopolitical risks",
+    "plain_label": "geopolitical risks",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 256,
     "distinct_paper_support": 241,
@@ -2693,6 +2927,8 @@
   {
     "concept_id": "FG3C001408",
     "label": "policy",
+    "plain_label": "policy",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 477,
     "distinct_paper_support": 469,
@@ -2716,6 +2952,8 @@
   {
     "concept_id": "FG3C000087",
     "label": "fiscal policy",
+    "plain_label": "fiscal policy",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 366,
     "distinct_paper_support": 359,
@@ -2739,6 +2977,8 @@
   {
     "concept_id": "FG3C000118",
     "label": "industrialization",
+    "plain_label": "industrialization",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 248,
     "distinct_paper_support": 248,
@@ -2762,6 +3002,8 @@
   {
     "concept_id": "FG3C000067",
     "label": "profitability",
+    "plain_label": "profitability",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 375,
     "distinct_paper_support": 374,
@@ -2785,6 +3027,8 @@
   {
     "concept_id": "FG3C000144",
     "label": "economic performance",
+    "plain_label": "economic performance",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 206,
     "distinct_paper_support": 205,
@@ -2808,6 +3052,8 @@
   {
     "concept_id": "FG3C000078",
     "label": "international trade",
+    "plain_label": "international trade",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 299,
     "distinct_paper_support": 297,
@@ -2831,6 +3077,8 @@
   {
     "concept_id": "FG3C000168",
     "label": "stock market returns",
+    "plain_label": "stock market returns",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 251,
     "distinct_paper_support": 244,
@@ -2854,6 +3102,8 @@
   {
     "concept_id": "FG3C000674",
     "label": "price changes",
+    "plain_label": "price changes",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 519,
     "distinct_paper_support": 502,
@@ -2877,6 +3127,8 @@
   {
     "concept_id": "FG3C000599",
     "label": "US stock market",
+    "plain_label": "US stock market",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 322,
     "distinct_paper_support": 309,
@@ -2900,6 +3152,8 @@
   {
     "concept_id": "FG3C000083",
     "label": "trade liberalization",
+    "plain_label": "trade liberalization",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 281,
     "distinct_paper_support": 280,
@@ -2923,6 +3177,8 @@
   {
     "concept_id": "FG3C000098",
     "label": "per capita income",
+    "plain_label": "per capita income",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 301,
     "distinct_paper_support": 301,
@@ -2946,6 +3202,8 @@
   {
     "concept_id": "FG3C000023",
     "label": "social welfare",
+    "plain_label": "social welfare",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 597,
     "distinct_paper_support": 596,
@@ -2969,6 +3227,8 @@
   {
     "concept_id": "FG3C000104",
     "label": "capital",
+    "plain_label": "capital",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 315,
     "distinct_paper_support": 313,
@@ -2992,6 +3252,8 @@
   {
     "concept_id": "FG3C000494",
     "label": "digital economy development",
+    "plain_label": "digital economy development",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 101,
     "distinct_paper_support": 101,
@@ -3015,6 +3277,8 @@
   {
     "concept_id": "FG3C006328",
     "label": "number of agents",
+    "plain_label": "number of agents",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 529,
     "distinct_paper_support": 513,
@@ -3038,6 +3302,8 @@
   {
     "concept_id": "FG3C000138",
     "label": "systemic risk",
+    "plain_label": "systemic risk",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 285,
     "distinct_paper_support": 284,
@@ -3061,6 +3327,8 @@
   {
     "concept_id": "FG3C000052",
     "label": "unemployment rate",
+    "plain_label": "unemployment rate",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 358,
     "distinct_paper_support": 358,
@@ -3084,6 +3352,8 @@
   {
     "concept_id": "FG3C001033",
     "label": "environmental degradation (CO2 emissions)",
+    "plain_label": "environmental degradation (CO2 emissions)",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 70,
     "distinct_paper_support": 70,
@@ -3107,6 +3377,8 @@
   {
     "concept_id": "FG3C000112",
     "label": "inflation rate",
+    "plain_label": "inflation rate",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 291,
     "distinct_paper_support": 289,
@@ -3130,6 +3402,8 @@
   {
     "concept_id": "FG3C000100",
     "label": "investor sentiment",
+    "plain_label": "investor sentiment",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 301,
     "distinct_paper_support": 299,
@@ -3153,6 +3427,8 @@
   {
     "concept_id": "FG3C000165",
     "label": "geopolitical risk",
+    "plain_label": "geopolitical risk",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 191,
     "distinct_paper_support": 191,
@@ -3176,6 +3452,8 @@
   {
     "concept_id": "FG3C001307",
     "label": "load capacity factor (LCF)",
+    "plain_label": "load capacity factor",
+    "subtitle": "broad measure of ecological carrying capacity",
     "bucket_hint": "adjacent",
     "instance_support": 53,
     "distinct_paper_support": 53,
@@ -3198,6 +3476,8 @@
   {
     "concept_id": "FG3C005346",
     "label": "income tax rate",
+    "plain_label": "income tax rate",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 410,
     "distinct_paper_support": 386,
@@ -3221,6 +3501,8 @@
   {
     "concept_id": "FG3C000467",
     "label": "CO2 emissions per capita",
+    "plain_label": "CO2 emissions per capita",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 120,
     "distinct_paper_support": 120,
@@ -3244,6 +3526,8 @@
   {
     "concept_id": "FG3C000128",
     "label": "total factor productivity",
+    "plain_label": "total factor productivity",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 205,
     "distinct_paper_support": 205,
@@ -3267,6 +3551,8 @@
   {
     "concept_id": "FG3C000730",
     "label": "health",
+    "plain_label": "health",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 432,
     "distinct_paper_support": 422,
@@ -3290,6 +3576,8 @@
   {
     "concept_id": "FG3C000077",
     "label": "financial stability",
+    "plain_label": "financial stability",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 325,
     "distinct_paper_support": 325,
@@ -3313,6 +3601,8 @@
   {
     "concept_id": "FG3C000057",
     "label": "liquidity",
+    "plain_label": "liquidity",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 429,
     "distinct_paper_support": 427,
@@ -3336,6 +3626,8 @@
   {
     "concept_id": "FG3C000423",
     "label": "natural gas consumption",
+    "plain_label": "natural gas consumption",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 109,
     "distinct_paper_support": 109,
@@ -3359,6 +3651,8 @@
   {
     "concept_id": "FG3C000206",
     "label": "government spending",
+    "plain_label": "government spending",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 242,
     "distinct_paper_support": 238,
@@ -3382,6 +3676,8 @@
   {
     "concept_id": "FG3C000149",
     "label": "poverty",
+    "plain_label": "poverty",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 267,
     "distinct_paper_support": 265,
@@ -3405,6 +3701,8 @@
   {
     "concept_id": "FG3C000209",
     "label": "Bitcoin",
+    "plain_label": "Bitcoin",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 185,
     "distinct_paper_support": 178,
@@ -3428,6 +3726,8 @@
   {
     "concept_id": "FG3C000211",
     "label": "air pollution",
+    "plain_label": "air pollution",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 162,
     "distinct_paper_support": 161,
@@ -3451,6 +3751,8 @@
   {
     "concept_id": "FG3C002978",
     "label": "low-carbon city pilot policy",
+    "plain_label": "low-carbon city pilot policy",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 106,
     "distinct_paper_support": 94,
@@ -3473,6 +3775,8 @@
   {
     "concept_id": "FG3C000092",
     "label": "economic activity",
+    "plain_label": "economic activity",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 322,
     "distinct_paper_support": 321,
@@ -3496,6 +3800,8 @@
   {
     "concept_id": "FG3C000084",
     "label": "capital accumulation",
+    "plain_label": "capital accumulation",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 332,
     "distinct_paper_support": 332,
@@ -3519,6 +3825,8 @@
   {
     "concept_id": "FG3C000031",
     "label": "transaction costs",
+    "plain_label": "transaction costs",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 575,
     "distinct_paper_support": 571,
@@ -3542,6 +3850,8 @@
   {
     "concept_id": "FG3C000629",
     "label": "CO2 emission",
+    "plain_label": "CO2 emission",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 78,
     "distinct_paper_support": 78,
@@ -3565,6 +3875,8 @@
   {
     "concept_id": "FG3C006136",
     "label": "innovation level",
+    "plain_label": "innovation level",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 231,
     "distinct_paper_support": 224,
@@ -3588,6 +3900,8 @@
   {
     "concept_id": "FG3C001814",
     "label": "consumption-based carbon emissions",
+    "plain_label": "consumption-based carbon emissions",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 54,
     "distinct_paper_support": 54,
@@ -3611,6 +3925,8 @@
   {
     "concept_id": "FG3C000422",
     "label": "ESG performance",
+    "plain_label": "ESG performance",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 123,
     "distinct_paper_support": 123,
@@ -3634,6 +3950,8 @@
   {
     "concept_id": "FG3C000076",
     "label": "climate change",
+    "plain_label": "climate change",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 290,
     "distinct_paper_support": 282,
@@ -3657,6 +3975,8 @@
   {
     "concept_id": "FG3C000727",
     "label": "tourism",
+    "plain_label": "tourism",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 188,
     "distinct_paper_support": 177,
@@ -3680,6 +4000,8 @@
   {
     "concept_id": "FG3C000591",
     "label": "per capita CO2 emissions",
+    "plain_label": "per capita CO2 emissions",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 113,
     "distinct_paper_support": 111,
@@ -3703,6 +4025,8 @@
   {
     "concept_id": "FG3C000219",
     "label": "price level",
+    "plain_label": "price level",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 336,
     "distinct_paper_support": 333,
@@ -3726,6 +4050,8 @@
   {
     "concept_id": "FG3C000360",
     "label": "environmental taxes",
+    "plain_label": "environmental taxes",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 168,
     "distinct_paper_support": 166,
@@ -3749,6 +4075,8 @@
   {
     "concept_id": "FG3C000623",
     "label": "high-quality economic development",
+    "plain_label": "high-quality economic development",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 119,
     "distinct_paper_support": 118,
@@ -3771,6 +4099,8 @@
   {
     "concept_id": "FG3C000113",
     "label": "firm performance",
+    "plain_label": "firm performance",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 206,
     "distinct_paper_support": 206,
@@ -3794,6 +4124,8 @@
   {
     "concept_id": "FG3C000472",
     "label": "oil consumption",
+    "plain_label": "oil consumption",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 131,
     "distinct_paper_support": 130,
@@ -3817,6 +4149,8 @@
   {
     "concept_id": "FG3C000678",
     "label": "implied volatility",
+    "plain_label": "implied volatility",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 333,
     "distinct_paper_support": 316,
@@ -3840,6 +4174,8 @@
   {
     "concept_id": "FG3C000208",
     "label": "public debt",
+    "plain_label": "public debt",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 181,
     "distinct_paper_support": 179,
@@ -3863,6 +4199,8 @@
   {
     "concept_id": "FG3C000106",
     "label": "financial constraints",
+    "plain_label": "financial constraints",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 291,
     "distinct_paper_support": 288,
@@ -3886,6 +4224,8 @@
   {
     "concept_id": "FG3C000425",
     "label": "digital inclusive finance",
+    "plain_label": "digital inclusive finance",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 82,
     "distinct_paper_support": 82,
@@ -3909,6 +4249,8 @@
   {
     "concept_id": "FG3C000073",
     "label": "firm productivity",
+    "plain_label": "firm productivity",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 287,
     "distinct_paper_support": 287,
@@ -3932,6 +4274,8 @@
   {
     "concept_id": "FG3C000177",
     "label": "United States",
+    "plain_label": "United States",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 491,
     "distinct_paper_support": 446,
@@ -3955,6 +4299,8 @@
   {
     "concept_id": "FG3C000095",
     "label": "household income",
+    "plain_label": "household income",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 387,
     "distinct_paper_support": 386,
@@ -3978,6 +4324,8 @@
   {
     "concept_id": "FG3C000437",
     "label": "green investment",
+    "plain_label": "green investment",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 138,
     "distinct_paper_support": 135,
@@ -4001,6 +4349,8 @@
   {
     "concept_id": "FG3C000449",
     "label": "artificial intelligence (AI)",
+    "plain_label": "artificial intelligence (AI)",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 109,
     "distinct_paper_support": 108,
@@ -4024,6 +4374,8 @@
   {
     "concept_id": "FG3C006446",
     "label": "place of residence",
+    "plain_label": "place of residence",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 483,
     "distinct_paper_support": 470,
@@ -4047,6 +4399,8 @@
   {
     "concept_id": "FG3C000159",
     "label": "monetary policy shocks",
+    "plain_label": "monetary policy shocks",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 189,
     "distinct_paper_support": 187,
@@ -4070,6 +4424,8 @@
   {
     "concept_id": "FG3C000643",
     "label": "equity returns",
+    "plain_label": "equity returns",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 358,
     "distinct_paper_support": 351,
@@ -4093,6 +4449,8 @@
   {
     "concept_id": "FG3C000093",
     "label": "GDP growth",
+    "plain_label": "GDP growth",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 233,
     "distinct_paper_support": 233,
@@ -4116,6 +4474,8 @@
   {
     "concept_id": "FG3C000222",
     "label": "money supply",
+    "plain_label": "money supply",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 263,
     "distinct_paper_support": 258,
@@ -4139,6 +4499,8 @@
   {
     "concept_id": "FG3C000047",
     "label": "uncertainty",
+    "plain_label": "uncertainty",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 366,
     "distinct_paper_support": 366,
@@ -4162,6 +4524,8 @@
   {
     "concept_id": "FG3C000403",
     "label": "human development",
+    "plain_label": "human development",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 122,
     "distinct_paper_support": 122,
@@ -4185,6 +4549,8 @@
   {
     "concept_id": "FG3C000080",
     "label": "asset prices",
+    "plain_label": "asset prices",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 327,
     "distinct_paper_support": 326,
@@ -4208,6 +4574,8 @@
   {
     "concept_id": "FG3C000335",
     "label": "digitalization",
+    "plain_label": "digitalization",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 124,
     "distinct_paper_support": 123,
@@ -4231,6 +4599,8 @@
   {
     "concept_id": "FG3C000122",
     "label": "real exchange rate",
+    "plain_label": "real exchange rate",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 212,
     "distinct_paper_support": 212,
@@ -4254,6 +4624,8 @@
   {
     "concept_id": "FG3C000475",
     "label": "technological innovations",
+    "plain_label": "technological innovations",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 226,
     "distinct_paper_support": 226,
@@ -4277,6 +4649,8 @@
   {
     "concept_id": "FG3C000225",
     "label": "industrial agglomeration",
+    "plain_label": "industrial agglomeration",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 163,
     "distinct_paper_support": 163,
@@ -4300,6 +4674,8 @@
   {
     "concept_id": "FG3C000620",
     "label": "renewable energy consumption (REC)",
+    "plain_label": "renewable energy consumption (REC)",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 80,
     "distinct_paper_support": 80,
@@ -4323,6 +4699,8 @@
   {
     "concept_id": "FG3C000150",
     "label": "energy prices",
+    "plain_label": "energy prices",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 210,
     "distinct_paper_support": 210,
@@ -4346,6 +4724,8 @@
   {
     "concept_id": "FG3C000722",
     "label": "green credit",
+    "plain_label": "green credit",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 118,
     "distinct_paper_support": 114,
@@ -4369,6 +4749,8 @@
   {
     "concept_id": "FG3C000259",
     "label": "bank profitability",
+    "plain_label": "bank profitability",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 146,
     "distinct_paper_support": 145,
@@ -4392,6 +4774,8 @@
   {
     "concept_id": "FG3C000152",
     "label": "carbon tax",
+    "plain_label": "carbon tax",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 186,
     "distinct_paper_support": 185,
@@ -4415,6 +4799,8 @@
   {
     "concept_id": "FG3C000158",
     "label": "employment growth",
+    "plain_label": "employment growth",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 233,
     "distinct_paper_support": 231,
@@ -4438,6 +4824,8 @@
   {
     "concept_id": "FG3C000190",
     "label": "bid-ask spread",
+    "plain_label": "bid-ask spread",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 364,
     "distinct_paper_support": 356,
@@ -4461,6 +4849,8 @@
   {
     "concept_id": "FG3C000547",
     "label": "renewable energy development",
+    "plain_label": "renewable energy development",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 75,
     "distinct_paper_support": 75,
@@ -4484,6 +4874,8 @@
   {
     "concept_id": "FG3C000318",
     "label": "greenhouse gas (GHG) emissions",
+    "plain_label": "greenhouse gas (GHG) emissions",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 113,
     "distinct_paper_support": 113,
@@ -4507,6 +4899,8 @@
   {
     "concept_id": "FG3C000114",
     "label": "market concentration",
+    "plain_label": "market concentration",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 283,
     "distinct_paper_support": 283,
@@ -4530,6 +4924,8 @@
   {
     "concept_id": "FG3C000325",
     "label": "real exchange rates",
+    "plain_label": "real exchange rates",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 187,
     "distinct_paper_support": 182,
@@ -4553,6 +4949,8 @@
   {
     "concept_id": "FG3C000362",
     "label": "renewable energy use",
+    "plain_label": "renewable energy use",
+    "subtitle": "",
     "bucket_hint": "adjacent",
     "instance_support": 115,
     "distinct_paper_support": 115,
@@ -4576,6 +4974,8 @@
   {
     "concept_id": "FG3C000162",
     "label": "terms of trade",
+    "plain_label": "terms of trade",
+    "subtitle": "",
     "bucket_hint": "core",
     "instance_support": 298,
     "distinct_paper_support": 293,
