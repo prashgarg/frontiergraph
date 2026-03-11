@@ -10,6 +10,10 @@ __pycache__/
 site/node_modules/
 site/dist/
 site/.astro/
+data/pilots/
+data/production/
+data/raw/openalex/
+data/raw/openalex_enriched/
 site/public/data/v2/concept_neighborhoods.json
 
 data/processed/
