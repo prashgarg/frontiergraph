@@ -28,6 +28,29 @@
         "macroeconomic indicators",
         "econometrics"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W2795097274__gpt5mini_low",
+          "title": "Measuring long-term tail risk: Evaluating the performance of the square-root-of-time rule",
+          "year": 2018,
+          "edge_src": "FG3C001873",
+          "edge_dst": "FG3C006644"
+        },
+        {
+          "paper_id": "W2093824426__gpt5mini_low",
+          "title": "The importance of seasonality in inventory models",
+          "year": 1993,
+          "edge_src": "FG3C005959",
+          "edge_dst": "FG3C001873"
+        },
+        {
+          "paper_id": "W3015336687__gpt5mini_low",
+          "title": "Quality of Life Regional Differences: Case of Self-Governing Regions of Slovakia",
+          "year": 2020,
+          "edge_src": "FG3C002124",
+          "edge_dst": "FG3C006644"
+        }
+      ],
       "top_countries_source": [
         "United States"
       ],
@@ -68,6 +91,29 @@
       "top_mediator_labels": [
         "cash flow",
         "stock prices"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W3124117365__gpt5mini_low",
+          "title": "A New Keynesian Q theory and the link between inflation and the stock market",
+          "year": 2018,
+          "edge_src": "FG3C000096",
+          "edge_dst": "FG3C000019"
+        },
+        {
+          "paper_id": "W2137344318__gpt5mini_low",
+          "title": "Dynamic modelling of real estate investment trusts and stock markets",
+          "year": 2011,
+          "edge_src": "FG3C006539",
+          "edge_dst": "FG3C000096"
+        },
+        {
+          "paper_id": "W3125574887__gpt5mini_low",
+          "title": "Have financial markets become more informative?",
+          "year": 2016,
+          "edge_src": "FG3C000096",
+          "edge_dst": "FG3C000019"
+        }
       ],
       "top_countries_source": [
         "United States",
@@ -112,6 +158,29 @@
         "wages",
         "wage"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W4224235994__gpt5mini_low",
+          "title": "A multi time-scale theory of economic growth and cycles",
+          "year": 2022,
+          "edge_src": "FG3C000022",
+          "edge_dst": "FG3C000009"
+        },
+        {
+          "paper_id": "W1998904100__gpt5mini_low",
+          "title": "Gender, piece rates and wages: evidence from matched employer-employee data",
+          "year": 2004,
+          "edge_src": "FG3C005801",
+          "edge_dst": "FG3C000022"
+        },
+        {
+          "paper_id": "W4290792504__gpt5mini_low",
+          "title": "The welfare effects of tax progressivity in a frictional labor market",
+          "year": 2022,
+          "edge_src": "FG3C000022",
+          "edge_dst": "FG3C000009"
+        }
+      ],
       "top_countries_source": [
         "United States",
         "Brazil",
@@ -152,6 +221,29 @@
       "top_mediator_labels": [
         "wages",
         "separations"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W3002060556__gpt5mini_low",
+          "title": "An urban labor market with frictional housing markets: theory and an application to the Paris urban area",
+          "year": 2020,
+          "edge_src": "FG3C000022",
+          "edge_dst": "FG3C000007"
+        },
+        {
+          "paper_id": "W1998904100__gpt5mini_low",
+          "title": "Gender, piece rates and wages: evidence from matched employer-employee data",
+          "year": 2004,
+          "edge_src": "FG3C005801",
+          "edge_dst": "FG3C000022"
+        },
+        {
+          "paper_id": "W3013381244__gpt5mini_low",
+          "title": "FDI, labor market flexibility and employment in China",
+          "year": 2020,
+          "edge_src": "FG3C000022",
+          "edge_dst": "FG3C000007"
+        }
       ],
       "top_countries_source": [
         "United States",
@@ -197,6 +289,29 @@
         "volatility",
         "gender inequality"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W3048388912__gpt5mini_low",
+          "title": "Sources of inflation and the effects of balanced budgets and inflation targeting in developing economies",
+          "year": 2021,
+          "edge_src": "FG3C005310",
+          "edge_dst": "FG3C000043"
+        },
+        {
+          "paper_id": "W1868719122__gpt5mini_low",
+          "title": "Growth and volatility in resource-rich countries: Does diversification help?",
+          "year": 2015,
+          "edge_src": "FG3C000043",
+          "edge_dst": "FG3C000001"
+        },
+        {
+          "paper_id": "W2067353403__gpt5mini_low",
+          "title": "Volatility and growth: Governments are key",
+          "year": 2014,
+          "edge_src": "FG3C000043",
+          "edge_dst": "FG3C000001"
+        }
+      ],
       "top_countries_source": [],
       "top_countries_target": [
         "China",
@@ -236,6 +351,29 @@
         "monetary policy",
         "Inflation targeting (IT)",
         "inflation level"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W2785421222__gpt5mini_low",
+          "title": "Inflation targeting as a shock absorber",
+          "year": 2020,
+          "edge_src": "FG3C000303",
+          "edge_dst": "FG3C000024"
+        },
+        {
+          "paper_id": "W2017223325__gpt5mini_low",
+          "title": "Models of Inflation Expectations Formation: Comment",
+          "year": 1985,
+          "edge_src": "FG3C000024",
+          "edge_dst": "FG3C005031"
+        },
+        {
+          "paper_id": "W2528903123__gpt5mini_low",
+          "title": "The Fed and the Great Recession",
+          "year": 2016,
+          "edge_src": "FG3C000303",
+          "edge_dst": "FG3C000024"
+        }
       ],
       "top_countries_source": [
         "developing countries",
@@ -278,6 +416,29 @@
         "monetary policy",
         "product variety",
         "fiscal policy"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W4415950531__gpt5mini_low",
+          "title": "On the stressful interaction of monetary and fiscal targets",
+          "year": 2025,
+          "edge_src": "FG3C000002",
+          "edge_dst": "FG3C000024"
+        },
+        {
+          "paper_id": "W2017223325__gpt5mini_low",
+          "title": "Models of Inflation Expectations Formation: Comment",
+          "year": 1985,
+          "edge_src": "FG3C000024",
+          "edge_dst": "FG3C005031"
+        },
+        {
+          "paper_id": "W3188145168__gpt5mini_low",
+          "title": "Climate and monetary policy: do temperature shocks lead to inflationary pressures?",
+          "year": 2021,
+          "edge_src": "FG3C000002",
+          "edge_dst": "FG3C000024"
+        }
       ],
       "top_countries_source": [
         "United States",
@@ -323,6 +484,29 @@
         "liquidity creation",
         "bank interest margin"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W1899584761__gpt5mini_low",
+          "title": "How does Bank Capital Affect Bank Profitability and Risk? Evidence from China's WTO Accession",
+          "year": 2015,
+          "edge_src": "FG3C000667",
+          "edge_dst": "FG3C000259"
+        },
+        {
+          "paper_id": "W2056610455__gpt5mini_low",
+          "title": "Procyclical implications of Basel II: Can the cyclicality of capital requirements be contained?",
+          "year": 2010,
+          "edge_src": "FG3C004598",
+          "edge_dst": "FG3C000667"
+        },
+        {
+          "paper_id": "W4388195771__gpt5mini_low",
+          "title": "Bank market power and supervisory enforcement actions",
+          "year": 2024,
+          "edge_src": "FG3C001152",
+          "edge_dst": "FG3C000259"
+        }
+      ],
       "top_countries_source": [
         "United States",
         "Europe",
@@ -366,6 +550,29 @@
         "latent class model",
         "mixed logit model"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W3032529591__gpt5mini_low",
+          "title": "Valuation of transfer for bus users: The case of Gran Canaria",
+          "year": 2020,
+          "edge_src": "FG3C001242",
+          "edge_dst": "FG3C000523"
+        },
+        {
+          "paper_id": "W2901974122__gpt5mini_low",
+          "title": "Estimating demand for rural intercity bus services",
+          "year": 2018,
+          "edge_src": "FG3C004702",
+          "edge_dst": "FG3C001242"
+        },
+        {
+          "paper_id": "W2219324593__gpt5mini_low",
+          "title": "Chinese consumers\u2019 preferences and willingness to pay for traceable food quality and safety attributes: The case of pork",
+          "year": 2015,
+          "edge_src": "FG3C001242",
+          "edge_dst": "FG3C000523"
+        }
+      ],
       "top_countries_source": [
         "China",
         "Aotearoa New Zealand",
@@ -407,6 +614,29 @@
       "public_pair_label": "volatility of stock prices and oil prices",
       "top_mediator_labels": [
         "stock prices"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W4205573494__gpt5mini_low",
+          "title": "Revisiting the relationship between oil prices, exchange rate, and stock prices: An application of quantile ARDL model",
+          "year": 2022,
+          "edge_src": "FG3C000034",
+          "edge_dst": "FG3C000096"
+        },
+        {
+          "paper_id": "W2014709540__gpt5mini_low",
+          "title": "Government Partisanship, Elections, and the Stock Market: Examining American and British Stock Returns, 1930\u20132000",
+          "year": 2005,
+          "edge_src": "FG3C000096",
+          "edge_dst": "FG3C006312"
+        },
+        {
+          "paper_id": "W4304182460__gpt5mini_low",
+          "title": "Dynamic Co-Movements among Oil Prices and Financial Assets: A Scientometric Analysis",
+          "year": 2022,
+          "edge_src": "FG3C000034",
+          "edge_dst": "FG3C000096"
+        }
       ],
       "top_countries_source": [
         "United States",
@@ -450,6 +680,29 @@
       "top_mediator_labels": [
         "energy use"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W7128392875__gpt5mini_low",
+          "title": "Reassessing the environmental Kuznets curve in SAARC countries for various pollutants",
+          "year": 2026,
+          "edge_src": "FG3C000173",
+          "edge_dst": "FG3C000010"
+        },
+        {
+          "paper_id": "W4387329517__gpt5mini_low",
+          "title": "Impact of mineral resource depletion on energy use: Role of energy extraction, CO2 intensity, and natural resource sustainability",
+          "year": 2023,
+          "edge_src": "FG3C005734",
+          "edge_dst": "FG3C000173"
+        },
+        {
+          "paper_id": "W4392029303__gpt5mini_low",
+          "title": "The dynamics of carbon emissions, energy, income, and life expectancy: Regional comparative analysis",
+          "year": 2024,
+          "edge_src": "FG3C000173",
+          "edge_dst": "FG3C000010"
+        }
+      ],
       "top_countries_source": [
         "China",
         "Saudi Arabia",
@@ -491,6 +744,29 @@
         "GDP per capita",
         "environmental innovation",
         "inward foreign direct investment (FDI)"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W4393177030__gpt5mini_low",
+          "title": "Investigating the relationship between macroeconomic indicators, renewables and pollution across diverse regions in the globalization era",
+          "year": 2024,
+          "edge_src": "FG3C000003",
+          "edge_dst": "FG3C000060"
+        },
+        {
+          "paper_id": "W2907482298__gpt5mini_low",
+          "title": "CO<sub>2</sub> intensity and GDP per capita",
+          "year": 2019,
+          "edge_src": "FG3C000060",
+          "edge_dst": "FG3C005734"
+        },
+        {
+          "paper_id": "W4396792660__gpt5mini_low",
+          "title": "Catalyzing sustainable development: Exploring the interplay between access to clean water, sanitation, renewable energy and electricity services in shaping China's energy, economic growth, and environmental landscape",
+          "year": 2024,
+          "edge_src": "FG3C000003",
+          "edge_dst": "FG3C000060"
+        }
       ],
       "top_countries_source": [
         "China",
@@ -536,6 +812,29 @@
         "regional green development",
         "innovation incentives"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W4281843466__gpt5mini_low",
+          "title": "Environmental Regulations, Green Technology Innovation, and High-Quality Economic Development in China: Application of Mediation and Threshold Effects",
+          "year": 2022,
+          "edge_src": "FG3C000529",
+          "edge_dst": "FG3C000094"
+        },
+        {
+          "paper_id": "W2972232274__gpt5mini_low",
+          "title": "Impact of environmental tax on green development: A nonlinear dynamical system analysis",
+          "year": 2019,
+          "edge_src": "FG3C002214",
+          "edge_dst": "FG3C000529"
+        },
+        {
+          "paper_id": "W3159813774__gpt5mini_low",
+          "title": "Impact of Environmental Regulation Intensity on Green Technology Innovation: From the Perspective of Political and Business Connections",
+          "year": 2021,
+          "edge_src": "FG3C000529",
+          "edge_dst": "FG3C000094"
+        }
+      ],
       "top_countries_source": [
         "China",
         "CHN",
@@ -579,6 +878,29 @@
         "firm total factor productivity (TFP)",
         "R&D activities",
         "internet usage"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W1968377036__gpt5mini_low",
+          "title": "Foreign ownership and technology adoption: evidence from Indian firms",
+          "year": 2001,
+          "edge_src": "FG3C000020",
+          "edge_dst": "FG3C000858"
+        },
+        {
+          "paper_id": "W2027350619__gpt5mini_low",
+          "title": "The Impact Of Technology Adoption On Firm Productivity<sup>*</sup>",
+          "year": 1995,
+          "edge_src": "FG3C000858",
+          "edge_dst": "FG3C001837"
+        },
+        {
+          "paper_id": "W1797267033__gpt5mini_low",
+          "title": "Innovazione e ricerca nell'industria italiana. Alcune evidenze dell'indagine MET",
+          "year": 2009,
+          "edge_src": "FG3C000020",
+          "edge_dst": "FG3C001258"
+        }
       ],
       "top_countries_source": [
         "China",
@@ -624,6 +946,29 @@
         "green bonds",
         "carbon market"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W4402558759__gpt5mini_low",
+          "title": "Re-examining China and the u.s.\u2019s respective green bond markets in extreme conditions: Evidence from quantile connectedness",
+          "year": 2024,
+          "edge_src": "FG3C001999",
+          "edge_dst": "FG3C000202"
+        },
+        {
+          "paper_id": "W4378675633__gpt5mini_low",
+          "title": "Volatility spillover of green bond with renewable energy and crypto market",
+          "year": 2023,
+          "edge_src": "FG3C000202",
+          "edge_dst": "FG3C002439"
+        },
+        {
+          "paper_id": "W3147272713__gpt5mini_low",
+          "title": "Frequency connectedness and cross-quantile dependence between green bond and green equity markets",
+          "year": 2021,
+          "edge_src": "FG3C001999",
+          "edge_dst": "FG3C000202"
+        }
+      ],
       "top_countries_source": [
         "China",
         "Europe",
@@ -664,6 +1009,29 @@
         "US stock market",
         "China stock market"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W3017130504__gpt5mini_low",
+          "title": "The prevalence of price overreactions in the cryptocurrency market",
+          "year": 2020,
+          "edge_src": "FG3C002439",
+          "edge_dst": "FG3C000599"
+        },
+        {
+          "paper_id": "W1976429259__gpt5mini_low",
+          "title": "Financial time series analysis based on information categorization method",
+          "year": 2014,
+          "edge_src": "FG3C000599",
+          "edge_dst": "FG3C000559"
+        },
+        {
+          "paper_id": "W2015975331__gpt5mini_low",
+          "title": "Has there been any change in the comovement between the Chinese and US stock markets?",
+          "year": 2013,
+          "edge_src": "FG3C000599",
+          "edge_dst": "FG3C000559"
+        }
+      ],
       "top_countries_source": [
         "Vietnam"
       ],
@@ -703,6 +1071,29 @@
       "top_mediator_labels": [
         "nominal interest rates",
         "transaction costs"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W4327944374__gpt5mini_low",
+          "title": "A semi-parametric study on dynamic linkages among international real interest rates",
+          "year": 2023,
+          "edge_src": "FG3C000031",
+          "edge_dst": "FG3C000254"
+        },
+        {
+          "paper_id": "W2045510370__gpt5mini_low",
+          "title": "Domestic versus foreign equity shares: Which are more costly to trade in the Chinese market?",
+          "year": 2013,
+          "edge_src": "FG3C003731",
+          "edge_dst": "FG3C000031"
+        },
+        {
+          "paper_id": "W2055778790__gpt5mini_low",
+          "title": "Real interest parity and transaction costs for the group of 10 countries",
+          "year": 2002,
+          "edge_src": "FG3C000031",
+          "edge_dst": "FG3C000254"
+        }
       ],
       "top_countries_source": [
         "United States",
@@ -747,6 +1138,29 @@
         "other markets",
         "housing market"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W4416890224__gpt5mini_low",
+          "title": "Time-varying spillover of multi-scale positive and negative bubbles in stock and oil markets",
+          "year": 2025,
+          "edge_src": "FG3C000599",
+          "edge_dst": "FG3C001061"
+        },
+        {
+          "paper_id": "W2015585858__gpt5mini_low",
+          "title": "Integration of world leaders and emerging powers into the Malaysian stock market: A DCC-MGARCH approach",
+          "year": 2013,
+          "edge_src": "FG3C002389",
+          "edge_dst": "FG3C000599"
+        },
+        {
+          "paper_id": "W3120866692__gpt5mini_low",
+          "title": "Information transmission between oil and housing markets",
+          "year": 2021,
+          "edge_src": "FG3C001310",
+          "edge_dst": "FG3C001061"
+        }
+      ],
       "top_countries_source": [
         "USA",
         "United States"
@@ -787,6 +1201,29 @@
         "housing market",
         "other markets",
         "crude oil market"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W2950416836__gpt5mini_low",
+          "title": "A study of lead\u2013lag structure between international crude oil price and several financial markets",
+          "year": 2019,
+          "edge_src": "FG3C002389",
+          "edge_dst": "FG3C000848"
+        },
+        {
+          "paper_id": "W2620028053__gpt5mini_low",
+          "title": "The zero lower bound and market spillovers: Evidence from the G7 and Norway",
+          "year": 2017,
+          "edge_src": "FG3C000848",
+          "edge_dst": "FG3C000284"
+        },
+        {
+          "paper_id": "W2986361489__gpt5mini_low",
+          "title": "Contagion effects and risk transmission channels in the housing, stock, interest rate and currency markets: An Empirical Study in China and the U.S.",
+          "year": 2019,
+          "edge_src": "FG3C001310",
+          "edge_dst": "FG3C000284"
+        }
       ],
       "top_countries_source": [
         "USA",
@@ -831,6 +1268,29 @@
         "level of inflation",
         "greenhouse gas emissions"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W4414303413__gpt5mini_low",
+          "title": "National diversity in European energy policy: Analyzing dependencies of changes in energy prices, climate regulations, and technological innovations on economic implications",
+          "year": 2025,
+          "edge_src": "FG3C000121",
+          "edge_dst": "FG3C000002"
+        },
+        {
+          "paper_id": "W3201674770__gpt5mini_low",
+          "title": "<i>Presidential Address 2021</i> Climate-Change Pledges, Actions, and Outcomes",
+          "year": 2021,
+          "edge_src": "FG3C005267",
+          "edge_dst": "FG3C000121"
+        },
+        {
+          "paper_id": "W2994306944__gpt5mini_low",
+          "title": "Anchoring inflation expectations in the face of oil shocks &amp; in the proximity of ZLB: A tale of two targeters",
+          "year": 2020,
+          "edge_src": "FG3C000174",
+          "edge_dst": "FG3C000002"
+        }
+      ],
       "top_countries_source": [
         "Canada",
         "New Zealand",
@@ -873,6 +1333,29 @@
       "top_mediator_labels": [
         "exchange rates",
         "domestic prices"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W4361279665__gpt5mini_low",
+          "title": "Hidden causality between oil prices and exchange rates",
+          "year": 2023,
+          "edge_src": "FG3C000034",
+          "edge_dst": "FG3C000072"
+        },
+        {
+          "paper_id": "W2080106931__gpt5mini_low",
+          "title": "THE EFFECT OF EXCHANGE RATES ON INTERNATIONAL MARKETING MARGINS",
+          "year": 2009,
+          "edge_src": "FG3C000072",
+          "edge_dst": "FG3C006126"
+        },
+        {
+          "paper_id": "W4304182460__gpt5mini_low",
+          "title": "Dynamic Co-Movements among Oil Prices and Financial Assets: A Scientometric Analysis",
+          "year": 2022,
+          "edge_src": "FG3C000034",
+          "edge_dst": "FG3C000072"
+        }
       ],
       "top_countries_source": [
         "United States",
@@ -917,6 +1400,29 @@
         "economic expansion",
         "foreign investment"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W4317423858__gpt5mini_low",
+          "title": "Decoupling of land-use net carbon flux, economic growth, and population change in China",
+          "year": 2023,
+          "edge_src": "FG3C000001",
+          "edge_dst": "FG3C000054"
+        },
+        {
+          "paper_id": "W2055012189__gpt5mini_low",
+          "title": "Immiserizing growth with semi-public goods under consistent conjectures",
+          "year": 1991,
+          "edge_src": "FG3C000054",
+          "edge_dst": "FG3C004847"
+        },
+        {
+          "paper_id": "W1998061961__gpt5mini_low",
+          "title": "Capital, population and urban patterns",
+          "year": 1994,
+          "edge_src": "FG3C000001",
+          "edge_dst": "FG3C000054"
+        }
+      ],
       "top_countries_source": [
         "China",
         "India",
@@ -956,6 +1462,29 @@
         "inflation expectations",
         "price of gold",
         "long-term inflation expectations"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W4392947962__gpt5mini_low",
+          "title": "Managing inflation expectations and the efficiency of monetary policy responses to energy crises",
+          "year": 2024,
+          "edge_src": "FG3C000002",
+          "edge_dst": "FG3C000174"
+        },
+        {
+          "paper_id": "W3003092442__gpt5mini_low",
+          "title": "Unconventional monetary policy and inflation expectations in the Euro area",
+          "year": 2021,
+          "edge_src": "FG3C000174",
+          "edge_dst": "FG3C005070"
+        },
+        {
+          "paper_id": "W4389232176__gpt5mini_low",
+          "title": "Nexus between inflation and inflation expectations at the zero lower bound: A tiger by the tail",
+          "year": 2023,
+          "edge_src": "FG3C000002",
+          "edge_dst": "FG3C000174"
+        }
       ],
       "top_countries_source": [
         "United States",
@@ -999,6 +1528,29 @@
       "top_mediator_labels": [
         "spot prices"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W3012928678__gpt5mini_low",
+          "title": "The Linkages of Carbon Spot-Futures: Evidence from EU-ETS in the Third Phase",
+          "year": 2020,
+          "edge_src": "FG3C001371",
+          "edge_dst": "FG3C004968"
+        },
+        {
+          "paper_id": "W2980955033__gpt5mini_low",
+          "title": "The short- and long-run efficiency of energy, precious metals, and base metals markets: Evidence from the exponential smooth transition autoregressive models",
+          "year": 2019,
+          "edge_src": "FG3C000735",
+          "edge_dst": "FG3C001371"
+        },
+        {
+          "paper_id": "W1622225972__gpt5mini_low",
+          "title": "Impact of allowance submissions in European carbon emission markets",
+          "year": 2015,
+          "edge_src": "FG3C001371",
+          "edge_dst": "FG3C004968"
+        }
+      ],
       "top_countries_source": [
         "United States",
         "China",
@@ -1040,6 +1592,29 @@
         "relative price variability",
         "unemployment rate",
         "exchange rates"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W2159219237__gpt5mini_low",
+          "title": "Does Output Gap, Labour's Share or Unemployment Rate Drive Inflation?",
+          "year": 2013,
+          "edge_src": "FG3C000052",
+          "edge_dst": "FG3C000002"
+        },
+        {
+          "paper_id": "W2086430976__gpt5mini_low",
+          "title": "Unemployment and Unanticipated Inflation in Postwar Britain",
+          "year": 1980,
+          "edge_src": "FG3C003193",
+          "edge_dst": "FG3C000052"
+        },
+        {
+          "paper_id": "W1518708077__gpt5mini_low",
+          "title": "Merging the Purchasing Power Parity and the Phillips Curve Literatures",
+          "year": 2007,
+          "edge_src": "FG3C000052",
+          "edge_dst": "FG3C000002"
+        }
       ],
       "top_countries_source": [
         "Finland",
@@ -1085,6 +1660,29 @@
         "Internal R&D",
         "firm size"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W3189927536__gpt5mini_low",
+          "title": "What do firms gain from patenting? The case of the global ICT industry",
+          "year": 2024,
+          "edge_src": "FG3C004911",
+          "edge_dst": "FG3C000020"
+        },
+        {
+          "paper_id": "W3126063958__gpt5mini_low",
+          "title": "Technology Entry in the Presence of Patent Thickets",
+          "year": 2020,
+          "edge_src": "FG3C000020",
+          "edge_dst": "FG3C004781"
+        },
+        {
+          "paper_id": "W3124069912__gpt5mini_low",
+          "title": "Technology entry in the presence of patent thickets",
+          "year": 2020,
+          "edge_src": "FG3C000020",
+          "edge_dst": "FG3C004781"
+        }
+      ],
       "top_countries_source": [
         "United States",
         "China",
@@ -1128,6 +1726,29 @@
         "contagion",
         "price pressure",
         "detrended cross-correlation analysis (DCCA)"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W3122167024__gpt5mini_low",
+          "title": "Explaining asset pricing puzzles associated with the 1987 market crash",
+          "year": 2011,
+          "edge_src": "FG3C004547",
+          "edge_dst": "FG3C000585"
+        },
+        {
+          "paper_id": "W2015800048__gpt5mini_low",
+          "title": "Economic Forces and the Stock Market",
+          "year": 1986,
+          "edge_src": "FG3C000585",
+          "edge_dst": "FG3C000168"
+        },
+        {
+          "paper_id": "W3033639955__gpt5mini_low",
+          "title": "Stock markets and the COVID-19 fractal contagion effects",
+          "year": 2020,
+          "edge_src": "FG3C000824",
+          "edge_dst": "FG3C000168"
+        }
       ],
       "top_countries_source": [
         "China",
@@ -1173,6 +1794,29 @@
         "Taylor rule",
         "expectations hypothesis of the term structure"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W4200357935__gpt5mini_low",
+          "title": "The nonlinear causal relationship between short\u2010 and long\u2010term interest rates: An empirical assessment of the United States, the United Kingdom, and Japan",
+          "year": 2021,
+          "edge_src": "FG3C000455",
+          "edge_dst": "FG3C000404"
+        },
+        {
+          "paper_id": "W1929597172__gpt5mini_low",
+          "title": "Monetary policy, bond risk premia, and the economy",
+          "year": 2015,
+          "edge_src": "FG3C003921",
+          "edge_dst": "FG3C000455"
+        },
+        {
+          "paper_id": "W3152614050__gpt5mini_low",
+          "title": "Rate-Amplifying Demand and the Excess Sensitivity of Long-Term Rates",
+          "year": 2021,
+          "edge_src": "FG3C000455",
+          "edge_dst": "FG3C000404"
+        }
+      ],
       "top_countries_source": [
         "USA",
         "United States",
@@ -1215,6 +1859,29 @@
       "top_mediator_labels": [
         "trade openness",
         "climate policy"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W4406435647__gpt5mini_low",
+          "title": "Sustainable Development in Africa: A Comprehensive Analysis of GDP, CO2 Emissions, and Socio-Economic Factors",
+          "year": 2025,
+          "edge_src": "FG3C000003",
+          "edge_dst": "FG3C000017"
+        },
+        {
+          "paper_id": "W2032831101__gpt5mini_low",
+          "title": "What is the role of openness for China's aggregate industrial SO2 emission?: A structural analysis based on the Divisia decomposition method",
+          "year": 2009,
+          "edge_src": "FG3C000017",
+          "edge_dst": "FG3C005991"
+        },
+        {
+          "paper_id": "W4414451225__gpt5mini_low",
+          "title": "Do Green Technology Innovation and Trade Openness Drive Carbon Neutrality in Developing Countries? Examining the Mediating Role of Energy Consumption",
+          "year": 2025,
+          "edge_src": "FG3C000003",
+          "edge_dst": "FG3C000017"
+        }
       ],
       "top_countries_source": [
         "China",
@@ -1260,6 +1927,29 @@
         "output (GDP)",
         "energy prices"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W4312131509__gpt5mini_low",
+          "title": "Assessment of role of green bond in renewable energy resource development in Japan",
+          "year": 2022,
+          "edge_src": "FG3C005378",
+          "edge_dst": "FG3C000150"
+        },
+        {
+          "paper_id": "W1970053784__gpt5mini_low",
+          "title": "Exploring the nexus of electricity consumption, economic growth, energy prices and technology innovation in Malaysia",
+          "year": 2012,
+          "edge_src": "FG3C000150",
+          "edge_dst": "FG3C000160"
+        },
+        {
+          "paper_id": "W4384937324__gpt5mini_low",
+          "title": "Exploring the critical demand drivers of electricity consumption in Thailand",
+          "year": 2023,
+          "edge_src": "FG3C000258",
+          "edge_dst": "FG3C000160"
+        }
+      ],
       "top_countries_source": [
         "Japan",
         "USA",
@@ -1301,6 +1991,29 @@
         "energy prices",
         "output (GDP)",
         "carbon emissions (CO2 emissions)"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W4319159045__gpt5mini_low",
+          "title": "Macroeconomic and Uncertainty Shocks\u2019 Effects on Energy Prices: A Comprehensive Literature Review",
+          "year": 2023,
+          "edge_src": "FG3C000150",
+          "edge_dst": "FG3C000014"
+        },
+        {
+          "paper_id": "W4312131509__gpt5mini_low",
+          "title": "Assessment of role of green bond in renewable energy resource development in Japan",
+          "year": 2022,
+          "edge_src": "FG3C005378",
+          "edge_dst": "FG3C000150"
+        },
+        {
+          "paper_id": "W4321336774__gpt5mini_low",
+          "title": "The nexus between remittances, education, and energy consumption: Evidence from developing countries",
+          "year": 2023,
+          "edge_src": "FG3C000150",
+          "edge_dst": "FG3C000014"
+        }
       ],
       "top_countries_source": [
         "Japan",
@@ -1346,6 +2059,29 @@
         "stock returns",
         "expected inflation"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W2104249109__gpt5mini_low",
+          "title": "Stock returns and inflation in Pakistan",
+          "year": 2015,
+          "edge_src": "FG3C000035",
+          "edge_dst": "FG3C000002"
+        },
+        {
+          "paper_id": "W4238446163__gpt5mini_low",
+          "title": "Pricing New Corporate Bond Issues: An Analysis of Issue Cost and Seasoning Effects",
+          "year": 1986,
+          "edge_src": "FG3C006138",
+          "edge_dst": "FG3C000035"
+        },
+        {
+          "paper_id": "W1985471384__gpt5mini_low",
+          "title": "The relationship between stock returns and inflation: new evidence from wavelet analysis",
+          "year": 2005,
+          "edge_src": "FG3C000035",
+          "edge_dst": "FG3C000002"
+        }
+      ],
       "top_countries_source": [
         "United States",
         "Australia",
@@ -1389,6 +2125,29 @@
         "investment",
         "exchange rate changes"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W4212989421__gpt5mini_low",
+          "title": "Epidemics in the New Keynesian model",
+          "year": 2022,
+          "edge_src": "FG3C000019",
+          "edge_dst": "FG3C000011"
+        },
+        {
+          "paper_id": "W2012188687__gpt5mini_low",
+          "title": "Investment Models and Expectations: Some Estimates for the Italian Industrial Sector",
+          "year": 1983,
+          "edge_src": "FG3C005637",
+          "edge_dst": "FG3C000019"
+        },
+        {
+          "paper_id": "W3121993932__gpt5mini_low",
+          "title": "Dynamics of investment, debt, and default",
+          "year": 2017,
+          "edge_src": "FG3C000019",
+          "edge_dst": "FG3C000011"
+        }
+      ],
       "top_countries_source": [
         "Maine",
         "NLD"
@@ -1430,6 +2189,29 @@
       "top_mediator_labels": [
         "long-term interest rate",
         "bond prices"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W4200357935__gpt5mini_low",
+          "title": "The nonlinear causal relationship between short\u2010 and long\u2010term interest rates: An empirical assessment of the United States, the United Kingdom, and Japan",
+          "year": 2021,
+          "edge_src": "FG3C000404",
+          "edge_dst": "FG3C000455"
+        },
+        {
+          "paper_id": "W2027966652__gpt5mini_low",
+          "title": "Decreasing Yield Curves in a Model with an Unknown Constant Growth Rate",
+          "year": 2000,
+          "edge_src": "FG3C000455",
+          "edge_dst": "FG3C003315"
+        },
+        {
+          "paper_id": "W2552511774__gpt5mini_low",
+          "title": "What keeps long-term U.S. interest rates so low?",
+          "year": 2016,
+          "edge_src": "FG3C000404",
+          "edge_dst": "FG3C000455"
+        }
       ],
       "top_countries_source": [
         "United States",
@@ -1474,6 +2256,29 @@
         "uninsured Americans",
         "comparative effectiveness research"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W1989067006__gpt5mini_low",
+          "title": "Will All Health Care Reform Lead Back to Medicaid?",
+          "year": 2009,
+          "edge_src": "FG3C001347",
+          "edge_dst": "FG3C000300"
+        },
+        {
+          "paper_id": "W2042236643__gpt5mini_low",
+          "title": "The Democrats versus the Republicans on health",
+          "year": 2008,
+          "edge_src": "FG3C000300",
+          "edge_dst": "FG3C005091"
+        },
+        {
+          "paper_id": "W2061821850__gpt5mini_low",
+          "title": "The impact of health-care reform on the cancer patient",
+          "year": 1993,
+          "edge_src": "FG3C001347",
+          "edge_dst": "FG3C000300"
+        }
+      ],
       "top_countries_source": [
         "United States",
         "USA",
@@ -1517,6 +2322,29 @@
         "day-of-the-week effect",
         "oil demand"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W4394694007__gpt5mini_low",
+          "title": "Idiosyncratic risk and market volatility: Threat or opportunity for returns? A study of Borsa Istanbul stocks",
+          "year": 2024,
+          "edge_src": "FG3C000042",
+          "edge_dst": "FG3C000035"
+        },
+        {
+          "paper_id": "W4281746660__gpt5mini_low",
+          "title": "Examining the overconfidence and overreaction in China\u2019s carbon markets",
+          "year": 2022,
+          "edge_src": "FG3C001561",
+          "edge_dst": "FG3C000042"
+        },
+        {
+          "paper_id": "W4224653639__gpt5mini_low",
+          "title": "Stock returns, trading volume, and volatility: The case of African stock markets",
+          "year": 2022,
+          "edge_src": "FG3C000042",
+          "edge_dst": "FG3C000035"
+        }
+      ],
       "top_countries_source": [
         "Turkey",
         "United States",
@@ -1558,6 +2386,29 @@
       "public_pair_label": "policy analysis and policy",
       "top_mediator_labels": [
         "economics"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W4207024755__gpt5mini_low",
+          "title": "Annotated Listing of New Books",
+          "year": 2021,
+          "edge_src": "FG3C001408",
+          "edge_dst": "FG3C000684"
+        },
+        {
+          "paper_id": "W2137293206__gpt5mini_low",
+          "title": "Does Analysis Matter? Economics and Planning in the Department of the Interior",
+          "year": 1991,
+          "edge_src": "FG3C000684",
+          "edge_dst": "FG3C002369"
+        },
+        {
+          "paper_id": "W4241273815__gpt5mini_low",
+          "title": "Annotated Listing of New Books",
+          "year": 2019,
+          "edge_src": "FG3C001408",
+          "edge_dst": "FG3C000684"
+        }
       ],
       "top_countries_source": [
         "China",
@@ -1601,6 +2452,29 @@
       "top_mediator_labels": [
         "economic development",
         "return on equity (ROE)"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W4412955777__gpt5mini_low",
+          "title": "Research on the Implementation Effects, Multi-Objective Scheme Selection, and Element Regulation of China\u2019s Carbon Market",
+          "year": 2025,
+          "edge_src": "FG3C004791",
+          "edge_dst": "FG3C000026"
+        },
+        {
+          "paper_id": "W4393989550__gpt5mini_low",
+          "title": "Does emerging country's urbanization redefine the environmental Kuznets hypothesis for carbon emissions? A novel perspective on national and subnational differences",
+          "year": 2024,
+          "edge_src": "FG3C000026",
+          "edge_dst": "FG3C000010"
+        },
+        {
+          "paper_id": "W4400216291__gpt5mini_low",
+          "title": "Innovate, conserve, grow: A comprehensive analysis of technological innovation, energy utilization, and carbon emission in <scp>BRICS</scp>",
+          "year": 2024,
+          "edge_src": "FG3C000026",
+          "edge_dst": "FG3C000010"
+        }
       ],
       "top_countries_source": [
         "China",
@@ -1646,6 +2520,29 @@
         "carbon pricing",
         "transaction costs"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W2137322689__gpt5mini_low",
+          "title": "Emissions trading and transaction costs: analyzing the flaws in the discussion",
+          "year": 2001,
+          "edge_src": "FG3C000031",
+          "edge_dst": "FG3C001154"
+        },
+        {
+          "paper_id": "W2146015287__gpt5mini_low",
+          "title": "New directions in emissions trading: the potential contribution of new institutional economics",
+          "year": 1999,
+          "edge_src": "FG3C003006",
+          "edge_dst": "FG3C000031"
+        },
+        {
+          "paper_id": "W4407767628__gpt5mini_low",
+          "title": "Does Carbon Pricing Matter? Evidence from a Global Sample",
+          "year": 2025,
+          "edge_src": "FG3C003006",
+          "edge_dst": "FG3C000152"
+        }
+      ],
       "top_countries_source": [
         "China",
         "CHN",
@@ -1689,6 +2586,29 @@
         "wage rigidity",
         "job-finding rate",
         "wage rates"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W4320933245__gpt5mini_low",
+          "title": "The Cost of Wage Rigidity",
+          "year": 2023,
+          "edge_src": "FG3C001178",
+          "edge_dst": "FG3C004123"
+        },
+        {
+          "paper_id": "W1773422498__gpt5mini_low",
+          "title": "UNEMPLOYMENT AND WAGE RIGIDITY: THE DEMAND SIDE",
+          "year": 1983,
+          "edge_src": "FG3C000009",
+          "edge_dst": "FG3C001178"
+        },
+        {
+          "paper_id": "W2570024845__gpt5mini_low",
+          "title": "Why are labor markets in Spain and Germany so different?",
+          "year": 2018,
+          "edge_src": "FG3C001178",
+          "edge_dst": "FG3C004123"
+        }
       ],
       "top_countries_source": [
         "United States",
@@ -1734,6 +2654,29 @@
         "economic fundamentals",
         "exchange rate changes"
       ],
+      "representative_papers": [
+        {
+          "paper_id": "W2058049691__gpt5mini_low",
+          "title": "The International Comparison Program and Purchasing Power Parities",
+          "year": 2008,
+          "edge_src": "FG3C000508",
+          "edge_dst": "FG3C000072"
+        },
+        {
+          "paper_id": "W2072012617__gpt5mini_low",
+          "title": "Pass-through of exchange rates and purchasing power parity",
+          "year": 1997,
+          "edge_src": "FG3C005010",
+          "edge_dst": "FG3C000508"
+        },
+        {
+          "paper_id": "W2116912141__gpt5mini_low",
+          "title": "Currency traders and exchange rate dynamics: a survey of the US market",
+          "year": 2001,
+          "edge_src": "FG3C000508",
+          "edge_dst": "FG3C000072"
+        }
+      ],
       "top_countries_source": [
         "Germany"
       ],
@@ -1775,6 +2718,29 @@
         "market beta",
         "firm size",
         "CAPM"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W3124971662__gpt5mini_low",
+          "title": "Resurrecting the Size Effect: Firm Size, Profitability Shocks, and Expected Stock Returns",
+          "year": 2018,
+          "edge_src": "FG3C000020",
+          "edge_dst": "FG3C006667"
+        },
+        {
+          "paper_id": "W2145592425__gpt5mini_low",
+          "title": "Implied Price Risk and Momentum Strategy*",
+          "year": 2013,
+          "edge_src": "FG3C002163",
+          "edge_dst": "FG3C000020"
+        },
+        {
+          "paper_id": "W2012637053__gpt5mini_low",
+          "title": "The Errors in the Variables Problem in the Cross\u2010Section of Expected Stock Returns",
+          "year": 1995,
+          "edge_src": "FG3C000020",
+          "edge_dst": "FG3C006667"
+        }
       ],
       "top_countries_source": [
         "China",
@@ -1819,6 +2785,29 @@
         "regional unemployment rates",
         "wages",
         "real wages"
+      ],
+      "representative_papers": [
+        {
+          "paper_id": "W4224235994__gpt5mini_low",
+          "title": "A multi time-scale theory of economic growth and cycles",
+          "year": 2022,
+          "edge_src": "FG3C000022",
+          "edge_dst": "FG3C000009"
+        },
+        {
+          "paper_id": "W1877100877__gpt5mini_low",
+          "title": "How Flexible are Wages in Response to Local Unemployment in South Africa?",
+          "year": 2006,
+          "edge_src": "FG3C004482",
+          "edge_dst": "FG3C000022"
+        },
+        {
+          "paper_id": "W4290792504__gpt5mini_low",
+          "title": "The welfare effects of tax progressivity in a frictional labor market",
+          "year": 2022,
+          "edge_src": "FG3C000022",
+          "edge_dst": "FG3C000009"
+        }
       ],
       "top_countries_source": [
         "France",

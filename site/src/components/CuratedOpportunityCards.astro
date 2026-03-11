@@ -72,13 +72,14 @@ const buildGlossNotes = (item: CuratedOpportunity) => {
         </p>
         <OpportunityEvidence
           mediatorLabels={item.top_mediator_labels}
+          representativePapers={item.representative_papers}
           directLinkStatus={item.direct_link_status}
           sourceLabel={item.public_source_label}
           targetLabel={item.public_target_label}
           sourceContextSummary={item.source_context_summary}
           targetContextSummary={item.target_context_summary}
         />
-        <a class="text-link" href={item.app_link}>Open in app</a>
+        <a class="text-link" href={item.app_link}>Open deeper evidence in app</a>
       </article>
     ))}
   </div>

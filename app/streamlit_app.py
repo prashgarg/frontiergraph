@@ -17,22 +17,22 @@ from src.opportunity_data import (
     PRESET_HELP,
     compute_priority_score,
     connect_readonly,
+    direct_literature_status,
     is_concept_mode,
     load_app_mode,
     load_candidate_summary,
     load_nodes,
+    public_pair_label,
     recommendation_play,
     to_float,
     to_int,
-    why_now,
 )
 
 SITE_URL = "https://frontiergraph.com"
 GRAPH_URL = f"{SITE_URL}/graph/"
 OPPORTUNITIES_URL = f"{SITE_URL}/opportunities/"
-COMPARE_URL = f"{SITE_URL}/compare/"
-METHOD_URL = f"{SITE_URL}/method/"
-DOWNLOADS_URL = f"{SITE_URL}/downloads/"
+FAQ_URL = f"{SITE_URL}/faq/"
+VALIDATION_URL = f"{SITE_URL}/validation/"
 REPO_URL = "https://github.com/prashgarg/frontiergraph"
 
 
@@ -125,8 +125,41 @@ def query_df(db_path: str, sql: str, params: tuple = ()) -> pd.DataFrame:
 def format_rank(value: object) -> str:
     numeric = pd.to_numeric(pd.Series([value]), errors="coerce").iloc[0]
     if pd.isna(numeric):
-        return "NA"
+        return "Not available"
     return str(int(numeric))
+
+
+def source_target_context(row: pd.Series) -> str:
+    return f"{row['source_field_name']} and {row['target_field_name']}"
+
+
+def shortlist_pair_label(row: pd.Series) -> str:
+    return public_pair_label(row)
+
+
+def shortlist_direct_status(row: pd.Series) -> str:
+    return direct_literature_status(row.get("cooc_count", 0))
+
+
+def representative_paper_preview(papers_df: pd.DataFrame, limit: int = 3) -> pd.DataFrame:
+    if papers_df.empty:
+        return pd.DataFrame(columns=["title", "year", "edge_src", "edge_dst"])
+    deduped = papers_df.drop_duplicates(subset=["paper_id"], keep="first").copy()
+    return deduped.head(limit).loc[:, ["title", "year", "edge_src", "edge_dst"]]
+
+
+def mediator_preview(mediators_df: pd.DataFrame, limit: int = 3) -> list[str]:
+    if mediators_df.empty:
+        return []
+    label_column = "mediator_label" if "mediator_label" in mediators_df.columns else "mediator"
+    labels = mediators_df[label_column].fillna("").astype(str)
+    cleaned = [label.strip() for label in labels.tolist() if label and label.strip()]
+    return cleaned[:limit]
+
+
+def render_bullet_list(items: list[str]) -> None:
+    for item in items:
+        st.markdown(f"- {item}")
 
 
 @st.cache_data(show_spinner=False)
@@ -146,9 +179,10 @@ def load_candidate_bundle(db_path: str, u: str, v: str) -> dict[str, pd.DataFram
     mediators_df = query_df(
         db_path,
         """
-        SELECT rank, mediator, score
-        FROM candidate_mediators
-        WHERE candidate_u = ? AND candidate_v = ?
+        SELECT cm.rank, cm.mediator, COALESCE(n.label, cm.mediator) AS mediator_label, cm.score
+        FROM candidate_mediators cm
+        LEFT JOIN nodes n ON cm.mediator = n.code
+        WHERE cm.candidate_u = ? AND cm.candidate_v = ?
         ORDER BY rank
         """,
         (u, v),
@@ -251,7 +285,7 @@ def parse_flag(value: str, default: bool = False) -> bool:
 
 def candidate_option_label(row: pd.Series) -> str:
     rank = to_int(row.get("priority_rank", 0), default=0)
-    return f"#{rank} {row['opportunity']} | {row['priority_score']:.3f}"
+    return f"#{rank} {shortlist_pair_label(row)} | {row['priority_score']:.3f}"
 
 
 def filtered_download_frame(filtered_df: pd.DataFrame) -> pd.DataFrame:
@@ -274,8 +308,8 @@ def filtered_download_frame(filtered_df: pd.DataFrame) -> pd.DataFrame:
             "motif_count",
         ]
     ].copy()
-    out["project_shape"] = working.apply(recommendation_play, axis=1)
-    out["why_now"] = working.apply(why_now, axis=1)
+    out["direct_literature"] = working["cooc_count"].map(direct_literature_status)
+    out["next_study_shape"] = working.apply(recommendation_play, axis=1)
     return out.rename(
         columns={
             "priority_rank": "rank",
@@ -292,28 +326,33 @@ def shortlist_view(shortlist_df: pd.DataFrame) -> pd.DataFrame:
     working = shortlist_df.copy()
     if "priority_rank" not in working.columns:
         working["priority_rank"] = np.arange(1, len(working) + 1)
+    working["public_pair"] = working.apply(shortlist_pair_label, axis=1)
+    working["direct_literature"] = working["cooc_count"].map(direct_literature_status)
+    working["next_study_shape"] = working.apply(recommendation_play, axis=1)
 
     return (
         working[
             [
                 "priority_rank",
-                "opportunity",
+                "public_pair",
                 "novelty_label",
                 "target_field_name",
+                "direct_literature",
+                "next_study_shape",
                 "priority_score",
-                "cooc_count",
                 "mediator_count",
             ]
         ]
         .rename(
             columns={
                 "priority_rank": "Rank",
-                "opportunity": "Opportunity",
+                "public_pair": "Pair",
                 "novelty_label": "Type",
                 "target_field_name": "Target field",
+                "direct_literature": "Direct literature",
+                "next_study_shape": "Next study shape",
                 "priority_score": "Priority",
-                "cooc_count": "Prior contact",
-                "mediator_count": "Mediators",
+                "mediator_count": "Nearby ideas",
             }
         )
         .assign(Priority=lambda df: df["Priority"].map(lambda value: f"{value:.3f}"))
@@ -368,13 +407,13 @@ def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, preset: str, top_
 
     top_cols = st.columns(4)
     with top_cols[0]:
-        st.metric("Ideas in play", f"{len(filtered_df):,}")
+        st.metric("Visible ideas", f"{len(filtered_df):,}")
     with top_cols[1]:
         st.metric("Cross-field share", f"{100 * filtered_df['cross_field'].mean():.1f}%")
     with top_cols[2]:
         st.metric("Median priority", f"{filtered_df['priority_score'].median():.3f}")
     with top_cols[3]:
-        st.metric("Top idea", shortlist_df.iloc[0]["opportunity"])
+        st.metric("Top pair", shortlist_pair_label(shortlist_df.iloc[0]))
 
     st.dataframe(shortlist_view(shortlist_df), use_container_width=True, hide_index=True)
 
@@ -387,7 +426,7 @@ def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, preset: str, top_
     render_candidate_detail(db_path, options_df.loc[int(selected_idx)], app_mode=app_mode)
 
     st.download_button(
-        label="Download current shortlist as CSV",
+        label="Export working shortlist as CSV",
         data=filtered_download_frame(shortlist_df).to_csv(index=False),
         file_name="frontiergraph_shortlist.csv",
         mime="text/csv",
@@ -408,30 +447,80 @@ def render_candidate_detail(db_path: str, row: pd.Series, app_mode: str) -> None
         st.warning("Candidate details were not found in the database.")
         return
 
+    pair_label = shortlist_pair_label(row)
+    direct_status = direct_literature_status(candidate_row.get("cooc_count", row.get("cooc_count", 0)))
+    nearby_labels = mediator_preview(mediators_df)
+    paper_preview = representative_paper_preview(papers_df)
+    next_study_shape = recommendation_play(row)
+    verify_steps = [
+        "Check direct literature under close synonyms",
+        "Inspect nearby linking ideas",
+        "Read representative papers",
+        "Decide whether this is a mechanism, outcome, or setting question",
+    ]
+
     st.markdown("### Selected opportunity")
-    st.markdown(f"**{row['opportunity']}**")
-    st.caption(
-        f"{row['code_pair']} | {row['source_field_name']} -> {row['target_field_name']}"
+    st.markdown(f"**{pair_label}**")
+    st.caption(f"{row['code_pair']} | {source_target_context(row)}")
+
+    summary_left, summary_right = st.columns([1.35, 1.0])
+    with summary_left:
+        st.markdown("**Plain-language read**")
+        st.write(f"Direct literature: {direct_status}")
+        st.write(f"Next study shape: {next_study_shape}")
+        if nearby_labels:
+            st.write(f"Nearby linking ideas: {', '.join(nearby_labels)}")
+        else:
+            st.write("Nearby linking ideas: No stable mediator preview in the current public sample")
+        st.write(
+            f"Broad context: {row['source_field_name']} on one side and {row['target_field_name']} on the other."
+        )
+    with summary_right:
+        st.markdown("**What to verify next**")
+        render_bullet_list(verify_steps)
+
+    st.markdown("**Representative papers**")
+    if paper_preview.empty:
+        st.caption("No representative papers were exported for this pair in the current public sample.")
+    else:
+        preview_df = paper_preview.rename(
+            columns={
+                "title": "Paper",
+                "year": "Year",
+                "edge_src": "Edge source",
+                "edge_dst": "Edge target",
+            }
+        )
+        st.dataframe(preview_df, use_container_width=True, hide_index=True)
+
+    brief = build_idea_brief_markdown(
+        candidate_row=candidate_row,
+        mediators_df=mediators_df,
+        paths_df=paths_df,
+        papers_df=papers_df,
+        neighborhood_row=neighborhood_row,
     )
-    st.write(f"Suggested move: {recommendation_play(row)}")
-    st.write(why_now(row))
+    st.download_button(
+        label="Export working brief (Markdown)",
+        data=brief,
+        file_name=f"idea_brief_{row['u']}_to_{row['v']}.md",
+        mime="text/markdown",
+    )
 
     has_suppression = "base_score" in candidate_row.index
-    top_cols = st.columns(5 if has_suppression else 4)
-    top_cols[0].metric("Priority", f"{to_float(row['priority_score']):.3f}")
-    if has_suppression:
-        top_cols[1].metric("Adjusted score", f"{to_float(candidate_row.get('score', 0.0)):.3f}")
-        top_cols[2].metric("Base score", f"{to_float(candidate_row.get('base_score', 0.0)):.3f}")
-        top_cols[3].metric("Prior contact", f"{to_int(candidate_row.get('cooc_count', 0))}")
-        top_cols[4].metric("Mediators", f"{to_int(candidate_row.get('mediator_count', 0))}")
-    else:
-        top_cols[1].metric("Base score", f"{to_float(candidate_row['score']):.3f}")
-        top_cols[2].metric("Prior contact", f"{to_int(candidate_row.get('cooc_count', 0))}")
-        top_cols[3].metric("Mediators", f"{to_int(candidate_row.get('mediator_count', 0))}")
+    with st.expander("Technical details", expanded=False):
+        top_cols = st.columns(5 if has_suppression else 4)
+        top_cols[0].metric("Priority", f"{to_float(row['priority_score']):.3f}")
+        if has_suppression:
+            top_cols[1].metric("Adjusted score", f"{to_float(candidate_row.get('score', 0.0)):.3f}")
+            top_cols[2].metric("Base score", f"{to_float(candidate_row.get('base_score', 0.0)):.3f}")
+            top_cols[3].metric("Prior contact", f"{to_int(candidate_row.get('cooc_count', 0))}")
+            top_cols[4].metric("Mediators", f"{to_int(candidate_row.get('mediator_count', 0))}")
+        else:
+            top_cols[1].metric("Base score", f"{to_float(candidate_row['score']):.3f}")
+            top_cols[2].metric("Prior contact", f"{to_int(candidate_row.get('cooc_count', 0))}")
+            top_cols[3].metric("Mediators", f"{to_int(candidate_row.get('mediator_count', 0))}")
 
-    summary_tab, evidence_tab, papers_tab, export_tab = st.tabs(["Summary", "Evidence", "Papers", "Export"])
-
-    with summary_tab:
         summary_left, summary_right = st.columns(2)
         with summary_left:
             summary_df = pd.DataFrame(
@@ -442,7 +531,7 @@ def render_candidate_detail(db_path: str, row: pd.Series, app_mode: str) -> None
                             {"Metric": "Base rank", "Value": format_rank(candidate_row.get("base_rank"))},
                             {"Metric": "Adjusted rank", "Value": format_rank(candidate_row.get("rank"))},
                             {"Metric": "Duplicate penalty", "Value": f"{to_float(candidate_row.get('duplicate_penalty', 0.0)):.3f}"},
-                            {"Metric": "Hard suppression reason", "Value": str(candidate_row.get("hard_same_family_reason", "") or "NA")},
+                            {"Metric": "Hard suppression reason", "Value": str(candidate_row.get("hard_same_family_reason", "") or "Not applied")},
                         ]
                         if has_suppression
                         else []
@@ -464,79 +553,60 @@ def render_candidate_detail(db_path: str, row: pd.Series, app_mode: str) -> None
                 ]
             )
             st.dataframe(evidence_df, use_container_width=True, hide_index=True)
-            if is_concept_mode(app_mode) and source_detail_row is not None and target_detail_row is not None:
-                with st.expander("Inspect concept metadata", expanded=False):
-                    st.markdown("**Source concept**")
-                    st.code(
-                        json.dumps(
-                            {
-                                "aliases_json": source_detail_row.get("aliases_json", "[]"),
-                                "bucket_hint": source_detail_row.get("bucket_hint", ""),
-                                "instance_support": to_int(source_detail_row.get("instance_support", 0)),
-                                "mean_confidence": to_float(source_detail_row.get("mean_confidence", 0.0)),
-                                "low_confidence_share": to_float(source_detail_row.get("low_confidence_share", 0.0)),
-                                "mapping_sources_json": source_detail_row.get("mapping_sources_json", "[]"),
-                                "representative_contexts_json": source_detail_row.get("representative_contexts_json", "[]"),
-                                "representative_years_json": source_detail_row.get("representative_years_json", "[]"),
-                            },
-                            ensure_ascii=False,
-                            indent=2,
-                        )
-                    )
-                    st.markdown("**Target concept**")
-                    st.code(
-                        json.dumps(
-                            {
-                                "aliases_json": target_detail_row.get("aliases_json", "[]"),
-                                "bucket_hint": target_detail_row.get("bucket_hint", ""),
-                                "instance_support": to_int(target_detail_row.get("instance_support", 0)),
-                                "mean_confidence": to_float(target_detail_row.get("mean_confidence", 0.0)),
-                                "low_confidence_share": to_float(target_detail_row.get("low_confidence_share", 0.0)),
-                                "mapping_sources_json": target_detail_row.get("mapping_sources_json", "[]"),
-                                "representative_contexts_json": target_detail_row.get("representative_contexts_json", "[]"),
-                                "representative_years_json": target_detail_row.get("representative_years_json", "[]"),
-                            },
-                            ensure_ascii=False,
-                            indent=2,
-                        )
-                    )
-            if neighborhood_row is not None:
-                with st.expander("Inspect local neighborhood", expanded=False):
-                    st.markdown("**Top outgoing neighbors of the source concept**")
-                    st.code(str(neighborhood_row["top_out_neighbors_u_json"]))
-                    st.markdown("**Top incoming neighbors of the target concept**")
-                    st.code(str(neighborhood_row["top_in_neighbors_v_json"]))
 
-    with evidence_tab:
-        ev_left, ev_right = st.columns(2)
-        with ev_left:
+        evidence_left, evidence_right = st.columns(2)
+        with evidence_left:
             st.markdown("**Top mediators**")
             st.dataframe(mediators_df.head(25), use_container_width=True, hide_index=True)
-        with ev_right:
+        with evidence_right:
             st.markdown("**Top supporting paths**")
             st.dataframe(paths_df.head(25), use_container_width=True, hide_index=True)
 
-    with papers_tab:
         st.markdown("**Supporting papers behind the candidate paths**")
         st.dataframe(papers_df.head(150), use_container_width=True, hide_index=True)
 
-    with export_tab:
-        brief = build_idea_brief_markdown(
-            candidate_row=candidate_row,
-            mediators_df=mediators_df,
-            paths_df=paths_df,
-            papers_df=papers_df,
-            neighborhood_row=neighborhood_row,
-        )
-        st.markdown(
-            "Export a markdown brief if you want to move the idea into a memo, seminar note, or working agenda."
-        )
-        st.download_button(
-            label="Export idea brief (Markdown)",
-            data=brief,
-            file_name=f"idea_brief_{row['u']}_to_{row['v']}.md",
-            mime="text/markdown",
-        )
+        if is_concept_mode(app_mode) and source_detail_row is not None and target_detail_row is not None:
+            with st.expander("Inspect concept metadata", expanded=False):
+                st.markdown("**Source concept**")
+                st.code(
+                    json.dumps(
+                        {
+                            "aliases_json": source_detail_row.get("aliases_json", "[]"),
+                            "bucket_hint": source_detail_row.get("bucket_hint", ""),
+                            "instance_support": to_int(source_detail_row.get("instance_support", 0)),
+                            "mean_confidence": to_float(source_detail_row.get("mean_confidence", 0.0)),
+                            "low_confidence_share": to_float(source_detail_row.get("low_confidence_share", 0.0)),
+                            "mapping_sources_json": source_detail_row.get("mapping_sources_json", "[]"),
+                            "representative_contexts_json": source_detail_row.get("representative_contexts_json", "[]"),
+                            "representative_years_json": source_detail_row.get("representative_years_json", "[]"),
+                        },
+                        ensure_ascii=False,
+                        indent=2,
+                    )
+                )
+                st.markdown("**Target concept**")
+                st.code(
+                    json.dumps(
+                        {
+                            "aliases_json": target_detail_row.get("aliases_json", "[]"),
+                            "bucket_hint": target_detail_row.get("bucket_hint", ""),
+                            "instance_support": to_int(target_detail_row.get("instance_support", 0)),
+                            "mean_confidence": to_float(target_detail_row.get("mean_confidence", 0.0)),
+                            "low_confidence_share": to_float(target_detail_row.get("low_confidence_share", 0.0)),
+                            "mapping_sources_json": target_detail_row.get("mapping_sources_json", "[]"),
+                            "representative_contexts_json": target_detail_row.get("representative_contexts_json", "[]"),
+                            "representative_years_json": target_detail_row.get("representative_years_json", "[]"),
+                        },
+                        ensure_ascii=False,
+                        indent=2,
+                    )
+                )
+        if neighborhood_row is not None:
+            with st.expander("Inspect local neighborhood", expanded=False):
+                st.markdown("**Top outgoing neighbors of the source concept**")
+                st.code(str(neighborhood_row["top_out_neighbors_u_json"]))
+                st.markdown("**Top incoming neighbors of the target concept**")
+                st.code(str(neighborhood_row["top_in_neighbors_v_json"]))
 
 
 def render_field_radar_tab(filtered_df: pd.DataFrame, app_mode: str) -> None:
@@ -654,6 +724,10 @@ def render_concept_tab(db_path: str, nodes_df: pd.DataFrame) -> None:
 def render_method_tab(filtered_df: pd.DataFrame, preset: str) -> None:
     st.subheader("Method")
     st.markdown(
+        f"Use the public <a href=\"{FAQ_URL}\">FAQ</a> for interpretation and <a href=\"{VALIDATION_URL}\">Validation</a> for limits and checks. Use this tab when you want the compact technical summary behind the current app surface.",
+        unsafe_allow_html=True,
+    )
+    st.markdown(
         """
         1. AI extracts paper-local graph structure from titles and abstracts.
         2. FrontierGraph maps those local graphs into concept regimes and ranks missing links with deterministic graph signals.
@@ -692,11 +766,10 @@ def main() -> None:
         f"""
         <div class="app-nav">
             <a href="{SITE_URL}">Site</a>
-            <a href="{GRAPH_URL}">Graph</a>
             <a href="{OPPORTUNITIES_URL}">Opportunities</a>
-            <a href="{METHOD_URL}">Method</a>
-            <a href="{COMPARE_URL}">Compare</a>
-            <a href="{DOWNLOADS_URL}">Downloads</a>
+            <a href="{FAQ_URL}">FAQ</a>
+            <a href="{VALIDATION_URL}">Validation</a>
+            <a href="{GRAPH_URL}">Graph</a>
             <a href="{REPO_URL}">GitHub</a>
         </div>
         """,
@@ -704,14 +777,18 @@ def main() -> None:
     )
 
     st.markdown(
-        """
+        f"""
         <div class="hero-shell">
             <div class="eyebrow">FrontierGraph explorer</div>
-            <h1 class="hero-title">Explore the concept graph and ranked opportunities.</h1>
+            <h1 class="hero-title">Start with the ranked opportunities.</h1>
             <p class="hero-copy">
-                FrontierGraph maps the literature into a concept graph, ranks underexplored links, and keeps ontology
-                comparison visible. The default product surface is Baseline exploratory with deterministic duplicate
-                cleanup on the public recommendation layer.
+                Use this app as the deeper evidence layer behind the public site. Start with the shortlist, inspect
+                nearby linking ideas and representative papers, then decide whether the pair looks like a mechanism,
+                outcome, or setting question worth reading further.
+            </p>
+            <p class="hero-copy">
+                Keep the public trust pages nearby: <a href="{FAQ_URL}">FAQ</a> explains how to read the product, and
+                <a href="{VALIDATION_URL}">Validation</a> states what is model-extracted, what is deterministic, and what is not benchmarked yet.
             </p>
         </div>
         """,
@@ -849,7 +926,7 @@ def main() -> None:
     if is_concept_mode(app_mode):
         mode_label = f"{selected_ontology} {selected_mapping}".strip()
         st.caption(
-            f"Default concept surface: {mode_label}. Use Advanced settings only when you want to compare ontology regimes."
+            f"Current concept surface: {mode_label}. Keep this on the default unless you are deliberately checking ontology sensitivity."
         )
     else:
         st.caption("This database is using the legacy browse surface because no concept graph database is configured.")
@@ -929,21 +1006,22 @@ def main() -> None:
         filtered_df["priority_score"] = pd.Series(dtype=float)
         filtered_df["priority_rank"] = pd.Series(dtype=int)
 
-    ranker_tab, radar_tab, concept_tab, method_tab = st.tabs(
-        ["Ranker", "Bucket map" if is_concept_mode(app_mode) else "Field map", "Concepts", "Method"]
-    )
+    render_ranker_tab(db_path, filtered_df, preset, top_n=top_n, app_mode=app_mode)
 
-    with ranker_tab:
-        render_ranker_tab(db_path, filtered_df, preset, top_n=top_n, app_mode=app_mode)
+    with st.expander("Advanced tools", expanded=False):
+        st.caption("Use these only when you want to inspect the bucket map, query concepts directly, or review the technical method notes.")
+        radar_tab, concept_tab, method_tab = st.tabs(
+            ["Bucket map" if is_concept_mode(app_mode) else "Field map", "Concept lookup", "Method"]
+        )
 
-    with radar_tab:
-        render_field_radar_tab(filtered_df, app_mode=app_mode)
+        with radar_tab:
+            render_field_radar_tab(filtered_df, app_mode=app_mode)
 
-    with concept_tab:
-        render_concept_tab(db_path, nodes_df)
+        with concept_tab:
+            render_concept_tab(db_path, nodes_df)
 
-    with method_tab:
-        render_method_tab(filtered_df, preset)
+        with method_tab:
+            render_method_tab(filtered_df, preset)
 
 
 if __name__ == "__main__":

@@ -1,6 +1,9 @@
 ---
+import type { RepresentativePaper } from "../lib/site-data";
+
 interface Props {
   mediatorLabels?: string[];
+  representativePapers?: RepresentativePaper[];
   directLinkStatus: string;
   sourceLabel: string;
   targetLabel: string;
@@ -10,6 +13,7 @@ interface Props {
 
 const {
   mediatorLabels = [],
+  representativePapers = [],
   directLinkStatus,
   sourceLabel,
   targetLabel,
@@ -18,6 +22,7 @@ const {
 } = Astro.props;
 
 const uniqueMediatorLabels = Array.from(new Set(mediatorLabels.filter(Boolean)));
+const visiblePapers = representativePapers.filter((paper) => paper.title).slice(0, 3);
 ---
 
 <details class="opportunity-detail" data-role="opportunity-evidence">
@@ -27,6 +32,19 @@ const uniqueMediatorLabels = Array.from(new Set(mediatorLabels.filter(Boolean)))
       <p class="mini-copy">
         <strong>Nearby linking ideas:</strong> {uniqueMediatorLabels.join(", ")}
       </p>
+    )}
+    {visiblePapers.length > 0 && (
+      <div class="mini-copy opportunity-paper-block">
+        <strong>Representative papers:</strong>
+        <ul class="opportunity-paper-list">
+          {visiblePapers.map((paper) => (
+            <li>
+              <span>{paper.title}</span>
+              {paper.year > 0 && <span class="opportunity-paper-year">({paper.year})</span>}
+            </li>
+          ))}
+        </ul>
+      </div>
     )}
     <p class="mini-copy">
       <strong>Direct literature:</strong> {directLinkStatus}

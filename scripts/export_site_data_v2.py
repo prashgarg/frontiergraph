@@ -382,11 +382,77 @@ def resolve_top_mediator_labels(
     return labels
 
 
+def load_representative_papers() -> dict[tuple[str, str], list[dict[str, Any]]]:
+    sql = """
+        WITH deduped AS (
+            SELECT
+                candidate_u,
+                candidate_v,
+                path_rank,
+                paper_rank,
+                paper_id,
+                title,
+                year,
+                edge_src,
+                edge_dst,
+                ROW_NUMBER() OVER (
+                    PARTITION BY candidate_u, candidate_v, paper_id
+                    ORDER BY path_rank, paper_rank
+                ) AS paper_occurrence_rank
+            FROM candidate_papers
+        ),
+        limited AS (
+            SELECT
+                candidate_u,
+                candidate_v,
+                paper_id,
+                title,
+                year,
+                edge_src,
+                edge_dst,
+                ROW_NUMBER() OVER (
+                    PARTITION BY candidate_u, candidate_v
+                    ORDER BY path_rank, paper_rank, year DESC, paper_id
+                ) AS representative_rank
+            FROM deduped
+            WHERE paper_occurrence_rank = 1
+        )
+        SELECT
+            candidate_u,
+            candidate_v,
+            paper_id,
+            title,
+            year,
+            edge_src,
+            edge_dst
+        FROM limited
+        WHERE representative_rank <= 3
+        ORDER BY candidate_u, candidate_v, representative_rank
+    """
+
+    with connect(BASELINE_SUPPRESSION_DB_PATH) as conn:
+        rows = conn.execute(sql).fetchall()
+
+    lookup: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
+    for candidate_u, candidate_v, paper_id, title, year, edge_src, edge_dst in rows:
+        lookup[(str(candidate_u), str(candidate_v))].append(
+            {
+                "paper_id": str(paper_id),
+                "title": clean_public_text(title),
+                "year": to_int(year),
+                "edge_src": str(edge_src),
+                "edge_dst": str(edge_dst),
+            }
+        )
+    return lookup
+
+
 def opportunity_record(
     row: sqlite3.Row | tuple[Any, ...],
     columns: list[str],
     concept_label_lookup: dict[str, str],
     glossary: dict[str, dict[str, Any]],
+    representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
 ) -> dict[str, Any]:
     values = dict(zip(columns, row))
     pair_query = quote(f"{values['u_preferred_label']} -> {values['v_preferred_label']}")
@@ -396,6 +462,11 @@ def opportunity_record(
     source_public = public_label_payload(values["u"], values["u_preferred_label"], glossary)
     target_public = public_label_payload(values["v"], values["v_preferred_label"], glossary)
     cross_field = clean_public_text(values.get("u_bucket_hint")) != clean_public_text(values.get("v_bucket_hint"))
+    representative_papers = [
+        paper
+        for paper in representative_papers_lookup.get((str(values["u"]), str(values["v"])), [])
+        if clean_public_text(paper.get("title"))
+    ]
     return {
         "pair_key": values["pair_key"],
         "source_id": values["u"],
@@ -425,6 +496,7 @@ def opportunity_record(
             values.get("v_bucket_hint"),
         ),
         "top_mediator_labels": resolve_top_mediator_labels(values.get("top_mediators_json"), concept_label_lookup, glossary, limit=3),
+        "representative_papers": representative_papers,
         "top_countries_source": top_source,
         "top_countries_target": top_target,
         "source_context_summary": plain_language_context(top_source, "No dominant source setting in the current public sample"),
@@ -476,6 +548,7 @@ def build_slices(
     df: pd.DataFrame,
     concept_label_lookup: dict[str, str],
     glossary: dict[str, dict[str, Any]],
+    representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
 ) -> dict[str, list[dict[str, Any]]]:
     columns = list(df.columns)
     def top_records(mask: pd.Series | None, limit: int = 100) -> list[dict[str, Any]]:
@@ -484,7 +557,7 @@ def build_slices(
         else:
             subset = df.loc[mask].head(limit)
         subset_rows = [tuple(row) for row in subset.itertuples(index=False, name=None)]
-        return [opportunity_record(row, columns, concept_label_lookup, glossary) for row in subset_rows]
+        return [opportunity_record(row, columns, concept_label_lookup, glossary, representative_papers_lookup) for row in subset_rows]
 
     return {
         "overall": top_records(None),
@@ -755,11 +828,12 @@ def build_concept_opportunities(
     candidates_df: pd.DataFrame,
     concept_label_lookup: dict[str, str],
     glossary: dict[str, dict[str, Any]],
+    representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
 ) -> dict[str, list[dict[str, Any]]]:
     columns = list(candidates_df.columns)
     concept_map: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
     for row in candidates_df.itertuples(index=False):
-        record = opportunity_record(tuple(row), columns, concept_label_lookup, glossary)
+        record = opportunity_record(tuple(row), columns, concept_label_lookup, glossary, representative_papers_lookup)
         for concept_id in (row.u, row.v):
             existing = concept_map[concept_id].get(record["pair_key"])
             if existing is None or safe_number_for_sort(record["score"]) > safe_number_for_sort(existing["score"]):
@@ -924,6 +998,7 @@ def build_curated_opportunities(
     candidates_df: pd.DataFrame,
     concept_label_lookup: dict[str, str],
     glossary: dict[str, dict[str, Any]],
+    representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     available_pair_keys = {str(value) for value in candidates_df["pair_key"].tolist()}
     missing_pairs = [pair_key for pair_key in editorial if pair_key not in available_pair_keys]
@@ -937,7 +1012,7 @@ def build_curated_opportunities(
     columns = list(subset_df.columns)
     records_by_pair: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in subset_df.itertuples(index=False, name=None):
-        record = opportunity_record(tuple(row), columns, concept_label_lookup, glossary)
+        record = opportunity_record(tuple(row), columns, concept_label_lookup, glossary, representative_papers_lookup)
         records_by_pair[record["pair_key"]].append(record)
 
     curated_rows: list[dict[str, Any]] = []
@@ -1042,6 +1117,7 @@ def main() -> None:
 
     candidates_df = add_slice_flags(load_candidates())
     node_details_df = load_node_details()
+    representative_papers_lookup = load_representative_papers()
     public_concept_ids = {str(value) for value in node_details_df["concept_id"].tolist()}
     public_label_glossary = load_public_label_glossary(public_concept_ids)
     concept_label_lookup = (
@@ -1060,7 +1136,12 @@ def main() -> None:
         public_label_glossary,
     )
     neighborhoods = build_neighborhoods(node_details_df, graph_edges_df, edge_profiles_df, edge_contexts_df)
-    concept_opportunities = build_concept_opportunities(candidates_df, concept_label_lookup, public_label_glossary)
+    concept_opportunities = build_concept_opportunities(
+        candidates_df,
+        concept_label_lookup,
+        public_label_glossary,
+        representative_papers_lookup,
+    )
     search_index = build_search_index(node_details_df, node_metrics_df, public_label_glossary)
     compare_payload = build_compare_payload(regime_summary_df, overlap_df)
 
@@ -1092,13 +1173,14 @@ def main() -> None:
             }
         )
 
-    slices = build_slices(candidates_df, concept_label_lookup, public_label_glossary)
+    slices = build_slices(candidates_df, concept_label_lookup, public_label_glossary, representative_papers_lookup)
     featured_opportunities = diversify_featured_opportunities(slices, limit=FEATURED_OPPORTUNITY_LIMIT)
     home_curated_opportunities, curated_front_set = build_curated_opportunities(
         editorial_opportunities,
         candidates_df,
         concept_label_lookup,
         public_label_glossary,
+        representative_papers_lookup,
     )
 
     write_json(PUBLIC_DATA_DIR / "graph_backbone.json", backbone_payload)
@@ -1127,7 +1209,7 @@ def main() -> None:
     export_rows_csv(
         PUBLIC_DATA_DIR / "top_opportunities.csv",
         slices["overall"],
-        ["pair_key", "source_id", "target_id", "source_label", "target_label", "source_bucket", "target_bucket", "cross_field", "score", "base_score", "duplicate_penalty", "path_support_norm", "gap_bonus", "mediator_count", "motif_count", "cooc_count", "direct_link_status", "supporting_path_count", "why_now", "recommended_move", "slice_label", "public_pair_label", "top_mediator_labels", "top_countries_source", "top_countries_target", "source_context_summary", "target_context_summary", "app_link"],
+        ["pair_key", "source_id", "target_id", "source_label", "target_label", "source_bucket", "target_bucket", "cross_field", "score", "base_score", "duplicate_penalty", "path_support_norm", "gap_bonus", "mediator_count", "motif_count", "cooc_count", "direct_link_status", "supporting_path_count", "why_now", "recommended_move", "slice_label", "public_pair_label", "top_mediator_labels", "representative_papers", "top_countries_source", "top_countries_target", "source_context_summary", "target_context_summary", "app_link"],
     )
 
     baseline_exploratory = next(

@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { data } from "../../lib/site-data";
+import { buildValidationContent } from "../../content/validation-content";
+
+const generatedAtLabel = new Date(data.generated_at).toLocaleDateString("en-US", {
+  timeZone: "UTC",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const validation = buildValidationContent({ generatedAtLabel });
+---
+
+<BaseLayout
+  title="Validation | FrontierGraph"
+  description="What FrontierGraph checks, what is model-extracted, what is deterministic, and where the public product can still fail."
+>
+  <main>
+    <section class="page-hero">
+      <span class="eyebrow">Validation</span>
+      <h1>What has been checked, what has not, and what can still fail.</h1>
+      <p class="lede">
+        FrontierGraph is most useful when it helps you scope the next plausible research direction. This page is the trust-and-audit surface for the public product, not a claim that the system is already fully benchmarked in every dimension.
+      </p>
+      <div class="button-row">
+        <a class="button-primary" href="/opportunities/">Inspect opportunities</a>
+        <a class="button-secondary" href="/faq/">Read FAQ</a>
+        <a class="button-tertiary" href="/method/">Open Method</a>
+        <a class="button-tertiary" href={data.app_url}>Open app</a>
+      </div>
+    </section>
+
+    <section class="section faq-top-grid">
+      <article class="content-panel faq-foundation-panel">
+        <span class="eyebrow">Foundation</span>
+        <h2>{validation.foundationTitle}</h2>
+        {validation.foundationHtml.map((paragraph) => (
+          <p class="card-copy" set:html={paragraph}></p>
+        ))}
+      </article>
+
+      <aside class="content-panel faq-rail">
+        <span class="eyebrow">Reading guide</span>
+        <h2>{validation.railTitle}</h2>
+        <ul class="faq-rail-list">
+          {validation.railItems.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Checks and limits</span>
+          <h2>Read the public product with the right level of confidence.</h2>
+        </div>
+        <p class="section-copy">
+          These sections separate the model-extracted layer from the deterministic ranking layer, then spell out what the current public product checks and where it can still fail.
+        </p>
+      </div>
+      <div class="validation-grid">
+        {validation.sections.map((section) => (
+          <article class="content-panel validation-card" id={section.id}>
+            <span class="eyebrow">Validation</span>
+            <h3>{section.title}</h3>
+            <p class="card-copy">{section.intro}</p>
+            <div class="method-stack">
+              {section.notes.map((note) => (
+                <p class="mini-copy" set:html={note}></p>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="cta-band">
+        <span class="eyebrow">Next step</span>
+        <h2>Use Validation to understand the limits. Use FAQ to interpret the product. Use Method for the exact terms.</h2>
+        <div class="button-row">
+          <a class="button-primary" href="/faq/">Open FAQ</a>
+          <a class="button-secondary" href="/method/">Open Method</a>
+          <a class="button-tertiary" href={data.app_url}>Open app</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

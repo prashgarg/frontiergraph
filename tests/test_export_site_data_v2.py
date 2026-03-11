@@ -42,9 +42,32 @@ def test_opportunity_export_includes_public_language_fields() -> None:
         "slice_label",
         "source_context_summary",
         "target_context_summary",
+        "representative_papers",
     ):
         assert field in row, f"{field} should be present in exported opportunity rows"
         assert row[field] not in (None, "", "NA"), f"{field} should be human-readable"
+
+
+def test_representative_papers_are_deduped_and_capped() -> None:
+    with (ROOT / "site" / "src" / "generated" / "site-data.json").open() as handle:
+        site_data = json.load(handle)
+
+    overall = site_data["opportunities"]["top_slices"]["overall"]
+    assert overall, "overall opportunities should not be empty"
+
+    checked = 0
+    for row in overall[:25]:
+        papers = row.get("representative_papers", [])
+        assert isinstance(papers, list), "representative_papers should be a list"
+        assert len(papers) <= 3, "representative_papers should cap at 3 rows"
+        paper_ids = [paper["paper_id"] for paper in papers]
+        assert len(paper_ids) == len(set(paper_ids)), "representative_papers should be deduped by paper_id"
+        for paper in papers:
+            assert paper["title"] not in (None, "", "NA"), "representative paper titles should be readable"
+            assert "year" in paper, "representative papers should include year"
+        checked += 1
+
+    assert checked > 0, "expected to inspect representative paper exports"
 
 
 def test_curated_opportunities_are_present_in_expected_order() -> None:

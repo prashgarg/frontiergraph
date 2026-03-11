@@ -12,6 +12,14 @@ export type MetricBundle = {
   duplicate_loops_removed_top100: number;
 };
 
+export type RepresentativePaper = {
+  paper_id: string;
+  title: string;
+  year: number;
+  edge_src: string;
+  edge_dst: string;
+};
+
 export type Opportunity = {
   pair_key: string;
   source_id: string;
@@ -36,6 +44,7 @@ export type Opportunity = {
   slice_label: string;
   public_pair_label: string;
   top_mediator_labels: string[];
+  representative_papers: RepresentativePaper[];
   top_countries_source: string[];
   top_countries_target: string[];
   source_context_summary: string;

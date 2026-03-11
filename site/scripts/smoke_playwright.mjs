@@ -1,6 +1,7 @@
 import { chromium } from "playwright";
 
 const baseUrl = process.argv[2] || "http://127.0.0.1:4173";
+const appUrl = process.argv[3] || "";
 
 function assert(condition, message) {
   if (!condition) {
@@ -63,6 +64,16 @@ async function main() {
   assert(/public product is a separate surface/i.test(faqText), "FAQ should distinguish product from foundational paper");
   assert(await page.getByRole("link", { name: /Open technical method/i }).isVisible(), "FAQ should link to Method");
 
+  await page.goto(`${baseUrl}/validation/`, { waitUntil: "networkidle" });
+  await page.waitForSelector("h1");
+  await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
+  assert(await page.getByRole("heading", { name: /What has been checked, what has not, and what can still fail/i }).isVisible(), "Validation page did not render");
+  assert(await page.getByText(/Causal Claims in Economics/i).first().isVisible(), "Validation page citation missing");
+  const validationText = await page.locator("main").innerText();
+  assert(/model-extracted/i.test(validationText), "Validation page should explain model-extracted content");
+  assert(/deterministic/i.test(validationText), "Validation page should explain deterministic content");
+  assert(/not benchmarked yet/i.test(validationText), "Validation page should explain what is not benchmarked yet");
+
   await page.goto(`${baseUrl}/opportunities/?q=${encodeURIComponent("income / economic growth")}`, {
     waitUntil: "networkidle",
   });
@@ -90,6 +101,7 @@ async function main() {
   await firstEvidence.locator("summary").click();
   await page.waitForTimeout(200);
   assert(/Nearby linking ideas:/i.test(await firstEvidence.innerText()), "Evidence drawer did not open with mediator labels");
+  assert(/Representative papers:/i.test(await firstEvidence.innerText()), "Evidence drawer did not render representative papers");
 
   const lookupText = await page.locator('[data-role="concept-panel"]').innerText();
   assert(!/\bNA\b/.test(lookupText), "Concept lookup still renders NA");
@@ -185,6 +197,31 @@ async function main() {
 
   await page.goto(`${baseUrl}/compare/`, { waitUntil: "networkidle" });
   assert(await page.getByRole("heading", { name: /compare ontology views only when your question needs a sensitivity check/i }).isVisible(), "Compare page did not render");
+
+  await page.goto(`${baseUrl}/downloads/`, { waitUntil: "networkidle" });
+  assert(await page.getByRole("heading", { name: /code, data, graph assets, and comparison summaries/i }).isVisible(), "Downloads page did not render");
+
+  if (appUrl) {
+    await page.goto(appUrl, { waitUntil: "networkidle" });
+    await page.waitForSelector("h1");
+    await page.waitForTimeout(1200);
+    await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
+    const appText = await page.locator("body").innerText();
+    assert(/Start with the ranked opportunities/i.test(appText), "App hero did not update");
+    assert(/FAQ/i.test(appText) && /Validation/i.test(appText), "App should link to FAQ and Validation");
+    assert(/Selected opportunity/i.test(appText), "App should render selected opportunity detail");
+    assert(/Direct literature:/i.test(appText), "App should show direct literature status");
+    assert(/Representative papers/i.test(appText), "App should show representative papers");
+    assert(/What to verify next/i.test(appText), "App should show the verification checklist");
+    const advancedToolsExpander = page.locator("[data-testid='stExpander']").filter({ hasText: /Advanced tools/i });
+    assert((await advancedToolsExpander.count()) > 0, "App should expose Advanced tools");
+    await advancedToolsExpander.first().click();
+    await page.waitForTimeout(300);
+    const advancedText = await page.locator("body").innerText();
+    assert(/Concept lookup/i.test(advancedText), "Advanced tools should expose concept lookup");
+    assert(/Method/i.test(advancedText), "Advanced tools should expose method notes");
+    assert(/Technical details/i.test(appText) || /Technical details/i.test(advancedText), "App should keep technical details behind an expander");
+  }
 
   assert(errors.length === 0, `Browser errors found:\n${errors.join("\n")}`);
   await browser.close();

@@ -1253,6 +1253,26 @@ h3 {
   gap: 0.6rem;
 }
 
+.opportunity-paper-block strong {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.opportunity-paper-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.opportunity-paper-list li {
+  color: var(--muted);
+}
+
+.opportunity-paper-year {
+  margin-left: 0.35rem;
+}
+
 .method-stack {
   display: grid;
   gap: 0.9rem;
@@ -1320,6 +1340,21 @@ h3 {
 
 .faq-detail .method-body p:last-child {
   margin-bottom: 0;
+}
+
+.validation-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.validation-card {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.validation-card h3 {
+  margin: 0;
 }
 
 .summary-panel h2 {
@@ -1441,7 +1476,8 @@ h3 {
   .metrics-grid-seven,
   .split-section,
   .faq-top-grid,
-  .faq-theme-grid {
+  .faq-theme-grid,
+  .validation-grid {
     grid-template-columns: 1fr;
   }
 

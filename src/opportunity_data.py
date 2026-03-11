@@ -176,6 +176,21 @@ def to_int(value: object, default: int = 0) -> int:
     return default if pd.isna(numeric) else int(numeric)
 
 
+def direct_literature_status(value: object) -> str:
+    cooc_count = to_int(value, default=0)
+    if cooc_count <= 0:
+        return "No direct papers yet in the current public sample"
+    if cooc_count <= 3:
+        return "A few direct papers already exist in the current public sample"
+    return "Direct literature already exists in the current public sample"
+
+
+def public_pair_label(row: pd.Series) -> str:
+    source_label = str(row.get("u_label", row.get("u", ""))).strip()
+    target_label = str(row.get("v_label", row.get("v", ""))).strip()
+    return f"{source_label} and {target_label}"
+
+
 def classify_novelty(row: pd.Series) -> str:
     cooc_count = to_float(row.get("cooc_count", 0), default=0.0)
     if "cross_field" in row.index:
@@ -218,18 +233,18 @@ def recommendation_play(row: pd.Series) -> str:
     motif_count = to_int(row.get("motif_count", 0), default=0)
 
     if novelty == "boundary_crossfield" and path_support >= 0.7:
-        return "Build a bridge paper across literatures."
+        return "Bridge paper across literatures"
     if novelty == "boundary_crossfield":
-        return "Start with a scoping review before a bridge paper."
+        return "Scoping review before a bridge paper"
     if gap_bonus >= 0.4 and mediator_count >= 25:
-        return "Convert scattered hints into a direct empirical test."
+        return "Direct empirical test"
     if gap_bonus >= 0.4:
-        return "Commission a short synthesis and pilot design."
+        return "Synthesis plus pilot design"
     if path_support >= 0.8 and motif_count >= 100:
-        return "This is a strong candidate for a flagship empirical paper."
+        return "Flagship empirical paper"
     if path_support >= 0.7:
-        return "Test the direct link with a focused empirical design."
-    return "Use this as a seminar seed or targeted replication map."
+        return "Focused empirical test"
+    return "Seminar seed or targeted replication map"
 
 
 def why_now(row: pd.Series) -> str:

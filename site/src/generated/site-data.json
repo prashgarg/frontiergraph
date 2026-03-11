@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T17:44:50.296131+00:00",
+  "generated_at": "2026-03-11T18:57:28.918776+00:00",
   "app_url": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app",
   "repo_url": "https://github.com/prashgarg/frontiergraph",
   "public_label_glossary": {
@@ -58,6 +58,29 @@
           "economic growth (GDP)",
           "technological innovation"
         ],
+        "representative_papers": [
+          {
+            "paper_id": "W7125495636__gpt5mini_low",
+            "title": "Green Governance and Energy Transition: A Quantile-on-Quantile Analysis of Renewable Energy, Policy, and Innovation Effects on Carbon Emissions",
+            "year": 2026,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000010"
+          },
+          {
+            "paper_id": "W4387204447__gpt5mini_low",
+            "title": "Natural resources led financing of investment: A prospect of China's provincial data",
+            "year": 2023,
+            "edge_src": "FG3C000019",
+            "edge_dst": "FG3C000001"
+          },
+          {
+            "paper_id": "W7129289196__gpt5mini_low",
+            "title": "The criticality of green innovations, eco-taxations, and ICT trade in developing green in the European union member States",
+            "year": 2026,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000010"
+          }
+        ],
         "top_countries_source": [
           "China",
           "United States",
@@ -99,6 +122,29 @@
           "economic growth",
           "financial development",
           "renewable energy consumption"
+        ],
+        "representative_papers": [
+          {
+            "paper_id": "W7118001778__gpt5mini_low",
+            "title": "Towards Sustainable Policy\u2010Making in NATO: The Environmental and Economic Implications of CO <sub>2</sub> Emissions and Military Spending",
+            "year": 2026,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000003"
+          },
+          {
+            "paper_id": "W4412469558__gpt5mini_low",
+            "title": "Institutional Quality, Public Debt, and Sustainable Economic Growth: Evidence from a Global Panel",
+            "year": 2025,
+            "edge_src": "FG3C000208",
+            "edge_dst": "FG3C000001"
+          },
+          {
+            "paper_id": "W7122451544__gpt5mini_low",
+            "title": "Knowledge Management in Environmental Sustainability: The Roles of Financial and Social Integration",
+            "year": 2026,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000003"
+          }
         ],
         "top_countries_source": [
           "United States",
@@ -142,6 +188,29 @@
           "renewable energy consumption",
           "urbanization"
         ],
+        "representative_papers": [
+          {
+            "paper_id": "W7131108701__gpt5mini_low",
+            "title": "Climate actions toward achieving environment and climate goals in Brazil: Insight from trilemma policies of climate financing, innovation, and transition",
+            "year": 2026,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C001420"
+          },
+          {
+            "paper_id": "W4417358136__gpt5mini_low",
+            "title": "Do Carbon Emissions Hurt? Novel Insights of Financial Development and Economic Growth Nexus in China",
+            "year": 2025,
+            "edge_src": "FG3C000030",
+            "edge_dst": "FG3C000001"
+          },
+          {
+            "paper_id": "W4406583936__gpt5mini_low",
+            "title": "Balancing finance and sustainability: The impact of financial access on carbon emissions through innovation and entrepreneurship in a global study",
+            "year": 2025,
+            "edge_src": "FG3C000030",
+            "edge_dst": "FG3C000001"
+          }
+        ],
         "top_countries_source": [
           "China",
           "Italy",
@@ -183,6 +252,29 @@
           "energy intensity",
           "foreign direct investments",
           "trade"
+        ],
+        "representative_papers": [
+          {
+            "paper_id": "W4416902466__gpt5mini_low",
+            "title": "Trade Openness and the Energy\u2013Carbon Nexus: Policy Implications for Emerging and Advanced Economies",
+            "year": 2025,
+            "edge_src": "FG3C000041",
+            "edge_dst": "FG3C000010"
+          },
+          {
+            "paper_id": "W3138090429__gpt5mini_low",
+            "title": "Decomposition and macroeconomic drivers of energy intensity: The case of Ethiopia",
+            "year": 2021,
+            "edge_src": "FG3C003971",
+            "edge_dst": "FG3C000041"
+          },
+          {
+            "paper_id": "W4398770977__gpt5mini_low",
+            "title": "Can financial development affect environmental quality in the presence of economic uncertainty and informal activities? Exploring the linkages in the middle-income countries",
+            "year": 2024,
+            "edge_src": "FG3C000041",
+            "edge_dst": "FG3C000010"
+          }
         ],
         "top_countries_source": [
           "China",
@@ -226,6 +318,29 @@
           "renewable energy consumption",
           "energy consumption"
         ],
+        "representative_papers": [
+          {
+            "paper_id": "W7118001778__gpt5mini_low",
+            "title": "Towards Sustainable Policy\u2010Making in NATO: The Environmental and Economic Implications of CO <sub>2</sub> Emissions and Military Spending",
+            "year": 2026,
+            "edge_src": "FG3C000003",
+            "edge_dst": "FG3C000001"
+          },
+          {
+            "paper_id": "W7125495636__gpt5mini_low",
+            "title": "Green Governance and Energy Transition: A Quantile-on-Quantile Analysis of Renewable Energy, Policy, and Innovation Effects on Carbon Emissions",
+            "year": 2026,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000010"
+          },
+          {
+            "paper_id": "W7129289196__gpt5mini_low",
+            "title": "The criticality of green innovations, eco-taxations, and ICT trade in developing green in the European union member States",
+            "year": 2026,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000010"
+          }
+        ],
         "top_countries_source": [
           "China",
           "India",
@@ -267,6 +382,29 @@
           "economic growth",
           "CO2 emissions",
           "carbon emissions"
+        ],
+        "representative_papers": [
+          {
+            "paper_id": "W4411475648__gpt5mini_low",
+            "title": "Do the United States'fiscal decentralization, money supply, and environmental policies promote the clean energy transition?",
+            "year": 2025,
+            "edge_src": "FG3C000018",
+            "edge_dst": "FG3C000001"
+          },
+          {
+            "paper_id": "W4393851717__gpt5mini_low",
+            "title": "Exploring non-linear causal nexus between economic growth and energy consumption across various R&amp;D regimes: Cross-country evidence from a PSTR model",
+            "year": 2024,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000014"
+          },
+          {
+            "paper_id": "W4414015322__gpt5mini_low",
+            "title": "The Effect of Renewable and Non-Renewable Energy on Economic Growth: A Panel Cointegration Analysis for the Top Renewable Energy Consumers (1970\u20132023)",
+            "year": 2025,
+            "edge_src": "FG3C000018",
+            "edge_dst": "FG3C000001"
+          }
         ],
         "top_countries_source": [
           "China",
@@ -311,6 +449,29 @@
           "economic growth",
           "financial development",
           "renewable energy consumption"
+        ],
+        "representative_papers": [
+          {
+            "paper_id": "W7118001778__gpt5mini_low",
+            "title": "Towards Sustainable Policy\u2010Making in NATO: The Environmental and Economic Implications of CO <sub>2</sub> Emissions and Military Spending",
+            "year": 2026,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000003"
+          },
+          {
+            "paper_id": "W4412469558__gpt5mini_low",
+            "title": "Institutional Quality, Public Debt, and Sustainable Economic Growth: Evidence from a Global Panel",
+            "year": 2025,
+            "edge_src": "FG3C000208",
+            "edge_dst": "FG3C000001"
+          },
+          {
+            "paper_id": "W7122451544__gpt5mini_low",
+            "title": "Knowledge Management in Environmental Sustainability: The Roles of Financial and Social Integration",
+            "year": 2026,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000003"
+          }
         ],
         "top_countries_source": [
           "United States",
@@ -364,6 +525,29 @@
           "foreign direct investments",
           "trade liberalization"
         ],
+        "representative_papers": [
+          {
+            "paper_id": "W4393851717__gpt5mini_low",
+            "title": "Exploring non-linear causal nexus between economic growth and energy consumption across various R&amp;D regimes: Cross-country evidence from a PSTR model",
+            "year": 2024,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000014"
+          },
+          {
+            "paper_id": "W2347056154__gpt5mini_low",
+            "title": "Trade liberalisation and economic growth link: The case of Southern African Custom Union countries",
+            "year": 2016,
+            "edge_src": "FG3C001221",
+            "edge_dst": "FG3C000001"
+          },
+          {
+            "paper_id": "W4400358233__gpt5mini_low",
+            "title": "The Relationship Between Energy Consumption and Economic Growth: Panel Data Analysis by Country Groups",
+            "year": 2024,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000014"
+          }
+        ],
         "top_countries_source": [
           "India",
           "Nepal",
@@ -416,6 +600,29 @@
           "energy consumption",
           "energy use"
         ],
+        "representative_papers": [
+          {
+            "paper_id": "W7125166405__gpt5mini_low",
+            "title": "Can green energy curb emissions? Evidence from 11 Central European and Baltic Countries",
+            "year": 2026,
+            "edge_src": "FG3C000012",
+            "edge_dst": "FG3C000003"
+          },
+          {
+            "paper_id": "W4225398061__gpt5mini_low",
+            "title": "Comparative analysis of the growth impact of pollution and energy use in selected West African nations",
+            "year": 2022,
+            "edge_src": "FG3C000003",
+            "edge_dst": "FG3C000110"
+          },
+          {
+            "paper_id": "W7128498164__gpt5mini_low",
+            "title": "Exploring the effects of ICT, financial institutions and market access on CO2 emissions: insights from time-varying frequency quantile regression analysis",
+            "year": 2026,
+            "edge_src": "FG3C000012",
+            "edge_dst": "FG3C000003"
+          }
+        ],
         "top_countries_source": [
           "China",
           "India",
@@ -467,6 +674,29 @@
           "renewable energy consumption",
           "natural resource rents",
           "energy transition"
+        ],
+        "representative_papers": [
+          {
+            "paper_id": "W7128295557__gpt5mini_low",
+            "title": "Towards <scp>SDG</scp> \u2010Aligned Sustainability: Balancing Resource Rents, Digital Expansion, and Renewable Energy in Emerging Economies",
+            "year": 2026,
+            "edge_src": "FG3C000018",
+            "edge_dst": "FG3C001307"
+          },
+          {
+            "paper_id": "W7128719802__gpt5mini_low",
+            "title": "Natural resource dependency and renewable energy consumption in China: A U-shaped nexus with dynamic policy effects using quantile regression for panel data",
+            "year": 2026,
+            "edge_src": "FG3C000053",
+            "edge_dst": "FG3C000018"
+          },
+          {
+            "paper_id": "W4417213873__gpt5mini_low",
+            "title": "Breaking the <scp>EKC</scp> Myth: Renewable Energy, Finance, and Environmental Regulation in Emerging E\u20107 Nations",
+            "year": 2025,
+            "edge_src": "FG3C000018",
+            "edge_dst": "FG3C001307"
+          }
         ],
         "top_countries_source": [
           "China",
@@ -740,6 +970,29 @@
           "financial development",
           "renewable energy consumption"
         ],
+        "representative_papers": [
+          {
+            "paper_id": "W7118001778__gpt5mini_low",
+            "title": "Towards Sustainable Policy\u2010Making in NATO: The Environmental and Economic Implications of CO <sub>2</sub> Emissions and Military Spending",
+            "year": 2026,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000003"
+          },
+          {
+            "paper_id": "W4412469558__gpt5mini_low",
+            "title": "Institutional Quality, Public Debt, and Sustainable Economic Growth: Evidence from a Global Panel",
+            "year": 2025,
+            "edge_src": "FG3C000208",
+            "edge_dst": "FG3C000001"
+          },
+          {
+            "paper_id": "W7122451544__gpt5mini_low",
+            "title": "Knowledge Management in Environmental Sustainability: The Roles of Financial and Social Integration",
+            "year": 2026,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000003"
+          }
+        ],
         "top_countries_source": [
           "United States",
           "Africa",
@@ -791,6 +1044,29 @@
           "economic growth",
           "foreign direct investments",
           "trade liberalization"
+        ],
+        "representative_papers": [
+          {
+            "paper_id": "W4393851717__gpt5mini_low",
+            "title": "Exploring non-linear causal nexus between economic growth and energy consumption across various R&amp;D regimes: Cross-country evidence from a PSTR model",
+            "year": 2024,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000014"
+          },
+          {
+            "paper_id": "W2347056154__gpt5mini_low",
+            "title": "Trade liberalisation and economic growth link: The case of Southern African Custom Union countries",
+            "year": 2016,
+            "edge_src": "FG3C001221",
+            "edge_dst": "FG3C000001"
+          },
+          {
+            "paper_id": "W4400358233__gpt5mini_low",
+            "title": "The Relationship Between Energy Consumption and Economic Growth: Panel Data Analysis by Country Groups",
+            "year": 2024,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000014"
+          }
         ],
         "top_countries_source": [
           "India",
@@ -844,6 +1120,29 @@
           "energy consumption",
           "energy use"
         ],
+        "representative_papers": [
+          {
+            "paper_id": "W7125166405__gpt5mini_low",
+            "title": "Can green energy curb emissions? Evidence from 11 Central European and Baltic Countries",
+            "year": 2026,
+            "edge_src": "FG3C000012",
+            "edge_dst": "FG3C000003"
+          },
+          {
+            "paper_id": "W4225398061__gpt5mini_low",
+            "title": "Comparative analysis of the growth impact of pollution and energy use in selected West African nations",
+            "year": 2022,
+            "edge_src": "FG3C000003",
+            "edge_dst": "FG3C000110"
+          },
+          {
+            "paper_id": "W7128498164__gpt5mini_low",
+            "title": "Exploring the effects of ICT, financial institutions and market access on CO2 emissions: insights from time-varying frequency quantile regression analysis",
+            "year": 2026,
+            "edge_src": "FG3C000012",
+            "edge_dst": "FG3C000003"
+          }
+        ],
         "top_countries_source": [
           "China",
           "India",
@@ -895,6 +1194,29 @@
           "renewable energy consumption",
           "natural resource rents",
           "energy transition"
+        ],
+        "representative_papers": [
+          {
+            "paper_id": "W7128295557__gpt5mini_low",
+            "title": "Towards <scp>SDG</scp> \u2010Aligned Sustainability: Balancing Resource Rents, Digital Expansion, and Renewable Energy in Emerging Economies",
+            "year": 2026,
+            "edge_src": "FG3C000018",
+            "edge_dst": "FG3C001307"
+          },
+          {
+            "paper_id": "W7128719802__gpt5mini_low",
+            "title": "Natural resource dependency and renewable energy consumption in China: A U-shaped nexus with dynamic policy effects using quantile regression for panel data",
+            "year": 2026,
+            "edge_src": "FG3C000053",
+            "edge_dst": "FG3C000018"
+          },
+          {
+            "paper_id": "W4417213873__gpt5mini_low",
+            "title": "Breaking the <scp>EKC</scp> Myth: Renewable Energy, Finance, and Environmental Regulation in Emerging E\u20107 Nations",
+            "year": 2025,
+            "edge_src": "FG3C000018",
+            "edge_dst": "FG3C001307"
+          }
         ],
         "top_countries_source": [
           "China",
@@ -948,6 +1270,29 @@
           "economic growth (GDP)",
           "technological innovation"
         ],
+        "representative_papers": [
+          {
+            "paper_id": "W7125495636__gpt5mini_low",
+            "title": "Green Governance and Energy Transition: A Quantile-on-Quantile Analysis of Renewable Energy, Policy, and Innovation Effects on Carbon Emissions",
+            "year": 2026,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000010"
+          },
+          {
+            "paper_id": "W4387204447__gpt5mini_low",
+            "title": "Natural resources led financing of investment: A prospect of China's provincial data",
+            "year": 2023,
+            "edge_src": "FG3C000019",
+            "edge_dst": "FG3C000001"
+          },
+          {
+            "paper_id": "W7129289196__gpt5mini_low",
+            "title": "The criticality of green innovations, eco-taxations, and ICT trade in developing green in the European union member States",
+            "year": 2026,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000010"
+          }
+        ],
         "top_countries_source": [
           "China",
           "United States",
@@ -999,6 +1344,29 @@
           "economic growth",
           "renewable energy consumption",
           "urbanization"
+        ],
+        "representative_papers": [
+          {
+            "paper_id": "W7131108701__gpt5mini_low",
+            "title": "Climate actions toward achieving environment and climate goals in Brazil: Insight from trilemma policies of climate financing, innovation, and transition",
+            "year": 2026,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C001420"
+          },
+          {
+            "paper_id": "W4417358136__gpt5mini_low",
+            "title": "Do Carbon Emissions Hurt? Novel Insights of Financial Development and Economic Growth Nexus in China",
+            "year": 2025,
+            "edge_src": "FG3C000030",
+            "edge_dst": "FG3C000001"
+          },
+          {
+            "paper_id": "W4406583936__gpt5mini_low",
+            "title": "Balancing finance and sustainability: The impact of financial access on carbon emissions through innovation and entrepreneurship in a global study",
+            "year": 2025,
+            "edge_src": "FG3C000030",
+            "edge_dst": "FG3C000001"
+          }
         ],
         "top_countries_source": [
           "China",
@@ -1052,6 +1420,29 @@
           "output",
           "income inequality"
         ],
+        "representative_papers": [
+          {
+            "paper_id": "W4400119938__gpt5mini_low",
+            "title": "MPC Heterogeneity and the Dynamic Response of Consumption to Monetary Policy",
+            "year": 2024,
+            "edge_src": "FG3C000024",
+            "edge_dst": "FG3C000008"
+          },
+          {
+            "paper_id": "W4324056474__gpt5mini_low",
+            "title": "The financial Kuznets curve of energy consumption: Global evidence",
+            "year": 2023,
+            "edge_src": "FG3C000008",
+            "edge_dst": "FG3C000014"
+          },
+          {
+            "paper_id": "W4386223844__gpt5mini_low",
+            "title": "Can a CO2 Tax Be Socially Just? Analysis of the Social Distribution Effects of the German CO2 Taxation",
+            "year": 2023,
+            "edge_src": "FG3C000008",
+            "edge_dst": "FG3C000014"
+          }
+        ],
         "top_countries_source": [
           "United States",
           "China",
@@ -1103,6 +1494,29 @@
           "economic growth",
           "energy consumption",
           "urbanization"
+        ],
+        "representative_papers": [
+          {
+            "paper_id": "W4405264535__gpt5mini_low",
+            "title": "Assessing the environmental consequences of fossil fuel consumption in newly industrialized countries",
+            "year": 2024,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000203"
+          },
+          {
+            "paper_id": "W4319795238__gpt5mini_low",
+            "title": "How Does Electricity Affect Economic Growth? Examining the Role of Government Policy to Selected Four South Asian Countries",
+            "year": 2023,
+            "edge_src": "FG3C000046",
+            "edge_dst": "FG3C000001"
+          },
+          {
+            "paper_id": "W4392589573__gpt5mini_low",
+            "title": "Exploring the link between economic growth, energy consumption, and environmental pollution in <scp>G20</scp>",
+            "year": 2024,
+            "edge_src": "FG3C000001",
+            "edge_dst": "FG3C000203"
+          }
         ],
         "top_countries_source": [
           "China",
@@ -1159,6 +1573,29 @@
             "economic growth (GDP)",
             "technological innovation"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W7125495636__gpt5mini_low",
+              "title": "Green Governance and Energy Transition: A Quantile-on-Quantile Analysis of Renewable Energy, Policy, and Innovation Effects on Carbon Emissions",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000010"
+            },
+            {
+              "paper_id": "W4387204447__gpt5mini_low",
+              "title": "Natural resources led financing of investment: A prospect of China's provincial data",
+              "year": 2023,
+              "edge_src": "FG3C000019",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W7129289196__gpt5mini_low",
+              "title": "The criticality of green innovations, eco-taxations, and ICT trade in developing green in the European union member States",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000010"
+            }
+          ],
           "top_countries_source": [
             "China",
             "United States",
@@ -1200,6 +1637,29 @@
             "economic growth",
             "financial development",
             "renewable energy consumption"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7118001778__gpt5mini_low",
+              "title": "Towards Sustainable Policy\u2010Making in NATO: The Environmental and Economic Implications of CO <sub>2</sub> Emissions and Military Spending",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000003"
+            },
+            {
+              "paper_id": "W4412469558__gpt5mini_low",
+              "title": "Institutional Quality, Public Debt, and Sustainable Economic Growth: Evidence from a Global Panel",
+              "year": 2025,
+              "edge_src": "FG3C000208",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W7122451544__gpt5mini_low",
+              "title": "Knowledge Management in Environmental Sustainability: The Roles of Financial and Social Integration",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000003"
+            }
           ],
           "top_countries_source": [
             "United States",
@@ -1243,6 +1703,29 @@
             "renewable energy consumption",
             "urbanization"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W7131108701__gpt5mini_low",
+              "title": "Climate actions toward achieving environment and climate goals in Brazil: Insight from trilemma policies of climate financing, innovation, and transition",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C001420"
+            },
+            {
+              "paper_id": "W4417358136__gpt5mini_low",
+              "title": "Do Carbon Emissions Hurt? Novel Insights of Financial Development and Economic Growth Nexus in China",
+              "year": 2025,
+              "edge_src": "FG3C000030",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4406583936__gpt5mini_low",
+              "title": "Balancing finance and sustainability: The impact of financial access on carbon emissions through innovation and entrepreneurship in a global study",
+              "year": 2025,
+              "edge_src": "FG3C000030",
+              "edge_dst": "FG3C000001"
+            }
+          ],
           "top_countries_source": [
             "China",
             "Italy",
@@ -1284,6 +1767,29 @@
             "energy intensity",
             "foreign direct investments",
             "trade"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W4416902466__gpt5mini_low",
+              "title": "Trade Openness and the Energy\u2013Carbon Nexus: Policy Implications for Emerging and Advanced Economies",
+              "year": 2025,
+              "edge_src": "FG3C000041",
+              "edge_dst": "FG3C000010"
+            },
+            {
+              "paper_id": "W3138090429__gpt5mini_low",
+              "title": "Decomposition and macroeconomic drivers of energy intensity: The case of Ethiopia",
+              "year": 2021,
+              "edge_src": "FG3C003971",
+              "edge_dst": "FG3C000041"
+            },
+            {
+              "paper_id": "W4398770977__gpt5mini_low",
+              "title": "Can financial development affect environmental quality in the presence of economic uncertainty and informal activities? Exploring the linkages in the middle-income countries",
+              "year": 2024,
+              "edge_src": "FG3C000041",
+              "edge_dst": "FG3C000010"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -1327,6 +1833,29 @@
             "foreign direct investments",
             "trade liberalization"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W4393851717__gpt5mini_low",
+              "title": "Exploring non-linear causal nexus between economic growth and energy consumption across various R&amp;D regimes: Cross-country evidence from a PSTR model",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000014"
+            },
+            {
+              "paper_id": "W2347056154__gpt5mini_low",
+              "title": "Trade liberalisation and economic growth link: The case of Southern African Custom Union countries",
+              "year": 2016,
+              "edge_src": "FG3C001221",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4400358233__gpt5mini_low",
+              "title": "The Relationship Between Energy Consumption and Economic Growth: Panel Data Analysis by Country Groups",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000014"
+            }
+          ],
           "top_countries_source": [
             "India",
             "Nepal",
@@ -1368,6 +1897,29 @@
             "economic growth",
             "technological innovation",
             "economic growth (GDP)"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7128472807__gpt5mini_low",
+              "title": "Asymmetric effects of economic policy uncertainty, natural resources, and foreign investment on ecological sustainability",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000081"
+            },
+            {
+              "paper_id": "W4387204447__gpt5mini_low",
+              "title": "Natural resources led financing of investment: A prospect of China's provincial data",
+              "year": 2023,
+              "edge_src": "FG3C000019",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4405993258__gpt5mini_low",
+              "title": "The Impact of Economic Policy Uncertainty and Geopolitical Risk on Environmental Quality: An Analysis of the Environmental Kuznets Curve Hypothesis with the Novel QRPD Approach",
+              "year": 2025,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000081"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -1411,6 +1963,29 @@
             "output",
             "income inequality"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W4400119938__gpt5mini_low",
+              "title": "MPC Heterogeneity and the Dynamic Response of Consumption to Monetary Policy",
+              "year": 2024,
+              "edge_src": "FG3C000024",
+              "edge_dst": "FG3C000008"
+            },
+            {
+              "paper_id": "W4324056474__gpt5mini_low",
+              "title": "The financial Kuznets curve of energy consumption: Global evidence",
+              "year": 2023,
+              "edge_src": "FG3C000008",
+              "edge_dst": "FG3C000014"
+            },
+            {
+              "paper_id": "W4386223844__gpt5mini_low",
+              "title": "Can a CO2 Tax Be Socially Just? Analysis of the Social Distribution Effects of the German CO2 Taxation",
+              "year": 2023,
+              "edge_src": "FG3C000008",
+              "edge_dst": "FG3C000014"
+            }
+          ],
           "top_countries_source": [
             "United States",
             "China",
@@ -1452,6 +2027,29 @@
             "CO2 emissions",
             "energy consumption",
             "energy use"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7125166405__gpt5mini_low",
+              "title": "Can green energy curb emissions? Evidence from 11 Central European and Baltic Countries",
+              "year": 2026,
+              "edge_src": "FG3C000012",
+              "edge_dst": "FG3C000003"
+            },
+            {
+              "paper_id": "W4225398061__gpt5mini_low",
+              "title": "Comparative analysis of the growth impact of pollution and energy use in selected West African nations",
+              "year": 2022,
+              "edge_src": "FG3C000003",
+              "edge_dst": "FG3C000110"
+            },
+            {
+              "paper_id": "W7128498164__gpt5mini_low",
+              "title": "Exploring the effects of ICT, financial institutions and market access on CO2 emissions: insights from time-varying frequency quantile regression analysis",
+              "year": 2026,
+              "edge_src": "FG3C000012",
+              "edge_dst": "FG3C000003"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -1495,6 +2093,29 @@
             "natural resource rents",
             "energy transition"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W7128295557__gpt5mini_low",
+              "title": "Towards <scp>SDG</scp> \u2010Aligned Sustainability: Balancing Resource Rents, Digital Expansion, and Renewable Energy in Emerging Economies",
+              "year": 2026,
+              "edge_src": "FG3C000018",
+              "edge_dst": "FG3C001307"
+            },
+            {
+              "paper_id": "W7128719802__gpt5mini_low",
+              "title": "Natural resource dependency and renewable energy consumption in China: A U-shaped nexus with dynamic policy effects using quantile regression for panel data",
+              "year": 2026,
+              "edge_src": "FG3C000053",
+              "edge_dst": "FG3C000018"
+            },
+            {
+              "paper_id": "W4417213873__gpt5mini_low",
+              "title": "Breaking the <scp>EKC</scp> Myth: Renewable Energy, Finance, and Environmental Regulation in Emerging E\u20107 Nations",
+              "year": 2025,
+              "edge_src": "FG3C000018",
+              "edge_dst": "FG3C001307"
+            }
+          ],
           "top_countries_source": [
             "China",
             "CHN",
@@ -1536,6 +2157,29 @@
             "economic growth",
             "energy consumption",
             "urbanization"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W4405264535__gpt5mini_low",
+              "title": "Assessing the environmental consequences of fossil fuel consumption in newly industrialized countries",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000203"
+            },
+            {
+              "paper_id": "W4319795238__gpt5mini_low",
+              "title": "How Does Electricity Affect Economic Growth? Examining the Role of Government Policy to Selected Four South Asian Countries",
+              "year": 2023,
+              "edge_src": "FG3C000046",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4392589573__gpt5mini_low",
+              "title": "Exploring the link between economic growth, energy consumption, and environmental pollution in <scp>G20</scp>",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000203"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -1579,6 +2223,29 @@
             "green technology innovation",
             "per capita income"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W4408005142__gpt5mini_low",
+              "title": "CO2 Emission, Energy Consumption, and Economic Growth in Latin America",
+              "year": 2025,
+              "edge_src": "FG3C000014",
+              "edge_dst": "FG3C000010"
+            },
+            {
+              "paper_id": "W2704522797__gpt5mini_low",
+              "title": "The validation of Granger causality through formulation and use of finance-growth-energy indexes",
+              "year": 2017,
+              "edge_src": "FG3C001758",
+              "edge_dst": "FG3C000014"
+            },
+            {
+              "paper_id": "W4409606807__gpt5mini_low",
+              "title": "Economic Analysis of Fossil CO2 Emissions: A European Perspective on Sustainable Development",
+              "year": 2025,
+              "edge_src": "FG3C000014",
+              "edge_dst": "FG3C000010"
+            }
+          ],
           "top_countries_source": [
             "China",
             "CHN",
@@ -1620,6 +2287,29 @@
             "economic growth",
             "financial development",
             "technological innovation"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7131108701__gpt5mini_low",
+              "title": "Climate actions toward achieving environment and climate goals in Brazil: Insight from trilemma policies of climate financing, innovation, and transition",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C001420"
+            },
+            {
+              "paper_id": "W4387637466__gpt5mini_low",
+              "title": "Resources extraction, industrial sector, and economic growth: Middle East and North African economies overview",
+              "year": 2023,
+              "edge_src": "FG3C001308",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4407137547__gpt5mini_low",
+              "title": "Does financial development influence environmental quality? Evidence from emerging and developing countries",
+              "year": 2025,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C001420"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -1665,6 +2355,29 @@
             "economic growth (GDP)",
             "technological innovation"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W7125495636__gpt5mini_low",
+              "title": "Green Governance and Energy Transition: A Quantile-on-Quantile Analysis of Renewable Energy, Policy, and Innovation Effects on Carbon Emissions",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000010"
+            },
+            {
+              "paper_id": "W4387204447__gpt5mini_low",
+              "title": "Natural resources led financing of investment: A prospect of China's provincial data",
+              "year": 2023,
+              "edge_src": "FG3C000019",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W7129289196__gpt5mini_low",
+              "title": "The criticality of green innovations, eco-taxations, and ICT trade in developing green in the European union member States",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000010"
+            }
+          ],
           "top_countries_source": [
             "China",
             "United States",
@@ -1706,6 +2419,29 @@
             "economic growth",
             "financial development",
             "renewable energy consumption"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7118001778__gpt5mini_low",
+              "title": "Towards Sustainable Policy\u2010Making in NATO: The Environmental and Economic Implications of CO <sub>2</sub> Emissions and Military Spending",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000003"
+            },
+            {
+              "paper_id": "W4412469558__gpt5mini_low",
+              "title": "Institutional Quality, Public Debt, and Sustainable Economic Growth: Evidence from a Global Panel",
+              "year": 2025,
+              "edge_src": "FG3C000208",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W7122451544__gpt5mini_low",
+              "title": "Knowledge Management in Environmental Sustainability: The Roles of Financial and Social Integration",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000003"
+            }
           ],
           "top_countries_source": [
             "United States",
@@ -1749,6 +2485,29 @@
             "renewable energy consumption",
             "urbanization"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W7131108701__gpt5mini_low",
+              "title": "Climate actions toward achieving environment and climate goals in Brazil: Insight from trilemma policies of climate financing, innovation, and transition",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C001420"
+            },
+            {
+              "paper_id": "W4417358136__gpt5mini_low",
+              "title": "Do Carbon Emissions Hurt? Novel Insights of Financial Development and Economic Growth Nexus in China",
+              "year": 2025,
+              "edge_src": "FG3C000030",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4406583936__gpt5mini_low",
+              "title": "Balancing finance and sustainability: The impact of financial access on carbon emissions through innovation and entrepreneurship in a global study",
+              "year": 2025,
+              "edge_src": "FG3C000030",
+              "edge_dst": "FG3C000001"
+            }
+          ],
           "top_countries_source": [
             "China",
             "Italy",
@@ -1790,6 +2549,29 @@
             "energy intensity",
             "foreign direct investments",
             "trade"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W4416902466__gpt5mini_low",
+              "title": "Trade Openness and the Energy\u2013Carbon Nexus: Policy Implications for Emerging and Advanced Economies",
+              "year": 2025,
+              "edge_src": "FG3C000041",
+              "edge_dst": "FG3C000010"
+            },
+            {
+              "paper_id": "W3138090429__gpt5mini_low",
+              "title": "Decomposition and macroeconomic drivers of energy intensity: The case of Ethiopia",
+              "year": 2021,
+              "edge_src": "FG3C003971",
+              "edge_dst": "FG3C000041"
+            },
+            {
+              "paper_id": "W4398770977__gpt5mini_low",
+              "title": "Can financial development affect environmental quality in the presence of economic uncertainty and informal activities? Exploring the linkages in the middle-income countries",
+              "year": 2024,
+              "edge_src": "FG3C000041",
+              "edge_dst": "FG3C000010"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -1833,6 +2615,29 @@
             "foreign direct investments",
             "trade liberalization"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W4393851717__gpt5mini_low",
+              "title": "Exploring non-linear causal nexus between economic growth and energy consumption across various R&amp;D regimes: Cross-country evidence from a PSTR model",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000014"
+            },
+            {
+              "paper_id": "W2347056154__gpt5mini_low",
+              "title": "Trade liberalisation and economic growth link: The case of Southern African Custom Union countries",
+              "year": 2016,
+              "edge_src": "FG3C001221",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4400358233__gpt5mini_low",
+              "title": "The Relationship Between Energy Consumption and Economic Growth: Panel Data Analysis by Country Groups",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000014"
+            }
+          ],
           "top_countries_source": [
             "India",
             "Nepal",
@@ -1874,6 +2679,29 @@
             "economic growth",
             "technological innovation",
             "economic growth (GDP)"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7128472807__gpt5mini_low",
+              "title": "Asymmetric effects of economic policy uncertainty, natural resources, and foreign investment on ecological sustainability",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000081"
+            },
+            {
+              "paper_id": "W4387204447__gpt5mini_low",
+              "title": "Natural resources led financing of investment: A prospect of China's provincial data",
+              "year": 2023,
+              "edge_src": "FG3C000019",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4405993258__gpt5mini_low",
+              "title": "The Impact of Economic Policy Uncertainty and Geopolitical Risk on Environmental Quality: An Analysis of the Environmental Kuznets Curve Hypothesis with the Novel QRPD Approach",
+              "year": 2025,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000081"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -1917,6 +2745,29 @@
             "output",
             "income inequality"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W4400119938__gpt5mini_low",
+              "title": "MPC Heterogeneity and the Dynamic Response of Consumption to Monetary Policy",
+              "year": 2024,
+              "edge_src": "FG3C000024",
+              "edge_dst": "FG3C000008"
+            },
+            {
+              "paper_id": "W4324056474__gpt5mini_low",
+              "title": "The financial Kuznets curve of energy consumption: Global evidence",
+              "year": 2023,
+              "edge_src": "FG3C000008",
+              "edge_dst": "FG3C000014"
+            },
+            {
+              "paper_id": "W4386223844__gpt5mini_low",
+              "title": "Can a CO2 Tax Be Socially Just? Analysis of the Social Distribution Effects of the German CO2 Taxation",
+              "year": 2023,
+              "edge_src": "FG3C000008",
+              "edge_dst": "FG3C000014"
+            }
+          ],
           "top_countries_source": [
             "United States",
             "China",
@@ -1958,6 +2809,29 @@
             "CO2 emissions",
             "energy consumption",
             "energy use"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7125166405__gpt5mini_low",
+              "title": "Can green energy curb emissions? Evidence from 11 Central European and Baltic Countries",
+              "year": 2026,
+              "edge_src": "FG3C000012",
+              "edge_dst": "FG3C000003"
+            },
+            {
+              "paper_id": "W4225398061__gpt5mini_low",
+              "title": "Comparative analysis of the growth impact of pollution and energy use in selected West African nations",
+              "year": 2022,
+              "edge_src": "FG3C000003",
+              "edge_dst": "FG3C000110"
+            },
+            {
+              "paper_id": "W7128498164__gpt5mini_low",
+              "title": "Exploring the effects of ICT, financial institutions and market access on CO2 emissions: insights from time-varying frequency quantile regression analysis",
+              "year": 2026,
+              "edge_src": "FG3C000012",
+              "edge_dst": "FG3C000003"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -2001,6 +2875,29 @@
             "energy consumption",
             "urbanization"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W4405264535__gpt5mini_low",
+              "title": "Assessing the environmental consequences of fossil fuel consumption in newly industrialized countries",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000203"
+            },
+            {
+              "paper_id": "W4319795238__gpt5mini_low",
+              "title": "How Does Electricity Affect Economic Growth? Examining the Role of Government Policy to Selected Four South Asian Countries",
+              "year": 2023,
+              "edge_src": "FG3C000046",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4392589573__gpt5mini_low",
+              "title": "Exploring the link between economic growth, energy consumption, and environmental pollution in <scp>G20</scp>",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000203"
+            }
+          ],
           "top_countries_source": [
             "China",
             "USA",
@@ -2042,6 +2939,29 @@
             "energy consumption",
             "green technology innovation",
             "per capita income"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W4408005142__gpt5mini_low",
+              "title": "CO2 Emission, Energy Consumption, and Economic Growth in Latin America",
+              "year": 2025,
+              "edge_src": "FG3C000014",
+              "edge_dst": "FG3C000010"
+            },
+            {
+              "paper_id": "W2704522797__gpt5mini_low",
+              "title": "The validation of Granger causality through formulation and use of finance-growth-energy indexes",
+              "year": 2017,
+              "edge_src": "FG3C001758",
+              "edge_dst": "FG3C000014"
+            },
+            {
+              "paper_id": "W4409606807__gpt5mini_low",
+              "title": "Economic Analysis of Fossil CO2 Emissions: A European Perspective on Sustainable Development",
+              "year": 2025,
+              "edge_src": "FG3C000014",
+              "edge_dst": "FG3C000010"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -2085,6 +3005,29 @@
             "population size",
             "income"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W7127946941__gpt5mini_low",
+              "title": "Unlocking India\u2019s green transition: how fiscal deficits, oil prices, and technological innovation shape carbon emissions",
+              "year": 2026,
+              "edge_src": "FG3C000015",
+              "edge_dst": "FG3C000010"
+            },
+            {
+              "paper_id": "W2048096055__gpt5mini_low",
+              "title": "Knowledge is power",
+              "year": 2012,
+              "edge_src": "FG3C000339",
+              "edge_dst": "FG3C000015"
+            },
+            {
+              "paper_id": "W4406749808__gpt5mini_low",
+              "title": "Europe's environmental dichotomy: The impact of regulations, climate investments, and renewable energy on carbon mitigation in the EU-22",
+              "year": 2025,
+              "edge_src": "FG3C000015",
+              "edge_dst": "FG3C000010"
+            }
+          ],
           "top_countries_source": [
             "China",
             "United States",
@@ -2126,6 +3069,29 @@
             "economic growth",
             "renewable energy consumption",
             "energy consumption"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7131108701__gpt5mini_low",
+              "title": "Climate actions toward achieving environment and climate goals in Brazil: Insight from trilemma policies of climate financing, innovation, and transition",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C001420"
+            },
+            {
+              "paper_id": "W4401908066__gpt5mini_low",
+              "title": "Skill intensity in manufacturing exports: Do basic, technology-intensive or differentiated exports cause growth in Kuwait?",
+              "year": 2024,
+              "edge_src": "FG3C000126",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4407137547__gpt5mini_low",
+              "title": "Does financial development influence environmental quality? Evidence from emerging and developing countries",
+              "year": 2025,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C001420"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -2171,6 +3137,29 @@
             "economic growth (GDP)",
             "technological innovation"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W7125495636__gpt5mini_low",
+              "title": "Green Governance and Energy Transition: A Quantile-on-Quantile Analysis of Renewable Energy, Policy, and Innovation Effects on Carbon Emissions",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000010"
+            },
+            {
+              "paper_id": "W4387204447__gpt5mini_low",
+              "title": "Natural resources led financing of investment: A prospect of China's provincial data",
+              "year": 2023,
+              "edge_src": "FG3C000019",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W7129289196__gpt5mini_low",
+              "title": "The criticality of green innovations, eco-taxations, and ICT trade in developing green in the European union member States",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000010"
+            }
+          ],
           "top_countries_source": [
             "China",
             "United States",
@@ -2212,6 +3201,29 @@
             "economic growth",
             "financial development",
             "renewable energy consumption"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7118001778__gpt5mini_low",
+              "title": "Towards Sustainable Policy\u2010Making in NATO: The Environmental and Economic Implications of CO <sub>2</sub> Emissions and Military Spending",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000003"
+            },
+            {
+              "paper_id": "W4412469558__gpt5mini_low",
+              "title": "Institutional Quality, Public Debt, and Sustainable Economic Growth: Evidence from a Global Panel",
+              "year": 2025,
+              "edge_src": "FG3C000208",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W7122451544__gpt5mini_low",
+              "title": "Knowledge Management in Environmental Sustainability: The Roles of Financial and Social Integration",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000003"
+            }
           ],
           "top_countries_source": [
             "United States",
@@ -2255,6 +3267,29 @@
             "renewable energy consumption",
             "urbanization"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W7131108701__gpt5mini_low",
+              "title": "Climate actions toward achieving environment and climate goals in Brazil: Insight from trilemma policies of climate financing, innovation, and transition",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C001420"
+            },
+            {
+              "paper_id": "W4417358136__gpt5mini_low",
+              "title": "Do Carbon Emissions Hurt? Novel Insights of Financial Development and Economic Growth Nexus in China",
+              "year": 2025,
+              "edge_src": "FG3C000030",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4406583936__gpt5mini_low",
+              "title": "Balancing finance and sustainability: The impact of financial access on carbon emissions through innovation and entrepreneurship in a global study",
+              "year": 2025,
+              "edge_src": "FG3C000030",
+              "edge_dst": "FG3C000001"
+            }
+          ],
           "top_countries_source": [
             "China",
             "Italy",
@@ -2296,6 +3331,29 @@
             "energy intensity",
             "foreign direct investments",
             "trade"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W4416902466__gpt5mini_low",
+              "title": "Trade Openness and the Energy\u2013Carbon Nexus: Policy Implications for Emerging and Advanced Economies",
+              "year": 2025,
+              "edge_src": "FG3C000041",
+              "edge_dst": "FG3C000010"
+            },
+            {
+              "paper_id": "W3138090429__gpt5mini_low",
+              "title": "Decomposition and macroeconomic drivers of energy intensity: The case of Ethiopia",
+              "year": 2021,
+              "edge_src": "FG3C003971",
+              "edge_dst": "FG3C000041"
+            },
+            {
+              "paper_id": "W4398770977__gpt5mini_low",
+              "title": "Can financial development affect environmental quality in the presence of economic uncertainty and informal activities? Exploring the linkages in the middle-income countries",
+              "year": 2024,
+              "edge_src": "FG3C000041",
+              "edge_dst": "FG3C000010"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -2339,6 +3397,29 @@
             "foreign direct investments",
             "trade liberalization"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W4393851717__gpt5mini_low",
+              "title": "Exploring non-linear causal nexus between economic growth and energy consumption across various R&amp;D regimes: Cross-country evidence from a PSTR model",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000014"
+            },
+            {
+              "paper_id": "W2347056154__gpt5mini_low",
+              "title": "Trade liberalisation and economic growth link: The case of Southern African Custom Union countries",
+              "year": 2016,
+              "edge_src": "FG3C001221",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4400358233__gpt5mini_low",
+              "title": "The Relationship Between Energy Consumption and Economic Growth: Panel Data Analysis by Country Groups",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000014"
+            }
+          ],
           "top_countries_source": [
             "India",
             "Nepal",
@@ -2380,6 +3461,29 @@
             "economic growth",
             "technological innovation",
             "economic growth (GDP)"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7128472807__gpt5mini_low",
+              "title": "Asymmetric effects of economic policy uncertainty, natural resources, and foreign investment on ecological sustainability",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000081"
+            },
+            {
+              "paper_id": "W4387204447__gpt5mini_low",
+              "title": "Natural resources led financing of investment: A prospect of China's provincial data",
+              "year": 2023,
+              "edge_src": "FG3C000019",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4405993258__gpt5mini_low",
+              "title": "The Impact of Economic Policy Uncertainty and Geopolitical Risk on Environmental Quality: An Analysis of the Environmental Kuznets Curve Hypothesis with the Novel QRPD Approach",
+              "year": 2025,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000081"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -2423,6 +3527,29 @@
             "output",
             "income inequality"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W4400119938__gpt5mini_low",
+              "title": "MPC Heterogeneity and the Dynamic Response of Consumption to Monetary Policy",
+              "year": 2024,
+              "edge_src": "FG3C000024",
+              "edge_dst": "FG3C000008"
+            },
+            {
+              "paper_id": "W4324056474__gpt5mini_low",
+              "title": "The financial Kuznets curve of energy consumption: Global evidence",
+              "year": 2023,
+              "edge_src": "FG3C000008",
+              "edge_dst": "FG3C000014"
+            },
+            {
+              "paper_id": "W4386223844__gpt5mini_low",
+              "title": "Can a CO2 Tax Be Socially Just? Analysis of the Social Distribution Effects of the German CO2 Taxation",
+              "year": 2023,
+              "edge_src": "FG3C000008",
+              "edge_dst": "FG3C000014"
+            }
+          ],
           "top_countries_source": [
             "United States",
             "China",
@@ -2464,6 +3591,29 @@
             "CO2 emissions",
             "energy consumption",
             "energy use"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7125166405__gpt5mini_low",
+              "title": "Can green energy curb emissions? Evidence from 11 Central European and Baltic Countries",
+              "year": 2026,
+              "edge_src": "FG3C000012",
+              "edge_dst": "FG3C000003"
+            },
+            {
+              "paper_id": "W4225398061__gpt5mini_low",
+              "title": "Comparative analysis of the growth impact of pollution and energy use in selected West African nations",
+              "year": 2022,
+              "edge_src": "FG3C000003",
+              "edge_dst": "FG3C000110"
+            },
+            {
+              "paper_id": "W7128498164__gpt5mini_low",
+              "title": "Exploring the effects of ICT, financial institutions and market access on CO2 emissions: insights from time-varying frequency quantile regression analysis",
+              "year": 2026,
+              "edge_src": "FG3C000012",
+              "edge_dst": "FG3C000003"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -2507,6 +3657,29 @@
             "natural resource rents",
             "energy transition"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W7128295557__gpt5mini_low",
+              "title": "Towards <scp>SDG</scp> \u2010Aligned Sustainability: Balancing Resource Rents, Digital Expansion, and Renewable Energy in Emerging Economies",
+              "year": 2026,
+              "edge_src": "FG3C000018",
+              "edge_dst": "FG3C001307"
+            },
+            {
+              "paper_id": "W7128719802__gpt5mini_low",
+              "title": "Natural resource dependency and renewable energy consumption in China: A U-shaped nexus with dynamic policy effects using quantile regression for panel data",
+              "year": 2026,
+              "edge_src": "FG3C000053",
+              "edge_dst": "FG3C000018"
+            },
+            {
+              "paper_id": "W4417213873__gpt5mini_low",
+              "title": "Breaking the <scp>EKC</scp> Myth: Renewable Energy, Finance, and Environmental Regulation in Emerging E\u20107 Nations",
+              "year": 2025,
+              "edge_src": "FG3C000018",
+              "edge_dst": "FG3C001307"
+            }
+          ],
           "top_countries_source": [
             "China",
             "CHN",
@@ -2548,6 +3721,29 @@
             "economic growth",
             "energy consumption",
             "urbanization"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W4405264535__gpt5mini_low",
+              "title": "Assessing the environmental consequences of fossil fuel consumption in newly industrialized countries",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000203"
+            },
+            {
+              "paper_id": "W4319795238__gpt5mini_low",
+              "title": "How Does Electricity Affect Economic Growth? Examining the Role of Government Policy to Selected Four South Asian Countries",
+              "year": 2023,
+              "edge_src": "FG3C000046",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4392589573__gpt5mini_low",
+              "title": "Exploring the link between economic growth, energy consumption, and environmental pollution in <scp>G20</scp>",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000203"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -2591,6 +3787,29 @@
             "green technology innovation",
             "per capita income"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W4408005142__gpt5mini_low",
+              "title": "CO2 Emission, Energy Consumption, and Economic Growth in Latin America",
+              "year": 2025,
+              "edge_src": "FG3C000014",
+              "edge_dst": "FG3C000010"
+            },
+            {
+              "paper_id": "W2704522797__gpt5mini_low",
+              "title": "The validation of Granger causality through formulation and use of finance-growth-energy indexes",
+              "year": 2017,
+              "edge_src": "FG3C001758",
+              "edge_dst": "FG3C000014"
+            },
+            {
+              "paper_id": "W4409606807__gpt5mini_low",
+              "title": "Economic Analysis of Fossil CO2 Emissions: A European Perspective on Sustainable Development",
+              "year": 2025,
+              "edge_src": "FG3C000014",
+              "edge_dst": "FG3C000010"
+            }
+          ],
           "top_countries_source": [
             "China",
             "CHN",
@@ -2632,6 +3851,29 @@
             "economic growth",
             "financial development",
             "technological innovation"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7131108701__gpt5mini_low",
+              "title": "Climate actions toward achieving environment and climate goals in Brazil: Insight from trilemma policies of climate financing, innovation, and transition",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C001420"
+            },
+            {
+              "paper_id": "W4387637466__gpt5mini_low",
+              "title": "Resources extraction, industrial sector, and economic growth: Middle East and North African economies overview",
+              "year": 2023,
+              "edge_src": "FG3C001308",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4407137547__gpt5mini_low",
+              "title": "Does financial development influence environmental quality? Evidence from emerging and developing countries",
+              "year": 2025,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C001420"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -2677,6 +3919,29 @@
             "renewable energy consumption",
             "energy consumption"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W7118001778__gpt5mini_low",
+              "title": "Towards Sustainable Policy\u2010Making in NATO: The Environmental and Economic Implications of CO <sub>2</sub> Emissions and Military Spending",
+              "year": 2026,
+              "edge_src": "FG3C000003",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W7125495636__gpt5mini_low",
+              "title": "Green Governance and Energy Transition: A Quantile-on-Quantile Analysis of Renewable Energy, Policy, and Innovation Effects on Carbon Emissions",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000010"
+            },
+            {
+              "paper_id": "W7129289196__gpt5mini_low",
+              "title": "The criticality of green innovations, eco-taxations, and ICT trade in developing green in the European union member States",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000010"
+            }
+          ],
           "top_countries_source": [
             "China",
             "India",
@@ -2718,6 +3983,29 @@
             "economic growth",
             "CO2 emissions",
             "carbon emissions"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W4411475648__gpt5mini_low",
+              "title": "Do the United States'fiscal decentralization, money supply, and environmental policies promote the clean energy transition?",
+              "year": 2025,
+              "edge_src": "FG3C000018",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4393851717__gpt5mini_low",
+              "title": "Exploring non-linear causal nexus between economic growth and energy consumption across various R&amp;D regimes: Cross-country evidence from a PSTR model",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000014"
+            },
+            {
+              "paper_id": "W4414015322__gpt5mini_low",
+              "title": "The Effect of Renewable and Non-Renewable Energy on Economic Growth: A Panel Cointegration Analysis for the Top Renewable Energy Consumers (1970\u20132023)",
+              "year": 2025,
+              "edge_src": "FG3C000018",
+              "edge_dst": "FG3C000001"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -2763,6 +4051,29 @@
             "economic growth (GDP)",
             "technological innovation"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W7125495636__gpt5mini_low",
+              "title": "Green Governance and Energy Transition: A Quantile-on-Quantile Analysis of Renewable Energy, Policy, and Innovation Effects on Carbon Emissions",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000010"
+            },
+            {
+              "paper_id": "W4387204447__gpt5mini_low",
+              "title": "Natural resources led financing of investment: A prospect of China's provincial data",
+              "year": 2023,
+              "edge_src": "FG3C000019",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W7129289196__gpt5mini_low",
+              "title": "The criticality of green innovations, eco-taxations, and ICT trade in developing green in the European union member States",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000010"
+            }
+          ],
           "top_countries_source": [
             "China",
             "United States",
@@ -2804,6 +4115,29 @@
             "economic growth",
             "financial development",
             "renewable energy consumption"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7118001778__gpt5mini_low",
+              "title": "Towards Sustainable Policy\u2010Making in NATO: The Environmental and Economic Implications of CO <sub>2</sub> Emissions and Military Spending",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000003"
+            },
+            {
+              "paper_id": "W4412469558__gpt5mini_low",
+              "title": "Institutional Quality, Public Debt, and Sustainable Economic Growth: Evidence from a Global Panel",
+              "year": 2025,
+              "edge_src": "FG3C000208",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W7122451544__gpt5mini_low",
+              "title": "Knowledge Management in Environmental Sustainability: The Roles of Financial and Social Integration",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000003"
+            }
           ],
           "top_countries_source": [
             "United States",
@@ -2847,6 +4181,29 @@
             "renewable energy consumption",
             "urbanization"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W7131108701__gpt5mini_low",
+              "title": "Climate actions toward achieving environment and climate goals in Brazil: Insight from trilemma policies of climate financing, innovation, and transition",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C001420"
+            },
+            {
+              "paper_id": "W4417358136__gpt5mini_low",
+              "title": "Do Carbon Emissions Hurt? Novel Insights of Financial Development and Economic Growth Nexus in China",
+              "year": 2025,
+              "edge_src": "FG3C000030",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4406583936__gpt5mini_low",
+              "title": "Balancing finance and sustainability: The impact of financial access on carbon emissions through innovation and entrepreneurship in a global study",
+              "year": 2025,
+              "edge_src": "FG3C000030",
+              "edge_dst": "FG3C000001"
+            }
+          ],
           "top_countries_source": [
             "China",
             "Italy",
@@ -2888,6 +4245,29 @@
             "energy intensity",
             "foreign direct investments",
             "trade"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W4416902466__gpt5mini_low",
+              "title": "Trade Openness and the Energy\u2013Carbon Nexus: Policy Implications for Emerging and Advanced Economies",
+              "year": 2025,
+              "edge_src": "FG3C000041",
+              "edge_dst": "FG3C000010"
+            },
+            {
+              "paper_id": "W3138090429__gpt5mini_low",
+              "title": "Decomposition and macroeconomic drivers of energy intensity: The case of Ethiopia",
+              "year": 2021,
+              "edge_src": "FG3C003971",
+              "edge_dst": "FG3C000041"
+            },
+            {
+              "paper_id": "W4398770977__gpt5mini_low",
+              "title": "Can financial development affect environmental quality in the presence of economic uncertainty and informal activities? Exploring the linkages in the middle-income countries",
+              "year": 2024,
+              "edge_src": "FG3C000041",
+              "edge_dst": "FG3C000010"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -2931,6 +4311,29 @@
             "foreign direct investments",
             "trade liberalization"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W4393851717__gpt5mini_low",
+              "title": "Exploring non-linear causal nexus between economic growth and energy consumption across various R&amp;D regimes: Cross-country evidence from a PSTR model",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000014"
+            },
+            {
+              "paper_id": "W2347056154__gpt5mini_low",
+              "title": "Trade liberalisation and economic growth link: The case of Southern African Custom Union countries",
+              "year": 2016,
+              "edge_src": "FG3C001221",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4400358233__gpt5mini_low",
+              "title": "The Relationship Between Energy Consumption and Economic Growth: Panel Data Analysis by Country Groups",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000014"
+            }
+          ],
           "top_countries_source": [
             "India",
             "Nepal",
@@ -2972,6 +4375,29 @@
             "economic growth",
             "technological innovation",
             "economic growth (GDP)"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7128472807__gpt5mini_low",
+              "title": "Asymmetric effects of economic policy uncertainty, natural resources, and foreign investment on ecological sustainability",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000081"
+            },
+            {
+              "paper_id": "W4387204447__gpt5mini_low",
+              "title": "Natural resources led financing of investment: A prospect of China's provincial data",
+              "year": 2023,
+              "edge_src": "FG3C000019",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4405993258__gpt5mini_low",
+              "title": "The Impact of Economic Policy Uncertainty and Geopolitical Risk on Environmental Quality: An Analysis of the Environmental Kuznets Curve Hypothesis with the Novel QRPD Approach",
+              "year": 2025,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000081"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -3015,6 +4441,29 @@
             "output",
             "income inequality"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W4400119938__gpt5mini_low",
+              "title": "MPC Heterogeneity and the Dynamic Response of Consumption to Monetary Policy",
+              "year": 2024,
+              "edge_src": "FG3C000024",
+              "edge_dst": "FG3C000008"
+            },
+            {
+              "paper_id": "W4324056474__gpt5mini_low",
+              "title": "The financial Kuznets curve of energy consumption: Global evidence",
+              "year": 2023,
+              "edge_src": "FG3C000008",
+              "edge_dst": "FG3C000014"
+            },
+            {
+              "paper_id": "W4386223844__gpt5mini_low",
+              "title": "Can a CO2 Tax Be Socially Just? Analysis of the Social Distribution Effects of the German CO2 Taxation",
+              "year": 2023,
+              "edge_src": "FG3C000008",
+              "edge_dst": "FG3C000014"
+            }
+          ],
           "top_countries_source": [
             "United States",
             "China",
@@ -3056,6 +4505,29 @@
             "CO2 emissions",
             "energy consumption",
             "energy use"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7125166405__gpt5mini_low",
+              "title": "Can green energy curb emissions? Evidence from 11 Central European and Baltic Countries",
+              "year": 2026,
+              "edge_src": "FG3C000012",
+              "edge_dst": "FG3C000003"
+            },
+            {
+              "paper_id": "W4225398061__gpt5mini_low",
+              "title": "Comparative analysis of the growth impact of pollution and energy use in selected West African nations",
+              "year": 2022,
+              "edge_src": "FG3C000003",
+              "edge_dst": "FG3C000110"
+            },
+            {
+              "paper_id": "W7128498164__gpt5mini_low",
+              "title": "Exploring the effects of ICT, financial institutions and market access on CO2 emissions: insights from time-varying frequency quantile regression analysis",
+              "year": 2026,
+              "edge_src": "FG3C000012",
+              "edge_dst": "FG3C000003"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -3099,6 +4571,29 @@
             "natural resource rents",
             "energy transition"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W7128295557__gpt5mini_low",
+              "title": "Towards <scp>SDG</scp> \u2010Aligned Sustainability: Balancing Resource Rents, Digital Expansion, and Renewable Energy in Emerging Economies",
+              "year": 2026,
+              "edge_src": "FG3C000018",
+              "edge_dst": "FG3C001307"
+            },
+            {
+              "paper_id": "W7128719802__gpt5mini_low",
+              "title": "Natural resource dependency and renewable energy consumption in China: A U-shaped nexus with dynamic policy effects using quantile regression for panel data",
+              "year": 2026,
+              "edge_src": "FG3C000053",
+              "edge_dst": "FG3C000018"
+            },
+            {
+              "paper_id": "W4417213873__gpt5mini_low",
+              "title": "Breaking the <scp>EKC</scp> Myth: Renewable Energy, Finance, and Environmental Regulation in Emerging E\u20107 Nations",
+              "year": 2025,
+              "edge_src": "FG3C000018",
+              "edge_dst": "FG3C001307"
+            }
+          ],
           "top_countries_source": [
             "China",
             "CHN",
@@ -3140,6 +4635,29 @@
             "economic growth",
             "energy consumption",
             "urbanization"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W4405264535__gpt5mini_low",
+              "title": "Assessing the environmental consequences of fossil fuel consumption in newly industrialized countries",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000203"
+            },
+            {
+              "paper_id": "W4319795238__gpt5mini_low",
+              "title": "How Does Electricity Affect Economic Growth? Examining the Role of Government Policy to Selected Four South Asian Countries",
+              "year": 2023,
+              "edge_src": "FG3C000046",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4392589573__gpt5mini_low",
+              "title": "Exploring the link between economic growth, energy consumption, and environmental pollution in <scp>G20</scp>",
+              "year": 2024,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C000203"
+            }
           ],
           "top_countries_source": [
             "China",
@@ -3183,6 +4701,29 @@
             "green technology innovation",
             "per capita income"
           ],
+          "representative_papers": [
+            {
+              "paper_id": "W4408005142__gpt5mini_low",
+              "title": "CO2 Emission, Energy Consumption, and Economic Growth in Latin America",
+              "year": 2025,
+              "edge_src": "FG3C000014",
+              "edge_dst": "FG3C000010"
+            },
+            {
+              "paper_id": "W2704522797__gpt5mini_low",
+              "title": "The validation of Granger causality through formulation and use of finance-growth-energy indexes",
+              "year": 2017,
+              "edge_src": "FG3C001758",
+              "edge_dst": "FG3C000014"
+            },
+            {
+              "paper_id": "W4409606807__gpt5mini_low",
+              "title": "Economic Analysis of Fossil CO2 Emissions: A European Perspective on Sustainable Development",
+              "year": 2025,
+              "edge_src": "FG3C000014",
+              "edge_dst": "FG3C000010"
+            }
+          ],
           "top_countries_source": [
             "China",
             "CHN",
@@ -3224,6 +4765,29 @@
             "economic growth",
             "financial development",
             "technological innovation"
+          ],
+          "representative_papers": [
+            {
+              "paper_id": "W7131108701__gpt5mini_low",
+              "title": "Climate actions toward achieving environment and climate goals in Brazil: Insight from trilemma policies of climate financing, innovation, and transition",
+              "year": 2026,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C001420"
+            },
+            {
+              "paper_id": "W4387637466__gpt5mini_low",
+              "title": "Resources extraction, industrial sector, and economic growth: Middle East and North African economies overview",
+              "year": 2023,
+              "edge_src": "FG3C001308",
+              "edge_dst": "FG3C000001"
+            },
+            {
+              "paper_id": "W4407137547__gpt5mini_low",
+              "title": "Does financial development influence environmental quality? Evidence from emerging and developing countries",
+              "year": 2025,
+              "edge_src": "FG3C000001",
+              "edge_dst": "FG3C001420"
+            }
           ],
           "top_countries_source": [
             "China",

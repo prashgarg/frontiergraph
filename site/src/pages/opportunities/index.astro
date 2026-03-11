@@ -24,6 +24,7 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
       <div class="button-row">
         <span class="field-pill">{formatNumber(data.metrics.suppressed_candidate_count)} visible candidates</span>
         <a class="button-secondary" href="/graph/">Read one neighborhood</a>
+        <a class="button-tertiary" href="/validation/">Read validation</a>
         <a class="button-secondary" href={data.app_url}>Open explorer</a>
       </div>
     </section>
@@ -51,6 +52,18 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
       sectionId="overall-ranked-opportunities"
       enableFilters={true}
     />
+
+    <section class="section">
+      <article class="content-panel summary-panel">
+        <span class="eyebrow">Validation</span>
+        <h2>Before you trust a surfaced pair, check what the product actually means by direct evidence, nearby support, and current public coverage.</h2>
+        <div class="button-row">
+          <a class="button-secondary" href="/validation/">Open Validation</a>
+          <a class="button-tertiary" href="/faq/">Read FAQ</a>
+          <a class="button-tertiary" href={data.app_url}>Open deeper evidence in app</a>
+        </div>
+      </article>
+    </section>
 
     <section class="section">
       <details class="method-detail">
