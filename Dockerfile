@@ -14,6 +14,9 @@ RUN useradd --create-home --uid 10001 appuser
 
 COPY . /app
 
+RUN chmod -R a+rX /app \
+    && chown -R appuser:appuser /app
+
 RUN python -m pip install --upgrade pip \
     && python -m pip install .
 

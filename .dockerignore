@@ -4,9 +4,11 @@
 .github/
 .vscode/
 node_modules/
+**/node_modules/
 .pytest_cache/
 .ranker_runtime/
 .venv/
+.venv_test/
 __pycache__/
 *.egg-info/
 *.py[cod]
@@ -21,4 +23,5 @@ data/processed/*
 launchers/
 outputs/
 paper/
+site/dist/
 tests/
