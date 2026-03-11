@@ -1,0 +1,312 @@
+{
+  "type": "object",
+  "properties": {
+    "nodes": {
+      "type": "array",
+      "description": "Paper-local nodes. Reuse the same node_id when the same concept appears in multiple edges within the same paper.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "node_id": {
+            "type": "string",
+            "description": "Unique paper-local node identifier such as n1, n2, n3."
+          },
+          "label": {
+            "type": "string",
+            "description": "Concise paper-local concept label. Use a short noun phrase grounded in the title/abstract. Do not bake country or year into the label unless it is essential to the concept itself."
+          },
+          "surface_forms": {
+            "type": "array",
+            "description": "Distinct surface forms from the title/abstract that refer to the same paper-local concept.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "study_context": {
+            "type": "object",
+            "description": "Optional local study context for how this concept is measured or scoped in this paper. Downstream systems may ignore this object when building a context-free conceptual graph.",
+            "properties": {
+              "unit_of_analysis": {
+                "type": "array",
+                "description": "Units of analysis explicitly linked to this node in this paper. Use [] if not specified.",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "individual",
+                    "household",
+                    "firm",
+                    "establishment",
+                    "organization",
+                    "market",
+                    "product",
+                    "school",
+                    "hospital",
+                    "occupation",
+                    "industry",
+                    "location",
+                    "region",
+                    "country",
+                    "country_pair",
+                    "policy_unit",
+                    "community",
+                    "global",
+                    "other"
+                  ]
+                }
+              },
+              "start_year": {
+                "type": "array",
+                "description": "Explicitly mentioned start years relevant to this node in this paper. Use [] if not specified.",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "end_year": {
+                "type": "array",
+                "description": "Explicitly mentioned end years relevant to this node in this paper. Use [] if not specified.",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "countries": {
+                "type": "array",
+                "description": "Explicitly mentioned countries relevant to this node in this paper. Prefer ISO-3166-1 alpha-3 codes where clear; otherwise use the country name string. Use [] if not specified.",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "context_note": {
+                "type": "string",
+                "description": "Brief free-text context note for scope that does not fit the structured fields, such as 'older workers' or 'rural counties'. Use 'NA' if not needed."
+              }
+            },
+            "required": [
+              "unit_of_analysis",
+              "start_year",
+              "end_year",
+              "countries",
+              "context_note"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "node_id",
+          "label",
+          "surface_forms",
+          "study_context"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "edges": {
+      "type": "array",
+      "description": "Paper-local relations between nodes. Do not create transitive edges unless the paper explicitly states them.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "edge_id": {
+            "type": "string",
+            "description": "Unique paper-local edge identifier such as e1, e2, e3."
+          },
+          "source_node_id": {
+            "type": "string",
+            "description": "Source node identifier. For undirected edges, use the first-mentioned concept as the storage order."
+          },
+          "target_node_id": {
+            "type": "string",
+            "description": "Target node identifier. For undirected edges, use the second-mentioned concept as the storage order."
+          },
+          "directionality": {
+            "type": "string",
+            "description": "Whether the relationship is directional in the paper text.",
+            "enum": [
+              "directed",
+              "undirected"
+            ]
+          },
+          "relationship_type": {
+            "type": "string",
+            "description": "Semantic type of relation being asserted.",
+            "enum": [
+              "effect",
+              "association",
+              "prediction",
+              "difference",
+              "other"
+            ]
+          },
+          "causal_presentation": {
+            "type": "string",
+            "description": "How the paper presents the relation, based on title/abstract language, not on whether the method actually justifies causality.",
+            "enum": [
+              "explicit_causal",
+              "implicit_causal",
+              "noncausal",
+              "unclear"
+            ]
+          },
+          "edge_role": {
+            "type": "string",
+            "description": "Role the edge plays in the paper's argument.",
+            "enum": [
+              "main_effect",
+              "mechanism",
+              "heterogeneity",
+              "descriptive_pattern",
+              "background",
+              "robustness",
+              "other"
+            ]
+          },
+          "claim_status": {
+            "type": "string",
+            "description": "What the paper says about the relation.",
+            "enum": [
+              "effect_present",
+              "no_effect",
+              "mixed_or_ambiguous",
+              "conditional_effect",
+              "question_only",
+              "other"
+            ]
+          },
+          "explicitness": {
+            "type": "string",
+            "description": "How explicitly the title/abstract frames the edge.",
+            "enum": [
+              "result_only",
+              "question_only",
+              "question_and_result",
+              "background_claim",
+              "implied"
+            ]
+          },
+          "condition_or_scope_text": {
+            "type": "string",
+            "description": "Free-text scope or condition on the edge, such as 'among older workers', 'during recessions', or 'in rural counties'. Use 'NA' if not needed."
+          },
+          "claim_text": {
+            "type": "string",
+            "description": "Short normalized claim text representing the relation, ideally in a compact 'A -> B' or 'A -- B' style grounded in the paper language."
+          },
+          "evidence_text": {
+            "type": "string",
+            "description": "Short supporting excerpt or close paraphrase from the title/abstract only. Use 'NA' only if no concise supporting text can be isolated."
+          },
+          "sign": {
+            "type": "string",
+            "description": "Direction of impact if directional and stated.",
+            "enum": [
+              "increase",
+              "decrease",
+              "no_effect",
+              "ambiguous",
+              "NA"
+            ]
+          },
+          "effect_size": {
+            "type": "string",
+            "description": "Effect size or magnitude if reported in the title/abstract. Use 'NA' if not reported."
+          },
+          "statistical_significance": {
+            "type": "string",
+            "description": "Statistical significance status stated in the title/abstract.",
+            "enum": [
+              "significant",
+              "not_significant",
+              "mixed_or_ambiguous",
+              "not_reported",
+              "NA"
+            ]
+          },
+          "evidence_method": {
+            "type": "string",
+            "description": "Method used to support the edge, if stated in the title/abstract. Use the closest listed family. Use 'other' only when a method is clearly stated but does not fit the listed families. Use 'do_not_know' when the abstract does not reveal enough.",
+            "enum": [
+              "experiment",
+              "DiD",
+              "IV",
+              "RDD",
+              "event_study",
+              "panel_FE_or_TWFE",
+              "time_series_econometrics",
+              "structural_model",
+              "simulation",
+              "theory_or_model",
+              "qualitative_or_case_study",
+              "descriptive_observational",
+              "prediction_or_forecasting",
+              "other",
+              "do_not_know"
+            ]
+          },
+          "evidence_method_other_description": {
+            "type": "string",
+            "description": "Brief description when evidence_method is 'other'. Otherwise use 'NA'."
+          },
+          "nature_of_evidence": {
+            "type": "string",
+            "description": "Broad nature of evidence behind the edge.",
+            "enum": [
+              "quantitative",
+              "qualitative",
+              "mixed_methods",
+              "theoretical_or_conceptual",
+              "simulation",
+              "review_or_commentary",
+              "NA"
+            ]
+          },
+          "uses_data": {
+            "type": "boolean",
+            "description": "True if this edge is supported by data use in the paper as described in the title/abstract; false otherwise."
+          },
+          "sources_of_exogenous_variation": {
+            "type": "string",
+            "description": "Sources of exogenous variation used for the edge if explicitly stated. Use 'NA' if not stated."
+          },
+          "tentativeness": {
+            "type": "string",
+            "description": "How tentative the paper's language is for this edge.",
+            "enum": [
+              "certain",
+              "tentative",
+              "mixed_or_qualified",
+              "unclear"
+            ]
+          }
+        },
+        "required": [
+          "edge_id",
+          "source_node_id",
+          "target_node_id",
+          "directionality",
+          "relationship_type",
+          "causal_presentation",
+          "edge_role",
+          "claim_status",
+          "explicitness",
+          "condition_or_scope_text",
+          "claim_text",
+          "evidence_text",
+          "sign",
+          "effect_size",
+          "statistical_significance",
+          "evidence_method",
+          "evidence_method_other_description",
+          "nature_of_evidence",
+          "uses_data",
+          "sources_of_exogenous_variation",
+          "tentativeness"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "nodes",
+    "edges"
+  ],
+  "additionalProperties": false
+}

@@ -9,6 +9,7 @@ __pycache__/
 *.py[cod]
 site/node_modules/
 site/dist/
+site/.astro/
 site/public/data/v2/concept_neighborhoods.json
 
 data/processed/

@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "decision": {
+      "type": "string",
+      "enum": ["same_concept", "different_concept", "needs_manual_review"],
+      "description": "Pairwise merge decision."
+    },
+    "preferred_label": {
+      "type": "string",
+      "description": "Preferred canonical label if decision is same_concept, else NA."
+    },
+    "rationale": {
+      "type": "string",
+      "description": "Short explanation using only the provided evidence."
+    },
+    "key_concerns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Short list of concerns or caveats. Use [] if none."
+    }
+  },
+  "required": ["decision", "preferred_label", "rationale", "key_concerns"],
+  "additionalProperties": false
+}
