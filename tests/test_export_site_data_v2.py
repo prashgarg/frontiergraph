@@ -27,7 +27,7 @@ def test_concept_index_has_safe_defaults() -> None:
 def test_opportunity_export_includes_public_language_fields() -> None:
     with (ROOT / "site" / "src" / "generated" / "site-data.json").open() as handle:
         site_data = json.load(handle)
-    overall = site_data["opportunities"]["top_slices"]["overall"]
+    overall = site_data["questions"]["top_slices"]["overall"]
     assert overall, "overall opportunities should not be empty"
 
     row = overall[0]
@@ -52,7 +52,7 @@ def test_representative_papers_are_deduped_and_capped() -> None:
     with (ROOT / "site" / "src" / "generated" / "site-data.json").open() as handle:
         site_data = json.load(handle)
 
-    overall = site_data["opportunities"]["top_slices"]["overall"]
+    overall = site_data["questions"]["top_slices"]["overall"]
     assert overall, "overall opportunities should not be empty"
 
     checked = 0
@@ -76,29 +76,26 @@ def test_curated_opportunities_are_present_in_expected_order() -> None:
 
     expected_home = [
         "FG3C000003__FG3C000208",
-        "FG3C000014__FG3C001221",
         "FG3C000012__FG3C000110",
         "FG3C000053__FG3C001307",
     ]
-    expected_opportunities = [
+    expected_questions = [
         "FG3C000003__FG3C000208",
         "FG3C000014__FG3C001221",
         "FG3C000012__FG3C000110",
         "FG3C000053__FG3C001307",
         "FG3C000010__FG3C000019",
-        "FG3C000030__FG3C001420",
         "FG3C000014__FG3C000024",
-        "FG3C000046__FG3C000203",
     ]
 
-    home = site_data["home"]["curated_opportunities"]
-    front_set = site_data["opportunities"]["curated_front_set"]
+    home = site_data["home"]["curated_questions"]
+    front_set = site_data["questions"]["curated_front_set"]
 
     assert [row["pair_key"] for row in home] == expected_home
-    assert [row["pair_key"] for row in front_set] == expected_opportunities
+    assert [row["pair_key"] for row in front_set] == expected_questions
 
     for row in front_set:
-        for field in ("headline", "summary", "why_it_matters", "how_to_start", "public_source_label", "public_target_label", "next_study"):
+        for field in ("question_title", "short_why", "first_next_step", "who_its_for"):
             assert row[field] not in (None, "", "NA"), f"{field} should be present on curated opportunity rows"
 
 
@@ -111,8 +108,8 @@ def test_excluded_pairs_do_not_appear_in_curated_sets() -> None:
         "FG3C000014__FG3C000018",
     }
 
-    home_pairs = {row["pair_key"] for row in site_data["home"]["curated_opportunities"]}
-    front_pairs = {row["pair_key"] for row in site_data["opportunities"]["curated_front_set"]}
+    home_pairs = {row["pair_key"] for row in site_data["home"]["curated_questions"]}
+    front_pairs = {row["pair_key"] for row in site_data["questions"]["curated_front_set"]}
 
     assert home_pairs.isdisjoint(excluded)
     assert front_pairs.isdisjoint(excluded)
@@ -130,3 +127,12 @@ def test_public_label_glossary_references_known_concepts() -> None:
     for concept_id, entry in glossary.items():
         assert concept_id in concept_ids, f"{concept_id} should exist in concept_index.json"
         assert entry["subtitle"] not in (None, "", "NA"), f"{concept_id} should include a readable subtitle"
+
+
+def test_ecological_carrying_capacity_label_override_is_live() -> None:
+    with (ROOT / "site" / "src" / "generated" / "site-data.json").open() as handle:
+        site_data = json.load(handle)
+
+    glossary = site_data["public_label_glossary"]
+    assert glossary["FG3C001307"]["plain_label"] == "ecological carrying capacity"
+    assert glossary["FG3C001307"]["subtitle"] == "measured here with load capacity factor"

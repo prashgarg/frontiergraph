@@ -1,8 +1,8 @@
 {
   "FG3C001307": {
     "concept_id": "FG3C001307",
-    "plain_label": "load capacity factor",
-    "subtitle": "broad measure of ecological carrying capacity"
+    "plain_label": "ecological carrying capacity",
+    "subtitle": "measured here with load capacity factor"
   },
   "FG3C001420": {
     "concept_id": "FG3C001420",

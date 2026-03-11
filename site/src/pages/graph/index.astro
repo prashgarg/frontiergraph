@@ -1,27 +1,24 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import GraphWorkbench from "../../components/GraphWorkbench.astro";
-import { data, formatNumber } from "../../lib/site-data";
-
-const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`;
+import { data } from "../../lib/site-data";
 ---
 
 <BaseLayout
-  title="Graph | FrontierGraph"
-  description="Explore the observed baseline concept graph of the economics literature."
+  title="Literature Map | FrontierGraph"
+  description="Read one topic through the FrontierGraph literature map."
 >
   <main>
     <section class="page-hero">
-      <span class="eyebrow">Graph</span>
-      <h1>Read one part of the literature at a time.</h1>
+      <span class="eyebrow">Literature Map (Advanced)</span>
+      <h1>Use the literature map when you want to read one topic in more detail.</h1>
       <p class="lede">
-        The public graph opens in one focused neighborhood by default. Search or click a concept, read the local structure beside the canvas, and only switch to the full map when you want wider orientation across the public backbone.
+        Most visitors should start with Research Questions. This page is for people who already have a topic in mind and want a slower, text-first way to inspect related ideas and surrounding literature before opening the full map.
       </p>
       <div class="button-row">
-        <span class="field-pill">Default: {defaultRegime}</span>
-        <span class="field-pill">{formatNumber(data.home.graph_snapshot.nodes)} concepts available in the public map</span>
-        <a class="button-secondary" href="/opportunities/">See ranked opportunities</a>
-        <a class="button-tertiary" href={data.app_url}>Open deeper explorer</a>
+        <a class="button-secondary" href="/questions/">Browse research questions</a>
+        <a class="button-tertiary" href="/how-it-works/">How it works</a>
+        <a class="button-tertiary" href={data.app_url}>Open workbench</a>
       </div>
     </section>
 

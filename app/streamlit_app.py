@@ -29,11 +29,8 @@ from src.opportunity_data import (
 )
 
 SITE_URL = "https://frontiergraph.com"
-GRAPH_URL = f"{SITE_URL}/graph/"
-OPPORTUNITIES_URL = f"{SITE_URL}/opportunities/"
-FAQ_URL = f"{SITE_URL}/faq/"
-VALIDATION_URL = f"{SITE_URL}/validation/"
-REPO_URL = "https://github.com/prashgarg/frontiergraph"
+QUESTIONS_URL = f"{SITE_URL}/questions/"
+HOW_IT_WORKS_URL = f"{SITE_URL}/how-it-works/"
 
 
 def inject_css() -> None:
@@ -112,7 +109,7 @@ def load_nodes_cached(db_path: str) -> pd.DataFrame:
     return load_nodes(db_path)
 
 
-@st.cache_data(show_spinner="Loading ranked economics opportunities...")
+@st.cache_data(show_spinner="Loading ranked research questions...")
 def load_candidate_summary_cached(db_path: str) -> pd.DataFrame:
     return load_candidate_summary(db_path)
 
@@ -314,6 +311,7 @@ def filtered_download_frame(filtered_df: pd.DataFrame) -> pd.DataFrame:
         columns={
             "priority_rank": "rank",
             "score": "base_score",
+            "opportunity": "research_question",
             "source_field_name": "source_field",
             "target_field_name": "target_field",
             "novelty_label": "novelty",
@@ -346,7 +344,7 @@ def shortlist_view(shortlist_df: pd.DataFrame) -> pd.DataFrame:
         .rename(
             columns={
                 "priority_rank": "Rank",
-                "public_pair": "Pair",
+                "public_pair": "Question",
                 "novelty_label": "Type",
                 "target_field_name": "Target field",
                 "direct_literature": "Direct literature",
@@ -400,26 +398,17 @@ def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, preset: str, top_
     st.caption(PRESET_HELP[preset])
 
     if filtered_df.empty:
-        st.warning("No opportunities match the current filters. Relax the thresholds or switch presets.")
+        st.warning("No research questions match the current filters. Relax the thresholds or switch presets.")
         return
 
     shortlist_df = filtered_df.head(int(top_n)).reset_index(drop=True)
-
-    top_cols = st.columns(4)
-    with top_cols[0]:
-        st.metric("Visible ideas", f"{len(filtered_df):,}")
-    with top_cols[1]:
-        st.metric("Cross-field share", f"{100 * filtered_df['cross_field'].mean():.1f}%")
-    with top_cols[2]:
-        st.metric("Median priority", f"{filtered_df['priority_score'].median():.3f}")
-    with top_cols[3]:
-        st.metric("Top pair", shortlist_pair_label(shortlist_df.iloc[0]))
+    st.caption(f"Showing the top {len(shortlist_df):,} questions from {len(filtered_df):,} visible matches under the current settings.")
 
     st.dataframe(shortlist_view(shortlist_df), use_container_width=True, hide_index=True)
 
     options_df = shortlist_df.head(min(100, len(shortlist_df))).reset_index(drop=True)
     selected_idx = st.selectbox(
-        "Inspect one opportunity in detail",
+        "Inspect one research question in detail",
         options=options_df.index,
         format_func=lambda i: candidate_option_label(options_df.loc[i]),
     )
@@ -444,7 +433,7 @@ def render_candidate_detail(db_path: str, row: pd.Series, app_mode: str) -> None
     target_detail_row = bundle["target_detail_row"]
 
     if candidate_row is None:
-        st.warning("Candidate details were not found in the database.")
+        st.warning("Question details were not found in the database.")
         return
 
     pair_label = shortlist_pair_label(row)
@@ -459,21 +448,20 @@ def render_candidate_detail(db_path: str, row: pd.Series, app_mode: str) -> None
         "Decide whether this is a mechanism, outcome, or setting question",
     ]
 
-    st.markdown("### Selected opportunity")
+    st.markdown("### Selected research question")
     st.markdown(f"**{pair_label}**")
-    st.caption(f"{row['code_pair']} | {source_target_context(row)}")
 
     summary_left, summary_right = st.columns([1.35, 1.0])
     with summary_left:
-        st.markdown("**Plain-language read**")
+        st.markdown("**Question summary**")
         st.write(f"Direct literature: {direct_status}")
         st.write(f"Next study shape: {next_study_shape}")
         if nearby_labels:
-            st.write(f"Nearby linking ideas: {', '.join(nearby_labels)}")
+            st.write(f"Related ideas: {', '.join(nearby_labels)}")
         else:
-            st.write("Nearby linking ideas: No stable mediator preview in the current public sample")
+            st.write("Related ideas: No stable mediator preview in the current public sample")
         st.write(
-            f"Broad context: {row['source_field_name']} on one side and {row['target_field_name']} on the other."
+            f"Surrounding literature: {row['source_field_name']} on one side and {row['target_field_name']} on the other."
         )
     with summary_right:
         st.markdown("**What to verify next**")
@@ -610,9 +598,9 @@ def render_candidate_detail(db_path: str, row: pd.Series, app_mode: str) -> None
 
 
 def render_field_radar_tab(filtered_df: pd.DataFrame, app_mode: str) -> None:
-    st.subheader("Bucket map" if is_concept_mode(app_mode) else "Field map")
+    st.subheader("Literature map by group" if is_concept_mode(app_mode) else "Literature map by field")
     if filtered_df.empty:
-        st.warning("No ideas to summarize under the current filters.")
+        st.warning("No research questions to summarize under the current filters.")
         return
 
     target_summary = (
@@ -646,7 +634,7 @@ def render_field_radar_tab(filtered_df: pd.DataFrame, app_mode: str) -> None:
 
 def render_concept_tab(db_path: str, nodes_df: pd.DataFrame) -> None:
     st.subheader("Concept lookup")
-    st.caption("Use this when you already know the concept you want to trace through the graph.")
+    st.caption("Use this when you already know the concept you want to trace through the literature map.")
 
     query = st.text_input("Find a concept by code or label", value="")
     filtered = nodes_df
@@ -711,10 +699,10 @@ def render_concept_tab(db_path: str, nodes_df: pd.DataFrame) -> None:
     st.markdown(f"### {concept_label} ({concept_code})")
     left, right = st.columns(2)
     with left:
-        st.markdown("**Top outgoing opportunities**")
+        st.markdown("**Top outgoing research questions**")
         st.dataframe(outgoing, use_container_width=True, hide_index=True)
     with right:
-        st.markdown("**Top incoming opportunities**")
+        st.markdown("**Top incoming research questions**")
         st.dataframe(incoming, use_container_width=True, hide_index=True)
 
     st.markdown("**Underexplored pairs touching this concept**")
@@ -724,14 +712,14 @@ def render_concept_tab(db_path: str, nodes_df: pd.DataFrame) -> None:
 def render_method_tab(filtered_df: pd.DataFrame, preset: str) -> None:
     st.subheader("Method")
     st.markdown(
-        f"Use the public <a href=\"{FAQ_URL}\">FAQ</a> for interpretation and <a href=\"{VALIDATION_URL}\">Validation</a> for limits and checks. Use this tab when you want the compact technical summary behind the current app surface.",
+        f"Use the public <a href=\"{HOW_IT_WORKS_URL}\">How It Works</a> page for interpretation and limits. Use this tab when you want the compact technical summary behind the current workbench surface.",
         unsafe_allow_html=True,
     )
     st.markdown(
         """
         1. AI extracts paper-local graph structure from titles and abstracts.
         2. FrontierGraph maps those local graphs into concept regimes and ranks missing links with deterministic graph signals.
-        3. The public default is Baseline exploratory, with duplicate cleanup applied to the recommendation surface before it is shown.
+        3. The public default is Baseline exploratory, with duplicate cleanup applied before the research-question surface is shown.
         """
     )
     st.caption(f"Current preset: {preset}. {PRESET_HELP[preset]}")
@@ -756,7 +744,7 @@ def render_method_tab(filtered_df: pd.DataFrame, preset: str) -> None:
 
 def main() -> None:
     st.set_page_config(
-        page_title="FrontierGraph | Concept explorer",
+        page_title="FrontierGraph | Workbench",
         layout="wide",
         initial_sidebar_state="collapsed",
     )
@@ -766,11 +754,8 @@ def main() -> None:
         f"""
         <div class="app-nav">
             <a href="{SITE_URL}">Site</a>
-            <a href="{OPPORTUNITIES_URL}">Opportunities</a>
-            <a href="{FAQ_URL}">FAQ</a>
-            <a href="{VALIDATION_URL}">Validation</a>
-            <a href="{GRAPH_URL}">Graph</a>
-            <a href="{REPO_URL}">GitHub</a>
+            <a href="{QUESTIONS_URL}">Research Questions</a>
+            <a href="{HOW_IT_WORKS_URL}">How It Works</a>
         </div>
         """,
         unsafe_allow_html=True,
@@ -779,16 +764,16 @@ def main() -> None:
     st.markdown(
         f"""
         <div class="hero-shell">
-            <div class="eyebrow">FrontierGraph explorer</div>
-            <h1 class="hero-title">Start with the ranked opportunities.</h1>
+            <div class="eyebrow">FrontierGraph Workbench</div>
+            <h1 class="hero-title">Evaluate candidate research questions more seriously.</h1>
             <p class="hero-copy">
-                Use this app as the deeper evidence layer behind the public site. Start with the shortlist, inspect
-                nearby linking ideas and representative papers, then decide whether the pair looks like a mechanism,
+                Use this as the deeper evidence layer behind the public site. Start with the shortlist, inspect
+                related ideas and representative papers, then decide whether the question looks like a mechanism,
                 outcome, or setting question worth reading further.
             </p>
             <p class="hero-copy">
-                Keep the public trust pages nearby: <a href="{FAQ_URL}">FAQ</a> explains how to read the product, and
-                <a href="{VALIDATION_URL}">Validation</a> states what is model-extracted, what is deterministic, and what is not benchmarked yet.
+                Keep the public interpretation page nearby: <a href="{HOW_IT_WORKS_URL}">How It Works</a> explains how to
+                read the product, what is model-extracted, what is deterministic, and where the public build can still fail.
             </p>
         </div>
         """,
@@ -942,13 +927,13 @@ def main() -> None:
     max_base_score = max(to_float(candidates_df["score"].max(), default=0.01), 0.01)
     default_min_score = min(0.18, round(max_base_score, 3))
     slider_max = max(5, int(min(candidates_df["cooc_count"].quantile(0.99), 250)))
+    search_text = st.text_input("Search questions", value=default_search, placeholder="Search by topic or concept")
 
-    with st.expander("Refine the ranking", expanded=False):
+    with st.expander("Shortlist settings", expanded=False):
         col1, col2, col3 = st.columns(3)
         with col1:
             preset_options = list(PRESET_HELP.keys())
-            preset = st.selectbox("Ranking mode", options=preset_options, index=preset_options.index(default_preset))
-            search_text = st.text_input("Keyword filter", value=default_search)
+            preset = st.selectbox("Shortlist mode", options=preset_options, index=preset_options.index(default_preset))
             top_n = st.slider("Shortlist size", min_value=10, max_value=150, value=30, step=10)
         with col2:
             source_fields = st.multiselect(
@@ -963,7 +948,7 @@ def main() -> None:
                 default=[default_target_field] if default_target_field in available_fields else [],
                 format_func=lambda code: field_option_label(code, app_mode=app_mode),
             )
-            novelty_filter = st.multiselect("Novelty lens", options=novelty_options, default=novelty_options)
+            novelty_filter = st.multiselect("Question type", options=novelty_options, default=novelty_options)
         with col3:
             min_score = st.slider(
                 "Minimum base score",
@@ -980,7 +965,7 @@ def main() -> None:
             )
             min_mediators = st.slider("Minimum mediator count", min_value=0, max_value=100, value=5)
             only_cross_field = st.checkbox(
-                "Only cross-bucket ideas" if is_concept_mode(app_mode) else "Only cross-field ideas",
+                "Only cross-bucket questions" if is_concept_mode(app_mode) else "Only cross-field questions",
                 value=default_cross_field,
             )
 
@@ -1009,9 +994,9 @@ def main() -> None:
     render_ranker_tab(db_path, filtered_df, preset, top_n=top_n, app_mode=app_mode)
 
     with st.expander("Advanced tools", expanded=False):
-        st.caption("Use these only when you want to inspect the bucket map, query concepts directly, or review the technical method notes.")
+        st.caption("Use these only when you want the literature map, direct concept lookup, or the technical method notes.")
         radar_tab, concept_tab, method_tab = st.tabs(
-            ["Bucket map" if is_concept_mode(app_mode) else "Field map", "Concept lookup", "Method"]
+            ["Literature map" if is_concept_mode(app_mode) else "Field map", "Concept lookup", "Method"]
         )
 
         with radar_tab:

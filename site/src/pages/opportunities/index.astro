@@ -1,114 +1,19 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import ConceptOpportunityLookup from "../../components/ConceptOpportunityLookup.astro";
-import CuratedOpportunityCards from "../../components/CuratedOpportunityCards.astro";
-import OpportunityCards from "../../components/OpportunityCards.astro";
-import { data, formatNumber } from "../../lib/site-data";
-
-const slices = data.opportunities.top_slices;
-const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`;
+const target = "/questions/";
 ---
 
-<BaseLayout
-  title="Opportunities | FrontierGraph"
-  description="Browse curated and ranked FrontierGraph opportunities from the public Baseline exploratory surface."
->
-  <main>
-    <section class="page-hero">
-      <span class="eyebrow">Opportunities</span>
-      <h1>Start with a few plausible next questions.</h1>
-      <p class="lede">
-        This page starts with a hand-curated front set from the public <strong>{defaultRegime}</strong> surface after deterministic near-synonym cleanup.
-        The ranked list stays below, but the first screen is meant to answer a simpler question: where might a researcher reasonably go next?
-      </p>
-      <div class="button-row">
-        <span class="field-pill">{formatNumber(data.metrics.suppressed_candidate_count)} visible candidates</span>
-        <a class="button-secondary" href="/graph/">Read one neighborhood</a>
-        <a class="button-tertiary" href="/validation/">Read validation</a>
-        <a class="button-secondary" href={data.app_url}>Open explorer</a>
-      </div>
-    </section>
-
-    <CuratedOpportunityCards
-      items={data.opportunities.curated_front_set}
-      title="Start here"
-      caption="These eight cards are manually curated from the current ranking. They are not claims of settled truth. They are candidate directions that look worth reading, scoping, or testing."
-      sectionId="opportunities-curated-front-set"
-    />
-
-    <ConceptOpportunityLookup
-      appUrl={data.app_url}
-      conceptIndexPath={data.graph.concept_index_path}
-      neighborhoodsIndexPath={data.graph.concept_neighborhoods_index_path}
-      opportunitiesIndexPath={data.graph.concept_opportunities_index_path}
-      title="Search one concept and inspect nearby opportunities"
-      caption="If you already have a concept in mind, use search to jump straight into its local neighborhood and the strongest nearby links."
-    />
-
-    <OpportunityCards
-      items={slices.overall}
-      title="Ranked list beyond the curated set"
-      caption="Below the editorial front set, the broader machine-ranked list stays available as structured facts only. Use the quick chips to filter for direct-literature status, cross-field pairs, stronger surrounding evidence, or follow-through-ready ideas within the visible public list."
-      sectionId="overall-ranked-opportunities"
-      enableFilters={true}
-    />
-
-    <section class="section">
-      <article class="content-panel summary-panel">
-        <span class="eyebrow">Validation</span>
-        <h2>Before you trust a surfaced pair, check what the product actually means by direct evidence, nearby support, and current public coverage.</h2>
-        <div class="button-row">
-          <a class="button-secondary" href="/validation/">Open Validation</a>
-          <a class="button-tertiary" href="/faq/">Read FAQ</a>
-          <a class="button-tertiary" href={data.app_url}>Open deeper evidence in app</a>
-        </div>
-      </article>
-    </section>
-
-    <section class="section">
-      <details class="method-detail">
-        <summary>
-          <span>
-            <span class="eyebrow">Secondary slices</span>
-            <strong>Open narrower ways of browsing the ranked list</strong>
-          </span>
-        </summary>
-        <div class="method-body opportunity-slice-stack">
-          <div class="split-section">
-            <OpportunityCards
-              items={slices.bridges}
-              title="Connect separate literatures"
-              caption="Use this when you want questions that seem to sit between areas that are usually studied apart."
-              compact={true}
-              standalone={false}
-            />
-            <OpportunityCards
-              items={slices.frontier}
-              title="Missing direct link"
-              caption="Use this when you want pairs that appear close in the surrounding literature but still have little or no direct work."
-              compact={true}
-              standalone={false}
-            />
-          </div>
-
-          <div class="split-section">
-            <OpportunityCards
-              items={slices.fast_follow}
-              title="Ready to follow through"
-              caption="Use this when you want ideas that already seem surrounded by enough nearby work to support a more direct next paper."
-              compact={true}
-              standalone={false}
-            />
-            <OpportunityCards
-              items={slices.underexplored}
-              title="Early but promising"
-              caption="Use this when you want questions that still look early, but not arbitrary, because the nearby evidence is richer than the direct connection."
-              compact={true}
-              standalone={false}
-            />
-          </div>
-        </div>
-      </details>
-    </section>
-  </main>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <script is:inline define:vars={{ target }}>
+      window.location.replace(target);
+    </script>
+    <p>Redirecting to <a href={target}>Research Questions</a>.</p>
+  </body>
+</html>

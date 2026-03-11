@@ -21,7 +21,7 @@ const publicReady = Boolean(betaDb.public_url);
       </p>
       <div class="button-row">
         <a class="button-primary" href={data.repo_url}>Open repository</a>
-        <a class="button-secondary" href="/faq/">Read the FAQ</a>
+        <a class="button-secondary" href="/how-it-works/">How It Works</a>
         <a class="button-tertiary" href="/advanced/">Back to advanced hub</a>
       </div>
     </section>
@@ -58,16 +58,16 @@ const publicReady = Boolean(betaDb.public_url);
 
       <article class="download-panel">
         <span class="eyebrow">Site assets</span>
-        <h3>Graph, opportunity, and comparison artifacts</h3>
+        <h3>Literature map, question, and comparison artifacts</h3>
         <p class="download-copy">
-          These are the same static assets the public site uses for the graph viewer, top opportunities, central concept
+          These are the same static assets the public site uses for the literature map, top research questions, central concept
           tables, and ontology comparison summaries.
         </p>
         <div class="card-grid download-artifact-grid">
           <a class="card artifact-card" href={artifacts.graph_backbone_json}>
-            <span class="eyebrow">Graph asset</span>
-            <h3>Graph backbone JSON</h3>
-            <p class="card-copy">Observed baseline backbone used on the public graph page.</p>
+            <span class="eyebrow">Map asset</span>
+            <h3>Literature map JSON</h3>
+            <p class="card-copy">Observed baseline backbone used on the public literature map page.</p>
           </a>
           <a class="card artifact-card" href={artifacts.central_concepts_csv}>
             <span class="eyebrow">Concept export</span>
@@ -75,9 +75,9 @@ const publicReady = Boolean(betaDb.public_url);
             <p class="card-copy">Weighted-degree and support statistics for the public central concept table.</p>
           </a>
           <a class="card artifact-card" href={artifacts.top_opportunities_csv}>
-            <span class="eyebrow">Opportunity export</span>
-            <h3>Top opportunities CSV</h3>
-            <p class="card-copy">The current suppressed baseline opportunity surface in a lightweight tabular form.</p>
+            <span class="eyebrow">Question export</span>
+            <h3>Top research questions CSV</h3>
+            <p class="card-copy">The current suppressed baseline research-question surface in a lightweight tabular form.</p>
           </a>
           <a class="card artifact-card" href={artifacts.compare_summary_json}>
             <span class="eyebrow">Comparison export</span>

@@ -146,15 +146,12 @@ FEATURED_OPPORTUNITY_LIMIT = 12
 SHARD_SIZE = 256
 EDITORIAL_REQUIRED_FIELDS = (
     "pair_key",
-    "headline",
-    "summary",
-    "why_it_matters",
-    "how_to_start",
-    "public_source_label",
-    "public_target_label",
-    "next_study",
+    "question_title",
+    "short_why",
+    "first_next_step",
+    "who_its_for",
     "homepage_featured",
-    "opportunities_featured",
+    "questions_featured",
     "display_order",
 )
 
@@ -1020,26 +1017,12 @@ def build_curated_opportunities(
         candidates = records_by_pair.get(pair_key, [])
         if not candidates:
             raise ValueError(f"Curated editorial pair_key {pair_key} could not be resolved to an opportunity record")
-        base_record = next(
-            (
-                candidate
-                for candidate in candidates
-                if clean_public_text(entry.get("public_source_label")) == public_label_payload(candidate["source_id"], candidate["source_label"], glossary)["plain_label"]
-                and clean_public_text(entry.get("public_target_label")) == public_label_payload(candidate["target_id"], candidate["target_label"], glossary)["plain_label"]
-            ),
-            None,
-        )
-        if base_record is None:
-            if len(candidates) > 1:
-                raise ValueError(
-                    f"Curated editorial pair_key {pair_key} did not match a public display order in editorial-opportunities.json"
-                )
-            base_record = candidates[0]
+        base_record = candidates[0]
         curated_rows.append({**base_record, **entry})
 
     home_rows = [row for row in curated_rows if bool(row["homepage_featured"])]
-    opportunity_rows = [row for row in curated_rows if bool(row["opportunities_featured"])]
-    return home_rows, opportunity_rows
+    question_rows = [row for row in curated_rows if bool(row["questions_featured"])]
+    return home_rows, question_rows
 
 
 def build_compare_payload(regime_summary_df: pd.DataFrame, overlap_df: pd.DataFrame) -> dict[str, Any]:
@@ -1175,7 +1158,7 @@ def main() -> None:
 
     slices = build_slices(candidates_df, concept_label_lookup, public_label_glossary, representative_papers_lookup)
     featured_opportunities = diversify_featured_opportunities(slices, limit=FEATURED_OPPORTUNITY_LIMIT)
-    home_curated_opportunities, curated_front_set = build_curated_opportunities(
+    home_curated_questions, curated_front_set = build_curated_opportunities(
         editorial_opportunities,
         candidates_df,
         concept_label_lookup,
@@ -1235,8 +1218,10 @@ def main() -> None:
             "duplicate_loops_removed_top100": int(suppression_summary["top100_removed_count"]),
         },
         "home": {
+            "featured_questions": featured_opportunities[:6],
             "featured_opportunities": featured_opportunities[:6],
-            "curated_opportunities": home_curated_opportunities,
+            "curated_questions": home_curated_questions,
+            "curated_opportunities": home_curated_questions,
             "featured_central_concepts": central_concepts_rows[:8],
             "graph_snapshot": {
                 "nodes": backbone_payload["counts"]["nodes"],
@@ -1250,6 +1235,18 @@ def main() -> None:
             "concept_neighborhoods_index_path": "/data/v2/concept_neighborhoods_index.json",
             "concept_opportunities_index_path": "/data/v2/concept_opportunities_index.json",
             "central_concepts_path": "/data/v2/central_concepts.json",
+        },
+        "questions": {
+            "slices_path": "/data/v2/opportunity_slices.json",
+            "concept_opportunities_index_path": "/data/v2/concept_opportunities_index.json",
+            "curated_front_set": curated_front_set,
+            "top_slices": {
+                "overall": slices["overall"][:12],
+                "bridges": slices["bridges"][:12],
+                "frontier": slices["frontier"][:12],
+                "fast_follow": slices["fast_follow"][:12],
+                "underexplored": slices["underexplored"][:12],
+            },
         },
         "opportunities": {
             "slices_path": "/data/v2/opportunity_slices.json",

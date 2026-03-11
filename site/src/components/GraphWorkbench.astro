@@ -29,30 +29,62 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
 >
   <div class="graph-toolbar">
     <div>
-      <span class="eyebrow">Graph workbench</span>
-      <h2>Use the graph as a reading surface, not a dashboard.</h2>
+      <span class="eyebrow">Literature map</span>
+      <h2>Start with the topic summary, then open the map only when you need it.</h2>
       <p class="card-copy">
-        The graph opens on one focused neighborhood by default. Search or click one concept, read the local structure in plain language, and only switch to the full map when you want broader orientation.
+        Search for a topic, read the surrounding literature in plain language, and switch to the full map only when you want wider orientation across the public snapshot.
       </p>
     </div>
     <label class="search-shell">
-      <span>Jump to a concept</span>
+      <span>Find a topic</span>
       <input type="search" placeholder="Search labels or aliases" data-role="search-input" />
       <div class="search-results" data-role="search-results"></div>
     </label>
   </div>
 
   <div class="graph-jumpbar">
-    <span class="tiny-label">Quick starts</span>
+    <span class="tiny-label">Quick topics</span>
     <div class="central-list central-list-inline" data-role="central-list"></div>
   </div>
 
   <div class="graph-stage">
-    <div class="graph-panel">
+    <aside class="graph-inspector">
+      <section class="sidebar-card inspector-card">
+        <div class="inspector-head">
+          <span class="eyebrow">Topic summary</span>
+          <h3>Selected topic</h3>
+        </div>
+        <div data-role="selected-concept">
+          <p class="card-copy">
+            Select a topic to turn the literature map into a local reading. The summary stays here, while related ideas and nearby research questions update below.
+          </p>
+        </div>
+        <details class="inspector-detail" open>
+          <summary>Surrounding literature</summary>
+          <div data-role="selected-neighborhood">
+            <p class="card-copy">Incoming, outgoing, and nearby summaries will appear here.</p>
+          </div>
+        </details>
+        <details class="inspector-detail" open>
+          <summary>Text summary</summary>
+          <div data-role="selection-list-view">
+            <p class="card-copy">A keyboard-readable summary of the current selection will appear here.</p>
+          </div>
+        </details>
+        <details class="inspector-detail">
+          <summary>Nearby research questions</summary>
+          <div data-role="selected-opportunities">
+            <p class="card-copy">The strongest public research questions touching the selected topic will appear here.</p>
+          </div>
+        </details>
+      </section>
+    </aside>
+
+    <div class="graph-panel graph-panel-secondary">
       <div class="graph-controls">
         <div class="graph-status-shell">
           <div class="graph-status" data-role="hover-card" aria-live="polite">
-            Search or click a concept. The graph opens in one focused neighborhood, with the full map available when you want it.
+            Search or click a topic. The literature map opens in one focused view, with the full map available when you want it.
           </div>
         </div>
         <div class="graph-control-row">
@@ -62,46 +94,14 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
           <button class="button-tertiary" type="button" data-role="zoom-in">Zoom in</button>
           <button class="button-tertiary" type="button" data-role="reset-view">Reset view</button>
           <button class="button-tertiary" type="button" data-role="reset-layout">Reset layout</button>
-          <button class="button-tertiary" type="button" data-role="reset-focus">Reset focus</button>
+          <button class="button-tertiary" type="button" data-role="reset-focus">Reset topic</button>
         </div>
       </div>
-      <svg class="graph-canvas" data-role="graph-canvas" viewBox="0 0 1120 860" aria-label="Concept graph"></svg>
+      <svg class="graph-canvas" data-role="graph-canvas" viewBox="0 0 1120 860" aria-label="Literature map"></svg>
       <div class="graph-help-row">
         <span class="mini-copy">Wheel or pinch to zoom. Drag the background to pan. Reset view returns to the default frame for the current mode.</span>
       </div>
     </div>
-
-    <aside class="graph-inspector">
-      <section class="sidebar-card inspector-card">
-        <div class="inspector-head">
-          <span class="eyebrow">Inspector</span>
-          <h3>Selected concept</h3>
-        </div>
-        <div data-role="selected-concept">
-          <p class="card-copy">
-            Select a node to turn the backbone into a local reading. The concept summary stays here, while neighbors and nearby opportunities update below.
-          </p>
-        </div>
-        <details class="inspector-detail" open>
-          <summary>Observed neighborhood</summary>
-          <div data-role="selected-neighborhood">
-            <p class="card-copy">Incoming and outgoing neighborhood summaries will appear here.</p>
-          </div>
-        </details>
-        <details class="inspector-detail" open>
-          <summary>Text view</summary>
-          <div data-role="selection-list-view">
-            <p class="card-copy">A keyboard-readable summary of the current selection will appear here.</p>
-          </div>
-        </details>
-        <details class="inspector-detail">
-          <summary>Nearby opportunities</summary>
-          <div data-role="selected-opportunities">
-            <p class="card-copy">The strongest Baseline exploratory opportunities touching the selected concept will appear here.</p>
-          </div>
-        </details>
-      </section>
-    </aside>
   </div>
 </section>
 
@@ -411,18 +411,18 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       if (concept) {
         const visibilityCopy = isInBackbone(selectedId)
           ? mapMode === "focused"
-            ? "Focused neighborhood view."
-            : "Visible in the full public map."
-          : "Outside the public backbone snapshot, but still available in search and inspector views.";
+            ? "Focused topic view."
+            : "Visible in the full literature map."
+          : "Outside the public map snapshot, but still available in search and summary views.";
         hoverCard.innerHTML = `
           <strong>${escapeHtml(conceptTitle(concept))}</strong><br />
           ${conceptSubtitle(concept) ? `${escapeHtml(conceptSubtitle(concept))}<br />` : ""}
-          ${formatNumber(safeNumber(concept.distinct_paper_support))} papers · ${formatNumber(safeNumber(concept.instance_support))} node instances · ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts · ${escapeHtml(visibilityCopy)}
+          ${formatNumber(safeNumber(concept.distinct_paper_support))} papers - ${formatNumber(safeNumber(concept.instance_support))} node instances - ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts - ${escapeHtml(visibilityCopy)}
         `;
         return;
       }
     }
-    hoverCard.textContent = "Search or click a concept. The graph opens in one focused neighborhood, with the full map available when you want it.";
+    hoverCard.textContent = "Search or click a topic. The literature map opens in one focused view, with the full map available when you want it.";
   };
 
   const renderCentralList = () => {
@@ -452,32 +452,32 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const nearbyOpportunities = currentOpportunities.slice(0, 3);
     selectionListView.innerHTML = `
       <div class="neighbor-group">
-        <h4>Focus summary</h4>
+        <h4>Topic summary</h4>
         <p class="card-copy">
           ${escapeHtml(conceptTitle(concept))} has ${formatNumber(safeNumber(concept.in_degree))} incoming observed links,
           ${formatNumber(safeNumber(concept.out_degree))} outgoing observed links,
-          and ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts in the current public graph.
+          and ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts in the current public map.
         </p>
       </div>
       <div class="neighbor-group">
-        <h4>Jump to a nearby concept</h4>
+        <h4>Jump to a related topic</h4>
         <div class="selection-button-stack">
           ${topNeighbors.length
             ? topNeighbors
                 .map(
                   (item) => `
                     <button class="list-link list-link-tight" type="button" data-neighbor-id="${escapeHtml(item.concept_id)}">
-                      <span>${escapeHtml(item.label)}</span>
+                      <span>${escapeHtml(conceptTitle(conceptMap.get(item.concept_id)) || item.label)}</span>
                       <span>${formatNumber(safeNumber(item.support_count))} supports</span>
                     </button>
                   `,
                 )
                 .join("")
-            : `<p class="mini-copy">No nearby concept summary is available in the current public sample.</p>`}
+            : `<p class="mini-copy">No nearby topic summary is available in the current public sample.</p>`}
         </div>
       </div>
       <div class="neighbor-group">
-        <h4>Nearby opportunities</h4>
+        <h4>Nearby research questions</h4>
         <div class="selection-opportunity-stack">
           ${nearbyOpportunities.length
             ? nearbyOpportunities
@@ -486,12 +486,12 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
                     <article class="mini-opportunity">
                       <strong>${escapeHtml(item.public_pair_label)}</strong>
                       ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
-                      <div class="mini-copy">${escapeHtml(item.direct_link_status)} · supported by ${formatNumber(safeNumber(item.supporting_path_count))} nearby concepts</div>
+                      <div class="mini-copy">${escapeHtml(item.direct_link_status)} - linked by ${formatNumber(safeNumber(item.supporting_path_count))} related ideas</div>
                     </article>
                   `,
                 )
                 .join("")
-            : `<p class="mini-copy">No top-slice opportunity touching this concept is available in the current public sample.</p>`}
+            : `<p class="mini-copy">No public research question touching this topic is available in the current sample.</p>`}
         </div>
       </div>
     `;
@@ -532,7 +532,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       nodeMarkup.push(
         `<g class="graph-node-group${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeHtml(node.id)}">
           <circle class="graph-node bucket-${escapeHtml(node.bucket_group || "mixed")}" cx="${node.x * GRAPH_WIDTH}" cy="${node.y * GRAPH_HEIGHT}" r="${radius}"></circle>
-          ${showLabel ? `<text class="graph-label${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}" x="${node.x * GRAPH_WIDTH}" y="${labelY}">${escapeHtml(node.label)}</text>` : ""}
+          ${showLabel ? `<text class="graph-label${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}" x="${node.x * GRAPH_WIDTH}" y="${labelY}">${escapeHtml(node.plain_label || node.label)}</text>` : ""}
         </g>`,
       );
     }
@@ -552,7 +552,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         hoverCard.innerHTML = `
           <strong>${escapeHtml(node.plain_label || node.label)}</strong><br />
           ${node.subtitle ? `${escapeHtml(node.subtitle)}<br />` : ""}
-          ${formatNumber(safeNumber(node.distinct_paper_support))} papers · ${formatNumber(safeNumber(node.instance_support))} node instances · ${formatNumber(safeNumber(node.neighbor_count))} nearby concepts · ${escapeHtml(listText(node.top_countries, "No dominant study setting in the current public sample"))}
+          ${formatNumber(safeNumber(node.distinct_paper_support))} papers - ${formatNumber(safeNumber(node.instance_support))} node instances - ${formatNumber(safeNumber(node.neighbor_count))} nearby concepts - ${escapeHtml(listText(node.top_countries, "No dominant study setting in the current public sample"))}
         `;
       });
       nodeElement.addEventListener("mouseleave", restoreStatus);
@@ -575,8 +575,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       edgeElement.addEventListener("mouseenter", () => {
         const edge = graph.edgeMap.get(edgeElement.dataset.edgeId);
         hoverCard.innerHTML = `
-          <strong>${escapeHtml(graph.nodeMap.get(edge.source).label)} → ${escapeHtml(graph.nodeMap.get(edge.target).label)}</strong><br />
-          ${formatNumber(safeNumber(edge.support_count))} supporting papers · ${escapeHtml(listText(edge.dominant_countries, "No dominant study setting in the current public sample"))}
+          <strong>${escapeHtml(graph.nodeMap.get(edge.source).label)} to ${escapeHtml(graph.nodeMap.get(edge.target).label)}</strong><br />
+          ${formatNumber(safeNumber(edge.support_count))} supporting papers - ${escapeHtml(listText(edge.dominant_countries, "No dominant study setting in the current public sample"))}
         `;
       });
       edgeElement.addEventListener("mouseleave", restoreStatus);
@@ -587,28 +587,27 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
 
   const renderSelectedConcept = (concept) => {
     const visibilityCopy = isInBackbone(concept.concept_id)
-      ? "Visible in the current backbone view."
-      : "Not drawn in the current backbone snapshot, but still available in search and local detail.";
+      ? "Visible in the current map view."
+      : "Not drawn in the current snapshot, but still available in search and local detail.";
     selectedConcept.innerHTML = `
-      <span class="eyebrow">Focus</span>
+      <span class="eyebrow">Selected topic</span>
       <div class="selected-title-row">
         <h4>${escapeHtml(conceptTitle(concept))}</h4>
-        <span class="field-pill">${escapeHtml(concept.bucket_hint)}</span>
       </div>
       ${conceptSubtitle(concept) ? `<p class="mini-copy opportunity-label-note">${escapeHtml(conceptSubtitle(concept))}</p>` : ""}
       <p class="card-copy">
-        ${formatNumber(safeNumber(concept.instance_support))} node instances · ${formatNumber(safeNumber(concept.distinct_paper_support))} papers · ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts
+        ${formatNumber(safeNumber(concept.instance_support))} node instances - ${formatNumber(safeNumber(concept.distinct_paper_support))} papers - ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts
       </p>
       <div class="pill-row inspector-pills">
         <span class="field-pill">${formatNumber(safeNumber(concept.in_degree))} incoming observed links</span>
         <span class="field-pill">${formatNumber(safeNumber(concept.out_degree))} outgoing observed links</span>
       </div>
-      <p class="mini-copy">Study settings: ${escapeHtml(listText((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
+      <p class="mini-copy">Typical settings: ${escapeHtml(listText((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
       <p class="mini-copy">Common units: ${escapeHtml(listText((concept.top_units || []).slice(0, 3), "No dominant unit in the current public sample"))}</p>
       <p class="mini-copy">Aliases: ${escapeHtml(listText((concept.aliases || []).slice(0, 6), "No alternate labels in the current public sample"))}</p>
       <p class="mini-copy">${escapeHtml(visibilityCopy)}</p>
       <div class="button-row">
-        <a class="button-secondary" href="${escapeHtml(concept.app_link)}">Open in app</a>
+        <a class="button-secondary" href="${escapeHtml(concept.app_link)}">Open in workbench</a>
       </div>
     `;
   };
@@ -617,7 +616,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     currentNeighborhood = null;
     const shardPath = neighborhoodIndex[conceptId];
     if (!shardPath) {
-      selectedNeighborhood.innerHTML = `<p class="card-copy">No precomputed neighborhood is available for this concept in the current public sample.</p>`;
+      selectedNeighborhood.innerHTML = `<p class="card-copy">No precomputed surrounding-literature summary is available for this topic in the current public sample.</p>`;
       renderListView();
       return;
     }
@@ -625,7 +624,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const neighborhood = shard[conceptId];
     currentNeighborhood = neighborhood || null;
     if (!neighborhood) {
-      selectedNeighborhood.innerHTML = `<p class="card-copy">No neighborhood entry was found for this concept in the current public sample.</p>`;
+      selectedNeighborhood.innerHTML = `<p class="card-copy">No surrounding-literature entry was found for this topic in the current public sample.</p>`;
       renderListView();
       return;
     }
@@ -634,14 +633,18 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       items
         .slice(0, 6)
         .map(
-          (item) => `
+          (item) => {
+            const concept = conceptMap.get(item.concept_id);
+            const label = concept ? conceptTitle(concept) : item.label;
+            return `
             <li>
               <button class="list-link list-link-tight" type="button" data-neighbor-id="${escapeHtml(item.concept_id)}">
-                <span>${escapeHtml(item.label)}</span>
+                <span>${escapeHtml(label)}</span>
                 <span>${formatNumber(safeNumber(item.support_count))} supports</span>
               </button>
             </li>
-          `,
+          `;
+          },
         )
         .join("");
 
@@ -655,7 +658,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         <ul class="neighbor-list">${renderItems(neighborhood.outgoing || [])}</ul>
       </div>
       <div class="neighbor-group">
-        <h4>Top neighbors</h4>
+        <h4>Related ideas</h4>
         <ul class="neighbor-list">${renderItems(neighborhood.top_neighbors || [])}</ul>
       </div>
     `;
@@ -669,7 +672,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     currentOpportunities = [];
     const shardPath = opportunitiesIndex[conceptId];
     if (!shardPath) {
-      selectedOpportunities.innerHTML = `<p class="card-copy">No top-slice opportunity touching this concept is available in the current public sample.</p>`;
+      selectedOpportunities.innerHTML = `<p class="card-copy">No public research question touching this topic is available in the current public sample.</p>`;
       renderListView();
       return;
     }
@@ -677,7 +680,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const opportunities = shard[conceptId] || [];
     currentOpportunities = opportunities;
     if (!opportunities.length) {
-      selectedOpportunities.innerHTML = `<p class="card-copy">No top-slice opportunity touching this concept is available in the current public sample.</p>`;
+      selectedOpportunities.innerHTML = `<p class="card-copy">No public research question touching this topic is available in the current public sample.</p>`;
       renderListView();
       return;
     }
@@ -688,9 +691,9 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
           <article class="mini-opportunity">
             <strong>${escapeHtml(item.public_pair_label)}</strong>
             ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
-            <div class="mini-copy">${escapeHtml(item.direct_link_status)} · supported by ${formatNumber(safeNumber(item.supporting_path_count))} nearby concepts</div>
-            <div class="mini-copy">Context: ${escapeHtml(item.source_context_summary)} on one side and ${escapeHtml(item.target_context_summary)} on the other.</div>
-            <a class="text-link" href="${escapeHtml(item.app_link)}">Open in app</a>
+            <div class="mini-copy">${escapeHtml(item.direct_link_status)} - linked by ${formatNumber(safeNumber(item.supporting_path_count))} related ideas</div>
+            <div class="mini-copy">Surrounding literature: ${escapeHtml(item.source_context_summary)} on one side and ${escapeHtml(item.target_context_summary)} on the other.</div>
+            <a class="text-link" href="${escapeHtml(item.app_link)}">Open in workbench</a>
           </article>
         `,
       )
@@ -868,7 +871,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   });
 
   bootstrap().catch((error) => {
-    hoverCard.textContent = "Graph data failed to load.";
+    hoverCard.textContent = "Literature map data failed to load.";
     console.error(error);
   });
 </script>

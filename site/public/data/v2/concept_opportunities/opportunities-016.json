@@ -10704,7 +10704,7 @@
       "why_now": "energy efficiency improvements and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
-      "public_pair_label": "energy efficiency improvements and load capacity factor",
+      "public_pair_label": "ecological carrying capacity and energy efficiency improvements",
       "top_mediator_labels": [
         "foreign direct investments",
         "energy intensity",
@@ -53225,7 +53225,7 @@
       "top_mediator_labels": [
         "carbon emissions (CO2 emissions)",
         "GDP growth",
-        "load capacity factor"
+        "ecological carrying capacity"
       ],
       "representative_papers": [
         {
@@ -53419,7 +53419,7 @@
       "top_mediator_labels": [
         "carbon emissions (CO2 emissions)",
         "private investment",
-        "load capacity factor"
+        "ecological carrying capacity"
       ],
       "representative_papers": [
         {

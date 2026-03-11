@@ -30,190 +30,136 @@ async function main() {
 
   await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
-  await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError", "are close in the surrounding graph"]);
-  assert(await page.getByRole("heading", { name: "Where do we go next?" }).isVisible(), "Homepage hero did not update");
+  await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
+  assert(await page.getByRole("heading", { name: "Find research questions worth pursuing." }).isVisible(), "Homepage hero did not update");
   assert(await page.locator("[data-theme-toggle]").isVisible(), "Theme toggle missing on home");
+  const nav = page.getByRole("navigation");
+  assert(await nav.getByRole("link", { name: /^Home$/ }).isVisible(), "Home nav missing");
+  assert(await nav.getByRole("link", { name: /^Research Questions$/ }).isVisible(), "Research Questions nav missing");
+  assert((await nav.getByRole("link", { name: /^Graph$/ }).count()) === 0, "Graph should not be a top-level nav item");
+  assert((await nav.getByRole("link", { name: /^FAQ$/ }).count()) === 0, "FAQ should not be a top-level nav item");
+  assert((await nav.getByRole("link", { name: /^Advanced$/ }).count()) === 0, "Advanced should not be a top-level nav item");
+  const heroText = await page.locator("main .hero").first().innerText();
+  for (const token of ["graph", "neighborhood", "ontology", "Baseline exploratory", "path support", "motif"]) {
+    assert(!heroText.includes(token), `Homepage hero should not include ${token}`);
+  }
   assert(
-    await page.getByRole("navigation").getByRole("link", { name: /^Advanced$/ }).isVisible(),
-    "Advanced nav missing on home",
+    (await page.locator('[data-role="home-curated-questions"] [data-role="curated-opportunity-card"]').count()) === 3,
+    "Homepage should show exactly 3 curated question cards",
   );
-  assert(await page.getByRole("navigation").getByRole("link", { name: /^FAQ$/ }).isVisible(), "FAQ nav missing on home");
-  assert(
-    (await page.getByRole("navigation").getByRole("link", { name: /^Method$/ }).count()) === 0,
-    "Method should no longer be a top-level nav item",
-  );
-  assert(
-    (await page.locator('[data-role="home-curated-opportunities"] [data-role="curated-opportunity-card"]').count()) === 4,
-    "Homepage should show exactly 4 curated opportunity cards",
-  );
-  assert(await page.getByText(/Next study:/i).first().isVisible(), "Curated cards should expose Next study");
-  await page.getByPlaceholder("Search labels or aliases").fill("income / economic growth");
-  await page.getByRole("button", { name: /income \/ economic growth/i }).first().click();
-  await page.getByRole("link", { name: /see nearby opportunities/i }).waitFor();
 
-  await page.goto(`${baseUrl}/faq/`, { waitUntil: "networkidle" });
+  await page.goto(`${baseUrl}/questions/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
-  assert(await page.getByRole("heading", { name: /Questions people actually ask/i }).isVisible(), "FAQ page did not render");
-  assert(await page.getByText(/Causal Claims in Economics/i).first().isVisible(), "FAQ foundation citation missing");
-  assert(await page.getByRole("link", { name: /causal\.claims/i }).first().isVisible(), "FAQ site citation missing");
-  const faqText = await page.locator("main").innerText();
-  assert(/Baseline exploratory/i.test(faqText), "FAQ should mention Baseline exploratory");
-  assert(/duplicate suppression/i.test(faqText), "FAQ should mention duplicate suppression");
-  assert(/not a causal claim|not a causal estimate/i.test(faqText), "FAQ should state what the product is not");
-  assert(/public product is a separate surface/i.test(faqText), "FAQ should distinguish product from foundational paper");
-  assert(await page.getByRole("link", { name: /Open technical method/i }).isVisible(), "FAQ should link to Method");
-
-  await page.goto(`${baseUrl}/validation/`, { waitUntil: "networkidle" });
-  await page.waitForSelector("h1");
-  await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
-  assert(await page.getByRole("heading", { name: /What has been checked, what has not, and what can still fail/i }).isVisible(), "Validation page did not render");
-  assert(await page.getByText(/Causal Claims in Economics/i).first().isVisible(), "Validation page citation missing");
-  const validationText = await page.locator("main").innerText();
-  assert(/model-extracted/i.test(validationText), "Validation page should explain model-extracted content");
-  assert(/deterministic/i.test(validationText), "Validation page should explain deterministic content");
-  assert(/not benchmarked yet/i.test(validationText), "Validation page should explain what is not benchmarked yet");
-
-  await page.goto(`${baseUrl}/opportunities/?q=${encodeURIComponent("income / economic growth")}`, {
-    waitUntil: "networkidle",
-  });
-  await page.waitForSelector(".lookup-shell");
-  await textDoesNotContain(page, [
-    "NaN",
-    "undefined",
-    "sqlite3.OperationalError",
-    "are close in the surrounding graph",
-    "Start with a bridge review or cross-field pilot.",
-  ]);
+  assert(await page.getByRole("heading", { name: /Browse candidate research questions/i }).isVisible(), "Research Questions hero missing");
   assert(
-    (await page.locator('[data-role="opportunities-curated-front-set"] [data-role="curated-opportunity-card"]').count()) === 8,
-    "Opportunities page should show exactly 8 curated opportunity cards",
+    (await page.locator('[data-role="questions-curated-front-set"] [data-role="curated-opportunity-card"]').count()) === 6,
+    "Research Questions page should show exactly 6 curated cards",
   );
-  assert(await page.getByText(/broad measure of ecological carrying capacity/i).first().isVisible(), "Glossary subtitle did not render");
-  const rankedSection = page.locator('[data-role="overall-ranked-opportunities"]');
-  assert(!((await rankedSection.innerText()).includes("→")), "Ranked opportunities should not use arrow syntax");
-  await page.getByRole("button", { name: /ready for follow-up/i }).click();
-  await page.waitForTimeout(250);
-  assert(await page.getByText(/No visible pairs match the current filter combination/i).isVisible(), "Filter empty state did not render");
-  await page.getByRole("button", { name: /ready for follow-up/i }).click();
-  await page.waitForTimeout(250);
-  const firstEvidence = page.locator('[data-role="overall-ranked-opportunities"] [data-role="opportunity-evidence"]').first();
+  const curatedText = await page.locator('[data-role="questions-curated-front-set"]').innerText();
+  assert(!/innovation and environmental quality/i.test(curatedText), "Removed curated question still visible in curated front set");
+  const rankedSection = page.locator('[data-role="overall-ranked-questions"]');
+  assert(await rankedSection.getByRole("button", { name: /No direct papers yet/i }).isVisible(), "Questions filters missing");
+  assert(await rankedSection.getByRole("button", { name: /More grounded/i }).isVisible(), "More grounded filter missing");
+  assert(await rankedSection.getByPlaceholder("Search by topic or concept").isVisible(), "Questions search missing");
+  const rankedText = await rankedSection.innerText();
+  assert(!rankedText.includes("→"), "Ranked questions should not use arrow syntax");
+  assert(!/gap bonus|path support|motif/i.test(rankedText), "Ranked questions should not expose raw graph jargon");
+  const firstEvidence = rankedSection.locator('[data-role="opportunity-evidence"]').first();
   await firstEvidence.locator("summary").click();
-  await page.waitForTimeout(200);
-  assert(/Nearby linking ideas:/i.test(await firstEvidence.innerText()), "Evidence drawer did not open with mediator labels");
-  assert(/Representative papers:/i.test(await firstEvidence.innerText()), "Evidence drawer did not render representative papers");
+  await page.waitForTimeout(150);
+  const evidenceText = await firstEvidence.innerText();
+  assert(/Why this question/i.test(evidenceText), "Evidence drawer title missing");
+  assert(/Related ideas:/i.test(evidenceText), "Evidence drawer missing related ideas");
+  assert(/Representative papers:/i.test(evidenceText), "Evidence drawer missing representative papers");
+  assert(/Direct papers:/i.test(evidenceText), "Evidence drawer missing direct papers");
+  assert(await page.getByText(/measured here with load capacity factor/i).first().isVisible(), "Glossary subtitle did not render");
 
-  const lookupText = await page.locator('[data-role="concept-panel"]').innerText();
-  assert(!/\bNA\b/.test(lookupText), "Concept lookup still renders NA");
-  assert(/incoming|papers|nearby concepts/i.test(lookupText), "Concept lookup did not render readable metadata");
-  const lookupOpportunityText = await page.locator('[data-role="opportunities-panel"]').innerText();
-  assert(!lookupOpportunityText.includes("→"), "Concept lookup opportunities should not use arrow syntax");
+  await rankedSection.getByRole("button", { name: /More exploratory/i }).click();
+  await page.waitForTimeout(150);
+  await rankedSection.getByPlaceholder("Search by topic or concept").fill("nonexistent topic");
+  await page.waitForTimeout(150);
+  assert(await page.getByText(/No visible research questions match/i).isVisible(), "Questions empty state missing");
+  await rankedSection.getByPlaceholder("Search by topic or concept").fill("");
+  await rankedSection.getByRole("button", { name: /More exploratory/i }).click();
+  await page.waitForTimeout(150);
+
+  await page.goto(`${baseUrl}/opportunities/`, { waitUntil: "domcontentloaded" });
+  await page.waitForURL(/\/questions\/$/);
+
+  await page.goto(`${baseUrl}/how-it-works/`, { waitUntil: "networkidle" });
+  await page.waitForSelector("h1");
+  await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
+  assert(await page.getByRole("heading", { name: /What FrontierGraph is, what it is not/i }).isVisible(), "How It Works page missing");
+  assert(await page.getByText(/Causal Claims in Economics/i).first().isVisible(), "Paper citation missing");
+  assert(await page.getByRole("link", { name: /causal\.claims/i }).first().isVisible(), "causal.claims link missing");
+  const howText = await page.locator("main").innerText();
+  assert(/Not a causal estimate/i.test(howText), "How It Works should include what this is not");
+  assert(/Baseline exploratory/i.test(howText), "How It Works should mention Baseline exploratory");
+  assert(/duplicate suppression/i.test(howText), "How It Works should mention duplicate suppression");
+  assert(/separate product layer/i.test(howText), "How It Works should distinguish the current product from the foundational method");
+
+  await page.goto(`${baseUrl}/faq/`, { waitUntil: "domcontentloaded" });
+  await page.waitForURL(/\/how-it-works\/$/);
+  await page.goto(`${baseUrl}/validation/`, { waitUntil: "domcontentloaded" });
+  await page.waitForURL(/\/how-it-works\/$/);
 
   await page.goto(`${baseUrl}/graph/`, { waitUntil: "networkidle" });
   await page.waitForSelector('[data-role="graph-canvas"]');
-  await page.getByRole("button", { name: /show full map/i }).waitFor();
-  await page.waitForTimeout(500);
+  await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
+  assert(await page.getByRole("heading", { name: /Use the literature map when you want to read one topic in more detail/i }).isVisible(), "Literature Map page hero missing");
+  const graphHeroText = await page.locator("main").innerText();
+  assert(/Most visitors should start with Research Questions/i.test(graphHeroText), "Literature Map page should point users back to Research Questions");
+  assert(await page.getByRole("heading", { name: /Selected topic/i }).isVisible(), "Selected topic panel missing");
+
   const focusedNodeCount = await page.locator("[data-node-id]").count();
-  assert(focusedNodeCount > 0, "Focused graph mode rendered no nodes");
-  await page.getByRole("button", { name: /show full map/i }).click();
-  await page.waitForTimeout(400);
+  assert(focusedNodeCount > 0, "Focused literature map rendered no nodes");
+  await page.getByRole("button", { name: /Show full map/i }).click();
+  await page.waitForTimeout(300);
   const globalNodeCount = await page.locator("[data-node-id]").count();
   assert(globalNodeCount > focusedNodeCount, "Full map should render more nodes than focused mode");
-  await page.getByRole("button", { name: /return to focused view/i }).click();
-  await page.waitForTimeout(400);
-  const focusedNodeCountAgain = await page.locator("[data-node-id]").count();
-  assert(focusedNodeCountAgain === focusedNodeCount, "Returning to focused view should restore the smaller node set");
+  await page.getByRole("button", { name: /Return to focused view/i }).click();
+  await page.waitForTimeout(300);
 
-  const graphSearch = page.locator('[data-role="search-input"]');
-  await graphSearch.fill("income / economic growth");
+  await page.getByPlaceholder("Search labels or aliases").fill("income / economic growth");
   await page.getByRole("button", { name: /income \/ economic growth/i }).first().click();
-  await page.waitForTimeout(400);
-
+  await page.waitForTimeout(300);
   const inspectorText = await page.locator('[data-role="selected-concept"]').innerText();
-  assert(!/\bNA\b/.test(inspectorText), "Graph inspector still renders NA");
-  assert(!/NaN/.test(inspectorText), "Graph inspector still renders NaN");
-  assert(/incoming observed links/i.test(inspectorText), "Graph inspector missing readable link counts");
-  assert(
-    /Focus summary/i.test(await page.locator('[data-role="selection-list-view"]').innerText()),
-    "Graph text view did not render the keyboard-readable focus summary",
-  );
-  const graphOpportunitiesText = await page.locator('[data-role="selected-opportunities"]').innerText();
-  assert(!graphOpportunitiesText.includes("→"), "Graph nearby opportunities should not use arrow syntax");
-
-  const viewport = page.locator('[data-role="graph-viewport"]');
-  const initialTransform = await viewport.getAttribute("transform");
-  const canvas = page.locator('[data-role="graph-canvas"]');
-  const canvasBox = await canvas.boundingBox();
-  assert(canvasBox, "Graph canvas has no bounding box");
-
-  await page.getByRole("button", { name: /zoom out/i }).click();
-  await page.waitForTimeout(250);
-  const zoomTransform = await viewport.getAttribute("transform");
-  assert(zoomTransform && zoomTransform !== initialTransform, "Zoom button did not change graph viewport");
-
-  await page.mouse.move(canvasBox.x + 20, canvasBox.y + 20);
-  await page.mouse.down();
-  await page.mouse.move(canvasBox.x + 160, canvasBox.y + 120, { steps: 8 });
-  await page.mouse.up();
-  await page.waitForTimeout(250);
-  const panTransform = await viewport.getAttribute("transform");
-  assert(panTransform && panTransform !== zoomTransform, "Pan did not change graph viewport");
-
-  const firstNode = page.locator("[data-node-id]").first();
-  const firstCircle = page.locator("[data-node-id] circle").first();
-  const nodeId = await firstNode.getAttribute("data-node-id");
-  assert(nodeId, "No graph nodes rendered");
-  const beforeCx = await firstCircle.getAttribute("cx");
-  const beforeCy = await firstCircle.getAttribute("cy");
-  const nodeBox = await firstCircle.boundingBox();
-  assert(nodeBox, "Node circle has no bounding box");
-
-  await page.getByRole("button", { name: /adjust layout/i }).click();
-  await firstCircle.dispatchEvent("mousedown", {
-    button: 0,
-    bubbles: true,
-    clientX: nodeBox.x + nodeBox.width / 2,
-    clientY: nodeBox.y + nodeBox.height / 2,
-  });
-  await page.mouse.move(nodeBox.x + nodeBox.width / 2 + 60, nodeBox.y + nodeBox.height / 2 + 40, { steps: 8 });
-  await page.mouse.up();
-  await page.waitForTimeout(300);
-  const circle = page.locator(`[data-node-id="${nodeId}"] circle`);
-  const afterCx = await circle.getAttribute("cx");
-  const afterCy = await circle.getAttribute("cy");
-  assert(beforeCx !== afterCx || beforeCy !== afterCy, "Layout drag did not move a node");
-
-  await page.getByRole("button", { name: /reset layout/i }).click();
-  await page.waitForTimeout(300);
-  const resetCx = await circle.getAttribute("cx");
-  const resetCy = await circle.getAttribute("cy");
-  assert(resetCx === beforeCx && resetCy === beforeCy, "Reset layout did not restore node position");
+  assert(!/\bNA\b/.test(inspectorText), "Selected topic panel still renders NA");
+  assert(!/NaN/.test(inspectorText), "Selected topic panel still renders NaN");
+  assert(/Typical settings:/i.test(inspectorText), "Selected topic panel missing readable settings");
+  const summaryText = await page.locator('[data-role="selection-list-view"]').innerText();
+  assert(/Topic summary/i.test(summaryText), "Text summary panel missing");
+  const nearbyQuestionsText = await page.locator('[data-role="selected-opportunities"]').innerText();
+  assert(!nearbyQuestionsText.includes("→"), "Nearby research questions should not use arrow syntax");
 
   await page.goto(`${baseUrl}/advanced/`, { waitUntil: "networkidle" });
-  assert(await page.getByRole("heading", { name: /keep the main path simple/i }).isVisible(), "Advanced page did not render");
+  assert(await page.getByRole("heading", { name: /Keep the main path simple/i }).isVisible(), "Advanced page missing");
 
   await page.goto(`${baseUrl}/method/`, { waitUntil: "networkidle" });
-  assert(await page.getByRole("link", { name: /Read the FAQ/i }).isVisible(), "Method page should link back to FAQ");
+  assert(await page.getByRole("link", { name: /How It Works/i }).first().isVisible(), "Method should link back to How It Works");
 
   await page.goto(`${baseUrl}/compare/`, { waitUntil: "networkidle" });
-  assert(await page.getByRole("heading", { name: /compare ontology views only when your question needs a sensitivity check/i }).isVisible(), "Compare page did not render");
+  assert(await page.getByRole("link", { name: /See Research Questions/i }).isVisible(), "Compare page should link back to Research Questions");
 
   await page.goto(`${baseUrl}/downloads/`, { waitUntil: "networkidle" });
-  assert(await page.getByRole("heading", { name: /code, data, graph assets, and comparison summaries/i }).isVisible(), "Downloads page did not render");
+  assert(await page.getByRole("link", { name: /How It Works/i }).first().isVisible(), "Downloads page should link to How It Works");
 
   if (appUrl) {
     await page.goto(appUrl, { waitUntil: "networkidle" });
     await page.waitForSelector("h1");
-    await page.getByText(/Selected opportunity/i).waitFor({ timeout: 60000 });
+    await page.getByText(/Selected research question/i).waitFor({ timeout: 60000 });
     await page.waitForTimeout(1200);
     await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
     const appText = await page.locator("body").innerText();
-    assert(/Start with the ranked opportunities/i.test(appText), "App hero did not update");
-    assert(/FAQ/i.test(appText) && /Validation/i.test(appText), "App should link to FAQ and Validation");
-    assert(/Selected opportunity/i.test(appText), "App should render selected opportunity detail");
+    assert(/FrontierGraph Workbench/i.test(appText), "App should be framed as FrontierGraph Workbench");
+    assert(/Evaluate candidate research questions more seriously/i.test(appText), "App hero did not update");
+    assert(/Research Questions/i.test(appText) && /How It Works/i.test(appText), "App should link to Research Questions and How It Works");
+    assert(/Selected research question/i.test(appText), "App should render selected research question detail");
     assert(/Direct literature:/i.test(appText), "App should show direct literature status");
     assert(/Representative papers/i.test(appText), "App should show representative papers");
     assert(/What to verify next/i.test(appText), "App should show the verification checklist");
+    assert(/Shortlist settings/i.test(appText), "App should hide shortlist controls behind a closed settings section");
     const advancedToolsExpander = page.locator("[data-testid='stExpander']").filter({ hasText: /Advanced tools/i });
     assert((await advancedToolsExpander.count()) > 0, "App should expose Advanced tools");
     await advancedToolsExpander.first().click();
@@ -221,7 +167,8 @@ async function main() {
     const advancedText = await page.locator("body").innerText();
     assert(/Concept lookup/i.test(advancedText), "Advanced tools should expose concept lookup");
     assert(/Method/i.test(advancedText), "Advanced tools should expose method notes");
-    assert(/Technical details/i.test(appText) || /Technical details/i.test(advancedText), "App should keep technical details behind an expander");
+    assert(/Literature map/i.test(advancedText), "Advanced tools should expose the literature map");
+    assert(/Technical details/i.test(advancedText) || /Technical details/i.test(appText), "Technical details expander missing");
   }
 
   assert(errors.length === 0, `Browser errors found:\n${errors.join("\n")}`);

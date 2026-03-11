@@ -1309,7 +1309,7 @@
       "why_now": "government investment and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Start with a bridge review or cross-field pilot.",
       "slice_label": "Missing direct link",
-      "public_pair_label": "government investment and load capacity factor",
+      "public_pair_label": "government investment and ecological carrying capacity",
       "top_mediator_labels": [
         "urbanization",
         "gross domestic product (GDP)",
@@ -27321,7 +27321,7 @@
       "why_now": "industrial value added and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
-      "public_pair_label": "industrial value added and load capacity factor",
+      "public_pair_label": "ecological carrying capacity and industrial value added",
       "top_mediator_labels": [
         "renewable energy",
         "green investment",
@@ -32770,7 +32770,7 @@
       "why_now": "economic complexity index and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
-      "public_pair_label": "economic complexity index and load capacity factor",
+      "public_pair_label": "ecological carrying capacity and economic complexity index",
       "top_mediator_labels": [
         "natural resource rents",
         "human capital",
@@ -33834,7 +33834,7 @@
       "top_mediator_labels": [
         "energy prices",
         "prices",
-        "load capacity factor"
+        "ecological carrying capacity"
       ],
       "representative_papers": [
         {
@@ -33960,7 +33960,7 @@
       "slice_label": "Missing direct link",
       "public_pair_label": "consumers and renewable energy consumption",
       "top_mediator_labels": [
-        "load capacity factor",
+        "ecological carrying capacity",
         "energy prices",
         "artificial intelligence (AI)"
       ],
@@ -34025,7 +34025,7 @@
       "slice_label": "Missing direct link",
       "public_pair_label": "consumers and Method of Moments Quantile Regression (MMQR)",
       "top_mediator_labels": [
-        "load capacity factor",
+        "ecological carrying capacity",
         "producers",
         "simulation"
       ],
@@ -35057,7 +35057,7 @@
       "why_now": "human capital development and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
-      "public_pair_label": "human capital development and load capacity factor",
+      "public_pair_label": "ecological carrying capacity and human capital development",
       "top_mediator_labels": [
         "natural resource rents",
         "energy transition",
@@ -51331,7 +51331,7 @@
       "why_now": "energy poverty and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
-      "public_pair_label": "energy poverty and load capacity factor",
+      "public_pair_label": "ecological carrying capacity and energy poverty",
       "top_mediator_labels": [
         "urbanization",
         "energy transition",
@@ -91546,7 +91546,7 @@
       "top_mediator_labels": [
         "export diversification",
         "agricultural trade",
-        "load capacity factor"
+        "ecological carrying capacity"
       ],
       "representative_papers": [
         {
@@ -93168,7 +93168,7 @@
       "why_now": "efficiency of resource allocation and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
-      "public_pair_label": "efficiency of resource allocation and load capacity factor",
+      "public_pair_label": "ecological carrying capacity and efficiency of resource allocation",
       "top_mediator_labels": [
         "technological innovation"
       ],
@@ -97402,7 +97402,7 @@
       "why_now": "fossil energy consumption and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
-      "public_pair_label": "fossil energy consumption and load capacity factor",
+      "public_pair_label": "ecological carrying capacity and fossil energy consumption",
       "top_mediator_labels": [
         "renewable energy consumption",
         "renewable energy",
@@ -102158,7 +102158,7 @@
       "why_now": "income level and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
-      "public_pair_label": "income level and load capacity factor",
+      "public_pair_label": "ecological carrying capacity and income level",
       "top_mediator_labels": [
         "renewable energy consumption",
         "financial development",

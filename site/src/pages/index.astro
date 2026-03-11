@@ -1,113 +1,78 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import QuickConceptSearch from "../components/QuickConceptSearch.astro";
 import CuratedOpportunityCards from "../components/CuratedOpportunityCards.astro";
 import { data } from "../lib/site-data";
 
-const actions = [
-  {
-    href: "/opportunities/",
-    title: "Browse ranked opportunities",
-    copy: "Start with the cleaned Baseline exploratory list and open one idea at a time.",
-  },
-  {
-    href: "/graph/",
-    title: "Read one neighborhood",
-    copy: "Open the observed graph, focus one concept, and inspect the local structure in plain language.",
-  },
-  {
-    href: "/faq/",
-    title: "Check the questions later",
-    copy: "Use the product first, then open the trust, interpretation, and limits page only if you need it.",
-  },
+const audience = [
+  "PhD students choosing topics",
+  "Researchers looking for the next paper",
+  "People moving into a nearby area",
 ];
 ---
 
 <BaseLayout
   title="FrontierGraph"
-  description="FrontierGraph surfaces a few plausible next research directions in economics."
+  description="FrontierGraph helps academics find research questions worth pursuing."
 >
   <main>
-    <section class="hero hero-home">
+    <section class="hero hero-home hero-home-simple">
       <div class="hero-panel hero-copy-panel">
-        <span class="eyebrow">FrontierGraph</span>
-        <h1>Where do we go next?</h1>
+        <span class="eyebrow">For academics</span>
+        <h1>Find research questions worth pursuing.</h1>
         <p class="lede">
-          FrontierGraph is built to surface a few plausible next research directions, not to make you decode a full graph on first contact.
-          The public default is <strong>{data.default_view.regime} {data.default_view.mapping}</strong>: start with opportunities, use the graph to read one neighborhood, and leave the heavier mechanics for later.
+          Academics do not just need to know what is popular. They need questions that still look open, but grounded
+          enough to be worth reading, scoping, or testing next.
         </p>
+        <p class="hero-note">The underlying question is simple: where do we go next?</p>
         <div class="hero-actions">
-          <a class="button-primary" href="/opportunities/">Browse opportunities</a>
-          <a class="button-secondary" href="/graph/">Read one neighborhood</a>
-          <a class="button-tertiary" href={data.app_url}>Open app</a>
+          <a class="button-primary" href="/questions/">Browse research questions</a>
+          <a class="button-secondary" href={data.app_url}>Open workbench</a>
         </div>
-        <p class="hero-note">
-          The cards below are hand-curated starting points from the current ranked surface. Broad and Conservative stay available, but only behind Advanced.
-        </p>
       </div>
+    </section>
 
-      <div class="hero-panel hero-visual-panel">
-        <QuickConceptSearch conceptIndexPath={data.graph.concept_index_path} appUrl={data.app_url} />
-      </div>
+    <section class="section">
+      <article class="content-panel summary-panel">
+        <span class="eyebrow">Why this exists</span>
+        <h2>It is hard to tell whether a question is genuinely underworked, already crowded, or only superficially interesting.</h2>
+        <p class="card-copy">
+          FrontierGraph tries to surface research questions that still look underexplored relative to the surrounding literature,
+          so a visitor can decide what is worth reading or testing next.
+        </p>
+      </article>
     </section>
 
     <section class="section">
       <div class="section-heading">
         <div>
-          <span class="eyebrow">How to use it</span>
-          <h2>Start with one question, not the whole machine</h2>
+          <span class="eyebrow">Who it is for</span>
+          <h2>Built for people choosing what to work on next.</h2>
         </div>
-        <p class="section-copy">Most people should start on Opportunities. Graph is for local reading. FAQ and Advanced are there when you want interpretation, limits, or deeper machinery.</p>
       </div>
       <div class="card-grid action-grid">
-        {actions.map((action) => (
-          <a class="card action-card" href={action.href}>
-            <span class="eyebrow">Public surface</span>
-            <h3>{action.title}</h3>
-            <p class="card-copy">{action.copy}</p>
-          </a>
+        {audience.map((label) => (
+          <article class="card action-card audience-card">
+            <h3>{label}</h3>
+          </article>
         ))}
       </div>
     </section>
 
     <CuratedOpportunityCards
-      items={data.home.curated_opportunities}
+      items={data.home.curated_questions}
       title="A few places to start"
-      caption="These four examples are manually selected from the current public ranking. They are meant to show the kind of next-step question FrontierGraph is useful for, without asking newcomers to read internal graph metrics."
-      sectionId="home-curated-opportunities"
+      caption="These three questions are hand-picked from the current public ranking. They are examples of the kind of question FrontierGraph is meant to help you notice quickly."
+      sectionId="home-curated-questions"
+      variant="home"
     />
 
     <section class="section">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">Use first</span>
-          <h2>Let the useful part prove itself before the technical part asks for attention.</h2>
-        </div>
-      </div>
-      <div class="trust-grid why-grid">
-        <article class="card">
-          <h3>Open one opportunity</h3>
-          <p class="card-copy">Start from a plausible next question and decide whether it looks worth reading or testing further.</p>
-        </article>
-        <article class="card">
-          <h3>Read one neighborhood</h3>
-          <p class="card-copy">Use the graph to orient yourself around a concept you already care about, then switch to the full map only if you need broader context.</p>
-        </article>
-        <article class="card">
-          <h3>Open the FAQ later</h3>
-          <p class="card-copy">Baseline exploratory is the default. FAQ explains trust, limits, and interpretation before you need the full method glossary.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
       <div class="cta-band">
-        <span class="eyebrow">Advanced surfaces</span>
-        <h2>Use Opportunities or Graph first. Open comparison, downloads, or the heavier app only when your question needs them.</h2>
+        <span class="eyebrow">Deeper evidence</span>
+        <h2>If you want the deeper evidence, open the workbench.</h2>
         <div class="button-row">
-          <a class="button-primary" href="/advanced/">Open advanced pages</a>
-          <a class="button-secondary" href={data.app_url}>Open app</a>
-          <a class="button-tertiary" href="/faq/">Read the FAQ</a>
+          <a class="button-primary" href={data.app_url}>Open workbench</a>
+          <a class="button-tertiary" href="/how-it-works/">How it works</a>
         </div>
       </div>
     </section>

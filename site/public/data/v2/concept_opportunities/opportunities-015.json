@@ -28827,7 +28827,7 @@
       "why_now": "natural resource endowment and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
-      "public_pair_label": "load capacity factor and natural resource endowment",
+      "public_pair_label": "ecological carrying capacity and natural resource endowment",
       "top_mediator_labels": [
         "foreign direct investments",
         "financial development",
@@ -34880,7 +34880,7 @@
       "why_now": "environmental innovations and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
-      "public_pair_label": "environmental innovations and load capacity factor",
+      "public_pair_label": "ecological carrying capacity and environmental innovations",
       "top_mediator_labels": [
         "renewable energy",
         "renewable energy usage",
@@ -81181,7 +81181,7 @@
       "why_now": "resource endowment and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
       "recommended_move": "Treat this as a missing direct test, not a settled result.",
       "slice_label": "Missing direct link",
-      "public_pair_label": "load capacity factor and resource endowment",
+      "public_pair_label": "ecological carrying capacity and resource endowment",
       "top_mediator_labels": [
         "financial development (FD)",
         "renewable energy",
@@ -81964,7 +81964,7 @@
       "public_pair_label": "bioenergy and economic growth",
       "top_mediator_labels": [
         "temperature",
-        "load capacity factor",
+        "ecological carrying capacity",
         "Renewable energies"
       ],
       "representative_papers": [

@@ -26,11 +26,11 @@ const visiblePapers = representativePapers.filter((paper) => paper.title).slice(
 ---
 
 <details class="opportunity-detail" data-role="opportunity-evidence">
-  <summary>Why this is surfaced</summary>
+  <summary>Why this question</summary>
   <div class="method-stack opportunity-evidence">
     {uniqueMediatorLabels.length > 0 && (
       <p class="mini-copy">
-        <strong>Nearby linking ideas:</strong> {uniqueMediatorLabels.join(", ")}
+        <strong>Related ideas:</strong> {uniqueMediatorLabels.join(", ")}
       </p>
     )}
     {visiblePapers.length > 0 && (
@@ -47,7 +47,7 @@ const visiblePapers = representativePapers.filter((paper) => paper.title).slice(
       </div>
     )}
     <p class="mini-copy">
-      <strong>Direct literature:</strong> {directLinkStatus}
+      <strong>Direct papers:</strong> {directLinkStatus}
     </p>
     <p class="mini-copy">
       <strong>Typical settings:</strong> {sourceLabel} studies are common in {sourceContextSummary}; {targetLabel} studies are common in {targetContextSummary}.

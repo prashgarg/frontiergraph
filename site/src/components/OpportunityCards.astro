@@ -31,8 +31,8 @@ const rootId = `opportunity-cards-${Math.random().toString(36).slice(2, 10)}`;
 const filters = [
   { id: "no-direct", label: "No direct papers yet" },
   { id: "cross-field", label: "Cross-field" },
-  { id: "strong-support", label: "Strong surrounding evidence" },
-  { id: "ready-followup", label: "Ready for follow-up" },
+  { id: "more-grounded", label: "More grounded" },
+  { id: "more-exploratory", label: "More exploratory" },
 ];
 
 const buildGlossNotes = (item: Opportunity) => {
@@ -54,25 +54,31 @@ const buildGlossNotes = (item: Opportunity) => {
   {title && (
     <div class:list={["section-heading", !standalone && "section-heading-compact"]}>
       <div>
-        <span class="eyebrow">Ranked opportunities</span>
+        <span class="eyebrow">Ranked questions</span>
         <h2>{title}</h2>
       </div>
       {caption && <p class="section-copy">{caption}</p>}
     </div>
   )}
   {enableFilters && (
-    <div class="opportunity-filter-bar" data-role="opportunity-filter-bar">
-      {filters.map((filter) => (
-        <button
-          class="button-tertiary opportunity-filter-chip"
-          type="button"
-          data-role="opportunity-filter-chip"
-          data-filter-id={filter.id}
-          aria-pressed="false"
-        >
-          {filter.label}
-        </button>
-      ))}
+    <div class="opportunity-filter-shell" data-role="opportunity-filter-shell">
+      <label class="search-shell opportunity-search-shell">
+        <span>Search research questions</span>
+        <input type="search" placeholder="Search by topic or concept" data-role="opportunity-search-input" />
+      </label>
+      <div class="opportunity-filter-bar" data-role="opportunity-filter-bar">
+        {filters.map((filter) => (
+          <button
+            class="button-tertiary opportunity-filter-chip"
+            type="button"
+            data-role="opportunity-filter-chip"
+            data-filter-id={filter.id}
+            aria-pressed="false"
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
     </div>
   )}
   <div class:list={["opportunity-cards", compact && "compact"]}>
@@ -82,21 +88,35 @@ const buildGlossNotes = (item: Opportunity) => {
         data-role="structured-opportunity-card"
         data-no-direct={String(item.cooc_count === 0)}
         data-cross-field={String(item.cross_field)}
-        data-strong-support={String(item.path_support_norm >= 0.7)}
-        data-ready-followup={String(item.cooc_count > 0 && item.path_support_norm >= 0.95)}
+        data-more-grounded={String(item.path_support_norm >= 0.7 || item.cooc_count > 0)}
+        data-more-exploratory={String(item.cooc_count === 0 && item.path_support_norm < 0.7)}
+        data-search-text={`${item.public_pair_label} ${item.source_label} ${item.target_label}`.toLowerCase()}
       >
         <div class="opportunity-kicker">
-          <span>{item.slice_label}</span>
+          <span>Ranked question</span>
           <span>{item.direct_link_status}</span>
         </div>
         <h3>{item.public_pair_label}</h3>
         {buildGlossNotes(item) && <p class="mini-copy opportunity-label-note">{buildGlossNotes(item)}</p>}
-        <div class="opportunity-summary-row">
-          <span class="field-pill">Supported by {item.supporting_path_count} nearby concepts</span>
-        </div>
-        <p class="opportunity-context">
-          Public context: {item.source_context_summary} on one side and {item.target_context_summary} on the other.
+        <p class="card-copy">
+          This question sits between {item.source_context_summary} and {item.target_context_summary}.
         </p>
+        <div class="opportunity-summary-row">
+          <span class="field-pill">{item.supporting_path_count} related ideas</span>
+        </div>
+        {item.representative_papers.length > 0 && (
+          <div class="mini-copy opportunity-paper-preview">
+            <strong>Representative papers:</strong>
+            <ul class="opportunity-paper-list">
+              {item.representative_papers.slice(0, 2).map((paper) => (
+                <li>
+                  <span>{paper.title}</span>
+                  {paper.year > 0 && <span class="opportunity-paper-year">({paper.year})</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <OpportunityEvidence
           mediatorLabels={item.top_mediator_labels}
           representativePapers={item.representative_papers}
@@ -106,13 +126,13 @@ const buildGlossNotes = (item: Opportunity) => {
           sourceContextSummary={item.source_context_summary}
           targetContextSummary={item.target_context_summary}
         />
-        <a class="text-link" href={item.app_link}>Open deeper evidence in app</a>
+        <a class="text-link" href={item.app_link}>Open in workbench</a>
       </article>
     ))}
   </div>
   {enableFilters && (
     <p class="card-copy opportunity-empty-state" data-role="opportunity-filter-empty" hidden>
-      No visible pairs match the current filter combination. Try clearing one of the chips or open the secondary slices for a different browsing mode.
+      No visible research questions match the current search or filter combination. Try clearing a chip, editing the search, or open the workbench for a deeper pass.
     </p>
   )}
 </section>
@@ -124,20 +144,24 @@ const buildGlossNotes = (item: Opportunity) => {
 
     const cards = Array.from(root.querySelectorAll('[data-role="structured-opportunity-card"]'));
     const chips = Array.from(root.querySelectorAll('[data-role="opportunity-filter-chip"]'));
+    const searchInput = root.querySelector('[data-role="opportunity-search-input"]');
     const emptyState = root.querySelector('[data-role="opportunity-filter-empty"]');
     const active = new Set();
+    let query = "";
 
     const filterToDataset = {
       "no-direct": "noDirect",
       "cross-field": "crossField",
-      "strong-support": "strongSupport",
-      "ready-followup": "readyFollowup",
+      "more-grounded": "moreGrounded",
+      "more-exploratory": "moreExploratory",
     };
 
     const applyFilters = () => {
       let visibleCount = 0;
       for (const card of cards) {
-        const visible = Array.from(active).every((filterId) => card.dataset[filterToDataset[filterId]] === "true");
+        const matchesFilters = Array.from(active).every((filterId) => card.dataset[filterToDataset[filterId]] === "true");
+        const matchesSearch = !query || (card.dataset.searchText || "").includes(query);
+        const visible = matchesFilters && matchesSearch;
         card.hidden = !visible;
         if (visible) visibleCount += 1;
       }
@@ -157,6 +181,13 @@ const buildGlossNotes = (item: Opportunity) => {
         }
         chip.setAttribute("aria-pressed", String(active.has(filterId)));
         chip.classList.toggle("is-active", active.has(filterId));
+        applyFilters();
+      });
+    }
+
+    if (searchInput instanceof HTMLInputElement) {
+      searchInput.addEventListener("input", () => {
+        query = searchInput.value.trim().toLowerCase();
         applyFilters();
       });
     }

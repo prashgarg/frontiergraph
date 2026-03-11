@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CuratedOpportunityCards from "../../components/CuratedOpportunityCards.astro";
+import OpportunityCards from "../../components/OpportunityCards.astro";
+import { data, formatNumber } from "../../lib/site-data";
+
+const questions = data.questions.top_slices.overall;
+---
+
+<BaseLayout
+  title="Research Questions | FrontierGraph"
+  description="Browse candidate research questions from FrontierGraph."
+>
+  <main>
+    <section class="page-hero">
+      <span class="eyebrow">Research Questions</span>
+      <h1>Browse candidate research questions worth reading or testing next.</h1>
+      <p class="lede">
+        These are not claims of truth. They are candidate research questions surfaced from the surrounding literature to
+        help a researcher decide what looks worth reading, scoping, or testing next.
+      </p>
+      <div class="button-row">
+        <span class="field-pill">{formatNumber(data.metrics.suppressed_candidate_count)} visible questions in the public list</span>
+        <a class="button-secondary" href={data.app_url}>Open workbench</a>
+        <a class="button-tertiary" href="/how-it-works/">How it works</a>
+      </div>
+    </section>
+
+    <CuratedOpportunityCards
+      items={data.questions.curated_front_set}
+      title="Start here"
+      caption="These six questions are manually curated from the current public ranking. Use them as starting points, not as verdicts."
+      sectionId="questions-curated-front-set"
+      variant="questions"
+    />
+
+    <OpportunityCards
+      items={questions}
+      title="Full ranked list"
+      caption="Below the curated set, the broader ranked list stays available as structured evidence. Search by topic, filter for the type of question you want, and open the workbench when you want the deeper inspection layer."
+      sectionId="overall-ranked-questions"
+      enableFilters={true}
+    />
+
+    <section class="section">
+      <article class="content-panel summary-panel">
+        <span class="eyebrow">Before you trust a question</span>
+        <h2>Check what the evidence shown here means, and what it does not mean, before you decide a question is truly open.</h2>
+        <div class="button-row">
+          <a class="button-secondary" href="/how-it-works/">Open How It Works</a>
+          <a class="button-tertiary" href="/method/">Open Method</a>
+          <a class="button-tertiary" href={data.app_url}>Open workbench</a>
+        </div>
+      </article>
+    </section>
+  </main>
+</BaseLayout>

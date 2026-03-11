@@ -58,21 +58,18 @@ export type PublicLabelGloss = {
   subtitle: string;
 };
 
-export type EditorialOpportunity = {
+export type EditorialQuestion = {
   pair_key: string;
-  headline: string;
-  summary: string;
-  why_it_matters: string;
-  how_to_start: string;
-  public_source_label: string;
-  public_target_label: string;
-  next_study: string;
+  question_title: string;
+  short_why: string;
+  first_next_step: string;
+  who_its_for: string;
   homepage_featured: boolean;
-  opportunities_featured: boolean;
+  questions_featured: boolean;
   display_order: number;
 };
 
-export type CuratedOpportunity = Opportunity & EditorialOpportunity;
+export type CuratedQuestion = Opportunity & EditorialQuestion;
 
 export type CentralConcept = {
   concept_id: string;
@@ -163,8 +160,8 @@ export type SiteData = {
   };
   metrics: MetricBundle;
   home: {
-    featured_opportunities: Opportunity[];
-    curated_opportunities: CuratedOpportunity[];
+    featured_questions: Opportunity[];
+    curated_questions: CuratedQuestion[];
     featured_central_concepts: CentralConcept[];
     graph_snapshot: {
       nodes: number;
@@ -179,10 +176,16 @@ export type SiteData = {
     concept_opportunities_index_path: string;
     central_concepts_path: string;
   };
-  opportunities: {
+  questions: {
     slices_path: string;
     concept_opportunities_index_path: string;
-    curated_front_set: CuratedOpportunity[];
+    curated_front_set: CuratedQuestion[];
+    top_slices: Record<string, Opportunity[]>;
+  };
+  opportunities?: {
+    slices_path: string;
+    concept_opportunities_index_path: string;
+    curated_front_set: CuratedQuestion[];
     top_slices: Record<string, Opportunity[]>;
   };
   compare: {
@@ -218,8 +221,8 @@ function invariant(condition: unknown, message: string): asserts condition {
   }
 }
 
-function normalizeEditorialSource(): EditorialOpportunity[] {
-  const payload = editorialSource as Record<string, EditorialOpportunity>;
+function normalizeEditorialSource(): EditorialQuestion[] {
+  const payload = editorialSource as Record<string, EditorialQuestion>;
   const items = Object.values(payload);
   invariant(items.length > 0, "Editorial opportunities source is empty");
   return items.sort((left, right) => left.display_order - right.display_order);
@@ -235,13 +238,13 @@ function normalizePublicLabelGlossarySource(): Record<string, PublicLabelGloss> 
 }
 
 function validateCuratedSet(
-  actual: CuratedOpportunity[],
-  expected: EditorialOpportunity[],
+  actual: CuratedQuestion[],
+  expected: EditorialQuestion[],
   label: string,
-): CuratedOpportunity[] {
+): CuratedQuestion[] {
   invariant(actual.length === expected.length, `${label} is out of sync with editorial-opportunities.json`);
   const actualByPair = new Map(actual.map((item) => [item.pair_key, item]));
-  const ordered: CuratedOpportunity[] = [];
+  const ordered: CuratedQuestion[] = [];
   for (const entry of expected) {
     const item = actualByPair.get(entry.pair_key);
     invariant(item, `${label} is missing curated pair_key ${entry.pair_key}`);
@@ -255,8 +258,12 @@ function buildSiteData(): SiteData {
   const payload = siteData as SiteData;
   const editorialItems = normalizeEditorialSource();
   const glossarySource = normalizePublicLabelGlossarySource();
+  const questionPayload = payload.questions ?? payload.opportunities;
+  invariant(questionPayload, "Generated site data is missing questions/opportunities payload");
+  const homeLegacy = payload.home as Record<string, unknown>;
+  const homeCuratedPayload = payload.home.curated_questions ?? (homeLegacy.curated_opportunities as CuratedQuestion[] | undefined);
   const availablePairs = new Set(
-    Object.values(payload.opportunities.top_slices)
+    Object.values(questionPayload?.top_slices ?? {})
       .flat()
       .map((item) => item.pair_key),
   );
@@ -265,9 +272,9 @@ function buildSiteData(): SiteData {
   }
 
   const expectedHome = editorialItems.filter((item) => item.homepage_featured);
-  const expectedOpportunities = editorialItems.filter((item) => item.opportunities_featured);
-  invariant(expectedHome.length === 4, "Homepage curation must contain exactly 4 curated opportunities");
-  invariant(expectedOpportunities.length === 8, "Opportunities curation must contain exactly 8 curated opportunities");
+  const expectedQuestions = editorialItems.filter((item) => item.questions_featured);
+  invariant(expectedHome.length === 3, "Homepage curation must contain exactly 3 curated questions");
+  invariant(expectedQuestions.length === 6, "Questions curation must contain exactly 6 curated questions");
   invariant(
     Object.keys(payload.public_label_glossary ?? {}).length === Object.keys(glossarySource).length,
     "public_label_glossary is out of sync with public-label-glossary.json",
@@ -283,18 +290,18 @@ function buildSiteData(): SiteData {
     ...payload,
     home: {
       ...payload.home,
-      curated_opportunities: validateCuratedSet(
-        payload.home.curated_opportunities ?? [],
+      curated_questions: validateCuratedSet(
+        homeCuratedPayload ?? [],
         expectedHome,
-        "home.curated_opportunities",
+        "home.curated_questions",
       ),
     },
-    opportunities: {
-      ...payload.opportunities,
+    questions: {
+      ...(questionPayload ?? {}),
       curated_front_set: validateCuratedSet(
-        payload.opportunities.curated_front_set ?? [],
-        expectedOpportunities,
-        "opportunities.curated_front_set",
+        questionPayload?.curated_front_set ?? [],
+        expectedQuestions,
+        "questions.curated_front_set",
       ),
     },
   };

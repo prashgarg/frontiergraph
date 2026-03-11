@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import os
 import shutil
 import sqlite3
@@ -50,14 +51,16 @@ NOVELTY_LABELS = {
 }
 
 PRESET_HELP = {
-    "Balanced": "A broad default that keeps the base graph score central while still rewarding low-contact opportunities.",
-    "Bold frontier": "Pushes toward boundary and cross-field links that could open fresh lines of work.",
-    "Fast follow": "Favors ideas that already have strong graph support and look tractable now.",
-    "Underexplored": "Pushes toward thinly connected areas where direct work has lagged the surrounding graph.",
-    "Bridge builder": "Looks for ideas that connect literatures and shift the field map.",
+    "Balanced": "A broad default for browsing candidate research questions without pushing too hard toward either the safest or the boldest end of the list.",
+    "Bold frontier": "Pushes toward more boundary-crossing questions that could open fresh lines of work.",
+    "Fast follow": "Favors questions that already look grounded enough for a more direct next paper.",
+    "Underexplored": "Pushes toward questions where the direct literature still looks thin relative to the surrounding literature.",
+    "Bridge builder": "Looks for questions that connect literatures that are usually studied apart.",
 }
 
 _READONLY_DB_CACHE: dict[str, Path] = {}
+_PUBLIC_LABEL_CACHE: dict[str, dict[str, str]] | None = None
+PUBLIC_LABEL_GLOSSARY_PATH = Path(__file__).resolve().parents[1] / "site" / "src" / "content" / "public-label-glossary.json"
 
 
 def _readonly_uri(path: Path) -> str:
@@ -185,9 +188,40 @@ def direct_literature_status(value: object) -> str:
     return "Direct literature already exists in the current public sample"
 
 
+def _public_label_glossary() -> dict[str, dict[str, str]]:
+    global _PUBLIC_LABEL_CACHE
+    if _PUBLIC_LABEL_CACHE is not None:
+        return _PUBLIC_LABEL_CACHE
+    try:
+        with PUBLIC_LABEL_GLOSSARY_PATH.open() as handle:
+            payload = json.load(handle)
+    except Exception:
+        _PUBLIC_LABEL_CACHE = {}
+        return _PUBLIC_LABEL_CACHE
+
+    glossary: dict[str, dict[str, str]] = {}
+    if isinstance(payload, dict):
+        for concept_id, entry in payload.items():
+            if isinstance(entry, dict):
+                glossary[str(concept_id)] = {
+                    "plain_label": str(entry.get("plain_label") or "").strip(),
+                    "subtitle": str(entry.get("subtitle") or "").strip(),
+                }
+    _PUBLIC_LABEL_CACHE = glossary
+    return glossary
+
+
+def public_display_label(concept_id: object, raw_label: object) -> str:
+    glossary = _public_label_glossary()
+    entry = glossary.get(str(concept_id))
+    if entry and entry.get("plain_label"):
+        return entry["plain_label"]
+    return str(raw_label or concept_id or "").strip()
+
+
 def public_pair_label(row: pd.Series) -> str:
-    source_label = str(row.get("u_label", row.get("u", ""))).strip()
-    target_label = str(row.get("v_label", row.get("v", ""))).strip()
+    source_label = public_display_label(row.get("u"), row.get("u_label", row.get("u", "")))
+    target_label = public_display_label(row.get("v"), row.get("v_label", row.get("v", "")))
     return f"{source_label} and {target_label}"
 
 
@@ -281,7 +315,7 @@ def enrich_candidates(df: pd.DataFrame, app_mode: str = "legacy") -> pd.DataFram
     working["boundary_flag"] = working["cross_field"] & (working["cooc_count"].fillna(0) <= 0)
     working["novelty_type"] = working.apply(classify_novelty, axis=1)
     working["novelty_label"] = working["novelty_type"].map(NOVELTY_LABELS).fillna("Other")
-    working["opportunity"] = working["u_label"] + " -> " + working["v_label"]
+    working["opportunity"] = working.apply(public_pair_label, axis=1)
     working["code_pair"] = working["u"] + " -> " + working["v"]
 
     cooc_log = np.log1p(working["cooc_count"].fillna(0).clip(lower=0))
