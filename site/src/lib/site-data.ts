@@ -26,8 +26,15 @@ export type Opportunity = {
   mediator_count: number;
   motif_count: number;
   cooc_count: number;
+  direct_link_status: string;
+  supporting_path_count: number;
+  why_now: string;
+  recommended_move: string;
+  slice_label: string;
   top_countries_source: string[];
   top_countries_target: string[];
+  source_context_summary: string;
+  target_context_summary: string;
   app_link: string;
 };
 
@@ -41,8 +48,27 @@ export type CentralConcept = {
   pagerank: number;
   in_degree: number;
   out_degree: number;
+  neighbor_count: number;
   top_countries: string[];
   top_units: string[];
+  app_link: string;
+};
+
+export type ConceptLookupRecord = {
+  concept_id: string;
+  label: string;
+  aliases: string[];
+  bucket_hint: string;
+  instance_support: number;
+  distinct_paper_support: number;
+  weighted_degree: number;
+  pagerank: number;
+  in_degree: number;
+  out_degree: number;
+  neighbor_count: number;
+  top_countries: string[];
+  top_units: string[];
+  search_terms: string[];
   app_link: string;
 };
 
@@ -161,8 +187,13 @@ export function formatCompact(value: number): string {
 }
 
 export function shortList(values: string[] | undefined, limit = 3): string {
-  if (!values || values.length === 0) return "NA";
+  if (!values || values.length === 0) return "No dominant setting in the current public sample";
   return values.slice(0, limit).join(", ");
+}
+
+export function safeCount(value: number | null | undefined): number {
+  if (typeof value !== "number" || Number.isNaN(value) || !Number.isFinite(value)) return 0;
+  return value;
 }
 
 export function titleCase(value: string): string {

@@ -1,0 +1,126 @@
+import { chromium } from "playwright";
+
+const baseUrl = process.argv[2] || "http://127.0.0.1:4173";
+
+function assert(condition, message) {
+  if (!condition) {
+    throw new Error(message);
+  }
+}
+
+async function textDoesNotContain(page, forbidden) {
+  const bodyText = await page.locator("body").innerText();
+  for (const token of forbidden) {
+    assert(!bodyText.includes(token), `Page contains forbidden token: ${token}`);
+  }
+}
+
+async function main() {
+  const browser = await chromium.launch({
+    channel: "chrome",
+    headless: true,
+  });
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1100 } });
+  const errors = [];
+  page.on("pageerror", (error) => errors.push(`pageerror:${error.message}`));
+  page.on("console", (msg) => {
+    if (msg.type() === "error") errors.push(`console:${msg.text()}`);
+  });
+
+  await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
+  await page.waitForSelector("h1");
+  await textDoesNotContain(page, [">NA<", "NaN"]);
+  assert(await page.locator("[data-theme-toggle]").isVisible(), "Theme toggle missing on home");
+  assert(
+    await page.getByRole("navigation").getByRole("link", { name: /^Advanced$/ }).isVisible(),
+    "Advanced nav missing on home",
+  );
+  await page.getByPlaceholder("Search labels or aliases").fill("income / economic growth");
+  await page.getByRole("button", { name: /income \/ economic growth/i }).first().click();
+  await page.getByRole("link", { name: /see nearby opportunities/i }).waitFor();
+
+  await page.goto(`${baseUrl}/opportunities/?q=${encodeURIComponent("income / economic growth")}`, {
+    waitUntil: "networkidle",
+  });
+  await page.waitForSelector(".lookup-shell");
+  await textDoesNotContain(page, [">NA<", "NaN"]);
+  const lookupText = await page.locator('[data-role="concept-panel"]').innerText();
+  assert(!/\bNA\b/.test(lookupText), "Concept lookup still renders NA");
+  assert(/incoming|papers|nearby concepts/i.test(lookupText), "Concept lookup did not render readable metadata");
+
+  await page.goto(`${baseUrl}/graph/`, { waitUntil: "networkidle" });
+  await page.waitForSelector('[data-role="graph-canvas"]');
+  const graphSearch = page.locator('[data-role="search-input"]');
+  await graphSearch.fill("income / economic growth");
+  await page.getByRole("button", { name: /income \/ economic growth/i }).first().click();
+  await page.waitForTimeout(400);
+
+  const inspectorText = await page.locator('[data-role="selected-concept"]').innerText();
+  assert(!/\bNA\b/.test(inspectorText), "Graph inspector still renders NA");
+  assert(!/NaN/.test(inspectorText), "Graph inspector still renders NaN");
+  assert(/incoming observed links/i.test(inspectorText), "Graph inspector missing readable link counts");
+
+  const viewport = page.locator('[data-role="graph-viewport"]');
+  const initialTransform = await viewport.getAttribute("transform");
+  const canvas = page.locator('[data-role="graph-canvas"]');
+  const canvasBox = await canvas.boundingBox();
+  assert(canvasBox, "Graph canvas has no bounding box");
+
+  await page.getByRole("button", { name: /zoom in/i }).click();
+  await page.waitForTimeout(250);
+  const zoomTransform = await viewport.getAttribute("transform");
+  assert(zoomTransform && zoomTransform !== initialTransform, "Zoom button did not change graph viewport");
+
+  await page.mouse.move(canvasBox.x + 20, canvasBox.y + 20);
+  await page.mouse.down();
+  await page.mouse.move(canvasBox.x + 160, canvasBox.y + 120, { steps: 8 });
+  await page.mouse.up();
+  await page.waitForTimeout(250);
+  const panTransform = await viewport.getAttribute("transform");
+  assert(panTransform && panTransform !== zoomTransform, "Pan did not change graph viewport");
+
+  const firstNode = page.locator("[data-node-id]").first();
+  const firstCircle = page.locator("[data-node-id] circle").first();
+  const nodeId = await firstNode.getAttribute("data-node-id");
+  assert(nodeId, "No graph nodes rendered");
+  const beforeCx = await firstCircle.getAttribute("cx");
+  const beforeCy = await firstCircle.getAttribute("cy");
+  const nodeBox = await firstCircle.boundingBox();
+  assert(nodeBox, "Node circle has no bounding box");
+
+  await page.getByRole("button", { name: /adjust layout/i }).click();
+  await firstCircle.dispatchEvent("mousedown", {
+    button: 0,
+    bubbles: true,
+    clientX: nodeBox.x + nodeBox.width / 2,
+    clientY: nodeBox.y + nodeBox.height / 2,
+  });
+  await page.mouse.move(nodeBox.x + nodeBox.width / 2 + 60, nodeBox.y + nodeBox.height / 2 + 40, { steps: 8 });
+  await page.mouse.up();
+  await page.waitForTimeout(300);
+  const circle = page.locator(`[data-node-id="${nodeId}"] circle`);
+  const afterCx = await circle.getAttribute("cx");
+  const afterCy = await circle.getAttribute("cy");
+  assert(beforeCx !== afterCx || beforeCy !== afterCy, "Layout drag did not move a node");
+
+  await page.getByRole("button", { name: /reset layout/i }).click();
+  await page.waitForTimeout(300);
+  const resetCx = await circle.getAttribute("cx");
+  const resetCy = await circle.getAttribute("cy");
+  assert(resetCx === beforeCx && resetCy === beforeCy, "Reset layout did not restore node position");
+
+  await page.goto(`${baseUrl}/advanced/`, { waitUntil: "networkidle" });
+  assert(await page.getByRole("heading", { name: /keep the main path simple/i }).isVisible(), "Advanced page did not render");
+
+  await page.goto(`${baseUrl}/compare/`, { waitUntil: "networkidle" });
+  assert(await page.getByRole("heading", { name: /compare ontology views only when your question needs a sensitivity check/i }).isVisible(), "Compare page did not render");
+
+  assert(errors.length === 0, `Browser errors found:\n${errors.join("\n")}`);
+  await browser.close();
+  console.log("playwright smoke passed");
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

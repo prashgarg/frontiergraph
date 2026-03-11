@@ -13,14 +13,14 @@ const baseline = regimes.find((regime) => regime.regime === "baseline") ?? regim
   <main>
     <section class="page-hero">
       <span class="eyebrow">Advanced comparison</span>
-      <h1>Compare ontology views without leaving the default behind.</h1>
+      <h1>Compare ontology views only when your question needs a sensitivity check.</h1>
       <p class="lede">
-        Baseline exploratory is the public surface. Broad and Conservative remain here as advanced sensitivity checks when you want to inspect what ontology choice changes.
+        Baseline exploratory is the public surface. Broad and Conservative remain here as advanced sensitivity checks, not as parallel defaults for most visitors.
       </p>
       <div class="button-row">
         <span class="field-pill">Default: {baseline.label} exploratory</span>
         <a class="button-secondary" href="/opportunities/">See default opportunities</a>
-        <a class="button-tertiary" href={data.app_url}>Open the explorer</a>
+        <a class="button-tertiary" href="/advanced/">Back to advanced hub</a>
       </div>
     </section>
 

@@ -9,6 +9,7 @@
     "pagerank": 0.02176391,
     "in_degree": 1085,
     "out_degree": 438,
+    "neighbor_count": 1247,
     "top_countries": [
       "China",
       "India",
@@ -31,6 +32,7 @@
     "pagerank": 0.01734411,
     "in_degree": 713,
     "out_degree": 208,
+    "neighbor_count": 754,
     "top_countries": [
       "China",
       "India",
@@ -53,6 +55,7 @@
     "pagerank": 0.01240466,
     "in_degree": 726,
     "out_degree": 175,
+    "neighbor_count": 772,
     "top_countries": [
       "China",
       "CHN",
@@ -75,6 +78,7 @@
     "pagerank": 0.00663863,
     "in_degree": 337,
     "out_degree": 222,
+    "neighbor_count": 440,
     "top_countries": [
       "China",
       "India",
@@ -97,6 +101,7 @@
     "pagerank": 0.0062846,
     "in_degree": 303,
     "out_degree": 213,
+    "neighbor_count": 415,
     "top_countries": [
       "China",
       "India",
@@ -119,6 +124,7 @@
     "pagerank": 0.00311897,
     "in_degree": 223,
     "out_degree": 351,
+    "neighbor_count": 468,
     "top_countries": [
       "China",
       "India",
@@ -141,6 +147,7 @@
     "pagerank": 0.00601709,
     "in_degree": 331,
     "out_degree": 81,
+    "neighbor_count": 346,
     "top_countries": [
       "China",
       "India",
@@ -163,6 +170,7 @@
     "pagerank": 0.00420888,
     "in_degree": 419,
     "out_degree": 333,
+    "neighbor_count": 655,
     "top_countries": [
       "United States",
       "China",
@@ -185,6 +193,7 @@
     "pagerank": 0.00187405,
     "in_degree": 108,
     "out_degree": 310,
+    "neighbor_count": 363,
     "top_countries": [
       "China",
       "India",
@@ -207,6 +216,7 @@
     "pagerank": 0.00197306,
     "in_degree": 107,
     "out_degree": 251,
+    "neighbor_count": 300,
     "top_countries": [
       "China",
       "India",
@@ -229,6 +239,7 @@
     "pagerank": 0.00164879,
     "in_degree": 225,
     "out_degree": 242,
+    "neighbor_count": 410,
     "top_countries": [
       "China",
       "CHN",
@@ -251,6 +262,7 @@
     "pagerank": 0.00129308,
     "in_degree": 136,
     "out_degree": 290,
+    "neighbor_count": 378,
     "top_countries": [
       "China",
       "India",
@@ -273,6 +285,7 @@
     "pagerank": 0.00215178,
     "in_degree": 311,
     "out_degree": 426,
+    "neighbor_count": 694,
     "top_countries": [
       "United States",
       "China",
@@ -295,6 +308,7 @@
     "pagerank": 0.00034225,
     "in_degree": 65,
     "out_degree": 257,
+    "neighbor_count": 303,
     "top_countries": [
       "China",
       "CHN",
@@ -317,6 +331,7 @@
     "pagerank": 0.00179027,
     "in_degree": 263,
     "out_degree": 172,
+    "neighbor_count": 395,
     "top_countries": [
       "China",
       "CHN",
@@ -339,6 +354,7 @@
     "pagerank": 0.00310435,
     "in_degree": 351,
     "out_degree": 111,
+    "neighbor_count": 425,
     "top_countries": [
       "China",
       "United States",
@@ -361,6 +377,7 @@
     "pagerank": 0.00196444,
     "in_degree": 295,
     "out_degree": 143,
+    "neighbor_count": 392,
     "top_countries": [
       "China",
       "CHN",
@@ -383,6 +400,7 @@
     "pagerank": 0.00335874,
     "in_degree": 432,
     "out_degree": 83,
+    "neighbor_count": 488,
     "top_countries": [
       "United States",
       "USA",
@@ -405,6 +423,7 @@
     "pagerank": 0.00153894,
     "in_degree": 148,
     "out_degree": 160,
+    "neighbor_count": 265,
     "top_countries": [
       "China",
       "India",
@@ -427,6 +446,7 @@
     "pagerank": 0.00326818,
     "in_degree": 341,
     "out_degree": 159,
+    "neighbor_count": 456,
     "top_countries": [
       "United States",
       "United Kingdom",
@@ -449,6 +469,7 @@
     "pagerank": 0.00305385,
     "in_degree": 164,
     "out_degree": 114,
+    "neighbor_count": 211,
     "top_countries": [
       "China",
       "India",
@@ -471,6 +492,7 @@
     "pagerank": 0.000762,
     "in_degree": 104,
     "out_degree": 286,
+    "neighbor_count": 354,
     "top_countries": [
       "China",
       "CHN",
@@ -493,6 +515,7 @@
     "pagerank": 0.0009518,
     "in_degree": 127,
     "out_degree": 212,
+    "neighbor_count": 298,
     "top_countries": [
       "China",
       "CHN",
@@ -515,6 +538,7 @@
     "pagerank": 0.00212326,
     "in_degree": 289,
     "out_degree": 121,
+    "neighbor_count": 387,
     "top_countries": [
       "China",
       "United States",
@@ -537,6 +561,7 @@
     "pagerank": 0.00172512,
     "in_degree": 231,
     "out_degree": 97,
+    "neighbor_count": 304,
     "top_countries": [
       "China",
       "CHN",
@@ -559,6 +584,7 @@
     "pagerank": 0.00306156,
     "in_degree": 467,
     "out_degree": 14,
+    "neighbor_count": 478,
     "top_countries": [
       "United States",
       "China",
@@ -581,6 +607,7 @@
     "pagerank": 0.00239472,
     "in_degree": 316,
     "out_degree": 149,
+    "neighbor_count": 428,
     "top_countries": [
       "China",
       "United States",
@@ -603,6 +630,7 @@
     "pagerank": 0.00282998,
     "in_degree": 378,
     "out_degree": 71,
+    "neighbor_count": 422,
     "top_countries": [
       "United States",
       "China",
@@ -625,6 +653,7 @@
     "pagerank": 0.00233906,
     "in_degree": 349,
     "out_degree": 138,
+    "neighbor_count": 454,
     "top_countries": [
       "China",
       "United States",
@@ -647,6 +676,7 @@
     "pagerank": 0.00023876,
     "in_degree": 57,
     "out_degree": 250,
+    "neighbor_count": 285,
     "top_countries": [
       "China",
       "CHN",
@@ -669,6 +699,7 @@
     "pagerank": 0.0001361,
     "in_degree": 20,
     "out_degree": 433,
+    "neighbor_count": 446,
     "top_countries": [
       "China",
       "United States",
@@ -691,6 +722,7 @@
     "pagerank": 0.00093699,
     "in_degree": 142,
     "out_degree": 297,
+    "neighbor_count": 398,
     "top_countries": [
       "United States",
       "China",
@@ -713,6 +745,7 @@
     "pagerank": 0.00278368,
     "in_degree": 278,
     "out_degree": 43,
+    "neighbor_count": 296,
     "top_countries": [
       "China",
       "India",
@@ -735,6 +768,7 @@
     "pagerank": 0.0025645,
     "in_degree": 263,
     "out_degree": 61,
+    "neighbor_count": 299,
     "top_countries": [
       "China",
       "USA",
@@ -757,6 +791,7 @@
     "pagerank": 0.00281949,
     "in_degree": 246,
     "out_degree": 44,
+    "neighbor_count": 268,
     "top_countries": [
       "China",
       "India",
@@ -779,6 +814,7 @@
     "pagerank": 0.00222338,
     "in_degree": 207,
     "out_degree": 40,
+    "neighbor_count": 219,
     "top_countries": [
       "China",
       "OECD",
@@ -801,6 +837,7 @@
     "pagerank": 0.00101222,
     "in_degree": 196,
     "out_degree": 173,
+    "neighbor_count": 336,
     "top_countries": [
       "China",
       "Italy",
@@ -823,6 +860,7 @@
     "pagerank": 0.00196882,
     "in_degree": 204,
     "out_degree": 83,
+    "neighbor_count": 256,
     "top_countries": [
       "China",
       "United States",
@@ -845,6 +883,7 @@
     "pagerank": 0.00218234,
     "in_degree": 271,
     "out_degree": 96,
+    "neighbor_count": 346,
     "top_countries": [
       "United States",
       "China",
@@ -867,6 +906,7 @@
     "pagerank": 0.00079606,
     "in_degree": 90,
     "out_degree": 180,
+    "neighbor_count": 228,
     "top_countries": [
       "United States",
       "USA",
@@ -889,6 +929,7 @@
     "pagerank": 0.00155636,
     "in_degree": 161,
     "out_degree": 129,
+    "neighbor_count": 256,
     "top_countries": [
       "China",
       "USA",
@@ -911,6 +952,7 @@
     "pagerank": 0.0003296,
     "in_degree": 47,
     "out_degree": 227,
+    "neighbor_count": 254,
     "top_countries": [
       "China",
       "India",
@@ -933,6 +975,7 @@
     "pagerank": 0.00078806,
     "in_degree": 84,
     "out_degree": 210,
+    "neighbor_count": 267,
     "top_countries": [
       "China",
       "United States",
@@ -955,6 +998,7 @@
     "pagerank": 0.0010324,
     "in_degree": 141,
     "out_degree": 107,
+    "neighbor_count": 226,
     "top_countries": [
       "China",
       "CHN",
@@ -977,6 +1021,7 @@
     "pagerank": 0.0020883,
     "in_degree": 271,
     "out_degree": 42,
+    "neighbor_count": 290,
     "top_countries": [
       "China",
       "European Union",
@@ -999,6 +1044,7 @@
     "pagerank": 0.00161287,
     "in_degree": 203,
     "out_degree": 128,
+    "neighbor_count": 294,
     "top_countries": [
       "China",
       "CHN",
@@ -1021,6 +1067,7 @@
     "pagerank": 0.00045819,
     "in_degree": 34,
     "out_degree": 174,
+    "neighbor_count": 187,
     "top_countries": [
       "China",
       "India",
@@ -1043,6 +1090,7 @@
     "pagerank": 0.00062827,
     "in_degree": 67,
     "out_degree": 144,
+    "neighbor_count": 188,
     "top_countries": [
       "China",
       "CHN",
@@ -1065,6 +1113,7 @@
     "pagerank": 0.00201955,
     "in_degree": 159,
     "out_degree": 37,
+    "neighbor_count": 173,
     "top_countries": [
       "China",
       "India",
@@ -1087,6 +1136,7 @@
     "pagerank": 0.00188926,
     "in_degree": 250,
     "out_degree": 100,
+    "neighbor_count": 330,
     "top_countries": [
       "United States",
       "China",
@@ -1109,6 +1159,7 @@
     "pagerank": 0.00142091,
     "in_degree": 85,
     "out_degree": 69,
+    "neighbor_count": 120,
     "top_countries": [
       "China",
       "CHN",
@@ -1131,6 +1182,7 @@
     "pagerank": 0.0014541,
     "in_degree": 198,
     "out_degree": 102,
+    "neighbor_count": 276,
     "top_countries": [
       "United States",
       "USA",
@@ -1153,6 +1205,7 @@
     "pagerank": 0.00146232,
     "in_degree": 206,
     "out_degree": 53,
+    "neighbor_count": 244,
     "top_countries": [
       "China",
       "CHN",
@@ -1175,6 +1228,7 @@
     "pagerank": 0.00061743,
     "in_degree": 116,
     "out_degree": 128,
+    "neighbor_count": 217,
     "top_countries": [
       "China",
       "Africa",
@@ -1197,6 +1251,7 @@
     "pagerank": 0.00074791,
     "in_degree": 61,
     "out_degree": 157,
+    "neighbor_count": 195,
     "top_countries": [
       "China",
       "CHN",
@@ -1219,6 +1274,7 @@
     "pagerank": 0.00130565,
     "in_degree": 206,
     "out_degree": 19,
+    "neighbor_count": 219,
     "top_countries": [
       "China",
       "CHN",
@@ -1241,6 +1297,7 @@
     "pagerank": 0.00136518,
     "in_degree": 130,
     "out_degree": 126,
+    "neighbor_count": 229,
     "top_countries": [
       "China",
       "USA",
@@ -1263,6 +1320,7 @@
     "pagerank": 0.00106466,
     "in_degree": 114,
     "out_degree": 145,
+    "neighbor_count": 237,
     "top_countries": [
       "China",
       "United States",
@@ -1285,6 +1343,7 @@
     "pagerank": 0.00226167,
     "in_degree": 189,
     "out_degree": 37,
+    "neighbor_count": 216,
     "top_countries": [
       "China",
       "United States",
@@ -1307,6 +1366,7 @@
     "pagerank": 0.00209052,
     "in_degree": 238,
     "out_degree": 66,
+    "neighbor_count": 280,
     "top_countries": [
       "United States",
       "China",
@@ -1329,6 +1389,7 @@
     "pagerank": 0.0010993,
     "in_degree": 118,
     "out_degree": 106,
+    "neighbor_count": 194,
     "top_countries": [
       "China",
       "India",
@@ -1351,6 +1412,7 @@
     "pagerank": 0.00058247,
     "in_degree": 96,
     "out_degree": 246,
+    "neighbor_count": 321,
     "top_countries": [
       "USA",
       "China",
@@ -1373,6 +1435,7 @@
     "pagerank": 0.00033976,
     "in_degree": 64,
     "out_degree": 197,
+    "neighbor_count": 238,
     "top_countries": [
       "China",
       "United States",
@@ -1395,6 +1458,7 @@
     "pagerank": 0.0004941,
     "in_degree": 105,
     "out_degree": 96,
+    "neighbor_count": 187,
     "top_countries": [
       "China",
       "CHN",
@@ -1417,6 +1481,7 @@
     "pagerank": 0.00044891,
     "in_degree": 77,
     "out_degree": 193,
+    "neighbor_count": 255,
     "top_countries": [
       "China",
       "Italy",
@@ -1439,6 +1504,7 @@
     "pagerank": 0.00041091,
     "in_degree": 81,
     "out_degree": 131,
+    "neighbor_count": 196,
     "top_countries": [
       "China",
       "CHN",
@@ -1461,6 +1527,7 @@
     "pagerank": 0.00104022,
     "in_degree": 152,
     "out_degree": 142,
+    "neighbor_count": 270,
     "top_countries": [
       "United States",
       "USA",
@@ -1483,6 +1550,7 @@
     "pagerank": 0.00105755,
     "in_degree": 72,
     "out_degree": 116,
+    "neighbor_count": 166,
     "top_countries": [
       "China",
       "India",
@@ -1505,6 +1573,7 @@
     "pagerank": 0.00051915,
     "in_degree": 81,
     "out_degree": 152,
+    "neighbor_count": 204,
     "top_countries": [
       "USA",
       "United States",
@@ -1527,6 +1596,7 @@
     "pagerank": 0.00037685,
     "in_degree": 53,
     "out_degree": 185,
+    "neighbor_count": 218,
     "top_countries": [
       "China",
       "United States",
@@ -1549,6 +1619,7 @@
     "pagerank": 0.00052664,
     "in_degree": 103,
     "out_degree": 144,
+    "neighbor_count": 234,
     "top_countries": [
       "China",
       "CHN",
@@ -1571,6 +1642,7 @@
     "pagerank": 0.00148275,
     "in_degree": 211,
     "out_degree": 61,
+    "neighbor_count": 263,
     "top_countries": [
       "China",
       "United States",
@@ -1593,6 +1665,7 @@
     "pagerank": 0.0004464,
     "in_degree": 61,
     "out_degree": 115,
+    "neighbor_count": 155,
     "top_countries": [
       "China",
       "India",
@@ -1615,6 +1688,7 @@
     "pagerank": 0.00139112,
     "in_degree": 151,
     "out_degree": 27,
+    "neighbor_count": 164,
     "top_countries": [
       "China",
       "OECD",
@@ -1637,6 +1711,7 @@
     "pagerank": 0.00023398,
     "in_degree": 46,
     "out_degree": 166,
+    "neighbor_count": 201,
     "top_countries": [
       "United States",
       "USA",
@@ -1659,6 +1734,7 @@
     "pagerank": 0.00169727,
     "in_degree": 175,
     "out_degree": 38,
+    "neighbor_count": 195,
     "top_countries": [
       "China",
       "Canada",
@@ -1681,6 +1757,7 @@
     "pagerank": 0.00051563,
     "in_degree": 49,
     "out_degree": 179,
+    "neighbor_count": 215,
     "top_countries": [
       "China",
       "United States",
@@ -1703,6 +1780,7 @@
     "pagerank": 0.00130422,
     "in_degree": 128,
     "out_degree": 85,
+    "neighbor_count": 184,
     "top_countries": [
       "China",
       "United States",
@@ -1725,6 +1803,7 @@
     "pagerank": 0.00140391,
     "in_degree": 185,
     "out_degree": 34,
+    "neighbor_count": 212,
     "top_countries": [
       "China",
       "CHN",
@@ -1747,6 +1826,7 @@
     "pagerank": 0.00117446,
     "in_degree": 194,
     "out_degree": 73,
+    "neighbor_count": 251,
     "top_countries": [
       "United States",
       "USA",
@@ -1769,6 +1849,7 @@
     "pagerank": 0.00093936,
     "in_degree": 70,
     "out_degree": 65,
+    "neighbor_count": 110,
     "top_countries": [
       "China",
       "OECD",
@@ -1791,6 +1872,7 @@
     "pagerank": 0.0011476,
     "in_degree": 72,
     "out_degree": 76,
+    "neighbor_count": 122,
     "top_countries": [
       "China",
       "India",
@@ -1813,6 +1895,7 @@
     "pagerank": 0.00107973,
     "in_degree": 185,
     "out_degree": 55,
+    "neighbor_count": 230,
     "top_countries": [
       "China",
       "Italy",
@@ -1835,6 +1918,7 @@
     "pagerank": 0.00051418,
     "in_degree": 42,
     "out_degree": 145,
+    "neighbor_count": 168,
     "top_countries": [
       "China",
       "United Kingdom",
@@ -1857,6 +1941,7 @@
     "pagerank": 0.00062388,
     "in_degree": 124,
     "out_degree": 111,
+    "neighbor_count": 220,
     "top_countries": [
       "China",
       "CHN",
@@ -1879,6 +1964,7 @@
     "pagerank": 0.00144535,
     "in_degree": 153,
     "out_degree": 63,
+    "neighbor_count": 203,
     "top_countries": [
       "United States",
       "USA",
@@ -1901,6 +1987,7 @@
     "pagerank": 0.0012428,
     "in_degree": 166,
     "out_degree": 66,
+    "neighbor_count": 210,
     "top_countries": [
       "China",
       "United States",
@@ -1923,6 +2010,7 @@
     "pagerank": 0.00052591,
     "in_degree": 86,
     "out_degree": 141,
+    "neighbor_count": 195,
     "top_countries": [
       "China",
       "United States",
@@ -1945,6 +2033,7 @@
     "pagerank": 0.00011486,
     "in_degree": 30,
     "out_degree": 148,
+    "neighbor_count": 168,
     "top_countries": [
       "China",
       "CHN",
@@ -1967,6 +2056,7 @@
     "pagerank": 0.0008381,
     "in_degree": 140,
     "out_degree": 64,
+    "neighbor_count": 184,
     "top_countries": [
       "China",
       "OECD",
@@ -1989,6 +2079,7 @@
     "pagerank": 0.00114762,
     "in_degree": 143,
     "out_degree": 86,
+    "neighbor_count": 212,
     "top_countries": [
       "USA",
       "United States",
@@ -2011,6 +2102,7 @@
     "pagerank": 0.00043601,
     "in_degree": 69,
     "out_degree": 179,
+    "neighbor_count": 240,
     "top_countries": [
       "United States",
       "USA",
@@ -2033,6 +2125,7 @@
     "pagerank": 0.00046251,
     "in_degree": 63,
     "out_degree": 104,
+    "neighbor_count": 140,
     "top_countries": [
       "United States",
       "United Kingdom",
@@ -2055,6 +2148,7 @@
     "pagerank": 0.00123215,
     "in_degree": 173,
     "out_degree": 29,
+    "neighbor_count": 194,
     "top_countries": [
       "China",
       "CHN",
@@ -2077,6 +2171,7 @@
     "pagerank": 0.00113337,
     "in_degree": 129,
     "out_degree": 23,
+    "neighbor_count": 137,
     "top_countries": [
       "India",
       "China",
@@ -2099,6 +2194,7 @@
     "pagerank": 0.00102892,
     "in_degree": 87,
     "out_degree": 83,
+    "neighbor_count": 148,
     "top_countries": [
       "China",
       "United States",
@@ -2121,6 +2217,7 @@
     "pagerank": 0.00022152,
     "in_degree": 30,
     "out_degree": 160,
+    "neighbor_count": 183,
     "top_countries": [
       "China",
       "CHN",
@@ -2143,6 +2240,7 @@
     "pagerank": 0.00039679,
     "in_degree": 93,
     "out_degree": 90,
+    "neighbor_count": 171,
     "top_countries": [
       "China",
       "CHN",
@@ -2165,6 +2263,7 @@
     "pagerank": 0.00019926,
     "in_degree": 43,
     "out_degree": 121,
+    "neighbor_count": 153,
     "top_countries": [
       "China",
       "CHN",
@@ -2187,6 +2286,7 @@
     "pagerank": 0.00060277,
     "in_degree": 101,
     "out_degree": 101,
+    "neighbor_count": 179,
     "top_countries": [
       "United States",
       "Nigeria",
@@ -2209,6 +2309,7 @@
     "pagerank": 0.00086433,
     "in_degree": 147,
     "out_degree": 31,
+    "neighbor_count": 173,
     "top_countries": [
       "China",
       "CHN",
@@ -2231,6 +2332,7 @@
     "pagerank": 0.00022387,
     "in_degree": 42,
     "out_degree": 154,
+    "neighbor_count": 183,
     "top_countries": [
       "China",
       "CHN",
@@ -2253,6 +2355,7 @@
     "pagerank": 0.00083109,
     "in_degree": 141,
     "out_degree": 100,
+    "neighbor_count": 230,
     "top_countries": [
       "China",
       "United States",
@@ -2275,6 +2378,7 @@
     "pagerank": 0.00116836,
     "in_degree": 141,
     "out_degree": 10,
+    "neighbor_count": 148,
     "top_countries": [
       "China",
       "CHN",
@@ -2297,6 +2401,7 @@
     "pagerank": 0.00079514,
     "in_degree": 78,
     "out_degree": 78,
+    "neighbor_count": 132,
     "top_countries": [
       "China",
       "United States",
@@ -2319,6 +2424,7 @@
     "pagerank": 0.00069319,
     "in_degree": 53,
     "out_degree": 121,
+    "neighbor_count": 164,
     "top_countries": [
       "China",
       "United States",
@@ -2341,6 +2447,7 @@
     "pagerank": 0.00086084,
     "in_degree": 104,
     "out_degree": 128,
+    "neighbor_count": 223,
     "top_countries": [
       "China",
       "United States",
@@ -2363,6 +2470,7 @@
     "pagerank": 0.00067035,
     "in_degree": 67,
     "out_degree": 67,
+    "neighbor_count": 115,
     "top_countries": [
       "China",
       "India",
@@ -2385,6 +2493,7 @@
     "pagerank": 0.00050612,
     "in_degree": 72,
     "out_degree": 90,
+    "neighbor_count": 136,
     "top_countries": [
       "United States",
       "USA",
@@ -2407,6 +2516,7 @@
     "pagerank": 0.00049407,
     "in_degree": 79,
     "out_degree": 80,
+    "neighbor_count": 151,
     "top_countries": [
       "China",
       "CHN",
@@ -2429,6 +2539,7 @@
     "pagerank": 0.00043463,
     "in_degree": 71,
     "out_degree": 142,
+    "neighbor_count": 208,
     "top_countries": [
       "China",
       "United States",
@@ -2451,6 +2562,7 @@
     "pagerank": 0.00035582,
     "in_degree": 50,
     "out_degree": 87,
+    "neighbor_count": 129,
     "top_countries": [
       "China",
       "G7",
@@ -2473,6 +2585,7 @@
     "pagerank": 0.00015362,
     "in_degree": 36,
     "out_degree": 122,
+    "neighbor_count": 150,
     "top_countries": [
       "China",
       "CHN",
@@ -2495,6 +2608,7 @@
     "pagerank": 8.878e-05,
     "in_degree": 13,
     "out_degree": 169,
+    "neighbor_count": 178,
     "top_countries": [
       "China",
       "Spain",
@@ -2517,6 +2631,7 @@
     "pagerank": 0.0008979,
     "in_degree": 143,
     "out_degree": 78,
+    "neighbor_count": 213,
     "top_countries": [
       "China",
       "United States",
@@ -2539,6 +2654,7 @@
     "pagerank": 0.00041777,
     "in_degree": 33,
     "out_degree": 121,
+    "neighbor_count": 142,
     "top_countries": [
       "China",
       "United States",
@@ -2561,6 +2677,7 @@
     "pagerank": 0.00033167,
     "in_degree": 42,
     "out_degree": 139,
+    "neighbor_count": 159,
     "top_countries": [
       "China",
       "Russia",
@@ -2583,6 +2700,7 @@
     "pagerank": 0.00067553,
     "in_degree": 89,
     "out_degree": 126,
+    "neighbor_count": 207,
     "top_countries": [
       "China",
       "United States",
@@ -2605,6 +2723,7 @@
     "pagerank": 0.00035886,
     "in_degree": 76,
     "out_degree": 130,
+    "neighbor_count": 194,
     "top_countries": [
       "United States",
       "China",
@@ -2627,6 +2746,7 @@
     "pagerank": 0.00045821,
     "in_degree": 43,
     "out_degree": 88,
+    "neighbor_count": 117,
     "top_countries": [
       "China",
       "CHN",
@@ -2649,6 +2769,7 @@
     "pagerank": 0.00130932,
     "in_degree": 146,
     "out_degree": 63,
+    "neighbor_count": 200,
     "top_countries": [
       "China",
       "United States",
@@ -2671,6 +2792,7 @@
     "pagerank": 0.00102819,
     "in_degree": 123,
     "out_degree": 41,
+    "neighbor_count": 142,
     "top_countries": [
       "China",
       "India",
@@ -2693,6 +2815,7 @@
     "pagerank": 0.00056967,
     "in_degree": 82,
     "out_degree": 116,
+    "neighbor_count": 186,
     "top_countries": [
       "China",
       "developing countries",
@@ -2715,6 +2838,7 @@
     "pagerank": 0.00094086,
     "in_degree": 126,
     "out_degree": 42,
+    "neighbor_count": 158,
     "top_countries": [
       "United States",
       "USA",
@@ -2737,6 +2861,7 @@
     "pagerank": 0.00072295,
     "in_degree": 120,
     "out_degree": 93,
+    "neighbor_count": 201,
     "top_countries": [
       "United States",
       "China",
@@ -2759,6 +2884,7 @@
     "pagerank": 0.00094284,
     "in_degree": 87,
     "out_degree": 77,
+    "neighbor_count": 143,
     "top_countries": [
       "United States",
       "USA",
@@ -2781,6 +2907,7 @@
     "pagerank": 0.00014368,
     "in_degree": 21,
     "out_degree": 161,
+    "neighbor_count": 179,
     "top_countries": [
       "China",
       "CHN",
@@ -2803,6 +2930,7 @@
     "pagerank": 0.00060056,
     "in_degree": 56,
     "out_degree": 102,
+    "neighbor_count": 143,
     "top_countries": [
       "China",
       "United States",
@@ -2825,6 +2953,7 @@
     "pagerank": 0.00130089,
     "in_degree": 191,
     "out_degree": 7,
+    "neighbor_count": 197,
     "top_countries": [
       "China",
       "United States",
@@ -2847,6 +2976,7 @@
     "pagerank": 0.00048002,
     "in_degree": 57,
     "out_degree": 82,
+    "neighbor_count": 120,
     "top_countries": [
       "China",
       "United States",
@@ -2869,6 +2999,7 @@
     "pagerank": 0.00019004,
     "in_degree": 44,
     "out_degree": 102,
+    "neighbor_count": 133,
     "top_countries": [
       "China",
       "CHN",
@@ -2891,6 +3022,7 @@
     "pagerank": 0.00055383,
     "in_degree": 78,
     "out_degree": 111,
+    "neighbor_count": 183,
     "top_countries": [
       "China",
       "United States",
@@ -2913,6 +3045,7 @@
     "pagerank": 0.00139404,
     "in_degree": 157,
     "out_degree": 22,
+    "neighbor_count": 174,
     "top_countries": [
       "China",
       "United States",
@@ -2935,6 +3068,7 @@
     "pagerank": 0.00078784,
     "in_degree": 111,
     "out_degree": 65,
+    "neighbor_count": 164,
     "top_countries": [
       "United States",
       "USA",
@@ -2957,6 +3091,7 @@
     "pagerank": 0.00105649,
     "in_degree": 94,
     "out_degree": 22,
+    "neighbor_count": 100,
     "top_countries": [
       "China",
       "Pakistan",
@@ -2979,6 +3114,7 @@
     "pagerank": 0.00065344,
     "in_degree": 86,
     "out_degree": 79,
+    "neighbor_count": 155,
     "top_countries": [
       "United States",
       "China",
@@ -3001,6 +3137,7 @@
     "pagerank": 0.00034044,
     "in_degree": 49,
     "out_degree": 118,
+    "neighbor_count": 151,
     "top_countries": [
       "China",
       "CHN",
@@ -3023,6 +3160,7 @@
     "pagerank": 0.00024234,
     "in_degree": 33,
     "out_degree": 123,
+    "neighbor_count": 139,
     "top_countries": [
       "China",
       "India",
@@ -3045,6 +3183,7 @@
     "pagerank": 0.00083857,
     "in_degree": 106,
     "out_degree": 14,
+    "neighbor_count": 112,
     "top_countries": [
       "India",
       "Brazil",
@@ -3066,6 +3205,7 @@
     "pagerank": 0.00041011,
     "in_degree": 48,
     "out_degree": 123,
+    "neighbor_count": 163,
     "top_countries": [
       "United States",
       "China",
@@ -3088,6 +3228,7 @@
     "pagerank": 0.00096337,
     "in_degree": 109,
     "out_degree": 23,
+    "neighbor_count": 117,
     "top_countries": [
       "China",
       "India",
@@ -3110,6 +3251,7 @@
     "pagerank": 0.000846,
     "in_degree": 118,
     "out_degree": 51,
+    "neighbor_count": 163,
     "top_countries": [
       "China",
       "CHN",
@@ -3132,6 +3274,7 @@
     "pagerank": 0.0011786,
     "in_degree": 109,
     "out_degree": 69,
+    "neighbor_count": 168,
     "top_countries": [
       "China",
       "United States",
@@ -3154,6 +3297,7 @@
     "pagerank": 0.00105833,
     "in_degree": 127,
     "out_degree": 35,
+    "neighbor_count": 154,
     "top_countries": [
       "China",
       "Brazil",
@@ -3176,6 +3320,7 @@
     "pagerank": 0.00068714,
     "in_degree": 93,
     "out_degree": 91,
+    "neighbor_count": 173,
     "top_countries": [
       "China",
       "United States",
@@ -3198,6 +3343,7 @@
     "pagerank": 0.00063327,
     "in_degree": 65,
     "out_degree": 44,
+    "neighbor_count": 91,
     "top_countries": [
       "China",
       "India",
@@ -3220,6 +3366,7 @@
     "pagerank": 0.0003468,
     "in_degree": 55,
     "out_degree": 105,
+    "neighbor_count": 152,
     "top_countries": [
       "United States",
       "USA",
@@ -3242,6 +3389,7 @@
     "pagerank": 0.00108039,
     "in_degree": 111,
     "out_degree": 46,
+    "neighbor_count": 144,
     "top_countries": [
       "United States",
       "China",
@@ -3264,6 +3412,7 @@
     "pagerank": 0.00036133,
     "in_degree": 50,
     "out_degree": 79,
+    "neighbor_count": 107,
     "top_countries": [
       "United States",
       "Chile",
@@ -3286,6 +3435,7 @@
     "pagerank": 0.00045101,
     "in_degree": 83,
     "out_degree": 69,
+    "neighbor_count": 142,
     "top_countries": [
       "China",
       "CHN",
@@ -3308,6 +3458,7 @@
     "pagerank": 6.943e-05,
     "in_degree": 14,
     "out_degree": 108,
+    "neighbor_count": 120,
     "top_countries": [
       "China",
       "CHN"
@@ -3329,6 +3480,7 @@
     "pagerank": 0.00088322,
     "in_degree": 120,
     "out_degree": 58,
+    "neighbor_count": 164,
     "top_countries": [
       "United States",
       "USA",
@@ -3351,6 +3503,7 @@
     "pagerank": 0.00056175,
     "in_degree": 99,
     "out_degree": 74,
+    "neighbor_count": 164,
     "top_countries": [
       "United States",
       "China",
@@ -3373,6 +3526,7 @@
     "pagerank": 0.00037218,
     "in_degree": 67,
     "out_degree": 118,
+    "neighbor_count": 180,
     "top_countries": [
       "China",
       "USA",
@@ -3395,6 +3549,7 @@
     "pagerank": 0.00068614,
     "in_degree": 84,
     "out_degree": 31,
+    "neighbor_count": 96,
     "top_countries": [
       "China",
       "Pakistan",
@@ -3417,6 +3572,7 @@
     "pagerank": 0.00051777,
     "in_degree": 110,
     "out_degree": 62,
+    "neighbor_count": 162,
     "top_countries": [
       "China",
       "CHN",
@@ -3439,6 +3595,7 @@
     "pagerank": 0.00081354,
     "in_degree": 78,
     "out_degree": 10,
+    "neighbor_count": 81,
     "top_countries": [
       "China",
       "Brazil",
@@ -3461,6 +3618,7 @@
     "pagerank": 0.00056661,
     "in_degree": 68,
     "out_degree": 79,
+    "neighbor_count": 135,
     "top_countries": [
       "China",
       "CHN",
@@ -3483,6 +3641,7 @@
     "pagerank": 0.00058992,
     "in_degree": 71,
     "out_degree": 109,
+    "neighbor_count": 169,
     "top_countries": [
       "Asia",
       "China",
@@ -3505,6 +3664,7 @@
     "pagerank": 0.00050956,
     "in_degree": 59,
     "out_degree": 76,
+    "neighbor_count": 117,
     "top_countries": [
       "China",
       "OECD",
@@ -3527,6 +3687,7 @@
     "pagerank": 0.00085647,
     "in_degree": 93,
     "out_degree": 21,
+    "neighbor_count": 102,
     "top_countries": [
       "China",
       "CHN",
@@ -3549,6 +3710,7 @@
     "pagerank": 0.00084185,
     "in_degree": 115,
     "out_degree": 45,
+    "neighbor_count": 155,
     "top_countries": [
       "United States",
       "China",
@@ -3571,6 +3733,7 @@
     "pagerank": 0.00025991,
     "in_degree": 21,
     "out_degree": 94,
+    "neighbor_count": 107,
     "top_countries": [
       "China",
       "OECD",
@@ -3593,6 +3756,7 @@
     "pagerank": 0.00082045,
     "in_degree": 103,
     "out_degree": 9,
+    "neighbor_count": 110,
     "top_countries": [
       "China",
       "CHN"
@@ -3614,6 +3778,7 @@
     "pagerank": 0.00077066,
     "in_degree": 148,
     "out_degree": 15,
+    "neighbor_count": 162,
     "top_countries": [
       "China",
       "Italy",
@@ -3636,6 +3801,7 @@
     "pagerank": 0.00050582,
     "in_degree": 55,
     "out_degree": 47,
+    "neighbor_count": 83,
     "top_countries": [
       "China",
       "United States",
@@ -3658,6 +3824,7 @@
     "pagerank": 0.00051187,
     "in_degree": 70,
     "out_degree": 79,
+    "neighbor_count": 137,
     "top_countries": [
       "United States",
       "USA",
@@ -3680,6 +3847,7 @@
     "pagerank": 0.00044911,
     "in_degree": 70,
     "out_degree": 67,
+    "neighbor_count": 124,
     "top_countries": [
       "United States",
       "Africa",
@@ -3702,6 +3870,7 @@
     "pagerank": 0.00024739,
     "in_degree": 51,
     "out_degree": 108,
+    "neighbor_count": 151,
     "top_countries": [
       "China",
       "CHN",
@@ -3724,6 +3893,7 @@
     "pagerank": 5.366e-05,
     "in_degree": 14,
     "out_degree": 108,
+    "neighbor_count": 119,
     "top_countries": [
       "China",
       "CHN",
@@ -3746,6 +3916,7 @@
     "pagerank": 0.00070858,
     "in_degree": 127,
     "out_degree": 31,
+    "neighbor_count": 154,
     "top_countries": [
       "China",
       "United States",
@@ -3768,6 +3939,7 @@
     "pagerank": 0.00064051,
     "in_degree": 75,
     "out_degree": 80,
+    "neighbor_count": 144,
     "top_countries": [
       "United States",
       "USA",
@@ -3790,6 +3962,7 @@
     "pagerank": 0.00059357,
     "in_degree": 56,
     "out_degree": 98,
+    "neighbor_count": 149,
     "top_countries": [
       "China",
       "United States",
@@ -3812,6 +3985,7 @@
     "pagerank": 0.00031706,
     "in_degree": 68,
     "out_degree": 73,
+    "neighbor_count": 131,
     "top_countries": [
       "China",
       "CHN",
@@ -3834,6 +4008,7 @@
     "pagerank": 0.00012623,
     "in_degree": 31,
     "out_degree": 137,
+    "neighbor_count": 160,
     "top_countries": [
       "China",
       "CHN",
@@ -3856,6 +4031,7 @@
     "pagerank": 0.0005005,
     "in_degree": 64,
     "out_degree": 98,
+    "neighbor_count": 157,
     "top_countries": [
       "United States",
       "China",
@@ -3878,6 +4054,7 @@
     "pagerank": 0.0001271,
     "in_degree": 26,
     "out_degree": 113,
+    "neighbor_count": 137,
     "top_countries": [
       "United States",
       "euro area",
@@ -3900,6 +4077,7 @@
     "pagerank": 0.00087575,
     "in_degree": 100,
     "out_degree": 57,
+    "neighbor_count": 147,
     "top_countries": [
       "United States",
       "USA",
@@ -3922,6 +4100,7 @@
     "pagerank": 0.00075089,
     "in_degree": 100,
     "out_degree": 54,
+    "neighbor_count": 143,
     "top_countries": [
       "China",
       "USA",
@@ -3944,6 +4123,7 @@
     "pagerank": 0.00040473,
     "in_degree": 55,
     "out_degree": 76,
+    "neighbor_count": 115,
     "top_countries": [
       "United States",
       "China",
@@ -3966,6 +4146,7 @@
     "pagerank": 0.00022017,
     "in_degree": 40,
     "out_degree": 124,
+    "neighbor_count": 161,
     "top_countries": [
       "China",
       "United States",
@@ -3988,6 +4169,7 @@
     "pagerank": 0.00078924,
     "in_degree": 82,
     "out_degree": 41,
+    "neighbor_count": 106,
     "top_countries": [
       "Pakistan",
       "BRICS",
@@ -4010,6 +4192,7 @@
     "pagerank": 0.00074326,
     "in_degree": 119,
     "out_degree": 44,
+    "neighbor_count": 158,
     "top_countries": [
       "China",
       "euro area",
@@ -4032,6 +4215,7 @@
     "pagerank": 0.00023635,
     "in_degree": 30,
     "out_degree": 100,
+    "neighbor_count": 120,
     "top_countries": [
       "China",
       "CHN",
@@ -4054,6 +4238,7 @@
     "pagerank": 0.00061296,
     "in_degree": 98,
     "out_degree": 61,
+    "neighbor_count": 145,
     "top_countries": [
       "USA",
       "China",
@@ -4076,6 +4261,7 @@
     "pagerank": 0.00021927,
     "in_degree": 47,
     "out_degree": 86,
+    "neighbor_count": 123,
     "top_countries": [
       "China",
       "India",
@@ -4098,6 +4284,7 @@
     "pagerank": 0.00015352,
     "in_degree": 37,
     "out_degree": 81,
+    "neighbor_count": 112,
     "top_countries": [
       "China",
       "CHN",
@@ -4120,6 +4307,7 @@
     "pagerank": 0.00058283,
     "in_degree": 74,
     "out_degree": 34,
+    "neighbor_count": 97,
     "top_countries": [
       "China",
       "BRICS",
@@ -4142,6 +4330,7 @@
     "pagerank": 0.00022639,
     "in_degree": 45,
     "out_degree": 86,
+    "neighbor_count": 112,
     "top_countries": [
       "China",
       "United States",
@@ -4164,6 +4353,7 @@
     "pagerank": 0.00014548,
     "in_degree": 29,
     "out_degree": 85,
+    "neighbor_count": 108,
     "top_countries": [
       "China",
       "CHN",
@@ -4186,6 +4376,7 @@
     "pagerank": 0.0010402,
     "in_degree": 119,
     "out_degree": 14,
+    "neighbor_count": 127,
     "top_countries": [
       "China",
       "United States",
@@ -4208,6 +4399,7 @@
     "pagerank": 9.515e-05,
     "in_degree": 19,
     "out_degree": 106,
+    "neighbor_count": 124,
     "top_countries": [
       "China",
       "United States",
@@ -4230,6 +4422,7 @@
     "pagerank": 0.00087782,
     "in_degree": 122,
     "out_degree": 21,
+    "neighbor_count": 137,
     "top_countries": [
       "United States",
       "Germany",
@@ -4252,6 +4445,7 @@
     "pagerank": 0.00082769,
     "in_degree": 93,
     "out_degree": 44,
+    "neighbor_count": 128,
     "top_countries": [
       "United States",
       "China",
@@ -4274,6 +4468,7 @@
     "pagerank": 0.00045146,
     "in_degree": 82,
     "out_degree": 28,
+    "neighbor_count": 103,
     "top_countries": [
       "China",
       "CHN",
@@ -4296,6 +4491,7 @@
     "pagerank": 0.00080709,
     "in_degree": 114,
     "out_degree": 9,
+    "neighbor_count": 120,
     "top_countries": [
       "China",
       "United States",
@@ -4318,6 +4514,7 @@
     "pagerank": 0.00028611,
     "in_degree": 35,
     "out_degree": 103,
+    "neighbor_count": 131,
     "top_countries": [
       "China",
       "United States",
@@ -4340,6 +4537,7 @@
     "pagerank": 0.00048832,
     "in_degree": 89,
     "out_degree": 48,
+    "neighbor_count": 127,
     "top_countries": [
       "United States",
       "United Kingdom",
@@ -4362,6 +4560,7 @@
     "pagerank": 0.0004132,
     "in_degree": 39,
     "out_degree": 59,
+    "neighbor_count": 80,
     "top_countries": [
       "China",
       "Brazil",
@@ -4384,6 +4583,7 @@
     "pagerank": 0.00040564,
     "in_degree": 74,
     "out_degree": 73,
+    "neighbor_count": 136,
     "top_countries": [
       "United States",
       "China",

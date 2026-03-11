@@ -14,14 +14,14 @@ const conservative = data.compare.regimes.find((regime) => regime.regime === "co
   <main>
     <section class="page-hero">
       <span class="eyebrow">Method</span>
-      <h1>One graph pipeline, one public default.</h1>
+      <h1>One graph pipeline, one public default, and one place for the technical terms.</h1>
       <p class="lede">
-        AI extracts graph structure from paper text. Ontology construction, ranking, comparison, and duplicate cleanup are deterministic and inspectable.
+        AI extracts graph structure from paper text. Ontology construction, ranking, comparison, and duplicate cleanup are deterministic and inspectable. This page is the glossary for the terms hidden from the default public cards.
       </p>
       <div class="button-row">
         <span class="field-pill">Default: {data.default_view.regime} {data.default_view.mapping}</span>
         <a class="button-secondary" href="/graph/">Open graph</a>
-        <a class="button-tertiary" href="/compare/">Open compare</a>
+        <a class="button-tertiary" href="/advanced/">Open advanced pages</a>
       </div>
     </section>
 
@@ -121,6 +121,37 @@ const conservative = data.compare.regimes.find((regime) => regime.regime === "co
             <a class="button-secondary" href="/opportunities/">See opportunities</a>
             <a class="button-tertiary" href="/compare/">Inspect regime comparison</a>
           </div>
+        </div>
+      </details>
+
+      <details class="method-detail">
+        <summary>
+          <span>
+            <span class="eyebrow">Glossary</span>
+            <strong>What the raw graph terms mean</strong>
+          </span>
+        </summary>
+        <div class="method-body glossary-grid">
+          <article>
+            <h3>Path support</h3>
+            <p>The direct pair is weak or missing, but nearby concepts already connect the two sides of the question.</p>
+          </article>
+          <article>
+            <h3>Gap bonus</h3>
+            <p>The surrounding neighborhood looks fuller than the direct link itself, so the pair may be lagging behind nearby work.</p>
+          </article>
+          <article>
+            <h3>Motifs</h3>
+            <p>Repeated local graph patterns that support the same connection. Useful for scoring, but hidden on the main public cards.</p>
+          </article>
+          <article>
+            <h3>Mediator count</h3>
+            <p>The number of nearby concepts that help connect the two sides of the pair through the observed graph.</p>
+          </article>
+          <article>
+            <h3>Duplicate suppression</h3>
+            <p>The cleanup layer removes near-synonym loops from the public Baseline exploratory surface so the visible top slice is less repetitive.</p>
+          </article>
         </div>
       </details>
     </section>

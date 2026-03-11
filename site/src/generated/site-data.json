@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-10T20:09:02.761244+00:00",
+  "generated_at": "2026-03-11T14:56:27.026516+00:00",
   "app_url": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app",
   "repo_url": "https://github.com/prashgarg/frontiergraph",
   "default_view": {
@@ -34,6 +34,11 @@
         "mediator_count": 38,
         "motif_count": 36,
         "cooc_count": 0,
+        "direct_link_status": "No direct papers yet",
+        "supporting_path_count": 38,
+        "why_now": "investment and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+        "recommended_move": "Start with a bridge review or cross-field pilot.",
+        "slice_label": "Connect separate literatures",
         "top_countries_source": [
           "China",
           "United States",
@@ -44,6 +49,8 @@
           "CHN",
           "India"
         ],
+        "source_context_summary": "China, United States, and related settings",
+        "target_context_summary": "China, CHN, and related settings",
         "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=investment%20-%3E%20carbon%20emissions"
       },
       {
@@ -62,6 +69,11 @@
         "mediator_count": 23,
         "motif_count": 23,
         "cooc_count": 0,
+        "direct_link_status": "No direct papers yet",
+        "supporting_path_count": 23,
+        "why_now": "public debt and CO2 emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+        "recommended_move": "Start with a bridge review or cross-field pilot.",
+        "slice_label": "Connect separate literatures",
         "top_countries_source": [
           "United States",
           "Africa",
@@ -72,6 +84,8 @@
           "India",
           "CHN"
         ],
+        "source_context_summary": "United States, Africa, and related settings",
+        "target_context_summary": "China, India, and related settings",
         "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=public%20debt%20-%3E%20CO2%20emissions"
       },
       {
@@ -90,6 +104,11 @@
         "mediator_count": 21,
         "motif_count": 19,
         "cooc_count": 0,
+        "direct_link_status": "No direct papers yet",
+        "supporting_path_count": 21,
+        "why_now": "innovation and environmental quality (CO2 emissions) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+        "recommended_move": "Start with a bridge review or cross-field pilot.",
+        "slice_label": "Missing direct link",
         "top_countries_source": [
           "China",
           "Italy",
@@ -100,6 +119,8 @@
           "United States",
           "Italy"
         ],
+        "source_context_summary": "China, Italy, and related settings",
+        "target_context_summary": "China, United States, and related settings",
         "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=innovation%20-%3E%20environmental%20quality%20%28CO2%20emissions%29"
       },
       {
@@ -118,6 +139,11 @@
         "mediator_count": 21,
         "motif_count": 26,
         "cooc_count": 0,
+        "direct_link_status": "No direct papers yet",
+        "supporting_path_count": 21,
+        "why_now": "foreign direct investment (FDI) flows and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+        "recommended_move": "Start with a bridge review or cross-field pilot.",
+        "slice_label": "Missing direct link",
         "top_countries_source": [
           "China",
           "Poland",
@@ -128,63 +154,79 @@
           "CHN",
           "India"
         ],
+        "source_context_summary": "China, Poland, and related settings",
+        "target_context_summary": "China, CHN, and related settings",
         "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=foreign%20direct%20investment%20%28FDI%29%20flows%20-%3E%20carbon%20emissions"
       },
       {
-        "pair_key": "FG3C000014__FG3C001221",
-        "source_id": "FG3C001221",
-        "target_id": "FG3C000014",
-        "source_label": "trade liberalisation",
-        "target_label": "energy consumption",
-        "source_bucket": "core",
+        "pair_key": "FG3C000003__FG3C000010",
+        "source_id": "FG3C000003",
+        "target_id": "FG3C000010",
+        "source_label": "CO2 emissions",
+        "target_label": "carbon emissions",
+        "source_bucket": "adjacent",
         "target_bucket": "adjacent",
-        "score": 0.20594,
-        "base_score": 0.220632,
-        "duplicate_penalty": 0.014691,
-        "path_support_norm": 0.02533,
-        "gap_bonus": 1.0,
-        "mediator_count": 5,
-        "motif_count": 4,
-        "cooc_count": 0,
+        "score": 0.1436,
+        "base_score": 0.711671,
+        "duplicate_penalty": 0.568071,
+        "path_support_norm": 0.99618,
+        "gap_bonus": 0.5,
+        "mediator_count": 147,
+        "motif_count": 145,
+        "cooc_count": 1,
+        "direct_link_status": "One direct paper so far",
+        "supporting_path_count": 147,
+        "why_now": "CO2 emissions and carbon emissions already have one direct paper so far, while 147 nearby concepts provide strong support for a more direct follow-up.",
+        "recommended_move": "This looks ready for a direct empirical follow-through.",
+        "slice_label": "Ready to follow through",
         "top_countries_source": [
+          "China",
           "India",
-          "Nepal",
-          "developing countries"
+          "CHN"
+        ],
+        "top_countries_target": [
+          "China",
+          "CHN",
+          "India"
+        ],
+        "source_context_summary": "China, India, and related settings",
+        "target_context_summary": "China, CHN, and related settings",
+        "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emissions%20-%3E%20carbon%20emissions"
+      },
+      {
+        "pair_key": "FG3C000014__FG3C000018",
+        "source_id": "FG3C000018",
+        "target_id": "FG3C000014",
+        "source_label": "renewable energy consumption",
+        "target_label": "energy consumption",
+        "source_bucket": "adjacent",
+        "target_bucket": "adjacent",
+        "score": -0.212599,
+        "base_score": 0.480142,
+        "duplicate_penalty": 0.692741,
+        "path_support_norm": 1.0,
+        "gap_bonus": 0.0,
+        "mediator_count": 83,
+        "motif_count": 83,
+        "cooc_count": 35,
+        "direct_link_status": "Direct work already exists",
+        "supporting_path_count": 83,
+        "why_now": "renewable energy consumption and energy consumption already have an existing direct literature in the public sample, while 83 nearby concepts provide strong support for a more direct follow-up.",
+        "recommended_move": "This looks ready for a direct empirical follow-through.",
+        "slice_label": "Ready to follow through",
+        "top_countries_source": [
+          "China",
+          "India",
+          "OECD"
         ],
         "top_countries_target": [
           "China",
           "India",
           "Pakistan"
         ],
-        "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=trade%20liberalisation%20-%3E%20energy%20consumption"
-      },
-      {
-        "pair_key": "FG3C000019__FG3C000081",
-        "source_id": "FG3C000019",
-        "target_id": "FG3C000081",
-        "source_label": "investment",
-        "target_label": "environmental quality",
-        "source_bucket": "core",
-        "target_bucket": "adjacent",
-        "score": 0.200469,
-        "base_score": 0.220387,
-        "duplicate_penalty": 0.019917,
-        "path_support_norm": 0.011895,
-        "gap_bonus": 1.0,
-        "mediator_count": 21,
-        "motif_count": 19,
-        "cooc_count": 0,
-        "top_countries_source": [
-          "China",
-          "United States",
-          "USA"
-        ],
-        "top_countries_target": [
-          "China",
-          "India",
-          "CHN"
-        ],
-        "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=investment%20-%3E%20environmental%20quality"
+        "source_context_summary": "China, India, and related settings",
+        "target_context_summary": "China, India, and related settings",
+        "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=renewable%20energy%20consumption%20-%3E%20energy%20consumption"
       }
     ],
     "featured_central_concepts": [
@@ -198,6 +240,7 @@
         "pagerank": 0.02176391,
         "in_degree": 1085,
         "out_degree": 438,
+        "neighbor_count": 1247,
         "top_countries": [
           "China",
           "India",
@@ -220,6 +263,7 @@
         "pagerank": 0.01734411,
         "in_degree": 713,
         "out_degree": 208,
+        "neighbor_count": 754,
         "top_countries": [
           "China",
           "India",
@@ -242,6 +286,7 @@
         "pagerank": 0.01240466,
         "in_degree": 726,
         "out_degree": 175,
+        "neighbor_count": 772,
         "top_countries": [
           "China",
           "CHN",
@@ -264,6 +309,7 @@
         "pagerank": 0.00663863,
         "in_degree": 337,
         "out_degree": 222,
+        "neighbor_count": 440,
         "top_countries": [
           "China",
           "India",
@@ -286,6 +332,7 @@
         "pagerank": 0.0062846,
         "in_degree": 303,
         "out_degree": 213,
+        "neighbor_count": 415,
         "top_countries": [
           "China",
           "India",
@@ -308,6 +355,7 @@
         "pagerank": 0.00311897,
         "in_degree": 223,
         "out_degree": 351,
+        "neighbor_count": 468,
         "top_countries": [
           "China",
           "India",
@@ -330,6 +378,7 @@
         "pagerank": 0.00601709,
         "in_degree": 331,
         "out_degree": 81,
+        "neighbor_count": 346,
         "top_countries": [
           "China",
           "India",
@@ -352,6 +401,7 @@
         "pagerank": 0.00420888,
         "in_degree": 419,
         "out_degree": 333,
+        "neighbor_count": 655,
         "top_countries": [
           "United States",
           "China",
@@ -399,6 +449,11 @@
           "mediator_count": 38,
           "motif_count": 36,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 38,
+          "why_now": "investment and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "United States",
@@ -409,6 +464,8 @@
             "CHN",
             "India"
           ],
+          "source_context_summary": "China, United States, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=investment%20-%3E%20carbon%20emissions"
         },
         {
@@ -427,6 +484,11 @@
           "mediator_count": 23,
           "motif_count": 23,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 23,
+          "why_now": "public debt and CO2 emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "United States",
             "Africa",
@@ -437,6 +499,8 @@
             "India",
             "CHN"
           ],
+          "source_context_summary": "United States, Africa, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=public%20debt%20-%3E%20CO2%20emissions"
         },
         {
@@ -455,6 +519,11 @@
           "mediator_count": 21,
           "motif_count": 19,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 21,
+          "why_now": "innovation and environmental quality (CO2 emissions) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "Italy",
@@ -465,6 +534,8 @@
             "United States",
             "Italy"
           ],
+          "source_context_summary": "China, Italy, and related settings",
+          "target_context_summary": "China, United States, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=innovation%20-%3E%20environmental%20quality%20%28CO2%20emissions%29"
         },
         {
@@ -483,6 +554,11 @@
           "mediator_count": 21,
           "motif_count": 26,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 21,
+          "why_now": "foreign direct investment (FDI) flows and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "Poland",
@@ -493,6 +569,8 @@
             "CHN",
             "India"
           ],
+          "source_context_summary": "China, Poland, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=foreign%20direct%20investment%20%28FDI%29%20flows%20-%3E%20carbon%20emissions"
         },
         {
@@ -511,6 +589,11 @@
           "mediator_count": 5,
           "motif_count": 4,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 5,
+          "why_now": "trade liberalisation and energy consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "India",
             "Nepal",
@@ -521,6 +604,8 @@
             "India",
             "Pakistan"
           ],
+          "source_context_summary": "India, Nepal, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=trade%20liberalisation%20-%3E%20energy%20consumption"
         },
         {
@@ -539,6 +624,11 @@
           "mediator_count": 21,
           "motif_count": 19,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 21,
+          "why_now": "investment and environmental quality are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "United States",
@@ -549,6 +639,8 @@
             "India",
             "CHN"
           ],
+          "source_context_summary": "China, United States, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=investment%20-%3E%20environmental%20quality"
         },
         {
@@ -567,6 +659,11 @@
           "mediator_count": 23,
           "motif_count": 23,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 23,
+          "why_now": "monetary policy and energy consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "United States",
             "China",
@@ -577,6 +674,8 @@
             "India",
             "Pakistan"
           ],
+          "source_context_summary": "United States, China, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=monetary%20policy%20-%3E%20energy%20consumption"
         },
         {
@@ -595,6 +694,11 @@
           "mediator_count": 17,
           "motif_count": 17,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 17,
+          "why_now": "urbanization and output growth are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "India",
@@ -605,6 +709,8 @@
             "China",
             "United Kingdom"
           ],
+          "source_context_summary": "China, India, and related settings",
+          "target_context_summary": "United States, China, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=urbanization%20-%3E%20output%20growth"
         },
         {
@@ -623,6 +729,11 @@
           "mediator_count": 16,
           "motif_count": 17,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 16,
+          "why_now": "green innovation and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Treat this as a missing direct test, not a settled result.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "CHN",
@@ -633,6 +744,8 @@
             "Brazil",
             "China"
           ],
+          "source_context_summary": "China, CHN, and related settings",
+          "target_context_summary": "India, Brazil, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20innovation%20-%3E%20load%20capacity%20factor%20%28LCF%29"
         },
         {
@@ -651,6 +764,11 @@
           "mediator_count": 24,
           "motif_count": 22,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 24,
+          "why_now": "exports and environmental pollution are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "USA",
@@ -661,6 +779,8 @@
             "CHN",
             "Germany"
           ],
+          "source_context_summary": "China, USA, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=exports%20-%3E%20environmental%20pollution"
         },
         {
@@ -679,6 +799,11 @@
           "mediator_count": 20,
           "motif_count": 19,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 20,
+          "why_now": "inward foreign direct investment (FDI) and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "CHN",
@@ -689,6 +814,8 @@
             "CHN",
             "India"
           ],
+          "source_context_summary": "China, CHN, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inward%20foreign%20direct%20investment%20%28FDI%29%20-%3E%20carbon%20emissions"
         },
         {
@@ -707,6 +834,11 @@
           "mediator_count": 9,
           "motif_count": 8,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 9,
+          "why_now": "mineral rents and environmental quality (CO2 emissions) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Treat this as a missing direct test, not a settled result.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "Brazil",
@@ -717,6 +849,8 @@
             "United States",
             "Italy"
           ],
+          "source_context_summary": "China, Brazil, and related settings",
+          "target_context_summary": "China, United States, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=mineral%20rents%20-%3E%20environmental%20quality%20%28CO2%20emissions%29"
         }
       ],
@@ -737,6 +871,11 @@
           "mediator_count": 38,
           "motif_count": 36,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 38,
+          "why_now": "investment and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "United States",
@@ -747,6 +886,8 @@
             "CHN",
             "India"
           ],
+          "source_context_summary": "China, United States, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=investment%20-%3E%20carbon%20emissions"
         },
         {
@@ -765,6 +906,11 @@
           "mediator_count": 23,
           "motif_count": 23,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 23,
+          "why_now": "public debt and CO2 emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "United States",
             "Africa",
@@ -775,6 +921,8 @@
             "India",
             "CHN"
           ],
+          "source_context_summary": "United States, Africa, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=public%20debt%20-%3E%20CO2%20emissions"
         },
         {
@@ -793,6 +941,11 @@
           "mediator_count": 21,
           "motif_count": 19,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 21,
+          "why_now": "innovation and environmental quality (CO2 emissions) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "Italy",
@@ -803,6 +956,8 @@
             "United States",
             "Italy"
           ],
+          "source_context_summary": "China, Italy, and related settings",
+          "target_context_summary": "China, United States, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=innovation%20-%3E%20environmental%20quality%20%28CO2%20emissions%29"
         },
         {
@@ -821,6 +976,11 @@
           "mediator_count": 21,
           "motif_count": 26,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 21,
+          "why_now": "foreign direct investment (FDI) flows and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "Poland",
@@ -831,6 +991,8 @@
             "CHN",
             "India"
           ],
+          "source_context_summary": "China, Poland, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=foreign%20direct%20investment%20%28FDI%29%20flows%20-%3E%20carbon%20emissions"
         },
         {
@@ -849,6 +1011,11 @@
           "mediator_count": 5,
           "motif_count": 4,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 5,
+          "why_now": "trade liberalisation and energy consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "India",
             "Nepal",
@@ -859,6 +1026,8 @@
             "India",
             "Pakistan"
           ],
+          "source_context_summary": "India, Nepal, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=trade%20liberalisation%20-%3E%20energy%20consumption"
         },
         {
@@ -877,6 +1046,11 @@
           "mediator_count": 21,
           "motif_count": 19,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 21,
+          "why_now": "investment and environmental quality are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "United States",
@@ -887,6 +1061,8 @@
             "India",
             "CHN"
           ],
+          "source_context_summary": "China, United States, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=investment%20-%3E%20environmental%20quality"
         },
         {
@@ -905,6 +1081,11 @@
           "mediator_count": 23,
           "motif_count": 23,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 23,
+          "why_now": "monetary policy and energy consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "United States",
             "China",
@@ -915,6 +1096,8 @@
             "India",
             "Pakistan"
           ],
+          "source_context_summary": "United States, China, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=monetary%20policy%20-%3E%20energy%20consumption"
         },
         {
@@ -933,6 +1116,11 @@
           "mediator_count": 17,
           "motif_count": 17,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 17,
+          "why_now": "urbanization and output growth are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "India",
@@ -943,6 +1131,8 @@
             "China",
             "United Kingdom"
           ],
+          "source_context_summary": "China, India, and related settings",
+          "target_context_summary": "United States, China, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=urbanization%20-%3E%20output%20growth"
         },
         {
@@ -961,6 +1151,11 @@
           "mediator_count": 24,
           "motif_count": 22,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 24,
+          "why_now": "exports and environmental pollution are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "USA",
@@ -971,6 +1166,8 @@
             "CHN",
             "Germany"
           ],
+          "source_context_summary": "China, USA, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=exports%20-%3E%20environmental%20pollution"
         },
         {
@@ -989,6 +1186,11 @@
           "mediator_count": 20,
           "motif_count": 19,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 20,
+          "why_now": "inward foreign direct investment (FDI) and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "CHN",
@@ -999,6 +1201,8 @@
             "CHN",
             "India"
           ],
+          "source_context_summary": "China, CHN, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inward%20foreign%20direct%20investment%20%28FDI%29%20-%3E%20carbon%20emissions"
         },
         {
@@ -1017,6 +1221,11 @@
           "mediator_count": 14,
           "motif_count": 14,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 14,
+          "why_now": "distance and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "United States",
@@ -1027,6 +1236,8 @@
             "CHN",
             "India"
           ],
+          "source_context_summary": "China, United States, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=distance%20-%3E%20carbon%20emissions"
         },
         {
@@ -1045,6 +1256,11 @@
           "mediator_count": 9,
           "motif_count": 8,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 9,
+          "why_now": "imports and environmental quality (CO2 emissions) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "United States",
@@ -1055,6 +1271,8 @@
             "United States",
             "Italy"
           ],
+          "source_context_summary": "China, United States, and related settings",
+          "target_context_summary": "China, United States, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=imports%20-%3E%20environmental%20quality%20%28CO2%20emissions%29"
         }
       ],
@@ -1075,6 +1293,11 @@
           "mediator_count": 38,
           "motif_count": 36,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 38,
+          "why_now": "investment and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "United States",
@@ -1085,6 +1308,8 @@
             "CHN",
             "India"
           ],
+          "source_context_summary": "China, United States, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=investment%20-%3E%20carbon%20emissions"
         },
         {
@@ -1103,6 +1328,11 @@
           "mediator_count": 23,
           "motif_count": 23,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 23,
+          "why_now": "public debt and CO2 emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "United States",
             "Africa",
@@ -1113,6 +1343,8 @@
             "India",
             "CHN"
           ],
+          "source_context_summary": "United States, Africa, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=public%20debt%20-%3E%20CO2%20emissions"
         },
         {
@@ -1131,6 +1363,11 @@
           "mediator_count": 21,
           "motif_count": 19,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 21,
+          "why_now": "innovation and environmental quality (CO2 emissions) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "Italy",
@@ -1141,6 +1378,8 @@
             "United States",
             "Italy"
           ],
+          "source_context_summary": "China, Italy, and related settings",
+          "target_context_summary": "China, United States, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=innovation%20-%3E%20environmental%20quality%20%28CO2%20emissions%29"
         },
         {
@@ -1159,6 +1398,11 @@
           "mediator_count": 21,
           "motif_count": 26,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 21,
+          "why_now": "foreign direct investment (FDI) flows and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "Poland",
@@ -1169,6 +1413,8 @@
             "CHN",
             "India"
           ],
+          "source_context_summary": "China, Poland, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=foreign%20direct%20investment%20%28FDI%29%20flows%20-%3E%20carbon%20emissions"
         },
         {
@@ -1187,6 +1433,11 @@
           "mediator_count": 5,
           "motif_count": 4,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 5,
+          "why_now": "trade liberalisation and energy consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "India",
             "Nepal",
@@ -1197,6 +1448,8 @@
             "India",
             "Pakistan"
           ],
+          "source_context_summary": "India, Nepal, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=trade%20liberalisation%20-%3E%20energy%20consumption"
         },
         {
@@ -1215,6 +1468,11 @@
           "mediator_count": 21,
           "motif_count": 19,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 21,
+          "why_now": "investment and environmental quality are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "United States",
@@ -1225,6 +1483,8 @@
             "India",
             "CHN"
           ],
+          "source_context_summary": "China, United States, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=investment%20-%3E%20environmental%20quality"
         },
         {
@@ -1243,6 +1503,11 @@
           "mediator_count": 23,
           "motif_count": 23,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 23,
+          "why_now": "monetary policy and energy consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "United States",
             "China",
@@ -1253,6 +1518,8 @@
             "India",
             "Pakistan"
           ],
+          "source_context_summary": "United States, China, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=monetary%20policy%20-%3E%20energy%20consumption"
         },
         {
@@ -1271,6 +1538,11 @@
           "mediator_count": 17,
           "motif_count": 17,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 17,
+          "why_now": "urbanization and output growth are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "India",
@@ -1281,6 +1553,8 @@
             "China",
             "United Kingdom"
           ],
+          "source_context_summary": "China, India, and related settings",
+          "target_context_summary": "United States, China, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=urbanization%20-%3E%20output%20growth"
         },
         {
@@ -1299,6 +1573,11 @@
           "mediator_count": 16,
           "motif_count": 17,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 16,
+          "why_now": "green innovation and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Treat this as a missing direct test, not a settled result.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "CHN",
@@ -1309,6 +1588,8 @@
             "Brazil",
             "China"
           ],
+          "source_context_summary": "China, CHN, and related settings",
+          "target_context_summary": "India, Brazil, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20innovation%20-%3E%20load%20capacity%20factor%20%28LCF%29"
         },
         {
@@ -1327,6 +1608,11 @@
           "mediator_count": 24,
           "motif_count": 22,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 24,
+          "why_now": "exports and environmental pollution are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "USA",
@@ -1337,6 +1623,8 @@
             "CHN",
             "Germany"
           ],
+          "source_context_summary": "China, USA, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=exports%20-%3E%20environmental%20pollution"
         },
         {
@@ -1355,6 +1643,11 @@
           "mediator_count": 20,
           "motif_count": 19,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 20,
+          "why_now": "inward foreign direct investment (FDI) and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "CHN",
@@ -1365,6 +1658,8 @@
             "CHN",
             "India"
           ],
+          "source_context_summary": "China, CHN, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inward%20foreign%20direct%20investment%20%28FDI%29%20-%3E%20carbon%20emissions"
         },
         {
@@ -1383,6 +1678,11 @@
           "mediator_count": 9,
           "motif_count": 8,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 9,
+          "why_now": "mineral rents and environmental quality (CO2 emissions) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Treat this as a missing direct test, not a settled result.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "Brazil",
@@ -1393,6 +1693,8 @@
             "United States",
             "Italy"
           ],
+          "source_context_summary": "China, Brazil, and related settings",
+          "target_context_summary": "China, United States, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=mineral%20rents%20-%3E%20environmental%20quality%20%28CO2%20emissions%29"
         }
       ],
@@ -1413,6 +1715,11 @@
           "mediator_count": 147,
           "motif_count": 145,
           "cooc_count": 1,
+          "direct_link_status": "One direct paper so far",
+          "supporting_path_count": 147,
+          "why_now": "CO2 emissions and carbon emissions already have one direct paper so far, while 147 nearby concepts provide strong support for a more direct follow-up.",
+          "recommended_move": "This looks ready for a direct empirical follow-through.",
+          "slice_label": "Ready to follow through",
           "top_countries_source": [
             "China",
             "India",
@@ -1423,6 +1730,8 @@
             "CHN",
             "India"
           ],
+          "source_context_summary": "China, India, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emissions%20-%3E%20carbon%20emissions"
         },
         {
@@ -1441,6 +1750,11 @@
           "mediator_count": 83,
           "motif_count": 83,
           "cooc_count": 35,
+          "direct_link_status": "Direct work already exists",
+          "supporting_path_count": 83,
+          "why_now": "renewable energy consumption and energy consumption already have an existing direct literature in the public sample, while 83 nearby concepts provide strong support for a more direct follow-up.",
+          "recommended_move": "This looks ready for a direct empirical follow-through.",
+          "slice_label": "Ready to follow through",
           "top_countries_source": [
             "China",
             "India",
@@ -1451,6 +1765,8 @@
             "India",
             "Pakistan"
           ],
+          "source_context_summary": "China, India, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=renewable%20energy%20consumption%20-%3E%20energy%20consumption"
         }
       ],
@@ -1471,6 +1787,11 @@
           "mediator_count": 38,
           "motif_count": 36,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 38,
+          "why_now": "investment and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "United States",
@@ -1481,6 +1802,8 @@
             "CHN",
             "India"
           ],
+          "source_context_summary": "China, United States, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=investment%20-%3E%20carbon%20emissions"
         },
         {
@@ -1499,6 +1822,11 @@
           "mediator_count": 23,
           "motif_count": 23,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 23,
+          "why_now": "public debt and CO2 emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "United States",
             "Africa",
@@ -1509,6 +1837,8 @@
             "India",
             "CHN"
           ],
+          "source_context_summary": "United States, Africa, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=public%20debt%20-%3E%20CO2%20emissions"
         },
         {
@@ -1527,6 +1857,11 @@
           "mediator_count": 21,
           "motif_count": 19,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 21,
+          "why_now": "innovation and environmental quality (CO2 emissions) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "Italy",
@@ -1537,6 +1872,8 @@
             "United States",
             "Italy"
           ],
+          "source_context_summary": "China, Italy, and related settings",
+          "target_context_summary": "China, United States, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=innovation%20-%3E%20environmental%20quality%20%28CO2%20emissions%29"
         },
         {
@@ -1555,6 +1892,11 @@
           "mediator_count": 21,
           "motif_count": 26,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 21,
+          "why_now": "foreign direct investment (FDI) flows and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "Poland",
@@ -1565,6 +1907,8 @@
             "CHN",
             "India"
           ],
+          "source_context_summary": "China, Poland, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=foreign%20direct%20investment%20%28FDI%29%20flows%20-%3E%20carbon%20emissions"
         },
         {
@@ -1583,6 +1927,11 @@
           "mediator_count": 5,
           "motif_count": 4,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 5,
+          "why_now": "trade liberalisation and energy consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "India",
             "Nepal",
@@ -1593,6 +1942,8 @@
             "India",
             "Pakistan"
           ],
+          "source_context_summary": "India, Nepal, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=trade%20liberalisation%20-%3E%20energy%20consumption"
         },
         {
@@ -1611,6 +1962,11 @@
           "mediator_count": 21,
           "motif_count": 19,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 21,
+          "why_now": "investment and environmental quality are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "United States",
@@ -1621,6 +1977,8 @@
             "India",
             "CHN"
           ],
+          "source_context_summary": "China, United States, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=investment%20-%3E%20environmental%20quality"
         },
         {
@@ -1639,6 +1997,11 @@
           "mediator_count": 23,
           "motif_count": 23,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 23,
+          "why_now": "monetary policy and energy consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "United States",
             "China",
@@ -1649,6 +2012,8 @@
             "India",
             "Pakistan"
           ],
+          "source_context_summary": "United States, China, and related settings",
+          "target_context_summary": "China, India, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=monetary%20policy%20-%3E%20energy%20consumption"
         },
         {
@@ -1667,6 +2032,11 @@
           "mediator_count": 17,
           "motif_count": 17,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 17,
+          "why_now": "urbanization and output growth are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "India",
@@ -1677,6 +2047,8 @@
             "China",
             "United Kingdom"
           ],
+          "source_context_summary": "China, India, and related settings",
+          "target_context_summary": "United States, China, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=urbanization%20-%3E%20output%20growth"
         },
         {
@@ -1695,6 +2067,11 @@
           "mediator_count": 16,
           "motif_count": 17,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 16,
+          "why_now": "green innovation and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Treat this as a missing direct test, not a settled result.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "CHN",
@@ -1705,6 +2082,8 @@
             "Brazil",
             "China"
           ],
+          "source_context_summary": "China, CHN, and related settings",
+          "target_context_summary": "India, Brazil, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20innovation%20-%3E%20load%20capacity%20factor%20%28LCF%29"
         },
         {
@@ -1723,6 +2102,11 @@
           "mediator_count": 24,
           "motif_count": 22,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 24,
+          "why_now": "exports and environmental pollution are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "USA",
@@ -1733,6 +2117,8 @@
             "CHN",
             "Germany"
           ],
+          "source_context_summary": "China, USA, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=exports%20-%3E%20environmental%20pollution"
         },
         {
@@ -1751,6 +2137,11 @@
           "mediator_count": 20,
           "motif_count": 19,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 20,
+          "why_now": "inward foreign direct investment (FDI) and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Start with a bridge review or cross-field pilot.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "CHN",
@@ -1761,6 +2152,8 @@
             "CHN",
             "India"
           ],
+          "source_context_summary": "China, CHN, and related settings",
+          "target_context_summary": "China, CHN, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inward%20foreign%20direct%20investment%20%28FDI%29%20-%3E%20carbon%20emissions"
         },
         {
@@ -1779,6 +2172,11 @@
           "mediator_count": 9,
           "motif_count": 8,
           "cooc_count": 0,
+          "direct_link_status": "No direct papers yet",
+          "supporting_path_count": 9,
+          "why_now": "mineral rents and environmental quality (CO2 emissions) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+          "recommended_move": "Treat this as a missing direct test, not a settled result.",
+          "slice_label": "Missing direct link",
           "top_countries_source": [
             "China",
             "Brazil",
@@ -1789,6 +2187,8 @@
             "United States",
             "Italy"
           ],
+          "source_context_summary": "China, Brazil, and related settings",
+          "target_context_summary": "China, United States, and related settings",
           "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=mineral%20rents%20-%3E%20environmental%20quality%20%28CO2%20emissions%29"
         }
       ]

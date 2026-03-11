@@ -29,10 +29,10 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
 >
   <div class="graph-toolbar">
     <div>
-      <span class="eyebrow">Graph-first view</span>
-      <h2>Focus one concept at a time</h2>
+      <span class="eyebrow">Graph workbench</span>
+      <h2>Use the graph as a reading surface, not a dashboard.</h2>
       <p class="card-copy">
-        Search or click a concept to dim the rest of the graph, then read the local neighborhood and nearby ranked links in the inspector.
+        Search or click one concept, then zoom, pan, and read its local neighborhood in plain language. Switch to layout mode only if you want to manually spread nodes apart.
       </p>
     </div>
     <label class="search-shell">
@@ -49,13 +49,25 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
 
   <div class="graph-stage">
     <div class="graph-panel">
-      <div class="graph-status-shell">
-        <div class="graph-status" data-role="hover-card">
-          Search or click a concept. The background graph stays global until you focus one neighborhood.
+      <div class="graph-controls">
+        <div class="graph-status-shell">
+          <div class="graph-status" data-role="hover-card" aria-live="polite">
+            Search or click a concept. The public graph stays global until you focus one neighborhood.
+          </div>
         </div>
-        <button class="button-tertiary graph-reset" type="button" data-role="reset-focus">Reset focus</button>
+        <div class="graph-control-row">
+          <button class="button-secondary" type="button" data-role="toggle-layout-mode">Adjust layout</button>
+          <button class="button-tertiary" type="button" data-role="zoom-out">Zoom out</button>
+          <button class="button-tertiary" type="button" data-role="zoom-in">Zoom in</button>
+          <button class="button-tertiary" type="button" data-role="reset-view">Reset view</button>
+          <button class="button-tertiary" type="button" data-role="reset-layout">Reset layout</button>
+          <button class="button-tertiary" type="button" data-role="reset-focus">Reset focus</button>
+        </div>
       </div>
-      <svg class="graph-canvas" data-role="graph-canvas" viewBox="0 0 1000 700" aria-label="Concept graph"></svg>
+      <svg class="graph-canvas" data-role="graph-canvas" viewBox="0 0 1000 760" aria-label="Concept graph"></svg>
+      <div class="graph-help-row">
+        <span class="mini-copy">Wheel or pinch to zoom. Drag the background to pan. Search and quick starts work with keyboard only.</span>
+      </div>
     </div>
 
     <aside class="graph-inspector">
@@ -66,7 +78,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         </div>
         <div data-role="selected-concept">
           <p class="card-copy">
-            Select a node to turn the backbone into a local reading. The concept summary stays here, while neighborhood and opportunity details open below.
+            Select a node to turn the backbone into a local reading. The concept summary stays here, while neighbors and nearby opportunities update below.
           </p>
         </div>
         <details class="inspector-detail" open>
@@ -75,10 +87,16 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
             <p class="card-copy">Incoming and outgoing neighborhood summaries will appear here.</p>
           </div>
         </details>
+        <details class="inspector-detail" open>
+          <summary>Text view</summary>
+          <div data-role="selection-list-view">
+            <p class="card-copy">A keyboard-readable summary of the current selection will appear here.</p>
+          </div>
+        </details>
         <details class="inspector-detail">
           <summary>Nearby opportunities</summary>
           <div data-role="selected-opportunities">
-            <p class="card-copy">The strongest suppressed Baseline exploratory opportunities touching the selected concept will appear here.</p>
+            <p class="card-copy">The strongest Baseline exploratory opportunities touching the selected concept will appear here.</p>
           </div>
         </details>
       </section>
@@ -89,6 +107,11 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
 <script is:inline define:vars={{ rootId }} type="module">
   const root = document.getElementById(rootId);
   if (!(root instanceof HTMLElement)) throw new Error("Graph workbench root missing");
+
+  const GRAPH_WIDTH = 1000;
+  const GRAPH_HEIGHT = 760;
+  const MIN_SCALE = 0.7;
+  const MAX_SCALE = 3.4;
 
   const graphPath = root.dataset.graphPath;
   const conceptIndexPath = root.dataset.conceptIndexPath;
@@ -102,9 +125,15 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const canvas = root.querySelector('[data-role="graph-canvas"]');
   const selectedConcept = root.querySelector('[data-role="selected-concept"]');
   const selectedNeighborhood = root.querySelector('[data-role="selected-neighborhood"]');
+  const selectionListView = root.querySelector('[data-role="selection-list-view"]');
   const selectedOpportunities = root.querySelector('[data-role="selected-opportunities"]');
   const centralList = root.querySelector('[data-role="central-list"]');
   const resetFocus = root.querySelector('[data-role="reset-focus"]');
+  const resetLayout = root.querySelector('[data-role="reset-layout"]');
+  const resetView = root.querySelector('[data-role="reset-view"]');
+  const zoomIn = root.querySelector('[data-role="zoom-in"]');
+  const zoomOut = root.querySelector('[data-role="zoom-out"]');
+  const toggleLayoutMode = root.querySelector('[data-role="toggle-layout-mode"]');
 
   const shardCache = new Map();
   let selectedId = null;
@@ -115,6 +144,11 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   let neighborhoodIndex = {};
   let opportunitiesIndex = {};
   let centralConcepts = [];
+  let currentNeighborhood = null;
+  let currentOpportunities = [];
+  let layoutMode = false;
+  let interaction = null;
+  let viewState = { scale: 1, translateX: 0, translateY: 0 };
 
   const escapeHtml = (value) =>
     String(value)
@@ -124,6 +158,27 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       .replaceAll('"', "&quot;");
 
   const formatNumber = (value) => new Intl.NumberFormat("en-US").format(value);
+  const safeNumber = (value) => {
+    const numeric = Number(value);
+    return Number.isFinite(numeric) ? numeric : 0;
+  };
+  const listText = (values, fallback) => {
+    const cleaned = Array.isArray(values)
+      ? values
+          .map((value) => {
+            if (typeof value === "string") return value;
+            if (value && typeof value === "object" && "value" in value) return value.value;
+            return "";
+          })
+          .filter((value) => {
+            const normalized = String(value ?? "").trim().toLowerCase();
+            return normalized && !["na", "n/a", "nan", "null", "undefined", "none"].includes(normalized);
+          })
+      : [];
+    return cleaned.length ? cleaned.join(", ") : fallback;
+  };
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+  const isInBackbone = (conceptId) => Boolean(graph?.nodeMap?.has(conceptId));
 
   const fetchJson = async (path) => {
     if (shardCache.has(path)) return shardCache.get(path);
@@ -133,19 +188,117 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     return payload;
   };
 
+  const updateLayoutModeButton = () => {
+    if (!(toggleLayoutMode instanceof HTMLButtonElement)) return;
+    toggleLayoutMode.textContent = layoutMode ? "Finish layout" : "Adjust layout";
+    toggleLayoutMode.classList.toggle("is-active", layoutMode);
+  };
+
+  const setViewportTransform = () => {
+    const viewport = canvas?.querySelector('[data-role="graph-viewport"]');
+    if (!(viewport instanceof SVGGElement)) return;
+    viewport.setAttribute(
+      "transform",
+      `translate(${viewState.translateX} ${viewState.translateY}) scale(${viewState.scale})`,
+    );
+  };
+
+  const screenToCanvasPoint = (clientX, clientY) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = ((clientX - rect.left) / rect.width) * GRAPH_WIDTH;
+    const y = ((clientY - rect.top) / rect.height) * GRAPH_HEIGHT;
+    return {
+      x,
+      y,
+      graphX: (x - viewState.translateX) / viewState.scale,
+      graphY: (y - viewState.translateY) / viewState.scale,
+    };
+  };
+
+  const zoomAtPoint = (factor, clientX, clientY) => {
+    const { x, y, graphX, graphY } = screenToCanvasPoint(clientX, clientY);
+    const nextScale = clamp(viewState.scale * factor, MIN_SCALE, MAX_SCALE);
+    viewState = {
+      scale: nextScale,
+      translateX: x - graphX * nextScale,
+      translateY: y - graphY * nextScale,
+    };
+    setViewportTransform();
+  };
+
+  const resetViewport = () => {
+    viewState = { scale: 1, translateX: 0, translateY: 0 };
+    setViewportTransform();
+  };
+
+  const startPan = (eventTarget, clientX, clientY) => {
+    if (eventTarget instanceof Element && eventTarget.closest("[data-node-id]")) return;
+    interaction = {
+      type: "pan",
+      startX: clientX,
+      startY: clientY,
+      translateX: viewState.translateX,
+      translateY: viewState.translateY,
+    };
+  };
+
+  const startNodeDrag = (nodeId) => {
+    interaction = {
+      type: "drag-node",
+      nodeId,
+    };
+  };
+
+  const moveInteraction = (clientX, clientY) => {
+    if (!interaction || !graph) return;
+    if (interaction.type === "pan") {
+      viewState = {
+        ...viewState,
+        translateX: interaction.translateX + (clientX - interaction.startX),
+        translateY: interaction.translateY + (clientY - interaction.startY),
+      };
+      setViewportTransform();
+      return;
+    }
+    if (interaction.type === "drag-node" && interaction.nodeId && layoutMode) {
+      const point = screenToCanvasPoint(clientX, clientY);
+      const node = graph.nodeMap.get(interaction.nodeId);
+      if (!node) return;
+      node.x = clamp(point.graphX / GRAPH_WIDTH, 0.03, 0.97);
+      node.y = clamp(point.graphY / GRAPH_HEIGHT, 0.04, 0.96);
+      renderGraph();
+      restoreStatus();
+    }
+  };
+
+  const focusViewOnConcept = (conceptId) => {
+    if (!isInBackbone(conceptId)) return;
+    const node = graph.nodeMap.get(conceptId);
+    const nextScale = Math.max(viewState.scale, 1.15);
+    viewState = {
+      scale: nextScale,
+      translateX: GRAPH_WIDTH / 2 - node.x * GRAPH_WIDTH * nextScale,
+      translateY: GRAPH_HEIGHT / 2 - node.y * GRAPH_HEIGHT * nextScale,
+    };
+    setViewportTransform();
+  };
+
   const restoreStatus = () => {
     if (!hoverCard) return;
     if (selectedId) {
       const concept = conceptMap.get(selectedId);
       if (concept) {
+        const visibilityCopy = isInBackbone(selectedId)
+          ? "Visible in the public backbone."
+          : "Outside the public backbone snapshot, but still available in search and inspector views.";
         hoverCard.innerHTML = `
           <strong>${escapeHtml(concept.label)}</strong><br />
-          ${formatNumber(concept.distinct_paper_support)} papers · ${formatNumber(concept.instance_support)} node instances · click another node to move the focus
+          ${formatNumber(safeNumber(concept.distinct_paper_support))} papers · ${formatNumber(safeNumber(concept.instance_support))} node instances · ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts · ${escapeHtml(visibilityCopy)}
         `;
         return;
       }
     }
-    hoverCard.textContent = "Search or click a concept. The background graph stays global until you focus one neighborhood.";
+    hoverCard.textContent = "Search or click a concept. The public graph stays global until you focus one neighborhood.";
   };
 
   const renderCentralList = () => {
@@ -155,7 +308,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         (concept) => `
           <button class="list-link" data-concept-id="${escapeHtml(concept.concept_id)}">
             <span>${escapeHtml(concept.label)}</span>
-            <span>${formatNumber(concept.distinct_paper_support)} papers</span>
+            <span>${formatNumber(safeNumber(concept.distinct_paper_support))} papers</span>
           </button>
         `,
       )
@@ -165,13 +318,68 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     }
   };
 
+  const renderListView = () => {
+    const concept = selectedId ? conceptMap.get(selectedId) : null;
+    if (!concept) {
+      selectionListView.innerHTML = `<p class="card-copy">A keyboard-readable summary of the current selection will appear here.</p>`;
+      return;
+    }
+    const topNeighbors = (currentNeighborhood?.top_neighbors || []).slice(0, 5);
+    const nearbyOpportunities = currentOpportunities.slice(0, 3);
+    selectionListView.innerHTML = `
+      <div class="neighbor-group">
+        <h4>Focus summary</h4>
+        <p class="card-copy">
+          ${escapeHtml(concept.label)} has ${formatNumber(safeNumber(concept.in_degree))} incoming observed links,
+          ${formatNumber(safeNumber(concept.out_degree))} outgoing observed links,
+          and ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts in the current public graph.
+        </p>
+      </div>
+      <div class="neighbor-group">
+        <h4>Jump to a nearby concept</h4>
+        <div class="selection-button-stack">
+          ${topNeighbors.length
+            ? topNeighbors
+                .map(
+                  (item) => `
+                    <button class="list-link list-link-tight" type="button" data-neighbor-id="${escapeHtml(item.concept_id)}">
+                      <span>${escapeHtml(item.label)}</span>
+                      <span>${formatNumber(safeNumber(item.support_count))} supports</span>
+                    </button>
+                  `,
+                )
+                .join("")
+            : `<p class="mini-copy">No nearby concept summary is available in the current public sample.</p>`}
+        </div>
+      </div>
+      <div class="neighbor-group">
+        <h4>Nearby opportunities</h4>
+        <div class="selection-opportunity-stack">
+          ${nearbyOpportunities.length
+            ? nearbyOpportunities
+                .map(
+                  (item) => `
+                    <article class="mini-opportunity">
+                      <strong>${escapeHtml(item.source_label)} → ${escapeHtml(item.target_label)}</strong>
+                      <div class="mini-copy">${escapeHtml(item.direct_link_status)} · supported by ${formatNumber(safeNumber(item.supporting_path_count))} nearby concepts</div>
+                    </article>
+                  `,
+                )
+                .join("")
+            : `<p class="mini-copy">No top-slice opportunity touching this concept is available in the current public sample.</p>`}
+        </div>
+      </div>
+    `;
+    for (const button of selectionListView.querySelectorAll("[data-neighbor-id]")) {
+      button.addEventListener("click", () => selectConcept(button.dataset.neighborId));
+    }
+  };
+
   const renderGraph = () => {
-    const width = 1000;
-    const height = 700;
     const nodeMarkup = [];
     const edgeMarkup = [];
     const selectedNeighbors = new Set();
-    const selectedActive = Boolean(selectedId);
+    const selectedActive = Boolean(selectedId) && isInBackbone(selectedId);
 
     if (selectedActive) {
       for (const edge of graph.edges) {
@@ -186,7 +394,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       const isSelected = selectedActive && (edge.source === selectedId || edge.target === selectedId);
       const isDimmed = selectedActive && !isSelected;
       edgeMarkup.push(
-        `<line class="graph-edge${isSelected ? " is-selected" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edge.strength || 0.3};" data-edge-id="${escapeHtml(edge.id)}" x1="${source.x * width}" y1="${source.y * height}" x2="${target.x * width}" y2="${target.y * height}"></line>`,
+        `<line class="graph-edge${isSelected ? " is-selected" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edge.strength || 0.3};" data-edge-id="${escapeHtml(edge.id)}" x1="${source.x * GRAPH_WIDTH}" y1="${source.y * GRAPH_HEIGHT}" x2="${target.x * GRAPH_WIDTH}" y2="${target.y * GRAPH_HEIGHT}"></line>`,
       );
     }
 
@@ -194,36 +402,52 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       const isSelected = node.id === selectedId;
       const isNeighbor = selectedNeighbors.has(node.id);
       const isDimmed = selectedActive && !isSelected && !isNeighbor;
-      const radius = Math.max(2.6, Math.min(22, 2.6 + Math.log10(node.weighted_degree + 1) * 4.1));
+      const radius = Math.max(2.8, Math.min(24, 2.8 + Math.log10(safeNumber(node.weighted_degree) + 1) * 4.4));
       const showLabel =
         node.show_label ||
         isSelected ||
         (isNeighbor && selectedNeighbors.size <= 16) ||
-        (isNeighbor && node.weighted_degree >= 65);
-      const labelY = node.y * height - (radius + 6);
+        (isNeighbor && safeNumber(node.weighted_degree) >= 65);
+      const labelY = node.y * GRAPH_HEIGHT - (radius + 8);
       nodeMarkup.push(
         `<g class="graph-node-group${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeHtml(node.id)}">
-          <circle class="graph-node bucket-${escapeHtml(node.bucket_group || "mixed")}" cx="${node.x * width}" cy="${node.y * height}" r="${radius}"></circle>
-          ${showLabel ? `<text class="graph-label${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}" x="${node.x * width}" y="${labelY}">${escapeHtml(node.label)}</text>` : ""}
+          <circle class="graph-node bucket-${escapeHtml(node.bucket_group || "mixed")}" cx="${node.x * GRAPH_WIDTH}" cy="${node.y * GRAPH_HEIGHT}" r="${radius}"></circle>
+          ${showLabel ? `<text class="graph-label${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}" x="${node.x * GRAPH_WIDTH}" y="${labelY}">${escapeHtml(node.label)}</text>` : ""}
         </g>`,
       );
     }
 
     canvas.innerHTML = `
-      <g class="graph-edge-layer">${edgeMarkup.join("")}</g>
-      <g class="graph-node-layer">${nodeMarkup.join("")}</g>
+      <g data-role="graph-viewport">
+        <rect class="graph-pan-target" x="-600" y="-600" width="2200" height="2000"></rect>
+        <g class="graph-edge-layer">${edgeMarkup.join("")}</g>
+        <g class="graph-node-layer">${nodeMarkup.join("")}</g>
+      </g>
     `;
 
     for (const nodeElement of canvas.querySelectorAll("[data-node-id]")) {
+      const dragHandle = nodeElement.querySelector("circle");
       nodeElement.addEventListener("mouseenter", () => {
         const node = graph.nodeMap.get(nodeElement.dataset.nodeId);
         hoverCard.innerHTML = `
           <strong>${escapeHtml(node.label)}</strong><br />
-          ${formatNumber(node.instance_support)} node instances · ${formatNumber(node.distinct_paper_support)} papers · ${escapeHtml(node.bucket_hint)} · weighted degree ${formatNumber(Math.round(node.weighted_degree))}
+          ${formatNumber(safeNumber(node.distinct_paper_support))} papers · ${formatNumber(safeNumber(node.instance_support))} node instances · ${formatNumber(safeNumber(node.neighbor_count))} nearby concepts · ${escapeHtml(listText(node.top_countries, "No dominant study setting in the current public sample"))}
         `;
       });
       nodeElement.addEventListener("mouseleave", restoreStatus);
-      nodeElement.addEventListener("click", () => selectConcept(nodeElement.dataset.nodeId));
+      const beginDrag = (event) => {
+        if (!layoutMode) return;
+        event.preventDefault();
+        event.stopPropagation();
+        startNodeDrag(nodeElement.dataset.nodeId);
+      };
+      dragHandle?.addEventListener("pointerdown", beginDrag);
+      dragHandle?.addEventListener("mousedown", beginDrag);
+      nodeElement.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if (layoutMode) return;
+        selectConcept(nodeElement.dataset.nodeId);
+      });
     }
 
     for (const edgeElement of canvas.querySelectorAll("[data-edge-id]")) {
@@ -231,14 +455,19 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         const edge = graph.edgeMap.get(edgeElement.dataset.edgeId);
         hoverCard.innerHTML = `
           <strong>${escapeHtml(graph.nodeMap.get(edge.source).label)} → ${escapeHtml(graph.nodeMap.get(edge.target).label)}</strong><br />
-          ${formatNumber(edge.support_count)} supports · ${formatNumber(edge.distinct_papers)} papers
+          ${formatNumber(safeNumber(edge.support_count))} supporting papers · ${escapeHtml(listText(edge.dominant_countries, "No dominant study setting in the current public sample"))}
         `;
       });
       edgeElement.addEventListener("mouseleave", restoreStatus);
     }
+
+    setViewportTransform();
   };
 
   const renderSelectedConcept = (concept) => {
+    const visibilityCopy = isInBackbone(concept.concept_id)
+      ? "Visible in the current backbone view."
+      : "Not drawn in the current backbone snapshot, but still available in search and local detail.";
     selectedConcept.innerHTML = `
       <span class="eyebrow">Focus</span>
       <div class="selected-title-row">
@@ -246,14 +475,16 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         <span class="field-pill">${escapeHtml(concept.bucket_hint)}</span>
       </div>
       <p class="card-copy">
-        ${formatNumber(concept.instance_support)} node instances · ${formatNumber(concept.distinct_paper_support)} papers · weighted degree ${formatNumber(Math.round(concept.weighted_degree))}
+        ${formatNumber(safeNumber(concept.instance_support))} node instances · ${formatNumber(safeNumber(concept.distinct_paper_support))} papers · ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts
       </p>
       <div class="pill-row inspector-pills">
-        <span class="field-pill">in ${formatNumber(concept.in_degree)}</span>
-        <span class="field-pill">out ${formatNumber(concept.out_degree)}</span>
-        <span class="field-pill">${escapeHtml((concept.top_countries || []).slice(0, 2).join(", ") || "NA")}</span>
+        <span class="field-pill">${formatNumber(safeNumber(concept.in_degree))} incoming observed links</span>
+        <span class="field-pill">${formatNumber(safeNumber(concept.out_degree))} outgoing observed links</span>
       </div>
-      <p class="mini-copy">Aliases: ${escapeHtml((concept.aliases || []).slice(0, 6).join(", ") || "NA")}</p>
+      <p class="mini-copy">Study settings: ${escapeHtml(listText((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
+      <p class="mini-copy">Common units: ${escapeHtml(listText((concept.top_units || []).slice(0, 3), "No dominant unit in the current public sample"))}</p>
+      <p class="mini-copy">Aliases: ${escapeHtml(listText((concept.aliases || []).slice(0, 6), "No alternate labels in the current public sample"))}</p>
+      <p class="mini-copy">${escapeHtml(visibilityCopy)}</p>
       <div class="button-row">
         <a class="button-secondary" href="${escapeHtml(concept.app_link)}">Open in app</a>
       </div>
@@ -261,15 +492,19 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   };
 
   const renderNeighborhood = async (conceptId) => {
+    currentNeighborhood = null;
     const shardPath = neighborhoodIndex[conceptId];
     if (!shardPath) {
-      selectedNeighborhood.innerHTML = `<p class="card-copy">No precomputed neighborhood shard is available for this concept.</p>`;
+      selectedNeighborhood.innerHTML = `<p class="card-copy">No precomputed neighborhood is available for this concept in the current public sample.</p>`;
+      renderListView();
       return;
     }
     const shard = await fetchJson(shardPath);
     const neighborhood = shard[conceptId];
+    currentNeighborhood = neighborhood || null;
     if (!neighborhood) {
-      selectedNeighborhood.innerHTML = `<p class="card-copy">No neighborhood entry was found for this concept.</p>`;
+      selectedNeighborhood.innerHTML = `<p class="card-copy">No neighborhood entry was found for this concept in the current public sample.</p>`;
+      renderListView();
       return;
     }
 
@@ -277,7 +512,14 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       items
         .slice(0, 6)
         .map(
-          (item) => `<li><strong>${escapeHtml(item.label)}</strong><span>${formatNumber(item.support_count)} supports</span></li>`,
+          (item) => `
+            <li>
+              <button class="list-link list-link-tight" type="button" data-neighbor-id="${escapeHtml(item.concept_id)}">
+                <span>${escapeHtml(item.label)}</span>
+                <span>${formatNumber(safeNumber(item.support_count))} supports</span>
+              </button>
+            </li>
+          `,
         )
         .join("");
 
@@ -295,18 +537,26 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         <ul class="neighbor-list">${renderItems(neighborhood.top_neighbors || [])}</ul>
       </div>
     `;
+    for (const button of selectedNeighborhood.querySelectorAll("[data-neighbor-id]")) {
+      button.addEventListener("click", () => selectConcept(button.dataset.neighborId));
+    }
+    renderListView();
   };
 
   const renderOpportunities = async (conceptId) => {
+    currentOpportunities = [];
     const shardPath = opportunitiesIndex[conceptId];
     if (!shardPath) {
-      selectedOpportunities.innerHTML = `<p class="card-copy">No ranked opportunities touching this concept are currently in the suppressed top slice.</p>`;
+      selectedOpportunities.innerHTML = `<p class="card-copy">No top-slice opportunity touching this concept is available in the current public sample.</p>`;
+      renderListView();
       return;
     }
     const shard = await fetchJson(shardPath);
     const opportunities = shard[conceptId] || [];
+    currentOpportunities = opportunities;
     if (!opportunities.length) {
-      selectedOpportunities.innerHTML = `<p class="card-copy">No ranked opportunities touching this concept are currently in the suppressed top slice.</p>`;
+      selectedOpportunities.innerHTML = `<p class="card-copy">No top-slice opportunity touching this concept is available in the current public sample.</p>`;
+      renderListView();
       return;
     }
     selectedOpportunities.innerHTML = opportunities
@@ -315,21 +565,26 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         (item) => `
           <article class="mini-opportunity">
             <strong>${escapeHtml(item.source_label)} → ${escapeHtml(item.target_label)}</strong>
-            <div class="mini-copy">score ${item.score.toFixed(3)} · mediators ${item.mediator_count} · co-occurrence ${item.cooc_count}</div>
+            <div class="mini-copy">${escapeHtml(item.why_now)}</div>
+            <div class="mini-copy">${escapeHtml(item.recommended_move)}</div>
+            <div class="mini-copy">${escapeHtml(item.direct_link_status)} · supported by ${formatNumber(safeNumber(item.supporting_path_count))} nearby concepts</div>
             <a class="text-link" href="${escapeHtml(item.app_link)}">Open in app</a>
           </article>
         `,
       )
       .join("");
+    renderListView();
   };
 
   const selectConcept = async (conceptId) => {
+    if (!conceptId) return;
     selectedId = conceptId;
     const concept = conceptMap.get(conceptId);
     if (!concept) return;
     renderGraph();
     renderSelectedConcept(concept);
     restoreStatus();
+    if (isInBackbone(conceptId)) focusViewOnConcept(conceptId);
     await Promise.all([renderNeighborhood(conceptId), renderOpportunities(conceptId)]);
   };
 
@@ -348,7 +603,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         (concept) => `
           <button class="search-hit" data-concept-id="${escapeHtml(concept.concept_id)}">
             <strong>${escapeHtml(concept.label)}</strong>
-            <span>${formatNumber(concept.distinct_paper_support)} papers</span>
+            <span>${formatNumber(safeNumber(concept.distinct_paper_support))} papers</span>
           </button>
         `,
       )
@@ -362,6 +617,17 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     }
   };
 
+  const restoreInitialLayout = () => {
+    for (const node of graph.nodes) {
+      const initial = graph.initialPositions.get(node.id);
+      if (!initial) continue;
+      node.x = initial.x;
+      node.y = initial.y;
+    }
+    renderGraph();
+    if (selectedId) restoreStatus();
+  };
+
   const bootstrap = async () => {
     const [graphPayload, conceptPayload, neighborhoodsPayload, opportunitiesPayload, centralPayload] = await Promise.all([
       fetchJson(graphPath),
@@ -371,11 +637,13 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       fetchJson(centralConceptsPath),
     ]);
     graph = {
-      nodes: graphPayload.nodes,
+      nodes: graphPayload.nodes.map((node) => ({ ...node })),
       edges: graphPayload.edges,
-      nodeMap: new Map(graphPayload.nodes.map((node) => [node.id, node])),
+      nodeMap: new Map(graphPayload.nodes.map((node) => [node.id, { ...node }])),
       edgeMap: new Map(graphPayload.edges.map((edge) => [edge.id, edge])),
+      initialPositions: new Map(graphPayload.nodes.map((node) => [node.id, { x: node.x, y: node.y }])),
     };
+    graph.nodes = Array.from(graph.nodeMap.values());
     concepts = conceptPayload;
     conceptMap = new Map(concepts.map((concept) => [concept.concept_id, concept]));
     neighborhoodIndex = neighborhoodsPayload;
@@ -384,6 +652,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     defaultConceptId = centralConcepts[0]?.concept_id || concepts[0]?.concept_id || null;
     renderCentralList();
     renderGraph();
+    updateLayoutModeButton();
     const params = new URLSearchParams(window.location.search);
     const query = params.get("q");
     const exact = query
@@ -406,6 +675,55 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       if (defaultConceptId) selectConcept(defaultConceptId);
     });
   }
+  if (resetLayout instanceof HTMLButtonElement) {
+    resetLayout.addEventListener("click", () => {
+      if (!graph) return;
+      restoreInitialLayout();
+    });
+  }
+  if (resetView instanceof HTMLButtonElement) {
+    resetView.addEventListener("click", resetViewport);
+  }
+  if (zoomIn instanceof HTMLButtonElement) {
+    zoomIn.addEventListener("click", () => zoomAtPoint(1.15, canvas.getBoundingClientRect().left + 120, canvas.getBoundingClientRect().top + 120));
+  }
+  if (zoomOut instanceof HTMLButtonElement) {
+    zoomOut.addEventListener("click", () => zoomAtPoint(1 / 1.15, canvas.getBoundingClientRect().left + 120, canvas.getBoundingClientRect().top + 120));
+  }
+  if (toggleLayoutMode instanceof HTMLButtonElement) {
+    toggleLayoutMode.addEventListener("click", () => {
+      layoutMode = !layoutMode;
+      updateLayoutModeButton();
+      restoreStatus();
+    });
+  }
+
+  canvas.addEventListener("wheel", (event) => {
+    event.preventDefault();
+    const factor = event.deltaY > 0 ? 1 / 1.08 : 1.08;
+    zoomAtPoint(factor, event.clientX, event.clientY);
+  }, { passive: false });
+
+  canvas.addEventListener("pointerdown", (event) => {
+    startPan(event.target, event.clientX, event.clientY);
+  });
+  canvas.addEventListener("mousedown", (event) => {
+    startPan(event.target, event.clientX, event.clientY);
+  });
+
+  window.addEventListener("pointermove", (event) => {
+    moveInteraction(event.clientX, event.clientY);
+  });
+  window.addEventListener("mousemove", (event) => {
+    moveInteraction(event.clientX, event.clientY);
+  });
+
+  window.addEventListener("pointerup", () => {
+    interaction = null;
+  });
+  window.addEventListener("mouseup", () => {
+    interaction = null;
+  });
 
   bootstrap().catch((error) => {
     hoverCard.textContent = "Graph data failed to load.";

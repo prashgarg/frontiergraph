@@ -2,11 +2,11 @@
 import { data } from "../lib/site-data";
 
 const links = [
-  { href: "/graph/", label: "Graph" },
+  { href: "/", label: "Home" },
   { href: "/opportunities/", label: "Opportunities" },
+  { href: "/graph/", label: "Graph" },
   { href: "/method/", label: "Method" },
-  { href: "/compare/", label: "Compare" },
-  { href: "/downloads/", label: "Downloads" },
+  { href: "/advanced/", label: "Advanced" },
 ];
 ---
 
@@ -18,10 +18,36 @@ const links = [
       <span class="brand-name">FrontierGraph</span>
     </span>
   </a>
-  <nav class="site-nav">
-    {links.map((link) => (
-      <a href={link.href}>{link.label}</a>
-    ))}
-    <a href={data.app_url} class="header-cta">Open app</a>
-  </nav>
+  <div class="site-nav-shell">
+    <nav class="site-nav">
+      {links.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+    <div class="site-nav-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">Dark mode</button>
+      <a href={data.app_url} class="header-cta">Open app</a>
+    </div>
+  </div>
 </header>
+
+<script is:inline>
+  const applyTheme = (theme) => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem("frontiergraph-theme", theme);
+    const toggle = document.querySelector("[data-theme-toggle]");
+    if (toggle instanceof HTMLButtonElement) {
+      toggle.textContent = theme === "dark" ? "Light mode" : "Dark mode";
+      toggle.setAttribute("aria-pressed", String(theme === "dark"));
+      toggle.classList.toggle("is-active", theme === "dark");
+    }
+  };
+
+  const initialTheme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  applyTheme(initialTheme);
+
+  document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
+    const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    applyTheme(nextTheme);
+  });
+</script>

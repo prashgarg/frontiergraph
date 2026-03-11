@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { data, formatNumber } from "../../lib/site-data";
+
+const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`;
+---
+
+<BaseLayout
+  title="Advanced | FrontierGraph"
+  description="Advanced FrontierGraph pages for ontology comparison, downloads, and deeper inspection."
+>
+  <main>
+    <section class="page-hero">
+      <span class="eyebrow">Advanced</span>
+      <h1>Keep the main path simple. Open the deeper surfaces only when you need them.</h1>
+      <p class="lede">
+        Most users should stay in <strong>{defaultRegime}</strong> and work from Opportunities or Graph. This page holds the comparison and download surfaces for deeper inspection.
+      </p>
+      <div class="button-row">
+        <a class="button-secondary" href="/opportunities/">Back to opportunities</a>
+        <a class="button-tertiary" href="/graph/">Back to graph</a>
+        <a class="button-tertiary" href={data.app_url}>Open app</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card-grid action-grid">
+        <a class="card action-card" href="/compare/">
+          <span class="eyebrow">Sensitivity check</span>
+          <h3>Compare ontology regimes</h3>
+          <p class="card-copy">
+            Inspect Broad, Baseline, and Conservative side by side when you want to see what ontology choice changes.
+          </p>
+        </a>
+        <a class="card action-card" href="/downloads/">
+          <span class="eyebrow">Artifacts</span>
+          <h3>Downloads and static exports</h3>
+          <p class="card-copy">
+            Access the public beta database, graph assets, and exported comparison summaries used by the site.
+          </p>
+        </a>
+        <a class="card action-card" href={data.app_url}>
+          <span class="eyebrow">Full explorer</span>
+          <h3>Open the deeper app</h3>
+          <p class="card-copy">
+            Use the heavier app when you want more controls, broader search, or a direct pair query in the live product.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <article class="content-panel summary-panel">
+        <span class="eyebrow">Why this split</span>
+        <h2>The public site should explain one useful path at a time.</h2>
+        <p class="card-copy">
+          The public pages now lead with use rather than machinery. Advanced pages remain available, but they no longer compete with the default path on every screen.
+        </p>
+        <div class="pill-row">
+          <span class="field-pill">{formatNumber(data.metrics.suppressed_candidate_count)} visible opportunities</span>
+          <span class="field-pill">{formatNumber(data.metrics.baseline_head_concepts)} baseline head concepts</span>
+          <span class="field-pill">Default: {defaultRegime}</span>
+        </div>
+      </article>
+    </section>
+  </main>
+</BaseLayout>

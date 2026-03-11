@@ -154,6 +154,25 @@ def format_number(value: float) -> str:
     return f"{value:,.0f}"
 
 
+def to_float(value: Any, default: float = 0.0) -> float:
+    try:
+        numeric = float(value)
+    except (TypeError, ValueError):
+        return default
+    return numeric if math.isfinite(numeric) else default
+
+
+def to_int(value: Any, default: int = 0) -> int:
+    return int(round(to_float(value, float(default))))
+
+
+def clean_public_text(value: Any) -> str:
+    text = str(value or "").strip()
+    if text.lower() in {"", "na", "n/a", "nan", "none", "null", "undefined"}:
+        return ""
+    return text
+
+
 def parse_json_list(raw: Any) -> list[Any]:
     if raw is None or raw == "":
         return []
@@ -178,9 +197,13 @@ def top_values(raw: Any, limit: int = 3) -> list[str]:
     values: list[str] = []
     for item in parse_json_list(raw)[:limit]:
         if isinstance(item, dict) and item.get("value"):
-            values.append(str(item["value"]))
+            text = clean_public_text(item["value"])
+            if text:
+                values.append(text)
         elif isinstance(item, str):
-            values.append(item)
+            text = clean_public_text(item)
+            if text:
+                values.append(text)
     return values
 
 
@@ -188,18 +211,97 @@ def uniq_keep_order(values: list[str], limit: int | None = None) -> list[str]:
     seen: set[str] = set()
     out: list[str] = []
     for value in values:
-        if not value or value in seen:
+        cleaned = clean_public_text(value)
+        if not cleaned or cleaned in seen:
             continue
-        seen.add(value)
-        out.append(value)
+        seen.add(cleaned)
+        out.append(cleaned)
         if limit is not None and len(out) >= limit:
             break
     return out
 
 
+def public_slice_label(values: dict[str, Any]) -> str:
+    cooc_count = to_int(values.get("cooc_count", 0))
+    path_support = to_float(values.get("path_support_norm", 0.0))
+    gap_bonus = to_float(values.get("gap_bonus", 0.0))
+    cross_bucket = bool(values.get("cross_bucket", False))
+    if cooc_count <= 0:
+        return "Missing direct link"
+    if path_support >= 0.95:
+        return "Ready to follow through"
+    if gap_bonus >= 0.85 and cooc_count <= 2:
+        return "Early but promising"
+    if cross_bucket:
+        return "Connect separate literatures"
+    return "Support from nearby literature"
+
+
+def direct_link_status(cooc_count: int) -> str:
+    if cooc_count <= 0:
+        return "No direct papers yet"
+    if cooc_count == 1:
+        return "One direct paper so far"
+    if cooc_count <= 5:
+        return "A few direct papers already exist"
+    return "Direct work already exists"
+
+
+def recommended_move(values: dict[str, Any]) -> str:
+    cooc_count = to_int(values.get("cooc_count", 0))
+    path_support = to_float(values.get("path_support_norm", 0.0))
+    mediator_count = to_int(values.get("mediator_count", 0))
+    cross_bucket = bool(values.get("cross_bucket", False))
+    if cross_bucket and cooc_count <= 0:
+        return "Start with a bridge review or cross-field pilot."
+    if path_support >= 0.95 and mediator_count >= 10:
+        return "This looks ready for a direct empirical follow-through."
+    if cooc_count <= 0:
+        return "Treat this as a missing direct test, not a settled result."
+    return "Use this as a focused follow-up question in the nearby literature."
+
+
+def plain_language_context(values: list[str], fallback: str) -> str:
+    cleaned = [value for value in values if value]
+    if not cleaned:
+        return fallback
+    if len(cleaned) == 1:
+        return cleaned[0]
+    if len(cleaned) == 2:
+        return f"{cleaned[0]} and {cleaned[1]}"
+    return f"{cleaned[0]}, {cleaned[1]}, and related settings"
+
+
+def why_now(values: dict[str, Any]) -> str:
+    source_label = str(values.get("u_preferred_label") or values.get("source_label") or "")
+    target_label = str(values.get("v_preferred_label") or values.get("target_label") or "")
+    mediator_count = to_int(values.get("mediator_count", 0))
+    cooc_count = to_int(values.get("cooc_count", 0))
+    path_support = to_float(values.get("path_support_norm", 0.0))
+    support_level = "strong" if path_support >= 0.95 else "visible"
+    if cooc_count <= 0:
+        return (
+            f"{source_label} and {target_label} are close in the surrounding graph, "
+            f"but the public sample shows no direct papers linking them yet."
+        )
+    if cooc_count == 1:
+        direct_copy = "one direct paper so far"
+    elif cooc_count <= 5:
+        direct_copy = f"{cooc_count} direct papers so far"
+    else:
+        direct_copy = "an existing direct literature in the public sample"
+    return (
+        f"{source_label} and {target_label} already have {direct_copy}, "
+        f"while {mediator_count} nearby concepts provide {support_level} support for a more direct follow-up."
+    )
+
+
 def opportunity_record(row: sqlite3.Row | tuple[Any, ...], columns: list[str]) -> dict[str, Any]:
     values = dict(zip(columns, row))
     pair_query = quote(f"{values['u_preferred_label']} -> {values['v_preferred_label']}")
+    cooc_count = to_int(values["cooc_count"])
+    top_source = top_values(values["u_top_countries"], limit=3)
+    top_target = top_values(values["v_top_countries"], limit=3)
     return {
         "pair_key": values["pair_key"],
         "source_id": values["u"],
@@ -208,16 +310,23 @@ def opportunity_record(row: sqlite3.Row | tuple[Any, ...], columns: list[str]) -
         "target_label": values["v_preferred_label"],
         "source_bucket": values["u_bucket_hint"],
         "target_bucket": values["v_bucket_hint"],
-        "score": round(float(values["score"]), 6),
-        "base_score": round(float(values["base_score"]), 6),
-        "duplicate_penalty": round(float(values.get("duplicate_penalty", 0.0) or 0.0), 6),
-        "path_support_norm": round(float(values["path_support_norm"]), 6),
-        "gap_bonus": round(float(values["gap_bonus"]), 6),
-        "mediator_count": int(values["mediator_count"]),
-        "motif_count": int(values["motif_count"]),
-        "cooc_count": int(values["cooc_count"]),
-        "top_countries_source": top_values(values["u_top_countries"], limit=3),
-        "top_countries_target": top_values(values["v_top_countries"], limit=3),
+        "score": round(to_float(values["score"]), 6),
+        "base_score": round(to_float(values["base_score"]), 6),
+        "duplicate_penalty": round(to_float(values.get("duplicate_penalty", 0.0)), 6),
+        "path_support_norm": round(to_float(values["path_support_norm"]), 6),
+        "gap_bonus": round(to_float(values["gap_bonus"]), 6),
+        "mediator_count": to_int(values["mediator_count"]),
+        "motif_count": to_int(values["motif_count"]),
+        "cooc_count": cooc_count,
+        "direct_link_status": direct_link_status(cooc_count),
+        "supporting_path_count": to_int(values["mediator_count"]),
+        "why_now": why_now(values),
+        "recommended_move": recommended_move(values),
+        "slice_label": public_slice_label(values),
+        "top_countries_source": top_source,
+        "top_countries_target": top_target,
+        "source_context_summary": plain_language_context(top_source, "No dominant source setting in the current public sample"),
+        "target_context_summary": plain_language_context(top_target, "No dominant target setting in the current public sample"),
         "app_link": f"{APP_URL}?search={pair_query}",
     }
 
@@ -418,6 +527,7 @@ def build_backbone(
                 "pagerank": round(float(metrics.get("pagerank", 0.0)), 8),
                 "in_degree": int(metrics.get("in_degree", 0) or 0),
                 "out_degree": int(metrics.get("out_degree", 0) or 0),
+                "neighbor_count": int(metrics.get("neighbor_count", 0) or 0),
                 "bucket_group": node_bucket_group(detail.get("bucket_hint", "unknown")),
                 "show_label": concept_id in label_nodes,
             }
@@ -440,8 +550,8 @@ def build_backbone(
                 "directionality_mix": parse_json_list(getattr(profile, "directionality_json", "[]")) if profile else [],
                 "relationship_type_mix": parse_json_list(getattr(profile, "relationship_type_json", "[]")) if profile else [],
                 "edge_role_mix": parse_json_list(getattr(profile, "edge_role_json", "[]")) if profile else [],
-                "dominant_countries": parse_json_list(getattr(context, "dominant_countries_json", "[]")) if context else [],
-                "dominant_units": parse_json_list(getattr(context, "dominant_units_json", "[]")) if context else [],
+                "dominant_countries": top_values(getattr(context, "dominant_countries_json", "[]"), limit=3) if context else [],
+                "dominant_units": top_values(getattr(context, "dominant_units_json", "[]"), limit=3) if context else [],
                 "dominant_years": parse_json_list(getattr(context, "dominant_years_json", "[]")) if context else [],
                 "examples": edge_exemplars_map.get(key, []),
             }
@@ -490,7 +600,7 @@ def build_neighborhoods(
             "directionality_mix": parse_json_list(getattr(profile, "directionality_json", "[]")) if profile else [],
             "relationship_type_mix": parse_json_list(getattr(profile, "relationship_type_json", "[]")) if profile else [],
             "edge_role_mix": parse_json_list(getattr(profile, "edge_role_json", "[]")) if profile else [],
-            "dominant_countries": parse_json_list(getattr(context, "dominant_countries_json", "[]")) if context else [],
+            "dominant_countries": top_values(getattr(context, "dominant_countries_json", "[]"), limit=3) if context else [],
         }
         outgoing[row.source_concept_id].append(payload)
         incoming[row.target_concept_id].append(
@@ -524,22 +634,10 @@ def build_neighborhoods(
 
 
 def build_concept_opportunities(candidates_df: pd.DataFrame) -> dict[str, list[dict[str, Any]]]:
+    columns = list(candidates_df.columns)
     concept_map: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in candidates_df.itertuples(index=False):
-        record = {
-            "pair_key": row.pair_key,
-            "source_id": row.u,
-            "source_label": row.u_preferred_label,
-            "target_id": row.v,
-            "target_label": row.v_preferred_label,
-            "score": round(float(row.score), 6),
-            "base_score": round(float(row.base_score), 6),
-            "duplicate_penalty": round(float(row.duplicate_penalty), 6),
-            "cooc_count": int(row.cooc_count),
-            "mediator_count": int(row.mediator_count),
-            "motif_count": int(row.motif_count),
-            "app_link": f"{APP_URL}?search={quote(f'{row.u_preferred_label} -> {row.v_preferred_label}')}",
-        }
+        record = opportunity_record(tuple(row), columns)
         concept_map[row.u].append(record)
         concept_map[row.v].append(record)
     for concept_id, rows in list(concept_map.items()):
@@ -568,12 +666,73 @@ def build_search_index(nodes_df: pd.DataFrame, node_metrics_df: pd.DataFrame) ->
                 "distinct_paper_support": int(row.distinct_paper_support),
                 "weighted_degree": round(float(metrics.get("weighted_degree", 0.0)), 4),
                 "pagerank": round(float(metrics.get("pagerank", 0.0)), 8),
+                "in_degree": int(metrics.get("in_degree", 0) or 0),
+                "out_degree": int(metrics.get("out_degree", 0) or 0),
+                "neighbor_count": int(metrics.get("neighbor_count", 0) or 0),
+                "top_countries": top_values(getattr(row, "top_countries", None), limit=3),
+                "top_units": top_values(getattr(row, "top_units", None), limit=3),
                 "search_terms": search_terms,
                 "app_link": f"{APP_URL}?search={quote(str(row.preferred_label))}",
             }
         )
     records.sort(key=lambda item: (item["weighted_degree"], item["instance_support"]), reverse=True)
     return records
+
+
+def diversify_featured_opportunities(
+    slices: dict[str, list[dict[str, Any]]], limit: int = FEATURED_OPPORTUNITY_LIMIT
+) -> list[dict[str, Any]]:
+    ordered_keys = ["bridges", "frontier", "fast_follow", "underexplored", "overall"]
+    homepage_labels = {
+        "bridges": "Connect separate literatures",
+        "frontier": "Missing direct link",
+        "fast_follow": "Ready to follow through",
+        "underexplored": "Early but promising",
+    }
+    featured: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    per_slice_limits = {"overall": 4, "bridges": 2, "frontier": 2, "fast_follow": 2, "underexplored": 2}
+    slice_counts: dict[str, int] = defaultdict(int)
+    label_counts: dict[str, int] = defaultdict(int)
+
+    for slice_key in ordered_keys:
+        for item in slices.get(slice_key, []):
+            if item["pair_key"] in seen:
+                continue
+            if slice_counts[slice_key] >= per_slice_limits.get(slice_key, 2):
+                break
+            featured_item = {
+                **item,
+                "slice_label": homepage_labels.get(slice_key, item["slice_label"]),
+            }
+            if label_counts[featured_item["slice_label"]] >= 2:
+                continue
+            featured.append(featured_item)
+            seen.add(featured_item["pair_key"])
+            slice_counts[slice_key] += 1
+            label_counts[featured_item["slice_label"]] += 1
+            if len(featured) >= limit:
+                return featured[:limit]
+
+    for item in slices.get("overall", []):
+        if item["pair_key"] in seen:
+            continue
+        if label_counts[item["slice_label"]] >= 2:
+            continue
+        featured.append(item)
+        seen.add(item["pair_key"])
+        label_counts[item["slice_label"]] += 1
+        if len(featured) >= limit:
+            break
+
+    for item in slices.get("overall", []):
+        if item["pair_key"] in seen:
+            continue
+        featured.append(item)
+        seen.add(item["pair_key"])
+        if len(featured) >= limit:
+            break
+    return featured[:limit]
 
 
 def build_compare_payload(regime_summary_df: pd.DataFrame, overlap_df: pd.DataFrame) -> dict[str, Any]:
@@ -684,6 +843,7 @@ def main() -> None:
                 "pagerank": round(float(row.pagerank), 8),
                 "in_degree": int(row.in_degree),
                 "out_degree": int(row.out_degree),
+                "neighbor_count": int(row.neighbor_count),
                 "top_countries": top_values(row.top_countries, limit=3),
                 "top_units": top_values(row.top_units, limit=3),
                 "app_link": f"{APP_URL}?search={quote(str(row.preferred_label))}",
@@ -691,7 +851,7 @@ def main() -> None:
         )
 
     slices = build_slices(candidates_df)
-    featured_opportunities = slices["overall"][:FEATURED_OPPORTUNITY_LIMIT]
+    featured_opportunities = diversify_featured_opportunities(slices, limit=FEATURED_OPPORTUNITY_LIMIT)
 
     write_json(PUBLIC_DATA_DIR / "graph_backbone.json", backbone_payload)
     write_json(PUBLIC_DATA_DIR / "concept_index.json", search_index)
@@ -714,12 +874,12 @@ def main() -> None:
     export_rows_csv(
         PUBLIC_DATA_DIR / "central_concepts.csv",
         central_concepts_rows,
-        ["concept_id", "label", "bucket_hint", "instance_support", "distinct_paper_support", "weighted_degree", "pagerank", "in_degree", "out_degree", "top_countries", "top_units", "app_link"],
+        ["concept_id", "label", "bucket_hint", "instance_support", "distinct_paper_support", "weighted_degree", "pagerank", "in_degree", "out_degree", "neighbor_count", "top_countries", "top_units", "app_link"],
     )
     export_rows_csv(
         PUBLIC_DATA_DIR / "top_opportunities.csv",
         slices["overall"],
-        ["pair_key", "source_id", "target_id", "source_label", "target_label", "source_bucket", "target_bucket", "score", "base_score", "duplicate_penalty", "path_support_norm", "gap_bonus", "mediator_count", "motif_count", "cooc_count", "top_countries_source", "top_countries_target", "app_link"],
+        ["pair_key", "source_id", "target_id", "source_label", "target_label", "source_bucket", "target_bucket", "score", "base_score", "duplicate_penalty", "path_support_norm", "gap_bonus", "mediator_count", "motif_count", "cooc_count", "direct_link_status", "supporting_path_count", "why_now", "recommended_move", "slice_label", "top_countries_source", "top_countries_target", "source_context_summary", "target_context_summary", "app_link"],
     )
 
     baseline_exploratory = next(

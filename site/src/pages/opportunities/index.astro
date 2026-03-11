@@ -15,14 +15,14 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
   <main>
     <section class="page-hero">
       <span class="eyebrow">Opportunities</span>
-      <h1>Open the cleaned recommendation surface.</h1>
+      <h1>Browse the public opportunity surface in plain language.</h1>
       <p class="lede">
         These links come from the public <strong>{defaultRegime}</strong> ranking surface after deterministic near-synonym cleanup.
-        This page keeps the list readable. The app keeps the deeper score mechanics and supporting context.
+        This page keeps the list readable for newcomers first. The app and Method page keep the deeper score mechanics and raw graph terms.
       </p>
       <div class="button-row">
         <span class="field-pill">{formatNumber(data.metrics.suppressed_candidate_count)} visible candidates</span>
-        <span class="field-pill">{formatNumber(data.metrics.duplicate_loops_removed_top100)} duplicate loops removed in top 100</span>
+        <span class="field-pill">{formatNumber(data.metrics.duplicate_loops_removed_top100)} duplicate loops removed from the top 100</span>
         <a class="button-secondary" href={data.app_url}>Open explorer</a>
       </div>
     </section>
@@ -39,7 +39,7 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
     <OpportunityCards
       items={slices.overall}
       title="Top opportunities overall"
-      caption="This is the main public list. Secondary slices stay tucked behind a disclosure below."
+      caption="This is the main public list. Secondary slices stay tucked behind a disclosure below, and the Method page explains the raw score terms."
     />
 
     <section class="section">
@@ -54,15 +54,15 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
           <div class="split-section">
             <OpportunityCards
               items={slices.bridges}
-              title="Cross-field bridges"
+              title="Connect separate literatures"
               caption="Links where the graph suggests separate literatures are ready to connect."
               compact={true}
               standalone={false}
             />
             <OpportunityCards
               items={slices.frontier}
-              title="Frontier bets"
-              caption="Links with stronger path support and larger local gaps, even before they are broadly explored."
+              title="Missing direct link"
+              caption="Links where the surrounding literature is already close, but the public sample still shows little or no direct work."
               compact={true}
               standalone={false}
             />
@@ -71,15 +71,15 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
           <div class="split-section">
             <OpportunityCards
               items={slices.fast_follow}
-              title="Fast follow"
-              caption="Ideas that look ready for immediate follow-through because the local graph is already dense."
+              title="Ready to follow through"
+              caption="Ideas that look ready for a direct follow-through because the surrounding graph is already strong."
               compact={true}
               standalone={false}
             />
             <OpportunityCards
               items={slices.underexplored}
-              title="Underexplored links"
-              caption="Pairs where the surrounding neighborhood looks fuller than the direct connection itself."
+              title="Early but promising"
+              caption="Pairs where nearby evidence looks richer than the direct connection itself."
               compact={true}
               standalone={false}
             />

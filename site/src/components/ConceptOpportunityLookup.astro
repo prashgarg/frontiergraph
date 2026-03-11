@@ -94,6 +94,18 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
       .replaceAll('"', "&quot;");
 
   const formatNumber = (value) => new Intl.NumberFormat("en-US").format(value);
+  const safeNumber = (value) => {
+    const numeric = Number(value);
+    return Number.isFinite(numeric) ? numeric : 0;
+  };
+  const isMeaningful = (value) => {
+    const normalized = String(value ?? "").trim().toLowerCase();
+    return normalized && !["na", "n/a", "nan", "null", "undefined", "none"].includes(normalized);
+  };
+  const joinList = (values, fallback) => {
+    const cleaned = Array.isArray(values) ? values.filter(isMeaningful) : [];
+    return cleaned.length ? cleaned.join(", ") : fallback;
+  };
 
   const fetchJson = async (path) => {
     if (cache.has(path)) return cache.get(path);
@@ -110,10 +122,11 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
         <span class="field-pill">${escapeHtml(concept.bucket_hint)}</span>
       </div>
       <p class="card-copy">
-        ${formatNumber(concept.instance_support)} node instances · ${formatNumber(concept.distinct_paper_support)} papers
+        ${formatNumber(safeNumber(concept.instance_support))} node instances · ${formatNumber(safeNumber(concept.distinct_paper_support))} papers · ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts
       </p>
-      <p class="mini-copy">Top countries: ${escapeHtml((concept.top_countries || []).slice(0, 3).join(", ") || "NA")}</p>
-      <p class="mini-copy">Aliases: ${escapeHtml((concept.aliases || []).slice(0, 8).join(", ") || "NA")}</p>
+      <p class="mini-copy">Typical study settings: ${escapeHtml(joinList((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
+      <p class="mini-copy">Common units: ${escapeHtml(joinList((concept.top_units || []).slice(0, 3), "No dominant unit in the current public sample"))}</p>
+      <p class="mini-copy">Aliases: ${escapeHtml(joinList((concept.aliases || []).slice(0, 8), "No alternate labels in the current public sample"))}</p>
     `;
     if (openAppLink instanceof HTMLAnchorElement) {
       openAppLink.href = concept.app_link;
@@ -136,7 +149,8 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
           (item) => `
             <article class="mini-opportunity">
               <strong>${escapeHtml(item.source_label)} → ${escapeHtml(item.target_label)}</strong>
-              <div class="mini-copy">score ${Number(item.score).toFixed(3)} · penalty ${Number(item.duplicate_penalty).toFixed(3)} · mediators ${escapeHtml(item.mediator_count)}</div>
+              <div class="mini-copy">${escapeHtml(item.why_now)}</div>
+              <div class="mini-copy">${escapeHtml(item.recommended_move)}</div>
               <a class="text-link" href="${escapeHtml(item.app_link)}">Open in explorer</a>
             </article>
           `,
@@ -161,7 +175,7 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
       items
         .slice(0, 5)
         .map(
-          (item) => `<li><strong>${escapeHtml(item.label)}</strong><span>${formatNumber(item.support_count)} supports</span></li>`,
+          (item) => `<li><strong>${escapeHtml(item.label)}</strong><span>${formatNumber(safeNumber(item.support_count))} supporting papers</span></li>`,
         )
         .join("");
     neighborsPanel.innerHTML = `
@@ -173,6 +187,10 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
       <div class="neighbor-group">
         <h4>Outgoing</h4>
         <ul class="neighbor-list">${renderItems(neighborhood.outgoing || [])}</ul>
+      </div>
+      <div class="neighbor-group">
+        <h4>Nearby concepts</h4>
+        <ul class="neighbor-list">${renderItems(neighborhood.top_neighbors || [])}</ul>
       </div>
     `;
   };

@@ -1,8 +1,41 @@
 :root {
+  --bg: #f4f7fb;
+  --bg-soft: #ffffff;
+  --panel: rgba(255, 255, 255, 0.92);
+  --panel-strong: rgba(255, 255, 255, 0.98);
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-strong: #ffffff;
+  --surface-muted: rgba(238, 244, 252, 0.94);
+  --line: rgba(24, 42, 74, 0.12);
+  --line-strong: rgba(24, 42, 74, 0.22);
+  --text: #102037;
+  --muted: #5c6b81;
+  --accent: #1463ff;
+  --accent-soft: #127d68;
+  --warning: #ab6c00;
+  --shadow: 0 24px 70px rgba(30, 54, 88, 0.12);
+  --site-bg:
+    radial-gradient(circle at 16% 18%, rgba(20, 99, 255, 0.12), transparent 30%),
+    radial-gradient(circle at 82% 14%, rgba(18, 125, 104, 0.1), transparent 26%),
+    linear-gradient(180deg, #f7f9fd 0%, #eff4fb 52%, #f9fbff 100%);
+  --grid-color: rgba(24, 42, 74, 0.06);
+  --canvas-bg:
+    radial-gradient(circle at 18% 18%, rgba(20, 99, 255, 0.08), transparent 24%),
+    radial-gradient(circle at 82% 16%, rgba(18, 125, 104, 0.08), transparent 26%),
+    linear-gradient(180deg, rgba(250, 252, 255, 0.98), rgba(239, 245, 252, 0.98));
+  --canvas-border: rgba(24, 42, 74, 0.12);
+  --node-stroke: rgba(245, 248, 252, 0.98);
+  --label-stroke: rgba(245, 248, 252, 0.98);
+}
+
+html[data-theme="dark"] {
   --bg: #070b14;
   --bg-soft: #0e1625;
-  --panel: rgba(14, 22, 37, 0.82);
+  --panel: rgba(14, 22, 37, 0.84);
   --panel-strong: rgba(19, 31, 52, 0.95);
+  --surface: rgba(8, 14, 25, 0.84);
+  --surface-strong: rgba(10, 18, 30, 0.92);
+  --surface-muted: rgba(12, 20, 34, 0.92);
   --line: rgba(143, 176, 232, 0.18);
   --line-strong: rgba(143, 176, 232, 0.32);
   --text: #edf4ff;
@@ -11,6 +44,18 @@
   --accent-soft: #77ffd7;
   --warning: #f5ca73;
   --shadow: 0 24px 80px rgba(2, 5, 12, 0.45);
+  --site-bg:
+    radial-gradient(circle at 20% 20%, rgba(74, 126, 255, 0.22), transparent 28%),
+    radial-gradient(circle at 80% 18%, rgba(82, 244, 192, 0.16), transparent 24%),
+    linear-gradient(180deg, #05070f 0%, #09101b 50%, #060b13 100%);
+  --grid-color: rgba(143, 176, 232, 0.05);
+  --canvas-bg:
+    radial-gradient(circle at 18% 18%, rgba(100, 197, 255, 0.12), transparent 22%),
+    radial-gradient(circle at 82% 16%, rgba(85, 255, 204, 0.08), transparent 24%),
+    linear-gradient(180deg, rgba(4, 7, 13, 0.985), rgba(8, 13, 22, 0.975));
+  --canvas-border: rgba(143, 176, 232, 0.12);
+  --node-stroke: rgba(4, 8, 15, 0.98);
+  --label-stroke: rgba(4, 8, 15, 0.96);
 }
 
 * {
@@ -29,6 +74,14 @@ body {
   background: var(--bg);
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 3px solid rgba(20, 99, 255, 0.28);
+  outline-offset: 3px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -42,17 +95,13 @@ a {
 }
 
 .site-bg {
-  background:
-    radial-gradient(circle at 20% 20%, rgba(74, 126, 255, 0.22), transparent 28%),
-    radial-gradient(circle at 80% 18%, rgba(82, 244, 192, 0.16), transparent 24%),
-    radial-gradient(circle at 50% 70%, rgba(106, 78, 255, 0.12), transparent 30%),
-    linear-gradient(180deg, #05070f 0%, #09101b 50%, #060b13 100%);
+  background: var(--site-bg);
 }
 
 .site-grid {
   background-image:
-    linear-gradient(rgba(143, 176, 232, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(143, 176, 232, 0.05) 1px, transparent 1px);
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.85), transparent 90%);
 }
@@ -74,6 +123,18 @@ a {
 
 .site-header {
   padding: 1.4rem 0 1rem;
+}
+
+.site-nav-shell,
+.site-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.site-nav-shell {
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .brand-lockup {
@@ -122,6 +183,17 @@ h3 {
   color: var(--muted);
 }
 
+.site-nav {
+  flex-wrap: wrap;
+}
+
+.site-nav a,
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.4rem;
+}
+
 .card-title-row {
   display: flex;
   align-items: center;
@@ -139,7 +211,7 @@ h3 {
   height: 1.4rem;
   border-radius: 999px;
   border: 1px solid var(--line-strong);
-  background: rgba(10, 18, 30, 0.88);
+  background: var(--surface-strong);
   color: var(--accent-soft);
   cursor: help;
   outline: none;
@@ -160,8 +232,8 @@ h3 {
   padding: 0.8rem 0.9rem;
   border-radius: 0.9rem;
   border: 1px solid var(--line-strong);
-  background: rgba(6, 11, 20, 0.98);
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42);
+  background: var(--surface-strong);
+  box-shadow: 0 18px 44px rgba(20, 31, 48, 0.16);
   color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.45;
@@ -190,6 +262,7 @@ h3 {
 .button-primary,
 .button-secondary,
 .button-tertiary,
+.theme-toggle,
 .field-pill,
 .download-badge {
   display: inline-flex;
@@ -199,6 +272,8 @@ h3 {
   padding: 0 1rem;
   border-radius: 999px;
   font-weight: 600;
+  font: inherit;
+  cursor: pointer;
 }
 
 .header-cta,
@@ -209,16 +284,22 @@ h3 {
 
 .button-secondary {
   border: 1px solid var(--line-strong);
-  background: rgba(16, 27, 45, 0.7);
+  background: var(--surface-strong);
   color: var(--text);
 }
 
 .button-tertiary,
+.theme-toggle,
 .field-pill,
 .download-badge {
   border: 1px solid var(--line);
-  background: rgba(10, 18, 30, 0.58);
+  background: var(--surface-muted);
   color: var(--muted);
+}
+
+.theme-toggle.is-active {
+  border-color: var(--line-strong);
+  color: var(--text);
 }
 
 .hero,
@@ -355,7 +436,7 @@ h3 {
   padding: 1rem;
   border-radius: 1rem;
   border: 1px solid var(--line);
-  background: rgba(8, 14, 25, 0.82);
+  background: var(--surface);
 }
 
 .signal-card h3 {
@@ -461,7 +542,7 @@ h3 {
   overflow-x: auto;
   border: 1px solid var(--line);
   border-radius: 1.2rem;
-  background: rgba(10, 17, 29, 0.72);
+  background: var(--surface);
 }
 
 .opportunity-table th,
@@ -579,6 +660,7 @@ h3 {
 
 .graph-preview-card,
 .mini-snapshot-card,
+.quick-search-card,
 .opportunity-card,
 .lookup-card,
 .sidebar-card,
@@ -586,13 +668,14 @@ h3 {
 .artifact-card,
 .compare-card {
   border: 1px solid var(--line);
-  background: rgba(8, 14, 25, 0.82);
+  background: var(--surface);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
 }
 
 .graph-preview-card,
 .mini-snapshot-card,
+.quick-search-card,
 .opportunity-card,
 .lookup-card,
 .sidebar-card,
@@ -605,6 +688,7 @@ h3 {
 
 .graph-preview-card,
 .mini-snapshot-card,
+.quick-search-card,
 .opportunity-card,
 .lookup-card,
 .sidebar-card,
@@ -638,6 +722,19 @@ h3 {
   line-height: 1.45;
 }
 
+.quick-search-card {
+  display: grid;
+  gap: 0.9rem;
+  min-height: 100%;
+}
+
+.quick-search-preview {
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--line);
+  background: var(--surface-muted);
+}
+
 .action-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -655,7 +752,7 @@ h3 {
 .concept-card:hover {
   transform: translateY(-2px);
   border-color: var(--line-strong);
-  background: rgba(10, 19, 34, 0.92);
+  background: var(--panel-strong);
 }
 
 .concept-grid {
@@ -710,7 +807,7 @@ h3 {
   min-height: 3rem;
   border-radius: 1rem;
   border: 1px solid var(--line-strong);
-  background: rgba(6, 11, 20, 0.92);
+  background: var(--surface-strong);
   color: var(--text);
   padding: 0 1rem;
   font: inherit;
@@ -729,7 +826,7 @@ h3 {
   gap: 0.75rem;
   width: 100%;
   border: 1px solid var(--line);
-  background: rgba(7, 12, 22, 0.9);
+  background: var(--surface-strong);
   color: var(--text);
   padding: 0.85rem 0.95rem;
   font: inherit;
@@ -740,7 +837,7 @@ h3 {
 .search-hit:hover,
 .list-link:hover {
   border-color: var(--line-strong);
-  background: rgba(13, 21, 37, 0.96);
+  background: var(--panel-strong);
 }
 
 .graph-workbench {
@@ -761,7 +858,7 @@ h3 {
   padding: 1rem 1.1rem;
   border: 1px solid var(--line);
   border-radius: 1.1rem;
-  background: rgba(8, 14, 25, 0.72);
+  background: var(--surface);
 }
 
 .graph-layout {
@@ -770,23 +867,28 @@ h3 {
 }
 
 .graph-stage {
-  grid-template-columns: minmax(0, 1.9fr) minmax(300px, 0.75fr);
+  grid-template-columns: minmax(0, 2.25fr) minmax(320px, 0.75fr);
   align-items: start;
 }
 
 .graph-panel {
   border: 1px solid var(--line);
   border-radius: 1.4rem;
-  background: rgba(6, 10, 19, 0.86);
+  background: var(--panel);
   box-shadow: var(--shadow);
   padding: 1rem;
+}
+
+.graph-controls {
+  display: grid;
+  gap: 0.8rem;
+  margin-bottom: 0.85rem;
 }
 
 .graph-status-shell {
   display: flex;
   align-items: stretch;
   gap: 0.8rem;
-  margin-bottom: 0.85rem;
 }
 
 .graph-status {
@@ -794,26 +896,33 @@ h3 {
   min-height: 3.2rem;
   border: 1px solid var(--line);
   border-radius: 1rem;
-  background: rgba(7, 12, 22, 0.9);
+  background: var(--surface-strong);
   padding: 0.9rem 1rem;
   color: var(--muted);
   line-height: 1.45;
 }
 
-.graph-reset {
-  flex: 0 0 auto;
-  min-width: 8rem;
+.graph-control-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.graph-help-row {
+  margin-top: 0.8rem;
+}
+
+.graph-pan-target {
+  fill: transparent;
 }
 
 .graph-canvas {
   width: 100%;
-  min-height: 38rem;
+  min-height: 46rem;
   border-radius: 1rem;
-  background:
-    radial-gradient(circle at 18% 18%, rgba(100, 197, 255, 0.12), transparent 22%),
-    radial-gradient(circle at 82% 16%, rgba(85, 255, 204, 0.08), transparent 24%),
-    linear-gradient(180deg, rgba(4, 7, 13, 0.985), rgba(8, 13, 22, 0.975));
-  border: 1px solid rgba(143, 176, 232, 0.12);
+  background: var(--canvas-bg);
+  border: 1px solid var(--canvas-border);
+  touch-action: none;
 }
 
 .graph-sidebar {
@@ -864,7 +973,7 @@ h3 {
 }
 
 .graph-node {
-  stroke: rgba(4, 8, 15, 0.98);
+  stroke: var(--node-stroke);
   stroke-width: 1.8;
   cursor: pointer;
   transition: fill 120ms ease, stroke 120ms ease, opacity 120ms ease, r 120ms ease;
@@ -894,12 +1003,12 @@ h3 {
 }
 
 .graph-label {
-  fill: rgba(223, 233, 246, 0.82);
+  fill: color-mix(in srgb, var(--text) 78%, transparent);
   font-size: 12px;
   font-weight: 600;
   text-anchor: middle;
   paint-order: stroke;
-  stroke: rgba(4, 8, 15, 0.96);
+  stroke: var(--label-stroke);
   stroke-width: 3px;
   letter-spacing: 0.01em;
   pointer-events: none;
@@ -980,6 +1089,17 @@ h3 {
   color: var(--muted);
 }
 
+.selection-button-stack,
+.selection-opportunity-stack {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.list-link-tight {
+  min-height: 2.6rem;
+  padding: 0.65rem 0.8rem;
+}
+
 .mini-opportunity + .mini-opportunity {
   margin-top: 0.9rem;
 }
@@ -1014,7 +1134,8 @@ h3 {
 }
 
 .opportunity-kicker,
-.opportunity-stat-row {
+.opportunity-summary-row,
+.opportunity-advanced {
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
@@ -1026,20 +1147,37 @@ h3 {
   justify-content: space-between;
 }
 
-.opportunity-stat-row span {
+.opportunity-summary-row span,
+.opportunity-advanced span {
   display: inline-flex;
   align-items: center;
   min-height: 2rem;
   padding: 0 0.75rem;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: rgba(10, 18, 30, 0.44);
+  background: var(--surface-muted);
 }
 
 .opportunity-context {
   margin: 0;
   color: var(--muted);
   line-height: 1.5;
+}
+
+.opportunity-detail {
+  border-top: 1px solid var(--line);
+  padding-top: 0.75rem;
+}
+
+.opportunity-detail summary {
+  cursor: pointer;
+  color: var(--text);
+  font-family: "Sora", sans-serif;
+  font-size: 0.96rem;
+}
+
+.opportunity-detail[open] summary {
+  margin-bottom: 0.65rem;
 }
 
 .method-stack {
@@ -1087,6 +1225,16 @@ h3 {
   line-height: 1.65;
 }
 
+.glossary-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.glossary-grid h3 {
+  margin-bottom: 0.35rem;
+}
+
 .opportunity-slice-stack {
   display: grid;
   gap: 1.25rem;
@@ -1108,7 +1256,7 @@ h3 {
 
 .compare-card.is-default {
   border-color: var(--line-strong);
-  background: rgba(14, 24, 39, 0.92);
+  background: var(--panel-strong);
 }
 
 .compare-table td {
@@ -1145,6 +1293,7 @@ h3 {
   .graph-stage,
   .lookup-grid,
   .method-top-grid,
+  .glossary-grid,
   .compare-regime-grid,
   .compare-note-grid,
   .compare-regime-copy,
@@ -1159,6 +1308,8 @@ h3 {
 
   .site-header,
   .site-footer,
+  .site-nav-shell,
+  .site-nav-actions,
   .site-nav,
   .footer-links {
     flex-direction: column;
@@ -1176,6 +1327,10 @@ h3 {
 
   .graph-status-shell {
     flex-direction: column;
+  }
+
+  .graph-control-row {
+    width: 100%;
   }
 
   .central-list-inline .list-link,
