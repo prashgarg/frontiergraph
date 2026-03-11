@@ -204,6 +204,7 @@ async function main() {
   if (appUrl) {
     await page.goto(appUrl, { waitUntil: "networkidle" });
     await page.waitForSelector("h1");
+    await page.getByText(/Selected opportunity/i).waitFor({ timeout: 60000 });
     await page.waitForTimeout(1200);
     await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
     const appText = await page.locator("body").innerText();
