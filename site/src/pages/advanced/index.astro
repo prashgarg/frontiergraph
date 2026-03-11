@@ -18,6 +18,7 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
       </p>
       <div class="button-row">
         <a class="button-secondary" href="/opportunities/">Back to opportunities</a>
+        <a class="button-tertiary" href="/faq/">Read the FAQ</a>
         <a class="button-tertiary" href="/graph/">Back to graph</a>
         <a class="button-tertiary" href={data.app_url}>Open app</a>
       </div>
@@ -54,7 +55,7 @@ const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`
         <span class="eyebrow">Why this split</span>
         <h2>The public site should explain one useful path at a time.</h2>
         <p class="card-copy">
-          The public pages now lead with use rather than machinery. Advanced pages remain available, but they no longer compete with the default path on every screen.
+          The public pages now lead with use rather than machinery. FAQ handles trust and interpretation; Advanced keeps the deeper comparison and artifact surfaces out of the first-time path.
         </p>
         <div class="pill-row">
           <span class="field-pill">{formatNumber(data.metrics.suppressed_candidate_count)} visible opportunities</span>

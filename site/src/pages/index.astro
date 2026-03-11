@@ -16,9 +16,9 @@ const actions = [
     copy: "Open the observed graph, focus one concept, and inspect the local structure in plain language.",
   },
   {
-    href: "/method/",
-    title: "Check the method later",
-    copy: "Use the product first, then open the glossary and scoring details only if you need them.",
+    href: "/faq/",
+    title: "Check the questions later",
+    copy: "Use the product first, then open the trust, interpretation, and limits page only if you need it.",
   },
 ];
 ---
@@ -57,7 +57,7 @@ const actions = [
           <span class="eyebrow">How to use it</span>
           <h2>Start with one question, not the whole machine</h2>
         </div>
-        <p class="section-copy">Most people should start on Opportunities. Graph is for local reading. Method and Advanced are there when you want to inspect the machinery.</p>
+        <p class="section-copy">Most people should start on Opportunities. Graph is for local reading. FAQ and Advanced are there when you want interpretation, limits, or deeper machinery.</p>
       </div>
       <div class="card-grid action-grid">
         {actions.map((action) => (
@@ -94,8 +94,8 @@ const actions = [
           <p class="card-copy">Use the graph to orient yourself around a concept you already care about, then switch to the full map only if you need broader context.</p>
         </article>
         <article class="card">
-          <h3>Open the method later</h3>
-          <p class="card-copy">Baseline exploratory is the default. Compare, downloads, and score-language stay available, but they no longer interrupt the first-time path.</p>
+          <h3>Open the FAQ later</h3>
+          <p class="card-copy">Baseline exploratory is the default. FAQ explains trust, limits, and interpretation before you need the full method glossary.</p>
         </article>
       </div>
     </section>
@@ -107,7 +107,7 @@ const actions = [
         <div class="button-row">
           <a class="button-primary" href="/advanced/">Open advanced pages</a>
           <a class="button-secondary" href={data.app_url}>Open app</a>
-          <a class="button-tertiary" href="/method/">Read the method</a>
+          <a class="button-tertiary" href="/faq/">Read the FAQ</a>
         </div>
       </div>
     </section>

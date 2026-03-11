@@ -1,0 +1,127 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { data } from "../../lib/site-data";
+import { buildFaqContent } from "../../content/faq-content";
+
+const defaultRegime = `${data.default_view.regime} ${data.default_view.mapping}`;
+const generatedAtLabel = new Date(data.generated_at).toLocaleDateString("en-US", {
+  timeZone: "UTC",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+const faq = buildFaqContent({
+  appUrl: data.app_url,
+  defaultRegime,
+  generatedAtLabel,
+});
+---
+
+<BaseLayout
+  title="FAQ | FrontierGraph"
+  description="Questions people actually ask about FrontierGraph, its methodology, limits, and how to read the public product."
+>
+  <main>
+    <section class="page-hero">
+      <span class="eyebrow">FAQ</span>
+      <h1>Questions people actually ask</h1>
+      <p class="lede">
+        FrontierGraph is useful when it helps you find the next plausible research direction. It is not a substitute for
+        reading papers, checking the literature yourself, or deciding whether a claim is true.
+      </p>
+      <div class="button-row">
+        <a class="button-primary" href="/opportunities/">Start with opportunities</a>
+        <a class="button-secondary" href="/graph/">Read one neighborhood</a>
+        <a class="button-tertiary" href="/method/">Open technical method</a>
+      </div>
+    </section>
+
+    <section class="section faq-top-grid">
+      <article class="content-panel faq-foundation-panel">
+        <span class="eyebrow">Foundation</span>
+        <h2>{faq.foundationTitle}</h2>
+        {faq.foundationHtml.map((paragraph) => (
+          <p class="card-copy" set:html={paragraph}></p>
+        ))}
+        <div class="button-row">
+          <a class="button-secondary" href="https://arxiv.org/abs/2501.06873">Read the paper</a>
+          <a class="button-tertiary" href="https://www.causal.claims/">Visit causal.claims</a>
+          <a class="button-tertiary" href="/advanced/">Open advanced pages</a>
+        </div>
+      </article>
+
+      <aside class="content-panel faq-rail">
+        <span class="eyebrow">Boundaries</span>
+        <h2>{faq.railTitle}</h2>
+        <ul class="faq-rail-list">
+          {faq.railItems.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Themes</span>
+          <h2>Start with the kind of question you actually have</h2>
+        </div>
+        <p class="section-copy">
+          These sections are grouped by interpretation, trust, coverage, and workflow. Use Method for the exact glossary;
+          use this page to understand what the public product is claiming and what it is not.
+        </p>
+      </div>
+      <div class="faq-theme-grid">
+        {faq.themes.map((theme) => (
+          <a class="card faq-theme-card" href={`#${theme.id}`}>
+            <span class="eyebrow">{theme.eyebrow}</span>
+            <h3>{theme.title}</h3>
+            <p class="card-copy">{theme.intro}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    {faq.themes.map((theme) => (
+      <section class="section faq-section" id={theme.id}>
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">{theme.eyebrow}</span>
+            <h2>{theme.title}</h2>
+          </div>
+          <p class="section-copy">{theme.intro}</p>
+        </div>
+        <div class="faq-detail-stack">
+          {theme.questions.map((item, index) => (
+            <details class="method-detail faq-detail" open={index === 0}>
+              <summary>
+                <span>
+                  <span class="eyebrow">Question</span>
+                  <strong>{item.question}</strong>
+                </span>
+              </summary>
+              <div class="method-body">
+                {item.answerHtml.map((paragraph) => (
+                  <p set:html={paragraph}></p>
+                ))}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <section class="section">
+      <div class="cta-band">
+        <span class="eyebrow">Next step</span>
+        <h2>Use FAQ to interpret the public surface. Use Method when you want the exact scoring terms.</h2>
+        <div class="button-row">
+          <a class="button-primary" href="/method/">Open Method</a>
+          <a class="button-secondary" href="/advanced/">Open Advanced</a>
+          <a class="button-tertiary" href={data.app_url}>Open app</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

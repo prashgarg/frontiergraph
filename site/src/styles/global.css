@@ -97,6 +97,18 @@ a {
   text-decoration: none;
 }
 
+.lede a:not([class]),
+.section-copy a:not([class]),
+.card-copy a:not([class]),
+.mini-copy a:not([class]),
+.method-body a:not([class]),
+.opportunity-context a:not([class]),
+.faq-rail-list a:not([class]) {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
 .site-bg,
 .site-grid {
   position: fixed;
@@ -326,7 +338,9 @@ h3 {
 .card-grid,
 .fields-grid,
 .split-grid,
-.corridor-grid {
+.corridor-grid,
+.faq-top-grid,
+.faq-theme-grid {
   display: grid;
   gap: 1rem;
 }
@@ -1244,6 +1258,70 @@ h3 {
   gap: 0.9rem;
 }
 
+.faq-top-grid {
+  grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+  align-items: start;
+}
+
+.faq-foundation-panel {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.faq-rail {
+  position: sticky;
+  top: 1rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.faq-rail h2,
+.faq-foundation-panel h2 {
+  margin: 0;
+}
+
+.faq-rail-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.faq-theme-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.faq-theme-card {
+  min-height: 100%;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.faq-theme-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+  background: var(--panel-strong);
+}
+
+.faq-section {
+  scroll-margin-top: 1.2rem;
+}
+
+.faq-detail-stack {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.faq-detail .method-body p:first-child {
+  margin-top: 0;
+}
+
+.faq-detail .method-body p:last-child {
+  margin-bottom: 0;
+}
+
 .summary-panel h2 {
   max-width: 48rem;
 }
@@ -1361,8 +1439,14 @@ h3 {
   .action-grid,
   .hero-snapshot-list,
   .metrics-grid-seven,
-  .split-section {
+  .split-section,
+  .faq-top-grid,
+  .faq-theme-grid {
     grid-template-columns: 1fr;
+  }
+
+  .faq-rail {
+    position: static;
   }
 
   .site-header,

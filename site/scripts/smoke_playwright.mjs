@@ -36,6 +36,11 @@ async function main() {
     await page.getByRole("navigation").getByRole("link", { name: /^Advanced$/ }).isVisible(),
     "Advanced nav missing on home",
   );
+  assert(await page.getByRole("navigation").getByRole("link", { name: /^FAQ$/ }).isVisible(), "FAQ nav missing on home");
+  assert(
+    (await page.getByRole("navigation").getByRole("link", { name: /^Method$/ }).count()) === 0,
+    "Method should no longer be a top-level nav item",
+  );
   assert(
     (await page.locator('[data-role="home-curated-opportunities"] [data-role="curated-opportunity-card"]').count()) === 4,
     "Homepage should show exactly 4 curated opportunity cards",
@@ -44,6 +49,19 @@ async function main() {
   await page.getByPlaceholder("Search labels or aliases").fill("income / economic growth");
   await page.getByRole("button", { name: /income \/ economic growth/i }).first().click();
   await page.getByRole("link", { name: /see nearby opportunities/i }).waitFor();
+
+  await page.goto(`${baseUrl}/faq/`, { waitUntil: "networkidle" });
+  await page.waitForSelector("h1");
+  await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
+  assert(await page.getByRole("heading", { name: /Questions people actually ask/i }).isVisible(), "FAQ page did not render");
+  assert(await page.getByText(/Causal Claims in Economics/i).first().isVisible(), "FAQ foundation citation missing");
+  assert(await page.getByRole("link", { name: /causal\.claims/i }).first().isVisible(), "FAQ site citation missing");
+  const faqText = await page.locator("main").innerText();
+  assert(/Baseline exploratory/i.test(faqText), "FAQ should mention Baseline exploratory");
+  assert(/duplicate suppression/i.test(faqText), "FAQ should mention duplicate suppression");
+  assert(/not a causal claim|not a causal estimate/i.test(faqText), "FAQ should state what the product is not");
+  assert(/public product is a separate surface/i.test(faqText), "FAQ should distinguish product from foundational paper");
+  assert(await page.getByRole("link", { name: /Open technical method/i }).isVisible(), "FAQ should link to Method");
 
   await page.goto(`${baseUrl}/opportunities/?q=${encodeURIComponent("income / economic growth")}`, {
     waitUntil: "networkidle",
@@ -161,6 +179,9 @@ async function main() {
 
   await page.goto(`${baseUrl}/advanced/`, { waitUntil: "networkidle" });
   assert(await page.getByRole("heading", { name: /keep the main path simple/i }).isVisible(), "Advanced page did not render");
+
+  await page.goto(`${baseUrl}/method/`, { waitUntil: "networkidle" });
+  assert(await page.getByRole("link", { name: /Read the FAQ/i }).isVisible(), "Method page should link back to FAQ");
 
   await page.goto(`${baseUrl}/compare/`, { waitUntil: "networkidle" });
   assert(await page.getByRole("heading", { name: /compare ontology views only when your question needs a sensitivity check/i }).isVisible(), "Compare page did not render");
