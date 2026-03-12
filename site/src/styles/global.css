@@ -713,13 +713,6 @@ h3 {
   margin: 0.45rem 0 0;
 }
 
-.hero-analogy-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr);
-  gap: 1rem;
-  align-items: center;
-}
-
 .hero-audience-line {
   padding-top: 0.7rem;
   border-top: 1px solid var(--line);
@@ -772,117 +765,6 @@ h3 {
   color: var(--muted);
   font-size: 0.84rem;
   line-height: 1.35;
-}
-
-.analogy-visual {
-  display: grid;
-  gap: 0.8rem;
-  padding: 0.9rem;
-  border-radius: 1rem;
-  border: 1px solid var(--line);
-  background:
-    radial-gradient(circle at 18% 18%, rgba(20, 99, 255, 0.08), transparent 26%),
-    radial-gradient(circle at 82% 18%, rgba(18, 125, 104, 0.08), transparent 24%),
-    var(--surface-strong);
-}
-
-.analogy-track {
-  position: relative;
-  min-height: 4.8rem;
-  border-radius: 0.95rem;
-  border: 1px solid var(--line);
-  background: var(--surface);
-}
-
-.analogy-track-research {
-  background: linear-gradient(180deg, rgba(20, 99, 255, 0.04), rgba(18, 125, 104, 0.05));
-}
-
-.analogy-caption {
-  position: absolute;
-  left: 0.75rem;
-  top: 0.6rem;
-  color: var(--muted);
-  font-size: 0.74rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.analogy-node,
-.analogy-link {
-  position: absolute;
-  display: block;
-}
-
-.analogy-node {
-  width: 0.9rem;
-  height: 0.9rem;
-  border-radius: 999px;
-  border: 2px solid rgba(255, 255, 255, 0.9);
-}
-
-.analogy-node-person {
-  background: #1463ff;
-}
-
-.analogy-node-research {
-  background: #127d68;
-}
-
-.analogy-node.left {
-  left: 1rem;
-  top: 2.7rem;
-}
-
-.analogy-node.top {
-  left: 4.3rem;
-  top: 1.6rem;
-}
-
-.analogy-node.bottom {
-  left: 4.2rem;
-  top: 3.25rem;
-}
-
-.analogy-node.right {
-  right: 1rem;
-  top: 2.65rem;
-}
-
-.analogy-link {
-  height: 2px;
-  transform-origin: left center;
-}
-
-.analogy-link-solid {
-  background: rgba(24, 42, 74, 0.28);
-}
-
-.analogy-link-dashed {
-  width: 4.7rem;
-  left: 8.1rem;
-  top: 3.05rem;
-  border-top: 2px dashed rgba(20, 99, 255, 0.72);
-}
-
-.analogy-link.one {
-  width: 3.2rem;
-  left: 1.9rem;
-  top: 2.28rem;
-  transform: rotate(-20deg);
-}
-
-.analogy-link.two {
-  width: 3rem;
-  left: 1.95rem;
-  top: 3.45rem;
-  transform: rotate(18deg);
-}
-
-.analogy-link.three {
-  width: 3rem;
-  right: 1.85rem;
-  top: 3rem;
 }
 
 .homepage-carousel-panel {
@@ -1951,7 +1833,6 @@ h3 {
   }
 
   .hero-detail-grid,
-  .hero-analogy-layout,
   .hero-scale-strip,
   .hero-scale-metrics {
     grid-template-columns: 1fr;
