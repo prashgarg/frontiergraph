@@ -1,5 +1,6 @@
 export interface HomepageCarouselSlide {
   pairKey: string;
+  visualStyle: "bridge" | "fan" | "stack" | "arc";
   sourceLabel: string;
   targetLabel: string;
   mediatorLabels: string[];
@@ -11,6 +12,7 @@ export interface HomepageCarouselSlide {
 export const homepageCarouselSlides: HomepageCarouselSlide[] = [
   {
     pairKey: "FG3C000003__FG3C000208",
+    visualStyle: "bridge",
     sourceLabel: "public debt",
     targetLabel: "CO2 emissions",
     mediatorLabels: ["fiscal space", "public investment", "energy pricing"],
@@ -20,6 +22,7 @@ export const homepageCarouselSlides: HomepageCarouselSlide[] = [
   },
   {
     pairKey: "FG3C000014__FG3C000024",
+    visualStyle: "fan",
     sourceLabel: "monetary policy",
     targetLabel: "energy consumption",
     mediatorLabels: ["durables demand", "construction", "industrial borrowing"],
@@ -29,6 +32,7 @@ export const homepageCarouselSlides: HomepageCarouselSlide[] = [
   },
   {
     pairKey: "FG3C000012__FG3C000110",
+    visualStyle: "stack",
     sourceLabel: "urbanization",
     targetLabel: "output growth",
     mediatorLabels: ["agglomeration", "labor reallocation", "infrastructure density"],
@@ -38,6 +42,7 @@ export const homepageCarouselSlides: HomepageCarouselSlide[] = [
   },
   {
     pairKey: "FG3C000029__FG3C000194",
+    visualStyle: "arc",
     sourceLabel: "education",
     targetLabel: "wage inequality",
     mediatorLabels: ["skill premium", "labor sorting", "educational expansion"],
