@@ -44,11 +44,11 @@ async function main() {
     assert(!heroText.includes(token), `Homepage hero should not include ${token}`);
   }
   assert(/Social platforms suggest people to follow from shared connections/i.test(heroText), "Homepage should include the analogy");
-  assert(await page.locator('[data-role="homepage-carousel"]').isVisible(), "Homepage should show the proof examples");
-  assert((await page.locator('[data-role="homepage-proof-card"]').count()) === 4, "Homepage should show exactly 4 proof examples");
+  assert(await page.locator('[data-role="homepage-carousel"]').isVisible(), "Homepage should show the proof carousel");
+  assert((await page.locator('[data-role="homepage-carousel-slide"]').count()) === 4, "Homepage should show exactly 4 carousel examples");
   assert(!heroText.includes("Where do we go next?"), "Homepage should not show the old speculative framing");
-  assert(await page.getByText(/How does public debt shape CO2 emissions/i).isVisible(), "Homepage should show the lead proof example");
-  assert(await page.getByText(/Speculative question/i).first().isVisible(), "Homepage proof cards should mark examples as speculative");
+  assert(await page.getByText(/How does public debt shape CO2 emissions/i).isVisible(), "Homepage should show the lead carousel example");
+  assert(await page.getByText(/Speculative question/i).first().isVisible(), "Homepage carousel should mark examples as speculative");
 
   await page.goto(`${baseUrl}/questions/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");

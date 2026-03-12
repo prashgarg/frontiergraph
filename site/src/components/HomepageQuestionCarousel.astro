@@ -17,113 +17,84 @@ interface Props {
 }
 
 const { slides } = Astro.props;
+const rootId = `homepage-carousel-${Math.random().toString(36).slice(2, 10)}`;
+
+const splitNodeLabel = (label: string) => {
+  const words = label.split(" ").filter(Boolean);
+  if (words.length <= 2) return [label];
+  const midpoint = Math.ceil(words.length / 2);
+  return [words.slice(0, midpoint).join(" "), words.slice(midpoint).join(" ")];
+};
 ---
 
-<section class="hero-panel homepage-proof-panel" data-role="homepage-carousel">
-  <div class="homepage-proof-heading">
+<section class="hero-panel homepage-carousel-panel" data-role="homepage-carousel" id={rootId}>
+  <div class="homepage-carousel-heading">
     <div>
       <span class="eyebrow">A few speculative questions</span>
       <h2>What this looks like in practice</h2>
+      <p class="mini-copy homepage-carousel-note">
+        These are speculative research suggestions. The point is to show the kind of question that may be worth reading
+        or testing next, not to claim that the link is already established.
+      </p>
     </div>
-    <p class="mini-copy homepage-proof-note">
-      These are speculative research suggestions. The point is to show the kind of question that may be worth reading or
-      testing next, not to claim that the link is already established.
-    </p>
+    <div class="homepage-carousel-controls" aria-label="Example controls">
+      <button class="button-tertiary homepage-carousel-button" type="button" data-role="carousel-prev" aria-label="Previous example">
+        <span aria-hidden="true">‹</span>
+      </button>
+      <button class="button-tertiary homepage-carousel-button" type="button" data-role="carousel-next" aria-label="Next example">
+        <span aria-hidden="true">›</span>
+      </button>
+    </div>
   </div>
 
-  <div class="homepage-proof-grid">
-    {slides.map((slide) => (
+  <div class="homepage-carousel-slides">
+    {slides.map((slide, index) => (
       <article
-        class={`homepage-proof-card homepage-proof-card-${slide.visualStyle}`}
-        data-role="homepage-proof-card"
+        class="homepage-carousel-slide"
+        data-role="homepage-carousel-slide"
         data-style={slide.visualStyle}
+        data-active={index === 0 ? "true" : "false"}
+        aria-hidden={index === 0 ? "false" : "true"}
+        hidden={index !== 0}
       >
-        <div class="proof-visual-shell">
-          {slide.visualStyle === "bridge" && (
-            <svg viewBox="0 0 320 188" class="proof-visual" aria-hidden="true">
-              <line x1="84" y1="92" x2="236" y2="92" class="proof-line proof-line-suggested" />
-              <line x1="88" y1="92" x2="136" y2="54" class="proof-line" />
-              <line x1="184" y1="54" x2="232" y2="92" class="proof-line" />
-              <line x1="88" y1="92" x2="160" y2="92" class="proof-line" />
-              <line x1="160" y1="92" x2="232" y2="92" class="proof-line" />
-              <line x1="88" y1="92" x2="136" y2="132" class="proof-line" />
-              <line x1="184" y1="132" x2="232" y2="92" class="proof-line" />
-              <circle cx="160" cy="92" r="18" class="proof-node proof-node-mediator" />
-              <circle cx="136" cy="54" r="16" class="proof-node proof-node-mediator proof-node-soft" />
-              <circle cx="136" cy="132" r="16" class="proof-node proof-node-mediator proof-node-soft" />
-              <ellipse cx="64" cy="92" rx="34" ry="22" class="proof-node proof-node-source" />
-              <ellipse cx="256" cy="92" rx="34" ry="22" class="proof-node proof-node-target" />
-              <text x="64" y="88" text-anchor="middle" class="proof-label proof-label-strong">{slide.sourceLabel}</text>
-              <text x="256" y="88" text-anchor="middle" class="proof-label proof-label-strong">{slide.targetLabel}</text>
-            </svg>
-          )}
+        <div class={`homepage-carousel-visual-shell homepage-carousel-visual-shell-${slide.visualStyle}`} data-style={slide.visualStyle}>
+          <svg viewBox="0 0 420 252" class="homepage-carousel-visual" aria-hidden="true">
+            <line x1="120" y1="126" x2="300" y2="126" class="homepage-carousel-line homepage-carousel-line-suggested" />
+            <line x1="118" y1="126" x2="182" y2="78" class="homepage-carousel-line" />
+            <line x1="182" y1="78" x2="302" y2="126" class="homepage-carousel-line" />
+            <line x1="118" y1="126" x2="222" y2="126" class="homepage-carousel-line homepage-carousel-line-strong" />
+            <line x1="222" y1="126" x2="302" y2="126" class="homepage-carousel-line homepage-carousel-line-strong" />
+            <line x1="118" y1="126" x2="182" y2="174" class="homepage-carousel-line" />
+            <line x1="182" y1="174" x2="302" y2="126" class="homepage-carousel-line" />
+            <circle cx="182" cy="78" r="17" class="homepage-carousel-node homepage-carousel-node-mediator homepage-carousel-node-soft" />
+            <circle cx="222" cy="126" r="19" class="homepage-carousel-node homepage-carousel-node-mediator" />
+            <circle cx="182" cy="174" r="17" class="homepage-carousel-node homepage-carousel-node-mediator homepage-carousel-node-soft" />
+            <ellipse cx="78" cy="126" rx="42" ry="28" class="homepage-carousel-node homepage-carousel-node-source" />
+            <ellipse cx="344" cy="126" rx="48" ry="28" class="homepage-carousel-node homepage-carousel-node-target" />
+            <text x="78" y="121" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-strong">
+              {splitNodeLabel(slide.sourceLabel).map((line, lineIndex) => (
+                <tspan x="78" dy={lineIndex === 0 ? 0 : 13}>{line}</tspan>
+              ))}
+            </text>
+            <text x="344" y="121" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-strong">
+              {splitNodeLabel(slide.targetLabel).map((line, lineIndex) => (
+                <tspan x="344" dy={lineIndex === 0 ? 0 : 13}>{line}</tspan>
+              ))}
+            </text>
+          </svg>
 
-          {slide.visualStyle === "fan" && (
-            <svg viewBox="0 0 320 188" class="proof-visual" aria-hidden="true">
-              <line x1="88" y1="132" x2="134" y2="120" class="proof-line" />
-              <line x1="88" y1="132" x2="166" y2="96" class="proof-line" />
-              <line x1="88" y1="132" x2="208" y2="70" class="proof-line" />
-              <line x1="134" y1="120" x2="238" y2="58" class="proof-line" />
-              <line x1="166" y1="96" x2="238" y2="58" class="proof-line" />
-              <line x1="208" y1="70" x2="238" y2="58" class="proof-line" />
-              <line x1="98" y1="128" x2="228" y2="62" class="proof-line proof-line-suggested" />
-              <circle cx="134" cy="120" r="15" class="proof-node proof-node-mediator" />
-              <circle cx="166" cy="96" r="17" class="proof-node proof-node-mediator" />
-              <circle cx="208" cy="70" r="15" class="proof-node proof-node-mediator proof-node-soft" />
-              <ellipse cx="70" cy="136" rx="38" ry="22" class="proof-node proof-node-source" />
-              <ellipse cx="250" cy="54" rx="42" ry="22" class="proof-node proof-node-target" />
-              <text x="70" y="132" text-anchor="middle" class="proof-label proof-label-strong">{slide.sourceLabel}</text>
-              <text x="250" y="50" text-anchor="middle" class="proof-label proof-label-strong">{slide.targetLabel}</text>
-            </svg>
-          )}
-
-          {slide.visualStyle === "stack" && (
-            <svg viewBox="0 0 320 188" class="proof-visual" aria-hidden="true">
-              <line x1="160" y1="50" x2="124" y2="82" class="proof-line" />
-              <line x1="160" y1="50" x2="196" y2="94" class="proof-line" />
-              <line x1="124" y1="82" x2="160" y2="120" class="proof-line" />
-              <line x1="196" y1="94" x2="160" y2="120" class="proof-line" />
-              <line x1="160" y1="120" x2="160" y2="146" class="proof-line" />
-              <line x1="160" y1="52" x2="160" y2="146" class="proof-line proof-line-suggested" />
-              <circle cx="124" cy="82" r="15" class="proof-node proof-node-mediator proof-node-soft" />
-              <circle cx="196" cy="94" r="17" class="proof-node proof-node-mediator" />
-              <circle cx="160" cy="120" r="16" class="proof-node proof-node-mediator" />
-              <ellipse cx="160" cy="32" rx="46" ry="20" class="proof-node proof-node-source" />
-              <ellipse cx="160" cy="158" rx="46" ry="20" class="proof-node proof-node-target" />
-              <text x="160" y="28" text-anchor="middle" class="proof-label proof-label-strong">{slide.sourceLabel}</text>
-              <text x="160" y="154" text-anchor="middle" class="proof-label proof-label-strong">{slide.targetLabel}</text>
-            </svg>
-          )}
-
-          {slide.visualStyle === "arc" && (
-            <svg viewBox="0 0 320 188" class="proof-visual" aria-hidden="true">
-              <path d="M84 118 Q132 48 160 52" class="proof-line" />
-              <path d="M160 52 Q190 56 236 118" class="proof-line" />
-              <path d="M84 118 Q160 98 236 118" class="proof-line proof-line-suggested" />
-              <path d="M84 118 Q130 88 144 90" class="proof-line" />
-              <path d="M176 90 Q204 90 236 118" class="proof-line" />
-              <circle cx="144" cy="90" r="15" class="proof-node proof-node-mediator proof-node-soft" />
-              <circle cx="160" cy="52" r="17" class="proof-node proof-node-mediator" />
-              <circle cx="176" cy="90" r="15" class="proof-node proof-node-mediator proof-node-soft" />
-              <ellipse cx="62" cy="122" rx="34" ry="22" class="proof-node proof-node-source" />
-              <ellipse cx="258" cy="122" rx="36" ry="22" class="proof-node proof-node-target" />
-              <text x="62" y="118" text-anchor="middle" class="proof-label proof-label-strong">{slide.sourceLabel}</text>
-              <text x="258" y="118" text-anchor="middle" class="proof-label proof-label-strong">{slide.targetLabel}</text>
-            </svg>
-          )}
-
-          <div class="proof-mediator-shell">
+          <div class="homepage-carousel-mediator-shell">
             <span class="tiny-label">Linking ideas</span>
-            <div class="proof-mediator-row">
+            <div class="homepage-carousel-mediator-row">
               {slide.mediatorLabels.map((label) => (
-                <span class="proof-mediator-chip">{label}</span>
+                <span class="homepage-carousel-mediator-chip">{label}</span>
               ))}
             </div>
           </div>
         </div>
 
-        <div class="homepage-proof-copy">
-          <span class="homepage-proof-tag">Speculative question</span>
+        <div class="homepage-carousel-copy" data-style={slide.visualStyle}>
+          <span class="homepage-carousel-tag">Speculative question</span>
           <h3>{slide.questionTitle}</h3>
           <p class="card-copy">
             <strong>Why it might matter:</strong> {slide.why}
@@ -131,7 +102,7 @@ const { slides } = Astro.props;
           <p class="mini-copy">
             <strong>One way to start:</strong> {slide.how}
           </p>
-          <div class="button-row homepage-proof-actions">
+          <div class="button-row homepage-carousel-actions">
             <a class="text-link" href={slide.questionHref}>See this question</a>
             <a class="text-link" href={slide.appHref}>Inspect evidence</a>
           </div>
@@ -139,4 +110,85 @@ const { slides } = Astro.props;
       </article>
     ))}
   </div>
+
+  <div class="homepage-carousel-dots" role="tablist" aria-label="Example questions">
+    {slides.map((slide, index) => (
+      <button
+        class="homepage-carousel-dot"
+        type="button"
+        role="tab"
+        aria-selected={index === 0 ? "true" : "false"}
+        aria-label={`Show example ${index + 1}: ${slide.questionTitle}`}
+        data-role="carousel-dot"
+        data-index={String(index)}
+      />
+    ))}
+  </div>
 </section>
+
+<script is:inline define:vars={{ rootId }} type="module">
+  const root = document.getElementById(rootId);
+  if (!(root instanceof HTMLElement)) throw new Error("Homepage carousel root missing");
+
+  const slides = Array.from(root.querySelectorAll('[data-role="homepage-carousel-slide"]'));
+  const dots = Array.from(root.querySelectorAll('[data-role="carousel-dot"]'));
+  const prev = root.querySelector('[data-role="carousel-prev"]');
+  const next = root.querySelector('[data-role="carousel-next"]');
+  let activeIndex = slides.findIndex((slide) => slide.getAttribute("data-active") === "true");
+  if (activeIndex < 0) activeIndex = 0;
+  let timer;
+
+  const render = () => {
+    slides.forEach((slide, index) => {
+      const isActive = index === activeIndex;
+      slide.setAttribute("data-active", String(isActive));
+      slide.setAttribute("aria-hidden", String(!isActive));
+      slide.toggleAttribute("hidden", !isActive);
+    });
+    dots.forEach((dot, index) => {
+      dot.setAttribute("aria-selected", String(index === activeIndex));
+      dot.classList.toggle("is-active", index === activeIndex);
+    });
+  };
+
+  const stopTimer = () => {
+    if (timer) {
+      window.clearInterval(timer);
+      timer = undefined;
+    }
+  };
+
+  const startTimer = () => {
+    stopTimer();
+    timer = window.setInterval(() => {
+      activeIndex = (activeIndex + 1) % slides.length;
+      render();
+    }, 7000);
+  };
+
+  prev?.addEventListener("click", () => {
+    activeIndex = (activeIndex - 1 + slides.length) % slides.length;
+    render();
+    startTimer();
+  });
+  next?.addEventListener("click", () => {
+    activeIndex = (activeIndex + 1) % slides.length;
+    render();
+    startTimer();
+  });
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      activeIndex = index;
+      render();
+      startTimer();
+    });
+  });
+
+  root.addEventListener("mouseenter", stopTimer);
+  root.addEventListener("mouseleave", startTimer);
+  root.addEventListener("focusin", stopTimer);
+  root.addEventListener("focusout", startTimer);
+
+  render();
+  startTimer();
+</script>
