@@ -1,7 +1,30 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import CuratedOpportunityCards from "../components/CuratedOpportunityCards.astro";
+import HomepageQuestionCarousel from "../components/HomepageQuestionCarousel.astro";
+import { homepageCarouselSlides } from "../content/homepage-carousel";
 import { data } from "../lib/site-data";
+
+const lookup = new Map();
+for (const item of data.home.curated_questions) lookup.set(item.pair_key, item);
+for (const item of data.questions.curated_front_set) lookup.set(item.pair_key, item);
+for (const group of data.questions.field_shelves) {
+  for (const item of group.items) lookup.set(item.pair_key, item);
+}
+for (const group of data.questions.collections) {
+  for (const item of group.items) lookup.set(item.pair_key, item);
+}
+
+const carouselSlides = homepageCarouselSlides.flatMap((slide) => {
+  const match = lookup.get(slide.pairKey);
+  if (!match) return [];
+  return [
+    {
+      ...slide,
+      questionHref: `/questions/#${slide.pairKey}`,
+      appHref: match.app_link,
+    },
+  ];
+});
 ---
 
 <BaseLayout
@@ -9,7 +32,7 @@ import { data } from "../lib/site-data";
   description="FrontierGraph helps academics find the next paper to work on."
 >
   <main>
-    <section class="hero hero-home hero-home-simple">
+    <section class="hero hero-home hero-home-proof">
       <div class="hero-panel hero-copy-panel">
         <span class="eyebrow">For academics</span>
         <h1>Find the next paper to work on.</h1>
@@ -17,34 +40,31 @@ import { data } from "../lib/site-data";
           Popular topics are often crowded, while neglected ones are often vague or weak. FrontierGraph helps surface
           questions that still look open but already have enough nearby work to investigate seriously.
         </p>
+        <div class="hero-analogy-card">
+          <span class="tiny-label">A simple analogy</span>
+          <p class="card-copy">
+            Social platforms suggest people to follow from shared connections. FrontierGraph does something similar for
+            research: it looks for questions that are not yet studied directly very often, but already sit near enough
+            related work to be worth checking.
+          </p>
+        </div>
+        <div class="hero-problem-card">
+          <span class="tiny-label">Why this exists</span>
+          <p class="mini-copy">
+            The hard part is not finding topics. It is deciding which ideas are already crowded, which ones are too vague,
+            and which ones might genuinely become the next paper.
+          </p>
+          <p class="mini-copy hero-audience-line">
+            Useful for PhD students choosing topics, researchers scoping the next paper, and people moving into a nearby field.
+          </p>
+        </div>
         <div class="hero-actions">
           <a class="button-primary" href="/questions/">Browse research questions</a>
           <a class="button-secondary" href={data.app_url}>Inspect evidence</a>
         </div>
       </div>
+      <HomepageQuestionCarousel slides={carouselSlides} />
     </section>
-
-    <section class="section">
-      <article class="content-panel summary-panel">
-        <span class="eyebrow">Why this exists</span>
-        <h2>Choosing a paper idea is harder than it should be.</h2>
-        <p class="card-copy">
-          The hard part is not finding topics. It is deciding which questions still look open, which ones are already
-          crowded, and which ones only sound interesting at first glance.
-        </p>
-        <p class="mini-copy summary-note">
-          Useful for PhD students choosing topics, researchers scoping the next paper, and people moving into a nearby field.
-        </p>
-      </article>
-    </section>
-
-    <CuratedOpportunityCards
-      items={data.home.curated_questions}
-      title="Three questions to start with"
-      caption="These hand-picked examples show the kind of question FrontierGraph is meant to help you notice quickly."
-      sectionId="home-curated-questions"
-      variant="home"
-    />
 
     <section class="section">
       <div class="cta-band">

@@ -43,13 +43,12 @@ async function main() {
   for (const token of ["graph", "neighborhood", "ontology", "Baseline exploratory", "path support", "motif", "surrounding literature"]) {
     assert(!heroText.includes(token), `Homepage hero should not include ${token}`);
   }
-  assert(
-    (await page.locator('[data-role="home-curated-questions"] [data-role="curated-opportunity-card"]').count()) === 3,
-    "Homepage should show exactly 3 curated question cards",
-  );
-  assert((await page.locator(".curated-opportunity-card-lead").count()) === 1, "Homepage should show one lead featured question");
+  assert(await page.getByText(/Social platforms suggest people to follow from shared connections/i).isVisible(), "Homepage should include the analogy");
+  assert(await page.locator('[data-role="homepage-carousel"]').isVisible(), "Homepage should show the proof carousel");
+  assert((await page.locator('[data-role="homepage-carousel-slide"]').count()) === 4, "Homepage should show exactly 4 carousel examples");
   assert(!heroText.includes("Where do we go next?"), "Homepage should not show the old speculative framing");
-  assert(await page.getByText(/Does monetary policy have an energy-demand channel/i).isVisible(), "Homepage should use the updated flagship mix");
+  assert(await page.getByText(/How does public debt shape CO2 emissions/i).isVisible(), "Homepage should open on the lead carousel example");
+  assert(await page.getByText(/Speculative suggestion/i).first().isVisible(), "Homepage carousel should mark examples as speculative");
 
   await page.goto(`${baseUrl}/questions/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");

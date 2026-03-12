@@ -1,0 +1,175 @@
+---
+interface Slide {
+  pairKey: string;
+  questionTitle: string;
+  sourceLabel: string;
+  targetLabel: string;
+  mediatorLabels: string[];
+  why: string;
+  how: string;
+  questionHref: string;
+  appHref: string;
+}
+
+interface Props {
+  slides: Slide[];
+}
+
+const { slides } = Astro.props;
+const rootId = `homepage-carousel-${Math.random().toString(36).slice(2, 10)}`;
+const mediatorPositions = [
+  { x: 172, y: 54 },
+  { x: 148, y: 118 },
+  { x: 196, y: 182 },
+  { x: 120, y: 188 },
+];
+---
+
+<section class="hero-panel homepage-carousel-panel" data-role="homepage-carousel" id={rootId}>
+  <div class="homepage-carousel-heading">
+    <div>
+      <span class="eyebrow">A few speculative questions</span>
+      <h2>What this looks like in practice</h2>
+    </div>
+    <div class="homepage-carousel-controls" aria-label="Carousel controls">
+      <button class="button-tertiary homepage-carousel-button" type="button" data-role="carousel-prev" aria-label="Previous example">
+        <span aria-hidden="true">‹</span>
+      </button>
+      <button class="button-tertiary homepage-carousel-button" type="button" data-role="carousel-next" aria-label="Next example">
+        <span aria-hidden="true">›</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="homepage-carousel-slides">
+    {slides.map((slide, index) => (
+      <article
+        class="homepage-carousel-slide"
+        data-role="homepage-carousel-slide"
+        data-active={index === 0 ? "true" : "false"}
+        aria-hidden={index === 0 ? "false" : "true"}
+        hidden={index !== 0}
+      >
+        <div class="bridge-visual-shell">
+          <svg viewBox="0 0 320 240" class="bridge-visual" aria-hidden="true">
+            <line x1="72" y1="120" x2="248" y2="120" class="bridge-line bridge-line-suggested" />
+            {slide.mediatorLabels.slice(0, 4).map((label, mediatorIndex) => {
+              const position = mediatorPositions[mediatorIndex];
+              return (
+                <g>
+                  <line x1="72" y1="120" x2={position.x} y2={position.y} class="bridge-line" />
+                  <line x1={position.x} y1={position.y} x2="248" y2="120" class="bridge-line" />
+                  <circle cx={position.x} cy={position.y} r="17" class="bridge-node bridge-node-mediator" />
+                  <text x={position.x} y={position.y + 34} text-anchor="middle" class="bridge-label bridge-label-mediator">{label}</text>
+                </g>
+              );
+            })}
+            <circle cx="72" cy="120" r="30" class="bridge-node bridge-node-source" />
+            <circle cx="248" cy="120" r="30" class="bridge-node bridge-node-target" />
+            <text x="72" y="124" text-anchor="middle" class="bridge-label bridge-label-strong">{slide.sourceLabel}</text>
+            <text x="248" y="124" text-anchor="middle" class="bridge-label bridge-label-strong">{slide.targetLabel}</text>
+          </svg>
+          <p class="mini-copy bridge-legend">
+            Solid lines show links that already appear often in nearby work. The dashed line is the speculative question.
+          </p>
+        </div>
+
+        <div class="homepage-carousel-copy">
+          <span class="homepage-carousel-tag">Speculative suggestion</span>
+          <h3>{slide.questionTitle}</h3>
+          <p class="card-copy">
+            <strong>Why this might be worth checking:</strong> {slide.why}
+          </p>
+          <p class="mini-copy">
+            <strong>One way to start:</strong> {slide.how}
+          </p>
+          <div class="button-row homepage-carousel-actions">
+            <a class="text-link" href={slide.questionHref}>See this question</a>
+            <a class="text-link" href={slide.appHref}>Inspect evidence</a>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <div class="homepage-carousel-dots" role="tablist" aria-label="Example questions">
+    {slides.map((slide, index) => (
+      <button
+        class="homepage-carousel-dot"
+        type="button"
+        role="tab"
+        aria-selected={index === 0 ? "true" : "false"}
+        aria-label={`Show example ${index + 1}: ${slide.questionTitle}`}
+        data-role="carousel-dot"
+        data-index={String(index)}
+      />
+    ))}
+  </div>
+</section>
+
+<script is:inline define:vars={{ rootId }} type="module">
+  const root = document.getElementById(rootId);
+  if (!(root instanceof HTMLElement)) throw new Error("Homepage carousel root missing");
+
+  const slides = Array.from(root.querySelectorAll('[data-role="homepage-carousel-slide"]'));
+  const dots = Array.from(root.querySelectorAll('[data-role="carousel-dot"]'));
+  const prev = root.querySelector('[data-role="carousel-prev"]');
+  const next = root.querySelector('[data-role="carousel-next"]');
+  let activeIndex = slides.findIndex((slide) => slide.getAttribute("data-active") === "true");
+  if (activeIndex < 0) activeIndex = 0;
+  let timer;
+
+  const render = () => {
+    slides.forEach((slide, index) => {
+      const isActive = index === activeIndex;
+      slide.setAttribute("data-active", String(isActive));
+      slide.setAttribute("aria-hidden", String(!isActive));
+      slide.toggleAttribute("hidden", !isActive);
+    });
+    dots.forEach((dot, index) => {
+      dot.setAttribute("aria-selected", String(index === activeIndex));
+      dot.classList.toggle("is-active", index === activeIndex);
+    });
+  };
+
+  const stopTimer = () => {
+    if (timer) {
+      window.clearInterval(timer);
+      timer = undefined;
+    }
+  };
+
+  const startTimer = () => {
+    stopTimer();
+    timer = window.setInterval(() => {
+      activeIndex = (activeIndex + 1) % slides.length;
+      render();
+    }, 7000);
+  };
+
+  prev?.addEventListener("click", () => {
+    activeIndex = (activeIndex - 1 + slides.length) % slides.length;
+    render();
+    startTimer();
+  });
+  next?.addEventListener("click", () => {
+    activeIndex = (activeIndex + 1) % slides.length;
+    render();
+    startTimer();
+  });
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      activeIndex = index;
+      render();
+      startTimer();
+    });
+  });
+
+  root.addEventListener("mouseenter", stopTimer);
+  root.addEventListener("mouseleave", startTimer);
+  root.addEventListener("focusin", stopTimer);
+  root.addEventListener("focusout", startTimer);
+
+  render();
+  startTimer();
+</script>
