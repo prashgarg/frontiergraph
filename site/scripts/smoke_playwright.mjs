@@ -43,7 +43,7 @@ async function main() {
   for (const token of ["graph", "neighborhood", "ontology", "Baseline exploratory", "path support", "motif", "surrounding literature"]) {
     assert(!heroText.includes(token), `Homepage hero should not include ${token}`);
   }
-  assert(await page.getByText(/Social platforms suggest people to follow from shared connections/i).isVisible(), "Homepage should include the analogy");
+  assert(/Social platforms suggest people to follow from shared connections/i.test(heroText), "Homepage should include the analogy");
   assert(await page.locator('[data-role="homepage-carousel"]').isVisible(), "Homepage should show the proof carousel");
   assert((await page.locator('[data-role="homepage-carousel-slide"]').count()) === 4, "Homepage should show exactly 4 carousel examples");
   assert(!heroText.includes("Where do we go next?"), "Homepage should not show the old speculative framing");
