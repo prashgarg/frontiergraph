@@ -2,31 +2,24 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CuratedOpportunityCards from "../components/CuratedOpportunityCards.astro";
 import { data } from "../lib/site-data";
-
-const audience = [
-  "PhD students choosing topics",
-  "Researchers looking for the next paper",
-  "People moving into a nearby area",
-];
 ---
 
 <BaseLayout
   title="FrontierGraph"
-  description="FrontierGraph helps academics find research questions worth pursuing."
+  description="FrontierGraph helps academics find the next paper to work on."
 >
   <main>
     <section class="hero hero-home hero-home-simple">
       <div class="hero-panel hero-copy-panel">
         <span class="eyebrow">For academics</span>
-        <h1>Find research questions worth pursuing.</h1>
+        <h1>Find the next paper to work on.</h1>
         <p class="lede">
-          Academics do not just need to know what is popular. They need questions that still look open, but grounded
-          enough to be worth reading, scoping, or testing next.
+          Popular topics are often crowded, while neglected ones are often vague or weak. FrontierGraph helps surface
+          questions that still look open but already have enough nearby work to investigate seriously.
         </p>
-        <p class="hero-note">The underlying question is simple: where do we go next?</p>
         <div class="hero-actions">
           <a class="button-primary" href="/questions/">Browse research questions</a>
-          <a class="button-secondary" href={data.app_url}>Open workbench</a>
+          <a class="button-secondary" href={data.app_url}>Inspect evidence</a>
         </div>
       </div>
     </section>
@@ -34,34 +27,21 @@ const audience = [
     <section class="section">
       <article class="content-panel summary-panel">
         <span class="eyebrow">Why this exists</span>
-        <h2>It is hard to tell whether a question is genuinely underworked, already crowded, or only superficially interesting.</h2>
+        <h2>Choosing a paper idea is harder than it should be.</h2>
         <p class="card-copy">
-          FrontierGraph tries to surface research questions that still look underexplored relative to the surrounding literature,
-          so a visitor can decide what is worth reading or testing next.
+          The hard part is not finding topics. It is deciding which questions still look open, which ones are already
+          crowded, and which ones only sound interesting at first glance.
+        </p>
+        <p class="mini-copy summary-note">
+          Useful for PhD students choosing topics, researchers scoping the next paper, and people moving into a nearby field.
         </p>
       </article>
     </section>
 
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">Who it is for</span>
-          <h2>Built for people choosing what to work on next.</h2>
-        </div>
-      </div>
-      <div class="card-grid action-grid">
-        {audience.map((label) => (
-          <article class="card action-card audience-card">
-            <h3>{label}</h3>
-          </article>
-        ))}
-      </div>
-    </section>
-
     <CuratedOpportunityCards
       items={data.home.curated_questions}
-      title="A few places to start"
-      caption="These three questions are hand-picked from the current public ranking. They are examples of the kind of question FrontierGraph is meant to help you notice quickly."
+      title="Three questions to start with"
+      caption="These hand-picked examples show the kind of question FrontierGraph is meant to help you notice quickly."
       sectionId="home-curated-questions"
       variant="home"
     />
@@ -69,9 +49,9 @@ const audience = [
     <section class="section">
       <div class="cta-band">
         <span class="eyebrow">Deeper evidence</span>
-        <h2>If you want the deeper evidence, open the workbench.</h2>
+        <h2>When a question looks promising, inspect the evidence.</h2>
         <div class="button-row">
-          <a class="button-primary" href={data.app_url}>Open workbench</a>
+          <a class="button-primary" href={data.app_url}>Inspect evidence</a>
           <a class="button-tertiary" href="/how-it-works/">How it works</a>
         </div>
       </div>

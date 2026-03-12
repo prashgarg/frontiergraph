@@ -35,7 +35,7 @@ const visiblePapers = representativePapers.filter((paper) => paper.title).slice(
     )}
     {visiblePapers.length > 0 && (
       <div class="mini-copy opportunity-paper-block">
-        <strong>Representative papers:</strong>
+        <strong>Papers to start with:</strong>
         <ul class="opportunity-paper-list">
           {visiblePapers.map((paper) => (
             <li>
@@ -47,10 +47,10 @@ const visiblePapers = representativePapers.filter((paper) => paper.title).slice(
       </div>
     )}
     <p class="mini-copy">
-      <strong>Direct papers:</strong> {directLinkStatus}
+      <strong>Papers on this exact question:</strong> {directLinkStatus}
     </p>
     <p class="mini-copy">
-      <strong>Typical settings:</strong> {sourceLabel} studies are common in {sourceContextSummary}; {targetLabel} studies are common in {targetContextSummary}.
+      <strong>Common contexts:</strong> {sourceLabel} studies are common in {sourceContextSummary}; {targetLabel} studies are common in {targetContextSummary}.
     </p>
   </div>
 </details>

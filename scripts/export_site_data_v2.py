@@ -153,6 +153,7 @@ EDITORIAL_REQUIRED_FIELDS = (
     "homepage_featured",
     "questions_featured",
     "display_order",
+    "homepage_role",
 )
 
 PUBLIC_LABEL_GLOSSARY_REQUIRED_FIELDS = (
@@ -1022,6 +1023,9 @@ def build_curated_opportunities(
 
     home_rows = [row for row in curated_rows if bool(row["homepage_featured"])]
     question_rows = [row for row in curated_rows if bool(row["questions_featured"])]
+    home_roles = [str(row.get("homepage_role", "")) for row in home_rows]
+    if home_roles.count("lead") != 1 or home_roles.count("supporting") != 2:
+        raise ValueError("Homepage curation must contain exactly one lead question and two supporting questions")
     return home_rows, question_rows
 
 

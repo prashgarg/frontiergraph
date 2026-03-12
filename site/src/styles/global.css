@@ -681,6 +681,10 @@ h3 {
   line-height: 1.55;
 }
 
+.summary-note {
+  margin-top: 0.8rem;
+}
+
 .hero-stat-strip div {
   min-width: 10rem;
 }
@@ -1162,6 +1166,15 @@ h3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.curated-home-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.curated-opportunity-supporting {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .opportunity-cards.compact {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -1182,6 +1195,14 @@ h3 {
   background:
     linear-gradient(180deg, rgba(223, 237, 255, 0.38), rgba(223, 237, 255, 0.08)),
     var(--surface);
+}
+
+.curated-opportunity-card-lead {
+  padding: 1.3rem 1.35rem;
+}
+
+.curated-opportunity-card-lead h3 {
+  font-size: 1.42rem;
 }
 
 .opportunity-card h3 {

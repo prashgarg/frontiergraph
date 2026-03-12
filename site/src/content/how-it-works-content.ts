@@ -37,13 +37,13 @@ export function buildHowItWorksContent(appUrl: string): {
           {
             question: "What is FrontierGraph actually surfacing?",
             answerHtml: [
-              "It surfaces candidate research questions that still look underworked relative to the surrounding literature. The product is trying to help a researcher decide what is worth reading or testing next, not to declare what the field must do.",
+              "It surfaces candidate research questions that look open enough to investigate and grounded enough to read seriously. The product is trying to help a researcher decide what might become the next paper, not to declare what the field must do.",
             ],
           },
           {
-            question: "What does \"find research questions worth pursuing\" mean here?",
+            question: "What does this help me do in practice?",
             answerHtml: [
-              "It means surfacing questions that look open enough to be interesting and grounded enough not to feel arbitrary. That is a discovery aid, not a promise that the question is important in every substantive sense.",
+              "It helps you move from a broad area to a smaller question that looks worth reading, scoping, or testing next. That is a discovery aid, not a promise that the question is important in every substantive sense.",
             ],
           },
           {
@@ -75,7 +75,7 @@ export function buildHowItWorksContent(appUrl: string): {
           {
             question: "What does \"Why this question\" show?",
             answerHtml: [
-              "It shows the nearby ideas, representative papers, direct-paper status, and typical settings behind the surfaced question. The goal is to give you enough reason structure to decide whether to investigate further.",
+              "It shows the related ideas, papers to start with, exact-question status, and common contexts behind the surfaced question. The goal is to give you enough reason structure to decide whether to investigate further.",
             ],
           },
         ],
@@ -101,7 +101,7 @@ export function buildHowItWorksContent(appUrl: string): {
           {
             question: "What should I do after opening one card?",
             answerHtml: [
-              `Check close synonyms, read the representative papers, inspect the related ideas, and decide whether the question looks like a mechanism, outcome, or setting question. If you want the deeper inspection layer, open the <a href="${appUrl}">workbench</a>.`,
+              `Check close synonyms, read the papers to start with, inspect the related ideas, and decide whether the question looks like a mechanism, outcome, or setting question. If you want the deeper inspection layer, use <a href="${appUrl}">Inspect evidence</a>.`,
             ],
           },
         ],

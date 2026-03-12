@@ -2,81 +2,89 @@
   "FG3C000003__FG3C000208": {
     "pair_key": "FG3C000003__FG3C000208",
     "question_title": "How does public debt shape CO2 emissions?",
-    "short_why": "Fiscal stress can change public investment, energy pricing, and the speed of climate adjustment, but those channels are rarely treated as one direct emissions question.",
-    "first_next_step": "Start with debt overhang or consolidation episodes and trace what happens to public investment, energy use, and emissions afterward.",
-    "who_its_for": "Researchers working on public finance, macro policy, or climate transition questions.",
+    "short_why": "Public debt changes fiscal room, energy pricing, and public investment, but those channels rarely become one paper on emissions.",
+    "first_next_step": "Start with debt overhang or consolidation episodes and trace what happens to investment, energy use, and emissions after them.",
+    "who_its_for": "Public finance, macro, and climate researchers.",
     "homepage_featured": true,
     "questions_featured": true,
-    "display_order": 1
+    "display_order": 1,
+    "homepage_role": "lead"
   },
   "FG3C000014__FG3C001221": {
     "pair_key": "FG3C000014__FG3C001221",
     "question_title": "How does trade liberalisation change energy consumption?",
-    "short_why": "Trade reforms shift production patterns, freight intensity, and imported inputs, but energy demand is often left as a side effect rather than treated as the main outcome.",
-    "first_next_step": "Begin with sectors most exposed to tariff or quota changes and ask whether energy intensity moved with the composition of trade.",
-    "who_its_for": "Trade economists looking for a cleaner link from policy change to resource use.",
+    "short_why": "Trade reforms can shift production and freight patterns, yet energy demand is usually treated as a side effect rather than the paper's main outcome.",
+    "first_next_step": "Start with sectors most exposed to tariff or quota changes and test whether energy intensity moved with the trade mix.",
+    "who_its_for": "Trade and resource-use researchers.",
     "homepage_featured": false,
     "questions_featured": true,
-    "display_order": 2
+    "display_order": 2,
+    "homepage_role": "none"
   },
   "FG3C000012__FG3C000110": {
     "pair_key": "FG3C000012__FG3C000110",
     "question_title": "When does urbanization translate into output growth?",
-    "short_why": "Urbanization is central to many development stories, but it is often treated as background change rather than tested directly as a growth channel.",
-    "first_next_step": "Use city expansion or regional urban concentration changes to test when denser settlement starts raising output growth.",
-    "who_its_for": "Development, urban, and regional economists choosing between mechanism-heavy growth questions.",
+    "short_why": "Urbanization sits inside many development stories, but it is often treated as background change instead of a direct growth question.",
+    "first_next_step": "Use city expansion or regional urban concentration changes to test when denser settlement begins to raise output growth.",
+    "who_its_for": "Development, urban, and regional economists.",
     "homepage_featured": true,
     "questions_featured": true,
-    "display_order": 3
+    "display_order": 3,
+    "homepage_role": "supporting"
   },
   "FG3C000053__FG3C001307": {
     "pair_key": "FG3C000053__FG3C001307",
     "question_title": "Does green innovation improve ecological carrying capacity?",
-    "short_why": "A lot of green innovation work stops at cleaner production or lower emissions, while broader measures of environmental resilience are usually studied elsewhere.",
+    "short_why": "Green innovation papers often stop at emissions, while broader measures of environmental resilience are usually studied elsewhere.",
     "first_next_step": "Pair green patenting or green R&D measures with broader ecological-capacity indicators instead of stopping at emissions alone.",
-    "who_its_for": "Researchers who want climate innovation questions that go beyond emissions accounting.",
+    "who_its_for": "Climate innovation researchers.",
     "homepage_featured": true,
     "questions_featured": true,
-    "display_order": 4
+    "display_order": 4,
+    "homepage_role": "supporting"
   },
   "FG3C000010__FG3C000019": {
     "pair_key": "FG3C000010__FG3C000019",
     "question_title": "Which kinds of investment raise carbon emissions?",
-    "short_why": "Investment is central in growth and development research, but the literature still underplays how different forms of capital deepening carry very different carbon consequences.",
+    "short_why": "Investment matters in growth and development, but different forms of capital deepening can have very different carbon consequences.",
     "first_next_step": "Split public infrastructure, private fixed investment, and foreign-financed capital formation instead of treating investment as one block.",
-    "who_its_for": "Applied macro, development, and climate researchers sorting cleaner from carbon-intensive capital accumulation.",
+    "who_its_for": "Applied macro, development, and climate researchers.",
     "homepage_featured": false,
     "questions_featured": true,
-    "display_order": 5
+    "display_order": 5,
+    "homepage_role": "none"
   },
   "FG3C000014__FG3C000024": {
     "pair_key": "FG3C000014__FG3C000024",
     "question_title": "Does monetary policy have an energy-demand channel?",
-    "short_why": "Interest-rate moves can change durables, construction, and industrial borrowing, but energy consumption is rarely treated as the main outcome in monetary transmission work.",
+    "short_why": "Interest-rate changes can move durables, construction, and industrial borrowing, yet energy demand is rarely the paper's main outcome.",
     "first_next_step": "Trace rate shocks through durables, construction, and sector energy demand rather than stopping at output or inflation.",
-    "who_its_for": "Macroeconomists who want a more concrete resource-demand angle on monetary transmission.",
+    "who_its_for": "Macroeconomists working on transmission channels.",
     "homepage_featured": false,
     "questions_featured": true,
-    "display_order": 6
+    "display_order": 6,
+    "homepage_role": "none"
   },
   "FG3C000030__FG3C001420": {
     "pair_key": "FG3C000030__FG3C001420",
     "question_title": "When does innovation improve environmental quality?",
-    "short_why": "Innovation is often framed as a growth engine first, which can hide whether cleaner process change and scale expansion have very different environmental effects.",
+    "short_why": "Innovation is often framed as a growth engine first, which can hide whether cleaner process change and scale expansion have different environmental effects.",
     "first_next_step": "Split innovation by direction and ask whether cleaner innovation improves environmental outcomes while scale-expanding innovation does not.",
     "who_its_for": "Researchers separating cleaner process change from scale effects.",
     "homepage_featured": false,
     "questions_featured": false,
-    "display_order": 7
+    "display_order": 7,
+    "homepage_role": "none"
   },
   "FG3C000046__FG3C000203": {
     "pair_key": "FG3C000046__FG3C000203",
     "question_title": "How does export growth change environmental pollution?",
     "short_why": "Export expansion can alter sector mix and where environmental costs show up, but pollution outcomes are often buried inside broader trade debates.",
     "first_next_step": "Compare pollution-intensive export booms with export growth driven by cleaner sectors.",
-    "who_its_for": "Trade and environment researchers comparing scale, composition, and technique effects.",
+    "who_its_for": "Trade and environment researchers.",
     "homepage_featured": false,
     "questions_featured": false,
-    "display_order": 8
+    "display_order": 8,
+    "homepage_role": "none"
   }
 }

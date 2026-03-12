@@ -22,6 +22,12 @@ const {
   standalone = true,
   variant = "questions",
 } = Astro.props;
+
+const homeLead = variant === "home" ? items.find((item) => item.homepage_role === "lead") ?? items[0] : null;
+const homeSupporting =
+  variant === "home"
+    ? items.filter((item) => item.pair_key !== homeLead?.pair_key)
+    : [];
 ---
 
 <section class:list={[standalone && "section"]} data-role={sectionId}>
@@ -34,45 +40,74 @@ const {
       {caption && <p class="section-copy">{caption}</p>}
     </div>
   )}
-  <div class="opportunity-cards">
-    {items.map((item) => (
-      <article
-        class:list={["opportunity-card", "curated-opportunity-card", variant === "home" && "curated-opportunity-card-home"]}
-        data-role="curated-opportunity-card"
-        id={variant === "questions" ? item.pair_key : undefined}
-      >
-        <div class="opportunity-kicker">
-          <span>{variant === "home" ? "Featured question" : "Hand-curated question"}</span>
-          {variant === "questions" && <span>{item.direct_link_status}</span>}
-        </div>
-        <h3>{item.question_title}</h3>
-        <p class="card-copy">{item.short_why}</p>
-        <p class="mini-copy">
-          <strong>First next step:</strong> {item.first_next_step}
-        </p>
-        {variant === "questions" && (
-          <>
+  {variant === "home" ? (
+    <div class="curated-home-stack">
+      {homeLead && (
+        <article
+          class:list={["opportunity-card", "curated-opportunity-card", "curated-opportunity-card-home", "curated-opportunity-card-lead"]}
+          data-role="curated-opportunity-card"
+        >
+          <h3>{homeLead.question_title}</h3>
+          <p class="card-copy">{homeLead.short_why}</p>
+          <p class="mini-copy">
+            <strong>First next step:</strong> {homeLead.first_next_step}
+          </p>
+          <a class="text-link" href={`/questions/#${homeLead.pair_key}`}>See this question</a>
+        </article>
+      )}
+      <div class="opportunity-cards curated-opportunity-supporting">
+        {homeSupporting.map((item) => (
+          <article
+            class:list={["opportunity-card", "curated-opportunity-card", "curated-opportunity-card-home"]}
+            data-role="curated-opportunity-card"
+          >
+            <h3>{item.question_title}</h3>
+            <p class="card-copy">{item.short_why}</p>
             <p class="mini-copy">
-              <strong>Best for:</strong> {item.who_its_for}
+              <strong>First next step:</strong> {item.first_next_step}
             </p>
-            <div class="opportunity-summary-row">
-              <span>{item.direct_link_status}</span>
-              <span>{item.supporting_path_count} related ideas in the surrounding literature</span>
-            </div>
-            <OpportunityEvidence
-              mediatorLabels={item.top_mediator_labels}
-              representativePapers={item.representative_papers}
-              directLinkStatus={item.direct_link_status}
-              sourceLabel={getPublicLabel(item.source_id, item.source_label)}
-              targetLabel={getPublicLabel(item.target_id, item.target_label)}
-              sourceContextSummary={item.source_context_summary}
-              targetContextSummary={item.target_context_summary}
-            />
-            <a class="text-link" href={item.app_link}>Open in workbench</a>
-          </>
-        )}
-        {variant === "home" && <a class="text-link" href={`/questions/#${item.pair_key}`}>See this question</a>}
-      </article>
-    ))}
-  </div>
+            <a class="text-link" href={`/questions/#${item.pair_key}`}>See this question</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  ) : (
+    <div class="opportunity-cards">
+      {items.map((item) => (
+        <article
+          class="opportunity-card curated-opportunity-card"
+          data-role="curated-opportunity-card"
+          id={item.pair_key}
+        >
+          <div class="opportunity-kicker">
+            <span>Hand-curated question</span>
+          </div>
+          <h3>{item.question_title}</h3>
+          <p class="card-copy">{item.short_why}</p>
+          <p class="mini-copy">
+            <strong>First next step:</strong> {item.first_next_step}
+          </p>
+          <p class="mini-copy">
+            <strong>Best for:</strong> {item.who_its_for}
+          </p>
+          <p class="mini-copy">
+            <strong>Papers on this exact question:</strong> {item.direct_link_status}
+          </p>
+          <p class="mini-copy">
+            <strong>Related ideas:</strong> {item.supporting_path_count} related ideas from nearby work.
+          </p>
+          <OpportunityEvidence
+            mediatorLabels={item.top_mediator_labels}
+            representativePapers={item.representative_papers}
+            directLinkStatus={item.direct_link_status}
+            sourceLabel={getPublicLabel(item.source_id, item.source_label)}
+            targetLabel={getPublicLabel(item.target_id, item.target_label)}
+            sourceContextSummary={item.source_context_summary}
+            targetContextSummary={item.target_context_summary}
+          />
+          <a class="text-link" href={item.app_link}>Inspect evidence</a>
+        </article>
+      ))}
+    </div>
+  )}
 </section>

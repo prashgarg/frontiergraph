@@ -93,9 +93,10 @@ def test_curated_opportunities_are_present_in_expected_order() -> None:
 
     assert [row["pair_key"] for row in home] == expected_home
     assert [row["pair_key"] for row in front_set] == expected_questions
+    assert [row["homepage_role"] for row in home] == ["lead", "supporting", "supporting"]
 
     for row in front_set:
-        for field in ("question_title", "short_why", "first_next_step", "who_its_for"):
+        for field in ("question_title", "short_why", "first_next_step", "who_its_for", "homepage_role"):
             assert row[field] not in (None, "", "NA"), f"{field} should be present on curated opportunity rows"
 
 

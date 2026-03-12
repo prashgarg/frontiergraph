@@ -31,6 +31,17 @@ from src.opportunity_data import (
 SITE_URL = "https://frontiergraph.com"
 QUESTIONS_URL = f"{SITE_URL}/questions/"
 HOW_IT_WORKS_URL = f"{SITE_URL}/how-it-works/"
+SHORTLIST_MODE_TO_PRESET = {
+    "Balanced": "Balanced",
+    "More open": "Bold frontier",
+    "More grounded": "Fast follow",
+}
+PRESET_TO_SHORTLIST_MODE = {value: key for key, value in SHORTLIST_MODE_TO_PRESET.items()}
+SHORTLIST_MODE_HELP = {
+    "Balanced": "A broad default for browsing questions that could plausibly become the next paper.",
+    "More open": "Pushes toward questions that look less worked through and more boundary-crossing.",
+    "More grounded": "Favors questions that already look closer to a direct next paper.",
+}
 
 
 def inject_css() -> None:
@@ -266,11 +277,14 @@ def query_param(name: str) -> str:
     return str(value)
 
 
-def normalize_preset(value: str) -> str:
+def normalize_shortlist_mode(value: str) -> str:
     normalized = value.strip().lower()
-    for candidate in PRESET_HELP:
-        if candidate.lower() == normalized:
-            return candidate
+    for mode in SHORTLIST_MODE_TO_PRESET:
+        if mode.lower() == normalized:
+            return mode
+    for preset, mode in PRESET_TO_SHORTLIST_MODE.items():
+        if preset.lower() == normalized:
+            return mode
     return "Balanced"
 
 
@@ -282,7 +296,7 @@ def parse_flag(value: str, default: bool = False) -> bool:
 
 def candidate_option_label(row: pd.Series) -> str:
     rank = to_int(row.get("priority_rank", 0), default=0)
-    return f"#{rank} {shortlist_pair_label(row)} | {row['priority_score']:.3f}"
+    return f"#{rank} {shortlist_pair_label(row)}"
 
 
 def filtered_download_frame(filtered_df: pd.DataFrame) -> pd.DataFrame:
@@ -333,11 +347,8 @@ def shortlist_view(shortlist_df: pd.DataFrame) -> pd.DataFrame:
             [
                 "priority_rank",
                 "public_pair",
-                "novelty_label",
-                "target_field_name",
                 "direct_literature",
                 "next_study_shape",
-                "priority_score",
                 "mediator_count",
             ]
         ]
@@ -345,15 +356,11 @@ def shortlist_view(shortlist_df: pd.DataFrame) -> pd.DataFrame:
             columns={
                 "priority_rank": "Rank",
                 "public_pair": "Question",
-                "novelty_label": "Type",
-                "target_field_name": "Target field",
-                "direct_literature": "Direct literature",
-                "next_study_shape": "Next study shape",
-                "priority_score": "Priority",
-                "mediator_count": "Nearby ideas",
+                "direct_literature": "Papers on this exact question",
+                "next_study_shape": "Likely study shape",
+                "mediator_count": "Related ideas",
             }
         )
-        .assign(Priority=lambda df: df["Priority"].map(lambda value: f"{value:.3f}"))
     )
 
 
@@ -393,29 +400,29 @@ def filter_candidates(
     return filtered_df
 
 
-def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, preset: str, top_n: int, app_mode: str) -> None:
-    st.subheader("Shortlist")
-    st.caption(PRESET_HELP[preset])
+def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, shortlist_mode: str, top_n: int, app_mode: str) -> None:
+    st.subheader("Questions worth checking")
+    st.caption(SHORTLIST_MODE_HELP[shortlist_mode])
 
     if filtered_df.empty:
-        st.warning("No research questions match the current filters. Relax the thresholds or switch presets.")
+        st.warning("No research questions match the current filters. Relax the filters or switch shortlist mode.")
         return
 
     shortlist_df = filtered_df.head(int(top_n)).reset_index(drop=True)
-    st.caption(f"Showing the top {len(shortlist_df):,} questions from {len(filtered_df):,} visible matches under the current settings.")
+    st.caption(f"Showing {len(shortlist_df):,} questions from {len(filtered_df):,} visible matches under the current settings.")
 
     st.dataframe(shortlist_view(shortlist_df), use_container_width=True, hide_index=True)
 
     options_df = shortlist_df.head(min(100, len(shortlist_df))).reset_index(drop=True)
     selected_idx = st.selectbox(
-        "Inspect one research question in detail",
+        "Inspect one question in detail",
         options=options_df.index,
         format_func=lambda i: candidate_option_label(options_df.loc[i]),
     )
     render_candidate_detail(db_path, options_df.loc[int(selected_idx)], app_mode=app_mode)
 
     st.download_button(
-        label="Export working shortlist as CSV",
+        label="Export working shortlist",
         data=filtered_download_frame(shortlist_df).to_csv(index=False),
         file_name="frontiergraph_shortlist.csv",
         mime="text/csv",
@@ -448,28 +455,25 @@ def render_candidate_detail(db_path: str, row: pd.Series, app_mode: str) -> None
         "Decide whether this is a mechanism, outcome, or setting question",
     ]
 
-    st.markdown("### Selected research question")
+    st.markdown("### Selected question")
     st.markdown(f"**{pair_label}**")
 
     summary_left, summary_right = st.columns([1.35, 1.0])
     with summary_left:
         st.markdown("**Question summary**")
-        st.write(f"Direct literature: {direct_status}")
-        st.write(f"Next study shape: {next_study_shape}")
+        st.write(f"Papers on this exact question: {direct_status}")
+        st.write(f"Likely study shape: {next_study_shape}")
         if nearby_labels:
             st.write(f"Related ideas: {', '.join(nearby_labels)}")
         else:
             st.write("Related ideas: No stable mediator preview in the current public sample")
-        st.write(
-            f"Surrounding literature: {row['source_field_name']} on one side and {row['target_field_name']} on the other."
-        )
     with summary_right:
         st.markdown("**What to verify next**")
         render_bullet_list(verify_steps)
 
-    st.markdown("**Representative papers**")
+    st.markdown("**Papers to start with**")
     if paper_preview.empty:
-        st.caption("No representative papers were exported for this pair in the current public sample.")
+        st.caption("No starter papers were exported for this pair in the current public sample.")
     else:
         preview_df = paper_preview.rename(
             columns={
@@ -489,7 +493,7 @@ def render_candidate_detail(db_path: str, row: pd.Series, app_mode: str) -> None
         neighborhood_row=neighborhood_row,
     )
     st.download_button(
-        label="Export working brief (Markdown)",
+        label="Export working brief",
         data=brief,
         file_name=f"idea_brief_{row['u']}_to_{row['v']}.md",
         mime="text/markdown",
@@ -684,17 +688,20 @@ def render_concept_tab(db_path: str, nodes_df: pd.DataFrame) -> None:
         """,
         (concept_code, int(k)),
     )
-    underexplored = query_df(
-        db_path,
-        """
-        SELECT u, v, cooc_count, first_year_seen, last_year_seen, gap_bonus
-        FROM underexplored_pairs
-        WHERE (u = ? OR v = ?) AND underexplored = 1
-        ORDER BY cooc_count ASC, gap_bonus DESC
-        LIMIT ?
-        """,
-        (concept_code, concept_code, int(k)),
-    )
+    try:
+        underexplored = query_df(
+            db_path,
+            """
+            SELECT u, v, cooc_count, first_year_seen, last_year_seen, gap_bonus
+            FROM underexplored_pairs
+            WHERE (u = ? OR v = ?) AND underexplored = 1
+            ORDER BY cooc_count ASC, gap_bonus DESC
+            LIMIT ?
+            """,
+            (concept_code, concept_code, int(k)),
+        )
+    except Exception:
+        underexplored = pd.DataFrame(columns=["u", "v", "cooc_count", "first_year_seen", "last_year_seen", "gap_bonus"])
 
     st.markdown(f"### {concept_label} ({concept_code})")
     left, right = st.columns(2)
@@ -706,13 +713,16 @@ def render_concept_tab(db_path: str, nodes_df: pd.DataFrame) -> None:
         st.dataframe(incoming, use_container_width=True, hide_index=True)
 
     st.markdown("**Underexplored pairs touching this concept**")
-    st.dataframe(underexplored, use_container_width=True, hide_index=True)
+    if underexplored.empty:
+        st.caption("No underexplored-pair table was exported for this database build.")
+    else:
+        st.dataframe(underexplored, use_container_width=True, hide_index=True)
 
 
 def render_method_tab(filtered_df: pd.DataFrame, preset: str) -> None:
     st.subheader("Method")
     st.markdown(
-        f"Use the public <a href=\"{HOW_IT_WORKS_URL}\">How It Works</a> page for interpretation and limits. Use this tab when you want the compact technical summary behind the current workbench surface.",
+        f"Use the public <a href=\"{HOW_IT_WORKS_URL}\">How It Works</a> page for interpretation and limits. Use this tab when you want the compact technical summary behind the current evidence view.",
         unsafe_allow_html=True,
     )
     st.markdown(
@@ -765,11 +775,11 @@ def main() -> None:
         f"""
         <div class="hero-shell">
             <div class="eyebrow">FrontierGraph Workbench</div>
-            <h1 class="hero-title">Evaluate candidate research questions more seriously.</h1>
+            <h1 class="hero-title">Decide whether a question could become your next paper.</h1>
             <p class="hero-copy">
-                Use this as the deeper evidence layer behind the public site. Start with the shortlist, inspect
-                related ideas and representative papers, then decide whether the question looks like a mechanism,
-                outcome, or setting question worth reading further.
+                Use this as the deeper evidence layer behind the public site. Start with a shortlist, inspect
+                related ideas and starter papers, then decide whether the question looks concrete enough to read,
+                scope, or test more seriously.
             </p>
             <p class="hero-copy">
                 Keep the public interpretation page nearby: <a href="{HOW_IT_WORKS_URL}">How It Works</a> explains how to
@@ -916,7 +926,7 @@ def main() -> None:
     else:
         st.caption("This database is using the legacy browse surface because no concept graph database is configured.")
 
-    default_preset = normalize_preset(query_param("preset"))
+    default_shortlist_mode = normalize_shortlist_mode(query_param("preset"))
     default_search = query_param("search")
     default_source_field = query_param("source_field")
     default_target_field = query_param("target_field")
@@ -927,14 +937,22 @@ def main() -> None:
     max_base_score = max(to_float(candidates_df["score"].max(), default=0.01), 0.01)
     default_min_score = min(0.18, round(max_base_score, 3))
     slider_max = max(5, int(min(candidates_df["cooc_count"].quantile(0.99), 250)))
-    search_text = st.text_input("Search questions", value=default_search, placeholder="Search by topic or concept")
+    search_col, mode_col = st.columns([1.65, 1.0])
+    with search_col:
+        search_text = st.text_input("Search by topic or outcome", value=default_search, placeholder="Search by topic or outcome")
+    with mode_col:
+        shortlist_mode = st.selectbox(
+            "Shortlist mode",
+            options=list(SHORTLIST_MODE_TO_PRESET.keys()),
+            index=list(SHORTLIST_MODE_TO_PRESET.keys()).index(default_shortlist_mode),
+        )
+    preset = SHORTLIST_MODE_TO_PRESET[shortlist_mode]
 
-    with st.expander("Shortlist settings", expanded=False):
+    with st.expander("Refine the list", expanded=False):
         col1, col2, col3 = st.columns(3)
         with col1:
-            preset_options = list(PRESET_HELP.keys())
-            preset = st.selectbox("Shortlist mode", options=preset_options, index=preset_options.index(default_preset))
             top_n = st.slider("Shortlist size", min_value=10, max_value=150, value=30, step=10)
+            novelty_filter = st.multiselect("Question type", options=novelty_options, default=novelty_options)
         with col2:
             source_fields = st.multiselect(
                 "From groups" if is_concept_mode(app_mode) else "From fields",
@@ -948,7 +966,6 @@ def main() -> None:
                 default=[default_target_field] if default_target_field in available_fields else [],
                 format_func=lambda code: field_option_label(code, app_mode=app_mode),
             )
-            novelty_filter = st.multiselect("Question type", options=novelty_options, default=novelty_options)
         with col3:
             min_score = st.slider(
                 "Minimum base score",
@@ -991,7 +1008,7 @@ def main() -> None:
         filtered_df["priority_score"] = pd.Series(dtype=float)
         filtered_df["priority_rank"] = pd.Series(dtype=int)
 
-    render_ranker_tab(db_path, filtered_df, preset, top_n=top_n, app_mode=app_mode)
+    render_ranker_tab(db_path, filtered_df, shortlist_mode, top_n=top_n, app_mode=app_mode)
 
     with st.expander("Advanced tools", expanded=False):
         st.caption("Use these only when you want the literature map, direct concept lookup, or the technical method notes.")

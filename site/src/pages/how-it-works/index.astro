@@ -13,25 +13,29 @@ const content = buildHowItWorksContent(data.app_url);
   <main>
     <section class="page-hero">
       <span class="eyebrow">How It Works</span>
-      <h1>What FrontierGraph is, what it is not, and how to read it.</h1>
+      <h1>How FrontierGraph helps you decide whether a question is worth pursuing.</h1>
       <p class="lede">
-        FrontierGraph is useful when it helps you find a research question worth reading or testing next. It is not a
-        substitute for reading papers, checking close synonyms, or deciding whether a claim is true.
+        Use FrontierGraph to find a question, read the quick evidence around it, and decide whether it could become
+        your next paper. It is not a substitute for reading papers, checking close synonyms, or deciding whether a claim is true.
       </p>
       <div class="button-row">
         <a class="button-primary" href="/questions/">Browse research questions</a>
-        <a class="button-secondary" href={data.app_url}>Open workbench</a>
+        <a class="button-secondary" href={data.app_url}>Inspect evidence</a>
         <a class="button-tertiary" href="/method/">Open Method</a>
       </div>
     </section>
 
     <section class="section faq-top-grid">
       <article class="content-panel faq-foundation-panel">
-        <span class="eyebrow">Foundation</span>
-        <h2>FrontierGraph builds on earlier claim-graph extraction work, but it is not the same product.</h2>
-        {content.foundationHtml.map((paragraph) => (
-          <p class="card-copy" set:html={paragraph}></p>
-        ))}
+        <span class="eyebrow">Start here</span>
+        <h2>Use the public list to spot a question, then inspect the evidence before you trust it.</h2>
+        <p class="card-copy">
+          Start on Research Questions, not on the technical pages. The point of the public site is to help you decide
+          what looks worth reading, scoping, or testing next.
+        </p>
+        <p class="card-copy">
+          When a question looks promising, inspect the related ideas and the starter papers before deciding it is truly open.
+        </p>
       </article>
 
       <aside class="content-panel faq-rail">
@@ -43,6 +47,16 @@ const content = buildHowItWorksContent(data.app_url);
           ))}
         </ul>
       </aside>
+    </section>
+
+    <section class="section">
+      <article class="content-panel faq-foundation-panel">
+        <span class="eyebrow">Foundation</span>
+        <h2>FrontierGraph builds on earlier claim-graph extraction work, but it is not the same product.</h2>
+        {content.foundationHtml.map((paragraph) => (
+          <p class="card-copy" set:html={paragraph}></p>
+        ))}
+      </article>
     </section>
 
     <section class="section">
@@ -98,12 +112,12 @@ const content = buildHowItWorksContent(data.app_url);
     <section class="section">
       <div class="cta-band">
         <span class="eyebrow">Next step</span>
-        <h2>Use the public site to browse, then open the workbench when you want deeper evidence or technical detail.</h2>
+        <h2>Use the public site to browse, then inspect the evidence when you want deeper detail.</h2>
         <div class="button-row">
           <a class="button-primary" href="/questions/">Browse research questions</a>
           <a class="button-secondary" href="/method/">Open Method</a>
           <a class="button-tertiary" href="/advanced/">Open Advanced</a>
-          <a class="button-tertiary" href={data.app_url}>Open workbench</a>
+          <a class="button-tertiary" href={data.app_url}>Inspect evidence</a>
         </div>
       </div>
     </section>

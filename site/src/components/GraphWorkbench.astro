@@ -32,7 +32,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       <span class="eyebrow">Literature map</span>
       <h2>Start with the topic summary, then open the map only when you need it.</h2>
       <p class="card-copy">
-        Search for a topic, read the surrounding literature in plain language, and switch to the full map only when you want wider orientation across the public snapshot.
+        Search for a topic, read the nearby research in plain language, and switch to the full map only when you want wider orientation across the public snapshot.
       </p>
     </div>
     <label class="search-shell">
@@ -60,7 +60,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
           </p>
         </div>
         <details class="inspector-detail" open>
-          <summary>Surrounding literature</summary>
+          <summary>Related research</summary>
           <div data-role="selected-neighborhood">
             <p class="card-copy">Incoming, outgoing, and nearby summaries will appear here.</p>
           </div>
@@ -602,12 +602,12 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         <span class="field-pill">${formatNumber(safeNumber(concept.in_degree))} incoming observed links</span>
         <span class="field-pill">${formatNumber(safeNumber(concept.out_degree))} outgoing observed links</span>
       </div>
-      <p class="mini-copy">Typical settings: ${escapeHtml(listText((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
+      <p class="mini-copy">Common contexts: ${escapeHtml(listText((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
       <p class="mini-copy">Common units: ${escapeHtml(listText((concept.top_units || []).slice(0, 3), "No dominant unit in the current public sample"))}</p>
       <p class="mini-copy">Aliases: ${escapeHtml(listText((concept.aliases || []).slice(0, 6), "No alternate labels in the current public sample"))}</p>
       <p class="mini-copy">${escapeHtml(visibilityCopy)}</p>
       <div class="button-row">
-        <a class="button-secondary" href="${escapeHtml(concept.app_link)}">Open in workbench</a>
+        <a class="button-secondary" href="${escapeHtml(concept.app_link)}">Inspect evidence</a>
       </div>
     `;
   };
@@ -692,8 +692,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
             <strong>${escapeHtml(item.public_pair_label)}</strong>
             ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
             <div class="mini-copy">${escapeHtml(item.direct_link_status)} - linked by ${formatNumber(safeNumber(item.supporting_path_count))} related ideas</div>
-            <div class="mini-copy">Surrounding literature: ${escapeHtml(item.source_context_summary)} on one side and ${escapeHtml(item.target_context_summary)} on the other.</div>
-            <a class="text-link" href="${escapeHtml(item.app_link)}">Open in workbench</a>
+            <div class="mini-copy">Common contexts: ${escapeHtml(item.source_context_summary)} on one side and ${escapeHtml(item.target_context_summary)} on the other.</div>
+            <a class="text-link" href="${escapeHtml(item.app_link)}">Inspect evidence</a>
           </article>
         `,
       )

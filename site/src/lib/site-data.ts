@@ -67,6 +67,7 @@ export type EditorialQuestion = {
   homepage_featured: boolean;
   questions_featured: boolean;
   display_order: number;
+  homepage_role: "lead" | "supporting" | "none";
 };
 
 export type CuratedQuestion = Opportunity & EditorialQuestion;
@@ -249,6 +250,11 @@ function validateCuratedSet(
     const item = actualByPair.get(entry.pair_key);
     invariant(item, `${label} is missing curated pair_key ${entry.pair_key}`);
     invariant(item.display_order === entry.display_order, `${label} has stale display order for ${entry.pair_key}`);
+    invariant(item.question_title === entry.question_title, `${label} has stale question_title for ${entry.pair_key}`);
+    invariant(item.short_why === entry.short_why, `${label} has stale short_why for ${entry.pair_key}`);
+    invariant(item.first_next_step === entry.first_next_step, `${label} has stale first_next_step for ${entry.pair_key}`);
+    invariant(item.who_its_for === entry.who_its_for, `${label} has stale who_its_for for ${entry.pair_key}`);
+    invariant(item.homepage_role === entry.homepage_role, `${label} has stale homepage_role for ${entry.pair_key}`);
     ordered.push(item);
   }
   return ordered;
@@ -275,6 +281,14 @@ function buildSiteData(): SiteData {
   const expectedQuestions = editorialItems.filter((item) => item.questions_featured);
   invariant(expectedHome.length === 3, "Homepage curation must contain exactly 3 curated questions");
   invariant(expectedQuestions.length === 6, "Questions curation must contain exactly 6 curated questions");
+  invariant(
+    expectedHome.filter((item) => item.homepage_role === "lead").length === 1,
+    "Homepage curation must contain exactly one lead question",
+  );
+  invariant(
+    expectedHome.filter((item) => item.homepage_role === "supporting").length === 2,
+    "Homepage curation must contain exactly two supporting questions",
+  );
   invariant(
     Object.keys(payload.public_label_glossary ?? {}).length === Object.keys(glossarySource).length,
     "public_label_glossary is out of sync with public-label-glossary.json",
