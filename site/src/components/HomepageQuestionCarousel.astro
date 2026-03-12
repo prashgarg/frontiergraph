@@ -23,6 +23,12 @@ const mediatorPositions = [
   { x: 196, y: 182 },
   { x: 120, y: 188 },
 ];
+const splitNodeLabel = (label: string) => {
+  const words = label.split(" ").filter(Boolean);
+  if (words.length <= 2) return [label];
+  const midpoint = Math.ceil(words.length / 2);
+  return [words.slice(0, midpoint).join(" "), words.slice(midpoint).join(" ")];
+};
 ---
 
 <section class="hero-panel homepage-carousel-panel" data-role="homepage-carousel" id={rootId}>
@@ -52,22 +58,30 @@ const mediatorPositions = [
       >
         <div class="bridge-visual-shell">
           <svg viewBox="0 0 320 240" class="bridge-visual" aria-hidden="true">
-            <line x1="72" y1="120" x2="248" y2="120" class="bridge-line bridge-line-suggested" />
+            <line x1="108" y1="120" x2="212" y2="120" class="bridge-line bridge-line-suggested" />
             {slide.mediatorLabels.slice(0, 4).map((label, mediatorIndex) => {
               const position = mediatorPositions[mediatorIndex];
               return (
                 <g>
-                  <line x1="72" y1="120" x2={position.x} y2={position.y} class="bridge-line" />
-                  <line x1={position.x} y1={position.y} x2="248" y2="120" class="bridge-line" />
-                  <circle cx={position.x} cy={position.y} r="17" class="bridge-node bridge-node-mediator" />
-                  <text x={position.x} y={position.y + 34} text-anchor="middle" class="bridge-label bridge-label-mediator">{label}</text>
+                  <line x1="102" y1="120" x2={position.x} y2={position.y} class="bridge-line" />
+                  <line x1={position.x} y1={position.y} x2="218" y2="120" class="bridge-line" />
+                  <circle cx={position.x} cy={position.y} r="18.5" class="bridge-node bridge-node-mediator" />
+                  <text x={position.x} y={position.y + 35} text-anchor="middle" class="bridge-label bridge-label-mediator">{label}</text>
                 </g>
               );
             })}
-            <circle cx="72" cy="120" r="30" class="bridge-node bridge-node-source" />
-            <circle cx="248" cy="120" r="30" class="bridge-node bridge-node-target" />
-            <text x="72" y="124" text-anchor="middle" class="bridge-label bridge-label-strong">{slide.sourceLabel}</text>
-            <text x="248" y="124" text-anchor="middle" class="bridge-label bridge-label-strong">{slide.targetLabel}</text>
+            <ellipse cx="72" cy="120" rx="38" ry="26" class="bridge-node bridge-node-source" />
+            <ellipse cx="248" cy="120" rx="38" ry="26" class="bridge-node bridge-node-target" />
+            <text x="72" y="116" text-anchor="middle" class="bridge-label bridge-label-strong">
+              {splitNodeLabel(slide.sourceLabel).map((line, lineIndex) => (
+                <tspan x="72" dy={lineIndex === 0 ? 0 : 12}>{line}</tspan>
+              ))}
+            </text>
+            <text x="248" y="116" text-anchor="middle" class="bridge-label bridge-label-strong">
+              {splitNodeLabel(slide.targetLabel).map((line, lineIndex) => (
+                <tspan x="248" dy={lineIndex === 0 ? 0 : 12}>{line}</tspan>
+              ))}
+            </text>
           </svg>
           <p class="mini-copy bridge-legend">
             Solid lines show links that already appear often in nearby work. The dashed line is the speculative question.

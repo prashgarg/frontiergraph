@@ -25,6 +25,22 @@ const carouselSlides = homepageCarouselSlides.flatMap((slide) => {
     },
   ];
 });
+
+const formatNumber = (value: number) => new Intl.NumberFormat("en-GB").format(value);
+const scaleItems = [
+  {
+    label: "published papers",
+    value: formatNumber(data.metrics.papers),
+  },
+  {
+    label: "extracted concept instances",
+    value: formatNumber(data.metrics.node_instances),
+  },
+  {
+    label: "candidate questions screened",
+    value: formatNumber(data.metrics.suppressed_candidate_count),
+  },
+];
 ---
 
 <BaseLayout
@@ -40,29 +56,78 @@ const carouselSlides = homepageCarouselSlides.flatMap((slide) => {
           Popular topics are often crowded, while neglected ones are often vague or weak. FrontierGraph helps surface
           questions that still look open but already have enough nearby work to investigate seriously.
         </p>
-        <div class="hero-analogy-card">
-          <span class="tiny-label">A simple analogy</span>
-          <p class="card-copy">
-            Social platforms suggest people to follow from shared connections. FrontierGraph does something similar for
-            research: it looks for questions that are not yet studied directly very often, but already sit near enough
-            related work to be worth checking.
-          </p>
+        <div class="hero-detail-grid">
+          <div class="hero-analogy-card">
+            <div class="hero-analogy-layout">
+              <div>
+                <span class="tiny-label">A simple analogy</span>
+                <p class="card-copy">
+                  Social platforms suggest people to follow from shared connections. FrontierGraph does something similar for
+                  research: it looks for questions that are not yet studied directly very often, but already sit near enough
+                  related work to be worth checking.
+                </p>
+              </div>
+              <div class="analogy-visual" aria-hidden="true">
+                <div class="analogy-track">
+                  <span class="analogy-caption">shared connections</span>
+                  <span class="analogy-node analogy-node-person left"></span>
+                  <span class="analogy-node analogy-node-person top"></span>
+                  <span class="analogy-node analogy-node-person bottom"></span>
+                  <span class="analogy-node analogy-node-person right"></span>
+                  <span class="analogy-link analogy-link-solid one"></span>
+                  <span class="analogy-link analogy-link-solid two"></span>
+                  <span class="analogy-link analogy-link-solid three"></span>
+                  <span class="analogy-link analogy-link-dashed"></span>
+                </div>
+                <div class="analogy-track analogy-track-research">
+                  <span class="analogy-caption">related work</span>
+                  <span class="analogy-node analogy-node-research left"></span>
+                  <span class="analogy-node analogy-node-research top"></span>
+                  <span class="analogy-node analogy-node-research bottom"></span>
+                  <span class="analogy-node analogy-node-research right"></span>
+                  <span class="analogy-link analogy-link-solid one"></span>
+                  <span class="analogy-link analogy-link-solid two"></span>
+                  <span class="analogy-link analogy-link-solid three"></span>
+                  <span class="analogy-link analogy-link-dashed"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-problem-card">
+            <span class="tiny-label">Why this exists</span>
+            <p class="mini-copy">
+              The hard part is not finding topics. It is deciding which ideas are already crowded, which ones are too vague,
+              and which ones might genuinely become the next paper.
+            </p>
+            <p class="mini-copy hero-audience-line">
+              Useful for PhD students choosing topics, researchers scoping the next paper, and people moving into a nearby field.
+            </p>
+          </div>
         </div>
-        <div class="hero-problem-card">
-          <span class="tiny-label">Why this exists</span>
-          <p class="mini-copy">
-            The hard part is not finding topics. It is deciding which ideas are already crowded, which ones are too vague,
-            and which ones might genuinely become the next paper.
-          </p>
-          <p class="mini-copy hero-audience-line">
-            Useful for PhD students choosing topics, researchers scoping the next paper, and people moving into a nearby field.
-          </p>
+        <div class="hero-scale-strip" data-role="homepage-scale-strip">
+          <div class="hero-scale-copy">
+            <span class="tiny-label">Current public build</span>
+            <p class="mini-copy">
+              Large enough to be useful, but still a screening surface rather than a verdict on what matters.
+            </p>
+          </div>
+          <div class="hero-scale-metrics">
+            {scaleItems.map((item) => (
+              <div class="hero-scale-card">
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
         <div class="hero-actions">
           <a class="button-primary" href="/questions/">Browse research questions</a>
           <a class="button-secondary" href={data.app_url}>Inspect evidence</a>
         </div>
       </div>
+    </section>
+
+    <section class="section">
       <HomepageQuestionCarousel slides={carouselSlides} />
     </section>
 
