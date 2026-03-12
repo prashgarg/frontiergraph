@@ -5,20 +5,14 @@ interface Props {
   mediatorLabels?: string[];
   representativePapers?: RepresentativePaper[];
   directLinkStatus: string;
-  sourceLabel: string;
-  targetLabel: string;
-  sourceContextSummary: string;
-  targetContextSummary: string;
+  commonContexts?: string;
 }
 
 const {
   mediatorLabels = [],
   representativePapers = [],
   directLinkStatus,
-  sourceLabel,
-  targetLabel,
-  sourceContextSummary,
-  targetContextSummary,
+  commonContexts = "",
 } = Astro.props;
 
 const uniqueMediatorLabels = Array.from(new Set(mediatorLabels.filter(Boolean)));
@@ -49,8 +43,10 @@ const visiblePapers = representativePapers.filter((paper) => paper.title).slice(
     <p class="mini-copy">
       <strong>Papers on this exact question:</strong> {directLinkStatus}
     </p>
-    <p class="mini-copy">
-      <strong>Common contexts:</strong> {sourceLabel} studies are common in {sourceContextSummary}; {targetLabel} studies are common in {targetContextSummary}.
-    </p>
+    {commonContexts && (
+      <p class="mini-copy">
+        <strong>Common contexts:</strong> {commonContexts}
+      </p>
+    )}
   </div>
 </details>

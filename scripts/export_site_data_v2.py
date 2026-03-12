@@ -4,6 +4,7 @@ import csv
 import json
 import math
 import os
+import re
 import sqlite3
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -154,12 +155,133 @@ EDITORIAL_REQUIRED_FIELDS = (
     "questions_featured",
     "display_order",
     "homepage_role",
+    "field_shelves",
+    "collection_tags",
+    "editorial_strength",
+    "question_family",
 )
 
 PUBLIC_LABEL_GLOSSARY_REQUIRED_FIELDS = (
     "concept_id",
     "subtitle",
 )
+
+FIELD_SHELF_DEFS = [
+    {
+        "slug": "macro-finance",
+        "title": "Macro and finance",
+        "caption": "Questions about fiscal space, monetary transmission, and aggregate demand that still feel paper-shaped.",
+    },
+    {
+        "slug": "development-urban",
+        "title": "Development and urban",
+        "caption": "Questions about growth, cities, capital deepening, and distribution that a development reader can act on quickly.",
+    },
+    {
+        "slug": "trade-globalization",
+        "title": "Trade and globalization",
+        "caption": "Questions where trade exposure, imports, or exports may matter more than the standard growth framing suggests.",
+    },
+    {
+        "slug": "climate-energy",
+        "title": "Climate and energy",
+        "caption": "Questions that connect emissions, energy demand, and policy channels without collapsing into generic climate pairings.",
+    },
+    {
+        "slug": "innovation-productivity",
+        "title": "Innovation and productivity",
+        "caption": "Questions about whether cleaner innovation, environmental outcomes, and productivity really move together.",
+    },
+]
+
+COLLECTION_DEFS = [
+    {
+        "slug": "cross-field",
+        "title": "Most promising cross-field questions",
+        "caption": "Use these when you want a question that clearly bridges areas people usually read apart.",
+    },
+    {
+        "slug": "open-little-direct",
+        "title": "Open questions with little direct work",
+        "caption": "These look especially useful when you want a topic that still seems open in the current public sample.",
+    },
+    {
+        "slug": "strong-nearby-evidence",
+        "title": "Questions with strong nearby evidence",
+        "caption": "These have enough surrounding structure to feel grounded before you open the app.",
+    },
+    {
+        "slug": "paper-ready",
+        "title": "Questions that already look paper-ready",
+        "caption": "These are the most useful when you want something concrete enough to read and scope quickly.",
+    },
+    {
+        "slug": "phd-topic",
+        "title": "Good PhD topic candidates",
+        "caption": "These feel broad enough to grow into a project, but narrow enough to imagine as a first real paper.",
+    },
+]
+
+GENERIC_PAPER_TITLE_PHRASES = (
+    "nexus",
+    "evidence from",
+    "case study",
+    "global perspective",
+    "comprehensive analysis",
+    "panel ardl",
+    "quantile regression",
+    "cointegration",
+)
+PUBLIC_WINDOW_BLOCKLIST_PHRASES = (
+    "vector autoregressive model",
+    "uncertainty measures",
+    "relative prices",
+    "distance",
+)
+
+TOKEN_STOPWORDS = {
+    "and",
+    "the",
+    "of",
+    "in",
+    "for",
+    "to",
+    "with",
+    "by",
+    "on",
+    "a",
+    "an",
+    "does",
+    "do",
+    "how",
+    "when",
+    "into",
+    "through",
+    "quality",
+    "environmental",
+    "growth",
+    "economic",
+    "policy",
+    "consumption",
+}
+
+COUNTRY_CODE_ALIASES = {
+    "CHN": "China",
+    "USA": "United States",
+    "US": "United States",
+    "IND": "India",
+    "GBR": "United Kingdom",
+    "UK": "United Kingdom",
+    "BRA": "Brazil",
+    "DEU": "Germany",
+    "FRA": "France",
+    "ITA": "Italy",
+    "ESP": "Spain",
+    "CAN": "Canada",
+    "AUS": "Australia",
+    "ZAF": "South Africa",
+    "ARE": "United Arab Emirates",
+}
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -194,6 +316,36 @@ def clean_public_text(value: Any) -> str:
     return text
 
 
+def normalize_context_value(value: Any) -> str:
+    text = clean_public_text(value)
+    if not text:
+        return ""
+    normalized = COUNTRY_CODE_ALIASES.get(text.upper(), text)
+    if len(normalized) == 3 and normalized.isupper() and normalized in COUNTRY_CODE_ALIASES:
+        normalized = COUNTRY_CODE_ALIASES[normalized]
+    return normalized
+
+
+def normalized_label_key(value: Any) -> str:
+    text = clean_public_text(value).lower()
+    text = re.sub(r"\([^)]*\)", "", text)
+    text = text.replace("/", " ")
+    text = re.sub(r"[^a-z0-9\s]", " ", text)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
+
+def significant_tokens(*values: Any) -> list[str]:
+    tokens: list[str] = []
+    for value in values:
+        normalized = normalized_label_key(value)
+        for token in normalized.split():
+            if len(token) < 3 or token in TOKEN_STOPWORDS:
+                continue
+            tokens.append(token)
+    return uniq_keep_order(tokens, limit=8)
+
+
 def parse_json_list(raw: Any) -> list[Any]:
     if raw is None or raw == "":
         return []
@@ -216,16 +368,16 @@ def normalize_bucket_profile(raw: Any) -> dict[str, int]:
 
 def top_values(raw: Any, limit: int = 3) -> list[str]:
     values: list[str] = []
-    for item in parse_json_list(raw)[:limit]:
+    for item in parse_json_list(raw):
         if isinstance(item, dict) and item.get("value"):
-            text = clean_public_text(item["value"])
+            text = normalize_context_value(item["value"])
             if text:
                 values.append(text)
         elif isinstance(item, str):
-            text = clean_public_text(item)
+            text = normalize_context_value(item)
             if text:
                 values.append(text)
-    return values
+    return uniq_keep_order(values, limit=limit)
 
 
 def uniq_keep_order(values: list[str], limit: int | None = None) -> list[str]:
@@ -278,6 +430,21 @@ def public_label_payload(
         "plain_label": plain_label,
         "subtitle": subtitle,
     }
+
+
+def build_common_contexts(
+    source_label: str,
+    target_label: str,
+    source_context_summary: str,
+    target_context_summary: str,
+) -> str:
+    source_summary = clean_public_text(source_context_summary)
+    target_summary = clean_public_text(target_context_summary)
+    if not source_summary or not target_summary:
+        return ""
+    if source_summary.startswith("No dominant") or target_summary.startswith("No dominant"):
+        return ""
+    return f"{source_label} studies are common in {source_summary}; {target_label} studies are common in {target_summary}."
 
 
 def public_slice_label(values: dict[str, Any]) -> str:
@@ -371,13 +538,100 @@ def resolve_top_mediator_labels(
             continue
         raw_label = concept_label_lookup.get(concept_id, concept_id)
         public_label = public_label_payload(concept_id, raw_label, glossary)["plain_label"]
-        if not public_label or public_label in seen:
+        normalized = normalized_label_key(public_label)
+        if not public_label or not normalized or normalized in seen:
             continue
-        seen.add(public_label)
+        seen.add(normalized)
         labels.append(public_label)
         if len(labels) >= limit:
             break
     return labels
+
+
+def paper_title_score(
+    paper: dict[str, Any],
+    source_label: str,
+    target_label: str,
+    source_edge_label: str,
+    target_edge_label: str,
+) -> float:
+    title = normalized_label_key(paper.get("title"))
+    if not title:
+        return -10.0
+
+    source_phrase = normalized_label_key(source_label)
+    target_phrase = normalized_label_key(target_label)
+    source_edge_phrase = normalized_label_key(source_edge_label)
+    target_edge_phrase = normalized_label_key(target_edge_label)
+    title_tokens = set(title.split())
+
+    score = 0.0
+    if source_phrase and source_phrase in title:
+        score += 4.0
+    if target_phrase and target_phrase in title:
+        score += 4.0
+    if source_edge_phrase and source_edge_phrase in title:
+        score += 2.0
+    if target_edge_phrase and target_edge_phrase in title:
+        score += 2.0
+
+    score += 1.1 * sum(token in title_tokens for token in significant_tokens(source_label, source_edge_label))
+    score += 1.1 * sum(token in title_tokens for token in significant_tokens(target_label, target_edge_label))
+
+    generic_penalty = sum(phrase in title for phrase in GENERIC_PAPER_TITLE_PHRASES)
+    score -= 0.35 * generic_penalty
+    score += max(0.0, 1.6 - 0.3 * float(paper.get("path_rank", 99)))
+    score += max(0.0, 0.8 - 0.15 * float(paper.get("paper_rank", 99)))
+    score += min(max(to_int(paper.get("year", 0)) - 2016, 0), 8) * 0.04
+    return score
+
+
+def select_representative_papers(
+    values: dict[str, Any],
+    papers: list[dict[str, Any]],
+    concept_label_lookup: dict[str, str],
+    glossary: dict[str, dict[str, Any]],
+) -> list[dict[str, Any]]:
+    if not papers:
+        return []
+
+    source_public = public_label_payload(values["u"], values["u_preferred_label"], glossary)["plain_label"]
+    target_public = public_label_payload(values["v"], values["v_preferred_label"], glossary)["plain_label"]
+
+    scored: list[tuple[float, dict[str, Any]]] = []
+    for paper in papers:
+        source_edge_label = concept_label_lookup.get(str(paper.get("edge_src", "")), "")
+        target_edge_label = concept_label_lookup.get(str(paper.get("edge_dst", "")), "")
+        score = paper_title_score(paper, source_public, target_public, source_edge_label, target_edge_label)
+        scored.append((score, paper))
+
+    scored.sort(
+        key=lambda item: (
+            item[0],
+            -to_float(item[1].get("path_rank", 99), 99.0),
+            -to_float(item[1].get("paper_rank", 99), 99.0),
+            to_int(item[1].get("year", 0)),
+        ),
+        reverse=True,
+    )
+    strong = [paper for score, paper in scored if score >= 2.0]
+    if len(strong) >= 2:
+        chosen = strong[:3]
+    else:
+        chosen = [paper for _score, paper in scored[: min(2, len(scored))]]
+
+    out: list[dict[str, Any]] = []
+    for paper in chosen:
+        out.append(
+            {
+                "paper_id": str(paper["paper_id"]),
+                "title": clean_public_text(paper["title"]),
+                "year": to_int(paper["year"]),
+                "edge_src": str(paper["edge_src"]),
+                "edge_dst": str(paper["edge_dst"]),
+            }
+        )
+    return out
 
 
 def load_representative_papers() -> dict[tuple[str, str], list[dict[str, Any]]]:
@@ -403,6 +657,8 @@ def load_representative_papers() -> dict[tuple[str, str], list[dict[str, Any]]]:
             SELECT
                 candidate_u,
                 candidate_v,
+                path_rank,
+                paper_rank,
                 paper_id,
                 title,
                 year,
@@ -418,13 +674,15 @@ def load_representative_papers() -> dict[tuple[str, str], list[dict[str, Any]]]:
         SELECT
             candidate_u,
             candidate_v,
+            path_rank,
+            paper_rank,
             paper_id,
             title,
             year,
             edge_src,
             edge_dst
         FROM limited
-        WHERE representative_rank <= 3
+        WHERE representative_rank <= 16
         ORDER BY candidate_u, candidate_v, representative_rank
     """
 
@@ -432,7 +690,7 @@ def load_representative_papers() -> dict[tuple[str, str], list[dict[str, Any]]]:
         rows = conn.execute(sql).fetchall()
 
     lookup: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
-    for candidate_u, candidate_v, paper_id, title, year, edge_src, edge_dst in rows:
+    for candidate_u, candidate_v, path_rank, paper_rank, paper_id, title, year, edge_src, edge_dst in rows:
         lookup[(str(candidate_u), str(candidate_v))].append(
             {
                 "paper_id": str(paper_id),
@@ -440,9 +698,64 @@ def load_representative_papers() -> dict[tuple[str, str], list[dict[str, Any]]]:
                 "year": to_int(year),
                 "edge_src": str(edge_src),
                 "edge_dst": str(edge_dst),
+                "path_rank": to_int(path_rank),
+                "paper_rank": to_int(paper_rank),
             }
         )
     return lookup
+
+
+def infer_question_family(source_label: str, target_label: str) -> str:
+    combined = f"{normalized_label_key(source_label)} {normalized_label_key(target_label)}"
+    if "public debt" in combined and any(token in combined for token in ("co2", "carbon", "environmental", "emissions")):
+        return "debt-climate"
+    if "monetary policy" in combined and "energy" in combined:
+        return "monetary-energy"
+    if "monetary policy" in combined and any(token in combined for token in ("consumer", "demand", "consumption")):
+        return "monetary-demand"
+    if "urbanization" in combined and any(token in combined for token in ("output", "growth", "productivity")):
+        return "urban-growth"
+    if "investment" in combined and any(token in combined for token in ("co2", "carbon", "environmental", "emissions")):
+        return "investment-climate"
+    if any(token in combined for token in ("trade liberalisation", "trade integration")) and "energy" in combined:
+        return "trade-energy"
+    if any(token in combined for token in ("exports", "imports", "trade", "foreign direct investment", "fdi")) and any(
+        token in combined for token in ("co2", "carbon", "environmental", "pollution", "quality")
+    ):
+        return "trade-environment"
+    if "education" in combined and "wage inequality" in combined:
+        return "education-inequality"
+    if "green innovation" in combined and "productivity" in combined:
+        return "innovation-productivity"
+    if any(token in combined for token in ("innovation", "green innovation")) and any(
+        token in combined for token in ("environmental", "ecological", "co2", "carbon", "quality", "load capacity")
+    ):
+        return "innovation-environment"
+    if "productivity" in combined and any(token in combined for token in ("co2", "carbon", "environmental")):
+        return "productivity-environment"
+    return combined.replace(" ", "-")[:80] or "general"
+
+
+def public_window_penalty(row: dict[str, Any]) -> tuple[int, int]:
+    penalty = 0
+    label_blob = " ".join(
+        [
+            normalized_label_key(row.get("source_label")),
+            normalized_label_key(row.get("target_label")),
+            normalized_label_key(row.get("public_pair_label")),
+        ]
+    )
+    if any(phrase in label_blob for phrase in PUBLIC_WINDOW_BLOCKLIST_PHRASES):
+        penalty += 25
+    if len(row.get("representative_papers", [])) < 2:
+        penalty += 8
+    if not row.get("common_contexts"):
+        penalty += 4
+    if len(row.get("top_mediator_labels", [])) < 2:
+        penalty += 4
+    if row.get("suppress_from_public_ranked_window"):
+        penalty += 100
+    return penalty, to_int(row.get("cooc_count", 0))
 
 
 def opportunity_record(
@@ -451,6 +764,7 @@ def opportunity_record(
     concept_label_lookup: dict[str, str],
     glossary: dict[str, dict[str, Any]],
     representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
+    editorial: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     values = dict(zip(columns, row))
     pair_query = quote(f"{values['u_preferred_label']} -> {values['v_preferred_label']}")
@@ -459,12 +773,20 @@ def opportunity_record(
     top_target = top_values(values["v_top_countries"], limit=3)
     source_public = public_label_payload(values["u"], values["u_preferred_label"], glossary)
     target_public = public_label_payload(values["v"], values["v_preferred_label"], glossary)
+    editorial_entry = (editorial or {}).get(str(values["pair_key"]), {})
     cross_field = clean_public_text(values.get("u_bucket_hint")) != clean_public_text(values.get("v_bucket_hint"))
-    representative_papers = [
-        paper
-        for paper in representative_papers_lookup.get((str(values["u"]), str(values["v"])), [])
-        if clean_public_text(paper.get("title"))
-    ]
+    representative_papers = select_representative_papers(
+        values,
+        [
+            paper
+            for paper in representative_papers_lookup.get((str(values["u"]), str(values["v"])), [])
+            if clean_public_text(paper.get("title"))
+        ],
+        concept_label_lookup,
+        glossary,
+    )
+    source_context_summary = plain_language_context(top_source, "No dominant source setting in the current public sample")
+    target_context_summary = plain_language_context(top_target, "No dominant target setting in the current public sample")
     return {
         "pair_key": values["pair_key"],
         "source_id": values["u"],
@@ -495,10 +817,19 @@ def opportunity_record(
         ),
         "top_mediator_labels": resolve_top_mediator_labels(values.get("top_mediators_json"), concept_label_lookup, glossary, limit=3),
         "representative_papers": representative_papers,
+        "question_family": clean_public_text(editorial_entry.get("question_family"))
+        or infer_question_family(source_public["plain_label"], target_public["plain_label"]),
+        "suppress_from_public_ranked_window": bool(editorial_entry.get("suppress_from_public_ranked_window", False)),
         "top_countries_source": top_source,
         "top_countries_target": top_target,
-        "source_context_summary": plain_language_context(top_source, "No dominant source setting in the current public sample"),
-        "target_context_summary": plain_language_context(top_target, "No dominant target setting in the current public sample"),
+        "source_context_summary": source_context_summary,
+        "target_context_summary": target_context_summary,
+        "common_contexts": build_common_contexts(
+            source_public["plain_label"],
+            target_public["plain_label"],
+            source_context_summary,
+            target_context_summary,
+        ),
         "app_link": f"{APP_URL}?search={pair_query}",
     }
 
@@ -547,6 +878,7 @@ def build_slices(
     concept_label_lookup: dict[str, str],
     glossary: dict[str, dict[str, Any]],
     representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
+    editorial: dict[str, dict[str, Any]],
 ) -> dict[str, list[dict[str, Any]]]:
     columns = list(df.columns)
     def top_records(mask: pd.Series | None, limit: int = 100) -> list[dict[str, Any]]:
@@ -555,7 +887,10 @@ def build_slices(
         else:
             subset = df.loc[mask].head(limit)
         subset_rows = [tuple(row) for row in subset.itertuples(index=False, name=None)]
-        return [opportunity_record(row, columns, concept_label_lookup, glossary, representative_papers_lookup) for row in subset_rows]
+        return [
+            opportunity_record(row, columns, concept_label_lookup, glossary, representative_papers_lookup, editorial)
+            for row in subset_rows
+        ]
 
     return {
         "overall": top_records(None),
@@ -827,11 +1162,19 @@ def build_concept_opportunities(
     concept_label_lookup: dict[str, str],
     glossary: dict[str, dict[str, Any]],
     representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
+    editorial: dict[str, dict[str, Any]],
 ) -> dict[str, list[dict[str, Any]]]:
     columns = list(candidates_df.columns)
     concept_map: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
     for row in candidates_df.itertuples(index=False):
-        record = opportunity_record(tuple(row), columns, concept_label_lookup, glossary, representative_papers_lookup)
+        record = opportunity_record(
+            tuple(row),
+            columns,
+            concept_label_lookup,
+            glossary,
+            representative_papers_lookup,
+            editorial,
+        )
         for concept_id in (row.u, row.v):
             existing = concept_map[concept_id].get(record["pair_key"])
             if existing is None or safe_number_for_sort(record["score"]) > safe_number_for_sort(existing["score"]):
@@ -961,6 +1304,8 @@ def load_editorial_opportunities() -> dict[str, dict[str, Any]]:
         missing = [field for field in EDITORIAL_REQUIRED_FIELDS if field not in entry]
         if missing:
             raise ValueError(f"Editorial entry {pair_key} is missing required fields: {', '.join(missing)}")
+        entry["field_shelves"] = [clean_public_text(value) for value in entry.get("field_shelves", []) if clean_public_text(value)]
+        entry["collection_tags"] = [clean_public_text(value) for value in entry.get("collection_tags", []) if clean_public_text(value)]
         editorial[pair_key] = entry
     return editorial
 
@@ -991,13 +1336,13 @@ def load_public_label_glossary(valid_concept_ids: set[str]) -> dict[str, dict[st
     return glossary
 
 
-def build_curated_opportunities(
+def build_editorial_records(
     editorial: dict[str, dict[str, Any]],
     candidates_df: pd.DataFrame,
     concept_label_lookup: dict[str, str],
     glossary: dict[str, dict[str, Any]],
     representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
-) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+) -> list[dict[str, Any]]:
     available_pair_keys = {str(value) for value in candidates_df["pair_key"].tolist()}
     missing_pairs = [pair_key for pair_key in editorial if pair_key not in available_pair_keys]
     if missing_pairs:
@@ -1010,7 +1355,14 @@ def build_curated_opportunities(
     columns = list(subset_df.columns)
     records_by_pair: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in subset_df.itertuples(index=False, name=None):
-        record = opportunity_record(tuple(row), columns, concept_label_lookup, glossary, representative_papers_lookup)
+        record = opportunity_record(
+            tuple(row),
+            columns,
+            concept_label_lookup,
+            glossary,
+            representative_papers_lookup,
+            editorial,
+        )
         records_by_pair[record["pair_key"]].append(record)
 
     curated_rows: list[dict[str, Any]] = []
@@ -1020,13 +1372,77 @@ def build_curated_opportunities(
             raise ValueError(f"Curated editorial pair_key {pair_key} could not be resolved to an opportunity record")
         base_record = candidates[0]
         curated_rows.append({**base_record, **entry})
+    return curated_rows
 
-    home_rows = [row for row in curated_rows if bool(row["homepage_featured"])]
-    question_rows = [row for row in curated_rows if bool(row["questions_featured"])]
-    home_roles = [str(row.get("homepage_role", "")) for row in home_rows]
-    if home_roles.count("lead") != 1 or home_roles.count("supporting") != 2:
-        raise ValueError("Homepage curation must contain exactly one lead question and two supporting questions")
-    return home_rows, question_rows
+
+def build_editorial_groups(
+    curated_rows: list[dict[str, Any]],
+    definitions: list[dict[str, str]],
+    tag_field: str,
+) -> list[dict[str, Any]]:
+    rows_by_pair = {row["pair_key"]: row for row in curated_rows}
+    groups: list[dict[str, Any]] = []
+    pair_counts: dict[str, int] = defaultdict(int)
+    for definition in definitions:
+        slug = definition["slug"]
+        items = [row for row in curated_rows if slug in row.get(tag_field, [])]
+        if len(items) != 3:
+            raise ValueError(f"{tag_field} group {slug} must contain exactly 3 editorial questions")
+        groups.append(
+            {
+                "slug": slug,
+                "title": definition["title"],
+                "caption": definition["caption"],
+                "items": items,
+            }
+        )
+        if tag_field == "field_shelves":
+            for row in items:
+                pair_counts[row["pair_key"]] += 1
+
+    if tag_field == "field_shelves":
+        repeated = [pair_key for pair_key, count in pair_counts.items() if count > 2]
+        if repeated:
+            raise ValueError(
+                "Field shelves may show the same question at most twice: " + ", ".join(sorted(repeated))
+            )
+    return groups
+
+
+def build_public_ranked_window(
+    overall_rows: list[dict[str, Any]],
+    excluded_pair_keys: set[str],
+    limit: int = 12,
+) -> list[dict[str, Any]]:
+    visible: list[dict[str, Any]] = []
+    deferred: list[dict[str, Any]] = []
+    family_counts: dict[str, int] = defaultdict(int)
+    ranked_rows = sorted(
+        [row for row in overall_rows if row["pair_key"] not in excluded_pair_keys],
+        key=public_window_penalty,
+    )
+
+    for row in ranked_rows:
+        family = clean_public_text(row.get("question_family")) or row["pair_key"]
+        if row.get("suppress_from_public_ranked_window"):
+            deferred.append(row)
+            continue
+        if len(visible) < limit and family_counts[family] >= 1:
+            deferred.append(row)
+            continue
+        visible.append(row)
+        family_counts[family] += 1
+        if len(visible) >= limit:
+            break
+
+    if len(visible) < limit:
+        for row in deferred:
+            if row["pair_key"] in {item["pair_key"] for item in visible}:
+                continue
+            visible.append(row)
+            if len(visible) >= limit:
+                break
+    return visible[:limit]
 
 
 def build_compare_payload(regime_summary_df: pd.DataFrame, overlap_df: pd.DataFrame) -> dict[str, Any]:
@@ -1128,6 +1544,7 @@ def main() -> None:
         concept_label_lookup,
         public_label_glossary,
         representative_papers_lookup,
+        editorial_opportunities,
     )
     search_index = build_search_index(node_details_df, node_metrics_df, public_label_glossary)
     compare_payload = build_compare_payload(regime_summary_df, overlap_df)
@@ -1160,14 +1577,36 @@ def main() -> None:
             }
         )
 
-    slices = build_slices(candidates_df, concept_label_lookup, public_label_glossary, representative_papers_lookup)
+    slices = build_slices(
+        candidates_df,
+        concept_label_lookup,
+        public_label_glossary,
+        representative_papers_lookup,
+        editorial_opportunities,
+    )
     featured_opportunities = diversify_featured_opportunities(slices, limit=FEATURED_OPPORTUNITY_LIMIT)
-    home_curated_questions, curated_front_set = build_curated_opportunities(
+    editorial_records = build_editorial_records(
         editorial_opportunities,
         candidates_df,
         concept_label_lookup,
         public_label_glossary,
         representative_papers_lookup,
+    )
+    home_curated_questions = [row for row in editorial_records if bool(row["homepage_featured"])]
+    curated_front_set = [row for row in editorial_records if bool(row["questions_featured"])]
+    home_roles = [str(row.get("homepage_role", "")) for row in home_curated_questions]
+    if home_roles.count("lead") != 1 or home_roles.count("supporting") != 2:
+        raise ValueError("Homepage curation must contain exactly one lead question and two supporting questions")
+    if len(home_curated_questions) != 3:
+        raise ValueError("Homepage curation must contain exactly 3 questions")
+    if len(curated_front_set) != 6:
+        raise ValueError("Questions front set must contain exactly 6 questions")
+    field_shelves = build_editorial_groups(editorial_records, FIELD_SHELF_DEFS, "field_shelves")
+    collections = build_editorial_groups(editorial_records, COLLECTION_DEFS, "collection_tags")
+    ranked_questions = build_public_ranked_window(
+        slices["overall"],
+        {row["pair_key"] for row in editorial_records},
+        limit=12,
     )
 
     write_json(PUBLIC_DATA_DIR / "graph_backbone.json", backbone_payload)
@@ -1196,7 +1635,7 @@ def main() -> None:
     export_rows_csv(
         PUBLIC_DATA_DIR / "top_opportunities.csv",
         slices["overall"],
-        ["pair_key", "source_id", "target_id", "source_label", "target_label", "source_bucket", "target_bucket", "cross_field", "score", "base_score", "duplicate_penalty", "path_support_norm", "gap_bonus", "mediator_count", "motif_count", "cooc_count", "direct_link_status", "supporting_path_count", "why_now", "recommended_move", "slice_label", "public_pair_label", "top_mediator_labels", "representative_papers", "top_countries_source", "top_countries_target", "source_context_summary", "target_context_summary", "app_link"],
+        ["pair_key", "source_id", "target_id", "source_label", "target_label", "source_bucket", "target_bucket", "cross_field", "score", "base_score", "duplicate_penalty", "path_support_norm", "gap_bonus", "mediator_count", "motif_count", "cooc_count", "direct_link_status", "supporting_path_count", "why_now", "recommended_move", "slice_label", "public_pair_label", "question_family", "suppress_from_public_ranked_window", "top_mediator_labels", "representative_papers", "top_countries_source", "top_countries_target", "source_context_summary", "target_context_summary", "common_contexts", "app_link"],
     )
 
     baseline_exploratory = next(
@@ -1244,6 +1683,9 @@ def main() -> None:
             "slices_path": "/data/v2/opportunity_slices.json",
             "concept_opportunities_index_path": "/data/v2/concept_opportunities_index.json",
             "curated_front_set": curated_front_set,
+            "field_shelves": field_shelves,
+            "collections": collections,
+            "ranked_questions": ranked_questions,
             "top_slices": {
                 "overall": slices["overall"][:12],
                 "bridges": slices["bridges"][:12],

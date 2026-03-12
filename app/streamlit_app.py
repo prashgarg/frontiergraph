@@ -32,15 +32,21 @@ SITE_URL = "https://frontiergraph.com"
 QUESTIONS_URL = f"{SITE_URL}/questions/"
 HOW_IT_WORKS_URL = f"{SITE_URL}/how-it-works/"
 SHORTLIST_MODE_TO_PRESET = {
-    "Balanced": "Balanced",
-    "More open": "Bold frontier",
-    "More grounded": "Fast follow",
+    "General browse": "Balanced",
+    "More exploratory": "Bold frontier",
+    "Closer to paper-ready": "Fast follow",
 }
 PRESET_TO_SHORTLIST_MODE = {value: key for key, value in SHORTLIST_MODE_TO_PRESET.items()}
 SHORTLIST_MODE_HELP = {
-    "Balanced": "A broad default for browsing questions that could plausibly become the next paper.",
-    "More open": "Pushes toward questions that look less worked through and more boundary-crossing.",
-    "More grounded": "Favors questions that already look closer to a direct next paper.",
+    "General browse": "A broad default for browsing questions that could plausibly become the next paper.",
+    "More exploratory": "Pushes toward questions that look less worked through and more boundary-crossing.",
+    "Closer to paper-ready": "Favors questions that already look closer to a direct next paper.",
+}
+QUESTION_STYLE_LABELS = {
+    "Within-field gap": "More open within one area",
+    "Cross-field gap": "More open across areas",
+    "Within-field boundary": "More grounded within one area",
+    "Cross-field boundary": "More grounded across areas",
 }
 
 
@@ -285,7 +291,7 @@ def normalize_shortlist_mode(value: str) -> str:
     for preset, mode in PRESET_TO_SHORTLIST_MODE.items():
         if preset.lower() == normalized:
             return mode
-    return "Balanced"
+    return "General browse"
 
 
 def parse_flag(value: str, default: bool = False) -> bool:
@@ -297,6 +303,13 @@ def parse_flag(value: str, default: bool = False) -> bool:
 def candidate_option_label(row: pd.Series) -> str:
     rank = to_int(row.get("priority_rank", 0), default=0)
     return f"#{rank} {shortlist_pair_label(row)}"
+
+
+def pair_key_for_row(row: pd.Series) -> str:
+    pair_key = str(row.get("pair_key", "")).strip()
+    if pair_key:
+        return pair_key
+    return f"{row.get('u', '')}__{row.get('v', '')}"
 
 
 def filtered_download_frame(filtered_df: pd.DataFrame) -> pd.DataFrame:
@@ -414,12 +427,48 @@ def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, shortlist_mode: s
     st.dataframe(shortlist_view(shortlist_df), use_container_width=True, hide_index=True)
 
     options_df = shortlist_df.head(min(100, len(shortlist_df))).reset_index(drop=True)
+    pair_lookup = {pair_key_for_row(options_df.loc[i]): options_df.loc[i] for i in options_df.index}
     selected_idx = st.selectbox(
         "Inspect one question in detail",
         options=options_df.index,
         format_func=lambda i: candidate_option_label(options_df.loc[i]),
     )
-    render_candidate_detail(db_path, options_df.loc[int(selected_idx)], app_mode=app_mode)
+    selected_row = options_df.loc[int(selected_idx)]
+    selected_pair_key = pair_key_for_row(selected_row)
+
+    available_pair_keys = list(pair_lookup.keys())
+    saved_compare = [pair for pair in st.session_state.get("compare_pairs_widget", []) if pair in pair_lookup]
+    if saved_compare != st.session_state.get("compare_pairs_widget", []):
+        st.session_state["compare_pairs_widget"] = saved_compare
+    elif "compare_pairs_widget" not in st.session_state:
+        st.session_state["compare_pairs_widget"] = []
+
+    compare_button_col, clear_button_col = st.columns([1.3, 1.0])
+    with compare_button_col:
+        if st.button("Pin selected question", use_container_width=True):
+            updated = list(st.session_state.get("compare_pairs_widget", []))
+            if selected_pair_key not in updated:
+                updated.append(selected_pair_key)
+            st.session_state["compare_pairs_widget"] = updated[:4]
+    with clear_button_col:
+        if st.button("Clear comparison", use_container_width=True):
+            st.session_state["compare_pairs_widget"] = []
+
+    compare_pairs = st.multiselect(
+        "Pinned questions to compare",
+        options=available_pair_keys,
+        format_func=lambda pair_key: candidate_option_label(pair_lookup[pair_key]),
+        key="compare_pairs_widget",
+    )
+    if len(compare_pairs) > 4:
+        compare_pairs = compare_pairs[:4]
+        st.session_state["compare_pairs_widget"] = compare_pairs
+        st.warning("Comparison is limited to 4 questions at a time.")
+
+    if len(compare_pairs) >= 2:
+        render_question_comparison(db_path, pair_lookup, compare_pairs)
+
+    render_candidate_detail(db_path, selected_row, app_mode=app_mode)
 
     st.download_button(
         label="Export working shortlist",
@@ -427,6 +476,44 @@ def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, shortlist_mode: s
         file_name="frontiergraph_shortlist.csv",
         mime="text/csv",
     )
+
+
+def render_question_comparison(
+    db_path: str,
+    pair_lookup: dict[str, pd.Series],
+    compare_pairs: list[str],
+) -> None:
+    st.markdown("### Compare pinned questions")
+    columns = st.columns(len(compare_pairs))
+    for column, pair_key in zip(columns, compare_pairs):
+        row = pair_lookup[pair_key]
+        bundle = load_candidate_bundle(db_path, str(row["u"]), str(row["v"]))
+        candidate_row = bundle["candidate_row"]
+        mediators_df = bundle["mediators_df"]
+        papers_df = bundle["papers_df"]
+        direct_status = direct_literature_status(
+            candidate_row.get("cooc_count", row.get("cooc_count", 0)) if candidate_row is not None else row.get("cooc_count", 0)
+        )
+        nearby_labels = mediator_preview(mediators_df)
+        paper_preview = representative_paper_preview(papers_df, limit=2)
+        related_idea_count = to_int(row.get("mediator_count", 0))
+
+        with column:
+            st.markdown(f"**{shortlist_pair_label(row)}**")
+            st.caption(f"Likely study shape: {recommendation_play(row)}")
+            st.write(f"Papers on this exact question: {direct_status}")
+            st.write(f"Related ideas in the current sample: {related_idea_count}")
+            if nearby_labels:
+                st.caption("Examples: " + ", ".join(nearby_labels))
+            else:
+                st.caption("No stable mediator preview in the current sample.")
+            if paper_preview.empty:
+                st.caption("No starter papers were exported for this pair.")
+            else:
+                st.markdown("**Papers to start with**")
+                for paper in paper_preview.itertuples(index=False):
+                    year_suffix = f" ({to_int(getattr(paper, 'year', 0))})" if to_int(getattr(paper, "year", 0)) > 0 else ""
+                    st.markdown(f"- {getattr(paper, 'title', '')}{year_suffix}")
 
 
 def render_candidate_detail(db_path: str, row: pd.Series, app_mode: str) -> None:
@@ -451,7 +538,7 @@ def render_candidate_detail(db_path: str, row: pd.Series, app_mode: str) -> None
     verify_steps = [
         "Check direct literature under close synonyms",
         "Inspect nearby linking ideas",
-        "Read representative papers",
+        "Read the papers to start with",
         "Decide whether this is a mechanism, outcome, or setting question",
     ]
 
@@ -918,14 +1005,6 @@ def main() -> None:
         st.error("The database is missing the node or candidate tables needed by the app.")
         st.stop()
 
-    if is_concept_mode(app_mode):
-        mode_label = f"{selected_ontology} {selected_mapping}".strip()
-        st.caption(
-            f"Current concept surface: {mode_label}. Keep this on the default unless you are deliberately checking ontology sensitivity."
-        )
-    else:
-        st.caption("This database is using the legacy browse surface because no concept graph database is configured.")
-
     default_shortlist_mode = normalize_shortlist_mode(query_param("preset"))
     default_search = query_param("search")
     default_source_field = query_param("source_field")
@@ -942,7 +1021,7 @@ def main() -> None:
         search_text = st.text_input("Search by topic or outcome", value=default_search, placeholder="Search by topic or outcome")
     with mode_col:
         shortlist_mode = st.selectbox(
-            "Shortlist mode",
+            "Browse mode",
             options=list(SHORTLIST_MODE_TO_PRESET.keys()),
             index=list(SHORTLIST_MODE_TO_PRESET.keys()).index(default_shortlist_mode),
         )
@@ -952,7 +1031,12 @@ def main() -> None:
         col1, col2, col3 = st.columns(3)
         with col1:
             top_n = st.slider("Shortlist size", min_value=10, max_value=150, value=30, step=10)
-            novelty_filter = st.multiselect("Question type", options=novelty_options, default=novelty_options)
+            novelty_filter = st.multiselect(
+                "Question style",
+                options=novelty_options,
+                default=novelty_options,
+                format_func=lambda label: QUESTION_STYLE_LABELS.get(label, label),
+            )
         with col2:
             source_fields = st.multiselect(
                 "From groups" if is_concept_mode(app_mode) else "From fields",

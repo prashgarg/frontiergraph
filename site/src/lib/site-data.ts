@@ -43,12 +43,15 @@ export type Opportunity = {
   recommended_move: string;
   slice_label: string;
   public_pair_label: string;
+  question_family: string;
+  suppress_from_public_ranked_window?: boolean;
   top_mediator_labels: string[];
   representative_papers: RepresentativePaper[];
   top_countries_source: string[];
   top_countries_target: string[];
   source_context_summary: string;
   target_context_summary: string;
+  common_contexts?: string;
   app_link: string;
 };
 
@@ -68,9 +71,21 @@ export type EditorialQuestion = {
   questions_featured: boolean;
   display_order: number;
   homepage_role: "lead" | "supporting" | "none";
+  field_shelves: string[];
+  collection_tags: string[];
+  editorial_strength: "flagship" | "field" | "collection" | "none";
+  question_family: string;
+  suppress_from_public_ranked_window?: boolean;
 };
 
 export type CuratedQuestion = Opportunity & EditorialQuestion;
+
+export type CuratedQuestionGroup = {
+  slug: string;
+  title: string;
+  caption: string;
+  items: CuratedQuestion[];
+};
 
 export type CentralConcept = {
   concept_id: string;
@@ -181,6 +196,9 @@ export type SiteData = {
     slices_path: string;
     concept_opportunities_index_path: string;
     curated_front_set: CuratedQuestion[];
+    field_shelves: CuratedQuestionGroup[];
+    collections: CuratedQuestionGroup[];
+    ranked_questions: Opportunity[];
     top_slices: Record<string, Opportunity[]>;
   };
   opportunities?: {
@@ -255,9 +273,22 @@ function validateCuratedSet(
     invariant(item.first_next_step === entry.first_next_step, `${label} has stale first_next_step for ${entry.pair_key}`);
     invariant(item.who_its_for === entry.who_its_for, `${label} has stale who_its_for for ${entry.pair_key}`);
     invariant(item.homepage_role === entry.homepage_role, `${label} has stale homepage_role for ${entry.pair_key}`);
+    invariant(item.question_family === entry.question_family, `${label} has stale question_family for ${entry.pair_key}`);
     ordered.push(item);
   }
   return ordered;
+}
+
+function validateQuestionGroups(
+  groups: CuratedQuestionGroup[],
+  label: string,
+  expectedCount: number,
+): CuratedQuestionGroup[] {
+  invariant(groups.length === expectedCount, `${label} should contain exactly ${expectedCount} groups`);
+  for (const group of groups) {
+    invariant(group.items.length === 3, `${label}.${group.slug} should contain exactly 3 questions`);
+  }
+  return groups;
 }
 
 function buildSiteData(): SiteData {
@@ -268,11 +299,15 @@ function buildSiteData(): SiteData {
   invariant(questionPayload, "Generated site data is missing questions/opportunities payload");
   const homeLegacy = payload.home as Record<string, unknown>;
   const homeCuratedPayload = payload.home.curated_questions ?? (homeLegacy.curated_opportunities as CuratedQuestion[] | undefined);
-  const availablePairs = new Set(
-    Object.values(questionPayload?.top_slices ?? {})
-      .flat()
-      .map((item) => item.pair_key),
-  );
+  const availablePairs = new Set<string>();
+  for (const row of Object.values(questionPayload?.top_slices ?? {}).flat()) availablePairs.add(row.pair_key);
+  for (const row of questionPayload?.curated_front_set ?? []) availablePairs.add(row.pair_key);
+  for (const group of questionPayload?.field_shelves ?? []) {
+    for (const row of group.items ?? []) availablePairs.add(row.pair_key);
+  }
+  for (const group of questionPayload?.collections ?? []) {
+    for (const row of group.items ?? []) availablePairs.add(row.pair_key);
+  }
   for (const item of editorialItems) {
     invariant(availablePairs.has(item.pair_key), `Curated pair_key ${item.pair_key} is not present in generated opportunity slices`);
   }
@@ -317,6 +352,8 @@ function buildSiteData(): SiteData {
         expectedQuestions,
         "questions.curated_front_set",
       ),
+      field_shelves: validateQuestionGroups(questionPayload?.field_shelves ?? [], "questions.field_shelves", 5),
+      collections: validateQuestionGroups(questionPayload?.collections ?? [], "questions.collections", 5),
     },
   };
 }

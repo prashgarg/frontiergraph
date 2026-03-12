@@ -4,7 +4,7 @@ import CuratedOpportunityCards from "../../components/CuratedOpportunityCards.as
 import OpportunityCards from "../../components/OpportunityCards.astro";
 import { data } from "../../lib/site-data";
 
-const questions = data.questions.top_slices.overall;
+const questions = data.questions.ranked_questions;
 ---
 
 <BaseLayout
@@ -32,10 +32,58 @@ const questions = data.questions.top_slices.overall;
       variant="questions"
     />
 
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">By field</span>
+          <h2>Browse by field</h2>
+        </div>
+        <p class="section-copy">
+          These shelves are hand-curated for people who already know the part of economics they want to work in.
+        </p>
+      </div>
+      <div class="editorial-group-stack">
+        {data.questions.field_shelves.map((group) => (
+          <CuratedOpportunityCards
+            items={group.items}
+            title={group.title}
+            caption={group.caption}
+            sectionId={`field-shelf-${group.slug}`}
+            standalone={false}
+            variant="compact"
+          />
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Collections</span>
+          <h2>Browse by use case</h2>
+        </div>
+        <p class="section-copy">
+          These smaller collections are meant to answer the question a researcher usually has in practice, not to expose raw ranking slices.
+        </p>
+      </div>
+      <div class="editorial-group-stack">
+        {data.questions.collections.map((group) => (
+          <CuratedOpportunityCards
+            items={group.items}
+            title={group.title}
+            caption={group.caption}
+            sectionId={`question-collection-${group.slug}`}
+            standalone={false}
+            variant="compact"
+          />
+        ))}
+      </div>
+    </section>
+
     <OpportunityCards
       items={questions}
-      title="Full ranked list"
-      caption="Below the curated set, the broader ranked list stays available as structured evidence. Search by topic, filter for the kind of question you want, and inspect the evidence when you want a deeper pass."
+      title="Broader ranked list"
+      caption="Below the curated sections, the ranked list stays available as a secondary browse layer. Use it when you want more ideas after the editorial pass."
       sectionId="overall-ranked-questions"
       enableFilters={true}
     />

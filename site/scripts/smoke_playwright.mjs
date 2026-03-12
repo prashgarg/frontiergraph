@@ -49,6 +49,7 @@ async function main() {
   );
   assert((await page.locator(".curated-opportunity-card-lead").count()) === 1, "Homepage should show one lead featured question");
   assert(!heroText.includes("Where do we go next?"), "Homepage should not show the old speculative framing");
+  assert(await page.getByText(/Does monetary policy have an energy-demand channel/i).isVisible(), "Homepage should use the updated flagship mix");
 
   await page.goto(`${baseUrl}/questions/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
@@ -58,9 +59,13 @@ async function main() {
     (await page.locator('[data-role="questions-curated-front-set"] [data-role="curated-opportunity-card"]').count()) === 6,
     "Research Questions page should show exactly 6 curated cards",
   );
+  assert((await page.locator('[data-role^="field-shelf-"]').count()) === 5, "Questions page should show 5 field shelves");
+  assert((await page.locator('[data-role^="question-collection-"]').count()) === 5, "Questions page should show 5 question collections");
   const curatedText = await page.locator('[data-role="questions-curated-front-set"]').innerText();
   assert(!/innovation and environmental quality/i.test(curatedText), "Removed curated question still visible in curated front set");
   assert(!/visible questions in the public list/i.test(await page.locator("main").innerText()), "Questions page should not show the visible-count pill");
+  assert(await page.getByRole("heading", { name: /Browse by field/i }).isVisible(), "Questions page missing field shelves");
+  assert(await page.getByRole("heading", { name: /Browse by use case/i }).isVisible(), "Questions page missing use-case collections");
   const rankedSection = page.locator('[data-role="overall-ranked-questions"]');
   assert(await rankedSection.getByRole("button", { name: /No papers on this exact question yet/i }).isVisible(), "Questions filters missing");
   assert(await rankedSection.getByRole("button", { name: /Already some exact-paper evidence/i }).isVisible(), "Exact-paper evidence filter missing");
@@ -69,6 +74,8 @@ async function main() {
   assert(!rankedText.includes("→"), "Ranked questions should not use arrow syntax");
   assert(!/gap bonus|path support|motif/i.test(rankedText), "Ranked questions should not expose raw graph jargon");
   assert(!/This question sits between/i.test(rankedText), "Ranked questions should not show the old context sentence");
+  assert(await page.getByText(/ecological carrying capacity/i).first().isVisible(), "Plain-language public label should render on the questions page");
+  assert(!/load capacity factor \(LCF\)/i.test(curatedText), "Raw ontology label should not lead on curated public cards");
   const firstEvidence = rankedSection.locator('[data-role="opportunity-evidence"]').first();
   await firstEvidence.locator("summary").click();
   await page.waitForTimeout(150);
@@ -78,7 +85,6 @@ async function main() {
   assert(/Papers to start with:/i.test(evidenceText), "Evidence drawer missing starter papers");
   assert(/Papers on this exact question:/i.test(evidenceText), "Evidence drawer missing exact-question status");
   assert(/Common contexts:/i.test(evidenceText), "Evidence drawer missing common contexts");
-  assert(await page.getByText(/measured here with load capacity factor/i).first().isVisible(), "Glossary subtitle did not render");
 
   await rankedSection.getByRole("button", { name: /Mostly indirect evidence/i }).click();
   await page.waitForTimeout(150);
@@ -152,8 +158,8 @@ async function main() {
 
   if (appUrl) {
     await page.goto(appUrl, { waitUntil: "networkidle" });
-    await page.waitForSelector("h1");
-    await page.getByText(/Selected question/i).waitFor({ timeout: 60000 });
+    await page.waitForSelector("h1", { timeout: 60000 });
+    await page.getByRole("heading", { name: /Selected question/i }).waitFor({ timeout: 60000 });
     await page.waitForTimeout(1200);
     await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
     const appText = await page.locator("body").innerText();
@@ -166,6 +172,15 @@ async function main() {
     assert(/What to verify next/i.test(appText), "App should show the verification checklist");
     assert(/Refine the list/i.test(appText), "App should hide shortlist controls behind a closed settings section");
     assert(/Questions worth checking/i.test(appText), "App should show the simplified shortlist framing");
+    assert(!/Current concept surface/i.test(appText), "App should not show the old internal concept-surface caption");
+    const refineExpander = page.locator("[data-testid='stExpander']").filter({ hasText: /Refine the list/i });
+    assert((await refineExpander.count()) > 0, "App should expose Refine the list");
+    await refineExpander.first().click();
+    await page.waitForTimeout(300);
+    const refinedText = await page.locator("body").innerText();
+    assert(/Browse mode/i.test(refinedText), "App should rename shortlist mode to Browse mode");
+    assert(/Question style/i.test(refinedText), "App should rename question type to Question style");
+    assert(/General browse/i.test(refinedText), "App should show the renamed shortlist preset");
     const advancedToolsExpander = page.locator("[data-testid='stExpander']").filter({ hasText: /Advanced tools/i });
     assert((await advancedToolsExpander.count()) > 0, "App should expose Advanced tools");
     await advancedToolsExpander.first().click();
@@ -175,6 +190,7 @@ async function main() {
     assert(/Method/i.test(advancedText), "Advanced tools should expose method notes");
     assert(/Literature map/i.test(advancedText), "Advanced tools should expose the literature map");
     assert(/Technical details/i.test(advancedText) || /Technical details/i.test(appText), "Technical details expander missing");
+    assert(/Pinned questions to compare/i.test(advancedText), "App should expose the question comparison workflow");
   }
 
   assert(errors.length === 0, `Browser errors found:\n${errors.join("\n")}`);

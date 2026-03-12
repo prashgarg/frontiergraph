@@ -30,37 +30,39 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W2795097274__gpt5mini_low",
-          "title": "Measuring long-term tail risk: Evaluating the performance of the square-root-of-time rule",
-          "year": 2018,
-          "edge_src": "FG3C001873",
+          "paper_id": "W3122236037__gpt5mini_low",
+          "title": "Efficient estimation of nonparametric regression in the presence of dynamic heteroskedasticity",
+          "year": 2019,
+          "edge_src": "FG3C004114",
           "edge_dst": "FG3C006644"
         },
         {
-          "paper_id": "W2093824426__gpt5mini_low",
-          "title": "The importance of seasonality in inventory models",
-          "year": 1993,
-          "edge_src": "FG3C005959",
-          "edge_dst": "FG3C001873"
+          "paper_id": "W2962853992__gpt5mini_low",
+          "title": "Strict stationarity testing and GLAD estimation of double autoregressive models",
+          "year": 2019,
+          "edge_src": "FG3C004114",
+          "edge_dst": "FG3C006644"
         },
         {
-          "paper_id": "W3015336687__gpt5mini_low",
-          "title": "Quality of Life Regional Differences: Case of Self-Governing Regions of Slovakia",
-          "year": 2020,
-          "edge_src": "FG3C002124",
+          "paper_id": "W3143623336__gpt5mini_low",
+          "title": "Topics in Advanced Econometrics.",
+          "year": 1997,
+          "edge_src": "FG3C004736",
           "edge_dst": "FG3C006644"
         }
       ],
+      "question_family": "econometric-methods-method-of-moments-quantile-regression",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States"
       ],
       "top_countries_target": [
         "United States",
-        "China",
-        "USA"
+        "China"
       ],
       "source_context_summary": "United States",
-      "target_context_summary": "United States, China, and related settings",
+      "target_context_summary": "United States and China",
+      "common_contexts": "econometric methods studies are common in United States; Method of Moments Quantile Regression (MMQR) studies are common in United States and China.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=econometric%20methods%20-%3E%20Method%20of%20Moments%20Quantile%20Regression%20%28MMQR%29"
     }
   ],
@@ -94,13 +96,6 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W3124117365__gpt5mini_low",
-          "title": "A New Keynesian Q theory and the link between inflation and the stock market",
-          "year": 2018,
-          "edge_src": "FG3C000096",
-          "edge_dst": "FG3C000019"
-        },
-        {
           "paper_id": "W2137344318__gpt5mini_low",
           "title": "Dynamic modelling of real estate investment trusts and stock markets",
           "year": 2011,
@@ -108,13 +103,22 @@
           "edge_dst": "FG3C000096"
         },
         {
-          "paper_id": "W3125574887__gpt5mini_low",
-          "title": "Have financial markets become more informative?",
-          "year": 2016,
-          "edge_src": "FG3C000096",
+          "paper_id": "W4385128147__gpt5mini_low",
+          "title": "Cash flow investment, external funding and the energy transition: Evidence from large US energy firms",
+          "year": 2023,
+          "edge_src": "FG3C001165",
+          "edge_dst": "FG3C000019"
+        },
+        {
+          "paper_id": "W2952319437__gpt5mini_low",
+          "title": "Investment, Tobin's Q, and Cash Flow Across Time and Frequencies",
+          "year": 2019,
+          "edge_src": "FG3C001165",
           "edge_dst": "FG3C000019"
         }
       ],
+      "question_family": "real-estate-investment-trusts-investment",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
         "Canada",
@@ -122,11 +126,11 @@
       ],
       "top_countries_target": [
         "China",
-        "United States",
-        "USA"
+        "United States"
       ],
       "source_context_summary": "United States, Canada, and related settings",
-      "target_context_summary": "China, United States, and related settings",
+      "target_context_summary": "China and United States",
+      "common_contexts": "Real Estate Investment Trusts (REITs) studies are common in United States, Canada, and related settings; investment studies are common in China and United States.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=Real%20Estate%20Investment%20Trusts%20%28REITs%29%20-%3E%20investment"
     }
   ],
@@ -160,11 +164,18 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W4224235994__gpt5mini_low",
-          "title": "A multi time-scale theory of economic growth and cycles",
-          "year": 2022,
-          "edge_src": "FG3C000022",
+          "paper_id": "W1899443305__gpt5mini_low",
+          "title": "Wage norms, capital accumulation, and unemployment: a post-Keynesian view",
+          "year": 2011,
+          "edge_src": "FG3C001007",
           "edge_dst": "FG3C000009"
+        },
+        {
+          "paper_id": "W2053504648__gpt5mini_low",
+          "title": "Trades unions, seniority and unemployment",
+          "year": 1987,
+          "edge_src": "FG3C005801",
+          "edge_dst": "FG3C001007"
         },
         {
           "paper_id": "W1998904100__gpt5mini_low",
@@ -172,15 +183,10 @@
           "year": 2004,
           "edge_src": "FG3C005801",
           "edge_dst": "FG3C000022"
-        },
-        {
-          "paper_id": "W4290792504__gpt5mini_low",
-          "title": "The welfare effects of tax progressivity in a frictional labor market",
-          "year": 2022,
-          "edge_src": "FG3C000022",
-          "edge_dst": "FG3C000009"
         }
       ],
+      "question_family": "employer-size-unemployment",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
         "Brazil",
@@ -188,11 +194,11 @@
       ],
       "top_countries_target": [
         "United States",
-        "United Kingdom",
-        "USA"
+        "United Kingdom"
       ],
       "source_context_summary": "United States, Brazil, and related settings",
-      "target_context_summary": "United States, United Kingdom, and related settings",
+      "target_context_summary": "United States and United Kingdom",
+      "common_contexts": "employer size studies are common in United States, Brazil, and related settings; unemployment studies are common in United States and United Kingdom.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=employer%20size%20-%3E%20unemployment"
     },
     {
@@ -224,11 +230,18 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W3002060556__gpt5mini_low",
-          "title": "An urban labor market with frictional housing markets: theory and an application to the Paris urban area",
+          "paper_id": "W3013381244__gpt5mini_low",
+          "title": "FDI, labor market flexibility and employment in China",
           "year": 2020,
           "edge_src": "FG3C000022",
           "edge_dst": "FG3C000007"
+        },
+        {
+          "paper_id": "W2076356711__gpt5mini_low",
+          "title": "Churning dynamics: an analysis of hires and separations at the employer level",
+          "year": 2001,
+          "edge_src": "FG3C005801",
+          "edge_dst": "FG3C004798"
         },
         {
           "paper_id": "W1998904100__gpt5mini_low",
@@ -236,15 +249,10 @@
           "year": 2004,
           "edge_src": "FG3C005801",
           "edge_dst": "FG3C000022"
-        },
-        {
-          "paper_id": "W3013381244__gpt5mini_low",
-          "title": "FDI, labor market flexibility and employment in China",
-          "year": 2020,
-          "edge_src": "FG3C000022",
-          "edge_dst": "FG3C000007"
         }
       ],
+      "question_family": "employer-size-employment",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
         "Brazil",
@@ -252,11 +260,11 @@
       ],
       "top_countries_target": [
         "United States",
-        "China",
-        "USA"
+        "China"
       ],
       "source_context_summary": "United States, Brazil, and related settings",
-      "target_context_summary": "United States, China, and related settings",
+      "target_context_summary": "United States and China",
+      "common_contexts": "employer size studies are common in United States, Brazil, and related settings; employment studies are common in United States and China.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=employer%20size%20-%3E%20employment"
     }
   ],
@@ -291,11 +299,18 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W3048388912__gpt5mini_low",
-          "title": "Sources of inflation and the effects of balanced budgets and inflation targeting in developing economies",
-          "year": 2021,
-          "edge_src": "FG3C005310",
-          "edge_dst": "FG3C000043"
+          "paper_id": "W2072712710__gpt5mini_low",
+          "title": "British economic growth, 1700\u20131850; some difficulties of interpretation",
+          "year": 1987,
+          "edge_src": "FG3C001360",
+          "edge_dst": "FG3C000001"
+        },
+        {
+          "paper_id": "W4214885511__gpt5mini_low",
+          "title": "Do financial incentive policies for renewable energy development increase the economic growth in Latin American and Caribbean countries?",
+          "year": 2022,
+          "edge_src": "FG3C006417",
+          "edge_dst": "FG3C000001"
         },
         {
           "paper_id": "W1868719122__gpt5mini_low",
@@ -303,23 +318,18 @@
           "year": 2015,
           "edge_src": "FG3C000043",
           "edge_dst": "FG3C000001"
-        },
-        {
-          "paper_id": "W2067353403__gpt5mini_low",
-          "title": "Volatility and growth: Governments are key",
-          "year": 2014,
-          "edge_src": "FG3C000043",
-          "edge_dst": "FG3C000001"
         }
       ],
+      "question_family": "balanced-growth-path-economic-growth",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [],
       "top_countries_target": [
         "China",
-        "India",
-        "CHN"
+        "India"
       ],
       "source_context_summary": "No dominant source setting in the current public sample",
-      "target_context_summary": "China, India, and related settings",
+      "target_context_summary": "China and India",
+      "common_contexts": "",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=balanced%20growth%20path%20-%3E%20economic%20growth"
     }
   ],
@@ -354,6 +364,13 @@
       ],
       "representative_papers": [
         {
+          "paper_id": "W2140138058__gpt5mini_low",
+          "title": "Inflation Targeting: A New Framework for Monetary Policy?",
+          "year": 1997,
+          "edge_src": "FG3C000303",
+          "edge_dst": "FG3C000024"
+        },
+        {
           "paper_id": "W2785421222__gpt5mini_low",
           "title": "Inflation targeting as a shock absorber",
           "year": 2020,
@@ -361,20 +378,15 @@
           "edge_dst": "FG3C000024"
         },
         {
-          "paper_id": "W2017223325__gpt5mini_low",
-          "title": "Models of Inflation Expectations Formation: Comment",
-          "year": 1985,
-          "edge_src": "FG3C000024",
-          "edge_dst": "FG3C005031"
-        },
-        {
-          "paper_id": "W2528903123__gpt5mini_low",
-          "title": "The Fed and the Great Recession",
-          "year": 2016,
+          "paper_id": "W2790933095__gpt5mini_low",
+          "title": "Re-evaluating the effectiveness of inflation targeting",
+          "year": 2018,
           "edge_src": "FG3C000303",
-          "edge_dst": "FG3C000024"
+          "edge_dst": "FG3C002226"
         }
       ],
+      "question_family": "inflation-targeting-household-inflation-expectations",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "developing countries",
         "Latin America",
@@ -387,6 +399,7 @@
       ],
       "source_context_summary": "developing countries, Latin America, and related settings",
       "target_context_summary": "United States, France, and related settings",
+      "common_contexts": "inflation targeting studies are common in developing countries, Latin America, and related settings; household inflation expectations studies are common in United States, France, and related settings.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20targeting%20-%3E%20household%20inflation%20expectations"
     },
     {
@@ -419,11 +432,18 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W4415950531__gpt5mini_low",
-          "title": "On the stressful interaction of monetary and fiscal targets",
-          "year": 2025,
+          "paper_id": "W3188145168__gpt5mini_low",
+          "title": "Climate and monetary policy: do temperature shocks lead to inflationary pressures?",
+          "year": 2021,
           "edge_src": "FG3C000002",
           "edge_dst": "FG3C000024"
+        },
+        {
+          "paper_id": "W1961390501__gpt5mini_low",
+          "title": "INFLATION AND VARIETY*",
+          "year": 2010,
+          "edge_src": "FG3C000002",
+          "edge_dst": "FG3C001949"
         },
         {
           "paper_id": "W2017223325__gpt5mini_low",
@@ -431,27 +451,22 @@
           "year": 1985,
           "edge_src": "FG3C000024",
           "edge_dst": "FG3C005031"
-        },
-        {
-          "paper_id": "W3188145168__gpt5mini_low",
-          "title": "Climate and monetary policy: do temperature shocks lead to inflationary pressures?",
-          "year": 2021,
-          "edge_src": "FG3C000002",
-          "edge_dst": "FG3C000024"
         }
       ],
+      "question_family": "inflation-household-inflation-expectations",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
-        "China",
-        "USA"
+        "China"
       ],
       "top_countries_target": [
         "United States",
         "France",
         "Australia"
       ],
-      "source_context_summary": "United States, China, and related settings",
+      "source_context_summary": "United States and China",
       "target_context_summary": "United States, France, and related settings",
+      "common_contexts": "inflation studies are common in United States and China; household inflation expectations studies are common in United States, France, and related settings.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20-%3E%20household%20inflation%20expectations"
     }
   ],
@@ -486,27 +501,29 @@
       ],
       "representative_papers": [
         {
+          "paper_id": "W2523241688__gpt5mini_low",
+          "title": "Liquidity creation, regulatory capital, and bank profitability",
+          "year": 2016,
+          "edge_src": "FG3C002502",
+          "edge_dst": "FG3C000259"
+        },
+        {
+          "paper_id": "W3039858541__gpt5mini_low",
+          "title": "Liquidity creation and bank profitability",
+          "year": 2020,
+          "edge_src": "FG3C002502",
+          "edge_dst": "FG3C000259"
+        },
+        {
           "paper_id": "W1899584761__gpt5mini_low",
           "title": "How does Bank Capital Affect Bank Profitability and Risk? Evidence from China's WTO Accession",
           "year": 2015,
           "edge_src": "FG3C000667",
           "edge_dst": "FG3C000259"
-        },
-        {
-          "paper_id": "W2056610455__gpt5mini_low",
-          "title": "Procyclical implications of Basel II: Can the cyclicality of capital requirements be contained?",
-          "year": 2010,
-          "edge_src": "FG3C004598",
-          "edge_dst": "FG3C000667"
-        },
-        {
-          "paper_id": "W4388195771__gpt5mini_low",
-          "title": "Bank market power and supervisory enforcement actions",
-          "year": 2024,
-          "edge_src": "FG3C001152",
-          "edge_dst": "FG3C000259"
         }
       ],
+      "question_family": "bank-capital-requirements-bank-profitability",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
         "Europe",
@@ -514,11 +531,11 @@
       ],
       "top_countries_target": [
         "China",
-        "United States",
-        "USA"
+        "United States"
       ],
       "source_context_summary": "United States, Europe, and related settings",
-      "target_context_summary": "China, United States, and related settings",
+      "target_context_summary": "China and United States",
+      "common_contexts": "bank capital requirements studies are common in United States, Europe, and related settings; bank profitability studies are common in China and United States.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=bank%20capital%20requirements%20-%3E%20bank%20profitability"
     }
   ],
@@ -552,31 +569,33 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W3032529591__gpt5mini_low",
-          "title": "Valuation of transfer for bus users: The case of Gran Canaria",
-          "year": 2020,
+          "paper_id": "W2052978839__gpt5mini_low",
+          "title": "Analyzing the effect of preference heterogeneity on willingness to pay for improving service quality in an airline choice context",
+          "year": 2007,
           "edge_src": "FG3C001242",
           "edge_dst": "FG3C000523"
         },
         {
-          "paper_id": "W2901974122__gpt5mini_low",
-          "title": "Estimating demand for rural intercity bus services",
-          "year": 2018,
-          "edge_src": "FG3C004702",
-          "edge_dst": "FG3C001242"
+          "paper_id": "W2085514511__gpt5mini_low",
+          "title": "Using discrete choice experiments to value informal care tasks: exploring preference heterogeneity",
+          "year": 2010,
+          "edge_src": "FG3C003076",
+          "edge_dst": "FG3C000523"
         },
         {
-          "paper_id": "W2219324593__gpt5mini_low",
-          "title": "Chinese consumers\u2019 preferences and willingness to pay for traceable food quality and safety attributes: The case of pork",
-          "year": 2015,
-          "edge_src": "FG3C001242",
+          "paper_id": "W3009575927__gpt5mini_low",
+          "title": "Modeling Heterogeneity in Patients\u2019 Preferences for Psoriasis Treatments in a Multicountry Study: A Comparison Between Random-Parameters Logit and Latent Class Approaches",
+          "year": 2020,
+          "edge_src": "FG3C003076",
           "edge_dst": "FG3C000523"
         }
       ],
+      "question_family": "stated-preference-survey-preference-heterogeneity",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "China",
         "Aotearoa New Zealand",
-        "DEU"
+        "Germany"
       ],
       "top_countries_target": [
         "United States",
@@ -585,6 +604,7 @@
       ],
       "source_context_summary": "China, Aotearoa New Zealand, and related settings",
       "target_context_summary": "United States, China, and related settings",
+      "common_contexts": "stated preference survey studies are common in China, Aotearoa New Zealand, and related settings; preference heterogeneity studies are common in United States, China, and related settings.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=stated%20preference%20survey%20-%3E%20preference%20heterogeneity"
     }
   ],
@@ -624,32 +644,33 @@
           "edge_dst": "FG3C000096"
         },
         {
-          "paper_id": "W2014709540__gpt5mini_low",
-          "title": "Government Partisanship, Elections, and the Stock Market: Examining American and British Stock Returns, 1930\u20132000",
-          "year": 2005,
-          "edge_src": "FG3C000096",
-          "edge_dst": "FG3C006312"
-        },
-        {
           "paper_id": "W4304182460__gpt5mini_low",
           "title": "Dynamic Co-Movements among Oil Prices and Financial Assets: A Scientometric Analysis",
           "year": 2022,
           "edge_src": "FG3C000034",
           "edge_dst": "FG3C000096"
+        },
+        {
+          "paper_id": "W2014709540__gpt5mini_low",
+          "title": "Government Partisanship, Elections, and the Stock Market: Examining American and British Stock Returns, 1930\u20132000",
+          "year": 2005,
+          "edge_src": "FG3C000096",
+          "edge_dst": "FG3C006312"
         }
       ],
+      "question_family": "oil-prices-volatility-of-stock-prices",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
-        "USA",
         "China"
       ],
       "top_countries_target": [
-        "USA",
         "United States",
         "United Kingdom"
       ],
-      "source_context_summary": "United States, USA, and related settings",
-      "target_context_summary": "USA, United States, and related settings",
+      "source_context_summary": "United States and China",
+      "target_context_summary": "United States and United Kingdom",
+      "common_contexts": "oil prices studies are common in United States and China; volatility of stock prices studies are common in United States and United Kingdom.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=oil%20prices%20-%3E%20volatility%20of%20stock%20prices"
     }
   ],
@@ -682,13 +703,6 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W7128392875__gpt5mini_low",
-          "title": "Reassessing the environmental Kuznets curve in SAARC countries for various pollutants",
-          "year": 2026,
-          "edge_src": "FG3C000173",
-          "edge_dst": "FG3C000010"
-        },
-        {
           "paper_id": "W4387329517__gpt5mini_low",
           "title": "Impact of mineral resource depletion on energy use: Role of energy extraction, CO2 intensity, and natural resource sustainability",
           "year": 2023,
@@ -701,8 +715,17 @@
           "year": 2024,
           "edge_src": "FG3C000173",
           "edge_dst": "FG3C000010"
+        },
+        {
+          "paper_id": "W4403543908__gpt5mini_low",
+          "title": "Comparative Analysis of Gini Coefficient, GDP, Energy Consumption, and Transportation Modes on CO2 Using NARDL (Nonlinear Distributed Lag Autoregressive Model) for the USA",
+          "year": 2024,
+          "edge_src": "FG3C000173",
+          "edge_dst": "FG3C000010"
         }
       ],
+      "question_family": "co2-intensity-carbon-emissions",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "China",
         "Saudi Arabia",
@@ -710,11 +733,11 @@
       ],
       "top_countries_target": [
         "China",
-        "CHN",
         "India"
       ],
       "source_context_summary": "China, Saudi Arabia, and related settings",
-      "target_context_summary": "China, CHN, and related settings",
+      "target_context_summary": "China and India",
+      "common_contexts": "CO2 intensity studies are common in China, Saudi Arabia, and related settings; carbon emissions studies are common in China and India.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20intensity%20-%3E%20carbon%20emissions"
     },
     {
@@ -747,11 +770,18 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W4393177030__gpt5mini_low",
-          "title": "Investigating the relationship between macroeconomic indicators, renewables and pollution across diverse regions in the globalization era",
+          "paper_id": "W4377292624__gpt5mini_low",
+          "title": "Environmental technology, economic complexity, renewable electricity, environmental taxes and CO2 emissions: Implications for low-carbon future in G-10 bloc",
+          "year": 2023,
+          "edge_src": "FG3C000003",
+          "edge_dst": "FG3C000913"
+        },
+        {
+          "paper_id": "W4400197173__gpt5mini_low",
+          "title": "The Role of Carbon Emissions on Inward Foreign Direct Investment: A Nonlinear Dynamic Panel Data Analysis",
           "year": 2024,
           "edge_src": "FG3C000003",
-          "edge_dst": "FG3C000060"
+          "edge_dst": "FG3C001758"
         },
         {
           "paper_id": "W2907482298__gpt5mini_low",
@@ -759,27 +789,22 @@
           "year": 2019,
           "edge_src": "FG3C000060",
           "edge_dst": "FG3C005734"
-        },
-        {
-          "paper_id": "W4396792660__gpt5mini_low",
-          "title": "Catalyzing sustainable development: Exploring the interplay between access to clean water, sanitation, renewable energy and electricity services in shaping China's energy, economic growth, and environmental landscape",
-          "year": 2024,
-          "edge_src": "FG3C000003",
-          "edge_dst": "FG3C000060"
         }
       ],
+      "question_family": "co2-emissions-co2-intensity",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "China",
-        "India",
-        "CHN"
+        "India"
       ],
       "top_countries_target": [
         "China",
         "Saudi Arabia",
         "EU-28"
       ],
-      "source_context_summary": "China, India, and related settings",
+      "source_context_summary": "China and India",
       "target_context_summary": "China, Saudi Arabia, and related settings",
+      "common_contexts": "CO2 emissions studies are common in China and India; CO2 intensity studies are common in China, Saudi Arabia, and related settings.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emissions%20-%3E%20CO2%20intensity"
     }
   ],
@@ -814,6 +839,13 @@
       ],
       "representative_papers": [
         {
+          "paper_id": "W3159813774__gpt5mini_low",
+          "title": "Impact of Environmental Regulation Intensity on Green Technology Innovation: From the Perspective of Political and Business Connections",
+          "year": 2021,
+          "edge_src": "FG3C000529",
+          "edge_dst": "FG3C000094"
+        },
+        {
           "paper_id": "W4281843466__gpt5mini_low",
           "title": "Environmental Regulations, Green Technology Innovation, and High-Quality Economic Development in China: Application of Mediation and Threshold Effects",
           "year": 2022,
@@ -821,32 +853,26 @@
           "edge_dst": "FG3C000094"
         },
         {
-          "paper_id": "W2972232274__gpt5mini_low",
-          "title": "Impact of environmental tax on green development: A nonlinear dynamical system analysis",
-          "year": 2019,
+          "paper_id": "W4402595829__gpt5mini_low",
+          "title": "Green industrial policy and green development of agriculture\u2014Quasi-natural experiment based on the Yangtze River Economic Belt in China",
+          "year": 2024,
           "edge_src": "FG3C002214",
-          "edge_dst": "FG3C000529"
-        },
-        {
-          "paper_id": "W3159813774__gpt5mini_low",
-          "title": "Impact of Environmental Regulation Intensity on Green Technology Innovation: From the Perspective of Political and Business Connections",
-          "year": 2021,
-          "edge_src": "FG3C000529",
-          "edge_dst": "FG3C000094"
+          "edge_dst": "FG3C006008"
         }
       ],
+      "question_family": "technology-level-green-technology-innovation",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "China",
-        "CHN",
         "Taiwan"
       ],
       "top_countries_target": [
         "China",
-        "CHN",
         "India"
       ],
-      "source_context_summary": "China, CHN, and related settings",
-      "target_context_summary": "China, CHN, and related settings",
+      "source_context_summary": "China and Taiwan",
+      "target_context_summary": "China and India",
+      "common_contexts": "technology level studies are common in China and Taiwan; green technology innovation studies are common in China and India.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=technology%20level%20-%3E%20green%20technology%20innovation"
     }
   ],
@@ -881,11 +907,11 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W1968377036__gpt5mini_low",
-          "title": "Foreign ownership and technology adoption: evidence from Indian firms",
-          "year": 2001,
+          "paper_id": "W2800580436__gpt5mini_low",
+          "title": "Firm size and productivity from occupational choices",
+          "year": 2018,
           "edge_src": "FG3C000020",
-          "edge_dst": "FG3C000858"
+          "edge_dst": "FG3C002284"
         },
         {
           "paper_id": "W2027350619__gpt5mini_low",
@@ -895,13 +921,15 @@
           "edge_dst": "FG3C001837"
         },
         {
-          "paper_id": "W1797267033__gpt5mini_low",
-          "title": "Innovazione e ricerca nell'industria italiana. Alcune evidenze dell'indagine MET",
-          "year": 2009,
+          "paper_id": "W1968377036__gpt5mini_low",
+          "title": "Foreign ownership and technology adoption: evidence from Indian firms",
+          "year": 2001,
           "edge_src": "FG3C000020",
-          "edge_dst": "FG3C001258"
+          "edge_dst": "FG3C000858"
         }
       ],
+      "question_family": "firm-size-firm-output",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "China",
         "Italy",
@@ -909,11 +937,11 @@
       ],
       "top_countries_target": [
         "China",
-        "CHN",
         "India"
       ],
       "source_context_summary": "China, Italy, and related settings",
-      "target_context_summary": "China, CHN, and related settings",
+      "target_context_summary": "China and India",
+      "common_contexts": "firm size studies are common in China, Italy, and related settings; firm output studies are common in China and India.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=firm%20size%20-%3E%20firm%20output"
     }
   ],
@@ -948,6 +976,13 @@
       ],
       "representative_papers": [
         {
+          "paper_id": "W3188514382__gpt5mini_low",
+          "title": "The role of the carbon market in relation to the cryptocurrency market: Only diversification or more?",
+          "year": 2021,
+          "edge_src": "FG3C001277",
+          "edge_dst": "FG3C002439"
+        },
+        {
           "paper_id": "W4402558759__gpt5mini_low",
           "title": "Re-examining China and the u.s.\u2019s respective green bond markets in extreme conditions: Evidence from quantile connectedness",
           "year": 2024,
@@ -955,30 +990,25 @@
           "edge_dst": "FG3C000202"
         },
         {
-          "paper_id": "W4378675633__gpt5mini_low",
-          "title": "Volatility spillover of green bond with renewable energy and crypto market",
+          "paper_id": "W4383345781__gpt5mini_low",
+          "title": "The Linkage between Carbon Market and Green Bond Market: Evidence from Quantile Regression Based on Wavelet Analysis",
           "year": 2023,
-          "edge_src": "FG3C000202",
-          "edge_dst": "FG3C002439"
-        },
-        {
-          "paper_id": "W3147272713__gpt5mini_low",
-          "title": "Frequency connectedness and cross-quantile dependence between green bond and green equity markets",
-          "year": 2021,
           "edge_src": "FG3C001999",
-          "edge_dst": "FG3C000202"
+          "edge_dst": "FG3C003581"
         }
       ],
+      "question_family": "green-bond-market-cryptocurrency-market",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "China",
-        "Europe",
-        "CHN"
+        "Europe"
       ],
       "top_countries_target": [
         "Vietnam"
       ],
-      "source_context_summary": "China, Europe, and related settings",
+      "source_context_summary": "China and Europe",
       "target_context_summary": "Vietnam",
+      "common_contexts": "green bond market studies are common in China and Europe; cryptocurrency market studies are common in Vietnam.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20bond%20market%20-%3E%20cryptocurrency%20market"
     },
     {
@@ -1011,36 +1041,38 @@
       ],
       "representative_papers": [
         {
+          "paper_id": "W3191760821__gpt5mini_low",
+          "title": "Linkages between the international crude oil market and the Chinese stock market: A BEKK-GARCH-AFD approach",
+          "year": 2021,
+          "edge_src": "FG3C000848",
+          "edge_dst": "FG3C000559"
+        },
+        {
+          "paper_id": "W4367554322__gpt5mini_low",
+          "title": "An application of Bayesian vector heterogeneous autoregressions to study network interlinkages of the crude oil and gold, stock, and cryptocurrency markets during the COVID-19 outbreak",
+          "year": 2023,
+          "edge_src": "FG3C002439",
+          "edge_dst": "FG3C000848"
+        },
+        {
           "paper_id": "W3017130504__gpt5mini_low",
           "title": "The prevalence of price overreactions in the cryptocurrency market",
           "year": 2020,
           "edge_src": "FG3C002439",
           "edge_dst": "FG3C000599"
-        },
-        {
-          "paper_id": "W1976429259__gpt5mini_low",
-          "title": "Financial time series analysis based on information categorization method",
-          "year": 2014,
-          "edge_src": "FG3C000599",
-          "edge_dst": "FG3C000559"
-        },
-        {
-          "paper_id": "W2015975331__gpt5mini_low",
-          "title": "Has there been any change in the comovement between the Chinese and US stock markets?",
-          "year": 2013,
-          "edge_src": "FG3C000599",
-          "edge_dst": "FG3C000559"
         }
       ],
+      "question_family": "cryptocurrency-market-chinese-stock-market",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "Vietnam"
       ],
       "top_countries_target": [
-        "China",
-        "CHN"
+        "China"
       ],
       "source_context_summary": "Vietnam",
-      "target_context_summary": "China and CHN",
+      "target_context_summary": "China",
+      "common_contexts": "cryptocurrency market studies are common in Vietnam; Chinese stock market studies are common in China.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=cryptocurrency%20market%20-%3E%20Chinese%20stock%20market"
     }
   ],
@@ -1081,11 +1113,11 @@
           "edge_dst": "FG3C000254"
         },
         {
-          "paper_id": "W2045510370__gpt5mini_low",
-          "title": "Domestic versus foreign equity shares: Which are more costly to trade in the Chinese market?",
-          "year": 2013,
-          "edge_src": "FG3C003731",
-          "edge_dst": "FG3C000031"
+          "paper_id": "W2091174055__gpt5mini_low",
+          "title": "The time-varying behaviour of real interest rates: a re-evaluation of the recent evidence",
+          "year": 1999,
+          "edge_src": "FG3C000350",
+          "edge_dst": "FG3C000254"
         },
         {
           "paper_id": "W2055778790__gpt5mini_low",
@@ -1095,17 +1127,19 @@
           "edge_dst": "FG3C000254"
         }
       ],
+      "question_family": "foreign-interest-rates-real-interest-rates",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
         "Lao PDR"
       ],
       "top_countries_target": [
         "United States",
-        "United Kingdom",
-        "USA"
+        "United Kingdom"
       ],
       "source_context_summary": "United States and Lao PDR",
-      "target_context_summary": "United States, United Kingdom, and related settings",
+      "target_context_summary": "United States and United Kingdom",
+      "common_contexts": "foreign interest rates studies are common in United States and Lao PDR; real interest rates studies are common in United States and United Kingdom.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=foreign%20interest%20rates%20-%3E%20real%20interest%20rates"
     }
   ],
@@ -1147,31 +1181,33 @@
           "edge_dst": "FG3C001061"
         },
         {
-          "paper_id": "W2015585858__gpt5mini_low",
-          "title": "Integration of world leaders and emerging powers into the Malaysian stock market: A DCC-MGARCH approach",
-          "year": 2013,
-          "edge_src": "FG3C002389",
-          "edge_dst": "FG3C000599"
+          "paper_id": "W4383742977__gpt5mini_low",
+          "title": "COVID-19 and extreme risk spillovers between oil and BRICS stock markets: A multiscale perspective",
+          "year": 2023,
+          "edge_src": "FG3C003136",
+          "edge_dst": "FG3C001061"
         },
         {
-          "paper_id": "W3120866692__gpt5mini_low",
-          "title": "Information transmission between oil and housing markets",
-          "year": 2021,
-          "edge_src": "FG3C001310",
-          "edge_dst": "FG3C001061"
+          "paper_id": "W3035484674__gpt5mini_low",
+          "title": "Financial crises and the dynamics of the spillovers between the U.S. and BRICS stock markets",
+          "year": 2020,
+          "edge_src": "FG3C002389",
+          "edge_dst": "FG3C003136"
         }
       ],
+      "question_family": "u-s-stock-market-oil-market",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
-        "USA",
         "United States"
       ],
       "top_countries_target": [
         "European Union (27 member countries)",
         "European",
-        "USA"
+        "United States"
       ],
-      "source_context_summary": "USA and United States",
+      "source_context_summary": "United States",
       "target_context_summary": "European Union (27 member countries), European, and related settings",
+      "common_contexts": "U.S. stock market studies are common in United States; oil market studies are common in European Union (27 member countries), European, and related settings.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=U.S.%20stock%20market%20-%3E%20oil%20market"
     },
     {
@@ -1204,17 +1240,10 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W2950416836__gpt5mini_low",
-          "title": "A study of lead\u2013lag structure between international crude oil price and several financial markets",
-          "year": 2019,
-          "edge_src": "FG3C002389",
-          "edge_dst": "FG3C000848"
-        },
-        {
-          "paper_id": "W2620028053__gpt5mini_low",
-          "title": "The zero lower bound and market spillovers: Evidence from the G7 and Norway",
-          "year": 2017,
-          "edge_src": "FG3C000848",
+          "paper_id": "W2791017166__gpt5mini_low",
+          "title": "On the transmission of spillover risks between the housing market, the mortgage and equity REITs markets, and the stock market",
+          "year": 2018,
+          "edge_src": "FG3C001310",
           "edge_dst": "FG3C000284"
         },
         {
@@ -1223,19 +1252,27 @@
           "year": 2019,
           "edge_src": "FG3C001310",
           "edge_dst": "FG3C000284"
+        },
+        {
+          "paper_id": "W2950416836__gpt5mini_low",
+          "title": "A study of lead\u2013lag structure between international crude oil price and several financial markets",
+          "year": 2019,
+          "edge_src": "FG3C002389",
+          "edge_dst": "FG3C000848"
         }
       ],
+      "question_family": "u-s-stock-market-stock-market",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
-        "USA",
         "United States"
       ],
       "top_countries_target": [
         "China",
-        "United States",
-        "USA"
+        "United States"
       ],
-      "source_context_summary": "USA and United States",
-      "target_context_summary": "China, United States, and related settings",
+      "source_context_summary": "United States",
+      "target_context_summary": "China and United States",
+      "common_contexts": "U.S. stock market studies are common in United States; stock market studies are common in China and United States.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=U.S.%20stock%20market%20-%3E%20stock%20market"
     }
   ],
@@ -1270,18 +1307,18 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W4414303413__gpt5mini_low",
-          "title": "National diversity in European energy policy: Analyzing dependencies of changes in energy prices, climate regulations, and technological innovations on economic implications",
-          "year": 2025,
-          "edge_src": "FG3C000121",
-          "edge_dst": "FG3C000002"
+          "paper_id": "W2033352567__gpt5mini_low",
+          "title": "The Effect of Inflation Targets on the Level of Expected Inflation in Five Countries",
+          "year": 2003,
+          "edge_src": "FG3C005267",
+          "edge_dst": "FG3C002612"
         },
         {
-          "paper_id": "W3201674770__gpt5mini_low",
-          "title": "<i>Presidential Address 2021</i> Climate-Change Pledges, Actions, and Outcomes",
-          "year": 2021,
+          "paper_id": "W1975440539__gpt5mini_low",
+          "title": "Inflation targets versus international monetary integration: a Canadian perspective",
+          "year": 2005,
           "edge_src": "FG3C005267",
-          "edge_dst": "FG3C000121"
+          "edge_dst": "FG3C000710"
         },
         {
           "paper_id": "W2994306944__gpt5mini_low",
@@ -1291,18 +1328,20 @@
           "edge_dst": "FG3C000002"
         }
       ],
+      "question_family": "inflation-targets-inflation",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "Canada",
         "New Zealand",
-        "GBR"
+        "United Kingdom"
       ],
       "top_countries_target": [
         "United States",
-        "China",
-        "USA"
+        "China"
       ],
       "source_context_summary": "Canada, New Zealand, and related settings",
-      "target_context_summary": "United States, China, and related settings",
+      "target_context_summary": "United States and China",
+      "common_contexts": "inflation targets studies are common in Canada, New Zealand, and related settings; inflation studies are common in United States and China.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20targets%20-%3E%20inflation"
     }
   ],
@@ -1343,11 +1382,11 @@
           "edge_dst": "FG3C000072"
         },
         {
-          "paper_id": "W2080106931__gpt5mini_low",
-          "title": "THE EFFECT OF EXCHANGE RATES ON INTERNATIONAL MARKETING MARGINS",
-          "year": 2009,
-          "edge_src": "FG3C000072",
-          "edge_dst": "FG3C006126"
+          "paper_id": "W3023077355__gpt5mini_low",
+          "title": "The relationship between oil prices and exchange rates: Revisiting theory and evidence",
+          "year": 2020,
+          "edge_src": "FG3C000034",
+          "edge_dst": "FG3C000072"
         },
         {
           "paper_id": "W4304182460__gpt5mini_low",
@@ -1357,17 +1396,19 @@
           "edge_dst": "FG3C000072"
         }
       ],
+      "question_family": "oil-prices-foreign-prices",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
-        "USA",
         "China"
       ],
       "top_countries_target": [
         "Philippines",
         "North"
       ],
-      "source_context_summary": "United States, USA, and related settings",
+      "source_context_summary": "United States and China",
       "target_context_summary": "Philippines and North",
+      "common_contexts": "oil prices studies are common in United States and China; foreign prices studies are common in Philippines and North.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=oil%20prices%20-%3E%20foreign%20prices"
     }
   ],
@@ -1402,6 +1443,13 @@
       ],
       "representative_papers": [
         {
+          "paper_id": "W2159315386__gpt5mini_low",
+          "title": "Economic Growth and the Elasticity of Substitution: Two Theorems and Some Suggestions",
+          "year": 2000,
+          "edge_src": "FG3C000001",
+          "edge_dst": "FG3C001789"
+        },
+        {
           "paper_id": "W4317423858__gpt5mini_low",
           "title": "Decoupling of land-use net carbon flux, economic growth, and population change in China",
           "year": 2023,
@@ -1414,23 +1462,18 @@
           "year": 1991,
           "edge_src": "FG3C000054",
           "edge_dst": "FG3C004847"
-        },
-        {
-          "paper_id": "W1998061961__gpt5mini_low",
-          "title": "Capital, population and urban patterns",
-          "year": 1994,
-          "edge_src": "FG3C000001",
-          "edge_dst": "FG3C000054"
         }
       ],
+      "question_family": "economic-growth-immiserizing-growth",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "China",
-        "India",
-        "CHN"
+        "India"
       ],
       "top_countries_target": [],
-      "source_context_summary": "China, India, and related settings",
+      "source_context_summary": "China and India",
       "target_context_summary": "No dominant target setting in the current public sample",
+      "common_contexts": "",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20growth%20-%3E%20immiserizing%20growth"
     }
   ],
@@ -1472,11 +1515,11 @@
           "edge_dst": "FG3C000174"
         },
         {
-          "paper_id": "W3003092442__gpt5mini_low",
-          "title": "Unconventional monetary policy and inflation expectations in the Euro area",
-          "year": 2021,
-          "edge_src": "FG3C000174",
-          "edge_dst": "FG3C005070"
+          "paper_id": "W2994306944__gpt5mini_low",
+          "title": "Anchoring inflation expectations in the face of oil shocks &amp; in the proximity of ZLB: A tale of two targeters",
+          "year": 2020,
+          "edge_src": "FG3C000002",
+          "edge_dst": "FG3C000174"
         },
         {
           "paper_id": "W4389232176__gpt5mini_low",
@@ -1486,18 +1529,19 @@
           "edge_dst": "FG3C000174"
         }
       ],
+      "question_family": "inflation-realized-inflation",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
-        "China",
-        "USA"
+        "China"
       ],
       "top_countries_target": [
-        "USA",
-        "Euro area",
-        "United States"
+        "United States",
+        "Euro area"
       ],
-      "source_context_summary": "United States, China, and related settings",
-      "target_context_summary": "USA, Euro area, and related settings",
+      "source_context_summary": "United States and China",
+      "target_context_summary": "United States and Euro area",
+      "common_contexts": "inflation studies are common in United States and China; Realized inflation studies are common in United States and Euro area.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20-%3E%20Realized%20inflation"
     }
   ],
@@ -1530,6 +1574,13 @@
       ],
       "representative_papers": [
         {
+          "paper_id": "W2137177281__gpt5mini_low",
+          "title": "Dynamic relationships between spot and futures prices. The case of energy and gold commodities",
+          "year": 2015,
+          "edge_src": "FG3C000735",
+          "edge_dst": "FG3C001371"
+        },
+        {
           "paper_id": "W3012928678__gpt5mini_low",
           "title": "The Linkages of Carbon Spot-Futures: Evidence from EU-ETS in the Third Phase",
           "year": 2020,
@@ -1537,30 +1588,26 @@
           "edge_dst": "FG3C004968"
         },
         {
-          "paper_id": "W2980955033__gpt5mini_low",
-          "title": "The short- and long-run efficiency of energy, precious metals, and base metals markets: Evidence from the exponential smooth transition autoregressive models",
-          "year": 2019,
+          "paper_id": "W1977001412__gpt5mini_low",
+          "title": "Regime-dependent adjustment in energy spot and futures markets",
+          "year": 2014,
           "edge_src": "FG3C000735",
           "edge_dst": "FG3C001371"
-        },
-        {
-          "paper_id": "W1622225972__gpt5mini_low",
-          "title": "Impact of allowance submissions in European carbon emission markets",
-          "year": 2015,
-          "edge_src": "FG3C001371",
-          "edge_dst": "FG3C004968"
         }
       ],
+      "question_family": "future-prices-futures-contracts",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
         "China",
         "European Union"
       ],
       "top_countries_target": [
-        "USA"
+        "United States"
       ],
       "source_context_summary": "United States, China, and related settings",
-      "target_context_summary": "USA",
+      "target_context_summary": "United States",
+      "common_contexts": "future prices studies are common in United States, China, and related settings; futures contracts studies are common in United States.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=future%20prices%20-%3E%20futures%20contracts"
     }
   ],
@@ -1595,13 +1642,6 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W2159219237__gpt5mini_low",
-          "title": "Does Output Gap, Labour's Share or Unemployment Rate Drive Inflation?",
-          "year": 2013,
-          "edge_src": "FG3C000052",
-          "edge_dst": "FG3C000002"
-        },
-        {
           "paper_id": "W2086430976__gpt5mini_low",
           "title": "Unemployment and Unanticipated Inflation in Postwar Britain",
           "year": 1980,
@@ -1609,13 +1649,22 @@
           "edge_dst": "FG3C000052"
         },
         {
-          "paper_id": "W1518708077__gpt5mini_low",
-          "title": "Merging the Purchasing Power Parity and the Phillips Curve Literatures",
-          "year": 2007,
+          "paper_id": "W2159219237__gpt5mini_low",
+          "title": "Does Output Gap, Labour's Share or Unemployment Rate Drive Inflation?",
+          "year": 2013,
           "edge_src": "FG3C000052",
+          "edge_dst": "FG3C000002"
+        },
+        {
+          "paper_id": "W2163639681__gpt5mini_low",
+          "title": "Evidence on the Functional Relationship between Relative Price Variability and Inflation with Implications for Monetary Policy",
+          "year": 2007,
+          "edge_src": "FG3C002302",
           "edge_dst": "FG3C000002"
         }
       ],
+      "question_family": "unanticipated-inflation-inflation",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "Finland",
         "Latin America",
@@ -1623,11 +1672,11 @@
       ],
       "top_countries_target": [
         "United States",
-        "China",
-        "USA"
+        "China"
       ],
       "source_context_summary": "Finland, Latin America, and related settings",
-      "target_context_summary": "United States, China, and related settings",
+      "target_context_summary": "United States and China",
+      "common_contexts": "unanticipated inflation studies are common in Finland, Latin America, and related settings; inflation studies are common in United States and China.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=unanticipated%20inflation%20-%3E%20inflation"
     }
   ],
@@ -1662,11 +1711,11 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W3189927536__gpt5mini_low",
-          "title": "What do firms gain from patenting? The case of the global ICT industry",
-          "year": 2024,
+          "paper_id": "W2091506017__gpt5mini_low",
+          "title": "Technological Relatedness and Knowledge Space: Entry and Exit of US Cities from Patent Classes",
+          "year": 2013,
           "edge_src": "FG3C004911",
-          "edge_dst": "FG3C000020"
+          "edge_dst": "FG3C004268"
         },
         {
           "paper_id": "W3126063958__gpt5mini_low",
@@ -1683,18 +1732,20 @@
           "edge_dst": "FG3C004781"
         }
       ],
+      "question_family": "patent-citations-patent-data",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
-        "China",
-        "USA"
+        "China"
       ],
       "top_countries_target": [
-        "GBR",
-        "CHN",
-        "USA"
+        "United Kingdom",
+        "China",
+        "United States"
       ],
-      "source_context_summary": "United States, China, and related settings",
-      "target_context_summary": "GBR, CHN, and related settings",
+      "source_context_summary": "United States and China",
+      "target_context_summary": "United Kingdom, China, and related settings",
+      "common_contexts": "patent citations studies are common in United States and China; patent data studies are common in United Kingdom, China, and related settings.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=patent%20citations%20-%3E%20patent%20data"
     }
   ],
@@ -1729,18 +1780,11 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W3122167024__gpt5mini_low",
-          "title": "Explaining asset pricing puzzles associated with the 1987 market crash",
-          "year": 2011,
+          "paper_id": "W1968307854__gpt5mini_low",
+          "title": "Stock Market Crashes and the Performance of Circuit Breakers: Empirical Evidence",
+          "year": 1993,
           "edge_src": "FG3C004547",
-          "edge_dst": "FG3C000585"
-        },
-        {
-          "paper_id": "W2015800048__gpt5mini_low",
-          "title": "Economic Forces and the Stock Market",
-          "year": 1986,
-          "edge_src": "FG3C000585",
-          "edge_dst": "FG3C000168"
+          "edge_dst": "FG3C004355"
         },
         {
           "paper_id": "W3033639955__gpt5mini_low",
@@ -1748,20 +1792,28 @@
           "year": 2020,
           "edge_src": "FG3C000824",
           "edge_dst": "FG3C000168"
+        },
+        {
+          "paper_id": "W2015800048__gpt5mini_low",
+          "title": "Economic Forces and the Stock Market",
+          "year": 1986,
+          "edge_src": "FG3C000585",
+          "edge_dst": "FG3C000168"
         }
       ],
+      "question_family": "stock-market-crashes-stock-market-returns",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "China",
-        "USA",
-        "CHN"
+        "United States"
       ],
       "top_countries_target": [
         "United States",
-        "USA",
         "China"
       ],
-      "source_context_summary": "China, USA, and related settings",
-      "target_context_summary": "United States, USA, and related settings",
+      "source_context_summary": "China and United States",
+      "target_context_summary": "United States and China",
+      "common_contexts": "stock market crashes studies are common in China and United States; stock market returns studies are common in United States and China.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=stock%20market%20crashes%20-%3E%20stock%20market%20returns"
     }
   ],
@@ -1796,18 +1848,18 @@
       ],
       "representative_papers": [
         {
+          "paper_id": "W1979682371__gpt5mini_low",
+          "title": "New Hope for the Expectations Hypothesis of the Term Structure of Interest Rates",
+          "year": 1989,
+          "edge_src": "FG3C003921",
+          "edge_dst": "FG3C003343"
+        },
+        {
           "paper_id": "W4200357935__gpt5mini_low",
           "title": "The nonlinear causal relationship between short\u2010 and long\u2010term interest rates: An empirical assessment of the United States, the United Kingdom, and Japan",
           "year": 2021,
           "edge_src": "FG3C000455",
           "edge_dst": "FG3C000404"
-        },
-        {
-          "paper_id": "W1929597172__gpt5mini_low",
-          "title": "Monetary policy, bond risk premia, and the economy",
-          "year": 2015,
-          "edge_src": "FG3C003921",
-          "edge_dst": "FG3C000455"
         },
         {
           "paper_id": "W3152614050__gpt5mini_low",
@@ -1817,18 +1869,19 @@
           "edge_dst": "FG3C000404"
         }
       ],
+      "question_family": "interest-rate-expectations-short-term-interest-rate",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
-        "USA",
         "United States",
         "Europe"
       ],
       "top_countries_target": [
         "United States",
-        "USA",
         "United Kingdom"
       ],
-      "source_context_summary": "USA, United States, and related settings",
-      "target_context_summary": "United States, USA, and related settings",
+      "source_context_summary": "United States and Europe",
+      "target_context_summary": "United States and United Kingdom",
+      "common_contexts": "interest rate expectations studies are common in United States and Europe; short-term interest rate studies are common in United States and United Kingdom.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=interest%20rate%20expectations%20-%3E%20short-term%20interest%20rate"
     }
   ],
@@ -1869,11 +1922,11 @@
           "edge_dst": "FG3C000017"
         },
         {
-          "paper_id": "W2032831101__gpt5mini_low",
-          "title": "What is the role of openness for China's aggregate industrial SO2 emission?: A structural analysis based on the Divisia decomposition method",
-          "year": 2009,
-          "edge_src": "FG3C000017",
-          "edge_dst": "FG3C005991"
+          "paper_id": "W4399202360__gpt5mini_low",
+          "title": "Time-varying causality relationships between trade openness, technological innovation, industrialization, financial development, and carbon emissions in Thailand",
+          "year": 2024,
+          "edge_src": "FG3C000003",
+          "edge_dst": "FG3C000017"
         },
         {
           "paper_id": "W4414451225__gpt5mini_low",
@@ -1883,18 +1936,19 @@
           "edge_dst": "FG3C000017"
         }
       ],
+      "question_family": "co2-emissions-aggregate-emissions",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "China",
-        "India",
-        "CHN"
+        "India"
       ],
       "top_countries_target": [
         "China",
-        "United States",
-        "USA"
+        "United States"
       ],
-      "source_context_summary": "China, India, and related settings",
-      "target_context_summary": "China, United States, and related settings",
+      "source_context_summary": "China and India",
+      "target_context_summary": "China and United States",
+      "common_contexts": "CO2 emissions studies are common in China and India; aggregate emissions studies are common in China and United States.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emissions%20-%3E%20aggregate%20emissions"
     }
   ],
@@ -1929,13 +1983,6 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W4312131509__gpt5mini_low",
-          "title": "Assessment of role of green bond in renewable energy resource development in Japan",
-          "year": 2022,
-          "edge_src": "FG3C005378",
-          "edge_dst": "FG3C000150"
-        },
-        {
           "paper_id": "W1970053784__gpt5mini_low",
           "title": "Exploring the nexus of electricity consumption, economic growth, energy prices and technology innovation in Malaysia",
           "year": 2012,
@@ -1948,20 +1995,28 @@
           "year": 2023,
           "edge_src": "FG3C000258",
           "edge_dst": "FG3C000160"
+        },
+        {
+          "paper_id": "W3031105492__gpt5mini_low",
+          "title": "Do urbanization, income, and trade affect electricity consumption across Chinese provinces?",
+          "year": 2020,
+          "edge_src": "FG3C002479",
+          "edge_dst": "FG3C000160"
         }
       ],
+      "question_family": "wind-energy-consumption-electricity-consumption",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "Japan",
-        "USA",
         "United States"
       ],
       "top_countries_target": [
         "China",
-        "CHN",
         "Algeria"
       ],
-      "source_context_summary": "Japan, USA, and related settings",
-      "target_context_summary": "China, CHN, and related settings",
+      "source_context_summary": "Japan and United States",
+      "target_context_summary": "China and Algeria",
+      "common_contexts": "wind energy consumption studies are common in Japan and United States; electricity consumption studies are common in China and Algeria.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=wind%20energy%20consumption%20-%3E%20electricity%20consumption"
     },
     {
@@ -1994,30 +2049,31 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W4319159045__gpt5mini_low",
-          "title": "Macroeconomic and Uncertainty Shocks\u2019 Effects on Energy Prices: A Comprehensive Literature Review",
-          "year": 2023,
-          "edge_src": "FG3C000150",
+          "paper_id": "W2904993233__gpt5mini_low",
+          "title": "A multivariate time series analysis of energy consumption, real output and pollutant emissions in a developing economy: New evidence from Nepal",
+          "year": 2018,
+          "edge_src": "FG3C002479",
           "edge_dst": "FG3C000014"
         },
         {
-          "paper_id": "W4312131509__gpt5mini_low",
-          "title": "Assessment of role of green bond in renewable energy resource development in Japan",
-          "year": 2022,
+          "paper_id": "W3209275706__gpt5mini_low",
+          "title": "Renewable Energy Consumption and Carbon Emissions\u2014Testing Nonlinearity for Highly Carbon Emitting Countries",
+          "year": 2021,
           "edge_src": "FG3C005378",
-          "edge_dst": "FG3C000150"
+          "edge_dst": "FG3C004594"
         },
         {
-          "paper_id": "W4321336774__gpt5mini_low",
-          "title": "The nexus between remittances, education, and energy consumption: Evidence from developing countries",
-          "year": 2023,
-          "edge_src": "FG3C000150",
-          "edge_dst": "FG3C000014"
+          "paper_id": "W2972990721__gpt5mini_low",
+          "title": "Long-run effects of disaggregated renewable and non-renewable energy consumption on real output",
+          "year": 2019,
+          "edge_src": "FG3C005378",
+          "edge_dst": "FG3C002479"
         }
       ],
+      "question_family": "wind-energy-consumption-energy-consumption",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "Japan",
-        "USA",
         "United States"
       ],
       "top_countries_target": [
@@ -2025,8 +2081,9 @@
         "India",
         "Pakistan"
       ],
-      "source_context_summary": "Japan, USA, and related settings",
+      "source_context_summary": "Japan and United States",
       "target_context_summary": "China, India, and related settings",
+      "common_contexts": "wind energy consumption studies are common in Japan and United States; energy consumption studies are common in China, India, and related settings.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=wind%20energy%20consumption%20-%3E%20energy%20consumption"
     }
   ],
@@ -2068,11 +2125,11 @@
           "edge_dst": "FG3C000002"
         },
         {
-          "paper_id": "W4238446163__gpt5mini_low",
-          "title": "Pricing New Corporate Bond Issues: An Analysis of Issue Cost and Seasoning Effects",
-          "year": 1986,
-          "edge_src": "FG3C006138",
-          "edge_dst": "FG3C000035"
+          "paper_id": "W1585814524__gpt5mini_low",
+          "title": "Stock returns and inflation: A long-horizon perspective",
+          "year": 1993,
+          "edge_src": "FG3C000035",
+          "edge_dst": "FG3C000002"
         },
         {
           "paper_id": "W1985471384__gpt5mini_low",
@@ -2082,6 +2139,8 @@
           "edge_dst": "FG3C000002"
         }
       ],
+      "question_family": "actual-inflation-inflation",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
         "Australia",
@@ -2089,11 +2148,11 @@
       ],
       "top_countries_target": [
         "United States",
-        "China",
-        "USA"
+        "China"
       ],
       "source_context_summary": "United States, Australia, and related settings",
-      "target_context_summary": "United States, China, and related settings",
+      "target_context_summary": "United States and China",
+      "common_contexts": "actual inflation studies are common in United States, Australia, and related settings; inflation studies are common in United States and China.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=actual%20inflation%20-%3E%20inflation"
     }
   ],
@@ -2127,10 +2186,10 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W4212989421__gpt5mini_low",
-          "title": "Epidemics in the New Keynesian model",
-          "year": 2022,
-          "edge_src": "FG3C000019",
+          "paper_id": "W2007165909__gpt5mini_low",
+          "title": "The effects of changes in the exchange rate on output, prices and the balance of payments",
+          "year": 1976,
+          "edge_src": "FG3C000652",
           "edge_dst": "FG3C000011"
         },
         {
@@ -2148,17 +2207,19 @@
           "edge_dst": "FG3C000011"
         }
       ],
+      "question_family": "expected-output-output",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "Maine",
         "NLD"
       ],
       "top_countries_target": [
         "United States",
-        "USA",
         "China"
       ],
       "source_context_summary": "Maine and NLD",
-      "target_context_summary": "United States, USA, and related settings",
+      "target_context_summary": "United States and China",
+      "common_contexts": "expected output studies are common in Maine and NLD; output studies are common in United States and China.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=expected%20output%20-%3E%20output"
     }
   ],
@@ -2199,10 +2260,10 @@
           "edge_dst": "FG3C000455"
         },
         {
-          "paper_id": "W2027966652__gpt5mini_low",
-          "title": "Decreasing Yield Curves in a Model with an Unknown Constant Growth Rate",
-          "year": 2000,
-          "edge_src": "FG3C000455",
+          "paper_id": "W2236554471__gpt5mini_low",
+          "title": "Enhancing Estimation for Interest Rate Diffusion Models With Bond Prices",
+          "year": 2015,
+          "edge_src": "FG3C001755",
           "edge_dst": "FG3C003315"
         },
         {
@@ -2213,17 +2274,19 @@
           "edge_dst": "FG3C000455"
         }
       ],
+      "question_family": "short-term-interest-rate-short-rate",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
-        "USA",
         "United Kingdom"
       ],
       "top_countries_target": [
         "United States",
         "Japan"
       ],
-      "source_context_summary": "United States, USA, and related settings",
+      "source_context_summary": "United States and United Kingdom",
       "target_context_summary": "United States and Japan",
+      "common_contexts": "short-term interest rate studies are common in United States and United Kingdom; short rate studies are common in United States and Japan.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=short-term%20interest%20rate%20-%3E%20short%20rate"
     }
   ],
@@ -2258,18 +2321,18 @@
       ],
       "representative_papers": [
         {
+          "paper_id": "W2038391185__gpt5mini_low",
+          "title": "Health Care Reform and the Need for Comparative-Effectiveness Research",
+          "year": 2010,
+          "edge_src": "FG3C001347",
+          "edge_dst": "FG3C001547"
+        },
+        {
           "paper_id": "W1989067006__gpt5mini_low",
           "title": "Will All Health Care Reform Lead Back to Medicaid?",
           "year": 2009,
           "edge_src": "FG3C001347",
           "edge_dst": "FG3C000300"
-        },
-        {
-          "paper_id": "W2042236643__gpt5mini_low",
-          "title": "The Democrats versus the Republicans on health",
-          "year": 2008,
-          "edge_src": "FG3C000300",
-          "edge_dst": "FG3C005091"
         },
         {
           "paper_id": "W2061821850__gpt5mini_low",
@@ -2279,17 +2342,18 @@
           "edge_dst": "FG3C000300"
         }
       ],
+      "question_family": "health-care-reform-health-care",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
-        "USA",
         "China"
       ],
       "top_countries_target": [
-        "United States",
-        "USA"
+        "United States"
       ],
-      "source_context_summary": "United States, USA, and related settings",
-      "target_context_summary": "United States and USA",
+      "source_context_summary": "United States and China",
+      "target_context_summary": "United States",
+      "common_contexts": "health care reform studies are common in United States and China; health care studies are common in United States.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=health%20care%20reform%20-%3E%20health%20care"
     }
   ],
@@ -2324,27 +2388,29 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W4394694007__gpt5mini_low",
-          "title": "Idiosyncratic risk and market volatility: Threat or opportunity for returns? A study of Borsa Istanbul stocks",
-          "year": 2024,
-          "edge_src": "FG3C000042",
-          "edge_dst": "FG3C000035"
-        },
-        {
-          "paper_id": "W4281746660__gpt5mini_low",
-          "title": "Examining the overconfidence and overreaction in China\u2019s carbon markets",
-          "year": 2022,
-          "edge_src": "FG3C001561",
-          "edge_dst": "FG3C000042"
-        },
-        {
           "paper_id": "W4224653639__gpt5mini_low",
           "title": "Stock returns, trading volume, and volatility: The case of African stock markets",
           "year": 2022,
           "edge_src": "FG3C000042",
           "edge_dst": "FG3C000035"
+        },
+        {
+          "paper_id": "W2803653306__gpt5mini_low",
+          "title": "Distributional characteristics of interday stock returns and their asymmetric conditional volatility: Firm-level evidence",
+          "year": 2018,
+          "edge_src": "FG3C006109",
+          "edge_dst": "FG3C000035"
+        },
+        {
+          "paper_id": "W2764245194__gpt5mini_low",
+          "title": "Dynamic trading volume and stock return relation: Does it hold out of sample?",
+          "year": 2017,
+          "edge_src": "FG3C000042",
+          "edge_dst": "FG3C000035"
         }
       ],
+      "question_family": "market-return-stock-returns",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "Turkey",
         "United States",
@@ -2352,11 +2418,11 @@
       ],
       "top_countries_target": [
         "China",
-        "USA",
         "United States"
       ],
       "source_context_summary": "Turkey, United States, and related settings",
-      "target_context_summary": "China, USA, and related settings",
+      "target_context_summary": "China and United States",
+      "common_contexts": "market return studies are common in Turkey, United States, and related settings; stock returns studies are common in China and United States.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=market%20return%20-%3E%20stock%20returns"
     }
   ],
@@ -2389,13 +2455,6 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W4207024755__gpt5mini_low",
-          "title": "Annotated Listing of New Books",
-          "year": 2021,
-          "edge_src": "FG3C001408",
-          "edge_dst": "FG3C000684"
-        },
-        {
           "paper_id": "W2137293206__gpt5mini_low",
           "title": "Does Analysis Matter? Economics and Planning in the Department of the Interior",
           "year": 1991,
@@ -2403,13 +2462,22 @@
           "edge_dst": "FG3C002369"
         },
         {
-          "paper_id": "W4241273815__gpt5mini_low",
+          "paper_id": "W3140731589__gpt5mini_low",
+          "title": "Does Analysis Matter? Economics and Planning in the Department of the Interior",
+          "year": 1991,
+          "edge_src": "FG3C000684",
+          "edge_dst": "FG3C002369"
+        },
+        {
+          "paper_id": "W4207024755__gpt5mini_low",
           "title": "Annotated Listing of New Books",
-          "year": 2019,
+          "year": 2021,
           "edge_src": "FG3C001408",
           "edge_dst": "FG3C000684"
         }
       ],
+      "question_family": "policy-policy-analysis",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "China",
         "United States",
@@ -2422,6 +2490,7 @@
       ],
       "source_context_summary": "China, United States, and related settings",
       "target_context_summary": "EU (23 countries), EU, and related settings",
+      "common_contexts": "policy studies are common in China, United States, and related settings; policy analysis studies are common in EU (23 countries), EU, and related settings.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=policy%20-%3E%20policy%20analysis"
     }
   ],
@@ -2455,11 +2524,11 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W4412955777__gpt5mini_low",
-          "title": "Research on the Implementation Effects, Multi-Objective Scheme Selection, and Element Regulation of China\u2019s Carbon Market",
-          "year": 2025,
+          "paper_id": "W3201329971__gpt5mini_low",
+          "title": "Carbon Emissions Reduction and Corporate Financial Performance: The Influence of Country-Level Characteristics",
+          "year": 2021,
           "edge_src": "FG3C004791",
-          "edge_dst": "FG3C000026"
+          "edge_dst": "FG3C001711"
         },
         {
           "paper_id": "W4393989550__gpt5mini_low",
@@ -2469,13 +2538,15 @@
           "edge_dst": "FG3C000010"
         },
         {
-          "paper_id": "W4400216291__gpt5mini_low",
-          "title": "Innovate, conserve, grow: A comprehensive analysis of technological innovation, energy utilization, and carbon emission in <scp>BRICS</scp>",
-          "year": 2024,
-          "edge_src": "FG3C000026",
+          "paper_id": "W4322503097__gpt5mini_low",
+          "title": "Renewable energy consumption and carbon dioxide emissions in Ghana: the effect of financial strength of listed financial institutions",
+          "year": 2023,
+          "edge_src": "FG3C001711",
           "edge_dst": "FG3C000010"
         }
       ],
+      "question_family": "carbon-emissions-reduction-carbon-emissions",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "China",
         "United States",
@@ -2483,11 +2554,11 @@
       ],
       "top_countries_target": [
         "China",
-        "CHN",
         "India"
       ],
       "source_context_summary": "China, United States, and related settings",
-      "target_context_summary": "China, CHN, and related settings",
+      "target_context_summary": "China and India",
+      "common_contexts": "carbon emissions reduction studies are common in China, United States, and related settings; carbon emissions studies are common in China and India.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20emissions%20reduction%20-%3E%20carbon%20emissions"
     }
   ],
@@ -2529,32 +2600,33 @@
           "edge_dst": "FG3C001154"
         },
         {
-          "paper_id": "W2146015287__gpt5mini_low",
-          "title": "New directions in emissions trading: the potential contribution of new institutional economics",
-          "year": 1999,
-          "edge_src": "FG3C003006",
-          "edge_dst": "FG3C000031"
+          "paper_id": "W1708730847__gpt5mini_low",
+          "title": "The energy price equivalence of carbon taxes and emissions trading\u2014Theory and evidence",
+          "year": 2015,
+          "edge_src": "FG3C000152",
+          "edge_dst": "FG3C001154"
         },
         {
-          "paper_id": "W4407767628__gpt5mini_low",
-          "title": "Does Carbon Pricing Matter? Evidence from a Global Sample",
-          "year": 2025,
+          "paper_id": "W2886282539__gpt5mini_low",
+          "title": "Carbon tax or emissions trading? An analysis of economic and political feasibility of policy mechanisms for greenhouse gas emissions reduction in the Mexican power sector",
+          "year": 2018,
           "edge_src": "FG3C003006",
           "edge_dst": "FG3C000152"
         }
       ],
+      "question_family": "emission-trading-scheme-emissions-trading",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "China",
-        "CHN",
         "European Union"
       ],
       "top_countries_target": [
         "Australia",
-        "China",
-        "CHN"
+        "China"
       ],
-      "source_context_summary": "China, CHN, and related settings",
-      "target_context_summary": "Australia, China, and related settings",
+      "source_context_summary": "China and European Union",
+      "target_context_summary": "Australia and China",
+      "common_contexts": "Emission Trading Scheme (ETS) studies are common in China and European Union; emissions trading studies are common in Australia and China.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=Emission%20Trading%20Scheme%20%28ETS%29%20-%3E%20emissions%20trading"
     }
   ],
@@ -2589,13 +2661,6 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W4320933245__gpt5mini_low",
-          "title": "The Cost of Wage Rigidity",
-          "year": 2023,
-          "edge_src": "FG3C001178",
-          "edge_dst": "FG3C004123"
-        },
-        {
           "paper_id": "W1773422498__gpt5mini_low",
           "title": "UNEMPLOYMENT AND WAGE RIGIDITY: THE DEMAND SIDE",
           "year": 1983,
@@ -2603,25 +2668,34 @@
           "edge_dst": "FG3C001178"
         },
         {
-          "paper_id": "W2570024845__gpt5mini_low",
-          "title": "Why are labor markets in Spain and Germany so different?",
-          "year": 2018,
-          "edge_src": "FG3C001178",
-          "edge_dst": "FG3C004123"
+          "paper_id": "W1491634788__gpt5mini_low",
+          "title": "UNEMPLOYMENT, DURATION AND WAGE DETERMINATION IN THE UK: EVIDENCE FROM THE FES 1980\u201386",
+          "year": 1991,
+          "edge_src": "FG3C000009",
+          "edge_dst": "FG3C002052"
+        },
+        {
+          "paper_id": "W2158805186__gpt5mini_low",
+          "title": "Unemployment and market size",
+          "year": 2013,
+          "edge_src": "FG3C000009",
+          "edge_dst": "FG3C004434"
         }
       ],
+      "question_family": "unemployment-unemployment-fluctuations",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "United States",
-        "United Kingdom",
-        "USA"
+        "United Kingdom"
       ],
       "top_countries_target": [
         "United States",
         "Germany",
-        "ESP"
+        "Spain"
       ],
-      "source_context_summary": "United States, United Kingdom, and related settings",
+      "source_context_summary": "United States and United Kingdom",
       "target_context_summary": "United States, Germany, and related settings",
+      "common_contexts": "unemployment studies are common in United States and United Kingdom; unemployment fluctuations studies are common in United States, Germany, and related settings.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=unemployment%20-%3E%20unemployment%20fluctuations"
     }
   ],
@@ -2656,13 +2730,6 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W2058049691__gpt5mini_low",
-          "title": "The International Comparison Program and Purchasing Power Parities",
-          "year": 2008,
-          "edge_src": "FG3C000508",
-          "edge_dst": "FG3C000072"
-        },
-        {
           "paper_id": "W2072012617__gpt5mini_low",
           "title": "Pass-through of exchange rates and purchasing power parity",
           "year": 1997,
@@ -2670,23 +2737,32 @@
           "edge_dst": "FG3C000508"
         },
         {
-          "paper_id": "W2116912141__gpt5mini_low",
-          "title": "Currency traders and exchange rate dynamics: a survey of the US market",
-          "year": 2001,
-          "edge_src": "FG3C000508",
+          "paper_id": "W2893771140__gpt5mini_low",
+          "title": "Exchange rates and fundamentals: A bootstrap panel data analysis",
+          "year": 2018,
+          "edge_src": "FG3C000544",
+          "edge_dst": "FG3C000072"
+        },
+        {
+          "paper_id": "W1972403027__gpt5mini_low",
+          "title": "Exchange Rates and Fundamentals: Footloose or Evolving Relationship?",
+          "year": 2009,
+          "edge_src": "FG3C000544",
           "edge_dst": "FG3C000072"
         }
       ],
+      "question_family": "forward-exchange-rates-exchange-rates",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "Germany"
       ],
       "top_countries_target": [
         "China",
-        "USA",
-        "CHN"
+        "United States"
       ],
       "source_context_summary": "Germany",
-      "target_context_summary": "China, USA, and related settings",
+      "target_context_summary": "China and United States",
+      "common_contexts": "forward exchange rates studies are common in Germany; exchange rates studies are common in China and United States.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=forward%20exchange%20rates%20-%3E%20exchange%20rates"
     }
   ],
@@ -2721,18 +2797,18 @@
       ],
       "representative_papers": [
         {
+          "paper_id": "W2067265866__gpt5mini_low",
+          "title": "The Cross Section of Expected Returns with MIDAS Betas",
+          "year": 2011,
+          "edge_src": "FG3C001438",
+          "edge_dst": "FG3C006667"
+        },
+        {
           "paper_id": "W3124971662__gpt5mini_low",
           "title": "Resurrecting the Size Effect: Firm Size, Profitability Shocks, and Expected Stock Returns",
           "year": 2018,
           "edge_src": "FG3C000020",
           "edge_dst": "FG3C006667"
-        },
-        {
-          "paper_id": "W2145592425__gpt5mini_low",
-          "title": "Implied Price Risk and Momentum Strategy*",
-          "year": 2013,
-          "edge_src": "FG3C002163",
-          "edge_dst": "FG3C000020"
         },
         {
           "paper_id": "W2012637053__gpt5mini_low",
@@ -2742,18 +2818,19 @@
           "edge_dst": "FG3C006667"
         }
       ],
+      "question_family": "cross-sectional-stock-returns-cross-section-of-expected-returns",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "China",
-        "United States",
-        "USA"
+        "United States"
       ],
       "top_countries_target": [
         "China",
-        "CHN",
         "United States"
       ],
-      "source_context_summary": "China, United States, and related settings",
-      "target_context_summary": "China, CHN, and related settings",
+      "source_context_summary": "China and United States",
+      "target_context_summary": "China and United States",
+      "common_contexts": "cross-sectional stock returns studies are common in China and United States; cross-section of expected returns studies are common in China and United States.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=cross-sectional%20stock%20returns%20-%3E%20cross-section%20of%20expected%20returns"
     }
   ],
@@ -2788,39 +2865,41 @@
       ],
       "representative_papers": [
         {
-          "paper_id": "W4224235994__gpt5mini_low",
-          "title": "A multi time-scale theory of economic growth and cycles",
-          "year": 2022,
-          "edge_src": "FG3C000022",
+          "paper_id": "W1999717132__gpt5mini_low",
+          "title": "Small-system modelling of real wages, inflation, unemployment and output per capita in Italy 1970-1994",
+          "year": 2001,
+          "edge_src": "FG3C000176",
           "edge_dst": "FG3C000009"
         },
         {
-          "paper_id": "W1877100877__gpt5mini_low",
-          "title": "How Flexible are Wages in Response to Local Unemployment in South Africa?",
-          "year": 2006,
-          "edge_src": "FG3C004482",
-          "edge_dst": "FG3C000022"
+          "paper_id": "W2120472049__gpt5mini_low",
+          "title": "Are Real Wages and Unemployment Related?",
+          "year": 1998,
+          "edge_src": "FG3C000176",
+          "edge_dst": "FG3C000009"
         },
         {
-          "paper_id": "W4290792504__gpt5mini_low",
-          "title": "The welfare effects of tax progressivity in a frictional labor market",
-          "year": 2022,
-          "edge_src": "FG3C000022",
+          "paper_id": "W2039207742__gpt5mini_low",
+          "title": "THE BEHAVIOR OF REGIONAL UNEMPLOYMENT RATES OVER TIME: EFFECTS ON DISPERSION AND NATIONAL UNEMPLOYMENT*",
+          "year": 1983,
+          "edge_src": "FG3C003467",
           "edge_dst": "FG3C000009"
         }
       ],
+      "question_family": "local-unemployment-rates-unemployment",
+      "suppress_from_public_ranked_window": false,
       "top_countries_source": [
         "France",
-        "ESP",
+        "Spain",
         "Italy"
       ],
       "top_countries_target": [
         "United States",
-        "United Kingdom",
-        "USA"
+        "United Kingdom"
       ],
-      "source_context_summary": "France, ESP, and related settings",
-      "target_context_summary": "United States, United Kingdom, and related settings",
+      "source_context_summary": "France, Spain, and related settings",
+      "target_context_summary": "United States and United Kingdom",
+      "common_contexts": "local unemployment rates studies are common in France, Spain, and related settings; unemployment studies are common in United States and United Kingdom.",
       "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=local%20unemployment%20rates%20-%3E%20unemployment"
     }
   ]

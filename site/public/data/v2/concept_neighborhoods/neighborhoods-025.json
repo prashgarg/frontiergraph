@@ -188,7 +188,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -541,7 +541,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -1442,7 +1442,7 @@
         ],
         "dominant_countries": [
           "Germany",
-          "UK",
+          "United Kingdom",
           "Denmark"
         ]
       },
@@ -1581,7 +1581,7 @@
         "dominant_countries": [
           "Denmark",
           "Germany",
-          "UK"
+          "United Kingdom"
         ]
       },
       {
@@ -1989,7 +1989,7 @@
         "dominant_countries": [
           "Denmark",
           "Germany",
-          "UK"
+          "United Kingdom"
         ]
       },
       {
@@ -15090,7 +15090,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -15438,7 +15438,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -15522,7 +15522,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       }
     ],
@@ -15730,7 +15730,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -15814,7 +15814,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -15842,7 +15842,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -16030,7 +16030,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -16058,7 +16058,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -16298,7 +16298,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -16447,7 +16447,7 @@
         ],
         "dominant_countries": [
           "KOR",
-          "USA"
+          "United States"
         ]
       },
       {
@@ -16818,7 +16818,7 @@
         ],
         "dominant_countries": [
           "KOR",
-          "USA"
+          "United States"
         ]
       },
       {
@@ -16934,7 +16934,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -16962,7 +16962,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -17653,7 +17653,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -17964,7 +17964,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -22295,7 +22295,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -22513,7 +22513,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -24479,7 +24479,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       }
     ],
@@ -24595,7 +24595,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -24680,7 +24680,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -25044,7 +25044,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -25217,7 +25217,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -29066,7 +29066,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
+          "United States",
           "other G-7 countries (except Japan)"
         ]
       }
@@ -29175,7 +29175,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
+          "United States",
           "other G-7 countries (except Japan)"
         ]
       }
@@ -29900,7 +29900,7 @@
           ]
         ],
         "dominant_countries": [
-          "BRA"
+          "Brazil"
         ]
       },
       {
@@ -30238,7 +30238,7 @@
           ]
         ],
         "dominant_countries": [
-          "BRA"
+          "Brazil"
         ]
       },
       {
@@ -32472,8 +32472,7 @@
         ],
         "dominant_countries": [
           "United States",
-          "Canada",
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -32601,7 +32600,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -32979,8 +32978,7 @@
         ],
         "dominant_countries": [
           "United States",
-          "Canada",
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -33108,7 +33106,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       }
     ]
@@ -33327,7 +33325,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -33461,8 +33459,8 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
-          "UK",
+          "United States",
+          "United Kingdom",
           "Japan"
         ]
       },
@@ -33517,7 +33515,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -33965,7 +33963,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -34099,8 +34097,8 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
-          "UK",
+          "United States",
+          "United Kingdom",
           "Japan"
         ]
       },
@@ -34155,7 +34153,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -34213,7 +34211,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       }
     ],
@@ -34621,7 +34619,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       }
     ]
@@ -40928,7 +40926,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -40956,7 +40954,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       }
     ],
@@ -41098,7 +41096,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -41126,7 +41124,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -41550,7 +41548,7 @@
         "dominant_countries": [
           "United States",
           "China",
-          "IND"
+          "India"
         ]
       },
       {
@@ -41618,9 +41616,9 @@
           ]
         ],
         "dominant_countries": [
-          "IND",
-          "BRA",
-          "ZAF"
+          "India",
+          "Brazil",
+          "South Africa"
         ]
       },
       {
@@ -41720,7 +41718,7 @@
         "dominant_countries": [
           "United States",
           "China",
-          "IND"
+          "India"
         ]
       },
       {
@@ -41809,7 +41807,7 @@
         ],
         "dominant_countries": [
           "JPN",
-          "USA"
+          "United States"
         ]
       },
       {
@@ -42348,7 +42346,7 @@
         ],
         "dominant_countries": [
           "JPN",
-          "USA"
+          "United States"
         ]
       },
       {
@@ -42784,7 +42782,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -43022,7 +43020,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -43352,7 +43350,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -43450,7 +43448,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -43780,7 +43778,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -43924,7 +43922,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -44084,7 +44082,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -44232,8 +44230,7 @@
           ]
         ],
         "dominant_countries": [
-          "Canada",
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -44339,7 +44336,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -44621,8 +44618,7 @@
           ]
         ],
         "dominant_countries": [
-          "Canada",
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -44784,7 +44780,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -46011,7 +46007,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -46513,7 +46509,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -49849,7 +49845,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -50229,7 +50225,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -50995,7 +50991,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -51278,7 +51274,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -52791,7 +52787,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -53039,7 +53035,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -53377,7 +53373,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -53561,7 +53557,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -54749,7 +54745,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -55157,7 +55153,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -55403,7 +55399,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       }
     ],
@@ -55459,7 +55455,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -56995,7 +56991,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -57051,7 +57047,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -57079,7 +57075,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       }
     ],
@@ -57110,7 +57106,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -57166,7 +57162,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -57194,7 +57190,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       }
     ]
@@ -60360,7 +60356,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
+          "United States",
           "other"
         ]
       },
@@ -61199,7 +61195,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
+          "United States",
           "other"
         ]
       },
@@ -62112,7 +62108,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -62372,7 +62368,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -63442,7 +63438,7 @@
         ],
         "dominant_countries": [
           "United States",
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -63628,7 +63624,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -63690,7 +63686,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -63909,7 +63905,7 @@
         ],
         "dominant_countries": [
           "United States",
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -64181,7 +64177,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -64243,7 +64239,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -64631,7 +64627,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -64801,7 +64797,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -67328,7 +67324,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -67858,7 +67854,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -68050,7 +68046,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -68929,7 +68925,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -71080,7 +71076,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -71238,7 +71234,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -71565,7 +71561,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -71723,7 +71719,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -72671,7 +72667,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -73072,7 +73068,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -76121,7 +76117,7 @@
         ],
         "dominant_countries": [
           "China",
-          "US",
+          "United States",
           "27 European countries"
         ]
       },
@@ -76326,7 +76322,7 @@
         ],
         "dominant_countries": [
           "China",
-          "US",
+          "United States",
           "27 European countries"
         ]
       },
@@ -76580,7 +76576,7 @@
         ],
         "dominant_countries": [
           "China",
-          "US",
+          "United States",
           "27 European countries"
         ]
       },
@@ -76648,7 +76644,7 @@
         ],
         "dominant_countries": [
           "China",
-          "US",
+          "United States",
           "27 European countries"
         ]
       },
@@ -77410,8 +77406,7 @@
           ]
         ],
         "dominant_countries": [
-          "United States",
-          "USA"
+          "United States"
         ]
       },
       {
@@ -77712,8 +77707,8 @@
         ],
         "dominant_countries": [
           "United States",
-          "USA",
-          "United Kingdom"
+          "United Kingdom",
+          "Canada"
         ]
       },
       {
@@ -78016,8 +78011,8 @@
         ],
         "dominant_countries": [
           "United States",
-          "USA",
-          "United Kingdom"
+          "United Kingdom",
+          "Canada"
         ]
       },
       {
@@ -79275,7 +79270,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -81237,8 +81232,7 @@
           ]
         ],
         "dominant_countries": [
-          "China",
-          "CHN"
+          "China"
         ]
       },
       {
@@ -81322,7 +81316,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -81626,7 +81620,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -81654,7 +81648,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -81738,7 +81732,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -81794,7 +81788,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -81990,8 +81984,7 @@
           ]
         ],
         "dominant_countries": [
-          "China",
-          "CHN"
+          "China"
         ]
       },
       {
@@ -82019,7 +82012,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -82047,7 +82040,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -82131,7 +82124,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -82187,7 +82180,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -82735,9 +82728,9 @@
           ]
         ],
         "dominant_countries": [
-          "AUS",
-          "CAN",
-          "GBR"
+          "Australia",
+          "Canada",
+          "United Kingdom"
         ]
       },
       {
@@ -83116,9 +83109,9 @@
           ]
         ],
         "dominant_countries": [
-          "AUS",
-          "CAN",
-          "GBR"
+          "Australia",
+          "Canada",
+          "United Kingdom"
         ]
       },
       {
@@ -83219,8 +83212,8 @@
         ],
         "dominant_countries": [
           "United States",
-          "USA",
-          "BRA"
+          "Brazil",
+          "China"
         ]
       },
       {
@@ -83674,7 +83667,6 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
           "United States"
         ]
       },
@@ -83769,7 +83761,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -83841,9 +83833,9 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
-          "BRA",
-          "CHN"
+          "United States",
+          "Brazil",
+          "China"
         ]
       },
       {
@@ -83871,7 +83863,7 @@
           ]
         ],
         "dominant_countries": [
-          "BRA"
+          "Brazil"
         ]
       },
       {
@@ -83899,7 +83891,7 @@
           ]
         ],
         "dominant_countries": [
-          "BRA"
+          "Brazil"
         ]
       },
       {
@@ -84009,7 +84001,7 @@
           ]
         ],
         "dominant_countries": [
-          "BRA"
+          "Brazil"
         ]
       }
     ],
@@ -84120,8 +84112,8 @@
         ],
         "dominant_countries": [
           "United States",
-          "USA",
-          "BRA"
+          "Brazil",
+          "China"
         ]
       },
       {
@@ -84259,7 +84251,6 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
           "United States"
         ]
       },
@@ -84354,7 +84345,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -84418,7 +84409,7 @@
           ]
         ],
         "dominant_countries": [
-          "BRA"
+          "Brazil"
         ]
       },
       {
@@ -84446,7 +84437,7 @@
           ]
         ],
         "dominant_countries": [
-          "BRA"
+          "Brazil"
         ]
       },
       {
@@ -86622,7 +86613,7 @@
           ]
         ],
         "dominant_countries": [
-          "FRA"
+          "France"
         ]
       },
       {
@@ -86737,8 +86728,8 @@
           ]
         ],
         "dominant_countries": [
-          "DEU",
-          "FRA"
+          "Germany",
+          "France"
         ]
       }
     ],
@@ -86877,7 +86868,7 @@
           ]
         ],
         "dominant_countries": [
-          "FRA"
+          "France"
         ]
       }
     ],
@@ -87016,7 +87007,7 @@
           ]
         ],
         "dominant_countries": [
-          "FRA"
+          "France"
         ]
       },
       {
@@ -87044,7 +87035,7 @@
           ]
         ],
         "dominant_countries": [
-          "FRA"
+          "France"
         ]
       },
       {
@@ -87159,8 +87150,8 @@
           ]
         ],
         "dominant_countries": [
-          "DEU",
-          "FRA"
+          "Germany",
+          "France"
         ]
       }
     ]
@@ -88276,7 +88267,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -90668,7 +90659,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -90755,7 +90746,7 @@
         ],
         "dominant_countries": [
           "EU",
-          "US"
+          "United States"
         ]
       },
       {
@@ -90784,7 +90775,7 @@
         ],
         "dominant_countries": [
           "EU",
-          "US"
+          "United States"
         ]
       },
       {
@@ -90838,7 +90829,7 @@
           ]
         ],
         "dominant_countries": [
-          "DEU"
+          "Germany"
         ]
       },
       {
@@ -90893,7 +90884,7 @@
         ],
         "dominant_countries": [
           "EU",
-          "US"
+          "United States"
         ]
       }
     ],
@@ -90978,7 +90969,7 @@
         ],
         "dominant_countries": [
           "EU",
-          "US"
+          "United States"
         ]
       },
       {
@@ -91007,7 +90998,7 @@
         ],
         "dominant_countries": [
           "EU",
-          "US"
+          "United States"
         ]
       },
       {
@@ -91061,7 +91052,7 @@
           ]
         ],
         "dominant_countries": [
-          "DEU"
+          "Germany"
         ]
       },
       {
@@ -91116,7 +91107,7 @@
         ],
         "dominant_countries": [
           "EU",
-          "US"
+          "United States"
         ]
       },
       {
@@ -92892,7 +92883,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
+          "United States",
           "India"
         ]
       },
@@ -93088,7 +93079,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -93316,7 +93307,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
+          "United States",
           "India"
         ]
       },
@@ -93512,7 +93503,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -95754,7 +95745,7 @@
           ]
         ],
         "dominant_countries": [
-          "AUS"
+          "Australia"
         ]
       },
       {
@@ -95838,7 +95829,7 @@
           ]
         ],
         "dominant_countries": [
-          "AUS"
+          "Australia"
         ]
       },
       {
@@ -96748,7 +96739,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -96966,7 +96957,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -98604,7 +98595,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -103176,7 +103167,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -103574,7 +103565,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -104932,7 +104923,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR",
+          "United Kingdom",
           "EU"
         ]
       },
@@ -105017,7 +105008,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       }
     ],
@@ -105081,7 +105072,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR",
+          "United Kingdom",
           "EU"
         ]
       },
@@ -105166,7 +105157,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -105774,8 +105765,7 @@
           ]
         ],
         "dominant_countries": [
-          "China",
-          "CHN"
+          "China"
         ]
       },
       {
@@ -105823,7 +105813,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -105855,7 +105845,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -105951,7 +105941,6 @@
           ]
         ],
         "dominant_countries": [
-          "CHN",
           "China"
         ]
       },
@@ -106104,7 +106093,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -106160,7 +106149,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -106188,7 +106177,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -106262,8 +106251,7 @@
           ]
         ],
         "dominant_countries": [
-          "China",
-          "CHN"
+          "China"
         ]
       },
       {
@@ -106311,7 +106299,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -106383,7 +106371,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -106515,7 +106503,6 @@
           ]
         ],
         "dominant_countries": [
-          "CHN",
           "China"
         ]
       },
@@ -106732,7 +106719,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       }
     ]
@@ -106792,7 +106779,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -106904,7 +106891,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -111822,7 +111809,7 @@
           ]
         ],
         "dominant_countries": [
-          "BRA"
+          "Brazil"
         ]
       },
       {
@@ -111954,7 +111941,7 @@
           ]
         ],
         "dominant_countries": [
-          "BRA"
+          "Brazil"
         ]
       }
     ],
@@ -111992,7 +111979,7 @@
           ]
         ],
         "dominant_countries": [
-          "BRA"
+          "Brazil"
         ]
       },
       {
@@ -112124,7 +112111,7 @@
           ]
         ],
         "dominant_countries": [
-          "BRA"
+          "Brazil"
         ]
       }
     ]
@@ -112164,7 +112151,6 @@
           ]
         ],
         "dominant_countries": [
-          "CHN",
           "China"
         ]
       },
@@ -112947,7 +112933,6 @@
           ]
         ],
         "dominant_countries": [
-          "CHN",
           "China"
         ]
       },
@@ -113445,7 +113430,7 @@
           ]
         ],
         "dominant_countries": [
-          "FRA"
+          "France"
         ]
       },
       {
@@ -113529,7 +113514,7 @@
           ]
         ],
         "dominant_countries": [
-          "FRA"
+          "France"
         ]
       },
       {
@@ -113723,7 +113708,7 @@
           ]
         ],
         "dominant_countries": [
-          "FRA"
+          "France"
         ]
       },
       {
@@ -113807,7 +113792,7 @@
           ]
         ],
         "dominant_countries": [
-          "FRA"
+          "France"
         ]
       },
       {
@@ -118589,7 +118574,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -122205,7 +122190,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -122729,7 +122714,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -123538,7 +123523,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -124239,7 +124224,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -124777,7 +124762,7 @@
         "dominant_countries": [
           "Europe",
           "Japan",
-          "USA"
+          "United States"
         ]
       },
       {
@@ -124954,7 +124939,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -125324,7 +125309,7 @@
         "dominant_countries": [
           "Europe",
           "Japan",
-          "USA"
+          "United States"
         ]
       },
       {
@@ -127056,7 +127041,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -129202,7 +129187,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -131990,7 +131975,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -132098,7 +132083,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -132126,7 +132111,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -132154,7 +132139,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -132742,7 +132727,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -132850,7 +132835,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       }
     ]
@@ -134825,8 +134810,8 @@
           ]
         ],
         "dominant_countries": [
-          "CHN",
-          "USA"
+          "China",
+          "United States"
         ]
       },
       {
@@ -135257,8 +135242,8 @@
           ]
         ],
         "dominant_countries": [
-          "CHN",
-          "USA"
+          "China",
+          "United States"
         ]
       },
       {
@@ -136070,7 +136055,7 @@
         ],
         "dominant_countries": [
           "EUR",
-          "GBR",
+          "United Kingdom",
           "JPN"
         ]
       },
@@ -136178,7 +136163,7 @@
         ],
         "dominant_countries": [
           "EUR",
-          "GBR",
+          "United Kingdom",
           "JPN"
         ]
       },
@@ -136524,7 +136509,7 @@
         ],
         "dominant_countries": [
           "EUR",
-          "GBR",
+          "United Kingdom",
           "JPN"
         ]
       },
@@ -136632,7 +136617,7 @@
         ],
         "dominant_countries": [
           "EUR",
-          "GBR",
+          "United Kingdom",
           "JPN"
         ]
       },
@@ -136906,7 +136891,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -139419,7 +139404,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -140033,7 +140018,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -142383,7 +142368,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -142493,7 +142478,7 @@
           ]
         ],
         "dominant_countries": [
-          "ESP"
+          "Spain"
         ]
       },
       {
@@ -142633,7 +142618,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -142901,7 +142886,7 @@
           ]
         ],
         "dominant_countries": [
-          "ESP"
+          "Spain"
         ]
       },
       {
@@ -143123,7 +143108,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -144724,8 +144709,8 @@
         ],
         "dominant_countries": [
           "BEL",
-          "FRA",
-          "DEU"
+          "France",
+          "Germany"
         ]
       },
       {
@@ -144892,8 +144877,8 @@
         ],
         "dominant_countries": [
           "BEL",
-          "FRA",
-          "DEU"
+          "France",
+          "Germany"
         ]
       },
       {
@@ -145083,9 +145068,9 @@
           ]
         ],
         "dominant_countries": [
-          "DEU",
-          "ITA",
-          "FRA"
+          "Germany",
+          "Italy",
+          "France"
         ]
       }
     ],
@@ -145115,7 +145100,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       }
     ],
@@ -145145,7 +145130,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -145201,9 +145186,9 @@
           ]
         ],
         "dominant_countries": [
-          "DEU",
-          "ITA",
-          "FRA"
+          "Germany",
+          "Italy",
+          "France"
         ]
       }
     ]
@@ -145263,7 +145248,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -145291,7 +145276,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -145759,7 +145744,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -145787,7 +145772,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -146019,7 +146004,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       }
     ],
@@ -146464,7 +146449,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       }
     ]
@@ -146758,7 +146743,7 @@
         "dominant_countries": [
           "European economies",
           "India",
-          "CHN"
+          "China"
         ]
       },
       {
@@ -146896,7 +146881,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -147184,7 +147169,7 @@
         "dominant_countries": [
           "Ghana",
           "African OPEC countries",
-          "CHN"
+          "China"
         ]
       },
       {
@@ -147652,7 +147637,7 @@
         "dominant_countries": [
           "Ghana",
           "African OPEC countries",
-          "CHN"
+          "China"
         ]
       },
       {
@@ -147736,7 +147721,7 @@
         "dominant_countries": [
           "European economies",
           "India",
-          "CHN"
+          "China"
         ]
       },
       {
@@ -148295,7 +148280,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
+          "United States",
           "Canada"
         ]
       },
@@ -148883,7 +148868,7 @@
           ]
         ],
         "dominant_countries": [
-          "GBR"
+          "United Kingdom"
         ]
       },
       {
@@ -149298,7 +149283,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
+          "United States",
           "Canada"
         ]
       },
@@ -151913,7 +151898,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -151941,7 +151926,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       }
     ],
@@ -152065,7 +152050,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -152507,7 +152492,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -154390,7 +154375,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -155432,7 +155417,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -156666,7 +156651,7 @@
           ]
         ],
         "dominant_countries": [
-          "IND"
+          "India"
         ]
       },
       {
@@ -158938,7 +158923,7 @@
           ]
         ],
         "dominant_countries": [
-          "US"
+          "United States"
         ]
       },
       {
@@ -159074,7 +159059,7 @@
           ]
         ],
         "dominant_countries": [
-          "US"
+          "United States"
         ]
       },
       {
@@ -161891,8 +161876,8 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
-          "CHN"
+          "United States",
+          "China"
         ]
       }
     ],
@@ -162026,8 +162011,8 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
-          "CHN"
+          "United States",
+          "China"
         ]
       },
       {
@@ -162966,7 +162951,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -163419,7 +163404,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -164069,7 +164054,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -164383,7 +164368,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -166895,7 +166880,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -169368,7 +169353,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -169422,7 +169407,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -169863,7 +169848,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -169917,7 +169902,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       }
     ]
@@ -170706,7 +170691,7 @@
           ]
         ],
         "dominant_countries": [
-          "AUS"
+          "Australia"
         ]
       },
       {
@@ -170920,8 +170905,8 @@
         ],
         "dominant_countries": [
           "KOR",
-          "CAN",
-          "GBR"
+          "Canada",
+          "United Kingdom"
         ]
       },
       {
@@ -170953,8 +170938,8 @@
           ]
         ],
         "dominant_countries": [
-          "GBR",
-          "USA"
+          "United Kingdom",
+          "United States"
         ]
       },
       {
@@ -171358,7 +171343,7 @@
           ]
         ],
         "dominant_countries": [
-          "AUS"
+          "Australia"
         ]
       },
       {
@@ -171854,7 +171839,7 @@
           ]
         ],
         "dominant_countries": [
-          "USA"
+          "United States"
         ]
       },
       {
@@ -173646,9 +173631,9 @@
           ]
         ],
         "dominant_countries": [
-          "AUS",
-          "DEU",
-          "GBR"
+          "Australia",
+          "Germany",
+          "United Kingdom"
         ]
       },
       {
@@ -173702,9 +173687,9 @@
           ]
         ],
         "dominant_countries": [
-          "AUS",
-          "DEU",
-          "GBR"
+          "Australia",
+          "Germany",
+          "United Kingdom"
         ]
       },
       {
@@ -173732,9 +173717,9 @@
           ]
         ],
         "dominant_countries": [
-          "AUS",
-          "DEU",
-          "GBR"
+          "Australia",
+          "Germany",
+          "United Kingdom"
         ]
       }
     ],
@@ -173794,9 +173779,9 @@
           ]
         ],
         "dominant_countries": [
-          "AUS",
-          "DEU",
-          "GBR"
+          "Australia",
+          "Germany",
+          "United Kingdom"
         ]
       },
       {
@@ -173850,9 +173835,9 @@
           ]
         ],
         "dominant_countries": [
-          "AUS",
-          "DEU",
-          "GBR"
+          "Australia",
+          "Germany",
+          "United Kingdom"
         ]
       },
       {
@@ -173880,9 +173865,9 @@
           ]
         ],
         "dominant_countries": [
-          "AUS",
-          "DEU",
-          "GBR"
+          "Australia",
+          "Germany",
+          "United Kingdom"
         ]
       },
       {
@@ -173940,8 +173925,8 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
-          "CAN"
+          "United States",
+          "Canada"
         ]
       },
       {
@@ -174025,7 +174010,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -174081,8 +174066,8 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
-          "CAN"
+          "United States",
+          "Canada"
         ]
       },
       {
@@ -174110,7 +174095,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -174225,7 +174210,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -174281,8 +174266,8 @@
           ]
         ],
         "dominant_countries": [
-          "CAN",
-          "USA"
+          "Canada",
+          "United States"
         ]
       },
       {
@@ -174310,7 +174295,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -174396,7 +174381,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -174452,8 +174437,8 @@
           ]
         ],
         "dominant_countries": [
-          "CAN",
-          "USA"
+          "Canada",
+          "United States"
         ]
       },
       {
@@ -174481,7 +174466,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -174537,8 +174522,8 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
-          "CAN"
+          "United States",
+          "Canada"
         ]
       },
       {
@@ -174622,7 +174607,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -174678,8 +174663,8 @@
           ]
         ],
         "dominant_countries": [
-          "USA",
-          "CAN"
+          "United States",
+          "Canada"
         ]
       },
       {
@@ -174707,7 +174692,7 @@
           ]
         ],
         "dominant_countries": [
-          "CAN"
+          "Canada"
         ]
       },
       {
@@ -175718,7 +175703,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -175746,7 +175731,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -175838,7 +175823,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -176009,7 +175994,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -176065,7 +176050,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -176123,7 +176108,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -176151,7 +176136,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -176271,7 +176256,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -176327,7 +176312,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -176383,7 +176368,7 @@
           ]
         ],
         "dominant_countries": [
-          "CHN"
+          "China"
         ]
       },
       {
@@ -176554,8 +176539,8 @@
           ]
         ],
         "dominant_countries": [
-          "CHN",
-          "IND"
+          "China",
+          "India"
         ]
       }
     ],
@@ -176611,8 +176596,8 @@
           ]
         ],
         "dominant_countries": [
-          "CHN",
-          "IND"
+          "China",
+          "India"
         ]
       },
       {

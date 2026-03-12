@@ -1175,6 +1175,11 @@ h3 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.editorial-group-stack {
+  display: grid;
+  gap: 1.4rem;
+}
+
 .opportunity-cards.compact {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -1197,12 +1202,20 @@ h3 {
     var(--surface);
 }
 
+.curated-opportunity-card-compact {
+  min-height: 100%;
+}
+
 .curated-opportunity-card-lead {
   padding: 1.3rem 1.35rem;
 }
 
 .curated-opportunity-card-lead h3 {
   font-size: 1.42rem;
+}
+
+.curated-opportunity-card-compact h3 {
+  font-size: 1.08rem;
 }
 
 .opportunity-card h3 {
