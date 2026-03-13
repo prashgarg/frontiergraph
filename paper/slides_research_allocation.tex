@@ -314,26 +314,64 @@ The scientific claim is predictive utility plus transparent decomposition, not a
 \end{frame}
 
 \begin{frame}[label=main-artifact]{FrontierGraph as research artifact}
-\begin{columns}[T]
-\column{0.60\linewidth}
-\resizebox{\linewidth}{!}{
-\begin{tikzpicture}[x=1cm,y=1cm]
-  \node[draw=DeckLine, rounded corners=6pt, fill=DeckSand, minimum width=4.8cm, minimum height=1.35cm, align=center] (core) at (2.4,3.1) {\textbf{Scientific core}\\claim-graph ranking + prospective evaluation};
-  \node[draw=DeckLine, rounded corners=6pt, fill=DeckSoft, minimum width=4.2cm, minimum height=1.15cm, align=center] (site) at (1.7,1.2) {\textbf{Public site}\\research questions for browsing};
-  \node[draw=DeckLine, rounded corners=6pt, fill=DeckSoft, minimum width=4.2cm, minimum height=1.15cm, align=center] (app) at (5.0,1.2) {\textbf{Workbench}\\deeper evidence and inspection};
-  \draw[-{Latex[length=2.2mm]}, thick, color=DeckBlue] (core.south west) -- (site.north);
-  \draw[-{Latex[length=2.2mm]}, thick, color=DeckTeal] (core.south east) -- (app.north);
-\end{tikzpicture}
-}
+{\color{DeckMuted}\small The interface layer matters because it makes the research-allocation object inspectable, but it is downstream of the scientific core.}
 
-\column{0.35\linewidth}
+\vspace{0.45em}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node[
+    draw=DeckLine,
+    rounded corners=8pt,
+    fill=DeckSand,
+    minimum width=10.8cm,
+    minimum height=4.0cm
+  ] (panel) at (0,0) {};
+
+  \node[
+    draw=DeckLine,
+    rounded corners=7pt,
+    fill=white,
+    minimum width=5.8cm,
+    minimum height=1.20cm,
+    align=center
+  ] (core) at (0,1.10) {\textbf{Scientific core}\\claim-graph ranking + prospective evaluation};
+
+  \node[
+    draw=DeckLine,
+    rounded corners=7pt,
+    fill=DeckSoft,
+    minimum width=3.4cm,
+    minimum height=1.05cm,
+    align=center
+  ] (site) at (-2.7,-1.0) {\textbf{Public site}\\research questions};
+
+  \node[
+    draw=DeckLine,
+    rounded corners=7pt,
+    fill=DeckMint,
+    minimum width=3.7cm,
+    minimum height=1.05cm,
+    align=center
+  ] (app) at (2.7,-1.0) {\textbf{Workbench}\\deeper evidence};
+
+  \draw[-{Latex[length=2.6mm]}, thick, color=DeckBlue] (core.south west) .. controls (-2.0,0.20) and (-2.9,-0.20) .. (site.north);
+  \draw[-{Latex[length=2.6mm]}, thick, color=DeckTeal] (core.south east) .. controls (2.0,0.20) and (2.9,-0.20) .. (app.north);
+
+  \node[align=center, text=DeckMuted, font=\small] at (0,0.10) {One scientific core, two downstream interfaces};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.30em}
+\begin{center}
+\fcolorbox{DeckLine}{DeckSand}{\parbox{0.92\linewidth}{\centering
 \small
-\begin{itemize}
-  \item The site and workbench are downstream artifacts.
-  \item They make the research-allocation object inspectable.
-  \item They are not the paper's core validation evidence.
-\end{itemize}
-\end{columns}
+\textcolor{DeckBlue}{\bfseries Downstream artifacts}
+\hspace{0.7em}\textbar\hspace{0.7em}
+\textcolor{DeckTeal}{\bfseries Inspectable outputs}
+\hspace{0.7em}\textbar\hspace{0.7em}
+\textcolor{DeckWarn}{\bfseries Not the proof}
+}}
+\end{center}
 \end{frame}
 
 \begin{frame}[label=main-next]{Takeaways and next paper agenda}
