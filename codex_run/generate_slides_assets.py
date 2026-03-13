@@ -6,7 +6,7 @@ from typing import Dict, List
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from matplotlib.patches import Circle
+from matplotlib.patches import Circle, FancyBboxPatch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -187,13 +187,41 @@ def build_external_dataset_table() -> None:
     pd.DataFrame(rows).to_csv(OUT_TABLES / "external_dataset_options.csv", index=False)
 
 
-def _draw_node(ax, xy, label, color="#f8fafc", edge="#1f2937"):
-    circ = Circle(xy, 0.08, facecolor=color, edgecolor=edge, linewidth=1.5)
+def _draw_node(
+    ax,
+    xy,
+    label,
+    color="#f8fafc",
+    edge="#1f2937",
+    radius=0.08,
+    fontsize=11,
+    textcolor="#111827",
+):
+    circ = Circle(xy, radius, facecolor=color, edgecolor=edge, linewidth=1.5)
     ax.add_patch(circ)
-    ax.text(xy[0], xy[1], label, ha="center", va="center", fontsize=11, fontweight="bold")
+    ax.text(
+        xy[0],
+        xy[1],
+        label,
+        ha="center",
+        va="center",
+        fontsize=fontsize,
+        fontweight="bold",
+        color=textcolor,
+    )
 
 
-def _draw_arrow(ax, src, dst, text=None, color="#1f2937", style="-|>", lw=1.5, ls="-"):
+def _draw_arrow(
+    ax,
+    src,
+    dst,
+    text=None,
+    color="#1f2937",
+    style="-|>",
+    lw=1.5,
+    ls="-",
+    text_fs=9,
+):
     ax.annotate(
         "",
         xy=dst,
@@ -203,70 +231,145 @@ def _draw_arrow(ax, src, dst, text=None, color="#1f2937", style="-|>", lw=1.5, l
     if text:
         mx = (src[0] + dst[0]) / 2
         my = (src[1] + dst[1]) / 2
-        ax.text(mx, my + 0.05, text, ha="center", va="center", fontsize=9, color=color)
+        ax.text(mx, my + 0.05, text, ha="center", va="center", fontsize=text_fs, color=color)
 
 
 def build_method_figures() -> None:
     OUT_FIGURES.mkdir(parents=True, exist_ok=True)
+    panel_edge = "#d7dfeb"
+    ink = "#172033"
 
     # Step 1: candidate generation
-    fig, ax = plt.subplots(figsize=(8.8, 3.8))
+    fig, ax = plt.subplots(figsize=(11.0, 4.8))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
-    pos = {"u": (0.20, 0.50), "w": (0.50, 0.50), "v": (0.80, 0.50)}
-    _draw_node(ax, pos["u"], "u")
-    _draw_node(ax, pos["w"], "w")
-    _draw_node(ax, pos["v"], "v")
-    _draw_arrow(ax, pos["u"], pos["w"], text="observed")
-    _draw_arrow(ax, pos["w"], pos["v"], text="observed")
-    _draw_arrow(ax, (0.24, 0.43), (0.76, 0.43), text="missing candidate u->v", color="#c2410c", ls="--")
+
+    ax.add_patch(
+        FancyBboxPatch(
+            (0.05, 0.26),
+            0.90,
+            0.52,
+            boxstyle="round,pad=0.018,rounding_size=0.03",
+            linewidth=1.0,
+            edgecolor=panel_edge,
+            facecolor="#ffffff",
+        )
+    )
+
+    ax.add_patch(
+        FancyBboxPatch(
+            (0.08, 0.34),
+            0.18,
+            0.36,
+            boxstyle="round,pad=0.02,rounding_size=0.03",
+            linewidth=1.0,
+            edgecolor=panel_edge,
+            facecolor="#eef4ff",
+        )
+    )
+    ax.text(0.17, 0.60, "Corpus stock", ha="center", fontsize=14, fontweight="bold", color=ink)
+    ax.text(0.17, 0.49, "Observed papers\nby year $t-1$", ha="center", fontsize=12, color="#475569")
+    ax.text(0.17, 0.38, "Freeze one vintage", ha="center", fontsize=11, color="#1d4ed8")
+
+    ax.annotate("", xy=(0.34, 0.52), xytext=(0.28, 0.52), arrowprops=dict(arrowstyle="-|>", color="#1d4ed8", lw=2.2))
+
+    pos = {"u": (0.41, 0.52), "w": (0.55, 0.52), "v": (0.69, 0.52)}
+    _draw_node(ax, pos["u"], "u", color="#dbeafe", edge="#2563eb", radius=0.050, fontsize=13)
+    _draw_node(ax, pos["w"], "w", color="#ede9fe", edge="#7c3aed", radius=0.050, fontsize=13)
+    _draw_node(ax, pos["v"], "v", color="#dcfce7", edge="#0f766e", radius=0.050, fontsize=13)
+    _draw_arrow(ax, (0.46, 0.56), (0.50, 0.56), text="observed", color="#475569", lw=1.8, text_fs=10)
+    _draw_arrow(ax, (0.60, 0.56), (0.64, 0.56), text="observed", color="#475569", lw=1.8, text_fs=10)
+    _draw_arrow(
+        ax,
+        (0.46, 0.46),
+        (0.64, 0.46),
+        text="missing direct link",
+        color="#c2410c",
+        lw=2.0,
+        ls="--",
+        text_fs=10,
+    )
+    ax.text(0.55, 0.67, "Local literature structure", ha="center", fontsize=13, fontweight="bold", color=ink)
+    ax.text(0.55, 0.35, "Observed paths imply a missing candidate question", ha="center", fontsize=11, color="#475569")
+
+    ax.annotate("", xy=(0.82, 0.52), xytext=(0.75, 0.52), arrowprops=dict(arrowstyle="-|>", color="#0f766e", lw=2.2))
+    ax.add_patch(
+        FancyBboxPatch(
+            (0.83, 0.34),
+            0.09,
+            0.36,
+            boxstyle="round,pad=0.02,rounding_size=0.03",
+            linewidth=1.0,
+            edgecolor=panel_edge,
+            facecolor="#ecfdf5",
+        )
+    )
+    ax.text(0.875, 0.60, "Candidate", ha="center", fontsize=14, fontweight="bold", color=ink)
+    ax.text(0.875, 0.49, "$u \\rightarrow v$", ha="center", fontsize=15, fontweight="bold", color="#0f766e")
+    ax.text(0.875, 0.38, "Potential next paper", ha="center", fontsize=10.5, color="#475569")
+
     ax.text(
         0.50,
-        0.15,
-        "Step 1: From observed paths, enumerate absent direct links as candidates",
+        0.14,
+        "Step 1: turn missing direct links implied by observed paths into candidate research questions",
         ha="center",
-        fontsize=11,
+        fontsize=13,
         fontweight="bold",
+        color=ink,
     )
     fig.tight_layout()
     fig.savefig(OUT_FIGURES / "method_build_step1_candidates.png", dpi=300)
     plt.close(fig)
 
     # Step 2: signal family
-    fig, axes = plt.subplots(1, 3, figsize=(12.0, 3.6))
+    fig, axes = plt.subplots(1, 3, figsize=(14.2, 4.8))
     titles = ["Gap", "Path Support", "Motif + Hub Penalty"]
-    for ax, title in zip(axes, titles):
+    panel_faces = ["#fff7ed", "#eef4ff", "#f5f3ff"]
+    title_colors = ["#c2410c", "#1d4ed8", "#7c3aed"]
+    for ax, title, face, tcolor in zip(axes, titles, panel_faces, title_colors):
         ax.set_xlim(0, 1)
         ax.set_ylim(0, 1)
         ax.axis("off")
-        ax.set_title(title, fontsize=11, fontweight="bold")
+        ax.add_patch(
+            FancyBboxPatch(
+                (0.03, 0.05),
+                0.94,
+                0.88,
+                boxstyle="round,pad=0.02,rounding_size=0.03",
+                linewidth=1.0,
+                edgecolor=panel_edge,
+                facecolor=face,
+            )
+        )
+        ax.text(0.5, 0.87, title, ha="center", va="center", fontsize=14, fontweight="bold", color=tcolor)
 
     # Gap panel
-    axes[0].text(0.5, 0.72, "u and v rarely co-appear\nin prior papers", ha="center", fontsize=10)
-    _draw_node(axes[0], (0.28, 0.35), "u")
-    _draw_node(axes[0], (0.72, 0.35), "v")
-    axes[0].text(0.5, 0.12, "higher underexploration bonus", ha="center", fontsize=9, color="#c2410c")
+    axes[0].text(0.5, 0.68, "u and v rarely co-appear\nin prior papers", ha="center", fontsize=12, color=ink)
+    _draw_node(axes[0], (0.30, 0.40), "u", color="#ffedd5", edge="#c2410c", radius=0.075, fontsize=13)
+    _draw_node(axes[0], (0.70, 0.40), "v", color="#ffedd5", edge="#c2410c", radius=0.075, fontsize=13)
+    _draw_arrow(axes[0], (0.38, 0.40), (0.62, 0.40), color="#c2410c", lw=2.2, ls="--")
+    axes[0].text(0.5, 0.18, "higher underexploration bonus", ha="center", fontsize=11, fontweight="bold", color="#c2410c")
 
     # Path panel
-    _draw_node(axes[1], (0.18, 0.35), "u")
-    _draw_node(axes[1], (0.50, 0.65), "w1")
-    _draw_node(axes[1], (0.50, 0.20), "w2")
-    _draw_node(axes[1], (0.82, 0.35), "v")
-    _draw_arrow(axes[1], (0.24, 0.39), (0.44, 0.59))
-    _draw_arrow(axes[1], (0.24, 0.31), (0.44, 0.25))
-    _draw_arrow(axes[1], (0.56, 0.59), (0.76, 0.39))
-    _draw_arrow(axes[1], (0.56, 0.25), (0.76, 0.31))
-    axes[1].text(0.5, 0.08, "more independent mediators -> stronger support", ha="center", fontsize=9, color="#0369a1")
+    _draw_node(axes[1], (0.18, 0.42), "u", color="#dbeafe", edge="#1d4ed8", radius=0.070, fontsize=13)
+    _draw_node(axes[1], (0.50, 0.66), "w1", color="#dbeafe", edge="#1d4ed8", radius=0.065, fontsize=12)
+    _draw_node(axes[1], (0.50, 0.28), "w2", color="#dbeafe", edge="#1d4ed8", radius=0.065, fontsize=12)
+    _draw_node(axes[1], (0.82, 0.42), "v", color="#dbeafe", edge="#1d4ed8", radius=0.070, fontsize=13)
+    _draw_arrow(axes[1], (0.24, 0.46), (0.43, 0.61), color="#1d4ed8", lw=2.0)
+    _draw_arrow(axes[1], (0.24, 0.38), (0.43, 0.31), color="#1d4ed8", lw=2.0)
+    _draw_arrow(axes[1], (0.57, 0.61), (0.76, 0.46), color="#1d4ed8", lw=2.0)
+    _draw_arrow(axes[1], (0.57, 0.31), (0.76, 0.38), color="#1d4ed8", lw=2.0)
+    axes[1].text(0.5, 0.16, "more independent mediators -> stronger support", ha="center", fontsize=11, fontweight="bold", color="#1d4ed8")
 
     # Motif panel
-    _draw_node(axes[2], (0.20, 0.50), "u")
-    _draw_node(axes[2], (0.50, 0.75), "w")
-    _draw_node(axes[2], (0.80, 0.50), "v")
-    _draw_arrow(axes[2], (0.26, 0.56), (0.44, 0.69))
-    _draw_arrow(axes[2], (0.56, 0.69), (0.74, 0.56))
-    _draw_arrow(axes[2], (0.26, 0.44), (0.74, 0.44), color="#c2410c", ls="--")
-    axes[2].text(0.5, 0.12, "open triad suggests closure;\nhub terms prevent popularity artifacts", ha="center", fontsize=8.8, color="#475569")
+    _draw_node(axes[2], (0.24, 0.50), "u", color="#ede9fe", edge="#7c3aed", radius=0.070, fontsize=13)
+    _draw_node(axes[2], (0.50, 0.72), "w", color="#ede9fe", edge="#7c3aed", radius=0.070, fontsize=13)
+    _draw_node(axes[2], (0.76, 0.50), "v", color="#ede9fe", edge="#7c3aed", radius=0.070, fontsize=13)
+    _draw_arrow(axes[2], (0.30, 0.56), (0.44, 0.66), color="#7c3aed", lw=2.0)
+    _draw_arrow(axes[2], (0.56, 0.66), (0.70, 0.56), color="#7c3aed", lw=2.0)
+    _draw_arrow(axes[2], (0.31, 0.44), (0.69, 0.44), color="#c2410c", lw=2.0, ls="--")
+    axes[2].text(0.5, 0.16, "closure is useful; hub-heavy artifacts are discounted", ha="center", fontsize=10.5, fontweight="bold", color="#7c3aed")
 
     fig.tight_layout()
     fig.savefig(OUT_FIGURES / "method_build_step2_signals.png", dpi=300)
@@ -336,21 +439,25 @@ def build_method_figures() -> None:
     plt.close(fig)
 
     # Corpus stock timeline
-    fig, ax = plt.subplots(figsize=(9.5, 2.8))
+    fig, ax = plt.subplots(figsize=(11.5, 3.6))
     ax.set_xlim(1970, 2026)
     ax.set_ylim(0, 1)
-    ax.hlines(0.5, 1973, 2023, linewidth=8, color="#cbd5e1")
-    ax.vlines(2015, 0.35, 0.65, linewidth=3, color="#c2410c")
-    ax.text(1973, 0.72, "Data start: 1973", fontsize=10)
-    ax.text(2023, 0.72, "Data end: 2023", fontsize=10, ha="right")
-    ax.text(2015, 0.20, "Cutoff t=2015", fontsize=10, ha="center", color="#c2410c")
-    ax.annotate("", xy=(2015, 0.5), xytext=(1973, 0.5), arrowprops=dict(arrowstyle="<->", color="#1f2937", lw=1.3))
-    ax.text(1994, 0.58, "Corpus stock G_{t-1}", fontsize=10, ha="center")
-    ax.annotate("", xy=(2020, 0.5), xytext=(2015, 0.5), arrowprops=dict(arrowstyle="<->", color="#0369a1", lw=1.3))
-    ax.text(2017.5, 0.58, "Future window [t, t+h]", fontsize=10, ha="center", color="#0369a1")
+    ax.hlines(0.52, 1973, 2015, linewidth=11, color="#dbeafe")
+    ax.hlines(0.52, 2015, 2021, linewidth=11, color="#bfdbfe")
+    ax.hlines(0.52, 2021, 2023, linewidth=11, color="#e2e8f0")
+    ax.vlines(2015, 0.30, 0.74, linewidth=4, color="#c2410c")
+    ax.text(1973, 0.82, "Data start: 1973", fontsize=12, color=ink)
+    ax.text(2023, 0.82, "Data end: 2023", fontsize=12, ha="right", color=ink)
+    ax.text(2015, 0.15, "Cutoff $t$", fontsize=12, ha="center", color="#c2410c", fontweight="bold")
+    ax.annotate("", xy=(2015, 0.52), xytext=(1973, 0.52), arrowprops=dict(arrowstyle="<->", color="#1d4ed8", lw=1.6))
+    ax.text(1994, 0.63, "Corpus stock $G_{t-1}$", fontsize=12, ha="center", color="#1d4ed8", fontweight="bold")
+    ax.annotate("", xy=(2020.5, 0.52), xytext=(2015, 0.52), arrowprops=dict(arrowstyle="<->", color="#0f766e", lw=1.6))
+    ax.text(2017.8, 0.63, "Future window $[t, t+h]$", fontsize=12, ha="center", color="#0f766e", fontweight="bold")
     ax.set_yticks([])
-    ax.set_xlabel("Year")
+    ax.set_xlabel("Year", color="#475569")
     ax.spines[["top", "right", "left"]].set_visible(False)
+    ax.spines["bottom"].set_color(panel_edge)
+    ax.tick_params(axis="x", labelsize=10, colors="#475569")
     fig.tight_layout()
     fig.savefig(OUT_FIGURES / "corpus_stock_timeline.png", dpi=300)
     plt.close(fig)

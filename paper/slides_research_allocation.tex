@@ -23,6 +23,11 @@
 \definecolor{DeckSoft}{HTML}{EEF4FF}
 \definecolor{DeckSand}{HTML}{F6F8FC}
 \definecolor{DeckWarn}{HTML}{B45309}
+\definecolor{DeckGold}{HTML}{C77D00}
+\definecolor{DeckRose}{HTML}{B9386C}
+\definecolor{DeckMint}{HTML}{E8F7F2}
+\definecolor{DeckPeach}{HTML}{FFF3E8}
+\definecolor{DeckLilac}{HTML}{F2EDFF}
 
 \setbeamercolor{background canvas}{bg=DeckBg}
 \setbeamercolor{normal text}{fg=DeckInk,bg=DeckBg}
@@ -56,6 +61,20 @@
 
 \newcommand{\detailsbutton}[1]{\hyperlink{#1}{\beamerbutton{Details}}}
 \newcommand{\appendixnav}[1]{\hfill\hyperlink{#1}{\beamerbutton{Back to main}}\hspace{0.4em}\hyperlink{appendix-index}{\beamerbutton{Appendix index}}}
+\newcommand{\accentcard}[5]{%
+  \begin{tikzpicture}
+    \node[draw=DeckLine, fill=#1, rounded corners=7pt, inner sep=9pt, text width=#2, align=left] {
+      {\color{#3}\bfseries #4}\par\vspace{0.22em}\footnotesize #5
+    };
+  \end{tikzpicture}
+}
+\newcommand{\stepnote}[5]{%
+  \begin{tikzpicture}
+    \node[draw=DeckLine, fill=#1, rounded corners=7pt, inner sep=8pt, text width=#2, align=left] {
+      {\color{#3}\bfseries #4}\par\vspace{0.18em}\footnotesize #5
+    };
+  \end{tikzpicture}
+}
 
 \title{What Should Economics Work On Next?}
 \subtitle{A transparent research-allocation tool from claim graphs with prospective evaluation}
@@ -121,61 +140,74 @@ Use literature structure up to year \(t-1\) to rank missing links that look like
 \end{frame}
 
 \begin{frame}[label=main-candidates]{From corpus stock to candidate questions}
-\begin{columns}[T]
-\column{0.58\linewidth}
-\includegraphics[width=\linewidth]{method_build_step1_candidates.png}
+\begin{center}
+\includegraphics[width=0.90\linewidth]{method_build_step1_candidates.png}
+\end{center}
 
-\column{0.38\linewidth}
+\vspace{0.20em}
+\begin{center}
+\fcolorbox{DeckLine}{DeckSand}{\parbox{0.88\linewidth}{\centering
 \small
-\begin{itemize}
-  \item Freeze the literature at year \(t-1\).
-  \item Look for absent links implied by local structure.
-  \item Treat each missing directed link as a candidate next paper.
-\end{itemize}
+\textcolor{DeckBlue}{\bfseries Freeze a vintage}
+\hspace{0.5em}$\rightarrow$\hspace{0.5em}
+\textcolor{DeckRose}{\bfseries Read the local gap}
+\hspace{0.5em}$\rightarrow$\hspace{0.5em}
+\textcolor{DeckTeal}{\bfseries Create a candidate next paper}
+}}
+\end{center}
 
-\vspace{0.7em}
+\vspace{0.12em}
+\begin{flushright}
 \detailsbutton{app-candidate}
-\end{columns}
+\end{flushright}
 \end{frame}
 
 \begin{frame}[label=main-score]{How the score works}
-\begin{columns}[T]
-\column{0.58\linewidth}
-\includegraphics[width=\linewidth]{method_build_step2_signals.png}
+\begin{center}
+\includegraphics[width=0.90\linewidth]{method_build_step2_signals.png}
+\end{center}
 
-\column{0.38\linewidth}
+\vspace{0.18em}
+\begin{center}
+\fcolorbox{DeckLine}{DeckSand}{\parbox{0.90\linewidth}{\centering
 \small
-\begin{itemize}
-  \item \textbf{Path support}: does nearby work already point toward this link?
-  \item \textbf{Gap bonus}: is the pair still underexplored directly?
-  \item \textbf{Motif / hub terms}: reward plausible closure, discount pure popularity artifacts.
-\end{itemize}
+\textcolor{DeckWarn}{\bfseries Gap = openness}
+\hspace{0.7em}\textbar\hspace{0.7em}
+\textcolor{DeckBlue}{\bfseries Path support = plausibility}
+\hspace{0.7em}\textbar\hspace{0.7em}
+\textcolor{DeckRose}{\bfseries Hub discipline = not just popularity}
+}}
+\end{center}
 
-\vspace{0.6em}
-Mainline idea: combine novelty, plausibility, and anti-hub discipline in one transparent score.
-
-\vspace{0.7em}
+\vspace{0.3em}
+\begin{flushright}
 \detailsbutton{app-score}
-\end{columns}
+\end{flushright}
 \end{frame}
 
 \begin{frame}[label=main-test]{How we test it prospectively}
-\begin{columns}[T]
-\column{0.55\linewidth}
-\includegraphics[width=\linewidth]{corpus_stock_timeline.png}
+\begin{center}
+\includegraphics[width=0.90\linewidth]{corpus_stock_timeline.png}
+\end{center}
 
-\column{0.41\linewidth}
+\vspace{0.18em}
+\begin{center}
+\fcolorbox{DeckLine}{DeckSand}{\parbox{0.92\linewidth}{\centering
 \small
-\begin{itemize}
-  \item Build \(G_{t-1}\) from papers observed by year \(t-1\).
-  \item Rank missing links using only information available then.
-  \item Check first appearance in \([t, t+h]\), with \(h \in \{1,3,5\}\).
-  \item Compare against preferential attachment and audit leakage.
-\end{itemize}
+\textcolor{DeckBlue}{\bfseries 1. Build \(G_{t-1}\)}
+\hspace{0.55em}$\rightarrow$\hspace{0.55em}
+\textcolor{DeckRose}{\bfseries 2. Rank links}
+\hspace{0.55em}$\rightarrow$\hspace{0.55em}
+\textcolor{DeckTeal}{\bfseries 3. Wait \(h\) years}
+\hspace{0.55em}$\rightarrow$\hspace{0.55em}
+\textcolor{DeckWarn}{\bfseries 4. Compare cleanly}
+}}
+\end{center}
 
-\vspace{0.7em}
+\vspace{0.3em}
+\begin{flushright}
 \detailsbutton{app-eval}
-\end{columns}
+\end{flushright}
 \end{frame}
 
 \begin{frame}[label=main-rolling]{Main result: honest benchmark}
@@ -186,9 +218,9 @@ Mainline idea: combine novelty, plausibility, and anti-hub discipline in one tra
 \column{0.36\linewidth}
 \small
 \begin{itemize}
-  \item Preferential attachment is stronger in the full rolling benchmark.
-  \item That mixed result is central, not a footnote.
-  \item The paper's value depends on what transparent signals still add under more decision-relevant settings.
+  \item[\color{DeckWarn}{\Large$\blacklozenge$}] Preferential attachment is stronger in the full rolling benchmark.
+  \item[\color{DeckRose}{\Large$\blacklozenge$}] That mixed result is central, not a footnote.
+  \item[\color{DeckBlue}{\Large$\blacklozenge$}] The paper's value depends on what transparent signals still add under more decision-relevant settings.
 \end{itemize}
 
 \vspace{0.4em}
@@ -210,9 +242,9 @@ Mainline idea: combine novelty, plausibility, and anti-hub discipline in one tra
 \vspace{0.3em}
 \small
 \begin{itemize}
-  \item On held-out anchors, a tuned transparent model can beat the popularity baseline.
-  \item In broader top-\(K\) slices, the main model catches up and can slightly exceed preferential attachment.
-  \item That makes the tool plausible as a screening layer even if popularity is hard to beat in the narrowest benchmark.
+  \item[\color{DeckTeal}{\Large$\blacktriangleright$}] On held-out anchors, a tuned transparent model can beat the popularity baseline.
+  \item[\color{DeckBlue}{\Large$\blacktriangleright$}] In broader top-\(K\) slices, the main model catches up and can slightly exceed preferential attachment.
+  \item[\color{DeckRose}{\Large$\blacktriangleright$}] That makes the tool plausible as a screening layer even if popularity is hard to beat in the narrowest benchmark.
 \end{itemize}
 
 \detailsbutton{app-heldout}
@@ -226,9 +258,9 @@ Mainline idea: combine novelty, plausibility, and anti-hub discipline in one tra
 \column{0.42\linewidth}
 \small
 \begin{itemize}
-  \item The transparent model mostly surfaces \textbf{gap}-type questions rather than boundary-heavy popularity closures.
-  \item That is exactly the kind of object we want if the paper is about research allocation rather than pure forecast mimicry.
-  \item Boundary questions still matter, but they need separate evaluation because they are rarer and harder.
+  \item[\color{DeckBlue}{\Large$\star$}] The transparent model mostly surfaces \textbf{gap}-type questions rather than boundary-heavy popularity closures.
+  \item[\color{DeckTeal}{\Large$\star$}] That is exactly the kind of object we want if the paper is about research allocation rather than pure forecast mimicry.
+  \item[\color{DeckWarn}{\Large$\star$}] Boundary questions still matter, but they need separate evaluation because they are rarer and harder.
 \end{itemize}
 
 \vspace{0.7em}
@@ -239,34 +271,19 @@ Mainline idea: combine novelty, plausibility, and anti-hub discipline in one tra
 \begin{frame}[label=main-examples]{Concrete examples from the current FrontierGraph layer}
 \small
 \begin{block}{Illustrative current outputs, not historical validation proof}
-These are examples of the kind of candidate next-paper questions the system surfaces today.
+Examples of the kind of candidate next-paper questions the system surfaces today.
 \end{block}
 
 \vspace{0.35em}
 \begin{columns}[T]
 \column{0.32\linewidth}
-\begin{block}{Public debt and CO\(_2\) emissions}
-\footnotesize
-Why it may matter: debt stress can reshape investment and energy policy.
-
-One place to start: austerity or refinancing episodes.
-\end{block}
+\accentcard{DeckPeach}{3.00cm}{DeckWarn}{Public debt and CO\(_2\) emissions}{Debt stress can reshape investment and energy policy.\par\vspace{0.20em}\textbf{Start:} austerity or refinancing episodes.}
 
 \column{0.32\linewidth}
-\begin{block}{Monetary policy and energy consumption}
-\footnotesize
-Why it may matter: monetary shocks move spending and production, but energy demand is rarely centered.
-
-One place to start: housing, durables, and sectoral energy use.
-\end{block}
+\accentcard{DeckSoft}{3.00cm}{DeckBlue}{Monetary policy and energy consumption}{Monetary shocks move spending and production, but energy demand is rarely centered.\par\vspace{0.20em}\textbf{Start:} housing, durables, and sectoral energy use.}
 
 \column{0.32\linewidth}
-\begin{block}{Urbanization and output growth}
-\footnotesize
-Why it may matter: urbanization is often backgrounded rather than tested as the growth question itself.
-
-One place to start: regional urban expansion or city concentration.
-\end{block}
+\accentcard{DeckMint}{3.00cm}{DeckTeal}{Urbanization and output growth}{Urbanization is often backgrounded rather than tested as the growth question itself.\par\vspace{0.20em}\textbf{Start:} regional urban expansion or city concentration.}
 \end{columns}
 \end{frame}
 
