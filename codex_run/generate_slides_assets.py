@@ -12,6 +12,7 @@ from matplotlib.patches import Circle
 ROOT = Path(__file__).resolve().parents[1]
 OUT_TABLES = ROOT / "outputs" / "paper" / "slides_tables"
 OUT_FIGURES = ROOT / "outputs" / "paper" / "figures"
+OUT_SLIDES_FIGURES = ROOT / "outputs" / "paper" / "slides_figures"
 
 
 def _harmonic(n: int) -> float:
@@ -355,11 +356,175 @@ def build_method_figures() -> None:
     plt.close(fig)
 
 
+def build_research_allocation_slide_figures() -> None:
+    OUT_SLIDES_FIGURES.mkdir(parents=True, exist_ok=True)
+
+    main = pd.read_csv(ROOT / "outputs" / "paper" / "02_eval" / "main_table_with_ci.csv")
+    ablation = pd.read_csv(ROOT / "outputs" / "paper" / "03_model_search" / "ablation_grid.csv")
+    attention = pd.read_csv(ROOT / "outputs" / "paper" / "07_attention_allocation" / "attention_summary.csv")
+    novelty = pd.read_csv(ROOT / "outputs" / "paper" / "09_gap_boundary" / "novelty_mix_by_model.csv")
+
+    model_colors = {
+        "main": "#2563eb",
+        "pref_attach": "#8b5cf6",
+        "full_optimized": "#0f766e",
+    }
+
+    # Mainline full rolling benchmark
+    full = main[
+        main["model"].isin(["main", "pref_attach"])
+        & main["metric"].isin(["recall_at_100", "mrr"])
+        & main["horizon"].isin([1, 3, 5])
+    ].copy()
+    fig, axes = plt.subplots(1, 2, figsize=(10.4, 4.1))
+    metric_meta = [
+        ("recall_at_100", "Recall@100", 1.0),
+        ("mrr", "MRR", 1.0),
+    ]
+    horizons = [1, 3, 5]
+    bar_width = 0.34
+    x = np.arange(len(horizons))
+    for ax, (metric, title, scale) in zip(axes, metric_meta):
+        for idx, model in enumerate(["main", "pref_attach"]):
+            subset = (
+                full[(full["metric"] == metric) & (full["model"] == model)]
+                .sort_values("horizon")
+                .reset_index(drop=True)
+            )
+            means = subset["mean"].to_numpy() * scale
+            lo = subset["ci_lo"].to_numpy() * scale
+            hi = subset["ci_hi"].to_numpy() * scale
+            yerr = np.vstack([means - lo, hi - means])
+            ax.bar(
+                x + (idx - 0.5) * bar_width,
+                means,
+                width=bar_width,
+                color=model_colors[model],
+                alpha=0.9,
+                label="FrontierGraph main" if model == "main" else "Preferential attachment",
+                yerr=yerr,
+                capsize=4,
+                error_kw={"elinewidth": 1.1, "ecolor": "#475569"},
+            )
+        ax.set_title(title, fontsize=12, fontweight="bold")
+        ax.set_xticks(x, [f"h={h}" for h in horizons])
+        ax.grid(axis="y", alpha=0.25, linestyle="--")
+        ax.spines[["top", "right"]].set_visible(False)
+        ax.ticklabel_format(axis="y", style="plain", useOffset=False)
+    axes[0].set_ylabel("Mean over rolling cutoffs")
+    axes[0].legend(loc="upper left", frameon=False, fontsize=9)
+    fig.suptitle("Full rolling backtest: honest benchmark", fontsize=14, fontweight="bold", y=1.02)
+    fig.tight_layout()
+    fig.savefig(OUT_SLIDES_FIGURES / "mainline_full_rolling_vs_pref.png", dpi=300, bbox_inches="tight")
+    plt.close(fig)
+
+    # Held-out tuned benchmark
+    heldout = ablation[
+        ablation["config_name"].isin(["full_optimized", "pref_attach"])
+        & ablation["horizon"].isin([1, 3, 5])
+    ].copy()
+    fig, axes = plt.subplots(1, 2, figsize=(10.2, 4.1))
+    metric_meta = [
+        ("mean_recall_at_100", "Recall@100"),
+        ("mean_mrr", "MRR"),
+    ]
+    for ax, (metric, title) in zip(axes, metric_meta):
+        for idx, model in enumerate(["full_optimized", "pref_attach"]):
+            subset = heldout[heldout["config_name"] == model].sort_values("horizon")
+            ax.bar(
+                x + (idx - 0.5) * bar_width,
+                subset[metric].to_numpy(),
+                width=bar_width,
+                color=model_colors[model],
+                alpha=0.92,
+                label="Optimized transparent model" if model == "full_optimized" else "Preferential attachment",
+            )
+        ax.set_title(title, fontsize=12, fontweight="bold")
+        ax.set_xticks(x, [f"h={h}" for h in horizons])
+        ax.grid(axis="y", alpha=0.25, linestyle="--")
+        ax.spines[["top", "right"]].set_visible(False)
+        ax.ticklabel_format(axis="y", style="plain", useOffset=False)
+    axes[0].set_ylabel("Held-out anchor mean")
+    axes[0].legend(loc="upper left", frameon=False, fontsize=9)
+    fig.suptitle("Held-out anchors: transparent tuning can beat the popularity baseline", fontsize=14, fontweight="bold", y=1.02)
+    fig.tight_layout()
+    fig.savefig(OUT_SLIDES_FIGURES / "mainline_heldout_vs_pref.png", dpi=300, bbox_inches="tight")
+    plt.close(fig)
+
+    # Attention-allocation frontier
+    frontier = attention[
+        attention["horizon"].eq(5)
+        & attention["model"].isin(["main", "pref_attach"])
+        & attention["k"].isin([50, 100, 500, 1000])
+    ].copy()
+    fig, ax = plt.subplots(figsize=(7.4, 4.2))
+    for model in ["main", "pref_attach"]:
+        subset = frontier[frontier["model"] == model].sort_values("k")
+        ax.plot(
+            subset["k"],
+            subset["mean_precision"],
+            marker="o",
+            linewidth=2.4,
+            markersize=6.5,
+            color=model_colors[model],
+            label="FrontierGraph main" if model == "main" else "Preferential attachment",
+        )
+    ax.set_xlabel("Top-K questions surfaced")
+    ax.set_ylabel("Precision in the future window")
+    ax.set_title("Attention frontier (h=5): main catches up as the list broadens", fontsize=13, fontweight="bold")
+    ax.grid(alpha=0.25, linestyle="--")
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.legend(frameon=False, fontsize=9, loc="lower left")
+    fig.tight_layout()
+    fig.savefig(OUT_SLIDES_FIGURES / "attention_allocation_frontier.png", dpi=300, bbox_inches="tight")
+    plt.close(fig)
+
+    # Gap vs boundary mix
+    mix = novelty[
+        novelty["horizon"].eq(5)
+        & novelty["k"].eq(100)
+        & novelty["model"].isin(["main", "pref_attach", "cooc_gap"])
+    ].copy()
+    order = ["main", "pref_attach", "cooc_gap"]
+    labels = {
+        "gap_crossfield": "Gap\ncross-field",
+        "gap_internal": "Gap\nsame-field",
+        "boundary_crossfield": "Boundary\ncross-field",
+        "boundary_internal": "Boundary\nsame-field",
+    }
+    stack_colors = {
+        "gap_crossfield": "#2563eb",
+        "gap_internal": "#60a5fa",
+        "boundary_crossfield": "#f59e0b",
+        "boundary_internal": "#fcd34d",
+    }
+    fig, ax = plt.subplots(figsize=(7.6, 4.2))
+    bottom = np.zeros(len(order))
+    for novelty_type in ["gap_crossfield", "gap_internal", "boundary_crossfield", "boundary_internal"]:
+        vals = []
+        for model in order:
+            row = mix[(mix["model"] == model) & (mix["novelty_type"] == novelty_type)]
+            vals.append(float(row["share_in_top_k"].iloc[0]) if not row.empty else 0.0)
+        vals = np.array(vals)
+        ax.bar(order, vals, bottom=bottom, color=stack_colors[novelty_type], label=labels[novelty_type])
+        bottom += vals
+    ax.set_ylim(0, 1.02)
+    ax.set_ylabel("Share of top-100 surfaced questions")
+    ax.set_title("What kind of questions are being surfaced?", fontsize=13, fontweight="bold")
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.grid(axis="y", alpha=0.25, linestyle="--")
+    ax.legend(frameon=False, fontsize=8.5, ncol=2, loc="upper center", bbox_to_anchor=(0.5, -0.12))
+    fig.tight_layout()
+    fig.savefig(OUT_SLIDES_FIGURES / "gap_boundary_mainline.png", dpi=300, bbox_inches="tight")
+    plt.close(fig)
+
+
 def main() -> None:
     build_metric_scale_table()
     build_horizon_design_table()
     build_external_dataset_table()
     build_method_figures()
+    build_research_allocation_slide_figures()
     print("Slide tables and figures generated.")
 
 
