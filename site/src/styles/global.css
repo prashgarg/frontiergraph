@@ -772,6 +772,26 @@ h3 {
   border: 1px solid var(--line);
 }
 
+.paper-mermaid {
+  margin: 1.15rem 0;
+  padding: 1rem 1.1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  overflow-x: auto;
+}
+
+.paper-mermaid svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.paper-mermaid .label,
+.paper-mermaid foreignObject {
+  font-family: "Source Sans 3", sans-serif;
+}
+
 .paper-exit-card {
   margin-top: 2rem;
   padding: 1.15rem 1.25rem;

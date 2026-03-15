@@ -71,3 +71,68 @@ const showToc = toc.length > 0;
     </section>
   </main>
 </BaseLayout>
+
+<script>
+  import mermaid from "mermaid";
+
+  const renderPaperMermaid = async () => {
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: "loose",
+      theme: "base",
+      themeVariables: {
+        background: "#ffffff",
+        primaryColor: "#eaf2ff",
+        primaryTextColor: "#102037",
+        primaryBorderColor: "#2b5fdd",
+        lineColor: "#6c7d95",
+        tertiaryColor: "#eff5fb",
+        clusterBkg: "#f7fbff",
+        clusterBorder: "#c9d9f2",
+        fontFamily: "Source Sans 3, sans-serif",
+      },
+      flowchart: {
+        useMaxWidth: true,
+        htmlLabels: true,
+        curve: "basis",
+      },
+    });
+
+    const mermaidBlocks = Array.from(document.querySelectorAll(".paper-article pre[data-language='mermaid']"));
+    mermaidBlocks.forEach((preBlock, index) => {
+      if (!(preBlock instanceof HTMLElement)) return;
+      const codeBlock = preBlock.querySelector("code");
+      const source =
+        codeBlock instanceof HTMLElement
+          ? codeBlock.innerText.trim()
+          : codeBlock?.textContent?.trim();
+      if (!source) return;
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "paper-mermaid";
+
+      const container = document.createElement("div");
+      container.className = "mermaid";
+      container.id = `paper-mermaid-${index}`;
+      container.textContent = source;
+
+      wrapper.appendChild(container);
+      preBlock.replaceWith(wrapper);
+    });
+
+    const nodes = Array.from(document.querySelectorAll(".paper-mermaid .mermaid"));
+    if (nodes.length === 0) return;
+
+    try {
+      await mermaid.run({ nodes });
+    } catch (error) {
+      console.error("Failed to render Mermaid diagrams in paper view", error);
+    }
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => void renderPaperMermaid(), { once: true });
+  } else {
+    void renderPaperMermaid();
+  }
+</script>
