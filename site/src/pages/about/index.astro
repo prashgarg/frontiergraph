@@ -1,6 +1,15 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { data } from "../../lib/site-data";
+
+const authorLinks = [
+  { label: "Email", href: "mailto:prashant.garg@imperial.ac.uk", badge: "@" },
+  { label: "X", href: "https://x.com/Prashant_Garg_", badge: "X" },
+  { label: "Google Scholar", href: "https://scholar.google.com/citations?hl=en&user=C3o_l0IAAAAJ", badge: "GS" },
+  { label: "Website", href: "https://www.prashantgarg.org/", badge: "W" },
+  { label: "GitHub", href: "https://github.com/prashgarg", badge: "GH" },
+  { label: "Bluesky", href: "https://bsky.app/profile/prashantgarg.bsky.social", badge: "B" },
+];
 ---
 
 <BaseLayout
@@ -50,10 +59,22 @@ import { data } from "../../lib/site-data";
         <article class="card">
           <h2>About the author</h2>
           <p class="card-copy">
-            FrontierGraph is a project by <strong>Prashant Garg</strong>. It reflects an interest in research allocation, measurement, machine-learning tools, and network structure in economics.
+            <strong>Prashant Garg</strong><br />
+            Imperial College London
           </p>
           <p class="card-copy">
-            <a href="/paper/">Read the paper</a> · <a href={data.repo_url}>GitHub repository</a> · <a href="/downloads/">Download the release files</a>
+            Research interests: research allocation, measurement, machine-learning methods, and network structure in economics.
+          </p>
+          <div class="about-link-grid" aria-label="Author links">
+            {authorLinks.map((link) => (
+              <a class="about-link-chip" href={link.href} target="_blank" rel="noreferrer">
+                <span class="about-link-badge" aria-hidden="true">{link.badge}</span>
+                <span>{link.label}</span>
+              </a>
+            ))}
+          </div>
+          <p class="card-copy">
+            <a href="/paper/">Read the paper</a> · <a href={data.repo_url}>Project repository</a> · <a href="/downloads/">Download the release files</a>
           </p>
         </article>
       </div>
