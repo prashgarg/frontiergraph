@@ -3,11 +3,50 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import EditorialQuestionCarousel from "../components/EditorialQuestionCarousel.astro";
 import { data } from "../lib/site-data";
 
-const homeCarouselPool = Array.from(
-  new Map(
-    [...data.home.curated_questions, ...data.home.featured_questions].map((item) => [item.pair_key, item]),
-  ).values(),
-);
+const climatePattern =
+  /\b(climate|carbon|co2|emissions?|pollution|environment(?:al)?|ecological|energy|oil|gas|electricity)\b/i;
+
+const isClimateHeavy = (item: (typeof data.home.featured_questions)[number]) =>
+  climatePattern.test(
+    [item.public_pair_label, item.display_title, item.display_why, item.why_now, item.question_family]
+      .filter(Boolean)
+      .join(" "),
+  );
+
+const buildHomeCarouselPool = () => {
+  const merged = Array.from(
+    new Map(
+      [...data.home.curated_questions, ...data.home.featured_questions].map((item) => [item.pair_key, item]),
+    ).values(),
+  );
+
+  const prioritized = [
+    ...merged.filter((item) => !isClimateHeavy(item)),
+    ...merged.filter((item) => isClimateHeavy(item)),
+  ];
+
+  const selected: typeof merged = [];
+  let climateCount = 0;
+
+  for (const item of prioritized) {
+    if (isClimateHeavy(item) && climateCount >= 1) continue;
+    selected.push(item);
+    if (isClimateHeavy(item)) climateCount += 1;
+    if (selected.length >= 10) break;
+  }
+
+  if (selected.length < 8) {
+    for (const item of prioritized) {
+      if (selected.some((candidate) => candidate.pair_key === item.pair_key)) continue;
+      selected.push(item);
+      if (selected.length >= 8) break;
+    }
+  }
+
+  return selected;
+};
+
+const homeCarouselPool = buildHomeCarouselPool();
 
 const formatNumber = (value: number) => new Intl.NumberFormat("en-GB").format(value);
 const scaleItems = [

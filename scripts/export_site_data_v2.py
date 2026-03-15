@@ -1249,6 +1249,8 @@ def diversify_featured_opportunities(
     per_slice_limits = {"overall": 4, "bridges": 2, "frontier": 2, "fast_follow": 2, "underexplored": 2}
     slice_counts: dict[str, int] = defaultdict(int)
     label_counts: dict[str, int] = defaultdict(int)
+    climate_cap = max(1, limit // 6)
+    climate_count = 0
 
     for slice_key in ordered_keys:
         for item in slices.get(slice_key, []):
@@ -1262,10 +1264,14 @@ def diversify_featured_opportunities(
             }
             if label_counts[featured_item["slice_label"]] >= 2:
                 continue
+            if is_climate_heavy(featured_item) and climate_count >= climate_cap:
+                continue
             featured.append(featured_item)
             seen.add(featured_item["pair_key"])
             slice_counts[slice_key] += 1
             label_counts[featured_item["slice_label"]] += 1
+            if is_climate_heavy(featured_item):
+                climate_count += 1
             if len(featured) >= limit:
                 return featured[:limit]
 
@@ -1274,17 +1280,25 @@ def diversify_featured_opportunities(
             continue
         if label_counts[item["slice_label"]] >= 2:
             continue
+        if is_climate_heavy(item) and climate_count >= climate_cap:
+            continue
         featured.append(item)
         seen.add(item["pair_key"])
         label_counts[item["slice_label"]] += 1
+        if is_climate_heavy(item):
+            climate_count += 1
         if len(featured) >= limit:
             break
 
     for item in slices.get("overall", []):
         if item["pair_key"] in seen:
             continue
+        if is_climate_heavy(item) and climate_count >= climate_cap:
+            continue
         featured.append(item)
         seen.add(item["pair_key"])
+        if is_climate_heavy(item):
+            climate_count += 1
         if len(featured) >= limit:
             break
     return featured[:limit]
@@ -1456,6 +1470,39 @@ def row_match_text(row: dict[str, Any]) -> str:
     )
 
 
+CLIMATE_HEAVY_TOKENS = (
+    "climate",
+    "carbon",
+    "co2",
+    "emissions",
+    "pollution",
+    "environment",
+    "environmental quality",
+    "environmental pollution",
+    "ecological carrying capacity",
+    "energy consumption",
+    "energy demand",
+    "energy use",
+    "energy",
+    "renewable energy",
+    "ecological",
+    "load capacity",
+    "mineral rents",
+    "oil",
+    "gas",
+    "electricity",
+)
+
+
+def climate_signal_count(row: dict[str, Any]) -> int:
+    haystack = row_match_text(row)
+    return sum(token in haystack for token in CLIMATE_HEAVY_TOKENS)
+
+
+def is_climate_heavy(row: dict[str, Any]) -> bool:
+    return climate_signal_count(row) >= 1
+
+
 def row_matches_tokens(row: dict[str, Any], tokens: list[str]) -> bool:
     haystack = row_match_text(row)
     return any(normalized_label_key(token) in haystack for token in tokens)
@@ -1472,11 +1519,15 @@ def append_unique_records(
     editorial: dict[str, dict[str, Any]],
     limit: int,
     family_cap: int = 2,
+    climate_cap: int | None = None,
 ) -> list[dict[str, Any]]:
     seen_pairs = {clean_public_text(item.get("pair_key")) for item in target}
     family_counts: dict[str, int] = defaultdict(int)
+    climate_count = 0
     for item in target:
         family_counts[family_key(item)] += 1
+        if is_climate_heavy(item):
+            climate_count += 1
 
     for row in rows:
         pair_key = clean_public_text(row.get("pair_key"))
@@ -1485,9 +1536,13 @@ def append_unique_records(
         key = family_key(row)
         if family_counts[key] >= family_cap:
             continue
+        if climate_cap is not None and is_climate_heavy(row) and climate_count >= climate_cap:
+            continue
         target.append(decorate_carousel_record(row, editorial))
         seen_pairs.add(pair_key)
         family_counts[key] += 1
+        if is_climate_heavy(row):
+            climate_count += 1
         if len(target) >= limit:
             break
     return target
@@ -1503,11 +1558,18 @@ def build_field_carousels(
     groups: list[dict[str, Any]] = []
     for definition in definitions:
         slug = definition["slug"]
-        anchors = [row for row in curated_rows if slug in row.get("field_shelves", [])]
-        matches = [row for row in overall_rows if row_matches_tokens(row, definition.get("match_tokens", []))]
-        items = append_unique_records([], anchors, editorial=editorial, limit=limit)
-        items = append_unique_records(items, matches, editorial=editorial, limit=limit)
-        items = append_unique_records(items, overall_rows, editorial=editorial, limit=limit)
+        anchors = sorted(
+            [row for row in curated_rows if slug in row.get("field_shelves", [])],
+            key=lambda row: (is_climate_heavy(row), public_window_penalty(row)),
+        )
+        matches = sorted(
+            [row for row in overall_rows if row_matches_tokens(row, definition.get("match_tokens", []))],
+            key=lambda row: (is_climate_heavy(row), public_window_penalty(row)),
+        )
+        climate_cap = None if slug == "climate-energy" else 0
+        items = append_unique_records([], anchors, editorial=editorial, limit=limit, climate_cap=climate_cap)
+        items = append_unique_records(items, matches, editorial=editorial, limit=limit, climate_cap=climate_cap)
+        items = append_unique_records(items, overall_rows, editorial=editorial, limit=limit, climate_cap=climate_cap)
         groups.append(
             {
                 "slug": slug,
@@ -1530,11 +1592,15 @@ def build_use_case_carousels(
 
     for definition in definitions:
         slug = definition["slug"]
-        anchors = [row for row in curated_rows if slug in row.get("collection_tags", [])]
+        anchors = sorted(
+            [row for row in curated_rows if slug in row.get("collection_tags", [])],
+            key=lambda row: (is_climate_heavy(row), public_window_penalty(row)),
+        )
         if slug == "strong-nearby-evidence":
             matches = sorted(
                 overall_rows,
                 key=lambda row: (
+                    is_climate_heavy(row),
                     -to_float(row.get("path_support_norm"), 0.0),
                     -to_int(row.get("supporting_path_count", 0)),
                     public_window_penalty(row),
@@ -1544,17 +1610,22 @@ def build_use_case_carousels(
             matches = sorted(
                 overall_rows,
                 key=lambda row: (
+                    is_climate_heavy(row),
                     -to_int(row.get("mediator_count", 0)),
                     -to_int(row.get("supporting_path_count", 0)),
                     public_window_penalty(row),
                 ),
             )
         else:
-            matches = [row for row in overall_rows if to_int(row.get("cooc_count", 0)) == 0]
+            matches = sorted(
+                [row for row in overall_rows if to_int(row.get("cooc_count", 0)) == 0],
+                key=lambda row: (is_climate_heavy(row), public_window_penalty(row)),
+            )
 
-        items = append_unique_records([], anchors, editorial=editorial, limit=limit)
-        items = append_unique_records(items, matches, editorial=editorial, limit=limit)
-        items = append_unique_records(items, overall_rows, editorial=editorial, limit=limit)
+        climate_cap = 1
+        items = append_unique_records([], anchors, editorial=editorial, limit=limit, climate_cap=climate_cap)
+        items = append_unique_records(items, matches, editorial=editorial, limit=limit, climate_cap=climate_cap)
+        items = append_unique_records(items, overall_rows, editorial=editorial, limit=limit, climate_cap=climate_cap)
         groups.append(
             {
                 "slug": slug,
@@ -1574,9 +1645,11 @@ def build_public_ranked_window(
     visible: list[dict[str, Any]] = []
     deferred: list[dict[str, Any]] = []
     family_counts: dict[str, int] = defaultdict(int)
+    climate_cap = max(6, limit // 6)
+    climate_count = 0
     ranked_rows = sorted(
         [row for row in overall_rows if row["pair_key"] not in excluded_pair_keys],
-        key=public_window_penalty,
+        key=lambda row: (is_climate_heavy(row), public_window_penalty(row)),
     )
 
     for row in ranked_rows:
@@ -1587,8 +1660,13 @@ def build_public_ranked_window(
         if len(visible) < limit and family_counts[family] >= 1:
             deferred.append(row)
             continue
+        if is_climate_heavy(row) and climate_count >= climate_cap:
+            deferred.append(row)
+            continue
         visible.append(row)
         family_counts[family] += 1
+        if is_climate_heavy(row):
+            climate_count += 1
         if len(visible) >= limit:
             break
 
@@ -1596,7 +1674,11 @@ def build_public_ranked_window(
         for row in deferred:
             if row["pair_key"] in {item["pair_key"] for item in visible}:
                 continue
+            if is_climate_heavy(row) and climate_count >= climate_cap:
+                continue
             visible.append(row)
+            if is_climate_heavy(row):
+                climate_count += 1
             if len(visible) >= limit:
                 break
     return visible[:limit]

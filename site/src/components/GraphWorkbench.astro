@@ -182,11 +182,54 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const value = String(concept?.subtitle ?? "").trim();
     return value && !["na", "n/a", "nan", "null", "undefined", "none"].includes(value.toLowerCase()) ? value : "";
   };
+  const topicIsClimateHeavy = (concept) =>
+    /\b(climate|carbon|co2|emissions?|pollution|environment(?:al)?|ecological|energy|oil|gas|electricity|renewable)\b/i.test(
+      `${conceptTitle(concept)} ${conceptSubtitle(concept)}`,
+    );
   const conceptLabelNote = (conceptId) => {
     const concept = conceptMap.get(conceptId);
     if (!concept) return "";
     const subtitle = conceptSubtitle(concept);
     return subtitle ? `${conceptTitle(concept)}: ${subtitle}.` : "";
+  };
+  const plainDirectStatus = (value) => {
+    const text = String(value || "").trim();
+    const mapping = {
+      "No direct papers yet in the current public sample": "No exact released paper yet",
+      "A few direct papers in the current public sample": "A few exact released papers",
+      "Direct literature exists in the current public sample": "Exact released papers exist",
+    };
+    return mapping[text] || text;
+  };
+  const estimateChipWidth = (label) => clamp(78 + String(label || "").length * 6.4, 86, 248);
+  const buildFocusedPositionMap = (neighborIds) => {
+    const positionMap = new Map();
+    const centerX = GRAPH_WIDTH * 0.5;
+    const centerY = GRAPH_HEIGHT * 0.5;
+    positionMap.set(selectedId, { x: centerX, y: centerY, angle: -Math.PI / 2 });
+    if (!neighborIds.length) return positionMap;
+
+    const radiusX = neighborIds.length <= 4 ? 240 : 300;
+    const radiusY = neighborIds.length <= 4 ? 158 : 214;
+    const step = (Math.PI * 2) / neighborIds.length;
+    neighborIds.forEach((neighborId, index) => {
+      const angle = -Math.PI / 2 + step * index;
+      positionMap.set(neighborId, {
+        x: centerX + Math.cos(angle) * radiusX,
+        y: centerY + Math.sin(angle) * radiusY,
+        angle,
+      });
+    });
+    return positionMap;
+  };
+  const nodeRenderState = (node, renderPositionMap) => {
+    const focusedPosition = renderPositionMap?.get(node.id);
+    if (focusedPosition) return focusedPosition;
+    return {
+      x: node.x * GRAPH_WIDTH,
+      y: node.y * GRAPH_HEIGHT,
+      angle: -Math.PI / 2,
+    };
   };
 
   const fetchJson = async (path) => {
@@ -280,6 +323,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         edges: graph.edges,
         selectedNeighbors: allNeighbors,
         labelNeighbors: new Set(),
+        renderPositionMap: null,
       };
     }
 
@@ -292,7 +336,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       nodes: visibleNodes,
       edges: visibleEdges,
       selectedNeighbors: new Set(focusedNeighborIds),
-      labelNeighbors: new Set(focusedNeighborIds.slice(0, FOCUSED_LABEL_LIMIT)),
+      labelNeighbors: new Set(focusedNeighborIds),
+      renderPositionMap: buildFocusedPositionMap(focusedNeighborIds),
     };
   };
 
@@ -387,8 +432,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const setDefaultViewport = () => {
     if (!graph) return;
     if (mapMode === "focused" && selectedId && isInBackbone(selectedId)) {
-      const visibleState = getVisibleGraphState();
-      fitViewToNodeIds(visibleState.nodes.map((node) => node.id));
+      resetViewport();
       return;
     }
     resetViewport();
@@ -416,8 +460,19 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   };
 
   const renderCentralList = () => {
-    centralList.innerHTML = centralConcepts
-      .slice(0, 6)
+    const prioritizedConcepts = [
+      ...centralConcepts.filter((concept) => !topicIsClimateHeavy(concept)),
+      ...centralConcepts.filter((concept) => topicIsClimateHeavy(concept)),
+    ];
+    const visibleConcepts = [];
+    let climateCount = 0;
+    for (const concept of prioritizedConcepts) {
+      if (topicIsClimateHeavy(concept) && climateCount >= 1) continue;
+      visibleConcepts.push(concept);
+      if (topicIsClimateHeavy(concept)) climateCount += 1;
+      if (visibleConcepts.length >= 6) break;
+    }
+    centralList.innerHTML = visibleConcepts
       .map(
         (concept) => `
           <button class="list-link" data-concept-id="${escapeHtml(concept.concept_id)}">
@@ -476,7 +531,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
                     <article class="mini-opportunity">
                       <strong>${escapeHtml(item.public_pair_label)}</strong>
                       ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
-                      <div class="mini-copy">${escapeHtml(item.direct_link_status)} · ${formatNumber(safeNumber(item.supporting_path_count))} nearby linking concepts in the released graph</div>
+                      <div class="mini-copy">${escapeHtml(plainDirectStatus(item.direct_link_status))} · ${formatNumber(safeNumber(item.supporting_path_count))} nearby topics in the released graph</div>
                     </article>
                 `,
                 )
@@ -495,15 +550,24 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const edgeMarkup = [];
     const visibleState = getVisibleGraphState();
     const selectedActive = Boolean(selectedId) && isInBackbone(selectedId);
-    const { focusedActive, nodes: visibleNodes, edges: visibleEdges, selectedNeighbors, labelNeighbors } = visibleState;
+    const {
+      focusedActive,
+      nodes: visibleNodes,
+      edges: visibleEdges,
+      selectedNeighbors,
+      labelNeighbors,
+      renderPositionMap,
+    } = visibleState;
 
     for (const edge of visibleEdges) {
       const source = graph.nodeMap.get(edge.source);
       const target = graph.nodeMap.get(edge.target);
+      const sourceRender = nodeRenderState(source, renderPositionMap);
+      const targetRender = nodeRenderState(target, renderPositionMap);
       const isSelected = selectedActive && (edge.source === selectedId || edge.target === selectedId);
       const isDimmed = mapMode === "global" && selectedActive && !isSelected;
       edgeMarkup.push(
-        `<line class="graph-edge${isSelected ? " is-selected" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edge.strength || 0.3};" data-edge-id="${escapeHtml(edge.id)}" x1="${source.x * GRAPH_WIDTH}" y1="${source.y * GRAPH_HEIGHT}" x2="${target.x * GRAPH_WIDTH}" y2="${target.y * GRAPH_HEIGHT}"></line>`,
+        `<line class="graph-edge${isSelected ? " is-selected" : ""}${isDimmed ? " is-dimmed" : ""}${focusedActive ? " is-focused" : ""}" style="--edge-strength:${edge.strength || 0.3};" data-edge-id="${escapeHtml(edge.id)}" x1="${sourceRender.x}" y1="${sourceRender.y}" x2="${targetRender.x}" y2="${targetRender.y}"></line>`,
       );
     }
 
@@ -511,18 +575,39 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       const isSelected = node.id === selectedId;
       const isNeighbor = selectedNeighbors.has(node.id);
       const isDimmed = mapMode === "global" && selectedActive && !isSelected && !isNeighbor;
-      const radius = Math.max(2.8, Math.min(24, 2.8 + Math.log10(safeNumber(node.weighted_degree) + 1) * 4.4));
+      const renderState = nodeRenderState(node, renderPositionMap);
+      const radius = focusedActive
+        ? isSelected
+          ? 26
+          : Math.max(12, Math.min(20, 11.5 + Math.log10(safeNumber(node.weighted_degree) + 1) * 2.4))
+        : Math.max(2.8, Math.min(24, 2.8 + Math.log10(safeNumber(node.weighted_degree) + 1) * 4.4));
       const showLabel = focusedActive
         ? isSelected || labelNeighbors.has(node.id)
         : node.show_label ||
           isSelected ||
           (isNeighbor && selectedNeighbors.size <= FOCUSED_NEIGHBOR_LIMIT) ||
           (isNeighbor && safeNumber(node.weighted_degree) >= 65);
-      const labelY = node.y * GRAPH_HEIGHT - (radius + (isSelected ? 16 : 8));
+      const label = node.plain_label || node.label;
+      const labelWidth = estimateChipWidth(label);
+      const labelAbove = focusedActive ? Math.sin(renderState.angle) <= 0 : true;
+      const labelY = focusedActive
+        ? renderState.y + (labelAbove ? -(radius + 18) : radius + 28)
+        : renderState.y - (radius + (isSelected ? 16 : 8));
+      const chipY = labelAbove ? labelY - 20 : labelY - 18;
       nodeMarkup.push(
         `<g class="graph-node-group${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeHtml(node.id)}">
-          <circle class="graph-node bucket-${escapeHtml(node.bucket_group || "mixed")}" cx="${node.x * GRAPH_WIDTH}" cy="${node.y * GRAPH_HEIGHT}" r="${radius}"></circle>
-          ${showLabel ? `<text class="graph-label${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}" x="${node.x * GRAPH_WIDTH}" y="${labelY}">${escapeHtml(node.plain_label || node.label)}</text>` : ""}
+          ${focusedActive ? `<circle class="graph-node-halo${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}" cx="${renderState.x}" cy="${renderState.y}" r="${radius + (isSelected ? 10 : 7)}"></circle>` : ""}
+          <circle class="graph-node bucket-${escapeHtml(node.bucket_group || "mixed")}" cx="${renderState.x}" cy="${renderState.y}" r="${radius}"></circle>
+          ${
+            showLabel
+              ? focusedActive
+                ? `<g class="graph-label-chip${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}">
+                    <rect x="${renderState.x - labelWidth / 2}" y="${chipY}" width="${labelWidth}" height="28" rx="14" ry="14"></rect>
+                    <text class="graph-label graph-label-chip-text${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>
+                  </g>`
+                : `<text class="graph-label${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>`
+              : ""
+          }
         </g>`,
       );
     }
@@ -636,11 +721,11 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
 
     selectedNeighborhood.innerHTML = `
       <div class="neighbor-group">
-        <h4>Incoming</h4>
+        <h4>Builds on</h4>
         <ul class="neighbor-list">${renderItems(neighborhood.incoming || [])}</ul>
       </div>
       <div class="neighbor-group">
-        <h4>Outgoing</h4>
+        <h4>Leads toward</h4>
         <ul class="neighbor-list">${renderItems(neighborhood.outgoing || [])}</ul>
       </div>
       <div class="neighbor-group">
@@ -677,7 +762,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
           <article class="mini-opportunity">
             <strong>${escapeHtml(item.public_pair_label)}</strong>
             ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
-            <div class="mini-copy">${escapeHtml(item.direct_link_status)} · ${formatNumber(safeNumber(item.supporting_path_count))} nearby linking concepts in the released graph</div>
+            <div class="mini-copy">${escapeHtml(plainDirectStatus(item.direct_link_status))} · ${formatNumber(safeNumber(item.supporting_path_count))} nearby topics in the released graph</div>
             <div class="mini-copy">Common contexts: ${escapeHtml(item.source_context_summary)} on one side and ${escapeHtml(item.target_context_summary)} on the other.</div>
             <a class="text-link" href="${escapeHtml(item.app_link)}">Explore in app</a>
           </article>

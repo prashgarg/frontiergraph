@@ -67,6 +67,19 @@ def inject_css() -> None:
             padding-top: 0.9rem;
             padding-bottom: 3rem;
         }
+        section[data-testid="stSidebar"] {
+            background: color-mix(in srgb, var(--surface-muted) 94%, transparent);
+            border-right: 1px solid var(--line);
+        }
+        section[data-testid="stSidebar"] [data-testid="stSidebarContent"] {
+            padding-top: 1rem;
+        }
+        section[data-testid="stSidebar"] .sidebar-caption {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.55;
+            margin: 0 0 0.7rem;
+        }
         .stApp,
         .stApp p,
         .stApp li,
@@ -82,12 +95,12 @@ def inject_css() -> None:
             letter-spacing: -0.02em;
         }
         .hero-shell {
-            padding: 1.15rem 1.2rem;
+            padding: 0.95rem 1.05rem;
             border: 1px solid var(--line);
             border-radius: 20px;
             background: var(--surface);
             box-shadow: var(--shadow);
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
         .eyebrow {
             font-size: 0.74rem;
@@ -97,16 +110,16 @@ def inject_css() -> None:
             margin-bottom: 0.35rem;
         }
         .hero-title {
-            font-size: 2.1rem;
+            font-size: 1.75rem;
             line-height: 1;
             margin: 0;
         }
         .hero-copy {
-            max-width: 48rem;
-            margin-top: 0.55rem;
+            max-width: 42rem;
+            margin-top: 0.45rem;
             color: var(--muted);
             line-height: 1.62;
-            font-size: 1rem;
+            font-size: 0.98rem;
         }
         .app-nav {
             margin: 0.15rem 0 1rem;
@@ -259,7 +272,7 @@ def inject_css() -> None:
                 padding: 1rem 1rem 1.05rem;
             }
             .hero-title {
-                font-size: 1.75rem;
+                font-size: 1.5rem;
             }
             .hero-copy {
                 font-size: 0.98rem;
@@ -476,6 +489,50 @@ def concept_option_label(row: pd.Series) -> str:
     return str(row["plain_label"])
 
 
+CLIMATE_TERMS = (
+    "climate",
+    "carbon",
+    "co2",
+    "emission",
+    "pollution",
+    "environment",
+    "ecological",
+    "energy",
+    "oil",
+    "gas",
+    "electricity",
+    "renewable",
+)
+
+
+def question_text_blob(row: pd.Series | dict[str, Any]) -> str:
+    return " ".join(
+        str(value or "").lower()
+        for value in (
+            row.get("public_pair_label"),
+            row.get("source_label"),
+            row.get("target_label"),
+            row.get("why_now"),
+            row.get("question_family"),
+        )
+    )
+
+
+def question_is_climate_heavy(row: pd.Series | dict[str, Any]) -> bool:
+    haystack = question_text_blob(row)
+    return any(term in haystack for term in CLIMATE_TERMS)
+
+
+def plain_direct_status(value: Any) -> str:
+    text = str(value or "").strip()
+    mapping = {
+        "No direct papers yet in the current public sample": "No exact released paper yet",
+        "A few direct papers in the current public sample": "A few exact released papers",
+        "Direct literature exists in the current public sample": "Direct released papers exist",
+    }
+    return mapping.get(text, text)
+
+
 def shortlist_csv(filtered_df: pd.DataFrame) -> str:
     columns = [
         "pair_key",
@@ -580,6 +637,65 @@ def question_filter_frame(questions: pd.DataFrame, search: str, direct_filters: 
     return filtered.reset_index(drop=True)
 
 
+def diversified_question_preview(questions: pd.DataFrame, limit: int) -> pd.DataFrame:
+    if questions.empty:
+        return questions
+
+    visible_rows: list[dict[str, Any]] = []
+    deferred_rows: list[dict[str, Any]] = []
+    family_counts: dict[str, int] = {}
+    climate_count = 0
+    climate_cap = max(1, limit // 6)
+
+    for row in questions.itertuples(index=False):
+        payload = row._asdict()
+        family = str(payload.get("question_family") or payload.get("pair_key") or "")
+        is_climate = question_is_climate_heavy(payload)
+        if family_counts.get(family, 0) >= 1 or (is_climate and climate_count >= climate_cap):
+            deferred_rows.append(payload)
+            continue
+        visible_rows.append(payload)
+        family_counts[family] = family_counts.get(family, 0) + 1
+        if is_climate:
+            climate_count += 1
+        if len(visible_rows) >= limit:
+            break
+
+    if len(visible_rows) < limit:
+        seen_pairs = {str(row["pair_key"]) for row in visible_rows}
+        for payload in deferred_rows:
+            if str(payload.get("pair_key")) in seen_pairs:
+                continue
+            if question_is_climate_heavy(payload) and climate_count >= climate_cap:
+                continue
+            visible_rows.append(payload)
+            if question_is_climate_heavy(payload):
+                climate_count += 1
+            if len(visible_rows) >= limit:
+                break
+
+    return pd.DataFrame(visible_rows)
+
+
+def preferred_question_pair(questions: pd.DataFrame) -> str:
+    if questions.empty:
+        return ""
+
+    preferred_terms = ("urbanization", "consumer demand", "wage inequality", "international sanctions", "public debt")
+    for row in questions.itertuples(index=False):
+        payload = row._asdict()
+        label = str(payload.get("public_pair_label") or "").lower()
+        if any(term in label for term in preferred_terms) and not question_is_climate_heavy(payload):
+            return str(payload["pair_key"])
+
+    for row in questions.itertuples(index=False):
+        payload = row._asdict()
+        if not question_is_climate_heavy(payload):
+            return str(payload["pair_key"])
+
+    return str(questions.iloc[0]["pair_key"])
+
+
 def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str, str]) -> None:
     bundle = load_question_bundle(db_path, pair_key)
     question = bundle["question"]
@@ -597,15 +713,22 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
 
     summary_cols = st.columns(2)
     with summary_cols[0]:
-        render_summary_card("Direct literature", str(question.get("direct_link_status", "")))
+        mediator_labels = [str(row.mediator_label) for row in mediators.head(5).itertuples(index=False)]
+        render_summary_card(
+            "Nearby topics",
+            ", ".join(mediator_labels) if mediator_labels else "No stable nearby-topic summary was exported for this question.",
+        )
     with summary_cols[1]:
         render_summary_card("A useful first step", plain_recommended_move(question.get("recommended_move", "")))
 
     metrics_cols = st.columns(3)
-    metrics_cols[0].metric("Nearby linking concepts", f"{int(question['mediator_count'])}")
-    metrics_cols[1].metric("Repeated local patterns", f"{int(question['motif_count'])}")
-    metrics_cols[2].metric("Direct papers in release", f"{int(question['cooc_count'])}")
-    st.caption("These counts refer to the current public FrontierGraph release. They describe nearby support in the released graph, not the full economics literature.")
+    metrics_cols[0].metric("Nearby topics", f"{int(question['mediator_count'])}")
+    metrics_cols[1].metric("Supporting paths", f"{int(question['supporting_path_count'])}")
+    metrics_cols[2].metric("Exact released papers", f"{int(question['cooc_count'])}")
+    st.caption(
+        f"Exact released papers: {plain_direct_status(question.get('direct_link_status', ''))}. "
+        "All counts refer to the current public release, not the full economics literature."
+    )
 
     papers_preview = (
         papers.drop_duplicates(subset=["paper_id"], keep="first")
@@ -613,10 +736,6 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
         .rename(columns={"title": "Paper", "year": "Year", "edge_src_label": "Edge source", "edge_dst_label": "Edge target"})
         .head(8)
     )
-    if not mediators.empty:
-        mediator_labels = [str(row.mediator_label) for row in mediators.head(6).itertuples(index=False)]
-        render_summary_card("Nearby linking concepts", ", ".join(mediator_labels))
-
     st.markdown("### Papers to begin with")
     if papers_preview.empty:
         st.caption("No paper list was exported for this question in the current public release.")
@@ -686,59 +805,71 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
     status_options = sorted(questions["direct_link_status"].dropna().unique().tolist())
     sync_from_query("question_search", search_default, "_sync_question_search")
     sync_from_query("question_cross_only", query_param("cross") == "1", "_sync_question_cross_only")
-    search_col, filter_col = st.columns([1.7, 1.0])
-    with search_col:
+    with st.sidebar:
+        st.markdown("### Question explorer")
+        st.markdown(
+            '<p class="sidebar-caption">Choose a question here. The main panel stays focused on the reading notes, nearby topics, and paper list.</p>',
+            unsafe_allow_html=True,
+        )
         search = st.text_input(
             "Search questions",
             key="question_search",
             placeholder="Search by topic, outcome, or question wording",
         )
-    with filter_col:
-        only_cross = st.checkbox("Only cross-bucket questions", key="question_cross_only")
-
-    direct_filters = st.multiselect(
-        "Direct literature",
-        options=status_options,
-        default=status_options,
-    )
-    shortlist_size = st.slider("Shortlist size", min_value=10, max_value=100, value=25, step=5)
+        only_cross = st.checkbox("Only cross-area questions", key="question_cross_only")
+        with st.expander("Filters", expanded=False):
+            direct_filters = st.multiselect(
+                "Exact released papers",
+                options=status_options,
+                default=status_options,
+                format_func=plain_direct_status,
+            )
+            shortlist_size = st.slider("Questions to preview", min_value=12, max_value=80, value=24, step=6)
     filtered = question_filter_frame(questions, search, direct_filters, only_cross)
 
     if filtered.empty:
         st.warning("No released questions match the current filters.")
         return
 
-    preview = filtered.head(shortlist_size).copy()
-    candidate_frame = filtered.head(max(shortlist_size, 50)).copy()
+    preview = diversified_question_preview(filtered, shortlist_size)
+    candidate_frame = diversified_question_preview(filtered, max(shortlist_size, 60))
     candidate_map = {str(row.pair_key): row for row in candidate_frame.itertuples(index=False)}
-    default_pair = pair_default if pair_default in candidate_map else next(iter(candidate_map))
+    default_pair = pair_default if pair_default in candidate_map else preferred_question_pair(candidate_frame)
     sync_from_query("question_selection", default_pair, "_sync_question_selection")
-    selection = st.selectbox(
-        "Inspect one question",
-        options=list(candidate_map.keys()),
-        key="question_selection",
-        format_func=lambda value: question_option_label(pd.Series(candidate_map[value]._asdict())),
-    )
+    with st.sidebar:
+        selection = st.selectbox(
+            "Read one question",
+            options=list(candidate_map.keys()),
+            key="question_selection",
+            format_func=lambda value: question_option_label(pd.Series(candidate_map[value]._asdict())),
+        )
     if selection != pair_default or search != search_default or only_cross != (query_param("cross") == "1"):
         set_query_params(view="question", pair=selection, search=search, cross="1" if only_cross else "")
     compare_default = [value for value in query_param("pairs").split(",") if value in candidate_map][:4]
     sync_from_query("question_compare_pairs", compare_default, "_sync_question_compare_pairs")
-    compare_pairs = st.multiselect(
-        "Pin questions to compare",
-        options=list(candidate_map.keys()),
-        key="question_compare_pairs",
-        format_func=lambda value: question_option_label(pd.Series(candidate_map[value]._asdict())),
-    )
-    if len(compare_pairs) >= 2 and st.button("Open compare workspace"):
-        set_query_params(view="compare", pairs=",".join(compare_pairs))
-        st.rerun()
+    with st.sidebar:
+        with st.expander("Compare questions", expanded=False):
+            compare_pairs = st.multiselect(
+                "Pin questions to compare",
+                options=list(candidate_map.keys()),
+                key="question_compare_pairs",
+                format_func=lambda value: question_option_label(pd.Series(candidate_map[value]._asdict())),
+            )
+            if len(compare_pairs) >= 2 and st.button("Open compare workspace"):
+                set_query_params(view="compare", pairs=",".join(compare_pairs))
+                st.rerun()
 
     render_question_detail(db_path, selection, concept_lookup)
 
     st.markdown("### Current shortlist")
-    preview_table = preview.loc[:, ["public_pair_label", "direct_link_status", "recommended_move", "mediator_count"]].copy()
+    preview_table = preview.loc[:, ["public_pair_label", "supporting_path_count", "mediator_count", "recommended_move"]].copy()
+    preview_table["Nearby support"] = preview_table.apply(
+        lambda row: f"{int(row['supporting_path_count'])} supporting paths · {int(row['mediator_count'])} nearby topics",
+        axis=1,
+    )
     preview_table["recommended_move"] = preview_table["recommended_move"].map(plain_recommended_move)
-    preview_table.columns = ["Question", "Direct literature", "Suggested first step", "Nearby linking concepts"]
+    preview_table = preview_table.loc[:, ["public_pair_label", "Nearby support", "recommended_move"]]
+    preview_table.columns = ["Question", "Nearby support", "A useful first step"]
     st.dataframe(preview_table, use_container_width=True, hide_index=True)
     st.download_button(
         "Export shortlist CSV",
@@ -768,11 +899,17 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
     concept_default = query_param("concept")
     search_default = query_param("search")
     sync_from_query("concept_search", search_default, "_sync_concept_search")
-    search = st.text_input(
-        "Find a topic",
-        key="concept_search",
-        placeholder="Search by topic, alias, or concept label",
-    )
+    with st.sidebar:
+        st.markdown("### Topic explorer")
+        st.markdown(
+            '<p class="sidebar-caption">Search for a topic on the left. The main panel then keeps the local map, neighbors, and nearby questions together.</p>',
+            unsafe_allow_html=True,
+        )
+        search = st.text_input(
+            "Find a topic",
+            key="concept_search",
+            placeholder="Search by topic, alias, or label",
+        )
     working = concepts.copy()
     if search.strip():
         needle = search.strip().lower()
@@ -789,12 +926,13 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
     concept_map = {str(row.concept_id): row for row in top.itertuples(index=False)}
     selected = concept_default if concept_default in concept_map else next(iter(concept_map))
     sync_from_query("concept_selection", selected, "_sync_concept_selection")
-    choice = st.selectbox(
-        "Select topic",
-        options=list(concept_map.keys()),
-        key="concept_selection",
-        format_func=lambda value: concept_option_label(pd.Series(concept_map[value]._asdict())),
-    )
+    with st.sidebar:
+        choice = st.selectbox(
+            "Read one topic",
+            options=list(concept_map.keys()),
+            key="concept_selection",
+            format_func=lambda value: concept_option_label(pd.Series(concept_map[value]._asdict())),
+        )
     if choice != concept_default or search != search_default:
         set_query_params(view="concept", concept=choice, search=search)
 
@@ -842,8 +980,8 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
         nearby_questions.append(
             {
                 "Question": payload.get("public_pair_label", f"{row.source_label} and {row.target_label}"),
-                "Direct literature": payload.get("direct_link_status", ""),
-                "Suggested first step": plain_recommended_move(payload.get("recommended_move", "")),
+                "Nearby support": f"{int(payload.get('supporting_path_count', 0) or 0)} supporting paths",
+                "A useful first step": plain_recommended_move(payload.get("recommended_move", "")),
             }
         )
     st.markdown("### Questions touching this topic")
@@ -882,8 +1020,8 @@ def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd
             with col:
                 st.markdown(f"**{label_for_question(question)}**")
                 st.caption(plain_recommended_move(question["recommended_move"]))
-                st.write(f"Direct literature: {question['direct_link_status']}")
-                st.write(f"Nearby linking concepts: {int(question['mediator_count'])}")
+                st.write(f"Exact released papers: {int(question['cooc_count'])}")
+                st.write(f"Nearby topics: {int(question['mediator_count'])}")
                 if not papers.empty:
                     st.markdown("**Papers to begin with**")
                     for paper in papers.itertuples(index=False):
@@ -968,7 +1106,7 @@ def render_advanced_evidence(db_path: str, questions: pd.DataFrame, concepts: pd
 
 
 def main() -> None:
-    st.set_page_config(page_title="FrontierGraph | App", layout="wide", initial_sidebar_state="collapsed")
+    st.set_page_config(page_title="FrontierGraph | App", layout="wide", initial_sidebar_state="expanded")
     inject_css()
 
     db_path = choose_db_path()
@@ -992,9 +1130,9 @@ def main() -> None:
         """
         <div class="hero-shell">
             <div class="eyebrow">FrontierGraph app</div>
-            <h1 class="hero-title">Inspect one question or topic in the released graph.</h1>
+            <h1 class="hero-title">Read one question or topic in the released graph.</h1>
             <p class="hero-copy">
-                Use the app when you want the nearby topics, supporting paths, and paper lists behind one released question. Counts and tables refer to the current public release, not the full literature.
+                Choose a question or topic in the left sidebar. The main panel keeps the nearby topics, supporting paths, and paper list together so you can read one object at a time.
             </p>
         </div>
         """,
@@ -1027,13 +1165,15 @@ def main() -> None:
     }
     view_keys = list(view_labels.keys())
     sync_from_query("active_view", view_default if view_default in view_keys else "question", "_sync_active_view")
-    active_view = st.radio(
-        "View",
-        options=view_keys,
-        key="active_view",
-        format_func=lambda value: view_labels[value],
-        horizontal=True,
-    )
+    with st.sidebar:
+        st.markdown("### Browse")
+        active_view = st.radio(
+            "View",
+            options=view_keys,
+            key="active_view",
+            format_func=lambda value: view_labels[value],
+            horizontal=False,
+        )
     if active_view != view_default:
         set_query_params(view=active_view)
 

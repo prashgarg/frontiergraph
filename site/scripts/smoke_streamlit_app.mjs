@@ -43,7 +43,7 @@ async function main() {
   await page.waitForSelector("h1", { timeout: 30000 });
   await page.getByText(/Search questions/i).first().waitFor({ timeout: 30000 });
   await textDoesNotContain(page, ["Traceback", "sqlite3.OperationalError", "ModuleNotFoundError"]);
-  assert(await page.getByRole("heading", { name: /Inspect one question or topic in the released graph/i }).isVisible(), "App hero missing");
+  assert(await page.getByRole("heading", { name: /Read one question or topic in the released graph/i }).isVisible(), "App hero missing");
   assert(await page.getByText(/Search questions/i).first().isVisible(), "Question search missing");
   await assertReadableText(page, "label", "App form labels");
   await assertReadableText(page, '[data-testid="stMetric"] label', "Metric labels");

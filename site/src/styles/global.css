@@ -1745,6 +1745,11 @@ h3 {
   stroke-width: calc(1px + (var(--edge-strength, 0.3) * 1.7px));
 }
 
+.graph-edge.is-focused {
+  stroke-opacity: calc(0.12 + (var(--edge-strength, 0.3) * 0.28));
+  stroke-width: calc(0.8px + (var(--edge-strength, 0.3) * 1.85px));
+}
+
 .graph-edge.is-dimmed {
   opacity: 0.12;
 }
@@ -1762,6 +1767,22 @@ h3 {
   stroke-width: 1.8;
   cursor: pointer;
   transition: fill 120ms ease, stroke 120ms ease, opacity 120ms ease, r 120ms ease;
+}
+
+.graph-node-halo {
+  fill: rgba(31, 50, 72, 0.05);
+  stroke: rgba(31, 50, 72, 0.08);
+  stroke-width: 1px;
+}
+
+.graph-node-halo.is-neighbor {
+  fill: rgba(44, 125, 111, 0.09);
+  stroke: rgba(44, 125, 111, 0.14);
+}
+
+.graph-node-halo.is-selected {
+  fill: rgba(255, 215, 125, 0.26);
+  stroke: rgba(212, 146, 42, 0.18);
 }
 
 .graph-node.bucket-core {
@@ -1805,6 +1826,26 @@ h3 {
 
 .graph-label.is-selected {
   fill: var(--graph-label-selected);
+}
+
+.graph-label-chip rect {
+  fill: rgba(255, 253, 248, 0.94);
+  stroke: rgba(24, 38, 58, 0.12);
+  stroke-width: 1px;
+}
+
+.graph-label-chip.is-neighbor rect {
+  fill: rgba(248, 253, 250, 0.96);
+}
+
+.graph-label-chip.is-selected rect {
+  fill: rgba(255, 249, 233, 0.98);
+  stroke: rgba(212, 146, 42, 0.24);
+}
+
+.graph-label-chip-text {
+  stroke: transparent;
+  paint-order: normal;
 }
 
 .selected-title-row {
