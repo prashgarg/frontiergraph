@@ -903,12 +903,13 @@ h3 {
 .homepage-carousel-slide {
   --proof-source: #1463ff;
   --proof-target: #127d68;
-  --proof-accent: rgba(20, 99, 255, 0.12);
+  --proof-accent: rgba(20, 99, 255, 0.11);
   --proof-glow-a: rgba(20, 99, 255, 0.1);
   --proof-glow-b: rgba(18, 125, 104, 0.08);
   --proof-line-color: rgba(24, 42, 74, 0.24);
+  --proof-later: #c46a12;
   display: grid;
-  grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.08fr);
+  grid-template-columns: minmax(360px, 1.08fr) minmax(0, 0.92fr);
   gap: 1rem;
   padding: 1rem;
   border: 1px solid var(--line);
@@ -918,7 +919,7 @@ h3 {
 }
 
 .homepage-carousel-panel-compact .homepage-carousel-slide {
-  grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.05fr);
+  grid-template-columns: minmax(360px, 1.08fr) minmax(0, 0.92fr);
   padding: 0;
   border: 0;
   background: transparent;
@@ -929,9 +930,9 @@ h3 {
   display: none;
 }
 
-.homepage-carousel-slide[data-style="bridge"],
-.homepage-carousel-visual-shell[data-style="bridge"],
-.homepage-carousel-copy[data-style="bridge"] {
+.homepage-carousel-slide[data-style="candidateDebt"],
+.homepage-carousel-visual-shell[data-style="candidateDebt"],
+.homepage-carousel-copy[data-style="candidateDebt"] {
   --proof-source: #1463ff;
   --proof-target: #127d68;
   --proof-accent: rgba(20, 99, 255, 0.12);
@@ -939,29 +940,20 @@ h3 {
   --proof-glow-b: rgba(18, 125, 104, 0.08);
 }
 
-.homepage-carousel-slide[data-style="fan"],
-.homepage-carousel-visual-shell[data-style="fan"],
-.homepage-carousel-copy[data-style="fan"] {
-  --proof-source: #915d00;
-  --proof-target: #b3482f;
-  --proof-accent: rgba(182, 102, 38, 0.12);
-  --proof-glow-a: rgba(208, 143, 50, 0.14);
-  --proof-glow-b: rgba(179, 72, 47, 0.08);
+.homepage-carousel-slide[data-style="directToPath"],
+.homepage-carousel-visual-shell[data-style="directToPath"],
+.homepage-carousel-copy[data-style="directToPath"] {
+  --proof-source: #2159b7;
+  --proof-target: #7b3984;
+  --proof-accent: rgba(89, 91, 214, 0.12);
+  --proof-glow-a: rgba(33, 89, 183, 0.1);
+  --proof-glow-b: rgba(123, 57, 132, 0.08);
+  --proof-later: #d17216;
 }
 
-.homepage-carousel-slide[data-style="stack"],
-.homepage-carousel-visual-shell[data-style="stack"],
-.homepage-carousel-copy[data-style="stack"] {
-  --proof-source: #5f52d9;
-  --proof-target: #ca4f88;
-  --proof-accent: rgba(110, 94, 223, 0.12);
-  --proof-glow-a: rgba(95, 82, 217, 0.12);
-  --proof-glow-b: rgba(202, 79, 136, 0.08);
-}
-
-.homepage-carousel-slide[data-style="arc"],
-.homepage-carousel-visual-shell[data-style="arc"],
-.homepage-carousel-copy[data-style="arc"] {
+.homepage-carousel-slide[data-style="candidateMonetary"],
+.homepage-carousel-visual-shell[data-style="candidateMonetary"],
+.homepage-carousel-copy[data-style="candidateMonetary"] {
   --proof-source: #0f7d89;
   --proof-target: #3d5fb7;
   --proof-accent: rgba(15, 125, 137, 0.12);
@@ -998,18 +990,28 @@ h3 {
 }
 
 .homepage-carousel-line-strong {
-  stroke-width: 3;
+  stroke-width: 4.2;
 }
 
-.homepage-carousel-line-suggested {
+.homepage-carousel-line-candidate {
   stroke: color-mix(in srgb, var(--proof-source) 72%, var(--proof-target) 28%);
+  stroke-width: 3.6;
+  stroke-dasharray: 8 7;
+}
+
+.homepage-carousel-line-later {
+  stroke: var(--proof-later);
+  stroke-width: 3.3;
+  stroke-dasharray: 4 6;
+}
+
+.homepage-carousel-line-legend {
   stroke-width: 3.2;
-  stroke-dasharray: 7 7;
 }
 
 .homepage-carousel-node {
   stroke: rgba(244, 248, 252, 0.96);
-  stroke-width: 3;
+  stroke-width: 4;
 }
 
 .homepage-carousel-node-source {
@@ -1034,21 +1036,23 @@ h3 {
   fill: var(--text);
 }
 
+.homepage-carousel-legend-label {
+  fill: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
 .homepage-carousel-label-end {
   font-family: "Sora", sans-serif;
-  font-size: 9.5px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .homepage-carousel-label-mediator {
   fill: var(--muted);
-  font-size: 7.9px;
+  font-size: 11px;
   letter-spacing: 0.01em;
-}
-
-.homepage-carousel-label-mediator-1 {
-  font-weight: 700;
-  fill: color-mix(in srgb, var(--proof-source) 52%, var(--text) 48%);
 }
 
 .homepage-carousel-copy {
@@ -1082,7 +1086,7 @@ h3 {
 
 .homepage-carousel-copy h3 {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 1.52rem;
   line-height: 1.18;
 }
 

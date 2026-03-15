@@ -15,13 +15,15 @@ for (const group of data.questions.collections) {
 }
 
 const carouselSlides = homepageCarouselSlides.flatMap((slide) => {
-  const match = lookup.get(slide.pairKey);
-  if (!match) return [];
+  const match = slide.pairKey ? lookup.get(slide.pairKey) : null;
+  if (slide.pairKey && !match && !slide.primaryHref) return [];
   return [
     {
       ...slide,
-      questionHref: `/questions/#${slide.pairKey}`,
-      appHref: match.app_link,
+      primaryHref: slide.primaryHref ?? (slide.pairKey ? `/questions/#${slide.pairKey}` : "/paper/full/"),
+      primaryLabel: slide.primaryLabel ?? (slide.pairKey ? "See question" : "Read paper"),
+      secondaryHref: slide.secondaryHref ?? match?.app_link ?? data.app_url,
+      secondaryLabel: slide.secondaryLabel ?? "Explore in app",
     },
   ];
 });

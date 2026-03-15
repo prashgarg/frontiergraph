@@ -1,15 +1,16 @@
 ---
 interface Slide {
-  pairKey: string;
-  visualStyle: "bridge" | "fan" | "stack" | "arc";
+  pairKey?: string;
+  diagramVariant: "candidateDebt" | "directToPath" | "candidateMonetary";
+  kindLabel: string;
   questionTitle: string;
-  sourceLabel: string;
-  targetLabel: string;
-  mediatorLabels: string[];
   why: string;
-  how: string;
-  questionHref: string;
-  appHref: string;
+  detailPrefix: string;
+  detail: string;
+  primaryHref: string;
+  primaryLabel: string;
+  secondaryHref: string;
+  secondaryLabel: string;
 }
 
 interface Props {
@@ -19,19 +20,6 @@ interface Props {
 
 const { slides, compact = false } = Astro.props;
 const rootId = `homepage-carousel-${Math.random().toString(36).slice(2, 10)}`;
-
-const splitNodeLabel = (label: string) => {
-  const words = label.split(" ").filter(Boolean);
-  if (words.length <= 2) return [label];
-  const midpoint = Math.ceil(words.length / 2);
-  return [words.slice(0, midpoint).join(" "), words.slice(midpoint).join(" ")];
-};
-
-const mediatorLabelPositions = [
-  { x: 176, y: 38, anchor: "middle" },
-  { x: 252, y: 129, anchor: "start" },
-  { x: 176, y: 222, anchor: "middle" },
-];
 ---
 
 <section
@@ -41,7 +29,7 @@ const mediatorLabelPositions = [
 >
   <div class="homepage-carousel-heading">
     <div>
-      <span class="tiny-label">Featured question</span>
+      <span class="tiny-label">Featured example</span>
     </div>
     <div class="homepage-carousel-controls" aria-label="Example controls">
       <button class="button-tertiary homepage-carousel-button" type="button" data-role="carousel-prev" aria-label="Previous example">
@@ -58,62 +46,104 @@ const mediatorLabelPositions = [
       <article
         class="homepage-carousel-slide"
         data-role="homepage-carousel-slide"
-        data-style={slide.visualStyle}
+        data-style={slide.diagramVariant}
         data-active={index === 0 ? "true" : "false"}
         aria-hidden={index === 0 ? "false" : "true"}
         hidden={index !== 0}
       >
-        <div class={`homepage-carousel-visual-shell homepage-carousel-visual-shell-${slide.visualStyle}`} data-style={slide.visualStyle}>
-          <svg viewBox="0 0 420 252" class="homepage-carousel-visual" aria-hidden="true">
-            <path d="M112 126 Q152 95 176 78" class="homepage-carousel-line" />
-            <path d="M112 126 Q164 124 218 126" class="homepage-carousel-line homepage-carousel-line-strong" />
-            <path d="M112 126 Q152 157 176 174" class="homepage-carousel-line" />
-            <path d="M176 78 Q258 88 308 126" class="homepage-carousel-line" />
-            <path d="M218 126 Q272 126 308 126" class="homepage-carousel-line homepage-carousel-line-strong" />
-            <path d="M176 174 Q258 164 308 126" class="homepage-carousel-line" />
-            <path d="M110 126 Q208 96 306 126" class="homepage-carousel-line homepage-carousel-line-suggested" />
-            <circle cx="176" cy="78" r="16" class="homepage-carousel-node homepage-carousel-node-mediator homepage-carousel-node-soft" />
-            <circle cx="218" cy="126" r="18" class="homepage-carousel-node homepage-carousel-node-mediator" />
-            <circle cx="176" cy="174" r="16" class="homepage-carousel-node homepage-carousel-node-mediator homepage-carousel-node-soft" />
-            <circle cx="84" cy="126" r="30" class="homepage-carousel-node homepage-carousel-node-source" />
-            <circle cx="336" cy="126" r="33" class="homepage-carousel-node homepage-carousel-node-target" />
-            {slide.mediatorLabels.map((label, mediatorIndex) => {
-              const position = mediatorLabelPositions[mediatorIndex];
-              if (!position) return null;
-              return (
-                <text
-                  x={position.x}
-                  y={position.y}
-                  text-anchor={position.anchor}
-                  class={`homepage-carousel-label homepage-carousel-label-mediator homepage-carousel-label-mediator-${mediatorIndex}`}
-                >
-                  {label}
-                </text>
-              );
-            })}
-            <text x="84" y="213" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-end">
-              {splitNodeLabel(slide.sourceLabel).map((line, lineIndex) => (
-                <tspan x="84" dy={lineIndex === 0 ? 0 : 13}>{line}</tspan>
-              ))}
-            </text>
-            <text x="336" y="213" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-end">
-              {splitNodeLabel(slide.targetLabel).map((line, lineIndex) => (
-                <tspan x="336" dy={lineIndex === 0 ? 0 : 13}>{line}</tspan>
-              ))}
-            </text>
+        <div class={`homepage-carousel-visual-shell homepage-carousel-visual-shell-${slide.diagramVariant}`} data-style={slide.diagramVariant}>
+          <svg viewBox="0 0 520 320" class="homepage-carousel-visual" aria-hidden="true">
+            {slide.diagramVariant === "candidateDebt" && (
+              <>
+                <path d="M104 160 L214 100" class="homepage-carousel-line" />
+                <path d="M104 160 L214 220" class="homepage-carousel-line" />
+                <path d="M242 100 L406 160" class="homepage-carousel-line" />
+                <path d="M242 220 L406 160" class="homepage-carousel-line" />
+                <path d="M112 152 Q258 120 396 152" class="homepage-carousel-line homepage-carousel-line-candidate" />
+
+                <text x="258" y="48" class="homepage-carousel-legend-label">Observed path</text>
+                <path d="M204 58 L316 58" class="homepage-carousel-line homepage-carousel-line-legend" />
+                <text x="258" y="78" class="homepage-carousel-legend-label">Missing direct link</text>
+                <path d="M204 88 L316 88" class="homepage-carousel-line homepage-carousel-line-candidate homepage-carousel-line-legend" />
+
+                <circle cx="84" cy="160" r="34" class="homepage-carousel-node homepage-carousel-node-source" />
+                <circle cx="228" cy="100" r="25" class="homepage-carousel-node homepage-carousel-node-mediator" />
+                <circle cx="228" cy="220" r="25" class="homepage-carousel-node homepage-carousel-node-mediator homepage-carousel-node-soft" />
+                <circle cx="428" cy="160" r="38" class="homepage-carousel-node homepage-carousel-node-target" />
+
+                <text x="84" y="234" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-end">public debt</text>
+                <text x="228" y="62" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-mediator">public investment</text>
+                <text x="228" y="266" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-mediator">energy pricing</text>
+                <text x="428" y="234" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-end">CO2 emissions</text>
+              </>
+            )}
+
+            {slide.diagramVariant === "directToPath" && (
+              <>
+                <path d="M112 160 L406 160" class="homepage-carousel-line homepage-carousel-line-strong" />
+                <path d="M112 160 L228 96" class="homepage-carousel-line homepage-carousel-line-later" />
+                <path d="M228 96 L406 160" class="homepage-carousel-line homepage-carousel-line-later" />
+                <path d="M112 160 L228 224" class="homepage-carousel-line homepage-carousel-line-later" />
+                <path d="M228 224 L406 160" class="homepage-carousel-line homepage-carousel-line-later" />
+
+                <text x="258" y="48" class="homepage-carousel-legend-label">Direct claim first</text>
+                <path d="M196 58 L320 58" class="homepage-carousel-line homepage-carousel-line-strong homepage-carousel-line-legend" />
+                <text x="258" y="78" class="homepage-carousel-legend-label">Mechanisms later</text>
+                <path d="M196 88 L320 88" class="homepage-carousel-line homepage-carousel-line-later homepage-carousel-line-legend" />
+
+                <circle cx="84" cy="160" r="34" class="homepage-carousel-node homepage-carousel-node-source" />
+                <circle cx="228" cy="96" r="24" class="homepage-carousel-node homepage-carousel-node-mediator" />
+                <circle cx="228" cy="224" r="24" class="homepage-carousel-node homepage-carousel-node-mediator homepage-carousel-node-soft" />
+                <circle cx="428" cy="160" r="38" class="homepage-carousel-node homepage-carousel-node-target" />
+
+                <text x="84" y="234" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-end">education</text>
+                <text x="228" y="60" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-mediator">skill premium</text>
+                <text x="228" y="268" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-mediator">labour sorting</text>
+                <text x="428" y="234" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-end">wage inequality</text>
+              </>
+            )}
+
+            {slide.diagramVariant === "candidateMonetary" && (
+              <>
+                <path d="M98 160 L208 80" class="homepage-carousel-line" />
+                <path d="M98 160 L228 160" class="homepage-carousel-line" />
+                <path d="M98 160 L208 240" class="homepage-carousel-line" />
+                <path d="M236 80 L414 160" class="homepage-carousel-line" />
+                <path d="M256 160 L414 160" class="homepage-carousel-line homepage-carousel-line-strong" />
+                <path d="M236 240 L414 160" class="homepage-carousel-line" />
+                <path d="M104 152 Q254 108 400 152" class="homepage-carousel-line homepage-carousel-line-candidate" />
+
+                <text x="258" y="48" class="homepage-carousel-legend-label">Three nearby channels</text>
+                <path d="M200 58 L316 58" class="homepage-carousel-line homepage-carousel-line-legend" />
+                <text x="258" y="78" class="homepage-carousel-legend-label">Candidate direct question</text>
+                <path d="M200 88 L316 88" class="homepage-carousel-line homepage-carousel-line-candidate homepage-carousel-line-legend" />
+
+                <circle cx="78" cy="160" r="32" class="homepage-carousel-node homepage-carousel-node-source" />
+                <circle cx="222" cy="80" r="22" class="homepage-carousel-node homepage-carousel-node-mediator homepage-carousel-node-soft" />
+                <circle cx="242" cy="160" r="24" class="homepage-carousel-node homepage-carousel-node-mediator" />
+                <circle cx="222" cy="240" r="22" class="homepage-carousel-node homepage-carousel-node-mediator homepage-carousel-node-soft" />
+                <circle cx="434" cy="160" r="38" class="homepage-carousel-node homepage-carousel-node-target" />
+
+                <text x="78" y="232" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-end">monetary policy</text>
+                <text x="222" y="42" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-mediator">durables demand</text>
+                <text x="242" y="202" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-mediator">construction</text>
+                <text x="222" y="286" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-mediator">industrial borrowing</text>
+                <text x="434" y="232" text-anchor="middle" class="homepage-carousel-label homepage-carousel-label-end">energy consumption</text>
+              </>
+            )}
           </svg>
         </div>
 
-        <div class="homepage-carousel-copy" data-style={slide.visualStyle}>
-          <span class="homepage-carousel-tag">Featured question</span>
+        <div class="homepage-carousel-copy" data-style={slide.diagramVariant}>
+          <span class="homepage-carousel-tag">{slide.kindLabel}</span>
           <h3>{slide.questionTitle}</h3>
           <p class="card-copy">{slide.why}</p>
           <p class="mini-copy">
-            <strong>Start with:</strong> {slide.how}
+            <strong>{slide.detailPrefix}</strong> {slide.detail}
           </p>
           <div class="button-row homepage-carousel-actions">
-            <a class="text-link" href={slide.questionHref}>See question</a>
-            <a class="text-link" href={slide.appHref}>Explore in app</a>
+            <a class="text-link" href={slide.primaryHref}>{slide.primaryLabel}</a>
+            <a class="text-link" href={slide.secondaryHref}>{slide.secondaryLabel}</a>
           </div>
         </div>
       </article>

@@ -75,8 +75,8 @@ async function main() {
   assert(await page.getByRole("link", { name: /^Read paper$/ }).first().isVisible(), "Homepage paper CTA missing");
   assert(await page.getByRole("link", { name: /^Download data$/ }).first().isVisible(), "Homepage data CTA missing");
   assert(await page.locator('[data-role="homepage-carousel"]').isVisible(), "Homepage should show the featured example");
-  assert((await page.locator('[data-role="homepage-carousel-slide"]').count()) === 4, "Homepage should show 4 featured examples");
-  assert(await page.getByText(/Featured question/i).first().isVisible(), "Homepage should label the example");
+  assert((await page.locator('[data-role="homepage-carousel-slide"]').count()) === 3, "Homepage should show 3 featured examples");
+  assert(await page.getByText(/Featured example/i).first().isVisible(), "Homepage should label the example");
   assert(await page.getByText(/How does public debt shape CO2 emissions/i).isVisible(), "Homepage lead example missing");
   assert(await page.locator('[data-role="homepage-scale-strip"]').isVisible(), "Homepage release strip missing");
 
