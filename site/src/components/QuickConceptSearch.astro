@@ -23,7 +23,7 @@ const rootId = `quick-concept-search-${Math.random().toString(36).slice(2, 10)}`
   </div>
   <div class="button-row">
     <a class="button-secondary" href="/questions/">Browse questions</a>
-    <a class="button-tertiary" href="/graph/">Open map</a>
+    <a class="button-tertiary" href="/graph/">Open graph</a>
     <a class="button-tertiary" href={appUrl}>Explore in app</a>
   </div>
 </section>
@@ -72,7 +72,7 @@ const rootId = `quick-concept-search-${Math.random().toString(36).slice(2, 10)}`
       <p class="mini-copy">Study settings: ${escapeHtml(listText((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
       <div class="button-row">
         <a class="button-primary" href="/questions/">See nearby questions</a>
-        <a class="button-secondary" href="/graph/?q=${labelQuery}">Open this map</a>
+        <a class="button-secondary" href="/graph/?q=${labelQuery}">Open this graph</a>
         <a class="button-tertiary" href="${escapeHtml(concept.app_link || appUrl)}">Explore in app</a>
       </div>
     `;

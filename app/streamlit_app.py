@@ -1119,7 +1119,7 @@ def main() -> None:
         <div class="app-nav">
             <a href="{SITE_URL}">Site</a>
             <a href="{QUESTIONS_URL}">Questions</a>
-            <a href="{GRAPH_URL}">Literature map</a>
+            <a href="{GRAPH_URL}">Graph</a>
             <a href="{PAPER_URL}">Paper</a>
             <a href="{DOWNLOADS_URL}">Downloads</a>
         </div>
