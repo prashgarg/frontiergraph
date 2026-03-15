@@ -20,6 +20,10 @@ data/processed/
 data/external/
 outputs/
 paper/*
+!paper/research_allocation_paper.tex
+!paper/research_allocation_paper.md
+!paper/extended_abstract_research_allocation.tex
+!paper/extended_abstract_research_allocation.md
 !paper/research_allocation_paper_web.md
 !site/src/pages/paper/
 !site/src/pages/paper/**

@@ -102,7 +102,7 @@ def transform_full_markdown() -> str:
     markdown = rewrite_images(markdown, FULL_SOURCE)
     return add_frontmatter(
         markdown,
-        title="What Should Economics Work On Next?",
+        title="What Should Economics Ask Next?",
         description="Full HTML manuscript for the FrontierGraph working paper.",
         eyebrow="Working paper",
         author="Prashant Garg",
@@ -135,7 +135,7 @@ def main() -> None:
         json.dumps(
             {
                 "full": {
-                    "title": "What Should Economics Work On Next?",
+                    "title": "What Should Economics Ask Next?",
                     "eyebrow": "Working paper",
                     "headings": extract_headings(full_markdown),
                 },

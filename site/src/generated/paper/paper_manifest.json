@@ -1,6 +1,6 @@
 {
   "full": {
-    "title": "What Should Economics Work On Next?",
+    "title": "What Should Economics Ask Next?",
     "eyebrow": "Working paper",
     "headings": [
       {
@@ -75,13 +75,23 @@
       },
       {
         "level": 3,
-        "text": "5.2 Where structure helps more",
-        "id": "5-2-where-structure-helps-more"
+        "text": "5.2 The attention-allocation frontier",
+        "id": "5-2-the-attention-allocation-frontier"
       },
       {
         "level": 3,
-        "text": "5.3 Path evolution beyond direct-link closure",
-        "id": "5-3-path-evolution-beyond-direct-link-closure"
+        "text": "5.3 What changes when future links are value-weighted",
+        "id": "5-3-what-changes-when-future-links-are-value-weighted"
+      },
+      {
+        "level": 3,
+        "text": "5.4 Where structure helps more",
+        "id": "5-4-where-structure-helps-more"
+      },
+      {
+        "level": 3,
+        "text": "5.5 Path evolution beyond direct-link closure",
+        "id": "5-5-path-evolution-beyond-direct-link-closure"
       },
       {
         "level": 2,
@@ -140,13 +150,33 @@
       },
       {
         "level": 2,
-        "text": "Appendix E. Path-evolution extensions",
-        "id": "appendix-e-path-evolution-extensions"
+        "text": "Appendix E. Credibility audit summaries",
+        "id": "appendix-e-credibility-audit-summaries"
+      },
+      {
+        "level": 3,
+        "text": "Edge kind",
+        "id": "edge-kind"
+      },
+      {
+        "level": 3,
+        "text": "Directed causal evidence types",
+        "id": "directed-causal-evidence-types"
+      },
+      {
+        "level": 3,
+        "text": "Stability bands",
+        "id": "stability-bands"
       },
       {
         "level": 2,
-        "text": "Appendix F. Tool and interpretation notes",
-        "id": "appendix-f-tool-and-interpretation-notes"
+        "text": "Appendix F. Path-evolution extensions",
+        "id": "appendix-f-path-evolution-extensions"
+      },
+      {
+        "level": 2,
+        "text": "Appendix G. Tool and interpretation notes",
+        "id": "appendix-g-tool-and-interpretation-notes"
       },
       {
         "level": 2,
