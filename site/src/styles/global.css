@@ -534,11 +534,7 @@ h3 {
   max-width: 56rem;
 }
 
-.hero-home-simple {
-  grid-template-columns: minmax(0, 1fr);
-}
-
-.hero-home-simple .hero-copy-panel {
+.hero-home .hero-copy-panel {
   max-width: 54rem;
 }
 
@@ -546,6 +542,14 @@ h3 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+}
+
+.home-intro-grid-hero {
+  grid-template-columns: 1fr;
+}
+
+.home-hero-side {
+  align-self: end;
 }
 
 .home-intro-card {
