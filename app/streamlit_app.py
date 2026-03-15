@@ -249,7 +249,7 @@ def load_release_metrics(db_path: str) -> dict[str, int]:
     return {str(key): int(value) for key, value in rows}
 
 
-@st.cache_data(show_spinner="Loading released research questions...")
+@st.cache_data(show_spinner="Loading released questions...")
 def load_questions(db_path: str) -> pd.DataFrame:
     df = query_df(db_path, "SELECT * FROM questions ORDER BY score DESC, pair_key")
     if df.empty:

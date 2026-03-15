@@ -77,7 +77,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         </div>
         <div data-role="selected-concept">
           <p class="card-copy">
-            Select a topic to turn the literature map into a local reading. The summary stays here, while nearby topics and nearby research questions update below.
+            Select a topic to turn the literature map into a local reading. The summary stays here, while nearby topics and nearby questions update below.
           </p>
         </div>
         <details class="inspector-detail" open>
@@ -93,9 +93,9 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
           </div>
         </details>
         <details class="inspector-detail">
-          <summary>Nearby research questions</summary>
+          <summary>Nearby questions</summary>
           <div data-role="selected-opportunities">
-            <p class="card-copy">The strongest public research questions touching the selected topic will appear here.</p>
+            <p class="card-copy">The strongest released questions touching the selected topic will appear here.</p>
           </div>
         </details>
       </section>
@@ -476,7 +476,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         </div>
       </div>
       <div class="neighbor-group">
-        <h4>Nearby research questions</h4>
+        <h4>Nearby questions</h4>
         <div class="selection-opportunity-stack">
           ${nearbyOpportunities.length
             ? nearbyOpportunities
