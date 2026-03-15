@@ -30,7 +30,7 @@ export const homepageCarouselSlides: HomepageCarouselSlide[] = [
     detailPrefix: "See:",
     detail: "The path-evolution result in the paper, then use the app to inspect mediator structure around one topic.",
     primaryLabel: "Read result",
-    primaryHref: "/paper/full/#53-path-evolution-beyond-direct-link-closure",
+    primaryHref: "/paper/#53-path-evolution-beyond-direct-link-closure",
   },
   {
     pairKey: "FG3C000014__FG3C000024",

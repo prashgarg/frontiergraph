@@ -1,21 +1,20 @@
 ---
 import PaperLayout from "../../layouts/PaperLayout.astro";
-import PaperOverview from "../../generated/paper/research_allocation_paper_overview.md";
+import FullPaper from "../../generated/paper/research_allocation_paper_full.md";
 import manifest from "../../generated/paper/paper_manifest.json";
 import { data } from "../../lib/site-data";
 
-const toc = manifest.overview.headings;
+const toc = manifest.full.headings;
 ---
 
 <PaperLayout
-  title="What FrontierGraph Finds"
-  description="A skim-first web overview of the FrontierGraph paper, benchmark, and public release."
-  eyebrow="Paper overview"
-  deck="Start here if you want the setup, the benchmark, and the strongest results without reading the full manuscript first."
+  title="What Should Economics Work On Next?"
+  description="Full HTML manuscript for the FrontierGraph working paper."
+  eyebrow="HTML manuscript"
+  deck="The full working-paper draft, rendered on the site for long-scroll reading, with the same section order and figures as the manuscript mirror."
   toc={toc}
   pdfUrl={data.downloads.artifacts.working_paper_pdf}
-  variant="overview"
   appUrl={data.app_url}
 >
-  <PaperOverview />
+  <FullPaper />
 </PaperLayout>

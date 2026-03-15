@@ -14,7 +14,6 @@ interface Props {
   deck?: string;
   toc?: TocEntry[];
   pdfUrl: string;
-  variant?: "overview" | "full";
   appUrl: string;
 }
 
@@ -25,13 +24,12 @@ const {
   deck = "",
   toc = [],
   pdfUrl,
-  variant = "full",
   appUrl,
 } = Astro.props;
-const showToc = variant === "full" && toc.length > 0;
+const showToc = toc.length > 0;
 ---
 
-<BaseLayout title={`${title} | FrontierGraph`} description={description}>
+<BaseLayout title={`${title} | FrontierGraph`} description={description} shellClass="site-shell site-shell-wide">
   <main>
     <section class="page-hero paper-hero">
       <span class="eyebrow">{eyebrow}</span>
@@ -39,7 +37,7 @@ const showToc = variant === "full" && toc.length > 0;
       {deck && <p class="lede">{deck}</p>}
       <div class="button-row">
         <a class="button-primary" href={pdfUrl}>Download PDF</a>
-        <a class="button-secondary" href={variant === "overview" ? "/paper/full/" : "/paper/"}>{variant === "overview" ? "Open full HTML paper" : "Open web overview"}</a>
+        <a class="button-secondary" href="/downloads/">Open downloads</a>
         <a class="button-tertiary" href="/questions/">Browse questions</a>
         <a class="button-tertiary" href={appUrl}>Explore in app</a>
       </div>
@@ -58,18 +56,18 @@ const showToc = variant === "full" && toc.length > 0;
           </div>
         </aside>
       )}
-      <article class:list={["paper-article", variant === "overview" && "is-overview"]}>
+      <article class="paper-article">
         <slot />
         <div class="paper-exit-card">
           <span class="eyebrow">Keep going</span>
           <h2>Read, inspect, or take the release away.</h2>
-        <div class="button-row">
-          <a class="button-primary" href={pdfUrl}>Download PDF</a>
-          <a class="button-secondary" href="/downloads/">Open downloads</a>
-          <a class="button-tertiary" href={appUrl}>Explore in app</a>
+          <div class="button-row">
+            <a class="button-primary" href={pdfUrl}>Download PDF</a>
+            <a class="button-secondary" href="/downloads/">Open downloads</a>
+            <a class="button-tertiary" href={appUrl}>Explore in app</a>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
     </section>
   </main>
 </BaseLayout>

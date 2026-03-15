@@ -652,13 +652,13 @@ h3 {
 }
 
 .paper-hero .lede {
-  max-width: 58rem;
+  max-width: 64rem;
 }
 
 .paper-shell {
   display: grid;
-  grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
-  gap: 1.2rem;
+  grid-template-columns: minmax(240px, 290px) minmax(0, 1fr);
+  gap: 1.6rem;
   align-items: start;
   padding: 0.6rem 0 1.4rem;
 }
@@ -678,7 +678,7 @@ h3 {
 }
 
 .paper-toc-card {
-  padding: 1rem;
+  padding: 1rem 1.05rem;
 }
 
 .paper-toc {
@@ -704,11 +704,7 @@ h3 {
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
   border-radius: 1.6rem;
-  padding: 1.5rem 1.8rem;
-}
-
-.paper-article.is-overview {
-  max-width: 54rem;
+  padding: 1.7rem 2.2rem;
 }
 
 .paper-article h1,
@@ -719,7 +715,7 @@ h3 {
 }
 
 .paper-article h1 {
-  font-size: 2.5rem;
+  font-size: 2.85rem;
 }
 
 .paper-article h2 {
@@ -736,8 +732,8 @@ h3 {
 .paper-article li,
 .paper-article blockquote {
   color: var(--text);
-  line-height: 1.75;
-  font-size: 1.03rem;
+  line-height: 1.8;
+  font-size: 1.06rem;
 }
 
 .paper-article p:has(strong:first-child) {

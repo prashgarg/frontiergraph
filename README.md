@@ -4,8 +4,7 @@ FrontierGraph is a deterministic metascience tool for ranking what economics sho
 
 - Public site: `https://frontiergraph.com`
 - Public app: `https://frontiergraph-app-1058669339361.us-central1.run.app`
-- Paper overview: `https://frontiergraph.com/paper/`
-- Full HTML manuscript: `https://frontiergraph.com/paper/full/`
+- HTML manuscript: `https://frontiergraph.com/paper/`
 - Working paper PDF: `https://frontiergraph.com/downloads/frontiergraph-working-paper.pdf`
 - Repository: `https://github.com/prashgarg/frontiergraph`
 
