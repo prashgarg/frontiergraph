@@ -19,7 +19,15 @@ site/public/data/v2/concept_neighborhoods.json
 data/processed/
 data/external/
 outputs/
-paper/
+paper/*
+!paper/research_allocation_paper_web.md
+!site/src/pages/paper/
+!site/src/pages/paper/**
+!site/src/layouts/PaperLayout.astro
+!site/src/generated/paper/
+!site/src/generated/paper/**
+!site/public/paper-assets/
+!site/public/paper-assets/**
 
 deploy/public_beta.env
 deploy/public_release.env

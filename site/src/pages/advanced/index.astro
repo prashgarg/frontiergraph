@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { data } from "../../lib/site-data";
 ---
 
 <BaseLayout
@@ -16,6 +17,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <div class="button-row">
         <a class="button-secondary" href="/questions/">Back to Research Questions</a>
         <a class="button-tertiary" href="/how-it-works/">How it works</a>
+        <a class="button-tertiary" href={data.app_url}>Deeper app</a>
         <a class="button-tertiary" href="/method/">Method</a>
         <a class="button-tertiary" href="/downloads/">Downloads</a>
       </div>
@@ -28,10 +30,20 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           <h3>Literature map</h3>
           <p class="card-copy">Inspect one topic, its related ideas, and the nearby research in more detail.</p>
         </a>
+        <a class="card action-card" href={data.app_url}>
+          <span class="eyebrow">Work area</span>
+          <h3>Deeper app</h3>
+          <p class="card-copy">Move from a released question into supporting paths, starter papers, mediators, and side-by-side comparison.</p>
+        </a>
         <a class="card action-card" href="/method/">
           <span class="eyebrow">Technical appendix</span>
           <h3>Method</h3>
           <p class="card-copy">Read the extraction notes, concept-matching logic, ranking glossary, and release filtering rules.</p>
+        </a>
+        <a class="card action-card" href="/paper/">
+          <span class="eyebrow">Longform</span>
+          <h3>Paper</h3>
+          <p class="card-copy">Read the web overview or the full HTML manuscript before downloading the PDF.</p>
         </a>
         <a class="card action-card" href="/downloads/">
           <span class="eyebrow">Artifacts</span>

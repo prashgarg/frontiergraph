@@ -53,7 +53,7 @@ if ! gcloud artifacts repositories describe "$AR_REPOSITORY" \
   gcloud artifacts repositories create "$AR_REPOSITORY" \
     --repository-format=docker \
     --location="$REGION" \
-    --description="Container images for the Economics Opportunity Ranker" \
+    --description="Container images for FrontierGraph" \
     --project "$PROJECT_ID"
 fi
 
@@ -83,7 +83,7 @@ deploy_args=(
 )
 
 if [[ -n "${DATA_BUCKET:-}" ]]; then
-  DB_FILENAME="${DB_FILENAME:-app_causalclaims.db}"
+  DB_FILENAME="${DB_FILENAME:-frontiergraph-economics-public.db}"
   CONCEPT_DB_FILENAME="${CONCEPT_DB_FILENAME:-}"
   MOUNT_PATH="${MOUNT_PATH:-/mnt/ranker-data}"
   VOLUME_NAME="${VOLUME_NAME:-ranker-data}"

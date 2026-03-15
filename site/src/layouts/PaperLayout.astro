@@ -1,0 +1,75 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface TocEntry {
+  level: number;
+  text: string;
+  id: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  deck?: string;
+  toc?: TocEntry[];
+  pdfUrl: string;
+  variant?: "overview" | "full";
+  appUrl: string;
+}
+
+const {
+  title,
+  description,
+  eyebrow,
+  deck = "",
+  toc = [],
+  pdfUrl,
+  variant = "full",
+  appUrl,
+} = Astro.props;
+const showToc = variant === "full" && toc.length > 0;
+---
+
+<BaseLayout title={`${title} | FrontierGraph`} description={description}>
+  <main>
+    <section class="page-hero paper-hero">
+      <span class="eyebrow">{eyebrow}</span>
+      <h1>{title}</h1>
+      {deck && <p class="lede">{deck}</p>}
+      <div class="button-row">
+        <a class="button-primary" href={pdfUrl}>Download PDF</a>
+        <a class="button-secondary" href={variant === "overview" ? "/paper/full/" : "/paper/"}>{variant === "overview" ? "Open full HTML paper" : "Open web overview"}</a>
+        <a class="button-tertiary" href="/questions/">Browse research questions</a>
+        <a class="button-tertiary" href={appUrl}>Open deeper app</a>
+      </div>
+    </section>
+
+    <section class="paper-shell">
+      {showToc && (
+        <aside class="paper-toc-shell">
+          <div class="paper-toc-card">
+            <span class="eyebrow">Contents</span>
+            <nav class="paper-toc">
+              {toc.map((entry) => (
+                <a class:list={["paper-toc-link", entry.level === 3 && "is-sub"]} href={`#${entry.id}`}>{entry.text}</a>
+              ))}
+            </nav>
+          </div>
+        </aside>
+      )}
+      <article class:list={["paper-article", variant === "overview" && "is-overview"]}>
+        <slot />
+        <div class="paper-exit-card">
+          <span class="eyebrow">Keep going</span>
+          <h2>Read, inspect, or take the release away.</h2>
+          <div class="button-row">
+            <a class="button-primary" href={pdfUrl}>Download PDF</a>
+            <a class="button-secondary" href="/downloads/">Open downloads</a>
+            <a class="button-tertiary" href={appUrl}>Open deeper app</a>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+</BaseLayout>

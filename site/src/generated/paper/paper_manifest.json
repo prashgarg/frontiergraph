@@ -1,0 +1,194 @@
+{
+  "full": {
+    "title": "What Should Economics Work On Next?",
+    "eyebrow": "Working paper",
+    "headings": [
+      {
+        "level": 2,
+        "text": "Abstract",
+        "id": "abstract"
+      },
+      {
+        "level": 2,
+        "text": "1. Introduction",
+        "id": "1-introduction"
+      },
+      {
+        "level": 2,
+        "text": "2. Related Literature and Positioning",
+        "id": "2-related-literature-and-positioning"
+      },
+      {
+        "level": 2,
+        "text": "3. Corpus, Paper-Local Extraction, and Node Normalization",
+        "id": "3-corpus-paper-local-extraction-and-node-normalization"
+      },
+      {
+        "level": 3,
+        "text": "3.1 Corpus definition",
+        "id": "3-1-corpus-definition"
+      },
+      {
+        "level": 3,
+        "text": "3.2 Paper-local research graphs",
+        "id": "3-2-paper-local-research-graphs"
+      },
+      {
+        "level": 3,
+        "text": "3.3 Concept identity and node normalization",
+        "id": "3-3-concept-identity-and-node-normalization"
+      },
+      {
+        "level": 2,
+        "text": "4. Candidate Questions and Evaluation Design",
+        "id": "4-candidate-questions-and-evaluation-design"
+      },
+      {
+        "level": 3,
+        "text": "4.1 Missing links as candidate questions",
+        "id": "4-1-missing-links-as-candidate-questions"
+      },
+      {
+        "level": 3,
+        "text": "4.2 Gap and boundary questions",
+        "id": "4-2-gap-and-boundary-questions"
+      },
+      {
+        "level": 3,
+        "text": "4.3 How the score reads the graph",
+        "id": "4-3-how-the-score-reads-the-graph"
+      },
+      {
+        "level": 3,
+        "text": "4.4 Prospective evaluation",
+        "id": "4-4-prospective-evaluation"
+      },
+      {
+        "level": 2,
+        "text": "5. What the Benchmark Shows",
+        "id": "5-what-the-benchmark-shows"
+      },
+      {
+        "level": 3,
+        "text": "5.1 Popularity at the strict shortlist",
+        "id": "5-1-popularity-at-the-strict-shortlist"
+      },
+      {
+        "level": 3,
+        "text": "5.2 Where structure helps more",
+        "id": "5-2-where-structure-helps-more"
+      },
+      {
+        "level": 3,
+        "text": "5.3 Path evolution beyond direct-link closure",
+        "id": "5-3-path-evolution-beyond-direct-link-closure"
+      },
+      {
+        "level": 2,
+        "text": "6. FrontierGraph as Research Tool",
+        "id": "6-frontiergraph-as-research-tool"
+      },
+      {
+        "level": 2,
+        "text": "7. Discussion and Conclusion",
+        "id": "7-discussion-and-conclusion"
+      },
+      {
+        "level": 2,
+        "text": "Appendix A. Paper-local graph extraction",
+        "id": "appendix-a-paper-local-graph-extraction"
+      },
+      {
+        "level": 3,
+        "text": "Prompts",
+        "id": "prompts"
+      },
+      {
+        "level": 3,
+        "text": "Schema",
+        "id": "schema"
+      },
+      {
+        "level": 3,
+        "text": "Design choices",
+        "id": "design-choices"
+      },
+      {
+        "level": 2,
+        "text": "Appendix B. Node normalization and ontology construction",
+        "id": "appendix-b-node-normalization-and-ontology-construction"
+      },
+      {
+        "level": 3,
+        "text": "Why a native ontology is needed here",
+        "id": "why-a-native-ontology-is-needed-here"
+      },
+      {
+        "level": 3,
+        "text": "Implemented pipeline",
+        "id": "implemented-pipeline"
+      },
+      {
+        "level": 2,
+        "text": "Appendix C. Benchmark construction and significance",
+        "id": "appendix-c-benchmark-construction-and-significance"
+      },
+      {
+        "level": 2,
+        "text": "Appendix D. Heterogeneity atlas extensions",
+        "id": "appendix-d-heterogeneity-atlas-extensions"
+      },
+      {
+        "level": 2,
+        "text": "Appendix E. Path-evolution extensions",
+        "id": "appendix-e-path-evolution-extensions"
+      },
+      {
+        "level": 2,
+        "text": "Appendix F. Tool and interpretation notes",
+        "id": "appendix-f-tool-and-interpretation-notes"
+      },
+      {
+        "level": 2,
+        "text": "References",
+        "id": "references"
+      }
+    ]
+  },
+  "overview": {
+    "title": "What FrontierGraph Finds",
+    "eyebrow": "Web overview",
+    "headings": [
+      {
+        "level": 2,
+        "text": "The basic object",
+        "id": "the-basic-object"
+      },
+      {
+        "level": 2,
+        "text": "What the benchmark says",
+        "id": "what-the-benchmark-says"
+      },
+      {
+        "level": 2,
+        "text": "Where the story changes",
+        "id": "where-the-story-changes"
+      },
+      {
+        "level": 2,
+        "text": "A second result: how research evolves",
+        "id": "a-second-result-how-research-evolves"
+      },
+      {
+        "level": 2,
+        "text": "How to use the public release",
+        "id": "how-to-use-the-public-release"
+      },
+      {
+        "level": 2,
+        "text": "Read more",
+        "id": "read-more"
+      }
+    ]
+  }
+}

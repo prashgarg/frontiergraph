@@ -1,0 +1,21 @@
+---
+import PaperLayout from "../../../layouts/PaperLayout.astro";
+import FullPaper from "../../../generated/paper/research_allocation_paper_full.md";
+import manifest from "../../../generated/paper/paper_manifest.json";
+import { data } from "../../../lib/site-data";
+
+const toc = manifest.full.headings;
+---
+
+<PaperLayout
+  title="What Should Economics Work On Next?"
+  description="Full HTML manuscript for the FrontierGraph working paper."
+  eyebrow="Full HTML manuscript"
+  deck="The full working-paper draft, rendered on the site for long-scroll reading, with the same section order and figures as the manuscript mirror."
+  toc={toc}
+  pdfUrl={data.downloads.artifacts.working_paper_pdf}
+  variant="full"
+  appUrl={data.app_url}
+>
+  <FullPaper />
+</PaperLayout>

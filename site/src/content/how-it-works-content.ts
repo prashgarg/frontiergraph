@@ -101,7 +101,7 @@ export function buildHowItWorksContent(appUrl: string): {
           {
             question: "What should I do after opening one card?",
             answerHtml: [
-              `Check close synonyms, read the papers to start with, inspect the related ideas, and decide whether the question looks like a mechanism, outcome, or setting question. If you want a slower topic-level reading, use <a href="${appUrl}">Open the literature map</a>.`,
+              `Check close synonyms, read the papers to start with, inspect the related ideas, and decide whether the question looks like a mechanism, outcome, or setting question. If you want a slower topic-level reading with paths and evidence tables, use <a href="${appUrl}">Open the deeper app</a>.`,
             ],
           },
         ],

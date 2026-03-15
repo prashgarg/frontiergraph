@@ -161,7 +161,7 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
               ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
               <div class="mini-copy">${escapeHtml(item.direct_link_status)} · supported by ${formatNumber(safeNumber(item.supporting_path_count))} nearby concepts</div>
               <div class="mini-copy">Context: ${escapeHtml(item.source_context_summary)} on one side and ${escapeHtml(item.target_context_summary)} on the other.</div>
-              <a class="text-link" href="${escapeHtml(item.app_link)}">Open question card</a>
+              <a class="text-link" href="${escapeHtml(item.app_link)}">Open in deeper app</a>
             </article>
           `,
         )

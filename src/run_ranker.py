@@ -36,7 +36,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--db",
         default=None,
-        help="Optional SQLite database path. Defaults to data/processed/app_causalclaims.db when present.",
+        help="Optional SQLite database path. Defaults to the canonical public FrontierGraph release bundle when present.",
     )
     parser.add_argument("--host", default=default_host(), help="Streamlit server address.")
     parser.add_argument("--port", default=default_port(), help="Streamlit server port.")
@@ -50,8 +50,11 @@ def parse_args() -> argparse.Namespace:
 
 
 def default_db_path(repo_root: Path) -> Path:
+    public_release = repo_root / "data" / "production" / "frontiergraph_public_release" / "frontiergraph-economics-public.db"
     causalclaims = repo_root / "data" / "processed" / "app_causalclaims.db"
     demo = repo_root / "data" / "processed" / "app.db"
+    if public_release.exists():
+        return public_release
     if causalclaims.exists():
         return causalclaims
     return demo

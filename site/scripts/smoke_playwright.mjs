@@ -38,6 +38,7 @@ async function main() {
   assert(await nav.getByRole("link", { name: /^How it works$/ }).isVisible(), "How it works nav missing");
   assert(await nav.getByRole("link", { name: /^Method$/ }).isVisible(), "Method nav missing");
   assert(await nav.getByRole("link", { name: /^Literature map$/ }).isVisible(), "Literature map nav missing");
+  assert(await nav.getByRole("link", { name: /^Paper$/ }).isVisible(), "Paper nav missing");
   assert(await nav.getByRole("link", { name: /^Downloads$/ }).isVisible(), "Downloads nav missing");
   const heroText = await page.locator("main .hero").first().innerText();
   for (const token of ["Baseline exploratory", "path support", "motif"]) {
@@ -49,6 +50,9 @@ async function main() {
   assert(!heroText.includes("Where do we go next?"), "Homepage should not show the old speculative framing");
   assert(await page.getByText(/How does public debt shape CO2 emissions/i).isVisible(), "Homepage should show the lead carousel example");
   assert(await page.getByText(/Speculative question/i).first().isVisible(), "Homepage carousel should mark examples as speculative");
+  await page.getByRole("link", { name: /Read on the web/i }).first().click();
+  await page.waitForURL(/\/paper\/$/);
+  await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
 
   await page.goto(`${baseUrl}/questions/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
@@ -148,16 +152,22 @@ async function main() {
 
   await page.goto(`${baseUrl}/method/`, { waitUntil: "networkidle" });
   assert(await page.getByRole("link", { name: /How it works/i }).first().isVisible(), "Method should link back to How it works");
-  assert(await page.getByRole("link", { name: /Read paper/i }).first().isVisible(), "Method should link to the paper");
+  assert(await page.getByRole("link", { name: /Read paper on the web/i }).first().isVisible(), "Method should link to the paper");
 
   await page.goto(`${baseUrl}/compare/`, { waitUntil: "domcontentloaded" });
   await page.waitForURL(/\/method\/$/);
 
   await page.goto(`${baseUrl}/downloads/`, { waitUntil: "networkidle" });
-  assert(await page.getByRole("link", { name: /How it works/i }).first().isVisible(), "Downloads page should link to How it works");
-  assert(await page.getByRole("link", { name: /Read working paper/i }).isVisible(), "Downloads page should expose the working paper");
+  assert(await page.getByRole("link", { name: /Paper overview/i }).first().isVisible(), "Downloads page should expose the paper overview");
+  assert(await page.getByRole("link", { name: /Working paper PDF/i }).first().isVisible(), "Downloads page should expose the working paper");
   assert(await page.getByRole("link", { name: /Extended abstract PDF/i }).isVisible(), "Downloads page should expose the extended abstract");
   assert(await page.getByText(/frontiergraph-economics-public\.db/i).isVisible(), "Downloads page should show the public DB bundle");
+  assert(await page.getByText(/Tier 1/i).first().isVisible(), "Downloads page should show tiered releases");
+
+  await page.goto(`${baseUrl}/paper/`, { waitUntil: "networkidle" });
+  assert(await page.getByRole("heading", { name: /What FrontierGraph Finds/i }).first().isVisible(), "Paper overview missing");
+  await page.goto(`${baseUrl}/paper/full/`, { waitUntil: "networkidle" });
+  assert(await page.getByRole("heading", { name: /What Should Economics Work On Next/i }).first().isVisible(), "Full paper missing");
 
   assert(errors.length === 0, `Browser errors found:\n${errors.join("\n")}`);
   await browser.close();

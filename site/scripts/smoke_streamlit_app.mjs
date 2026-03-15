@@ -1,0 +1,61 @@
+import { chromium } from "playwright";
+
+const baseUrl = process.argv[2] || "http://127.0.0.1:8511";
+
+function assert(condition, message) {
+  if (!condition) {
+    throw new Error(message);
+  }
+}
+
+async function textDoesNotContain(page, forbidden) {
+  const bodyText = await page.locator("body").innerText();
+  for (const token of forbidden) {
+    assert(!bodyText.includes(token), `Page contains forbidden token: ${token}`);
+  }
+}
+
+async function main() {
+  const browser = await chromium.launch({
+    channel: "chrome",
+    headless: true,
+  });
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1100 } });
+  const errors = [];
+  page.on("pageerror", (error) => errors.push(`pageerror:${error.message}`));
+  page.on("console", (msg) => {
+    if (msg.type() === "error") errors.push(`console:${msg.text()}`);
+  });
+
+  await page.goto(`${baseUrl}/`, { waitUntil: "domcontentloaded" });
+  await page.waitForSelector("h1", { timeout: 30000 });
+  await page.getByText(/Search questions/i).first().waitFor({ timeout: 30000 });
+  await textDoesNotContain(page, ["Traceback", "sqlite3.OperationalError", "ModuleNotFoundError"]);
+  assert(await page.getByRole("heading", { name: /Inspect one question or topic in more detail/i }).isVisible(), "App hero missing");
+  assert(await page.getByText(/Search questions/i).first().isVisible(), "Question search missing");
+  assert(await page.getByText(/Inspect one question/i).first().isVisible(), "Question selector missing");
+  assert(await page.getByText(/Starter papers/i).first().isVisible(), "Question detail panel missing");
+
+  await page.goto(`${baseUrl}/?view=concept&concept=FG3C000001`, { waitUntil: "domcontentloaded" });
+  await page.waitForSelector("h1", { timeout: 30000 });
+  await page.getByText(/economic growth/i).first().waitFor({ timeout: 30000 });
+  await textDoesNotContain(page, ["Traceback", "sqlite3.OperationalError"]);
+  assert(await page.getByText(/economic growth/i).first().isVisible(), "Concept deep link did not resolve");
+  assert(await page.getByText(/Local map/i).first().isVisible(), "Concept local map missing");
+  assert(await page.getByText(/Nearby questions touching this topic/i).first().isVisible(), "Concept opportunity table missing");
+
+  await page.goto(`${baseUrl}/?view=compare&pairs=FG3C000010__FG3C003971,FG3C000003__FG3C000208`, { waitUntil: "domcontentloaded" });
+  await page.waitForSelector("h1", { timeout: 30000 });
+  await page.getByText(/Choose 2 to 4 questions/i).first().waitFor({ timeout: 30000 });
+  await textDoesNotContain(page, ["Traceback", "sqlite3.OperationalError"]);
+  assert(await page.getByText(/Choose 2 to 4 questions/i).first().isVisible(), "Compare multiselect missing");
+
+  assert(errors.length === 0, `Browser errors found:\n${errors.join("\n")}`);
+  await browser.close();
+  console.log("streamlit smoke passed");
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

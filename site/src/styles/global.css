@@ -637,8 +637,138 @@ h3 {
 
 .download-meta {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
+}
+
+.paper-hero .lede {
+  max-width: 58rem;
+}
+
+.paper-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: start;
+  padding: 0.6rem 0 1.4rem;
+}
+
+.paper-toc-shell {
+  position: sticky;
+  top: 1.2rem;
+}
+
+.paper-toc-card,
+.paper-exit-card {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  border-radius: 1.35rem;
+}
+
+.paper-toc-card {
+  padding: 1rem;
+}
+
+.paper-toc {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+}
+
+.paper-toc-link {
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+.paper-toc-link.is-sub {
+  padding-left: 0.9rem;
+  font-size: 0.95rem;
+}
+
+.paper-article {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  border-radius: 1.6rem;
+  padding: 1.5rem 1.8rem;
+}
+
+.paper-article.is-overview {
+  max-width: 54rem;
+}
+
+.paper-article h1,
+.paper-article h2,
+.paper-article h3,
+.paper-article h4 {
+  scroll-margin-top: 1.25rem;
+}
+
+.paper-article h1 {
+  font-size: 2.5rem;
+}
+
+.paper-article h2 {
+  font-size: 1.7rem;
+  margin-top: 2rem;
+}
+
+.paper-article h3 {
+  font-size: 1.25rem;
+  margin-top: 1.3rem;
+}
+
+.paper-article p,
+.paper-article li,
+.paper-article blockquote {
+  color: var(--text);
+  line-height: 1.75;
+  font-size: 1.03rem;
+}
+
+.paper-article p:has(strong:first-child) {
+  color: var(--muted);
+}
+
+.paper-article img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 1rem auto;
+  border-radius: 1rem;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+}
+
+.paper-article hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2rem 0;
+}
+
+.paper-article code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.94em;
+  background: var(--surface-muted);
+  border-radius: 0.4rem;
+  padding: 0.08rem 0.28rem;
+}
+
+.paper-article pre {
+  overflow-x: auto;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  background: var(--surface-muted);
+  border: 1px solid var(--line);
+}
+
+.paper-exit-card {
+  margin-top: 2rem;
+  padding: 1.15rem 1.25rem;
 }
 
 .warning-note {
@@ -1820,12 +1950,22 @@ h3 {
   .metrics-grid-seven,
   .split-section,
   .faq-top-grid,
-  .faq-theme-grid {
+  .faq-theme-grid,
+  .paper-shell,
+  .download-meta {
     grid-template-columns: 1fr;
   }
 
   .faq-rail {
     position: static;
+  }
+
+  .paper-toc-shell {
+    position: static;
+  }
+
+  .paper-article {
+    padding: 1.2rem 1.15rem;
   }
 
   .site-header,

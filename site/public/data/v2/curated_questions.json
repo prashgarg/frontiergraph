@@ -1,0 +1,987 @@
+[
+  {
+    "pair_key": "FG3C000003__FG3C000208",
+    "source_id": "FG3C000208",
+    "target_id": "FG3C000003",
+    "source_label": "public debt",
+    "target_label": "CO2 emissions",
+    "source_bucket": "core",
+    "target_bucket": "adjacent",
+    "cross_field": true,
+    "score": 0.220927,
+    "base_score": 0.327948,
+    "duplicate_penalty": 0.107021,
+    "path_support_norm": 0.249676,
+    "gap_bonus": 1.0,
+    "mediator_count": 23,
+    "motif_count": 23,
+    "cooc_count": 0,
+    "direct_link_status": "No direct papers yet",
+    "supporting_path_count": 23,
+    "why_now": "public debt and CO2 emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "slice_label": "Missing direct link",
+    "public_pair_label": "public debt and CO2 emissions",
+    "top_mediator_labels": [
+      "economic growth",
+      "financial development",
+      "renewable energy consumption"
+    ],
+    "representative_papers": [
+      {
+        "paper_id": "W4387030205__gpt5mini_low",
+        "title": "What role public debt plays to moderate the influence of natural resources on financial development? Appraising Resource-Curse Hypothesis in MENA Region",
+        "year": 2023,
+        "edge_src": "FG3C000208",
+        "edge_dst": "FG3C000006"
+      },
+      {
+        "paper_id": "W3130642389__gpt5mini_low",
+        "title": "Unpacking the role of public debt in renewable energy consumption: New insights from the emerging countries",
+        "year": 2021,
+        "edge_src": "FG3C000208",
+        "edge_dst": "FG3C000018"
+      },
+      {
+        "paper_id": "W2018005751__gpt5mini_low",
+        "title": "Public debt and financial development",
+        "year": 2008,
+        "edge_src": "FG3C000208",
+        "edge_dst": "FG3C000006"
+      }
+    ],
+    "question_family": "debt-climate",
+    "suppress_from_public_ranked_window": false,
+    "top_countries_source": [
+      "United States",
+      "Africa",
+      "China"
+    ],
+    "top_countries_target": [
+      "China",
+      "India"
+    ],
+    "source_context_summary": "United States, Africa, and related settings",
+    "target_context_summary": "China and India",
+    "common_contexts": "public debt studies are common in United States, Africa, and related settings; CO2 emissions studies are common in China and India.",
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000003__FG3C000208",
+    "question_title": "How does public debt shape CO2 emissions?",
+    "short_why": "Debt can reshape public investment, energy pricing, and fiscal space, but those channels rarely get studied together as an emissions question.",
+    "first_next_step": "Start with debt overhang, austerity, or refinancing episodes and track public investment, energy use, and emissions after them.",
+    "who_its_for": "Public finance, macro, and climate researchers.",
+    "homepage_featured": true,
+    "questions_featured": true,
+    "display_order": 1,
+    "homepage_role": "lead",
+    "field_shelves": [
+      "macro-finance",
+      "climate-energy"
+    ],
+    "collection_tags": [
+      "cross-field",
+      "strong-nearby-evidence"
+    ],
+    "editorial_strength": "flagship"
+  },
+  {
+    "pair_key": "FG3C000012__FG3C000110",
+    "source_id": "FG3C000012",
+    "target_id": "FG3C000110",
+    "source_label": "urbanization",
+    "target_label": "output growth",
+    "source_bucket": "adjacent",
+    "target_bucket": "core",
+    "cross_field": true,
+    "score": 0.199147,
+    "base_score": 0.222935,
+    "duplicate_penalty": 0.023787,
+    "path_support_norm": 0.015976,
+    "gap_bonus": 1.0,
+    "mediator_count": 17,
+    "motif_count": 17,
+    "cooc_count": 0,
+    "direct_link_status": "No direct papers yet",
+    "supporting_path_count": 17,
+    "why_now": "urbanization and output growth are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "slice_label": "Missing direct link",
+    "public_pair_label": "output growth and urbanization",
+    "top_mediator_labels": [
+      "CO2 emissions",
+      "energy consumption",
+      "energy use"
+    ],
+    "representative_papers": [
+      {
+        "paper_id": "W4378895327__gpt5mini_low",
+        "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+        "year": 2023,
+        "edge_src": "FG3C000012",
+        "edge_dst": "FG3C000173"
+      },
+      {
+        "paper_id": "W4402599747__gpt5mini_low",
+        "title": "Impacts of Urbanization on Energy Consumption in the South Asian Association for Regional Cooperation Zone",
+        "year": 2024,
+        "edge_src": "FG3C000012",
+        "edge_dst": "FG3C000014"
+      },
+      {
+        "paper_id": "W1986959413__gpt5mini_low",
+        "title": "Energy use and output growth in Canada: a multivariate cointegration analysis",
+        "year": 2003,
+        "edge_src": "FG3C000173",
+        "edge_dst": "FG3C000110"
+      }
+    ],
+    "question_family": "urban-growth",
+    "suppress_from_public_ranked_window": false,
+    "top_countries_source": [
+      "China",
+      "India"
+    ],
+    "top_countries_target": [
+      "United States",
+      "China",
+      "United Kingdom"
+    ],
+    "source_context_summary": "China and India",
+    "target_context_summary": "United States, China, and related settings",
+    "common_contexts": "urbanization studies are common in China and India; output growth studies are common in United States, China, and related settings.",
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000012__FG3C000110",
+    "question_title": "When does urbanization translate into output growth?",
+    "short_why": "Urbanization is central to development stories, but it is often treated as background change rather than a testable growth question.",
+    "first_next_step": "Use city expansion or regional urban concentration changes to test when denser settlement begins to raise output growth.",
+    "who_its_for": "Development, urban, and regional economists.",
+    "homepage_featured": true,
+    "questions_featured": true,
+    "display_order": 2,
+    "homepage_role": "supporting",
+    "field_shelves": [
+      "development-urban"
+    ],
+    "collection_tags": [
+      "open-little-direct",
+      "paper-ready",
+      "phd-topic"
+    ],
+    "editorial_strength": "flagship"
+  },
+  {
+    "pair_key": "FG3C000014__FG3C000024",
+    "source_id": "FG3C000024",
+    "target_id": "FG3C000014",
+    "source_label": "monetary policy",
+    "target_label": "energy consumption",
+    "source_bucket": "core",
+    "target_bucket": "adjacent",
+    "cross_field": true,
+    "score": 0.200003,
+    "base_score": 0.218595,
+    "duplicate_penalty": 0.018592,
+    "path_support_norm": 0.004562,
+    "gap_bonus": 1.0,
+    "mediator_count": 23,
+    "motif_count": 23,
+    "cooc_count": 0,
+    "direct_link_status": "No direct papers yet",
+    "supporting_path_count": 23,
+    "why_now": "monetary policy and energy consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "slice_label": "Missing direct link",
+    "public_pair_label": "monetary policy and energy consumption",
+    "top_mediator_labels": [
+      "income",
+      "output",
+      "income inequality"
+    ],
+    "representative_papers": [
+      {
+        "paper_id": "W4392592084__gpt5mini_low",
+        "title": "Nonparametric analysis of the relationship between income inequality and energy consumption in African countries",
+        "year": 2024,
+        "edge_src": "FG3C000025",
+        "edge_dst": "FG3C000014"
+      },
+      {
+        "paper_id": "W2029680849__gpt5mini_low",
+        "title": "Energy consumption and output: Evidence from a panel of 14 oil-exporting countries",
+        "year": 2013,
+        "edge_src": "FG3C000011",
+        "edge_dst": "FG3C000014"
+      },
+      {
+        "paper_id": "W4414569316__gpt5mini_low",
+        "title": "Inequality and transmission channels of monetary policy in a macro agent-based model",
+        "year": 2025,
+        "edge_src": "FG3C000024",
+        "edge_dst": "FG3C000025"
+      }
+    ],
+    "question_family": "monetary-energy",
+    "suppress_from_public_ranked_window": false,
+    "top_countries_source": [
+      "United States",
+      "China"
+    ],
+    "top_countries_target": [
+      "China",
+      "India",
+      "Pakistan"
+    ],
+    "source_context_summary": "United States and China",
+    "target_context_summary": "China, India, and related settings",
+    "common_contexts": "monetary policy studies are common in United States and China; energy consumption studies are common in China, India, and related settings.",
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000014__FG3C000024",
+    "question_title": "Does monetary policy have an energy-demand channel?",
+    "short_why": "Rate shocks move durables, construction, and industrial borrowing, yet energy demand is rarely the main outcome of monetary papers.",
+    "first_next_step": "Trace monetary shocks through durables, construction, and sector energy demand instead of stopping at output or inflation.",
+    "who_its_for": "Macro, monetary, and energy researchers.",
+    "homepage_featured": true,
+    "questions_featured": true,
+    "display_order": 3,
+    "homepage_role": "supporting",
+    "field_shelves": [
+      "macro-finance",
+      "climate-energy"
+    ],
+    "collection_tags": [
+      "cross-field",
+      "strong-nearby-evidence"
+    ],
+    "editorial_strength": "flagship"
+  },
+  {
+    "pair_key": "FG3C000010__FG3C000019",
+    "source_id": "FG3C000019",
+    "target_id": "FG3C000010",
+    "source_label": "investment",
+    "target_label": "carbon emissions",
+    "source_bucket": "core",
+    "target_bucket": "adjacent",
+    "cross_field": true,
+    "score": 0.240703,
+    "base_score": 0.266432,
+    "duplicate_penalty": 0.025729,
+    "path_support_norm": 0.068198,
+    "gap_bonus": 1.0,
+    "mediator_count": 38,
+    "motif_count": 36,
+    "cooc_count": 0,
+    "direct_link_status": "No direct papers yet",
+    "supporting_path_count": 38,
+    "why_now": "investment and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "slice_label": "Missing direct link",
+    "public_pair_label": "investment and carbon emissions",
+    "top_mediator_labels": [
+      "economic growth",
+      "technological innovation",
+      "economic development"
+    ],
+    "representative_papers": [
+      {
+        "paper_id": "W4409293498__gpt5mini_low",
+        "title": "Carbon Emissions and Innovation Cities: A SHAP-Model-Based Study on Decoupling Trends and Policy Implications in Coastal China",
+        "year": 2025,
+        "edge_src": "FG3C000013",
+        "edge_dst": "FG3C000010"
+      },
+      {
+        "paper_id": "W7125495636__gpt5mini_low",
+        "title": "Green Governance and Energy Transition: A Quantile-on-Quantile Analysis of Renewable Energy, Policy, and Innovation Effects on Carbon Emissions",
+        "year": 2026,
+        "edge_src": "FG3C000001",
+        "edge_dst": "FG3C000010"
+      },
+      {
+        "paper_id": "W4393989550__gpt5mini_low",
+        "title": "Does emerging country's urbanization redefine the environmental Kuznets hypothesis for carbon emissions? A novel perspective on national and subnational differences",
+        "year": 2024,
+        "edge_src": "FG3C000026",
+        "edge_dst": "FG3C000010"
+      }
+    ],
+    "question_family": "investment-climate",
+    "suppress_from_public_ranked_window": false,
+    "top_countries_source": [
+      "China",
+      "United States"
+    ],
+    "top_countries_target": [
+      "China",
+      "India"
+    ],
+    "source_context_summary": "China and United States",
+    "target_context_summary": "China and India",
+    "common_contexts": "investment studies are common in China and United States; carbon emissions studies are common in China and India.",
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000010__FG3C000019",
+    "question_title": "Which kinds of investment raise carbon emissions?",
+    "short_why": "Capital deepening can raise or lower emissions depending on what gets financed, but investment is too often treated as one undifferentiated block.",
+    "first_next_step": "Split infrastructure, private fixed investment, and foreign-financed capital formation before testing carbon effects.",
+    "who_its_for": "Applied macro, development, and climate researchers.",
+    "homepage_featured": false,
+    "questions_featured": true,
+    "display_order": 4,
+    "homepage_role": "none",
+    "field_shelves": [
+      "development-urban"
+    ],
+    "collection_tags": [
+      "strong-nearby-evidence",
+      "paper-ready"
+    ],
+    "editorial_strength": "flagship"
+  },
+  {
+    "pair_key": "FG3C000014__FG3C001221",
+    "source_id": "FG3C001221",
+    "target_id": "FG3C000014",
+    "source_label": "trade liberalisation",
+    "target_label": "energy consumption",
+    "source_bucket": "core",
+    "target_bucket": "adjacent",
+    "cross_field": true,
+    "score": 0.20594,
+    "base_score": 0.220632,
+    "duplicate_penalty": 0.014691,
+    "path_support_norm": 0.02533,
+    "gap_bonus": 1.0,
+    "mediator_count": 5,
+    "motif_count": 4,
+    "cooc_count": 0,
+    "direct_link_status": "No direct papers yet",
+    "supporting_path_count": 5,
+    "why_now": "trade liberalisation and energy consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "slice_label": "Missing direct link",
+    "public_pair_label": "trade liberalisation and energy consumption",
+    "top_mediator_labels": [
+      "economic growth",
+      "foreign direct investments",
+      "trade liberalization"
+    ],
+    "representative_papers": [
+      {
+        "paper_id": "W2347056154__gpt5mini_low",
+        "title": "Trade liberalisation and economic growth link: The case of Southern African Custom Union countries",
+        "year": 2016,
+        "edge_src": "FG3C001221",
+        "edge_dst": "FG3C000001"
+      },
+      {
+        "paper_id": "W4400358233__gpt5mini_low",
+        "title": "The Relationship Between Energy Consumption and Economic Growth: Panel Data Analysis by Country Groups",
+        "year": 2024,
+        "edge_src": "FG3C000001",
+        "edge_dst": "FG3C000014"
+      },
+      {
+        "paper_id": "W4393851717__gpt5mini_low",
+        "title": "Exploring non-linear causal nexus between economic growth and energy consumption across various R&amp;D regimes: Cross-country evidence from a PSTR model",
+        "year": 2024,
+        "edge_src": "FG3C000001",
+        "edge_dst": "FG3C000014"
+      }
+    ],
+    "question_family": "trade-energy",
+    "suppress_from_public_ranked_window": false,
+    "top_countries_source": [
+      "India",
+      "Nepal",
+      "developing countries"
+    ],
+    "top_countries_target": [
+      "China",
+      "India",
+      "Pakistan"
+    ],
+    "source_context_summary": "India, Nepal, and related settings",
+    "target_context_summary": "China, India, and related settings",
+    "common_contexts": "trade liberalisation studies are common in India, Nepal, and related settings; energy consumption studies are common in China, India, and related settings.",
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000014__FG3C001221",
+    "question_title": "How does trade liberalisation change energy consumption?",
+    "short_why": "Trade reforms can change production patterns and freight demand, but energy use is usually treated as a side effect rather than the main outcome.",
+    "first_next_step": "Start with sectors most exposed to tariff or quota changes and test whether energy intensity moved with the trade mix.",
+    "who_its_for": "Trade, energy, and globalization researchers.",
+    "homepage_featured": false,
+    "questions_featured": true,
+    "display_order": 5,
+    "homepage_role": "none",
+    "field_shelves": [
+      "trade-globalization"
+    ],
+    "collection_tags": [
+      "cross-field",
+      "phd-topic"
+    ],
+    "editorial_strength": "flagship"
+  },
+  {
+    "pair_key": "FG3C000053__FG3C001307",
+    "source_id": "FG3C000053",
+    "target_id": "FG3C001307",
+    "source_label": "green innovation",
+    "target_label": "load capacity factor (LCF)",
+    "source_bucket": "adjacent",
+    "target_bucket": "adjacent",
+    "cross_field": false,
+    "score": 0.199088,
+    "base_score": 0.217871,
+    "duplicate_penalty": 0.018783,
+    "path_support_norm": 0.004732,
+    "gap_bonus": 1.0,
+    "mediator_count": 16,
+    "motif_count": 17,
+    "cooc_count": 0,
+    "direct_link_status": "No direct papers yet",
+    "supporting_path_count": 16,
+    "why_now": "green innovation and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+    "recommended_move": "Treat this as a missing direct test, not a settled result.",
+    "slice_label": "Missing direct link",
+    "public_pair_label": "ecological carrying capacity and green innovation",
+    "top_mediator_labels": [
+      "renewable energy consumption",
+      "natural resource rents",
+      "energy transition"
+    ],
+    "representative_papers": [
+      {
+        "paper_id": "W4381621026__gpt5mini_low",
+        "title": "The effects of green innovation, environmental taxes, and financial development on renewable energy consumption in OECD countries",
+        "year": 2023,
+        "edge_src": "FG3C000053",
+        "edge_dst": "FG3C000018"
+      },
+      {
+        "paper_id": "W4415370404__gpt5mini_low",
+        "title": "Impact of Supply Chain Management on Energy Transition and Environmental Sustainability: The Role of Knowledge Management and Green Innovations",
+        "year": 2025,
+        "edge_src": "FG3C000053",
+        "edge_dst": "FG3C000267"
+      },
+      {
+        "paper_id": "W4410436254__gpt5mini_low",
+        "title": "Balancing Growth and Sustainability: Can Green Innovation Curb the Ecological Impact of Resource-Rich Economies?",
+        "year": 2025,
+        "edge_src": "FG3C000053",
+        "edge_dst": "FG3C000249"
+      }
+    ],
+    "question_family": "innovation-environment",
+    "suppress_from_public_ranked_window": true,
+    "top_countries_source": [
+      "China",
+      "OECD"
+    ],
+    "top_countries_target": [
+      "India",
+      "Brazil",
+      "China"
+    ],
+    "source_context_summary": "China and OECD",
+    "target_context_summary": "India, Brazil, and related settings",
+    "common_contexts": "green innovation studies are common in China and OECD; ecological carrying capacity studies are common in India, Brazil, and related settings.",
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000053__FG3C001307",
+    "question_title": "Does green innovation improve ecological carrying capacity?",
+    "short_why": "Green innovation papers often stop at emissions, while broader measures of ecological resilience are usually studied elsewhere.",
+    "first_next_step": "Pair green patents or green R&D with ecological-capacity measures instead of stopping at emissions alone.",
+    "who_its_for": "Climate innovation researchers.",
+    "homepage_featured": false,
+    "questions_featured": true,
+    "display_order": 6,
+    "homepage_role": "none",
+    "field_shelves": [
+      "climate-energy",
+      "innovation-productivity"
+    ],
+    "collection_tags": [],
+    "editorial_strength": "flagship"
+  },
+  {
+    "pair_key": "FG3C000030__FG3C001420",
+    "source_id": "FG3C000030",
+    "target_id": "FG3C001420",
+    "source_label": "innovation",
+    "target_label": "environmental quality (CO2 emissions)",
+    "source_bucket": "core",
+    "target_bucket": "adjacent",
+    "cross_field": true,
+    "score": 0.210825,
+    "base_score": 0.232088,
+    "duplicate_penalty": 0.021263,
+    "path_support_norm": 0.02659,
+    "gap_bonus": 1.0,
+    "mediator_count": 21,
+    "motif_count": 19,
+    "cooc_count": 0,
+    "direct_link_status": "No direct papers yet",
+    "supporting_path_count": 21,
+    "why_now": "innovation and environmental quality (CO2 emissions) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "slice_label": "Missing direct link",
+    "public_pair_label": "innovation and environmental quality",
+    "top_mediator_labels": [
+      "economic growth",
+      "renewable energy consumption",
+      "urbanization"
+    ],
+    "representative_papers": [
+      {
+        "paper_id": "W3099212485__gpt5mini_low",
+        "title": "Renewable energy consumption, financial development, environmental pollution, and innovations in the ASEAN + 3 group: Evidence from (P-ARDL) model",
+        "year": 2020,
+        "edge_src": "FG3C000030",
+        "edge_dst": "FG3C000018"
+      },
+      {
+        "paper_id": "W2921396205__gpt5mini_low",
+        "title": "The Moderating Effect of Innovation on the Relationship between Urbanization and CO2 Emissions: Evidence from Three Major Urban Agglomerations in China",
+        "year": 2019,
+        "edge_src": "FG3C000030",
+        "edge_dst": "FG3C000012"
+      },
+      {
+        "paper_id": "W4391255947__gpt5mini_low",
+        "title": "Nexus of innovation, foreign direct investment, economic growth and renewable energy: New insights from 60 countries",
+        "year": 2024,
+        "edge_src": "FG3C000030",
+        "edge_dst": "FG3C000001"
+      }
+    ],
+    "question_family": "innovation-environment",
+    "suppress_from_public_ranked_window": true,
+    "top_countries_source": [
+      "China",
+      "Italy"
+    ],
+    "top_countries_target": [
+      "China",
+      "United States",
+      "Italy"
+    ],
+    "source_context_summary": "China and Italy",
+    "target_context_summary": "China, United States, and related settings",
+    "common_contexts": "innovation studies are common in China and Italy; environmental quality studies are common in China, United States, and related settings.",
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000030__FG3C001420",
+    "question_title": "When does innovation improve environmental quality?",
+    "short_why": "Innovation is often framed as a growth story first, which can hide when cleaner process change improves environmental outcomes.",
+    "first_next_step": "Split innovation by direction and test whether cleaner innovation improves environmental quality while scale-expanding innovation does not.",
+    "who_its_for": "Innovation, environment, and productivity researchers.",
+    "homepage_featured": false,
+    "questions_featured": false,
+    "display_order": 7,
+    "homepage_role": "none",
+    "field_shelves": [
+      "innovation-productivity"
+    ],
+    "collection_tags": [],
+    "editorial_strength": "field"
+  },
+  {
+    "pair_key": "FG3C000029__FG3C000194",
+    "source_id": "FG3C000029",
+    "target_id": "FG3C000194",
+    "source_label": "education",
+    "target_label": "wage inequality",
+    "source_bucket": "adjacent",
+    "target_bucket": "core",
+    "cross_field": true,
+    "score": 0.186912,
+    "base_score": 0.207522,
+    "duplicate_penalty": 0.02061,
+    "path_support_norm": 0.001185,
+    "gap_bonus": 1.0,
+    "mediator_count": 13,
+    "motif_count": 13,
+    "cooc_count": 0,
+    "direct_link_status": "No direct papers yet",
+    "supporting_path_count": 13,
+    "why_now": "education and wage inequality are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "slice_label": "Missing direct link",
+    "public_pair_label": "wage inequality and education",
+    "top_mediator_labels": [
+      "wages",
+      "wage dispersion",
+      "informal employment"
+    ],
+    "representative_papers": [
+      {
+        "paper_id": "W2027551987__gpt5mini_low",
+        "title": "Education, educational mismatch, and wage inequality: Evidence for Spain",
+        "year": 2007,
+        "edge_src": "FG3C000029",
+        "edge_dst": "FG3C001355"
+      },
+      {
+        "paper_id": "W2145707859__gpt5mini_low",
+        "title": "Wage inequality: A structural decomposition",
+        "year": 2015,
+        "edge_src": "FG3C001355",
+        "edge_dst": "FG3C000194"
+      },
+      {
+        "paper_id": "W2000757028__gpt5mini_low",
+        "title": "Sources of Wage Inequality",
+        "year": 2013,
+        "edge_src": "FG3C001355",
+        "edge_dst": "FG3C000194"
+      }
+    ],
+    "question_family": "education-inequality",
+    "suppress_from_public_ranked_window": true,
+    "top_countries_source": [
+      "China",
+      "United States"
+    ],
+    "top_countries_target": [
+      "United States",
+      "India"
+    ],
+    "source_context_summary": "China and United States",
+    "target_context_summary": "United States and India",
+    "common_contexts": "education studies are common in China and United States; wage inequality studies are common in United States and India.",
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000029__FG3C000194",
+    "question_title": "How does education reshape wage inequality?",
+    "short_why": "Education is central to human-capital debates, but its role in wage dispersion is often treated descriptively rather than as the main question.",
+    "first_next_step": "Compare expansions in education access or attainment with later changes in within-cohort wage dispersion.",
+    "who_its_for": "Labor, education, and development researchers.",
+    "homepage_featured": false,
+    "questions_featured": false,
+    "display_order": 8,
+    "homepage_role": "none",
+    "field_shelves": [
+      "development-urban"
+    ],
+    "collection_tags": [
+      "open-little-direct",
+      "phd-topic"
+    ],
+    "editorial_strength": "field"
+  },
+  {
+    "pair_key": "FG3C000024__FG3C001672",
+    "source_id": "FG3C000024",
+    "target_id": "FG3C001672",
+    "source_label": "monetary policy",
+    "target_label": "consumer demand",
+    "source_bucket": "core",
+    "target_bucket": "core",
+    "cross_field": false,
+    "score": 0.186755,
+    "base_score": 0.202237,
+    "duplicate_penalty": 0.015482,
+    "path_support_norm": 0.000362,
+    "gap_bonus": 1.0,
+    "mediator_count": 3,
+    "motif_count": 3,
+    "cooc_count": 0,
+    "direct_link_status": "No direct papers yet",
+    "supporting_path_count": 3,
+    "why_now": "monetary policy and consumer demand are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+    "recommended_move": "Treat this as a missing direct test, not a settled result.",
+    "slice_label": "Missing direct link",
+    "public_pair_label": "consumer demand and monetary policy",
+    "top_mediator_labels": [
+      "prices",
+      "interest rates",
+      "income"
+    ],
+    "representative_papers": [
+      {
+        "paper_id": "W2026422102__gpt5mini_low",
+        "title": "Does money matter in the CIS? Effects of monetary policy on output and prices",
+        "year": 2005,
+        "edge_src": "FG3C000024",
+        "edge_dst": "FG3C000028"
+      },
+      {
+        "paper_id": "W4400119938__gpt5mini_low",
+        "title": "MPC Heterogeneity and the Dynamic Response of Consumption to Monetary Policy",
+        "year": 2024,
+        "edge_src": "FG3C000024",
+        "edge_dst": "FG3C000008"
+      },
+      {
+        "paper_id": "W2107710318__gpt5mini_low",
+        "title": "Monetary policy and distribution",
+        "year": 2008,
+        "edge_src": "FG3C000024",
+        "edge_dst": "FG3C000027"
+      }
+    ],
+    "question_family": "monetary-demand",
+    "suppress_from_public_ranked_window": true,
+    "top_countries_source": [
+      "United States",
+      "China"
+    ],
+    "top_countries_target": [
+      "United States",
+      "China",
+      "Massachusetts"
+    ],
+    "source_context_summary": "United States and China",
+    "target_context_summary": "United States, China, and related settings",
+    "common_contexts": "monetary policy studies are common in United States and China; consumer demand studies are common in United States, China, and related settings.",
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000024__FG3C001672",
+    "question_title": "How does monetary policy reshape consumer demand?",
+    "short_why": "Consumption is a core transmission channel, but many monetary papers stop at aggregate output rather than the structure of consumer demand.",
+    "first_next_step": "Track rate shocks through durable demand, nondurables, and household heterogeneity before collapsing everything into total consumption.",
+    "who_its_for": "Macro and household-finance researchers.",
+    "homepage_featured": false,
+    "questions_featured": false,
+    "display_order": 9,
+    "homepage_role": "none",
+    "field_shelves": [
+      "macro-finance"
+    ],
+    "collection_tags": [
+      "paper-ready"
+    ],
+    "editorial_strength": "field"
+  },
+  {
+    "pair_key": "FG3C000021__FG3C000053",
+    "source_id": "FG3C000053",
+    "target_id": "FG3C000021",
+    "source_label": "green innovation",
+    "target_label": "productivity",
+    "source_bucket": "adjacent",
+    "target_bucket": "core",
+    "cross_field": true,
+    "score": 0.188042,
+    "base_score": 0.211468,
+    "duplicate_penalty": 0.023427,
+    "path_support_norm": 0.001577,
+    "gap_bonus": 1.0,
+    "mediator_count": 16,
+    "motif_count": 18,
+    "cooc_count": 0,
+    "direct_link_status": "No direct papers yet",
+    "supporting_path_count": 16,
+    "why_now": "green innovation and productivity are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "slice_label": "Missing direct link",
+    "public_pair_label": "productivity and green innovation",
+    "top_mediator_labels": [
+      "foreign direct investments",
+      "energy efficiency",
+      "exports"
+    ],
+    "representative_papers": [
+      {
+        "paper_id": "W2795275313__gpt5mini_low",
+        "title": "Energy efficiency, productivity and exporting: Firm-level evidence in Latin America",
+        "year": 2018,
+        "edge_src": "FG3C000038",
+        "edge_dst": "FG3C000021"
+      },
+      {
+        "paper_id": "W4367052915__gpt5mini_low",
+        "title": "Impact of Innovation and Exports on Productivity: Are There Complementary Effects?",
+        "year": 2023,
+        "edge_src": "FG3C000046",
+        "edge_dst": "FG3C000021"
+      },
+      {
+        "paper_id": "W4389342597__gpt5mini_low",
+        "title": "Nexus between foreign direct investment and ecological footprint in BRICS and Next-11: the moderating role of green innovation",
+        "year": 2023,
+        "edge_src": "FG3C000053",
+        "edge_dst": "FG3C000015"
+      }
+    ],
+    "question_family": "innovation-productivity",
+    "suppress_from_public_ranked_window": true,
+    "top_countries_source": [
+      "China",
+      "OECD"
+    ],
+    "top_countries_target": [
+      "China",
+      "United States",
+      "United Kingdom"
+    ],
+    "source_context_summary": "China and OECD",
+    "target_context_summary": "China, United States, and related settings",
+    "common_contexts": "green innovation studies are common in China and OECD; productivity studies are common in China, United States, and related settings.",
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000021__FG3C000053",
+    "question_title": "Does green innovation translate into productivity gains?",
+    "short_why": "Green innovation is often justified on environmental grounds, but its productivity payoff is still not usually the paper's main outcome.",
+    "first_next_step": "Separate green innovation measures from broader innovation intensity and test whether productivity gains arrive alongside environmental benefits.",
+    "who_its_for": "Innovation, productivity, and climate researchers.",
+    "homepage_featured": false,
+    "questions_featured": false,
+    "display_order": 10,
+    "homepage_role": "none",
+    "field_shelves": [
+      "innovation-productivity"
+    ],
+    "collection_tags": [
+      "open-little-direct"
+    ],
+    "editorial_strength": "field"
+  },
+  {
+    "pair_key": "FG3C000046__FG3C000203",
+    "source_id": "FG3C000046",
+    "target_id": "FG3C000203",
+    "source_label": "exports",
+    "target_label": "environmental pollution",
+    "source_bucket": "core",
+    "target_bucket": "adjacent",
+    "cross_field": true,
+    "score": 0.198215,
+    "base_score": 0.227569,
+    "duplicate_penalty": 0.029354,
+    "path_support_norm": 0.016699,
+    "gap_bonus": 1.0,
+    "mediator_count": 24,
+    "motif_count": 22,
+    "cooc_count": 0,
+    "direct_link_status": "No direct papers yet",
+    "supporting_path_count": 24,
+    "why_now": "exports and environmental pollution are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "slice_label": "Missing direct link",
+    "public_pair_label": "exports and environmental pollution",
+    "top_mediator_labels": [
+      "economic growth",
+      "energy consumption",
+      "urbanization"
+    ],
+    "representative_papers": [
+      {
+        "paper_id": "W3190922725__gpt5mini_low",
+        "title": "The impact of energy consumption and merchandise exports on CO<sub>2</sub>emission in the United Nations geoscheme regions",
+        "year": 2021,
+        "edge_src": "FG3C000046",
+        "edge_dst": "FG3C000014"
+      },
+      {
+        "paper_id": "W4387365162__gpt5mini_low",
+        "title": "Do Green Information and Communication Technologies (ICT) and Smart Urbanization Reduce Environmental Pollution in China?",
+        "year": 2023,
+        "edge_src": "FG3C000012",
+        "edge_dst": "FG3C000203"
+      },
+      {
+        "paper_id": "W4378648078__gpt5mini_low",
+        "title": "Exploring the nexus link of environmental technology innovation, urbanization, financial development, and energy consumption on environmental pollution: Evidence from 27 emerging economies",
+        "year": 2023,
+        "edge_src": "FG3C000014",
+        "edge_dst": "FG3C000203"
+      }
+    ],
+    "question_family": "trade-environment",
+    "suppress_from_public_ranked_window": true,
+    "top_countries_source": [
+      "China",
+      "United States"
+    ],
+    "top_countries_target": [
+      "China",
+      "Germany"
+    ],
+    "source_context_summary": "China and United States",
+    "target_context_summary": "China and Germany",
+    "common_contexts": "exports studies are common in China and United States; environmental pollution studies are common in China and Germany.",
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000046__FG3C000203",
+    "question_title": "How does export growth change environmental pollution?",
+    "short_why": "Export expansion can alter sector mix and where environmental costs show up, but pollution outcomes are often buried inside broader trade debates.",
+    "first_next_step": "Compare pollution-intensive export booms with export growth driven by cleaner sectors.",
+    "who_its_for": "Trade and environment researchers.",
+    "homepage_featured": false,
+    "questions_featured": false,
+    "display_order": 11,
+    "homepage_role": "none",
+    "field_shelves": [
+      "trade-globalization"
+    ],
+    "collection_tags": [],
+    "editorial_strength": "field"
+  },
+  {
+    "pair_key": "FG3C000126__FG3C001420",
+    "source_id": "FG3C000126",
+    "target_id": "FG3C001420",
+    "source_label": "imports",
+    "target_label": "environmental quality (CO2 emissions)",
+    "source_bucket": "core",
+    "target_bucket": "adjacent",
+    "cross_field": true,
+    "score": 0.195175,
+    "base_score": 0.221009,
+    "duplicate_penalty": 0.025834,
+    "path_support_norm": 0.018112,
+    "gap_bonus": 1.0,
+    "mediator_count": 9,
+    "motif_count": 8,
+    "cooc_count": 0,
+    "direct_link_status": "No direct papers yet",
+    "supporting_path_count": 9,
+    "why_now": "imports and environmental quality (CO2 emissions) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
+    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "slice_label": "Missing direct link",
+    "public_pair_label": "imports and environmental quality",
+    "top_mediator_labels": [
+      "economic growth",
+      "renewable energy consumption",
+      "energy consumption"
+    ],
+    "representative_papers": [
+      {
+        "paper_id": "W2114905470__gpt5mini_low",
+        "title": "Econometric analysis of trade, exports, imports, energy consumption and CO2 emission in six regions",
+        "year": 2014,
+        "edge_src": "FG3C000126",
+        "edge_dst": "FG3C000014"
+      },
+      {
+        "paper_id": "W4308314690__gpt5mini_low",
+        "title": "Manufactured exports, disaggregated imports and economic growth: the case of Kuwait",
+        "year": 2022,
+        "edge_src": "FG3C000126",
+        "edge_dst": "FG3C000001"
+      },
+      {
+        "paper_id": "W3022868265__gpt5mini_low",
+        "title": "Exploring the effects of economic growth, population density and international trade on energy consumption and environmental quality in India",
+        "year": 2020,
+        "edge_src": "FG3C000014",
+        "edge_dst": "FG3C001420"
+      }
+    ],
+    "question_family": "trade-environment",
+    "suppress_from_public_ranked_window": true,
+    "top_countries_source": [
+      "China",
+      "United States",
+      "OECD"
+    ],
+    "top_countries_target": [
+      "China",
+      "United States",
+      "Italy"
+    ],
+    "source_context_summary": "China, United States, and related settings",
+    "target_context_summary": "China, United States, and related settings",
+    "common_contexts": "imports studies are common in China, United States, and related settings; environmental quality studies are common in China, United States, and related settings.",
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000126__FG3C001420",
+    "question_title": "How do imports change environmental quality?",
+    "short_why": "Import exposure can change production composition and energy use, but environmental quality is rarely treated as the main consequence.",
+    "first_next_step": "Split intermediate, capital, and consumer imports and test whether their environmental effects differ across sectors.",
+    "who_its_for": "Trade, globalization, and environment researchers.",
+    "homepage_featured": false,
+    "questions_featured": false,
+    "display_order": 12,
+    "homepage_role": "none",
+    "field_shelves": [
+      "trade-globalization"
+    ],
+    "collection_tags": [],
+    "editorial_strength": "field"
+  }
+]

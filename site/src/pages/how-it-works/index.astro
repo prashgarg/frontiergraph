@@ -20,8 +20,9 @@ const content = buildHowItWorksContent(data.app_url);
       </p>
       <div class="button-row">
         <a class="button-primary" href="/questions/">Browse research questions</a>
-        <a class="button-secondary" href={data.app_url}>Open literature map</a>
-        <a class="button-tertiary" href={data.downloads.artifacts.working_paper_pdf}>Read paper</a>
+        <a class="button-secondary" href="/graph/">Open literature map</a>
+        <a class="button-tertiary" href={data.app_url}>Open deeper app</a>
+        <a class="button-tertiary" href="/paper/">Read paper on the web</a>
         <a class="button-tertiary" href="/method/">Open Method</a>
       </div>
     </section>
@@ -113,12 +114,12 @@ const content = buildHowItWorksContent(data.app_url);
     <section class="section">
       <div class="cta-band">
         <span class="eyebrow">Next step</span>
-        <h2>Use the public site to browse, then open the literature map when you want more context.</h2>
+        <h2>Use the public site to browse, then open the deeper app only when the question looks worth a closer look.</h2>
         <div class="button-row">
           <a class="button-primary" href="/questions/">Browse research questions</a>
           <a class="button-secondary" href="/method/">Open Method</a>
           <a class="button-tertiary" href="/downloads/">Downloads</a>
-          <a class="button-tertiary" href={data.app_url}>Open literature map</a>
+          <a class="button-tertiary" href={data.app_url}>Open deeper app</a>
         </div>
       </div>
     </section>

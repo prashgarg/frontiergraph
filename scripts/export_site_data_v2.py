@@ -8,6 +8,8 @@ import os
 import re
 import shutil
 import sqlite3
+import subprocess
+import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -30,15 +32,32 @@ OPPORTUNITY_SHARDS_DIR = PUBLIC_DATA_DIR / "concept_opportunities"
 
 REPO_URL = "https://github.com/prashgarg/frontiergraph"
 DB_FILENAME = "frontiergraph-economics-public.db"
-GRAPH_URL = os.environ.get("FRONTIERGRAPH_PUBLIC_APP_URL", "/graph/")
+SITE_GRAPH_URL = "/graph/"
+PUBLIC_APP_URL = os.environ.get(
+    "FRONTIERGRAPH_PUBLIC_APP_URL",
+    "https://frontiergraph-app-1058669339361.us-central1.run.app",
+)
 QUESTION_URL = "/questions/"
 PUBLIC_DB_URL = os.environ.get(
     "FRONTIERGRAPH_PUBLIC_DB_URL",
-    f"/downloads/{DB_FILENAME}",
+    "https://storage.googleapis.com/frontiergraph-public-downloads-1058669339361/frontiergraph-economics-public.db",
 )
 PUBLIC_RELEASE_DIR = ROOT / "data" / "production" / "frontiergraph_public_release"
-PUBLIC_APP_DB_PATH = PUBLIC_RELEASE_DIR / "frontiergraph-economics-public.db"
+SOURCE_PUBLIC_APP_DB_PATH = Path(
+    os.environ.get(
+        "FRONTIERGRAPH_PUBLIC_SOURCE_DB",
+        ROOT
+        / "data"
+        / "production"
+        / "frontiergraph_concept_compare_v1"
+        / "baseline"
+        / "suppression"
+        / "concept_exploratory_suppressed_top100k_app.sqlite",
+    )
+)
+PUBLIC_RELEASE_DB_PATH = PUBLIC_RELEASE_DIR / DB_FILENAME
 PUBLIC_GRAPH_DB_PATH = PUBLIC_RELEASE_DIR / "frontiergraph-economics-public-graph.sqlite"
+PAPER_SYNC_SCRIPT = ROOT / "scripts" / "sync_paper_site_assets.py"
 
 EXTRACTION_SUMMARY_PATH = (
     ROOT
@@ -257,7 +276,20 @@ def build_question_link(pair_key: Any) -> str:
 
 
 def build_graph_link(query: Any) -> str:
-    return append_query_value(GRAPH_URL, {"q": query})
+    return append_query_value(SITE_GRAPH_URL, {"q": query})
+
+
+def build_app_question_link(pair_key: Any) -> str:
+    return append_query_value(PUBLIC_APP_URL, {"view": "question", "pair": pair_key})
+
+
+def build_app_concept_link(concept_id: Any) -> str:
+    return append_query_value(PUBLIC_APP_URL, {"view": "concept", "concept": concept_id})
+
+
+def build_app_compare_link(pair_keys: list[str]) -> str:
+    cleaned = [clean_public_text(value) for value in pair_keys if clean_public_text(value)]
+    return append_query_value(PUBLIC_APP_URL, {"view": "compare", "pairs": ",".join(cleaned)})
 
 
 def normalize_context_value(value: Any) -> str:
@@ -630,7 +662,7 @@ def load_representative_papers() -> dict[tuple[str, str], list[dict[str, Any]]]:
         ORDER BY candidate_u, candidate_v, representative_rank
     """
 
-    with connect(PUBLIC_APP_DB_PATH) as conn:
+    with connect(SOURCE_PUBLIC_APP_DB_PATH) as conn:
         rows = conn.execute(sql).fetchall()
 
     lookup: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
@@ -773,7 +805,7 @@ def opportunity_record(
             source_context_summary,
             target_context_summary,
         ),
-        "app_link": build_question_link(values["pair_key"]),
+        "app_link": build_app_question_link(values["pair_key"]),
     }
 
 
@@ -787,12 +819,12 @@ def export_rows_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str
 
 
 def load_candidates() -> pd.DataFrame:
-    with connect(PUBLIC_APP_DB_PATH) as conn:
+    with connect(SOURCE_PUBLIC_APP_DB_PATH) as conn:
         return pd.read_sql_query("SELECT * FROM candidates ORDER BY score DESC", conn)
 
 
 def load_node_details() -> pd.DataFrame:
-    with connect(PUBLIC_APP_DB_PATH) as conn:
+    with connect(SOURCE_PUBLIC_APP_DB_PATH) as conn:
         return pd.read_sql_query("SELECT * FROM node_details", conn)
 
 
@@ -1168,7 +1200,7 @@ def build_search_index(
                 "top_countries": top_values(getattr(row, "top_countries", None), limit=3),
                 "top_units": top_values(getattr(row, "top_units", None), limit=3),
                 "search_terms": search_terms,
-                "app_link": build_graph_link(row.preferred_label),
+                "app_link": build_app_concept_link(row.concept_id),
             }
         )
     records.sort(key=lambda item: (item["weighted_degree"], item["instance_support"]), reverse=True)
@@ -1462,6 +1494,7 @@ def main() -> None:
     GENERATED_DIR.mkdir(parents=True, exist_ok=True)
     PUBLIC_DATA_DIR.mkdir(parents=True, exist_ok=True)
     PUBLIC_DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
+    subprocess.run([sys.executable, str(PAPER_SYNC_SCRIPT)], check=True)
 
     extraction_summary = read_json(EXTRACTION_SUMMARY_PATH)
     hybrid_manifest = read_json(HYBRID_CORPUS_MANIFEST_PATH)
@@ -1521,7 +1554,7 @@ def main() -> None:
                 "neighbor_count": int(row.neighbor_count),
                 "top_countries": top_values(row.top_countries, limit=3),
                 "top_units": top_values(row.top_units, limit=3),
-                "app_link": build_graph_link(row.preferred_label),
+                "app_link": build_app_concept_link(row.concept_id),
             }
         )
 
@@ -1564,6 +1597,7 @@ def main() -> None:
     write_json(PUBLIC_DATA_DIR / "concept_neighborhoods_index.json", neighborhood_shard_index)
     write_json(PUBLIC_DATA_DIR / "concept_opportunities_index.json", opportunity_shard_index)
     write_json(PUBLIC_DATA_DIR / "opportunity_slices.json", slices)
+    write_json(PUBLIC_DATA_DIR / "curated_questions.json", editorial_records)
     write_json(PUBLIC_DATA_DIR / "central_concepts.json", central_concepts_rows)
     write_json(PUBLIC_DATA_DIR / "hybrid_corpus_manifest.json", hybrid_manifest)
     export_rows_csv(
@@ -1582,11 +1616,11 @@ def main() -> None:
         EXTENDED_ABSTRACT_PDF_PATH,
         "frontiergraph-extended-abstract.pdf",
     )
-    db_manifest = write_public_db_release_assets(PUBLIC_APP_DB_PATH)
+    db_manifest = write_public_db_release_assets(PUBLIC_RELEASE_DB_PATH)
 
     site_data = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "app_url": GRAPH_URL,
+        "app_url": PUBLIC_APP_URL,
         "repo_url": REPO_URL,
         "public_label_glossary": public_label_glossary,
         "metrics": {
@@ -1599,7 +1633,7 @@ def main() -> None:
             "normalized_directed_links": int(hybrid_manifest["normalized_directed_rows"]),
             "normalized_undirected_links": int(hybrid_manifest["normalized_undirected_rows"]),
             "native_concepts": int(hybrid_manifest["unique_concepts_in_hybrid_corpus"]),
-            "visible_public_questions": int(len(candidates_df)),
+            "visible_public_questions": int(candidates_df["pair_key"].astype(str).nunique()) if "pair_key" in candidates_df.columns else int(len(candidates_df)),
         },
         "home": {
             "featured_questions": featured_opportunities[:6],
@@ -1647,8 +1681,13 @@ def main() -> None:
                 "extended_abstract_pdf": extended_abstract_download,
                 "benchmark_manifest_json": "/data/v2/hybrid_corpus_manifest.json",
                 "top_questions_csv": "/data/v2/top_questions.csv",
+                "curated_questions_json": "/data/v2/curated_questions.json",
                 "central_concepts_csv": "/data/v2/central_concepts.csv",
                 "graph_backbone_json": "/data/v2/graph_backbone.json",
+                "concept_index_json": "/data/v2/concept_index.json",
+                "concept_neighborhoods_index_json": "/data/v2/concept_neighborhoods_index.json",
+                "concept_opportunities_index_json": "/data/v2/concept_opportunities_index.json",
+                "opportunity_slices_json": "/data/v2/opportunity_slices.json",
             },
         },
     }

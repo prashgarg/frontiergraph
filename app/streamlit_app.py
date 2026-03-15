@@ -3,51 +3,29 @@ from __future__ import annotations
 import json
 import os
 import sqlite3
+import sys
 from pathlib import Path
+from typing import Any
 
-import numpy as np
 import pandas as pd
 import streamlit as st
 
-from src.explain import build_idea_brief_markdown
-from src.opportunity_data import (
-    CONCEPT_BUCKET_NAMES,
-    JEL_FIELD_NAMES,
-    NOVELTY_LABELS,
-    PRESET_HELP,
-    compute_priority_score,
-    connect_readonly,
-    direct_literature_status,
-    is_concept_mode,
-    load_app_mode,
-    load_candidate_summary,
-    load_nodes,
-    public_pair_label,
-    recommendation_play,
-    to_float,
-    to_int,
-)
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.opportunity_data import connect_readonly
+
 
 SITE_URL = "https://frontiergraph.com"
 QUESTIONS_URL = f"{SITE_URL}/questions/"
-HOW_IT_WORKS_URL = f"{SITE_URL}/how-it-works/"
-SHORTLIST_MODE_TO_PRESET = {
-    "General browse": "Balanced",
-    "More exploratory": "Bold frontier",
-    "Closer to paper-ready": "Fast follow",
-}
-PRESET_TO_SHORTLIST_MODE = {value: key for key, value in SHORTLIST_MODE_TO_PRESET.items()}
-SHORTLIST_MODE_HELP = {
-    "General browse": "A broad default for browsing questions that could plausibly become the next paper.",
-    "More exploratory": "Pushes toward questions that look less worked through and more boundary-crossing.",
-    "Closer to paper-ready": "Favors questions that already look closer to a direct next paper.",
-}
-QUESTION_STYLE_LABELS = {
-    "Within-field gap": "More open within one area",
-    "Cross-field gap": "More open across areas",
-    "Within-field boundary": "More grounded within one area",
-    "Cross-field boundary": "More grounded across areas",
-}
+GRAPH_URL = f"{SITE_URL}/graph/"
+PAPER_URL = f"{SITE_URL}/paper/"
+DOWNLOADS_URL = f"{SITE_URL}/downloads/"
+DEFAULT_DB = Path("data/production/frontiergraph_public_release/frontiergraph-economics-public.db")
+FALLBACK_DB = Path(
+    "data/production/frontiergraph_concept_compare_v1/baseline/suppression/concept_exploratory_suppressed_top100k_app.sqlite"
+)
 
 
 def inject_css() -> None:
@@ -58,9 +36,9 @@ def inject_css() -> None:
             background: #f8f7f3;
         }
         .block-container {
-            max-width: 1180px;
+            max-width: 1240px;
             padding-top: 1.35rem;
-            padding-bottom: 3rem;
+            padding-bottom: 2.8rem;
         }
         h1, h2, h3 {
             font-family: Georgia, "Times New Roman", serif;
@@ -79,16 +57,16 @@ def inject_css() -> None:
             margin-bottom: 0.35rem;
         }
         .hero-title {
-            font-size: 2.2rem;
+            font-size: 2.25rem;
             line-height: 1.04;
             margin: 0;
         }
         .hero-copy {
-            max-width: 46rem;
+            max-width: 50rem;
             margin-top: 0.55rem;
             color: #546066;
-            line-height: 1.55;
-            font-size: 0.98rem;
+            line-height: 1.6;
+            font-size: 0.99rem;
         }
         .app-nav {
             margin: 0.2rem 0 1rem;
@@ -100,9 +78,16 @@ def inject_css() -> None:
             text-decoration: none;
             margin-right: 1rem;
         }
-        .muted {
-            color: #5d696f;
-            font-size: 0.92rem;
+        .summary-card {
+            border: 1px solid rgba(24, 34, 38, 0.10);
+            border-radius: 10px;
+            background: #ffffff;
+            padding: 0.95rem 1rem;
+            margin-bottom: 0.8rem;
+        }
+        .summary-card strong {
+            display: block;
+            margin-bottom: 0.25rem;
         }
         [data-testid="stMetric"] {
             border: 1px solid rgba(24, 34, 38, 0.10);
@@ -121,993 +106,713 @@ def inject_css() -> None:
     )
 
 
-@st.cache_data(show_spinner=False)
-def load_nodes_cached(db_path: str) -> pd.DataFrame:
-    return load_nodes(db_path)
-
-
-@st.cache_data(show_spinner="Loading ranked research questions...")
-def load_candidate_summary_cached(db_path: str) -> pd.DataFrame:
-    return load_candidate_summary(db_path)
-
-
-def query_df(db_path: str, sql: str, params: tuple = ()) -> pd.DataFrame:
-    with connect_readonly(db_path) as conn:
-        return pd.read_sql_query(sql, conn, params=params)
-
-
-def format_rank(value: object) -> str:
-    numeric = pd.to_numeric(pd.Series([value]), errors="coerce").iloc[0]
-    if pd.isna(numeric):
-        return "Not available"
-    return str(int(numeric))
-
-
-def source_target_context(row: pd.Series) -> str:
-    return f"{row['source_field_name']} and {row['target_field_name']}"
-
-
-def shortlist_pair_label(row: pd.Series) -> str:
-    return public_pair_label(row)
-
-
-def shortlist_direct_status(row: pd.Series) -> str:
-    return direct_literature_status(row.get("cooc_count", 0))
-
-
-def representative_paper_preview(papers_df: pd.DataFrame, limit: int = 3) -> pd.DataFrame:
-    if papers_df.empty:
-        return pd.DataFrame(columns=["title", "year", "edge_src", "edge_dst"])
-    deduped = papers_df.drop_duplicates(subset=["paper_id"], keep="first").copy()
-    return deduped.head(limit).loc[:, ["title", "year", "edge_src", "edge_dst"]]
-
-
-def mediator_preview(mediators_df: pd.DataFrame, limit: int = 3) -> list[str]:
-    if mediators_df.empty:
+def parse_json(value: Any) -> Any:
+    if value is None or value == "":
         return []
-    label_column = "mediator_label" if "mediator_label" in mediators_df.columns else "mediator"
-    labels = mediators_df[label_column].fillna("").astype(str)
-    cleaned = [label.strip() for label in labels.tolist() if label and label.strip()]
-    return cleaned[:limit]
-
-
-def render_bullet_list(items: list[str]) -> None:
-    for item in items:
-        st.markdown(f"- {item}")
-
-
-@st.cache_data(show_spinner=False)
-def load_candidate_bundle(db_path: str, u: str, v: str) -> dict[str, pd.DataFrame | pd.Series | None]:
-    candidate_df = query_df(
-        db_path,
-        """
-        SELECT c.*, nu.label AS u_label, nv.label AS v_label
-        FROM candidates c
-        LEFT JOIN nodes nu ON c.u = nu.code
-        LEFT JOIN nodes nv ON c.v = nv.code
-        WHERE c.u = ? AND c.v = ?
-        LIMIT 1
-        """,
-        (u, v),
-    )
-    mediators_df = query_df(
-        db_path,
-        """
-        SELECT cm.rank, cm.mediator, COALESCE(n.label, cm.mediator) AS mediator_label, cm.score
-        FROM candidate_mediators cm
-        LEFT JOIN nodes n ON cm.mediator = n.code
-        WHERE cm.candidate_u = ? AND cm.candidate_v = ?
-        ORDER BY rank
-        """,
-        (u, v),
-    )
-    paths_df = query_df(
-        db_path,
-        """
-        SELECT rank, path_len, path_score, path_text
-        FROM candidate_paths
-        WHERE candidate_u = ? AND candidate_v = ?
-        ORDER BY rank
-        """,
-        (u, v),
-    )
-    papers_df = query_df(
-        db_path,
-        """
-        SELECT path_rank, edge_src, edge_dst, paper_id, title, year
-        FROM candidate_papers
-        WHERE candidate_u = ? AND candidate_v = ?
-        ORDER BY path_rank, paper_rank
-        """,
-        (u, v),
-    )
-    neighborhood_df = query_df(
-        db_path,
-        """
-        SELECT top_out_neighbors_u_json, top_in_neighbors_v_json
-        FROM candidate_neighborhoods
-        WHERE candidate_u = ? AND candidate_v = ?
-        LIMIT 1
-        """,
-        (u, v),
-    )
-    neighborhood_row = neighborhood_df.iloc[0] if not neighborhood_df.empty else None
-    candidate_row = candidate_df.iloc[0] if not candidate_df.empty else None
+    if isinstance(value, (list, dict)):
+        return value
     try:
-        source_detail_df = query_df(
-            db_path,
-            """
-            SELECT *
-            FROM node_details
-            WHERE concept_id = ?
-            LIMIT 1
-            """,
-            (u,),
-        )
-        target_detail_df = query_df(
-            db_path,
-            """
-            SELECT *
-            FROM node_details
-            WHERE concept_id = ?
-            LIMIT 1
-            """,
-            (v,),
-        )
+        return json.loads(str(value))
     except Exception:
-        source_detail_df = pd.DataFrame()
-        target_detail_df = pd.DataFrame()
-    return {
-        "candidate_df": candidate_df,
-        "candidate_row": candidate_row,
-        "mediators_df": mediators_df,
-        "paths_df": paths_df,
-        "papers_df": papers_df,
-        "neighborhood_row": neighborhood_row,
-        "source_detail_row": source_detail_df.iloc[0] if not source_detail_df.empty else None,
-        "target_detail_row": target_detail_df.iloc[0] if not target_detail_df.empty else None,
-    }
-
-def field_option_label(field_code: str, app_mode: str) -> str:
-    if is_concept_mode(app_mode):
-        return f"{field_code} | {CONCEPT_BUCKET_NAMES.get(field_code, field_code)}"
-    return f"{field_code} | {JEL_FIELD_NAMES.get(field_code, 'Unmapped field')}"
+        return []
 
 
 def query_param(name: str) -> str:
-    if not hasattr(st, "query_params"):
-        return ""
     value = st.query_params.get(name, "")
     if isinstance(value, list):
         return str(value[0]) if value else ""
     return str(value)
 
 
-def normalize_shortlist_mode(value: str) -> str:
-    normalized = value.strip().lower()
-    for mode in SHORTLIST_MODE_TO_PRESET:
-        if mode.lower() == normalized:
-            return mode
-    for preset, mode in PRESET_TO_SHORTLIST_MODE.items():
-        if preset.lower() == normalized:
-            return mode
-    return "General browse"
+def set_query_params(**kwargs: str) -> None:
+    clean = {key: value for key, value in kwargs.items() if value}
+    st.query_params.clear()
+    for key, value in clean.items():
+        st.query_params[key] = value
 
 
-def parse_flag(value: str, default: bool = False) -> bool:
-    if not value:
-        return default
-    return value.strip().lower() in {"1", "true", "yes", "y", "on"}
+def choose_db_path() -> str:
+    env_db = os.environ.get("ECON_OPPORTUNITY_DB", "").strip()
+    if env_db:
+        return env_db
+    if DEFAULT_DB.exists():
+        return str(DEFAULT_DB)
+    if FALLBACK_DB.exists():
+        return str(FALLBACK_DB)
+    return str(DEFAULT_DB)
 
 
-def candidate_option_label(row: pd.Series) -> str:
-    rank = to_int(row.get("priority_rank", 0), default=0)
-    return f"#{rank} {shortlist_pair_label(row)}"
+def query_df(db_path: str, sql: str, params: tuple[Any, ...] = ()) -> pd.DataFrame:
+    with connect_readonly(db_path) as conn:
+        return pd.read_sql_query(sql, conn, params=params)
 
 
-def pair_key_for_row(row: pd.Series) -> str:
-    pair_key = str(row.get("pair_key", "")).strip()
-    if pair_key:
-        return pair_key
-    return f"{row.get('u', '')}__{row.get('v', '')}"
+@st.cache_data(show_spinner=False)
+def load_release_meta(db_path: str) -> dict[str, str]:
+    try:
+        with connect_readonly(db_path) as conn:
+            rows = conn.execute("SELECT key, value FROM release_meta").fetchall()
+    except sqlite3.Error:
+        return {}
+    return {str(key): str(value) for key, value in rows}
 
 
-def filtered_download_frame(filtered_df: pd.DataFrame) -> pd.DataFrame:
-    working = filtered_df.copy()
-    if "priority_rank" not in working.columns:
-        working["priority_rank"] = np.arange(1, len(working) + 1)
+@st.cache_data(show_spinner=False)
+def load_release_metrics(db_path: str) -> dict[str, int]:
+    try:
+        with connect_readonly(db_path) as conn:
+            rows = conn.execute("SELECT key, value FROM release_metrics").fetchall()
+    except sqlite3.Error:
+        return {}
+    return {str(key): int(value) for key, value in rows}
 
-    out = working[
-        [
-            "priority_rank",
-            "priority_score",
-            "score",
-            "opportunity",
-            "code_pair",
-            "source_field_name",
-            "target_field_name",
-            "novelty_label",
-            "cooc_count",
-            "mediator_count",
-            "motif_count",
-        ]
-    ].copy()
-    out["direct_literature"] = working["cooc_count"].map(direct_literature_status)
-    out["next_study_shape"] = working.apply(recommendation_play, axis=1)
-    return out.rename(
-        columns={
-            "priority_rank": "rank",
-            "score": "base_score",
-            "opportunity": "research_question",
-            "source_field_name": "source_field",
-            "target_field_name": "target_field",
-            "novelty_label": "novelty",
-            "cooc_count": "prior_cooccurrences",
-        }
+
+@st.cache_data(show_spinner="Loading released research questions...")
+def load_questions(db_path: str) -> pd.DataFrame:
+    df = query_df(db_path, "SELECT * FROM questions ORDER BY score DESC, pair_key")
+    if df.empty:
+        return df
+    for column in ["score", "base_score", "duplicate_penalty", "path_support_norm", "gap_bonus"]:
+        df[column] = pd.to_numeric(df[column], errors="coerce")
+    for column in ["mediator_count", "motif_count", "cooc_count", "supporting_path_count", "cross_field"]:
+        df[column] = pd.to_numeric(df[column], errors="coerce").fillna(0).astype(int)
+    return df
+
+
+@st.cache_data(show_spinner=False)
+def load_concepts(db_path: str) -> pd.DataFrame:
+    df = query_df(db_path, "SELECT * FROM concepts ORDER BY weighted_degree DESC, concept_id")
+    if df.empty:
+        return df
+    for column in ["instance_support", "distinct_paper_support", "in_degree", "out_degree", "neighbor_count"]:
+        df[column] = pd.to_numeric(df[column], errors="coerce").fillna(0).astype(int)
+    for column in ["weighted_degree", "pagerank"]:
+        df[column] = pd.to_numeric(df[column], errors="coerce").fillna(0.0)
+    return df
+
+
+@st.cache_data(show_spinner=False)
+def load_question_bundle(db_path: str, pair_key: str) -> dict[str, Any]:
+    question_df = query_df(db_path, "SELECT * FROM questions WHERE pair_key = ? LIMIT 1", (pair_key,))
+    mediators = query_df(
+        db_path,
+        """
+        SELECT pair_key, rank, mediator_concept_id, mediator_label, score
+        FROM question_mediators
+        WHERE pair_key = ?
+        ORDER BY rank
+        LIMIT 25
+        """,
+        (pair_key,),
+    )
+    paths = query_df(
+        db_path,
+        """
+        SELECT pair_key, rank, path_len, path_score, path_text, path_nodes_json, path_labels_json
+        FROM question_paths
+        WHERE pair_key = ?
+        ORDER BY rank
+        LIMIT 20
+        """,
+        (pair_key,),
+    )
+    papers = query_df(
+        db_path,
+        """
+        SELECT pair_key, path_rank, paper_rank, paper_id, title, year, edge_src_label, edge_dst_label
+        FROM question_papers
+        WHERE pair_key = ?
+        ORDER BY path_rank, paper_rank
+        LIMIT 150
+        """,
+        (pair_key,),
+    )
+    neighborhoods = query_df(
+        db_path,
+        """
+        SELECT pair_key, source_out_neighbors_json, target_in_neighbors_json
+        FROM question_neighborhoods
+        WHERE pair_key = ?
+        LIMIT 1
+        """,
+        (pair_key,),
+    )
+    return {
+        "question": question_df.iloc[0] if not question_df.empty else None,
+        "mediators": mediators,
+        "paths": paths,
+        "papers": papers,
+        "neighborhoods": neighborhoods.iloc[0] if not neighborhoods.empty else None,
+    }
+
+
+@st.cache_data(show_spinner=False)
+def load_concept_bundle(db_path: str, concept_id: str) -> dict[str, Any]:
+    concept_df = query_df(db_path, "SELECT * FROM concepts WHERE concept_id = ? LIMIT 1", (concept_id,))
+    neighbors = query_df(
+        db_path,
+        """
+        SELECT concept_id, direction, rank_for_concept, neighbor_concept_id, label, support_count, distinct_papers, avg_stability
+        FROM concept_neighbors
+        WHERE concept_id = ?
+        ORDER BY direction, rank_for_concept
+        LIMIT 45
+        """,
+        (concept_id,),
+    )
+    opportunities = query_df(
+        db_path,
+        """
+        SELECT concept_id, rank_for_concept, pair_key, score, source_label, target_label, row_json
+        FROM concept_opportunities
+        WHERE concept_id = ?
+        ORDER BY rank_for_concept
+        LIMIT 24
+        """,
+        (concept_id,),
+    )
+    return {
+        "concept": concept_df.iloc[0] if not concept_df.empty else None,
+        "neighbors": neighbors,
+        "opportunities": opportunities,
+    }
+
+
+def label_for_question(row: pd.Series) -> str:
+    return str(row.get("public_pair_label") or f"{row.get('source_label', '')} and {row.get('target_label', '')}")
+
+
+def question_option_label(row: pd.Series) -> str:
+    return f"{label_for_question(row)}"
+
+
+def concept_option_label(row: pd.Series) -> str:
+    subtitle = str(row.get("subtitle") or "").strip()
+    if subtitle:
+        return f"{row['plain_label']} | {subtitle}"
+    return str(row["plain_label"])
+
+
+def shortlist_csv(filtered_df: pd.DataFrame) -> str:
+    columns = [
+        "pair_key",
+        "public_pair_label",
+        "score",
+        "base_score",
+        "direct_link_status",
+        "recommended_move",
+        "mediator_count",
+        "motif_count",
+        "cooc_count",
+    ]
+    return filtered_df.loc[:, columns].to_csv(index=False)
+
+
+def question_brief_markdown(question: pd.Series, mediators: pd.DataFrame, papers: pd.DataFrame, paths: pd.DataFrame) -> str:
+    mediator_lines = [
+        f"- {row.mediator_label} (rank {int(row.rank)}, score {float(row.score):.1f})"
+        for row in mediators.head(6).itertuples(index=False)
+    ]
+    paper_lines = [
+        f"- {row.title} ({int(row.year)}) [{row.edge_src_label} -> {row.edge_dst_label}]"
+        for row in papers.drop_duplicates(subset=["paper_id"]).head(6).itertuples(index=False)
+    ]
+    path_lines = [
+        f"- {row.path_text}"
+        for row in paths.head(5).itertuples(index=False)
+    ]
+    parts = [
+        f"# {label_for_question(question)}",
+        "",
+        f"Direct literature status: {question['direct_link_status']}",
+        f"Likely next study form: {question['recommended_move']}",
+        "",
+        "## Why this question is on the list",
+        str(question.get("why_now", "")),
+        "",
+        "## Related ideas",
+        *(mediator_lines or ["- No stable mediator preview in the current public release."]),
+        "",
+        "## Starter papers",
+        *(paper_lines or ["- No starter papers were exported for this question in the public release."]),
+        "",
+        "## Supporting paths",
+        *(path_lines or ["- No supporting paths were exported for this question in the public release."]),
+        "",
+        "Source: FrontierGraph public release",
+    ]
+    return "\n".join(parts)
+
+
+def render_summary_card(title: str, body: str) -> None:
+    st.markdown(
+        f'<div class="summary-card"><strong>{title}</strong><div>{body}</div></div>',
+        unsafe_allow_html=True,
     )
 
 
-def shortlist_view(shortlist_df: pd.DataFrame) -> pd.DataFrame:
-    working = shortlist_df.copy()
-    if "priority_rank" not in working.columns:
-        working["priority_rank"] = np.arange(1, len(working) + 1)
-    working["public_pair"] = working.apply(shortlist_pair_label, axis=1)
-    working["direct_literature"] = working["cooc_count"].map(direct_literature_status)
-    working["next_study_shape"] = working.apply(recommendation_play, axis=1)
+def top_value_labels(value: Any, *, limit: int = 4) -> list[str]:
+    labels: list[str] = []
+    for item in parse_json(value)[:limit]:
+        if isinstance(item, dict):
+            text = str(item.get("value", "")).strip()
+        else:
+            text = str(item).strip()
+        if text:
+            labels.append(text)
+    return labels
 
-    return (
-        working[
-            [
-                "priority_rank",
-                "public_pair",
-                "direct_literature",
-                "next_study_shape",
-                "mediator_count",
-            ]
+
+def question_filter_frame(questions: pd.DataFrame, search: str, direct_filters: list[str], only_cross_field: bool) -> pd.DataFrame:
+    filtered = questions.copy()
+    if search.strip():
+        needle = search.strip().lower()
+        filtered = filtered[
+            filtered["public_pair_label"].str.lower().str.contains(needle, na=False)
+            | filtered["source_label"].str.lower().str.contains(needle, na=False)
+            | filtered["target_label"].str.lower().str.contains(needle, na=False)
+            | filtered["why_now"].str.lower().str.contains(needle, na=False)
         ]
-        .rename(
-            columns={
-                "priority_rank": "Rank",
-                "public_pair": "Question",
-                "direct_literature": "Papers on this exact question",
-                "next_study_shape": "Likely study shape",
-                "mediator_count": "Related ideas",
-            }
-        )
-    )
-
-
-def filter_candidates(
-    candidates_df: pd.DataFrame,
-    search_text: str,
-    source_fields: list[str],
-    target_fields: list[str],
-    novelty_filter: list[str],
-    min_score: float,
-    cooc_cap: int | None,
-    min_mediators: int,
-    only_cross_field: bool,
-) -> pd.DataFrame:
-    filtered_df = candidates_df.copy()
-    if search_text.strip():
-        q = search_text.strip().lower()
-        filtered_df = filtered_df[
-            filtered_df["u"].str.lower().str.contains(q, na=False)
-            | filtered_df["v"].str.lower().str.contains(q, na=False)
-            | filtered_df["u_label"].str.lower().str.contains(q, na=False)
-            | filtered_df["v_label"].str.lower().str.contains(q, na=False)
-        ]
-    if source_fields:
-        filtered_df = filtered_df[filtered_df["source_field"].isin(source_fields)]
-    if target_fields:
-        filtered_df = filtered_df[filtered_df["target_field"].isin(target_fields)]
-    if novelty_filter:
-        allowed_novelties = {key for key, label in NOVELTY_LABELS.items() if label in novelty_filter}
-        filtered_df = filtered_df[filtered_df["novelty_type"].isin(allowed_novelties)]
+    if direct_filters:
+        filtered = filtered[filtered["direct_link_status"].isin(direct_filters)]
     if only_cross_field:
-        filtered_df = filtered_df[filtered_df["cross_field"]]
-    filtered_df = filtered_df[filtered_df["score"].fillna(0.0) >= float(min_score)]
-    if cooc_cap is not None:
-        filtered_df = filtered_df[filtered_df["cooc_count"].fillna(0) <= int(cooc_cap)]
-    filtered_df = filtered_df[filtered_df["mediator_count"].fillna(0) >= int(min_mediators)]
-    return filtered_df
+        filtered = filtered[filtered["cross_field"] == 1]
+    return filtered.reset_index(drop=True)
 
 
-def render_ranker_tab(db_path: str, filtered_df: pd.DataFrame, shortlist_mode: str, top_n: int, app_mode: str) -> None:
-    st.subheader("Questions worth checking")
-    st.caption(SHORTLIST_MODE_HELP[shortlist_mode])
-
-    if filtered_df.empty:
-        st.warning("No research questions match the current filters. Relax the filters or switch shortlist mode.")
+def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str, str]) -> None:
+    bundle = load_question_bundle(db_path, pair_key)
+    question = bundle["question"]
+    if question is None:
+        st.warning("That question was not found in the public bundle.")
         return
 
-    shortlist_df = filtered_df.head(int(top_n)).reset_index(drop=True)
-    st.caption(f"Showing {len(shortlist_df):,} questions from {len(filtered_df):,} visible matches under the current settings.")
+    mediators = bundle["mediators"]
+    paths = bundle["paths"]
+    papers = bundle["papers"]
+    neighborhoods = bundle["neighborhoods"]
 
-    st.dataframe(shortlist_view(shortlist_df), use_container_width=True, hide_index=True)
+    st.markdown(f"### {label_for_question(question)}")
+    left, right = st.columns([1.35, 1.0])
+    with left:
+        render_summary_card("Why this question appears", str(question.get("why_now", "")))
+        render_summary_card("Direct-literature status", str(question.get("direct_link_status", "")))
+        render_summary_card("Likely next study form", str(question.get("recommended_move", "")))
+    with right:
+        st.metric("Ranking score", f"{float(question['score']):.3f}")
+        st.metric("Related ideas", f"{int(question['mediator_count'])}")
+        st.metric("Supporting motifs", f"{int(question['motif_count'])}")
+        st.metric("Direct papers already seen", f"{int(question['cooc_count'])}")
 
-    options_df = shortlist_df.head(min(100, len(shortlist_df))).reset_index(drop=True)
-    pair_lookup = {pair_key_for_row(options_df.loc[i]): options_df.loc[i] for i in options_df.index}
-    selected_idx = st.selectbox(
-        "Inspect one question in detail",
-        options=options_df.index,
-        format_func=lambda i: candidate_option_label(options_df.loc[i]),
+    papers_preview = (
+        papers.drop_duplicates(subset=["paper_id"], keep="first")
+        .loc[:, ["title", "year", "edge_src_label", "edge_dst_label"]]
+        .rename(columns={"title": "Paper", "year": "Year", "edge_src_label": "Edge source", "edge_dst_label": "Edge target"})
+        .head(8)
     )
-    selected_row = options_df.loc[int(selected_idx)]
-    selected_pair_key = pair_key_for_row(selected_row)
+    st.markdown("**Starter papers**")
+    if papers_preview.empty:
+        st.caption("No starter papers were exported for this question in the current public release.")
+    else:
+        st.dataframe(papers_preview, use_container_width=True, hide_index=True)
 
-    available_pair_keys = list(pair_lookup.keys())
-    saved_compare = [pair for pair in st.session_state.get("compare_pairs_widget", []) if pair in pair_lookup]
-    if saved_compare != st.session_state.get("compare_pairs_widget", []):
-        st.session_state["compare_pairs_widget"] = saved_compare
-    elif "compare_pairs_widget" not in st.session_state:
-        st.session_state["compare_pairs_widget"] = []
+    nearby_labels = [str(row.mediator_label) for row in mediators.head(6).itertuples(index=False)]
+    if nearby_labels:
+        st.caption("Related ideas: " + ", ".join(nearby_labels))
 
-    compare_button_col, clear_button_col = st.columns([1.3, 1.0])
-    with compare_button_col:
-        if st.button("Pin selected question", use_container_width=True):
-            updated = list(st.session_state.get("compare_pairs_widget", []))
-            if selected_pair_key not in updated:
-                updated.append(selected_pair_key)
-            st.session_state["compare_pairs_widget"] = updated[:4]
-    with clear_button_col:
-        if st.button("Clear comparison", use_container_width=True):
-            st.session_state["compare_pairs_widget"] = []
-
-    compare_pairs = st.multiselect(
-        "Pinned questions to compare",
-        options=available_pair_keys,
-        format_func=lambda pair_key: candidate_option_label(pair_lookup[pair_key]),
-        key="compare_pairs_widget",
-    )
-    if len(compare_pairs) > 4:
-        compare_pairs = compare_pairs[:4]
-        st.session_state["compare_pairs_widget"] = compare_pairs
-        st.warning("Comparison is limited to 4 questions at a time.")
-
-    if len(compare_pairs) >= 2:
-        render_question_comparison(db_path, pair_lookup, compare_pairs)
-
-    render_candidate_detail(db_path, selected_row, app_mode=app_mode)
-
+    brief = question_brief_markdown(question, mediators, papers, paths)
     st.download_button(
-        label="Export working shortlist",
-        data=filtered_download_frame(shortlist_df).to_csv(index=False),
+        "Export question brief",
+        data=brief,
+        file_name=f"frontiergraph_{pair_key}.md",
+        mime="text/markdown",
+    )
+
+    with st.expander("Advanced evidence", expanded=False):
+        st.markdown("**Top mediators**")
+        st.dataframe(mediators, use_container_width=True, hide_index=True)
+
+        path_frame = paths.copy()
+        if not path_frame.empty:
+            path_frame["path_labels"] = path_frame["path_labels_json"].map(
+                lambda value: " -> ".join(parse_json(value)) if parse_json(value) else ""
+            )
+            st.markdown("**Supporting paths**")
+            st.dataframe(
+                path_frame.loc[:, ["rank", "path_len", "path_score", "path_labels"]],
+                use_container_width=True,
+                hide_index=True,
+            )
+
+        st.markdown("**Supporting papers**")
+        st.dataframe(papers, use_container_width=True, hide_index=True)
+
+        if neighborhoods is not None:
+            out_neighbors = []
+            in_neighbors = []
+            for row in parse_json(neighborhoods["source_out_neighbors_json"]):
+                neighbor = str(row.get("neighbor", ""))
+                out_neighbors.append(
+                    {
+                        "neighbor": concept_lookup.get(neighbor, neighbor),
+                        "count": int(row.get("count", 0)),
+                        "weight": float(row.get("weight", 0.0)),
+                    }
+                )
+            for row in parse_json(neighborhoods["target_in_neighbors_json"]):
+                neighbor = str(row.get("neighbor", ""))
+                in_neighbors.append(
+                    {
+                        "neighbor": concept_lookup.get(neighbor, neighbor),
+                        "count": int(row.get("count", 0)),
+                        "weight": float(row.get("weight", 0.0)),
+                    }
+                )
+            n_left, n_right = st.columns(2)
+            with n_left:
+                st.markdown("**Source-side neighborhood**")
+                st.dataframe(pd.DataFrame(out_neighbors), use_container_width=True, hide_index=True)
+            with n_right:
+                st.markdown("**Target-side neighborhood**")
+                st.dataframe(pd.DataFrame(in_neighbors), use_container_width=True, hide_index=True)
+
+
+def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_lookup: dict[str, str]) -> None:
+    search_default = query_param("search")
+    pair_default = query_param("pair")
+    status_options = sorted(questions["direct_link_status"].dropna().unique().tolist())
+    search_col, filter_col = st.columns([1.7, 1.0])
+    with search_col:
+        search = st.text_input("Search questions", value=search_default, placeholder="Search by topic, outcome, or question wording")
+    with filter_col:
+        only_cross = st.checkbox("Only cross-bucket questions", value=query_param("cross") == "1")
+
+    direct_filters = st.multiselect(
+        "Direct-literature status",
+        options=status_options,
+        default=status_options,
+    )
+    shortlist_size = st.slider("Shortlist size", min_value=10, max_value=100, value=25, step=5)
+    filtered = question_filter_frame(questions, search, direct_filters, only_cross)
+
+    if filtered.empty:
+        st.warning("No released questions match the current filters.")
+        return
+
+    preview = filtered.head(shortlist_size).copy()
+    preview_table = preview.loc[:, ["public_pair_label", "direct_link_status", "recommended_move", "mediator_count", "score"]]
+    preview_table.columns = ["Question", "Direct literature", "Likely next study form", "Related ideas", "Score"]
+    st.dataframe(preview_table, use_container_width=True, hide_index=True)
+    st.download_button(
+        "Export shortlist CSV",
+        data=shortlist_csv(filtered.head(100)),
         file_name="frontiergraph_shortlist.csv",
         mime="text/csv",
     )
 
+    candidate_map = {str(row.pair_key): row for row in preview.itertuples(index=False)}
+    default_pair = pair_default if pair_default in candidate_map else next(iter(candidate_map))
+    selection = st.selectbox(
+        "Inspect one question",
+        options=list(candidate_map.keys()),
+        index=list(candidate_map.keys()).index(default_pair),
+        format_func=lambda value: question_option_label(pd.Series(candidate_map[value]._asdict())),
+    )
+    if selection != pair_default or search != search_default or only_cross != (query_param("cross") == "1"):
+        set_query_params(view="question", pair=selection, search=search, cross="1" if only_cross else "")
+    compare_default = [value for value in query_param("pairs").split(",") if value in candidate_map][:4]
+    compare_pairs = st.multiselect(
+        "Pin questions to compare",
+        options=list(candidate_map.keys()),
+        default=compare_default,
+        format_func=lambda value: question_option_label(pd.Series(candidate_map[value]._asdict())),
+    )
+    if len(compare_pairs) >= 2 and st.button("Open compare workspace"):
+        set_query_params(view="compare", pairs=",".join(compare_pairs))
+        st.rerun()
 
-def render_question_comparison(
-    db_path: str,
-    pair_lookup: dict[str, pd.Series],
-    compare_pairs: list[str],
-) -> None:
-    st.markdown("### Compare pinned questions")
-    columns = st.columns(len(compare_pairs))
-    for column, pair_key in zip(columns, compare_pairs):
-        row = pair_lookup[pair_key]
-        bundle = load_candidate_bundle(db_path, str(row["u"]), str(row["v"]))
-        candidate_row = bundle["candidate_row"]
-        mediators_df = bundle["mediators_df"]
-        papers_df = bundle["papers_df"]
-        direct_status = direct_literature_status(
-            candidate_row.get("cooc_count", row.get("cooc_count", 0)) if candidate_row is not None else row.get("cooc_count", 0)
-        )
-        nearby_labels = mediator_preview(mediators_df)
-        paper_preview = representative_paper_preview(papers_df, limit=2)
-        related_idea_count = to_int(row.get("mediator_count", 0))
-
-        with column:
-            st.markdown(f"**{shortlist_pair_label(row)}**")
-            st.caption(f"Likely study shape: {recommendation_play(row)}")
-            st.write(f"Papers on this exact question: {direct_status}")
-            st.write(f"Related ideas in the current sample: {related_idea_count}")
-            if nearby_labels:
-                st.caption("Examples: " + ", ".join(nearby_labels))
-            else:
-                st.caption("No stable mediator preview in the current sample.")
-            if paper_preview.empty:
-                st.caption("No starter papers were exported for this pair.")
-            else:
-                st.markdown("**Papers to start with**")
-                for paper in paper_preview.itertuples(index=False):
-                    year_suffix = f" ({to_int(getattr(paper, 'year', 0))})" if to_int(getattr(paper, "year", 0)) > 0 else ""
-                    st.markdown(f"- {getattr(paper, 'title', '')}{year_suffix}")
+    render_question_detail(db_path, selection, concept_lookup)
 
 
-def render_candidate_detail(db_path: str, row: pd.Series, app_mode: str) -> None:
-    bundle = load_candidate_bundle(db_path, str(row["u"]), str(row["v"]))
-    candidate_row = bundle["candidate_row"]
-    mediators_df = bundle["mediators_df"]
-    paths_df = bundle["paths_df"]
-    papers_df = bundle["papers_df"]
-    neighborhood_row = bundle["neighborhood_row"]
-    source_detail_row = bundle["source_detail_row"]
-    target_detail_row = bundle["target_detail_row"]
-
-    if candidate_row is None:
-        st.warning("Question details were not found in the database.")
-        return
-
-    pair_label = shortlist_pair_label(row)
-    direct_status = direct_literature_status(candidate_row.get("cooc_count", row.get("cooc_count", 0)))
-    nearby_labels = mediator_preview(mediators_df)
-    paper_preview = representative_paper_preview(papers_df)
-    next_study_shape = recommendation_play(row)
-    verify_steps = [
-        "Check direct literature under close synonyms",
-        "Inspect nearby linking ideas",
-        "Read the papers to start with",
-        "Decide whether this is a mechanism, outcome, or setting question",
+def concept_graphviz(concept: pd.Series, neighbors: pd.DataFrame) -> str:
+    concept_label = str(concept.get("plain_label") or concept.get("label"))
+    lines = [
+        "digraph G {",
+        'graph [rankdir=LR, bgcolor="transparent"];',
+        'node [shape=ellipse, style=filled, color="#dce7f8", fontname="Helvetica"];',
+        f'"{concept_label}" [fillcolor="#8ed0ff", color="#3f79b8"];',
     ]
-
-    st.markdown("### Selected question")
-    st.markdown(f"**{pair_label}**")
-
-    summary_left, summary_right = st.columns([1.35, 1.0])
-    with summary_left:
-        st.markdown("**Question summary**")
-        st.write(f"Papers on this exact question: {direct_status}")
-        st.write(f"Likely study shape: {next_study_shape}")
-        if nearby_labels:
-            st.write(f"Related ideas: {', '.join(nearby_labels)}")
-        else:
-            st.write("Related ideas: No stable mediator preview in the current public sample")
-    with summary_right:
-        st.markdown("**What to verify next**")
-        render_bullet_list(verify_steps)
-
-    st.markdown("**Papers to start with**")
-    if paper_preview.empty:
-        st.caption("No starter papers were exported for this pair in the current public sample.")
-    else:
-        preview_df = paper_preview.rename(
-            columns={
-                "title": "Paper",
-                "year": "Year",
-                "edge_src": "Edge source",
-                "edge_dst": "Edge target",
-            }
-        )
-        st.dataframe(preview_df, use_container_width=True, hide_index=True)
-
-    brief = build_idea_brief_markdown(
-        candidate_row=candidate_row,
-        mediators_df=mediators_df,
-        paths_df=paths_df,
-        papers_df=papers_df,
-        neighborhood_row=neighborhood_row,
-    )
-    st.download_button(
-        label="Export working brief",
-        data=brief,
-        file_name=f"idea_brief_{row['u']}_to_{row['v']}.md",
-        mime="text/markdown",
-    )
-
-    has_suppression = "base_score" in candidate_row.index
-    with st.expander("Technical details", expanded=False):
-        top_cols = st.columns(5 if has_suppression else 4)
-        top_cols[0].metric("Priority", f"{to_float(row['priority_score']):.3f}")
-        if has_suppression:
-            top_cols[1].metric("Adjusted score", f"{to_float(candidate_row.get('score', 0.0)):.3f}")
-            top_cols[2].metric("Base score", f"{to_float(candidate_row.get('base_score', 0.0)):.3f}")
-            top_cols[3].metric("Prior contact", f"{to_int(candidate_row.get('cooc_count', 0))}")
-            top_cols[4].metric("Mediators", f"{to_int(candidate_row.get('mediator_count', 0))}")
-        else:
-            top_cols[1].metric("Base score", f"{to_float(candidate_row['score']):.3f}")
-            top_cols[2].metric("Prior contact", f"{to_int(candidate_row.get('cooc_count', 0))}")
-            top_cols[3].metric("Mediators", f"{to_int(candidate_row.get('mediator_count', 0))}")
-
-        summary_left, summary_right = st.columns(2)
-        with summary_left:
-            summary_df = pd.DataFrame(
-                [
-                    {"Metric": "Novelty", "Value": row["novelty_label"]},
-                    *(
-                        [
-                            {"Metric": "Base rank", "Value": format_rank(candidate_row.get("base_rank"))},
-                            {"Metric": "Adjusted rank", "Value": format_rank(candidate_row.get("rank"))},
-                            {"Metric": "Duplicate penalty", "Value": f"{to_float(candidate_row.get('duplicate_penalty', 0.0)):.3f}"},
-                            {"Metric": "Hard suppression reason", "Value": str(candidate_row.get("hard_same_family_reason", "") or "Not applied")},
-                        ]
-                        if has_suppression
-                        else []
-                    ),
-                    {"Metric": "Path support", "Value": f"{to_float(candidate_row.get('path_support_norm', 0.0)):.3f}"},
-                    {"Metric": "Gap bonus", "Value": f"{to_float(candidate_row.get('gap_bonus', 0.0)):.3f}"},
-                    {"Metric": "Motif bonus", "Value": f"{to_float(candidate_row.get('motif_bonus_norm', 0.0)):.3f}"},
-                    {"Metric": "Hub penalty", "Value": f"{to_float(candidate_row.get('hub_penalty', 0.0)):.3f}"},
-                    {"Metric": "Displayed rank", "Value": format_rank(candidate_row.get('rank'))},
-                ]
-            )
-            st.dataframe(summary_df, use_container_width=True, hide_index=True)
-        with summary_right:
-            evidence_df = pd.DataFrame(
-                [
-                    {"Measure": "Mediators", "Count": to_int(candidate_row.get("mediator_count", 0))},
-                    {"Measure": "Supporting motifs", "Count": to_int(candidate_row.get("motif_count", 0))},
-                    {"Measure": "Prior co-occurrences", "Count": to_int(candidate_row.get("cooc_count", 0))},
-                ]
-            )
-            st.dataframe(evidence_df, use_container_width=True, hide_index=True)
-
-        evidence_left, evidence_right = st.columns(2)
-        with evidence_left:
-            st.markdown("**Top mediators**")
-            st.dataframe(mediators_df.head(25), use_container_width=True, hide_index=True)
-        with evidence_right:
-            st.markdown("**Top supporting paths**")
-            st.dataframe(paths_df.head(25), use_container_width=True, hide_index=True)
-
-        st.markdown("**Supporting papers behind the candidate paths**")
-        st.dataframe(papers_df.head(150), use_container_width=True, hide_index=True)
-
-        if is_concept_mode(app_mode) and source_detail_row is not None and target_detail_row is not None:
-            with st.expander("Inspect concept metadata", expanded=False):
-                st.markdown("**Source concept**")
-                st.code(
-                    json.dumps(
-                        {
-                            "aliases_json": source_detail_row.get("aliases_json", "[]"),
-                            "bucket_hint": source_detail_row.get("bucket_hint", ""),
-                            "instance_support": to_int(source_detail_row.get("instance_support", 0)),
-                            "mean_confidence": to_float(source_detail_row.get("mean_confidence", 0.0)),
-                            "low_confidence_share": to_float(source_detail_row.get("low_confidence_share", 0.0)),
-                            "mapping_sources_json": source_detail_row.get("mapping_sources_json", "[]"),
-                            "representative_contexts_json": source_detail_row.get("representative_contexts_json", "[]"),
-                            "representative_years_json": source_detail_row.get("representative_years_json", "[]"),
-                        },
-                        ensure_ascii=False,
-                        indent=2,
-                    )
-                )
-                st.markdown("**Target concept**")
-                st.code(
-                    json.dumps(
-                        {
-                            "aliases_json": target_detail_row.get("aliases_json", "[]"),
-                            "bucket_hint": target_detail_row.get("bucket_hint", ""),
-                            "instance_support": to_int(target_detail_row.get("instance_support", 0)),
-                            "mean_confidence": to_float(target_detail_row.get("mean_confidence", 0.0)),
-                            "low_confidence_share": to_float(target_detail_row.get("low_confidence_share", 0.0)),
-                            "mapping_sources_json": target_detail_row.get("mapping_sources_json", "[]"),
-                            "representative_contexts_json": target_detail_row.get("representative_contexts_json", "[]"),
-                            "representative_years_json": target_detail_row.get("representative_years_json", "[]"),
-                        },
-                        ensure_ascii=False,
-                        indent=2,
-                    )
-                )
-        if neighborhood_row is not None:
-            with st.expander("Inspect local neighborhood", expanded=False):
-                st.markdown("**Top outgoing neighbors of the source concept**")
-                st.code(str(neighborhood_row["top_out_neighbors_u_json"]))
-                st.markdown("**Top incoming neighbors of the target concept**")
-                st.code(str(neighborhood_row["top_in_neighbors_v_json"]))
+    for row in neighbors[neighbors["direction"] == "incoming"].head(4).itertuples(index=False):
+        lines.append(f'"{row.label}" -> "{concept_label}" [color="#7aa0c3"];')
+    for row in neighbors[neighbors["direction"] == "outgoing"].head(4).itertuples(index=False):
+        lines.append(f'"{concept_label}" -> "{row.label}" [color="#5c8b77"];')
+    lines.append("}")
+    return "\n".join(lines)
 
 
-def render_field_radar_tab(filtered_df: pd.DataFrame, app_mode: str) -> None:
-    st.subheader("Literature map by group" if is_concept_mode(app_mode) else "Literature map by field")
-    if filtered_df.empty:
-        st.warning("No research questions to summarize under the current filters.")
-        return
-
-    target_summary = (
-        filtered_df.groupby("target_field_name", as_index=False)
-        .agg(
-            ideas=("priority_score", "size"),
-            mean_priority=("priority_score", "mean"),
-            cross_field_share=("cross_field", "mean"),
-        )
-        .sort_values(["mean_priority", "ideas"], ascending=[False, False])
-    )
-    corridor_summary = (
-        filtered_df.assign(corridor=filtered_df["source_field"] + " -> " + filtered_df["target_field"])
-        .groupby(["corridor", "source_field_name", "target_field_name"], as_index=False)
-        .agg(
-            ideas=("priority_score", "size"),
-            mean_priority=("priority_score", "mean"),
-            boundary_share=("boundary_flag", "mean"),
-        )
-        .sort_values(["mean_priority", "ideas"], ascending=[False, False])
-    )
-
-    left, right = st.columns(2)
-    with left:
-        st.markdown("**Most promising target areas**")
-        st.dataframe(target_summary.head(12), use_container_width=True, hide_index=True)
-    with right:
-        st.markdown("**Strongest source -> target corridors**")
-        st.dataframe(corridor_summary.head(12), use_container_width=True, hide_index=True)
-
-
-def render_concept_tab(db_path: str, nodes_df: pd.DataFrame) -> None:
-    st.subheader("Concept lookup")
-    st.caption("Use this when you already know the concept you want to trace through the literature map.")
-
-    query = st.text_input("Find a concept by code or label", value="")
-    filtered = nodes_df
-    if query.strip():
-        q = query.strip().lower()
-        filtered = nodes_df[
-            nodes_df["code"].str.lower().str.contains(q, na=False)
-            | nodes_df["label"].str.lower().str.contains(q, na=False)
+def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
+    concept_default = query_param("concept")
+    search = st.text_input("Find a topic", value=query_param("search"), placeholder="Search by topic, alias, or concept label")
+    working = concepts.copy()
+    if search.strip():
+        needle = search.strip().lower()
+        working = working[
+            working["plain_label"].str.lower().str.contains(needle, na=False)
+            | working["label"].str.lower().str.contains(needle, na=False)
+            | working["subtitle"].fillna("").str.lower().str.contains(needle, na=False)
         ]
-    if filtered.empty:
+    if working.empty:
         st.warning("No concepts match that query.")
         return
 
-    top_matches = filtered.head(200).reset_index(drop=True)
-    selected_index = st.selectbox(
-        "Select concept",
-        options=top_matches.index,
-        format_func=lambda i: f"{top_matches.loc[i, 'code']} | {top_matches.loc[i, 'label']}",
+    top = working.head(150).reset_index(drop=True)
+    concept_map = {str(row.concept_id): row for row in top.itertuples(index=False)}
+    selected = concept_default if concept_default in concept_map else next(iter(concept_map))
+    choice = st.selectbox(
+        "Select topic",
+        options=list(concept_map.keys()),
+        index=list(concept_map.keys()).index(selected),
+        format_func=lambda value: concept_option_label(pd.Series(concept_map[value]._asdict())),
     )
-    concept_code = str(top_matches.loc[selected_index, "code"])
-    concept_label = str(top_matches.loc[selected_index, "label"])
-    k = st.slider("How many ideas to show", min_value=5, max_value=60, value=20, step=5, key="concept_k")
+    if choice != concept_default or search != query_param("search"):
+        set_query_params(view="concept", concept=choice, search=search)
 
-    outgoing = query_df(
-        db_path,
-        """
-        SELECT c.u, nu.label AS u_label, c.v, nv.label AS v_label, c.score, c.path_support_norm, c.gap_bonus, c.motif_bonus_norm
-        FROM candidates c
-        LEFT JOIN nodes nu ON c.u = nu.code
-        LEFT JOIN nodes nv ON c.v = nv.code
-        WHERE c.u = ?
-        ORDER BY c.score DESC
-        LIMIT ?
-        """,
-        (concept_code, int(k)),
-    )
-    incoming = query_df(
-        db_path,
-        """
-        SELECT c.u, nu.label AS u_label, c.v, nv.label AS v_label, c.score, c.path_support_norm, c.gap_bonus, c.motif_bonus_norm
-        FROM candidates c
-        LEFT JOIN nodes nu ON c.u = nu.code
-        LEFT JOIN nodes nv ON c.v = nv.code
-        WHERE c.v = ?
-        ORDER BY c.score DESC
-        LIMIT ?
-        """,
-        (concept_code, int(k)),
-    )
-    try:
-        underexplored = query_df(
-            db_path,
-            """
-            SELECT u, v, cooc_count, first_year_seen, last_year_seen, gap_bonus
-            FROM underexplored_pairs
-            WHERE (u = ? OR v = ?) AND underexplored = 1
-            ORDER BY cooc_count ASC, gap_bonus DESC
-            LIMIT ?
-            """,
-            (concept_code, concept_code, int(k)),
-        )
-    except Exception:
-        underexplored = pd.DataFrame(columns=["u", "v", "cooc_count", "first_year_seen", "last_year_seen", "gap_bonus"])
-
-    st.markdown(f"### {concept_label} ({concept_code})")
-    left, right = st.columns(2)
-    with left:
-        st.markdown("**Top outgoing research questions**")
-        st.dataframe(outgoing, use_container_width=True, hide_index=True)
-    with right:
-        st.markdown("**Top incoming research questions**")
-        st.dataframe(incoming, use_container_width=True, hide_index=True)
-
-    st.markdown("**Underexplored pairs touching this concept**")
-    if underexplored.empty:
-        st.caption("No underexplored-pair table was exported for this database build.")
-    else:
-        st.dataframe(underexplored, use_container_width=True, hide_index=True)
-
-
-def render_method_tab(filtered_df: pd.DataFrame, preset: str) -> None:
-    st.subheader("Method")
-    st.markdown(
-        f"Use the public <a href=\"{HOW_IT_WORKS_URL}\">How It Works</a> page for interpretation and limits. Use this tab when you want the compact technical summary behind the current evidence view.",
-        unsafe_allow_html=True,
-    )
-    st.markdown(
-        """
-        1. AI extracts paper-local graph structure from titles and abstracts.
-        2. FrontierGraph maps those local graphs into concept regimes and ranks missing links with deterministic graph signals.
-        3. The public default is Baseline exploratory, with duplicate cleanup applied before the research-question surface is shown.
-        """
-    )
-    st.caption(f"Current preset: {preset}. {PRESET_HELP[preset]}")
-
-    if filtered_df.empty:
-        st.info("The filtered set is empty, so there is no live summary to report.")
+    bundle = load_concept_bundle(db_path, choice)
+    concept = bundle["concept"]
+    neighbors = bundle["neighbors"]
+    opportunities = bundle["opportunities"]
+    if concept is None:
+        st.warning("That concept was not found in the public bundle.")
         return
 
-    live_summary = pd.DataFrame(
-        [
+    st.markdown(f"### {concept['plain_label']}")
+    if str(concept.get("subtitle", "")).strip():
+        st.caption(str(concept["subtitle"]))
+    metrics_cols = st.columns(4)
+    metrics_cols[0].metric("Instance support", f"{int(concept['instance_support']):,}")
+    metrics_cols[1].metric("Distinct papers", f"{int(concept['distinct_paper_support']):,}")
+    metrics_cols[2].metric("Weighted degree", f"{float(concept['weighted_degree']):,.1f}")
+    metrics_cols[3].metric("Neighbor count", f"{int(concept['neighbor_count']):,}")
+
+    countries = ", ".join(top_value_labels(concept.get("top_countries_json")))
+    units = ", ".join(top_value_labels(concept.get("top_units_json")))
+    if countries or units:
+        render_summary_card("Common contexts", f"Countries: {countries or 'not surfaced'}<br/>Units: {units or 'not surfaced'}")
+
+    left, right = st.columns([1.0, 1.15])
+    with left:
+        st.markdown("**Local map**")
+        try:
+            st.graphviz_chart(concept_graphviz(concept, neighbors), use_container_width=True)
+        except Exception:
+            st.code(concept_graphviz(concept, neighbors))
+    with right:
+        n_left, n_right = st.columns(2)
+        with n_left:
+            st.markdown("**Incoming neighbors**")
+            st.dataframe(neighbors[neighbors["direction"] == "incoming"].head(10), use_container_width=True, hide_index=True)
+        with n_right:
+            st.markdown("**Outgoing neighbors**")
+            st.dataframe(neighbors[neighbors["direction"] == "outgoing"].head(10), use_container_width=True, hide_index=True)
+
+    nearby_questions = []
+    for row in opportunities.head(12).itertuples(index=False):
+        payload = parse_json(row.row_json)
+        nearby_questions.append(
             {
-                "Filtered ideas": len(filtered_df),
-                "Mean priority score": round(float(filtered_df["priority_score"].mean()), 3),
-                "Cross-field share": round(float(filtered_df["cross_field"].mean()), 3),
-                "Boundary share": round(float(filtered_df["boundary_flag"].mean()), 3),
-                "Median co-occurrence": round(float(filtered_df["cooc_count"].median()), 1),
+                "Question": payload.get("public_pair_label", f"{row.source_label} and {row.target_label}"),
+                "Score": payload.get("score", row.score),
+                "Likely next study form": payload.get("recommended_move", ""),
+                "Open in app": payload.get("app_link", ""),
             }
-        ]
+        )
+    st.markdown("**Nearby questions touching this topic**")
+    st.dataframe(pd.DataFrame(nearby_questions), use_container_width=True, hide_index=True)
+
+
+def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd.DataFrame) -> None:
+    compare_mode = st.radio("Compare questions or topics", options=["Questions", "Topics"], horizontal=True)
+    if compare_mode == "Questions":
+        pair_defaults = [value for value in query_param("pairs").split(",") if value]
+        candidate_map = {str(row.pair_key): row for row in questions.head(150).itertuples(index=False)}
+        selected = st.multiselect(
+            "Choose 2 to 4 questions",
+            options=list(candidate_map.keys()),
+            default=[value for value in pair_defaults if value in candidate_map][:4],
+            format_func=lambda value: question_option_label(pd.Series(candidate_map[value]._asdict())),
+        )
+        if selected:
+            set_query_params(view="compare", pairs=",".join(selected[:4]))
+        if len(selected) < 2:
+            st.info("Select at least two questions to compare them side by side.")
+            return
+        cols = st.columns(len(selected[:4]))
+        for col, pair_key in zip(cols, selected[:4]):
+            bundle = load_question_bundle(db_path, pair_key)
+            question = bundle["question"]
+            if question is None:
+                continue
+            papers = bundle["papers"].drop_duplicates(subset=["paper_id"]).head(3)
+            with col:
+                st.markdown(f"**{label_for_question(question)}**")
+                st.caption(str(question["recommended_move"]))
+                st.write(f"Direct literature: {question['direct_link_status']}")
+                st.write(f"Related ideas: {int(question['mediator_count'])}")
+                if not papers.empty:
+                    st.markdown("**Starter papers**")
+                    for paper in papers.itertuples(index=False):
+                        st.markdown(f"- {paper.title} ({int(paper.year)})")
+    else:
+        concept_map = {str(row.concept_id): row for row in concepts.head(150).itertuples(index=False)}
+        selected = st.multiselect(
+            "Choose 2 to 4 topics",
+            options=list(concept_map.keys()),
+            format_func=lambda value: concept_option_label(pd.Series(concept_map[value]._asdict())),
+        )
+        if len(selected) < 2:
+            st.info("Select at least two topics to compare them side by side.")
+            return
+        cols = st.columns(len(selected[:4]))
+        for col, concept_id in zip(cols, selected[:4]):
+            bundle = load_concept_bundle(db_path, concept_id)
+            concept = bundle["concept"]
+            neighbors = bundle["neighbors"]
+            opportunities = bundle["opportunities"]
+            if concept is None:
+                continue
+            with col:
+                st.markdown(f"**{concept['plain_label']}**")
+                st.caption(str(concept.get("subtitle", "")))
+                st.write(f"Distinct papers: {int(concept['distinct_paper_support']):,}")
+                st.write(f"Neighbor count: {int(concept['neighbor_count']):,}")
+                st.write(f"Nearby released questions: {len(opportunities):,}")
+                if not neighbors.empty:
+                    st.markdown("**Nearest neighbors**")
+                    for row in neighbors.head(4).itertuples(index=False):
+                        st.markdown(f"- {row.label}")
+
+
+def render_advanced_evidence(db_path: str, questions: pd.DataFrame, concepts: pd.DataFrame) -> None:
+    pair_default = query_param("pair")
+    question_map = {str(row.pair_key): row for row in questions.head(150).itertuples(index=False)}
+    selected_pair = pair_default if pair_default in question_map else next(iter(question_map))
+    choice = st.selectbox(
+        "Question for raw evidence",
+        options=list(question_map.keys()),
+        index=list(question_map.keys()).index(selected_pair),
+        format_func=lambda value: question_option_label(pd.Series(question_map[value]._asdict())),
     )
-    st.dataframe(live_summary, use_container_width=True, hide_index=True)
+    if choice != pair_default:
+        set_query_params(view="advanced", pair=choice)
+    bundle = load_question_bundle(db_path, choice)
+    question = bundle["question"]
+    st.markdown(f"### Advanced evidence for {label_for_question(question)}")
+
+    with st.expander("Raw question row", expanded=True):
+        st.json({key: (value.item() if hasattr(value, "item") else value) for key, value in question.to_dict().items()})
+
+    with st.expander("Mediator table", expanded=False):
+        st.dataframe(bundle["mediators"], use_container_width=True, hide_index=True)
+
+    with st.expander("Path table", expanded=False):
+        st.dataframe(bundle["paths"], use_container_width=True, hide_index=True)
+
+    with st.expander("Paper table", expanded=False):
+        st.dataframe(bundle["papers"], use_container_width=True, hide_index=True)
+
+    with st.expander("Release metadata", expanded=False):
+        st.json(load_release_meta(db_path))
+        st.json(load_release_metrics(db_path))
+
+    st.markdown("### Concept lookup")
+    concept_map = {str(row.concept_id): row for row in concepts.head(150).itertuples(index=False)}
+    concept_choice = st.selectbox(
+        "Inspect one concept row",
+        options=list(concept_map.keys()),
+        format_func=lambda value: concept_option_label(pd.Series(concept_map[value]._asdict())),
+    )
+    concept_bundle = load_concept_bundle(db_path, concept_choice)
+    if concept_bundle["concept"] is not None:
+        st.json({key: (value.item() if hasattr(value, "item") else value) for key, value in concept_bundle["concept"].to_dict().items()})
 
 
 def main() -> None:
-    st.set_page_config(
-        page_title="FrontierGraph | Workbench",
-        layout="wide",
-        initial_sidebar_state="collapsed",
-    )
+    st.set_page_config(page_title="FrontierGraph | Deeper App", layout="wide", initial_sidebar_state="collapsed")
     inject_css()
+
+    db_path = choose_db_path()
+    if not Path(db_path).exists():
+        st.error(f"Database not found: {db_path}")
+        st.stop()
 
     st.markdown(
         f"""
         <div class="app-nav">
             <a href="{SITE_URL}">Site</a>
-            <a href="{QUESTIONS_URL}">Research Questions</a>
-            <a href="{HOW_IT_WORKS_URL}">How It Works</a>
+            <a href="{QUESTIONS_URL}">Research questions</a>
+            <a href="{GRAPH_URL}">Literature map</a>
+            <a href="{PAPER_URL}">Paper</a>
+            <a href="{DOWNLOADS_URL}">Downloads</a>
         </div>
         """,
         unsafe_allow_html=True,
     )
-
     st.markdown(
-        f"""
+        """
         <div class="hero-shell">
-            <div class="eyebrow">FrontierGraph Workbench</div>
-            <h1 class="hero-title">Decide whether a question could become your next paper.</h1>
+            <div class="eyebrow">FrontierGraph deeper app</div>
+            <h1 class="hero-title">Inspect one question or topic in more detail.</h1>
             <p class="hero-copy">
-                Use this as the deeper evidence layer behind the public site. Start with a shortlist, inspect
-                related ideas and starter papers, then decide whether the question looks concrete enough to read,
-                scope, or test more seriously.
-            </p>
-            <p class="hero-copy">
-                Keep the public interpretation page nearby: <a href="{HOW_IT_WORKS_URL}">How It Works</a> explains how to
-                read the product, what is model-extracted, what is deterministic, and where the public build can still fail.
+                This app is the deeper public evidence layer behind the site. Start with a question or topic, inspect the related ideas and starter papers, and only then decide whether it looks concrete enough to read, scope, or test more seriously.
             </p>
         </div>
         """,
         unsafe_allow_html=True,
     )
-
-    env_db = os.environ.get("ECON_OPPORTUNITY_DB", "").strip()
-    concept_env_db = os.environ.get("ECON_CONCEPT_DB", "").strip()
-    db_default = env_db or (
-        "data/processed/app_causalclaims.db"
-        if Path("data/processed/app_causalclaims.db").exists()
-        else "data/processed/app.db"
-    )
-    concept_default = concept_env_db or (
-        "data/production/frontiergraph_concept_beta/concept_beta_app.sqlite"
-        if Path("data/production/frontiergraph_concept_beta/concept_beta_app.sqlite").exists()
-        else ""
-    )
-    concept_strict_default = (
-        "data/production/frontiergraph_concept_v3/concept_hard_app.sqlite"
-        if Path("data/production/frontiergraph_concept_v3/concept_hard_app.sqlite").exists()
-        else ""
-    )
-    concept_exploratory_default = (
-        "data/production/frontiergraph_concept_v3/concept_exploratory_app.sqlite"
-        if Path("data/production/frontiergraph_concept_v3/concept_exploratory_app.sqlite").exists()
-        else ""
-    )
-    compare_root = Path("data/production/frontiergraph_concept_compare_v1")
-    regime_db_map: dict[str, dict[str, str]] = {}
-    selected_ontology = "Baseline"
-    selected_mapping = ""
-    for regime_name, regime_label in [
-        ("broad", "Broad"),
-        ("baseline", "Baseline"),
-        ("conservative", "Conservative"),
-    ]:
-        regime_dir = compare_root / regime_name
-        strict_db = regime_dir / "concept_hard_app.sqlite"
-        exploratory_db = regime_dir / "concept_exploratory_app.sqlite"
-        if regime_name == "baseline":
-            suppression_dir = regime_dir / "suppression"
-            suppressed_topk = suppression_dir / "concept_exploratory_suppressed_top100k_app.sqlite"
-            suppressed_exploratory = suppression_dir / "concept_exploratory_suppressed_app.sqlite"
-            if suppressed_topk.exists():
-                exploratory_db = suppressed_topk
-            elif suppressed_exploratory.exists():
-                exploratory_db = suppressed_exploratory
-        if strict_db.exists() or exploratory_db.exists():
-            regime_db_map[regime_label] = {
-                "Strict": str(strict_db) if strict_db.exists() else "",
-                "Exploratory": str(exploratory_db) if exploratory_db.exists() else "",
-            }
-
-    with st.expander("Advanced settings", expanded=False):
-        ontology_options: list[str] = []
-        ontology_options.extend(label for label in ["Baseline", "Broad", "Conservative"] if label in regime_db_map)
-        env_concept_exists = bool(concept_env_db and Path(concept_env_db).exists())
-        if not regime_db_map:
-            if env_concept_exists:
-                ontology_options.append("Baseline")
-            elif concept_exploratory_default or concept_strict_default:
-                ontology_options.append("Concept beta")
-            elif concept_default and Path(concept_default).exists():
-                ontology_options.append("Concept beta")
-        if not ontology_options:
-            ontology_options = ["Legacy JEL"]
-        default_ontology = "Baseline" if "Baseline" in ontology_options else ("Concept beta" if "Concept beta" in ontology_options else ontology_options[0])
-        selected_ontology = st.radio(
-            "Ontology",
-            options=ontology_options,
-            horizontal=True,
-            index=ontology_options.index(default_ontology),
-        )
-        if selected_ontology == "Legacy JEL":
-            db_value = db_default
-        elif selected_ontology == "Baseline" and not regime_db_map and env_concept_exists:
-            selected_mapping = st.radio(
-                "Concept mapping",
-                options=["Exploratory"],
-                horizontal=True,
-                index=0,
-            )
-            db_value = concept_env_db
-        elif selected_ontology in regime_db_map:
-            available_mapping_modes = [mode for mode, path in regime_db_map[selected_ontology].items() if path]
-            default_mapping = "Exploratory" if "Exploratory" in available_mapping_modes else available_mapping_modes[0]
-            selected_mapping = st.radio(
-                "Concept mapping",
-                options=available_mapping_modes,
-                horizontal=True,
-                index=available_mapping_modes.index(default_mapping),
-            )
-            db_value = regime_db_map[selected_ontology][selected_mapping]
-        else:
-            concept_mode_options = []
-            if concept_exploratory_default:
-                concept_mode_options.append(("Exploratory", concept_exploratory_default))
-            if concept_strict_default:
-                concept_mode_options.append(("Strict", concept_strict_default))
-            if concept_default and Path(concept_default).exists():
-                concept_mode_options.append(("Beta", concept_default))
-            labels = [label for label, _path in concept_mode_options]
-            selected_mapping = st.radio(
-                "Concept mapping",
-                options=labels,
-                horizontal=True,
-                index=0,
-            )
-            db_value = dict(concept_mode_options)[selected_mapping]
-        db_path = st.text_input(
-            "SQLite DB path",
-            value=db_value,
-            help="Change this only if you are pointing the app at a different local SQLite build.",
-        )
-
-    if not Path(db_path).exists():
-        st.error(f"Database not found: {db_path}")
-        st.stop()
 
     try:
-        app_mode = load_app_mode(db_path)
-        nodes_df = load_nodes_cached(db_path)
-        candidates_df = load_candidate_summary_cached(db_path)
+        questions = load_questions(db_path)
+        concepts = load_concepts(db_path)
     except sqlite3.Error as exc:
-        st.error(f"Could not open the configured database: {db_path}")
-        st.caption("The public app uses a read-only SQLite build. If the mounted copy cannot be read in place, FrontierGraph now retries from a local cache.")
+        st.error(f"Could not read the configured public bundle: {db_path}")
         st.code(str(exc))
         st.stop()
 
-    if nodes_df.empty or candidates_df.empty:
-        st.error("The database is missing the node or candidate tables needed by the app.")
+    if questions.empty or concepts.empty:
+        st.error("The canonical public bundle is missing the released questions or concepts tables.")
         st.stop()
 
-    default_shortlist_mode = normalize_shortlist_mode(query_param("preset"))
-    default_search = query_param("search")
-    default_source_field = query_param("source_field")
-    default_target_field = query_param("target_field")
-    default_cross_field = parse_flag(query_param("only_cross_field"), default=False)
+    concept_lookup = {
+        str(row.concept_id): str(row.plain_label or row.label)
+        for row in concepts.itertuples(index=False)
+    }
 
-    available_fields = sorted(set(candidates_df["source_field"]) | set(candidates_df["target_field"]))
-    novelty_options = list(NOVELTY_LABELS.values())
-    max_base_score = max(to_float(candidates_df["score"].max(), default=0.01), 0.01)
-    default_min_score = min(0.18, round(max_base_score, 3))
-    slider_max = max(5, int(min(candidates_df["cooc_count"].quantile(0.99), 250)))
-    search_col, mode_col = st.columns([1.65, 1.0])
-    with search_col:
-        search_text = st.text_input("Search by topic or outcome", value=default_search, placeholder="Search by topic or outcome")
-    with mode_col:
-        shortlist_mode = st.selectbox(
-            "Browse mode",
-            options=list(SHORTLIST_MODE_TO_PRESET.keys()),
-            index=list(SHORTLIST_MODE_TO_PRESET.keys()).index(default_shortlist_mode),
-        )
-    preset = SHORTLIST_MODE_TO_PRESET[shortlist_mode]
-
-    with st.expander("Refine the list", expanded=False):
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            top_n = st.slider("Shortlist size", min_value=10, max_value=150, value=30, step=10)
-            novelty_filter = st.multiselect(
-                "Question style",
-                options=novelty_options,
-                default=novelty_options,
-                format_func=lambda label: QUESTION_STYLE_LABELS.get(label, label),
-            )
-        with col2:
-            source_fields = st.multiselect(
-                "From groups" if is_concept_mode(app_mode) else "From fields",
-                options=available_fields,
-                default=[default_source_field] if default_source_field in available_fields else [],
-                format_func=lambda code: field_option_label(code, app_mode=app_mode),
-            )
-            target_fields = st.multiselect(
-                "To groups" if is_concept_mode(app_mode) else "To fields",
-                options=available_fields,
-                default=[default_target_field] if default_target_field in available_fields else [],
-                format_func=lambda code: field_option_label(code, app_mode=app_mode),
-            )
-        with col3:
-            min_score = st.slider(
-                "Minimum base score",
-                min_value=0.0,
-                max_value=float(round(max_base_score, 3)),
-                value=float(default_min_score),
-                step=0.01,
-            )
-            use_cooc_cap = st.checkbox("Cap prior co-occurrences", value=True)
-            cooc_cap = (
-                st.slider("Maximum prior co-occurrences", min_value=0, max_value=slider_max, value=min(25, slider_max))
-                if use_cooc_cap
-                else None
-            )
-            min_mediators = st.slider("Minimum mediator count", min_value=0, max_value=100, value=5)
-            only_cross_field = st.checkbox(
-                "Only cross-bucket questions" if is_concept_mode(app_mode) else "Only cross-field questions",
-                value=default_cross_field,
-            )
-
-    filtered_df = filter_candidates(
-        candidates_df,
-        search_text=search_text,
-        source_fields=source_fields,
-        target_fields=target_fields,
-        novelty_filter=novelty_filter,
-        min_score=min_score,
-        cooc_cap=cooc_cap,
-        min_mediators=min_mediators,
-        only_cross_field=only_cross_field,
+    view_default = query_param("view") or "question"
+    view_labels = {
+        "question": "Question explorer",
+        "concept": "Topic explorer",
+        "compare": "Compare workspace",
+        "advanced": "Advanced evidence",
+    }
+    view_keys = list(view_labels.keys())
+    active_view = st.radio(
+        "Work area",
+        options=view_keys,
+        index=view_keys.index(view_default) if view_default in view_keys else 0,
+        format_func=lambda value: view_labels[value],
+        horizontal=True,
     )
+    if active_view != view_default:
+        set_query_params(view=active_view)
 
-    if not filtered_df.empty:
-        filtered_df = filtered_df.copy()
-        filtered_df["priority_score"] = compute_priority_score(filtered_df, preset=preset)
-        filtered_df = filtered_df.sort_values(["priority_score", "score"], ascending=[False, False]).reset_index(drop=True)
-        filtered_df["priority_rank"] = filtered_df.index + 1
+    if active_view == "question":
+        render_question_explorer(db_path, questions, concept_lookup)
+    elif active_view == "concept":
+        render_topic_explorer(db_path, concepts)
+    elif active_view == "compare":
+        render_compare_workspace(db_path, questions, concepts)
     else:
-        filtered_df = filtered_df.copy()
-        filtered_df["priority_score"] = pd.Series(dtype=float)
-        filtered_df["priority_rank"] = pd.Series(dtype=int)
-
-    render_ranker_tab(db_path, filtered_df, shortlist_mode, top_n=top_n, app_mode=app_mode)
-
-    with st.expander("Advanced tools", expanded=False):
-        st.caption("Use these only when you want the literature map, direct concept lookup, or the technical method notes.")
-        radar_tab, concept_tab, method_tab = st.tabs(
-            ["Literature map" if is_concept_mode(app_mode) else "Field map", "Concept lookup", "Method"]
-        )
-
-        with radar_tab:
-            render_field_radar_tab(filtered_df, app_mode=app_mode)
-
-        with concept_tab:
-            render_concept_tab(db_path, nodes_df)
-
-        with method_tab:
-            render_method_tab(filtered_df, preset)
+        render_advanced_evidence(db_path, questions, concepts)
 
 
 if __name__ == "__main__":

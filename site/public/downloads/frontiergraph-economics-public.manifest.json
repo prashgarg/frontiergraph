@@ -1,8 +1,8 @@
 {
   "filename": "frontiergraph-economics-public.db",
-  "db_size_bytes": 256040960,
-  "db_size_gb": 0.24,
-  "sha256": "e3982e0608df5bcbe37241f28ceff6fbcfe3e291e7261dc7d9478403d2e8ce11",
+  "db_size_bytes": 1065947136,
+  "db_size_gb": 0.99,
+  "sha256": "8b07503ebc6e125d8e917ccd7c3c155030340bca57517a76692953520560eb49",
   "public_url": "https://storage.googleapis.com/frontiergraph-public-downloads-1058669339361/frontiergraph-economics-public.db",
-  "published_at": "2026-03-15T09:53:13.409478+00:00"
+  "published_at": "2026-03-15T12:12:37.647283+00:00"
 }
