@@ -6,9 +6,10 @@ import "../styles/global.css";
 interface Props {
   title: string;
   description: string;
+  shellClass?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, shellClass = "site-shell" } = Astro.props;
 ---
 
 <!doctype html>
@@ -38,7 +39,7 @@ const { title, description } = Astro.props;
   <body>
     <div class="site-bg"></div>
     <div class="site-grid"></div>
-    <div class="site-shell">
+    <div class={shellClass}>
       <Header />
       <slot />
       <Footer />

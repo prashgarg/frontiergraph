@@ -47,6 +47,29 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   </div>
 
   <div class="graph-stage">
+    <div class="graph-panel graph-panel-secondary">
+      <div class="graph-controls">
+        <div class="graph-status-shell">
+          <div class="graph-status" data-role="hover-card" aria-live="polite">
+            Search or click a topic. The literature map opens in one focused view, with the full map available when you want it.
+          </div>
+        </div>
+        <div class="graph-control-row">
+          <button class="button-secondary" type="button" data-role="toggle-map-mode">Show full map</button>
+          <button class="button-secondary" type="button" data-role="toggle-layout-mode">Adjust layout</button>
+          <button class="button-tertiary" type="button" data-role="zoom-out">Zoom out</button>
+          <button class="button-tertiary" type="button" data-role="zoom-in">Zoom in</button>
+          <button class="button-tertiary" type="button" data-role="reset-view">Reset view</button>
+          <button class="button-tertiary" type="button" data-role="reset-layout">Reset layout</button>
+          <button class="button-tertiary" type="button" data-role="reset-focus">Reset topic</button>
+        </div>
+      </div>
+      <svg class="graph-canvas" data-role="graph-canvas" viewBox="0 0 1120 860" aria-label="Literature map"></svg>
+      <div class="graph-help-row">
+        <span class="mini-copy">Wheel or pinch to zoom. Drag the background to pan. Reset view returns to the default frame for the current mode.</span>
+      </div>
+    </div>
+
     <aside class="graph-inspector">
       <section class="sidebar-card inspector-card">
         <div class="inspector-head">
@@ -77,29 +100,6 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         </details>
       </section>
     </aside>
-
-    <div class="graph-panel graph-panel-secondary">
-      <div class="graph-controls">
-        <div class="graph-status-shell">
-          <div class="graph-status" data-role="hover-card" aria-live="polite">
-            Search or click a topic. The literature map opens in one focused view, with the full map available when you want it.
-          </div>
-        </div>
-        <div class="graph-control-row">
-          <button class="button-secondary" type="button" data-role="toggle-map-mode">Show full map</button>
-          <button class="button-secondary" type="button" data-role="toggle-layout-mode">Adjust layout</button>
-          <button class="button-tertiary" type="button" data-role="zoom-out">Zoom out</button>
-          <button class="button-tertiary" type="button" data-role="zoom-in">Zoom in</button>
-          <button class="button-tertiary" type="button" data-role="reset-view">Reset view</button>
-          <button class="button-tertiary" type="button" data-role="reset-layout">Reset layout</button>
-          <button class="button-tertiary" type="button" data-role="reset-focus">Reset topic</button>
-        </div>
-      </div>
-      <svg class="graph-canvas" data-role="graph-canvas" viewBox="0 0 1120 860" aria-label="Literature map"></svg>
-      <div class="graph-help-row">
-        <span class="mini-copy">Wheel or pinch to zoom. Drag the background to pan. Reset view returns to the default frame for the current mode.</span>
-      </div>
-    </div>
   </div>
 </section>
 
