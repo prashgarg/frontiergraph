@@ -102,12 +102,13 @@ async function main() {
   await page.goto(`${baseUrl}/graph/`, { waitUntil: "networkidle" });
   await page.waitForSelector('[data-role="graph-canvas"]');
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
-  assert(await page.getByRole("heading", { name: /Read one topic through its nearby literature/i }).isVisible(), "Map hero missing");
+  assert(await page.getByRole("heading", { name: /Choose a topic and start with the questions around it/i }).isVisible(), "Graph hero missing");
   assert(await page.getByRole("heading", { name: /Selected topic/i }).isVisible(), "Map selected-topic panel missing");
   assert((await page.getByRole("button", { name: /Rearrange/i }).count()) === 0, "Map should not show rearrange button");
   assert((await page.getByRole("button", { name: /Zoom in/i }).count()) === 0, "Map should not show zoom-in button");
   assert((await page.getByRole("button", { name: /Reset topic/i }).count()) === 0, "Map should not show reset-topic button");
-  assert(await page.getByText(/Why it matters/i).first().isVisible(), "Map should show why-it-matters section");
+  assert(await page.getByRole("heading", { name: /Questions touching this topic/i }).isVisible(), "Graph page should prioritize questions");
+  assert(await page.getByRole("heading", { name: /Possible question prompts/i }).isVisible(), "Graph page should show generated prompts");
   const focusedNodeCount = await page.locator("[data-node-id]").count();
   assert(focusedNodeCount > 0, "Focused map rendered no nodes");
   await page.getByRole("button", { name: /Show full map/i }).click();
