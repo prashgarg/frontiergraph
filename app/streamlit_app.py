@@ -34,11 +34,21 @@ def inject_css() -> None:
         <style>
         .stApp {
             background: #f8f7f3;
+            color: #182226;
         }
         .block-container {
             max-width: 1240px;
             padding-top: 1.35rem;
             padding-bottom: 2.8rem;
+        }
+        .stApp,
+        .stApp p,
+        .stApp li,
+        .stApp label,
+        .stApp .stCaption,
+        .stApp [data-testid="stMarkdownContainer"],
+        .stApp [data-testid="stMarkdownContainer"] * {
+            color: #182226;
         }
         h1, h2, h3 {
             font-family: Georgia, "Times New Roman", serif;
@@ -78,6 +88,12 @@ def inject_css() -> None:
             text-decoration: none;
             margin-right: 1rem;
         }
+        .stApp a {
+            color: #2e5f8a;
+        }
+        .stApp a:hover {
+            color: #1f4d73;
+        }
         .summary-card {
             border: 1px solid rgba(24, 34, 38, 0.10);
             border-radius: 10px;
@@ -95,10 +111,65 @@ def inject_css() -> None:
             background: #ffffff;
             padding: 0.8rem 0.9rem;
         }
+        [data-testid="stMetric"] *,
+        [data-testid="stMetricLabel"],
+        [data-testid="stMetricValue"] {
+            color: #182226 !important;
+        }
         [data-testid="stExpander"] {
             border: 1px solid rgba(24, 34, 38, 0.10);
             border-radius: 8px;
             background: #ffffff;
+        }
+        [data-testid="stExpander"] *,
+        [data-testid="stExpanderDetails"] *,
+        [data-testid="stExpanderSummary"] * {
+            color: #182226 !important;
+        }
+        .stApp [data-baseweb="input"],
+        .stApp [data-baseweb="base-input"],
+        .stApp [data-baseweb="select"],
+        .stApp [data-baseweb="textarea"],
+        .stApp [role="listbox"],
+        .stApp [role="option"],
+        .stApp [role="radiogroup"],
+        .stApp [data-testid="stTextInput"],
+        .stApp [data-testid="stMultiSelect"],
+        .stApp [data-testid="stSelectbox"],
+        .stApp [data-testid="stRadio"],
+        .stApp [data-testid="stSlider"] {
+            color: #182226;
+        }
+        .stApp [data-baseweb="input"] *,
+        .stApp [data-baseweb="base-input"] *,
+        .stApp [data-baseweb="select"] *,
+        .stApp [data-baseweb="textarea"] *,
+        .stApp [role="radiogroup"] *,
+        .stApp [role="option"] *,
+        .stApp [data-testid="stTextInput"] *,
+        .stApp [data-testid="stMultiSelect"] *,
+        .stApp [data-testid="stSelectbox"] *,
+        .stApp [data-testid="stRadio"] *,
+        .stApp [data-testid="stSlider"] * {
+            color: #182226 !important;
+        }
+        .stApp input,
+        .stApp textarea,
+        .stApp select {
+            color: #182226 !important;
+            -webkit-text-fill-color: #182226;
+        }
+        .stApp input::placeholder,
+        .stApp textarea::placeholder {
+            color: #7a858b !important;
+            -webkit-text-fill-color: #7a858b;
+        }
+        .stApp button {
+            color: #182226;
+        }
+        .stApp [data-testid="stDataFrame"] *,
+        .stApp [data-testid="stTable"] * {
+            color: #182226 !important;
         }
         </style>
         """,

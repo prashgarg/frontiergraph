@@ -15,6 +15,11 @@ async function textDoesNotContain(page, forbidden) {
   }
 }
 
+async function assertReadableText(page, selector, label) {
+  const color = await page.locator(selector).first().evaluate((el) => getComputedStyle(el).color);
+  assert(color !== "rgb(255, 255, 255)", `${label} should not render in white`);
+}
+
 async function main() {
   const browser = await chromium.launch({
     channel: "chrome",
@@ -35,6 +40,9 @@ async function main() {
   assert(await page.getByText(/Search questions/i).first().isVisible(), "Question search missing");
   assert(await page.getByText(/Inspect one question/i).first().isVisible(), "Question selector missing");
   assert(await page.getByText(/Starter papers/i).first().isVisible(), "Question detail panel missing");
+  await assertReadableText(page, "label", "App form labels");
+  await assertReadableText(page, '[data-testid="stMetric"] label', "Metric labels");
+  await assertReadableText(page, '[data-testid="stTextInput"] input', "Search input text");
 
   await page.goto(`${baseUrl}/?view=concept&concept=FG3C000001`, { waitUntil: "domcontentloaded" });
   await page.waitForSelector("h1", { timeout: 30000 });
@@ -43,6 +51,7 @@ async function main() {
   assert(await page.getByText(/economic growth/i).first().isVisible(), "Concept deep link did not resolve");
   assert(await page.getByText(/Local map/i).first().isVisible(), "Concept local map missing");
   assert(await page.getByText(/Nearby questions touching this topic/i).first().isVisible(), "Concept opportunity table missing");
+  await assertReadableText(page, '[data-testid="stDataFrame"]', "Concept tables");
 
   await page.goto(`${baseUrl}/?view=compare&pairs=FG3C000010__FG3C003971,FG3C000003__FG3C000208`, { waitUntil: "domcontentloaded" });
   await page.waitForSelector("h1", { timeout: 30000 });
