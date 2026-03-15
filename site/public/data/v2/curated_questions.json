@@ -19,7 +19,7 @@
     "direct_link_status": "No direct papers yet",
     "supporting_path_count": 23,
     "why_now": "public debt and CO2 emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
     "slice_label": "Missing direct link",
     "public_pair_label": "public debt and CO2 emissions",
     "top_mediator_labels": [
@@ -103,7 +103,7 @@
     "direct_link_status": "No direct papers yet",
     "supporting_path_count": 17,
     "why_now": "urbanization and output growth are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
     "slice_label": "Missing direct link",
     "public_pair_label": "output growth and urbanization",
     "top_mediator_labels": [
@@ -187,7 +187,7 @@
     "direct_link_status": "No direct papers yet",
     "supporting_path_count": 23,
     "why_now": "monetary policy and energy consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
     "slice_label": "Missing direct link",
     "public_pair_label": "monetary policy and energy consumption",
     "top_mediator_labels": [
@@ -271,7 +271,7 @@
     "direct_link_status": "No direct papers yet",
     "supporting_path_count": 38,
     "why_now": "investment and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
     "slice_label": "Missing direct link",
     "public_pair_label": "investment and carbon emissions",
     "top_mediator_labels": [
@@ -353,7 +353,7 @@
     "direct_link_status": "No direct papers yet",
     "supporting_path_count": 5,
     "why_now": "trade liberalisation and energy consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
     "slice_label": "Missing direct link",
     "public_pair_label": "trade liberalisation and energy consumption",
     "top_mediator_labels": [
@@ -437,7 +437,7 @@
     "direct_link_status": "No direct papers yet",
     "supporting_path_count": 16,
     "why_now": "green innovation and load capacity factor (LCF) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-    "recommended_move": "Treat this as a missing direct test, not a settled result.",
+    "recommended_move": "Treat this as an open direct question, not a settled result.",
     "slice_label": "Missing direct link",
     "public_pair_label": "ecological carrying capacity and green innovation",
     "top_mediator_labels": [
@@ -518,7 +518,7 @@
     "direct_link_status": "No direct papers yet",
     "supporting_path_count": 21,
     "why_now": "innovation and environmental quality (CO2 emissions) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
     "slice_label": "Missing direct link",
     "public_pair_label": "innovation and environmental quality",
     "top_mediator_labels": [
@@ -598,7 +598,7 @@
     "direct_link_status": "No direct papers yet",
     "supporting_path_count": 13,
     "why_now": "education and wage inequality are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
     "slice_label": "Missing direct link",
     "public_pair_label": "wage inequality and education",
     "top_mediator_labels": [
@@ -680,7 +680,7 @@
     "direct_link_status": "No direct papers yet",
     "supporting_path_count": 3,
     "why_now": "monetary policy and consumer demand are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-    "recommended_move": "Treat this as a missing direct test, not a settled result.",
+    "recommended_move": "Treat this as an open direct question, not a settled result.",
     "slice_label": "Missing direct link",
     "public_pair_label": "consumer demand and monetary policy",
     "top_mediator_labels": [
@@ -762,7 +762,7 @@
     "direct_link_status": "No direct papers yet",
     "supporting_path_count": 16,
     "why_now": "green innovation and productivity are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
     "slice_label": "Missing direct link",
     "public_pair_label": "productivity and green innovation",
     "top_mediator_labels": [
@@ -844,7 +844,7 @@
     "direct_link_status": "No direct papers yet",
     "supporting_path_count": 24,
     "why_now": "exports and environmental pollution are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
     "slice_label": "Missing direct link",
     "public_pair_label": "exports and environmental pollution",
     "top_mediator_labels": [
@@ -923,7 +923,7 @@
     "direct_link_status": "No direct papers yet",
     "supporting_path_count": 9,
     "why_now": "imports and environmental quality (CO2 emissions) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-    "recommended_move": "Start with a bridge review or cross-field pilot.",
+    "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
     "slice_label": "Missing direct link",
     "public_pair_label": "imports and environmental quality",
     "top_mediator_labels": [

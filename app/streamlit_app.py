@@ -390,6 +390,23 @@ def shortlist_csv(filtered_df: pd.DataFrame) -> str:
     return filtered_df.loc[:, columns].to_csv(index=False)
 
 
+def plain_recommended_move(value: Any) -> str:
+    text = str(value or "").strip()
+    mapping = {
+        "Direct empirical test": "A direct empirical test looks like the natural next step.",
+        "Focused empirical test": "A focused empirical test looks like the natural next step.",
+        "Scoping review before a bridge paper": "A short review may help connect the two nearby literatures before a direct empirical paper.",
+        "Seminar seed or targeted replication map": "This looks most useful as a seminar seed or a targeted replication map.",
+        "Synthesis plus pilot design": "A synthesis paper plus a small pilot design looks like a sensible first move.",
+        "Bridge paper across literatures": "A paper that connects two nearby literatures looks like the natural next step.",
+        "This looks ready for a direct empirical follow-through.": "A direct empirical test looks like the natural next step.",
+        "Treat this as a missing direct test, not a settled result.": "Treat this as an open direct question, not a settled result.",
+        "Use this as a focused follow-up question in the nearby literature.": "Use this as a focused follow-up question in the nearby literature.",
+        "Start with a bridge review or cross-field pilot.": "A short review or pilot can help connect the two nearby literatures.",
+    }
+    return mapping.get(text, text)
+
+
 def question_brief_markdown(question: pd.Series, mediators: pd.DataFrame, papers: pd.DataFrame, paths: pd.DataFrame) -> str:
     mediator_lines = [
         f"- {row.mediator_label} (rank {int(row.rank)}, score {float(row.score):.1f})"
@@ -407,16 +424,16 @@ def question_brief_markdown(question: pd.Series, mediators: pd.DataFrame, papers
         f"# {label_for_question(question)}",
         "",
         f"Direct literature status: {question['direct_link_status']}",
-        f"Likely next study form: {question['recommended_move']}",
+        f"Suggested first step: {plain_recommended_move(question['recommended_move'])}",
         "",
         "## Why this question is on the list",
         str(question.get("why_now", "")),
         "",
-        "## Related ideas",
+        "## Nearby linking concepts",
         *(mediator_lines or ["- No stable mediator preview in the current public release."]),
         "",
-        "## Starter papers",
-        *(paper_lines or ["- No starter papers were exported for this question in the public release."]),
+        "## Papers to begin with",
+        *(paper_lines or ["- No paper list was exported for this question in the public release."]),
         "",
         "## Supporting paths",
         *(path_lines or ["- No supporting paths were exported for this question in the public release."]),
@@ -475,16 +492,15 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
     neighborhoods = bundle["neighborhoods"]
 
     st.markdown(f"### {label_for_question(question)}")
-    left, right = st.columns([1.35, 1.0])
-    with left:
-        render_summary_card("Why this question appears", str(question.get("why_now", "")))
-        render_summary_card("Direct-literature status", str(question.get("direct_link_status", "")))
-        render_summary_card("Likely next study form", str(question.get("recommended_move", "")))
-    with right:
-        st.metric("Ranking score", f"{float(question['score']):.3f}")
-        st.metric("Related ideas", f"{int(question['mediator_count'])}")
-        st.metric("Supporting motifs", f"{int(question['motif_count'])}")
-        st.metric("Direct papers already seen", f"{int(question['cooc_count'])}")
+    render_summary_card("Why this question appears", str(question.get("why_now", "")))
+    render_summary_card("Direct-literature status", str(question.get("direct_link_status", "")))
+    render_summary_card("A useful first step", plain_recommended_move(question.get("recommended_move", "")))
+
+    metrics_cols = st.columns(3)
+    metrics_cols[0].metric("Nearby linking concepts", f"{int(question['mediator_count'])}")
+    metrics_cols[1].metric("Repeated local patterns", f"{int(question['motif_count'])}")
+    metrics_cols[2].metric("Direct papers in release", f"{int(question['cooc_count'])}")
+    st.caption("These counts refer to the current public release. They describe nearby support in the released graph, not the full economics literature.")
 
     papers_preview = (
         papers.drop_duplicates(subset=["paper_id"], keep="first")
@@ -492,15 +508,15 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
         .rename(columns={"title": "Paper", "year": "Year", "edge_src_label": "Edge source", "edge_dst_label": "Edge target"})
         .head(8)
     )
-    st.markdown("**Starter papers**")
+    st.markdown("**Papers to begin with**")
     if papers_preview.empty:
-        st.caption("No starter papers were exported for this question in the current public release.")
+        st.caption("No paper list was exported for this question in the current public release.")
     else:
         st.dataframe(papers_preview, use_container_width=True, hide_index=True)
 
     nearby_labels = [str(row.mediator_label) for row in mediators.head(6).itertuples(index=False)]
     if nearby_labels:
-        st.caption("Related ideas: " + ", ".join(nearby_labels))
+        st.caption("Nearby linking concepts: " + ", ".join(nearby_labels))
 
     brief = question_brief_markdown(question, mediators, papers, paths)
     st.download_button(
@@ -510,7 +526,7 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
         mime="text/markdown",
     )
 
-    with st.expander("Advanced evidence", expanded=False):
+    with st.expander("Technical tables", expanded=False):
         st.markdown("**Top mediators**")
         st.dataframe(mediators, use_container_width=True, hide_index=True)
 
@@ -588,8 +604,9 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
         return
 
     preview = filtered.head(shortlist_size).copy()
-    preview_table = preview.loc[:, ["public_pair_label", "direct_link_status", "recommended_move", "mediator_count", "score"]]
-    preview_table.columns = ["Question", "Direct literature", "Likely next study form", "Related ideas", "Score"]
+    preview_table = preview.loc[:, ["public_pair_label", "direct_link_status", "recommended_move", "mediator_count"]].copy()
+    preview_table["recommended_move"] = preview_table["recommended_move"].map(plain_recommended_move)
+    preview_table.columns = ["Question", "Direct literature", "Suggested first step", "Nearby linking concepts"]
     st.dataframe(preview_table, use_container_width=True, hide_index=True)
     st.download_button(
         "Export shortlist CSV",
@@ -685,11 +702,11 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
     st.markdown(f"### {concept['plain_label']}")
     if str(concept.get("subtitle", "")).strip():
         st.caption(str(concept["subtitle"]))
-    metrics_cols = st.columns(4)
-    metrics_cols[0].metric("Instance support", f"{int(concept['instance_support']):,}")
-    metrics_cols[1].metric("Distinct papers", f"{int(concept['distinct_paper_support']):,}")
-    metrics_cols[2].metric("Weighted degree", f"{float(concept['weighted_degree']):,.1f}")
-    metrics_cols[3].metric("Neighbor count", f"{int(concept['neighbor_count']):,}")
+    metrics_cols = st.columns(3)
+    metrics_cols[0].metric("Mapped node mentions", f"{int(concept['instance_support']):,}")
+    metrics_cols[1].metric("Papers in release", f"{int(concept['distinct_paper_support']):,}")
+    metrics_cols[2].metric("Nearby topics", f"{int(concept['neighbor_count']):,}")
+    st.caption("These counts refer to the current public release. They describe where the topic sits in the released graph; they are not a claim about overall importance.")
 
     countries = ", ".join(top_value_labels(concept.get("top_countries_json")))
     units = ", ".join(top_value_labels(concept.get("top_units_json")))
@@ -718,9 +735,8 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
         nearby_questions.append(
             {
                 "Question": payload.get("public_pair_label", f"{row.source_label} and {row.target_label}"),
-                "Score": payload.get("score", row.score),
-                "Likely next study form": payload.get("recommended_move", ""),
-                "Open in app": payload.get("app_link", ""),
+                "Direct literature": payload.get("direct_link_status", ""),
+                "Suggested first step": plain_recommended_move(payload.get("recommended_move", "")),
             }
         )
     st.markdown("**Nearby questions touching this topic**")
@@ -758,11 +774,11 @@ def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd
             papers = bundle["papers"].drop_duplicates(subset=["paper_id"]).head(3)
             with col:
                 st.markdown(f"**{label_for_question(question)}**")
-                st.caption(str(question["recommended_move"]))
+                st.caption(plain_recommended_move(question["recommended_move"]))
                 st.write(f"Direct literature: {question['direct_link_status']}")
-                st.write(f"Related ideas: {int(question['mediator_count'])}")
+                st.write(f"Nearby linking concepts: {int(question['mediator_count'])}")
                 if not papers.empty:
-                    st.markdown("**Starter papers**")
+                    st.markdown("**Papers to begin with**")
                     for paper in papers.itertuples(index=False):
                         st.markdown(f"- {paper.title} ({int(paper.year)})")
     else:
@@ -788,8 +804,8 @@ def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd
             with col:
                 st.markdown(f"**{concept['plain_label']}**")
                 st.caption(str(concept.get("subtitle", "")))
-                st.write(f"Distinct papers: {int(concept['distinct_paper_support']):,}")
-                st.write(f"Neighbor count: {int(concept['neighbor_count']):,}")
+                st.write(f"Papers in release: {int(concept['distinct_paper_support']):,}")
+                st.write(f"Nearby topics: {int(concept['neighbor_count']):,}")
                 st.write(f"Nearby released questions: {len(opportunities):,}")
                 if not neighbors.empty:
                     st.markdown("**Nearest neighbors**")
@@ -845,7 +861,7 @@ def render_advanced_evidence(db_path: str, questions: pd.DataFrame, concepts: pd
 
 
 def main() -> None:
-    st.set_page_config(page_title="FrontierGraph | Deeper App", layout="wide", initial_sidebar_state="collapsed")
+    st.set_page_config(page_title="FrontierGraph | App", layout="wide", initial_sidebar_state="collapsed")
     inject_css()
 
     db_path = choose_db_path()
@@ -857,7 +873,7 @@ def main() -> None:
         f"""
         <div class="app-nav">
             <a href="{SITE_URL}">Site</a>
-            <a href="{QUESTIONS_URL}">Research questions</a>
+            <a href="{QUESTIONS_URL}">Questions</a>
             <a href="{GRAPH_URL}">Literature map</a>
             <a href="{PAPER_URL}">Paper</a>
             <a href="{DOWNLOADS_URL}">Downloads</a>
@@ -868,10 +884,10 @@ def main() -> None:
     st.markdown(
         """
         <div class="hero-shell">
-            <div class="eyebrow">FrontierGraph deeper app</div>
-            <h1 class="hero-title">Inspect one question or topic in more detail.</h1>
+            <div class="eyebrow">FrontierGraph app</div>
+            <h1 class="hero-title">Inspect one released question or topic.</h1>
             <p class="hero-copy">
-                This app is the deeper public evidence layer behind the site. Start with a question or topic, inspect the related ideas and starter papers, and only then decide whether it looks concrete enough to read, scope, or test more seriously.
+                Use the app when you want the nearby topics, paths, and paper lists behind a released question. Counts and tables refer to the current public release, not the full literature.
             </p>
         </div>
         """,
@@ -897,15 +913,15 @@ def main() -> None:
 
     view_default = query_param("view") or "question"
     view_labels = {
-        "question": "Question explorer",
-        "concept": "Topic explorer",
-        "compare": "Compare workspace",
-        "advanced": "Advanced evidence",
+        "question": "Questions",
+        "concept": "Topics",
+        "compare": "Compare",
+        "advanced": "Technical tables",
     }
     view_keys = list(view_labels.keys())
     sync_from_query("active_view", view_default if view_default in view_keys else "question", "_sync_active_view")
     active_view = st.radio(
-        "Work area",
+        "View",
         options=view_keys,
         key="active_view",
         format_func=lambda value: view_labels[value],

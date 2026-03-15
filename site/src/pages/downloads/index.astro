@@ -11,13 +11,13 @@ const tierBundles = data.downloads.tier_bundles;
 
 <BaseLayout
   title="Downloads | FrontierGraph"
-  description="Download lightweight FrontierGraph exports, structured graph assets, and the rich public graph bundle."
+  description="Download released FrontierGraph tables, graph assets, and the SQLite bundle."
 >
   <main>
     <section class="page-hero">
-      <h1>Take the tables or the full public bundle.</h1>
+      <h1>Download released data and graph files.</h1>
       <p class="lede">
-        Start with the lightweight exports, then move to the full bundle only if you want the app data.
+        Start with the lightweight tables. Move to the SQLite bundle only if you want the full released bundle.
       </p>
       <div class="button-row">
         <a class="button-primary" href={artifacts.top_questions_csv}>Download top questions CSV</a>
@@ -31,7 +31,7 @@ const tierBundles = data.downloads.tier_bundles;
         <summary>Which download should I choose?</summary>
         <div class="download-guidance-body">
           <p class="download-copy">
-            Start small unless you already know you need the app-grade bundle. Each tier below has a different use case, and the README plus data dictionary explain the fields and table names in more detail.
+            Start small unless you already know you need the SQLite bundle. Each tier below has a different use case, and the README plus data dictionary explain the fields and table names in more detail.
           </p>
           <div class="card-grid download-guidance-grid">
             <article class="card">
@@ -44,7 +44,7 @@ const tierBundles = data.downloads.tier_bundles;
             </article>
             <article class="card">
               <h3>Tier 3: rich public graph bundle</h3>
-              <p class="card-copy">Best for deeper local work. The SQLite bundle joins released questions, concept lookup, neighborhoods, paths, mediators, and starter-paper tables.</p>
+              <p class="card-copy">Best for deeper local work. The SQLite bundle joins released questions, concept lookup, neighborhoods, paths, mediators, and paper tables.</p>
             </article>
           </div>
         <div class="button-row download-guidance-actions">
@@ -178,7 +178,7 @@ const tierBundles = data.downloads.tier_bundles;
 
       <article class="download-panel">
         <span class="eyebrow">Tier 3</span>
-        <h2>The rich public graph bundle for the deeper app and power users.</h2>
+        <h2>The released SQLite bundle for local analysis.</h2>
         <div class="download-meta">
           <div>
             <span class="tiny-label">Bundle</span>
@@ -202,7 +202,7 @@ const tierBundles = data.downloads.tier_bundles;
           <a class="button-secondary" href={data.downloads.checksum_path}>Checksum ({formatBytes(artifactDetails.checksum_txt.size_bytes)})</a>
           <a class="button-secondary" href={guides.readme.path}>README ({formatBytes(guides.readme.size_bytes)})</a>
           <a class="button-secondary" href={guides.data_dictionary.path}>Data dictionary ({formatBytes(guides.data_dictionary.size_bytes)})</a>
-          <a class="button-tertiary" href={data.app_url}>Explore in app</a>
+          <a class="button-tertiary" href={data.app_url}>Open app</a>
         </div>
       </article>
 

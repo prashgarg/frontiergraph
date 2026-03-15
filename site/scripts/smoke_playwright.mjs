@@ -61,7 +61,7 @@ async function main() {
   await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError", "For academics", "A simple analogy", "Why this exists"]);
-  assert(await page.getByRole("heading", { name: /Find the next paper worth your time\./i }).isVisible(), "Homepage hero missing");
+  assert(await page.getByRole("heading", { name: /Browse open questions in the economics literature\./i }).isVisible(), "Homepage hero missing");
   const nav = page.getByRole("navigation");
   assert(await nav.getByRole("link", { name: /^Home$/ }).isVisible(), "Home nav missing");
   assert(await nav.getByRole("link", { name: /^Questions$/ }).isVisible(), "Questions nav missing");
@@ -71,7 +71,7 @@ async function main() {
   assert((await nav.getByRole("link", { name: /How it works/i }).count()) === 0, "How it works should not remain in nav");
   assert((await nav.getByRole("link", { name: /^Method$/ }).count()) === 0, "Method should not remain in nav");
   assert(await page.getByRole("link", { name: /^Browse questions$/ }).first().isVisible(), "Homepage CTA missing");
-  assert(await page.getByRole("link", { name: /^Explore in app$/ }).first().isVisible(), "Homepage app CTA missing");
+  assert(await page.getByRole("link", { name: /^Open app$/ }).first().isVisible(), "Homepage app CTA missing");
   assert(await page.getByRole("link", { name: /^Read paper$/ }).first().isVisible(), "Homepage paper CTA missing");
   assert(await page.getByRole("link", { name: /^Download data$/ }).first().isVisible(), "Homepage data CTA missing");
   assert(await page.locator('[data-role="homepage-carousel"]').isVisible(), "Homepage should show the featured example");
@@ -83,7 +83,7 @@ async function main() {
   await page.goto(`${baseUrl}/questions/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
-  assert(await page.getByRole("heading", { name: /Browse questions that could become your next paper/i }).isVisible(), "Questions hero missing");
+  assert(await page.getByRole("heading", { name: /Browse released questions from the literature graph\./i }).isVisible(), "Questions hero missing");
   assert(
     (await page.locator('[data-role="questions-curated-front-set"] [data-role="curated-opportunity-card"]').count()) === 6,
     "Questions page should show exactly 6 curated cards",
@@ -103,7 +103,7 @@ async function main() {
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
   assert(await page.getByRole("heading", { name: /Use the map when you already have a topic in mind/i }).isVisible(), "Map hero missing");
   assert(await page.getByRole("link", { name: /^Browse questions$/ }).first().isVisible(), "Map should link back to questions");
-  assert(await page.getByRole("link", { name: /^Explore in app$/ }).first().isVisible(), "Map should link to app");
+  assert(await page.getByRole("link", { name: /^Open app$/ }).first().isVisible(), "Map should link to app");
   assert(await page.getByRole("heading", { name: /Selected topic/i }).isVisible(), "Map selected-topic panel missing");
   const focusedNodeCount = await page.locator("[data-node-id]").count();
   assert(focusedNodeCount > 0, "Focused map rendered no nodes");
@@ -123,7 +123,7 @@ async function main() {
 
   await page.goto(`${baseUrl}/downloads/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
-  assert(await page.getByRole("heading", { name: /Take the tables or the full public bundle/i }).isVisible(), "Downloads hero missing");
+  assert(await page.getByRole("heading", { name: /Download released data and graph files\./i }).isVisible(), "Downloads hero missing");
   assert(await page.getByRole("link", { name: /Download top questions CSV/i }).first().isVisible(), "Downloads hero should point to lightweight exports");
   assert(await page.getByRole("link", { name: /Open data dictionary/i }).first().isVisible(), "Downloads hero should expose the data dictionary");
   assert(await page.getByText(/Which download should I choose\?/i).isVisible(), "Downloads page should expose guidance");

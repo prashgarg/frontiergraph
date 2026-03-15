@@ -142,7 +142,7 @@ FIELD_SHELF_DEFS = [
 COLLECTION_DEFS = [
     {
         "slug": "cross-field",
-        "title": "Most promising cross-field questions",
+        "title": "Cross-field questions",
         "caption": "Use these when you want a question that clearly bridges areas people usually read apart.",
     },
     {
@@ -152,18 +152,18 @@ COLLECTION_DEFS = [
     },
     {
         "slug": "strong-nearby-evidence",
-        "title": "Questions with strong nearby evidence",
+        "title": "Questions with stronger nearby evidence",
         "caption": "These have enough surrounding structure to feel grounded before you open the app.",
     },
     {
         "slug": "paper-ready",
-        "title": "Questions that already look paper-ready",
-        "caption": "These are the most useful when you want something concrete enough to read and scope quickly.",
+        "title": "Questions with a clearer empirical shape",
+        "caption": "These are among the more concrete questions in the released list.",
     },
     {
         "slug": "phd-topic",
-        "title": "Good PhD topic candidates",
-        "caption": "These feel broad enough to grow into a project, but narrow enough to imagine as a first real paper.",
+        "title": "Broader project candidates",
+        "caption": "These feel broad enough to grow into a project, but narrow enough to inspect as a first step.",
     },
 ]
 
@@ -456,11 +456,11 @@ def recommended_move(values: dict[str, Any]) -> str:
     mediator_count = to_int(values.get("mediator_count", 0))
     cross_bucket = bool(values.get("cross_bucket", False))
     if cross_bucket and cooc_count <= 0:
-        return "Start with a bridge review or cross-field pilot."
+        return "A short review or pilot can help connect the two nearby literatures."
     if path_support >= 0.95 and mediator_count >= 10:
-        return "This looks ready for a direct empirical follow-through."
+        return "A direct empirical test looks like the natural next step."
     if cooc_count <= 0:
-        return "Treat this as a missing direct test, not a settled result."
+        return "Treat this as an open direct question, not a settled result."
     return "Use this as a focused follow-up question in the nearby literature."
 
 
@@ -1527,7 +1527,7 @@ def write_public_db_release_assets(db_path: Path) -> dict[str, Any]:
 def build_release_readme_markdown(metrics: dict[str, Any], app_url: str) -> str:
     return f"""# FrontierGraph public release README
 
-FrontierGraph is a public research-allocation release built from a published-journal economics corpus. The current release covers {metrics["papers"]:,} screened papers, {metrics["normalized_links"]:,} normalized links, {metrics["native_concepts"]:,} native concepts, and {metrics["visible_public_questions"]:,} released research questions.
+FrontierGraph is a public research-allocation release built from a published-journal economics corpus. The current release covers {metrics["papers"]:,} screened papers, {metrics["normalized_links"]:,} normalized links, {metrics["native_concepts"]:,} native concepts, and {metrics["visible_public_questions"]:,} released questions.
 
 ## Stable identifiers
 
@@ -1591,11 +1591,11 @@ def build_data_dictionary_markdown() -> str:
 | `duplicate_penalty` | Downweight applied when many near-duplicate questions cluster together. |
 | `path_support_norm` | Normalized support from nearby paths in the graph. |
 | `gap_bonus` | Bonus for links that look underexplored relative to the local neighborhood. |
-| `mediator_count` | Count of nearby mediator concepts supporting the question. |
-| `motif_count` | Count of reinforcing local structural motifs. |
+| `mediator_count` | Count of nearby linking concepts supporting the question. |
+| `motif_count` | Count of repeated local patterns around the question. |
 | `cooc_count` | Count of direct papers already observed in the public sample. |
 | `direct_link_status` | Reader-facing summary of direct-literature presence. |
-| `supporting_path_count` | Count of supporting paths surfaced in the release. |
+| `supporting_path_count` | Count of nearby linking concepts surfaced in the release. |
 | `why_now` | Plain-language explanation of why the question is on the release surface. |
 | `recommended_move` | Suggested first research move. |
 | `slice_label` | Slice or family label used on the public site. |
@@ -1603,7 +1603,7 @@ def build_data_dictionary_markdown() -> str:
 | `question_family` | Family label used to avoid repetitive windows. |
 | `suppress_from_public_ranked_window` | Whether the question is kept out of the default ranked window. |
 | `top_mediator_labels` | JSON list of the most important mediating concepts. |
-| `representative_papers` | JSON list of starter papers associated with nearby edges. |
+| `representative_papers` | JSON list of papers to begin with, attached to nearby edges. |
 | `top_countries_source`, `top_countries_target` | JSON lists of common settings for each side of the pair. |
 | `source_context_summary`, `target_context_summary` | Short context summaries for each side. |
 | `common_contexts` | Plain-language summary of overlapping settings. |
@@ -1618,7 +1618,7 @@ def build_data_dictionary_markdown() -> str:
 | `plain_label` | Smoothed public label if one exists. |
 | `subtitle` | Public clarifier used where concept naming needs context. |
 | `bucket_hint` | Coarse placement of the concept in the graph. |
-| `instance_support` | Number of node instances mapped to the concept. |
+| `instance_support` | Number of mapped node mentions assigned to the concept. |
 | `distinct_paper_support` | Number of distinct papers touching the concept. |
 | `weighted_degree` | Weighted graph degree in the normalized graph. |
 | `pagerank` | PageRank-style prominence measure. |
@@ -1635,7 +1635,7 @@ def build_data_dictionary_markdown() -> str:
 | `concept_index.json` | concept records | Searchable concept lookup records with aliases and support. |
 | `concept_neighborhoods_index.json` | `{concept_id: shard_path}` | Lookup map from concept ID to neighborhood shard file. |
 | `concept_opportunities_index.json` | `{concept_id: shard_path}` | Lookup map from concept ID to concept-opportunity shard file. |
-| `opportunity_slices.json` | slice arrays | Public question slices such as overall, bridges, frontier, and fast-follow. |
+| `opportunity_slices.json` | slice arrays | Public question slices such as overall, cross-area, frontier, and fast-follow. |
 | `curated_questions.json` | curated records | Hand-curated questions used in the public site surfaces. |
 
 ## SQLite bundle tables
@@ -1654,7 +1654,7 @@ def build_data_dictionary_markdown() -> str:
 | `concept_neighborhoods` | one row per concept-neighbor relation | Incoming, outgoing, and top-neighbor records. |
 | `question_mediators` | one row per mediator within a question | Ranked mediator concepts for each question. |
 | `question_paths` | one row per supporting path | Ranked supporting paths and labels. |
-| `question_papers` | one row per starter paper within a path | Starter papers connected to a path. |
+| `question_papers` | one row per paper within a path | Papers connected to a path. |
 | `question_neighborhoods` | one row per question | Cached source/target neighborhood JSON. |
 """
 

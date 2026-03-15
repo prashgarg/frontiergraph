@@ -20,7 +20,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 4,
       "why_now": "econometric methods and Method of Moments Quantile Regression (MMQR) are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "econometric methods and Method of Moments Quantile Regression (MMQR)",
       "top_mediator_labels": [
@@ -87,7 +87,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 2,
       "why_now": "Real Estate Investment Trusts (REITs) and investment are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "investment and Real Estate Investment Trusts (REITs)",
       "top_mediator_labels": [
@@ -155,7 +155,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 2,
       "why_now": "employer size and unemployment are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "employer size and unemployment",
       "top_mediator_labels": [
@@ -221,7 +221,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 2,
       "why_now": "employer size and employment are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "employer size and employment",
       "top_mediator_labels": [
@@ -289,7 +289,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 4,
       "why_now": "balanced growth path and economic growth are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Start with a bridge review or cross-field pilot.",
+      "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
       "slice_label": "Missing direct link",
       "public_pair_label": "balanced growth path and economic growth",
       "top_mediator_labels": [
@@ -354,7 +354,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 4,
       "why_now": "inflation targeting and household inflation expectations are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "household inflation expectations and inflation targeting",
       "top_mediator_labels": [
@@ -422,7 +422,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 3,
       "why_now": "inflation and household inflation expectations are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "household inflation expectations and inflation",
       "top_mediator_labels": [
@@ -491,7 +491,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 4,
       "why_now": "bank capital requirements and bank profitability are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "bank capital requirements and bank profitability",
       "top_mediator_labels": [
@@ -560,7 +560,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 2,
       "why_now": "stated preference survey and preference heterogeneity are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Start with a bridge review or cross-field pilot.",
+      "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
       "slice_label": "Missing direct link",
       "public_pair_label": "preference heterogeneity and stated preference survey",
       "top_mediator_labels": [
@@ -629,7 +629,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 1,
       "why_now": "oil prices and volatility of stock prices are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Start with a bridge review or cross-field pilot.",
+      "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
       "slice_label": "Missing direct link",
       "public_pair_label": "volatility of stock prices and oil prices",
       "top_mediator_labels": [
@@ -695,7 +695,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 1,
       "why_now": "CO2 intensity and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "carbon emissions and CO2 intensity",
       "top_mediator_labels": [
@@ -760,7 +760,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 3,
       "why_now": "CO2 emissions and CO2 intensity are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "CO2 emissions and CO2 intensity",
       "top_mediator_labels": [
@@ -829,7 +829,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 3,
       "why_now": "technology level and green technology innovation are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "green technology innovation and technology level",
       "top_mediator_labels": [
@@ -897,7 +897,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 4,
       "why_now": "firm size and firm output are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "firm output and firm size",
       "top_mediator_labels": [
@@ -966,7 +966,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 4,
       "why_now": "green bond market and cryptocurrency market are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Start with a bridge review or cross-field pilot.",
+      "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
       "slice_label": "Missing direct link",
       "public_pair_label": "cryptocurrency market and green bond market",
       "top_mediator_labels": [
@@ -1031,7 +1031,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 5,
       "why_now": "cryptocurrency market and Chinese stock market are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "Chinese stock market and cryptocurrency market",
       "top_mediator_labels": [
@@ -1097,7 +1097,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 2,
       "why_now": "foreign interest rates and real interest rates are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "foreign interest rates and real interest rates",
       "top_mediator_labels": [
@@ -1164,7 +1164,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 4,
       "why_now": "U.S. stock market and oil market are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "oil market and U.S. stock market",
       "top_mediator_labels": [
@@ -1230,7 +1230,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 3,
       "why_now": "U.S. stock market and stock market are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "stock market and U.S. stock market",
       "top_mediator_labels": [
@@ -1297,7 +1297,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 4,
       "why_now": "inflation targets and inflation are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "inflation and inflation targets",
       "top_mediator_labels": [
@@ -1366,7 +1366,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 2,
       "why_now": "oil prices and foreign prices are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Start with a bridge review or cross-field pilot.",
+      "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
       "slice_label": "Missing direct link",
       "public_pair_label": "foreign prices and oil prices",
       "top_mediator_labels": [
@@ -1433,7 +1433,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 4,
       "why_now": "economic growth and immiserizing growth are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Start with a bridge review or cross-field pilot.",
+      "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
       "slice_label": "Missing direct link",
       "public_pair_label": "immiserizing growth and economic growth",
       "top_mediator_labels": [
@@ -1498,7 +1498,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 3,
       "why_now": "inflation and Realized inflation are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "inflation and Realized inflation",
       "top_mediator_labels": [
@@ -1566,7 +1566,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 1,
       "why_now": "future prices and futures contracts are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "future prices and futures contracts",
       "top_mediator_labels": [
@@ -1632,7 +1632,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 6,
       "why_now": "unanticipated inflation and inflation are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "inflation and unanticipated inflation",
       "top_mediator_labels": [
@@ -1701,7 +1701,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 4,
       "why_now": "patent citations and patent data are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Start with a bridge review or cross-field pilot.",
+      "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
       "slice_label": "Missing direct link",
       "public_pair_label": "patent citations and patent data",
       "top_mediator_labels": [
@@ -1770,7 +1770,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 5,
       "why_now": "stock market crashes and stock market returns are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "stock market crashes and stock market returns",
       "top_mediator_labels": [
@@ -1838,7 +1838,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 3,
       "why_now": "interest rate expectations and short-term interest rate are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "interest rate expectations and short-term interest rate",
       "top_mediator_labels": [
@@ -1906,7 +1906,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 2,
       "why_now": "CO2 emissions and aggregate emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "aggregate emissions and CO2 emissions",
       "top_mediator_labels": [
@@ -1973,7 +1973,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 3,
       "why_now": "wind energy consumption and electricity consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "electricity consumption and wind energy consumption",
       "top_mediator_labels": [
@@ -2039,7 +2039,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 3,
       "why_now": "wind energy consumption and energy consumption are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "energy consumption and wind energy consumption",
       "top_mediator_labels": [
@@ -2108,7 +2108,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 3,
       "why_now": "actual inflation and inflation are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "actual inflation and inflation",
       "top_mediator_labels": [
@@ -2177,7 +2177,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 2,
       "why_now": "expected output and output are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "expected output and output",
       "top_mediator_labels": [
@@ -2244,7 +2244,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 2,
       "why_now": "short-term interest rate and short rate are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "short rate and short-term interest rate",
       "top_mediator_labels": [
@@ -2311,7 +2311,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 4,
       "why_now": "health care reform and health care are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "health care and health care reform",
       "top_mediator_labels": [
@@ -2378,7 +2378,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 3,
       "why_now": "market return and stock returns are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "market return and stock returns",
       "top_mediator_labels": [
@@ -2447,7 +2447,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 1,
       "why_now": "policy and policy analysis are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Start with a bridge review or cross-field pilot.",
+      "recommended_move": "A short review or pilot can help connect the two nearby literatures.",
       "slice_label": "Missing direct link",
       "public_pair_label": "policy analysis and policy",
       "top_mediator_labels": [
@@ -2515,7 +2515,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 2,
       "why_now": "carbon emissions reduction and carbon emissions are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "carbon emissions and carbon emissions reduction",
       "top_mediator_labels": [
@@ -2583,7 +2583,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 3,
       "why_now": "Emission Trading Scheme (ETS) and emissions trading are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "Emission Trading Scheme (ETS) and emissions trading",
       "top_mediator_labels": [
@@ -2651,7 +2651,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 3,
       "why_now": "unemployment and unemployment fluctuations are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "unemployment and unemployment fluctuations",
       "top_mediator_labels": [
@@ -2720,7 +2720,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 3,
       "why_now": "forward exchange rates and exchange rates are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "exchange rates and forward exchange rates",
       "top_mediator_labels": [
@@ -2787,7 +2787,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 4,
       "why_now": "cross-sectional stock returns and cross-section of expected returns are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "cross-section of expected returns and cross-sectional stock returns",
       "top_mediator_labels": [
@@ -2855,7 +2855,7 @@
       "direct_link_status": "No direct papers yet",
       "supporting_path_count": 3,
       "why_now": "local unemployment rates and unemployment are close in the surrounding graph, but the public sample shows no direct papers linking them yet.",
-      "recommended_move": "Treat this as a missing direct test, not a settled result.",
+      "recommended_move": "Treat this as an open direct question, not a settled result.",
       "slice_label": "Missing direct link",
       "public_pair_label": "local unemployment rates and unemployment",
       "top_mediator_labels": [

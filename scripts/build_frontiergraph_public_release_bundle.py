@@ -129,18 +129,18 @@ def recommendation_play(row: sqlite3.Row) -> str:
     motif_count = int(row["motif_count"] or 0)
 
     if cross_field and cooc_count <= 0 and path_support >= 0.7:
-        return "Bridge paper across literatures"
+        return "A paper that connects two nearby literatures looks like the natural next step."
     if cross_field and cooc_count <= 0:
-        return "Scoping review before a bridge paper"
+        return "A short review may help connect the two nearby literatures before a direct empirical paper."
     if gap_bonus >= 0.4 and mediator_count >= 25:
-        return "Direct empirical test"
+        return "A direct empirical test looks like the natural next step."
     if gap_bonus >= 0.4:
-        return "Synthesis plus pilot design"
+        return "A synthesis paper plus a small pilot design looks like a sensible first move."
     if path_support >= 0.8 and motif_count >= 100:
-        return "Flagship empirical paper"
+        return "A direct empirical test looks like the natural next step."
     if path_support >= 0.7:
-        return "Focused empirical test"
-    return "Seminar seed or targeted replication map"
+        return "A focused empirical test looks like the natural next step."
+    return "This looks most useful as a seminar seed or a targeted replication map."
 
 
 def slice_label(row: sqlite3.Row) -> str:
@@ -165,7 +165,7 @@ def plain_context(values: list[str], fallback: str) -> str:
 def why_now(row: sqlite3.Row, source_plain: str, target_plain: str) -> str:
     return (
         f"{source_plain} and {target_plain} already sit near "
-        f"{int(row['mediator_count'] or 0)} related ideas and {int(row['motif_count'] or 0)} supporting motifs, "
+        f"{int(row['mediator_count'] or 0)} nearby linking concepts in the released graph, "
         f"while the direct literature remains at {int(row['cooc_count'] or 0)} papers in the current public sample."
     )
 

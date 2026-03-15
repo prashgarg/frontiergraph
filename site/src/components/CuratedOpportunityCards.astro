@@ -46,7 +46,7 @@ const homeSupporting =
           <h3>{homeLead.question_title}</h3>
           <p class="card-copy">{homeLead.short_why}</p>
           <p class="mini-copy">
-            <strong>First next step:</strong> {homeLead.first_next_step}
+            <strong>A useful first step:</strong> {homeLead.first_next_step}
           </p>
           <a class="text-link" href={`/questions/#${homeLead.pair_key}`}>See this question</a>
         </article>
@@ -60,7 +60,7 @@ const homeSupporting =
             <h3>{item.question_title}</h3>
             <p class="card-copy">{item.short_why}</p>
             <p class="mini-copy">
-              <strong>First next step:</strong> {item.first_next_step}
+              <strong>A useful first step:</strong> {item.first_next_step}
             </p>
             <a class="text-link" href={`/questions/#${item.pair_key}`}>See this question</a>
           </article>
@@ -78,9 +78,9 @@ const homeSupporting =
           <h3>{item.question_title}</h3>
           <p class="card-copy">{item.short_why}</p>
             <p class="mini-copy">
-              <strong>First next step:</strong> {item.first_next_step}
+              <strong>A useful first step:</strong> {item.first_next_step}
             </p>
-            <a class="text-link" href={item.app_link}>Explore in app</a>
+            <a class="text-link" href={item.app_link}>Open app</a>
           </article>
         ))}
     </div>
@@ -98,13 +98,13 @@ const homeSupporting =
           <h3>{item.question_title}</h3>
           <p class="card-copy">{item.short_why}</p>
           <p class="mini-copy">
-            <strong>First next step:</strong> {item.first_next_step}
+            <strong>A useful first step:</strong> {item.first_next_step}
           </p>
           <p class="mini-copy">
             <strong>Papers on this exact question:</strong> {item.direct_link_status}
           </p>
           <p class="mini-copy">
-            <strong>Related ideas:</strong> {item.supporting_path_count}
+            <strong>Nearby linking concepts:</strong> {item.supporting_path_count}
           </p>
           <OpportunityEvidence
             mediatorLabels={item.top_mediator_labels}
@@ -112,7 +112,7 @@ const homeSupporting =
             directLinkStatus={item.direct_link_status}
             commonContexts={item.common_contexts}
           />
-          <a class="text-link" href={item.app_link}>Explore in app</a>
+          <a class="text-link" href={item.app_link}>Open app</a>
         </article>
       ))}
     </div>

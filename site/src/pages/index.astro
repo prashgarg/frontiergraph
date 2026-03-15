@@ -23,7 +23,7 @@ const carouselSlides = homepageCarouselSlides.flatMap((slide) => {
       primaryHref: slide.primaryHref ?? (slide.pairKey ? `/questions/#${slide.pairKey}` : "/paper/full/"),
       primaryLabel: slide.primaryLabel ?? (slide.pairKey ? "See question" : "Read paper"),
       secondaryHref: slide.secondaryHref ?? match?.app_link ?? data.app_url,
-      secondaryLabel: slide.secondaryLabel ?? "Explore in app",
+      secondaryLabel: slide.secondaryLabel ?? "Open app",
     },
   ];
 });
@@ -47,18 +47,18 @@ const scaleItems = [
 
 <BaseLayout
   title="FrontierGraph"
-  description="FrontierGraph surfaces concrete research questions that could become the next paper."
+  description="FrontierGraph is a public interface for browsing open research questions in economics."
 >
   <main>
     <section class="hero hero-home">
       <div class="hero-panel hero-copy-panel">
-        <h1>Find the next paper worth your time.</h1>
+        <h1>Browse open questions in the economics literature.</h1>
         <p class="lede">
-          FrontierGraph surfaces research questions that still look open, but already sit near enough related work to investigate seriously.
+          FrontierGraph organizes candidate questions from a large published-journal corpus and lets you inspect the nearby literature behind each one.
         </p>
         <div class="hero-actions">
           <a class="button-primary" href="/questions/">Browse questions</a>
-          <a class="button-secondary" href={data.app_url}>Explore in app</a>
+          <a class="button-secondary" href={data.app_url}>Open app</a>
           <a class="button-tertiary" href="/paper/">Read paper</a>
           <a class="button-tertiary" href="/downloads/">Download data</a>
         </div>

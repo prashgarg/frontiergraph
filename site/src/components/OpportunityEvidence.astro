@@ -24,12 +24,12 @@ const visiblePapers = representativePapers.filter((paper) => paper.title).slice(
   <div class="method-stack opportunity-evidence">
     {uniqueMediatorLabels.length > 0 && (
       <p class="mini-copy">
-        <strong>Related ideas:</strong> {uniqueMediatorLabels.join(", ")}
+        <strong>Nearby linking concepts:</strong> {uniqueMediatorLabels.join(", ")}
       </p>
     )}
     {visiblePapers.length > 0 && (
       <div class="mini-copy opportunity-paper-block">
-        <strong>Papers to start with:</strong>
+        <strong>Papers to begin with:</strong>
         <ul class="opportunity-paper-list">
           {visiblePapers.map((paper) => (
             <li>

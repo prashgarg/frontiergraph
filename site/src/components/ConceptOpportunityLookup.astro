@@ -14,7 +14,7 @@ const {
   opportunitiesIndexPath,
   appUrl = "/graph/",
   title = "Search the concept graph",
-  caption = "Look up a concept by label or alias, inspect its local neighborhood, and open the app when you want more context.",
+  caption = "Look up a concept by label or alias, inspect its local neighborhood, and open the app when you want the full detail view.",
 } = Astro.props;
 
 const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
@@ -43,7 +43,7 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
       </label>
       <div class="lookup-actions">
         <a class="button-secondary" href="/graph/">Open map</a>
-        <a class="button-primary" data-role="open-app" href={appUrl}>Explore in app</a>
+        <a class="button-primary" data-role="open-app" href={appUrl}>Open app</a>
       </div>
     </div>
 
@@ -130,7 +130,7 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
       </div>
       ${conceptSubtitle(concept) ? `<p class="mini-copy opportunity-label-note">${escapeHtml(conceptSubtitle(concept))}</p>` : ""}
       <p class="card-copy">
-        ${formatNumber(safeNumber(concept.instance_support))} node instances · ${formatNumber(safeNumber(concept.distinct_paper_support))} papers · ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts
+        ${formatNumber(safeNumber(concept.instance_support))} mapped node mentions · ${formatNumber(safeNumber(concept.distinct_paper_support))} papers · ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts
       </p>
       <p class="mini-copy">Typical study settings: ${escapeHtml(joinList((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
       <p class="mini-copy">Common units: ${escapeHtml(joinList((concept.top_units || []).slice(0, 3), "No dominant unit in the current public sample"))}</p>
@@ -144,7 +144,7 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
   const renderOpportunities = async (conceptId) => {
     const shardPath = opportunitiesIndex[conceptId];
     if (!shardPath) {
-      opportunitiesPanel.innerHTML = `<h3>Top opportunities around this concept</h3><p class="card-copy">No suppressed top-slice opportunities currently touch this concept.</p>`;
+      opportunitiesPanel.innerHTML = `<h3>Top opportunities around this concept</h3><p class="card-copy">No released question currently touches this concept.</p>`;
       return;
     }
     const shard = await fetchJson(shardPath);
@@ -158,9 +158,9 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
             <article class="mini-opportunity">
               <strong>${escapeHtml(item.public_pair_label)}</strong>
               ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
-              <div class="mini-copy">${escapeHtml(item.direct_link_status)} · supported by ${formatNumber(safeNumber(item.supporting_path_count))} nearby concepts</div>
+              <div class="mini-copy">${escapeHtml(item.direct_link_status)} · ${formatNumber(safeNumber(item.supporting_path_count))} nearby linking concepts in the released graph</div>
               <div class="mini-copy">Context: ${escapeHtml(item.source_context_summary)} on one side and ${escapeHtml(item.target_context_summary)} on the other.</div>
-              <a class="text-link" href="${escapeHtml(item.app_link)}">Explore in app</a>
+              <a class="text-link" href="${escapeHtml(item.app_link)}">Open app</a>
             </article>
           `,
         )
@@ -184,7 +184,7 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
       items
         .slice(0, 5)
         .map(
-          (item) => `<li><strong>${escapeHtml(item.label)}</strong><span>${formatNumber(safeNumber(item.support_count))} supporting papers</span></li>`,
+          (item) => `<li><strong>${escapeHtml(item.label)}</strong><span>${formatNumber(safeNumber(item.support_count))} papers</span></li>`,
         )
         .join("");
     neighborsPanel.innerHTML = `
