@@ -43,24 +43,27 @@ async function main() {
   await page.waitForSelector("h1", { timeout: 30000 });
   await page.getByText(/Search questions/i).first().waitFor({ timeout: 30000 });
   await textDoesNotContain(page, ["Traceback", "sqlite3.OperationalError", "ModuleNotFoundError"]);
-  assert(await page.getByRole("heading", { name: /Read one question or topic in the released graph/i }).isVisible(), "App hero missing");
+  assert(await page.getByRole("heading", { name: /Read one question or topic at a time/i }).isVisible(), "App hero missing");
+  assert(await page.getByText(/Start with/i).first().isVisible(), "Primary view switch missing");
   assert(await page.getByText(/Search questions/i).first().isVisible(), "Question search missing");
+  assert(await page.getByText(/Choose a question/i).first().isVisible(), "Question picker missing");
   await assertReadableText(page, "label", "App form labels");
   await assertReadableText(page, '[data-testid="stMetric"] label', "Metric labels");
   await assertReadableText(page, '[data-testid="stTextInput"] input', "Search input text");
 
   await page.goto(`${baseUrl}/?view=concept&concept=FG3C000001`, { waitUntil: "domcontentloaded" });
   await page.waitForSelector("h1", { timeout: 30000 });
-  await page.getByText(/Find a topic/i).first().waitFor({ timeout: 30000 });
+  await page.getByText(/Search topics/i).first().waitFor({ timeout: 30000 });
   await page.getByText(/economic growth/i).first().waitFor({ timeout: 30000 });
   await textDoesNotContain(page, ["Traceback", "sqlite3.OperationalError"]);
-  assert(await page.getByText(/Find a topic/i).first().isVisible(), "Concept view input missing");
+  assert(await page.getByText(/Search topics/i).first().isVisible(), "Concept view input missing");
+  assert(await page.getByText(/Choose a topic/i).first().isVisible(), "Concept picker missing");
   assert(await page.getByText(/economic growth/i).first().isVisible(), "Concept deep link did not resolve");
-  await page.getByText(/Local neighborhood/i).first().waitFor({ timeout: 30000 });
+  await page.getByText(/Local map/i).first().waitFor({ timeout: 30000 });
   await page.getByText(/Questions touching this topic/i).first().waitFor({ timeout: 30000 });
-  assert(await page.getByText(/Local neighborhood/i).first().isVisible(), "Concept local map missing");
+  assert(await page.getByText(/Local map/i).first().isVisible(), "Concept local map missing");
   assert(await page.getByText(/Questions touching this topic/i).first().isVisible(), "Concept opportunity table missing");
-  await assertReadableText(page, '[data-testid="stDataFrame"]', "Concept tables");
+  assert((await page.getByRole("button", { name: /Open question/i }).count()) >= 1, "Concept view should surface question actions");
 
   await page.goto(`${baseUrl}/?view=compare&pairs=FG3C000010__FG3C003971,FG3C000003__FG3C000208`, { waitUntil: "domcontentloaded" });
   await page.waitForSelector("h1", { timeout: 30000 });

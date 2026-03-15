@@ -31,7 +31,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     <div>
       <h2>Choose a topic and start with the questions around it.</h2>
       <p class="card-copy">
-        Search for a topic or start with one of the suggestions below. The question cards are the main reading; the graph is local context.
+        Search for a topic or start with one of the suggestions below. Start with the question cards first; the graph only supplies local context.
       </p>
     </div>
     <label class="search-shell">
@@ -95,7 +95,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       <div class="graph-controls">
         <div class="graph-status-shell">
           <div class="graph-status" data-role="hover-card" aria-live="polite">
-            Start with a topic chip or search. The cards on the left are the main reading. Hover a node or edge for quick details.
+            Choose a topic, then start with the question cards on the left. The graph is there to show local context around the selected question.
           </div>
         </div>
         <div class="graph-control-row">
@@ -114,7 +114,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         <div class="graph-tooltip" data-role="graph-tooltip" hidden></div>
       </div>
       <div class="graph-help-row">
-        <span class="mini-copy">The graph shows the selected topic, the other side of the selected question, and the strongest nearby context. Click any node to switch topic.</span>
+        <span class="mini-copy">The graph shows the selected topic, the other side of the selected question, and a few nearby context topics. Click any node to switch topic.</span>
       </div>
     </div>
     </div>
@@ -248,12 +248,45 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     return "Nearby work already brings these two sides close together in the released map.";
   };
   const staticGuideText =
-    "Start with a topic chip or search. The cards on the left are the main reading. Hover a node or edge for quick details.";
+    "Choose a topic, then start with the question cards on the left. Use the graph to understand the local context around the selected question.";
   const questionTitle = (item) => {
     const source = item?.source_label || conceptLabel(item?.source_id, "");
     const target = item?.target_label || conceptLabel(item?.target_id, "");
     if (source && target) return `How do ${source} and ${target} connect?`;
     return item?.public_pair_label || "Candidate question";
+  };
+  const questionCounterpartId = (item, selectedConceptId) => {
+    if (!item || !selectedConceptId) return null;
+    if (item.source_id === selectedConceptId) return item.target_id;
+    if (item.target_id === selectedConceptId) return item.source_id;
+    return null;
+  };
+  const genericTopicPenalty = (concept) => {
+    if (!concept) return 0;
+    const haystack = `${conceptTitle(concept)} ${conceptSubtitle(concept)}`.toLowerCase();
+    let penalty = Math.log10(safeNumber(concept.weighted_degree) + 1) * 2.4;
+    if (
+      /\b(economic growth|economic development|development|investment|consumption|employment|productivity|trade openness|trade|education|inflation|public debt|monetary policy|financial development|behavioral economics|institutions?)\b/.test(
+        haystack,
+      )
+    ) {
+      penalty += 3.6;
+    }
+    if (haystack.split(/\s+/).filter(Boolean).length <= 2) {
+      penalty += 1.2;
+    }
+    return penalty;
+  };
+  const questionPriorityScore = (item, selectedConceptId) => {
+    const counterpart = conceptMap.get(questionCounterpartId(item, selectedConceptId));
+    const baseScore = safeNumber(item.score);
+    const pathScore = Math.min(safeNumber(item.supporting_path_count), 12) * 2.8;
+    const mediatorScore = Math.min(safeNumber(item.mediator_count), 8) * 1.45;
+    const motifScore = Math.min(safeNumber(item.motif_count), 8) * 0.8;
+    const crossBonus = safeNumber(item.cross_field) ? 1.4 : 0;
+    const exactPenalty = Math.min(safeNumber(item.cooc_count), 3) * 1.35;
+    const counterpartPenalty = genericTopicPenalty(counterpart);
+    return baseScore + pathScore + mediatorScore + motifScore + crossBonus - exactPenalty - counterpartPenalty;
   };
   const currentQuestion = () =>
     activeQuestionPairKey ? currentOpportunities.find((item) => item.pair_key === activeQuestionPairKey) || null : null;
@@ -697,13 +730,13 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       <article class="graph-question-focus-card">
         <span class="tiny-label">Selected question</span>
         <h4>${escapeHtml(questionTitle(question))}</h4>
-        <p class="card-copy">${escapeHtml(question.why_now || conciseQuestionReason(question))}</p>
+        <p class="card-copy focus-summary">${escapeHtml(conciseQuestionReason(question))}</p>
         <div class="graph-question-meta">
           <span>${formatNumber(safeNumber(question.supporting_path_count))} supporting paths</span>
           <span>${formatNumber(safeNumber(question.mediator_count))} nearby topics</span>
-          <span>${formatNumber(safeNumber(question.motif_count))} supporting motifs</span>
+          <span>${formatNumber(safeNumber(question.cooc_count))} exact released papers</span>
         </div>
-        <p class="mini-copy"><strong>A useful first step:</strong> ${escapeHtml(question.recommended_move || "Start with the nearby literature and pin down the concrete empirical setting.")}</p>
+        <p class="mini-copy focus-step"><strong>What to inspect first:</strong> ${escapeHtml(question.recommended_move || "Start with the nearby literature and pin down the concrete empirical setting.")}</p>
         <div class="graph-question-actions button-row">
           <a class="button-secondary" href="/questions/#${escapeAttr(question.pair_key)}">See question</a>
           <a class="button-tertiary" href="${escapeAttr(question.app_link)}">Explore in app</a>
@@ -712,12 +745,12 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       <div class="graph-question-subgrid">
         <section class="question-detail-panel">
           <h4>Paths nearby</h4>
-          <p class="mini-copy">These are the mediator topics most often connecting the two sides in the current public release.</p>
+          <p class="mini-copy">These mediator topics are the clearest nearby routes already connecting the two sides in the released map.</p>
           <div class="path-strip-stack">${pathStrips}</div>
         </section>
         <section class="question-detail-panel">
           <h4>Starter papers</h4>
-          <p class="mini-copy">Representative papers near this question in the released sample.</p>
+          <p class="mini-copy">Representative papers already sitting near this question in the released sample.</p>
           ${
             papers.length
               ? `<ul class="question-paper-list">
@@ -732,7 +765,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
                     )
                     .join("")}
                 </ul>`
-              : `<p class="mini-copy">No representative papers were exported for this question in the current public release.</p>`
+              : `<p class="mini-copy">No starter-paper preview was exported for this question in the current public release.</p>`
           }
         </section>
       </div>
@@ -836,7 +869,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         showTooltip(event, `
           <strong>${escapeHtml(node.plain_label || node.label)}</strong><br />
           ${node.subtitle ? `${escapeHtml(node.subtitle)}<br />` : ""}
-          ${formatNumber(safeNumber(node.distinct_paper_support))} papers · ${formatNumber(safeNumber(node.neighbor_count))} nearby topics · ${escapeHtml(listText(node.top_countries, "No dominant study setting in the current public sample"))}
+          ${formatNumber(safeNumber(node.distinct_paper_support))} papers in the released map.<br />
+          <span class="tooltip-action">Click to move to this topic.</span>
         `);
       });
       nodeElement.addEventListener("mousemove", moveTooltip);
@@ -859,10 +893,9 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     for (const edgeElement of canvas.querySelectorAll("[data-edge-id]")) {
       edgeElement.addEventListener("mouseenter", (event) => {
         const edge = graph.edgeMap.get(edgeElement.dataset.edgeId);
-        const example = edge.examples?.[0]?.title ? `<br />Example: ${escapeHtml(edge.examples[0].title)}` : "";
         showTooltip(event, `
           <strong>${escapeHtml(conceptLabel(edge.source, graph.nodeMap.get(edge.source).label))} to ${escapeHtml(conceptLabel(edge.target, graph.nodeMap.get(edge.target).label))}</strong><br />
-          ${formatNumber(safeNumber(edge.support_count))} papers · ${escapeHtml(listText(edge.dominant_countries, "No dominant study setting in the current public sample"))}${example}
+          ${formatNumber(safeNumber(edge.support_count))} papers support this local relation in the released map.
         `);
       });
       edgeElement.addEventListener("mousemove", moveTooltip);
@@ -881,7 +914,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       ${conceptSubtitle(concept) ? `<p class="mini-copy opportunity-label-note">${escapeHtml(conceptSubtitle(concept))}</p>` : ""}
       <p class="card-copy">${formatNumber(safeNumber(concept.distinct_paper_support))} papers mention this topic in the released map, and ${formatNumber(questionCount)} released questions currently touch it.</p>
       <p class="mini-copy"><strong>Common settings:</strong> ${escapeHtml(listText((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
-      <p class="mini-copy"><strong>Best next click:</strong> start with one of the question cards below. The graph on the right only shows the strongest nearby context around this topic.</p>
+      <p class="mini-copy"><strong>Best next click:</strong> start with one of the question cards below. They are ordered to favor more specific, path-rich questions over broader generic pairings.</p>
       <div class="button-row">
         <a class="button-secondary" href="${escapeHtml(concept.app_link)}">Explore in app</a>
       </div>
@@ -953,9 +986,13 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       return;
     }
     const shard = await fetchJson(shardPath);
-    const opportunities = shard[conceptId] || [];
+    const opportunities = (shard[conceptId] || []).slice().sort((left, right) => {
+      const delta = questionPriorityScore(right, conceptId) - questionPriorityScore(left, conceptId);
+      if (Math.abs(delta) > 1e-9) return delta;
+      return safeNumber(right.score) - safeNumber(left.score);
+    });
     currentOpportunities = opportunities;
-    if (!opportunities.length) {
+    if (!currentOpportunities.length) {
       activeQuestionPairKey = null;
       selectedOpportunities.innerHTML = `<p class="card-copy">No public research question touching this topic is available in the current public sample.</p>`;
       renderQuestionDetail();
@@ -974,8 +1011,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
               <span class="tiny-label">${escapeHtml(item.slice_label || "Released question")}</span>
               <strong>${escapeHtml(questionTitle(item))}</strong>
               ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
-              <p class="mini-copy">${escapeHtml(conciseQuestionReason(item))}</p>
-              <p class="mini-copy"><strong>First step:</strong> ${escapeHtml(item.recommended_move || "Start with the nearby literature and pin down the concrete empirical setting.")}</p>
+              <p class="mini-copy opportunity-why"><strong>Why this surfaced:</strong> ${escapeHtml(conciseQuestionReason(item))}</p>
+              <p class="mini-copy opportunity-step"><strong>What to inspect first:</strong> ${escapeHtml(item.recommended_move || "Start with the nearby literature and pin down the concrete empirical setting.")}</p>
               <div class="button-row">
                 <button class="button-secondary" type="button" data-select-pair="${escapeAttr(item.pair_key)}">View paths</button>
                 <a class="button-tertiary" href="${escapeHtml(item.app_link)}">Explore in app</a>
