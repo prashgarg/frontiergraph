@@ -14,7 +14,6 @@ interface Props {
   deck?: string;
   toc?: TocEntry[];
   pdfUrl: string;
-  appUrl: string;
 }
 
 const {
@@ -24,7 +23,6 @@ const {
   deck = "",
   toc = [],
   pdfUrl,
-  appUrl,
 } = Astro.props;
 const showToc = toc.length > 0;
 ---
@@ -58,11 +56,10 @@ const showToc = toc.length > 0;
         <slot />
         <div class="paper-exit-card">
           <span class="eyebrow">Keep going</span>
-          <h2>Read, inspect, or take the release away.</h2>
+          <h2>Take the paper away with the released files.</h2>
           <div class="button-row">
             <a class="button-primary" href={pdfUrl}>Download PDF</a>
             <a class="button-secondary" href="/downloads/">Open downloads</a>
-            <a class="button-tertiary" href={appUrl}>Explore in app</a>
           </div>
         </div>
       </article>

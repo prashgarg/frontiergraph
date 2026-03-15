@@ -202,6 +202,17 @@ def set_query_params(**kwargs: str) -> None:
         st.query_params[key] = value
 
 
+def sync_from_query(key: str, value: Any, marker: str) -> None:
+    if st.session_state.get(marker, object()) != value:
+        st.session_state[key] = value
+        st.session_state[marker] = value
+
+
+def ensure_widget_state(key: str, value: Any) -> None:
+    if key not in st.session_state:
+        st.session_state[key] = value
+
+
 def choose_db_path() -> str:
     env_db = os.environ.get("ECON_OPPORTUNITY_DB", "").strip()
     if env_db:
@@ -552,11 +563,17 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
     search_default = query_param("search")
     pair_default = query_param("pair")
     status_options = sorted(questions["direct_link_status"].dropna().unique().tolist())
+    sync_from_query("question_search", search_default, "_sync_question_search")
+    sync_from_query("question_cross_only", query_param("cross") == "1", "_sync_question_cross_only")
     search_col, filter_col = st.columns([1.7, 1.0])
     with search_col:
-        search = st.text_input("Search questions", value=search_default, placeholder="Search by topic, outcome, or question wording")
+        search = st.text_input(
+            "Search questions",
+            key="question_search",
+            placeholder="Search by topic, outcome, or question wording",
+        )
     with filter_col:
-        only_cross = st.checkbox("Only cross-bucket questions", value=query_param("cross") == "1")
+        only_cross = st.checkbox("Only cross-bucket questions", key="question_cross_only")
 
     direct_filters = st.multiselect(
         "Direct-literature status",
@@ -583,19 +600,21 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
 
     candidate_map = {str(row.pair_key): row for row in preview.itertuples(index=False)}
     default_pair = pair_default if pair_default in candidate_map else next(iter(candidate_map))
+    sync_from_query("question_selection", default_pair, "_sync_question_selection")
     selection = st.selectbox(
         "Inspect one question",
         options=list(candidate_map.keys()),
-        index=list(candidate_map.keys()).index(default_pair),
+        key="question_selection",
         format_func=lambda value: question_option_label(pd.Series(candidate_map[value]._asdict())),
     )
     if selection != pair_default or search != search_default or only_cross != (query_param("cross") == "1"):
         set_query_params(view="question", pair=selection, search=search, cross="1" if only_cross else "")
     compare_default = [value for value in query_param("pairs").split(",") if value in candidate_map][:4]
+    sync_from_query("question_compare_pairs", compare_default, "_sync_question_compare_pairs")
     compare_pairs = st.multiselect(
         "Pin questions to compare",
         options=list(candidate_map.keys()),
-        default=compare_default,
+        key="question_compare_pairs",
         format_func=lambda value: question_option_label(pd.Series(candidate_map[value]._asdict())),
     )
     if len(compare_pairs) >= 2 and st.button("Open compare workspace"):
@@ -623,7 +642,13 @@ def concept_graphviz(concept: pd.Series, neighbors: pd.DataFrame) -> str:
 
 def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
     concept_default = query_param("concept")
-    search = st.text_input("Find a topic", value=query_param("search"), placeholder="Search by topic, alias, or concept label")
+    search_default = query_param("search")
+    sync_from_query("concept_search", search_default, "_sync_concept_search")
+    search = st.text_input(
+        "Find a topic",
+        key="concept_search",
+        placeholder="Search by topic, alias, or concept label",
+    )
     working = concepts.copy()
     if search.strip():
         needle = search.strip().lower()
@@ -639,13 +664,14 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
     top = working.head(150).reset_index(drop=True)
     concept_map = {str(row.concept_id): row for row in top.itertuples(index=False)}
     selected = concept_default if concept_default in concept_map else next(iter(concept_map))
+    sync_from_query("concept_selection", selected, "_sync_concept_selection")
     choice = st.selectbox(
         "Select topic",
         options=list(concept_map.keys()),
-        index=list(concept_map.keys()).index(selected),
+        key="concept_selection",
         format_func=lambda value: concept_option_label(pd.Series(concept_map[value]._asdict())),
     )
-    if choice != concept_default or search != query_param("search"):
+    if choice != concept_default or search != search_default:
         set_query_params(view="concept", concept=choice, search=search)
 
     bundle = load_concept_bundle(db_path, choice)
@@ -702,14 +728,20 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
 
 
 def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd.DataFrame) -> None:
-    compare_mode = st.radio("Compare questions or topics", options=["Questions", "Topics"], horizontal=True)
+    pair_defaults = [value for value in query_param("pairs").split(",") if value]
+    sync_from_query("compare_mode", "Questions" if pair_defaults else st.session_state.get("compare_mode", "Questions"), "_sync_compare_mode")
+    compare_mode = st.radio("Compare questions or topics", options=["Questions", "Topics"], horizontal=True, key="compare_mode")
     if compare_mode == "Questions":
-        pair_defaults = [value for value in query_param("pairs").split(",") if value]
         candidate_map = {str(row.pair_key): row for row in questions.head(150).itertuples(index=False)}
+        sync_from_query(
+            "compare_question_pairs",
+            [value for value in pair_defaults if value in candidate_map][:4],
+            "_sync_compare_question_pairs",
+        )
         selected = st.multiselect(
             "Choose 2 to 4 questions",
             options=list(candidate_map.keys()),
-            default=[value for value in pair_defaults if value in candidate_map][:4],
+            key="compare_question_pairs",
             format_func=lambda value: question_option_label(pd.Series(candidate_map[value]._asdict())),
         )
         if selected:
@@ -735,9 +767,11 @@ def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd
                         st.markdown(f"- {paper.title} ({int(paper.year)})")
     else:
         concept_map = {str(row.concept_id): row for row in concepts.head(150).itertuples(index=False)}
+        ensure_widget_state("compare_concept_ids", [])
         selected = st.multiselect(
             "Choose 2 to 4 topics",
             options=list(concept_map.keys()),
+            key="compare_concept_ids",
             format_func=lambda value: concept_option_label(pd.Series(concept_map[value]._asdict())),
         )
         if len(selected) < 2:
@@ -767,10 +801,11 @@ def render_advanced_evidence(db_path: str, questions: pd.DataFrame, concepts: pd
     pair_default = query_param("pair")
     question_map = {str(row.pair_key): row for row in questions.head(150).itertuples(index=False)}
     selected_pair = pair_default if pair_default in question_map else next(iter(question_map))
+    sync_from_query("advanced_pair", selected_pair, "_sync_advanced_pair")
     choice = st.selectbox(
         "Question for raw evidence",
         options=list(question_map.keys()),
-        index=list(question_map.keys()).index(selected_pair),
+        key="advanced_pair",
         format_func=lambda value: question_option_label(pd.Series(question_map[value]._asdict())),
     )
     if choice != pair_default:
@@ -797,9 +832,11 @@ def render_advanced_evidence(db_path: str, questions: pd.DataFrame, concepts: pd
 
     st.markdown("### Concept lookup")
     concept_map = {str(row.concept_id): row for row in concepts.head(150).itertuples(index=False)}
+    ensure_widget_state("advanced_concept", next(iter(concept_map)))
     concept_choice = st.selectbox(
         "Inspect one concept row",
         options=list(concept_map.keys()),
+        key="advanced_concept",
         format_func=lambda value: concept_option_label(pd.Series(concept_map[value]._asdict())),
     )
     concept_bundle = load_concept_bundle(db_path, concept_choice)
@@ -866,10 +903,11 @@ def main() -> None:
         "advanced": "Advanced evidence",
     }
     view_keys = list(view_labels.keys())
+    sync_from_query("active_view", view_default if view_default in view_keys else "question", "_sync_active_view")
     active_view = st.radio(
         "Work area",
         options=view_keys,
-        index=view_keys.index(view_default) if view_default in view_keys else 0,
+        key="active_view",
         format_func=lambda value: view_labels[value],
         horizontal=True,
     )

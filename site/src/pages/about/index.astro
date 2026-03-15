@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { data } from "../../lib/site-data";
 ---
 
 <BaseLayout
@@ -13,12 +12,6 @@ import { data } from "../../lib/site-data";
       <p class="lede">
         Start with a question, inspect the nearby literature, and decide whether it looks worth your time. The public site is a discovery surface, not a verdict engine.
       </p>
-      <div class="button-row">
-        <a class="button-primary" href="/questions/">Browse questions</a>
-        <a class="button-secondary" href={data.app_url}>Explore in app</a>
-        <a class="button-tertiary" href="/paper/">Read paper</a>
-        <a class="button-tertiary" href="/downloads/">Download data</a>
-      </div>
     </section>
 
     <section class="section">

@@ -116,6 +116,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const LAYOUT_MAX_X = 1.24;
   const LAYOUT_MIN_Y = -0.2;
   const LAYOUT_MAX_Y = 1.2;
+  const PREFERRED_DEFAULT_LABELS = ["economic growth", "public debt", "inflation", "education", "monetary policy"];
 
   const graphPath = root.dataset.graphPath;
   const conceptIndexPath = root.dataset.conceptIndexPath;
@@ -521,12 +522,12 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       const isDimmed = mapMode === "global" && selectedActive && !isSelected && !isNeighbor;
       const radius = Math.max(2.8, Math.min(24, 2.8 + Math.log10(safeNumber(node.weighted_degree) + 1) * 4.4));
       const showLabel = focusedActive
-        ? isSelected || isNeighbor
+        ? isSelected
         : node.show_label ||
           isSelected ||
           (isNeighbor && selectedNeighbors.size <= 16) ||
           (isNeighbor && safeNumber(node.weighted_degree) >= 65);
-      const labelY = node.y * GRAPH_HEIGHT - (radius + 8);
+      const labelY = node.y * GRAPH_HEIGHT - (radius + (isSelected ? 16 : 8));
       nodeMarkup.push(
         `<g class="graph-node-group${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeHtml(node.id)}">
           <circle class="graph-node bucket-${escapeHtml(node.bucket_group || "mixed")}" cx="${node.x * GRAPH_WIDTH}" cy="${node.y * GRAPH_HEIGHT}" r="${radius}"></circle>
@@ -779,7 +780,12 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     neighborhoodIndex = neighborhoodsPayload;
     opportunitiesIndex = opportunitiesPayload;
     centralConcepts = centralPayload;
-    defaultConceptId = centralConcepts[0]?.concept_id || concepts[0]?.concept_id || null;
+    const preferredDefault =
+      concepts.find((concept) => {
+        const label = String(concept.plain_label || concept.label || "").trim().toLowerCase();
+        return PREFERRED_DEFAULT_LABELS.includes(label);
+      })?.concept_id || null;
+    defaultConceptId = preferredDefault || centralConcepts[0]?.concept_id || concepts[0]?.concept_id || null;
     renderCentralList();
     updateLayoutModeButton();
     updateMapModeButton();

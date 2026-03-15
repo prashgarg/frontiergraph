@@ -1,5 +1,7 @@
 # FrontierGraph data dictionary
 
+This dictionary covers the public release files served on the site. CSV and JSON exports are easier entry points; the SQLite bundle contains the fullest released table set.
+
 ## Shared identifiers
 
 | Field | Meaning |
@@ -8,6 +10,8 @@
 | `concept_id` | Stable public identifier for a normalized concept in the native ontology. |
 
 ## `top_questions.csv`
+
+These are the released question rows that drive the public browsing surface.
 
 | Field | Meaning |
 | --- | --- |
@@ -40,6 +44,8 @@
 | `app_link` | Deep link into the public app. |
 
 ## `central_concepts.csv`
+
+These are the topic-level records used for concept lookup and the map-facing concept summaries.
 
 | Field | Meaning |
 | --- | --- |
@@ -86,3 +92,40 @@
 | `question_paths` | one row per supporting path | Ranked supporting paths and labels. |
 | `question_papers` | one row per starter paper within a path | Starter papers connected to a path. |
 | `question_neighborhoods` | one row per question | Cached source/target neighborhood JSON. |
+
+## Question-detail tables inside SQLite
+
+These three tables are the main ones to join when you want to inspect one released question in depth.
+
+| Table | Key fields | What it gives you |
+| --- | --- | --- |
+| `question_mediators` | `pair_key`, `mediator_concept_id`, `mediator_label`, `rank`, `score` | Ranked mediator concepts that help connect the released source and target. |
+| `question_paths` | `pair_key`, `path_rank`, `path_label`, `path_nodes_json`, `path_edges_json` | The supporting paths and their labeled node/edge sequences. |
+| `question_papers` | `pair_key`, `paper_id`, `title`, `year`, `journal`, `role`, `path_rank` | Starter papers attached to supporting edges or paths. |
+
+## Concept-detail tables inside SQLite
+
+| Table | Key fields | What it gives you |
+| --- | --- | --- |
+| `concept_index` | `concept_id`, `plain_label`, `subtitle`, `bucket_hint` | Searchable topic lookup with public labels and aliases. |
+| `concept_neighborhoods` | `concept_id`, `neighbor_concept_id`, `direction`, `rank_for_concept` | Incoming and outgoing nearest-neighbor relations around a concept. |
+| `concept_opportunities` | `concept_id`, `pair_key`, `rank_for_concept`, `score` | Released questions that sit near that concept. |
+
+## A few fields people usually ask about
+
+| Field | Where it appears | Meaning |
+| --- | --- | --- |
+| `direct_link_status` | question tables | Reader-facing summary of whether direct papers already exist in the released sample. |
+| `recommended_move` | question tables | A short description of the kind of next paper the question seems to invite. |
+| `path_support_norm` | question tables | Standardized support from nearby graph paths rather than direct papers. |
+| `gap_bonus` | question tables | Extra score for links that look sparse relative to their local neighborhood. |
+| `supporting_path_count` | question tables | Count of supporting paths surfaced in the released view. |
+| `subtitle` | concept tables | A clarifier used when the public concept label needs context. |
+| `bucket_hint` | concept tables | A broad location cue for where the concept sits in the graph. |
+
+## Working with JSON-like columns
+
+- Some CSV and SQLite text fields store arrays or objects as JSON strings.
+- Common examples are `top_mediator_labels`, `representative_papers`, `top_countries`, `top_units`, and the path-node or path-edge fields.
+- If you are working in spreadsheets, treat these as compact summaries.
+- If you are working in Python, R, or SQL pipelines, parse them as JSON before further use.

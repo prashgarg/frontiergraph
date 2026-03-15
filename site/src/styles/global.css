@@ -385,15 +385,15 @@ h3 {
 
 .hero h1 {
   margin: 0.5rem 0 0;
-  font-size: clamp(2.8rem, 5vw, 4.8rem);
-  line-height: 0.98;
+  font-size: clamp(2.35rem, 4.25vw, 4rem);
+  line-height: 1;
   letter-spacing: -0.04em;
 }
 
 .page-hero h1 {
   margin: 0.4rem 0 0;
-  font-size: clamp(1.95rem, 3.15vw, 3rem);
-  line-height: 1;
+  font-size: clamp(1.55rem, 2.35vw, 2.35rem);
+  line-height: 1.05;
   letter-spacing: -0.035em;
 }
 
@@ -702,8 +702,8 @@ h3 {
 
 .paper-shell {
   display: grid;
-  grid-template-columns: minmax(240px, 290px) minmax(0, 1fr);
-  gap: 1.6rem;
+  grid-template-columns: minmax(230px, 280px) minmax(0, 1fr);
+  gap: 1.4rem;
   align-items: start;
   padding: 0.6rem 0 1.4rem;
 }
@@ -749,7 +749,7 @@ h3 {
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
   border-radius: 1.6rem;
-  padding: 1.7rem 2.2rem;
+  padding: 1.75rem 2.45rem;
 }
 
 .paper-article h1,
@@ -760,11 +760,11 @@ h3 {
 }
 
 .paper-article h1 {
-  font-size: 2.85rem;
+  font-size: 2.55rem;
 }
 
 .paper-article h2 {
-  font-size: 1.7rem;
+  font-size: 1.62rem;
   margin-top: 2rem;
 }
 
@@ -777,8 +777,8 @@ h3 {
 .paper-article li,
 .paper-article blockquote {
   color: var(--text);
-  line-height: 1.8;
-  font-size: 1.06rem;
+  line-height: 1.72;
+  font-size: 1.04rem;
 }
 
 .paper-article p:has(strong:first-child) {
@@ -848,7 +848,7 @@ h3 {
 }
 
 .hero-home {
-  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+  grid-template-columns: minmax(0, 0.86fr) minmax(420px, 1.14fr);
 }
 
 .hero-copy-panel,
@@ -980,7 +980,7 @@ h3 {
   --proof-line-color: rgba(24, 42, 74, 0.24);
   --proof-later: #c46a12;
   display: grid;
-  grid-template-columns: minmax(360px, 1.08fr) minmax(0, 0.92fr);
+  grid-template-columns: minmax(410px, 1.18fr) minmax(0, 0.82fr);
   gap: 1rem;
   padding: 1rem;
   border: 1px solid var(--line);
@@ -990,7 +990,7 @@ h3 {
 }
 
 .homepage-carousel-panel-compact .homepage-carousel-slide {
-  grid-template-columns: minmax(360px, 1.08fr) minmax(0, 0.92fr);
+  grid-template-columns: minmax(410px, 1.18fr) minmax(0, 0.82fr);
   padding: 0;
   border: 0;
   background: transparent;
@@ -1034,7 +1034,7 @@ h3 {
 
 .homepage-carousel-visual-shell {
   display: block;
-  padding: 0.8rem 0.95rem 0.35rem;
+  padding: 0.7rem 0.8rem 0.15rem;
   border-radius: 1.2rem;
   background:
     radial-gradient(circle at 16% 18%, var(--proof-glow-a), transparent 25%),
@@ -1043,7 +1043,7 @@ h3 {
 }
 
 .homepage-carousel-panel-compact .homepage-carousel-visual-shell {
-  padding: 0.7rem 0.8rem 0.2rem;
+  padding: 0.55rem 0.65rem 0.05rem;
 }
 
 .homepage-carousel-visual {
@@ -1157,8 +1157,8 @@ h3 {
 
 .homepage-carousel-copy h3 {
   margin: 0;
-  font-size: 1.52rem;
-  line-height: 1.18;
+  font-size: 1.42rem;
+  line-height: 1.2;
 }
 
 .homepage-carousel-copy .card-copy,
@@ -2143,7 +2143,11 @@ h3 {
     min-height: 2.45rem;
   }
 
+  .hero h1 {
+    font-size: clamp(2rem, 10vw, 2.85rem);
+  }
+
   .page-hero h1 {
-    font-size: clamp(1.9rem, 8vw, 2.65rem);
+    font-size: clamp(1.45rem, 6.8vw, 2rem);
   }
 }
