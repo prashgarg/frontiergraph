@@ -62,7 +62,7 @@ async function main() {
   await page.waitForSelector("h1");
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError", "For academics", "A simple analogy", "Why this exists"]);
   const homeHeroText = (await page.locator("h1").first().textContent()) || "";
-  assert(/A graph of open questions in economics\./i.test(homeHeroText), "Homepage hero missing");
+  assert(/Organizing open questions in economics\./i.test(homeHeroText), "Homepage hero missing");
   const nav = page.getByRole("navigation");
   assert(await nav.getByRole("link", { name: /^Home$/ }).isVisible(), "Home nav missing");
   assert(await nav.getByRole("link", { name: /^Questions$/ }).isVisible(), "Questions nav missing");
