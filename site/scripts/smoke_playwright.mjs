@@ -125,6 +125,12 @@ async function main() {
   await page.waitForSelector("h1");
   assert(await page.getByRole("heading", { name: /Take the tables or the full public bundle/i }).isVisible(), "Downloads hero missing");
   assert(await page.getByRole("link", { name: /Download top questions CSV/i }).first().isVisible(), "Downloads hero should point to lightweight exports");
+  assert(await page.getByRole("link", { name: /Open data dictionary/i }).first().isVisible(), "Downloads hero should expose the data dictionary");
+  assert(await page.getByText(/Which download should I choose\?/i).isVisible(), "Downloads page should expose guidance");
+  assert(await page.getByRole("link", { name: /Download Tier 1 bundle/i }).isVisible(), "Downloads page should expose the tier 1 bundle");
+  assert(await page.getByRole("link", { name: /Download Tier 2 bundle/i }).isVisible(), "Downloads page should expose the tier 2 bundle");
+  assert((await page.getByRole("link", { name: /README/i }).count()) >= 1, "Downloads page should expose a README button");
+  assert((await page.getByRole("link", { name: /Data dictionary/i }).count()) >= 2, "Downloads page should expose data dictionary links inside the downloads page");
   assert((await page.getByRole("link", { name: /Full HTML manuscript/i }).count()) === 0, "Downloads page should not duplicate the paper route");
   assert((await page.getByRole("link", { name: /Working paper PDF/i }).count()) === 0, "Downloads page should not duplicate paper downloads");
   assert((await page.getByRole("link", { name: /Extended abstract PDF/i }).count()) === 0, "Downloads page should not duplicate the abstract downloads");

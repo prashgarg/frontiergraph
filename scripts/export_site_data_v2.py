@@ -10,6 +10,7 @@ import shutil
 import sqlite3
 import subprocess
 import sys
+import zipfile
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -1444,6 +1445,13 @@ def copy_public_download(source: Path, target_filename: str) -> str:
     return f"/downloads/{target_filename}"
 
 
+def write_public_download_text(target_filename: str, content: str) -> str:
+    PUBLIC_DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
+    target_path = PUBLIC_DOWNLOADS_DIR / target_filename
+    target_path.write_text(content, encoding="utf-8")
+    return f"/downloads/{target_filename}"
+
+
 def sha256_file(path: Path, chunk_size: int = 8 * 1024 * 1024) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -1453,6 +1461,46 @@ def sha256_file(path: Path, chunk_size: int = 8 * 1024 * 1024) -> str:
                 break
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def public_path_to_local(public_path: str) -> Path:
+    cleaned = public_path.lstrip("/")
+    return SITE_ROOT / "public" / cleaned
+
+
+def build_download_file_entry(public_path: str) -> dict[str, Any]:
+    local_path = public_path_to_local(public_path)
+    if not local_path.exists():
+        raise FileNotFoundError(f"Expected public asset is missing: {local_path}")
+    return {
+        "path": public_path,
+        "filename": local_path.name,
+        "size_bytes": local_path.stat().st_size,
+    }
+
+
+def write_zip_bundle(target_filename: str, entries: list[tuple[Path, str]]) -> dict[str, Any]:
+    PUBLIC_DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
+    target_path = PUBLIC_DOWNLOADS_DIR / target_filename
+    with zipfile.ZipFile(target_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=6) as bundle:
+        for source_path, archive_name in entries:
+            if not source_path.exists():
+                raise FileNotFoundError(f"Bundle source asset is missing: {source_path}")
+            bundle.write(source_path, archive_name)
+    return {
+        "path": f"/downloads/{target_filename}",
+        "filename": target_filename,
+        "size_bytes": target_path.stat().st_size,
+    }
+
+
+def bundle_entries_for_directory(directory: Path, archive_prefix: str) -> list[tuple[Path, str]]:
+    entries: list[tuple[Path, str]] = []
+    for path in sorted(directory.rglob("*")):
+        if not path.is_file():
+            continue
+        entries.append((path, f"{archive_prefix}/{path.relative_to(directory).as_posix()}"))
+    return entries
 
 
 def write_public_db_release_assets(db_path: Path) -> dict[str, Any]:
@@ -1474,6 +1522,141 @@ def write_public_db_release_assets(db_path: Path) -> dict[str, Any]:
         f"{sha256}  {DB_FILENAME}\n"
     )
     return manifest
+
+
+def build_release_readme_markdown(metrics: dict[str, Any], app_url: str) -> str:
+    return f"""# FrontierGraph public release README
+
+FrontierGraph is a public research-allocation release built from a published-journal economics corpus. The current release covers {metrics["papers"]:,} screened papers, {metrics["normalized_links"]:,} normalized links, {metrics["native_concepts"]:,} native concepts, and {metrics["visible_public_questions"]:,} released research questions.
+
+## Stable identifiers
+
+- `pair_key`: stable public identifier for a research question or concept pair
+- `concept_id`: stable public identifier for a normalized concept
+
+## Which tier should I use?
+
+- **Tier 1: lightweight exports**. Use these if you want spreadsheet-friendly question tables or quick concept summaries.
+- **Tier 2: structured graph assets**. Use these if you want the same public graph objects the site uses: the literature map, concept index, neighborhoods, opportunity shards, and slice files.
+- **Tier 3: rich public graph bundle**. Use the SQLite bundle if you want to explore locally, reproduce the public app surface, or join question-level evidence tables without rebuilding the release.
+
+## What each file is for
+
+- `top_questions.csv`: one row per released question, with ranking fields, nearby support, and app link.
+- `central_concepts.csv`: one row per central concept, with support and graph prominence measures.
+- `curated_questions.json`: the hand-curated site questions shown in featured shelves.
+- `hybrid_corpus_manifest.json`: canonical release counts for the fuller published-journal benchmark.
+- `graph_backbone.json`: the lightweight literature map used on the public site.
+- `concept_index.json`: searchable concept records with aliases, support, and app links.
+- `concept_neighborhoods_index.json`: index into the concept-neighborhood shard files.
+- `concept_opportunities_index.json`: index into the concept-opportunity shard files.
+- `opportunity_slices.json`: grouped question slices used for the public question page.
+- `frontiergraph-economics-public.db`: the rich public SQLite bundle.
+
+## Notes on formats
+
+- CSV files are the easiest entry point for spreadsheets and quick scripts.
+- Several CSV columns store lists as JSON strings so the same fields can survive spreadsheet export.
+- The SQLite bundle is the most complete public package. It includes question-level tables such as `question_mediators`, `question_paths`, and `question_papers`.
+
+## Public surfaces
+
+- Site: https://frontiergraph.com
+- App: {app_url}
+- Repository: {REPO_URL}
+"""
+
+
+def build_data_dictionary_markdown() -> str:
+    return """# FrontierGraph data dictionary
+
+## Shared identifiers
+
+| Field | Meaning |
+| --- | --- |
+| `pair_key` | Stable public identifier for a released question, built from a normalized concept pair. |
+| `concept_id` | Stable public identifier for a normalized concept in the native ontology. |
+
+## `top_questions.csv`
+
+| Field | Meaning |
+| --- | --- |
+| `pair_key` | Stable public question identifier. |
+| `source_id`, `target_id` | Concept IDs for the two ends of the question. |
+| `source_label`, `target_label` | Reader-facing concept labels. |
+| `source_bucket`, `target_bucket` | Coarse location of each concept in the public graph. |
+| `cross_field` | Whether the two concepts sit across different broad buckets. |
+| `score` | Final public ranking score. |
+| `base_score` | Pre-penalty score before duplicate downweighting. |
+| `duplicate_penalty` | Downweight applied when many near-duplicate questions cluster together. |
+| `path_support_norm` | Normalized support from nearby paths in the graph. |
+| `gap_bonus` | Bonus for links that look underexplored relative to the local neighborhood. |
+| `mediator_count` | Count of nearby mediator concepts supporting the question. |
+| `motif_count` | Count of reinforcing local structural motifs. |
+| `cooc_count` | Count of direct papers already observed in the public sample. |
+| `direct_link_status` | Reader-facing summary of direct-literature presence. |
+| `supporting_path_count` | Count of supporting paths surfaced in the release. |
+| `why_now` | Plain-language explanation of why the question is on the release surface. |
+| `recommended_move` | Suggested first research move. |
+| `slice_label` | Slice or family label used on the public site. |
+| `public_pair_label` | Plain-language pair label. |
+| `question_family` | Family label used to avoid repetitive windows. |
+| `suppress_from_public_ranked_window` | Whether the question is kept out of the default ranked window. |
+| `top_mediator_labels` | JSON list of the most important mediating concepts. |
+| `representative_papers` | JSON list of starter papers associated with nearby edges. |
+| `top_countries_source`, `top_countries_target` | JSON lists of common settings for each side of the pair. |
+| `source_context_summary`, `target_context_summary` | Short context summaries for each side. |
+| `common_contexts` | Plain-language summary of overlapping settings. |
+| `app_link` | Deep link into the public app. |
+
+## `central_concepts.csv`
+
+| Field | Meaning |
+| --- | --- |
+| `concept_id` | Stable concept identifier. |
+| `label` | Preferred concept label. |
+| `plain_label` | Smoothed public label if one exists. |
+| `subtitle` | Public clarifier used where concept naming needs context. |
+| `bucket_hint` | Coarse placement of the concept in the graph. |
+| `instance_support` | Number of node instances mapped to the concept. |
+| `distinct_paper_support` | Number of distinct papers touching the concept. |
+| `weighted_degree` | Weighted graph degree in the normalized graph. |
+| `pagerank` | PageRank-style prominence measure. |
+| `in_degree`, `out_degree` | Directed degree counts in the graph tables. |
+| `neighbor_count` | Number of distinct neighboring concepts. |
+| `top_countries`, `top_units` | JSON lists of common settings and units. |
+| `app_link` | Deep link into the public app. |
+
+## Structured JSON assets
+
+| File | Main object | What it contains |
+| --- | --- | --- |
+| `graph_backbone.json` | `nodes`, `edges` | The lightweight public literature map. |
+| `concept_index.json` | concept records | Searchable concept lookup records with aliases and support. |
+| `concept_neighborhoods_index.json` | `{concept_id: shard_path}` | Lookup map from concept ID to neighborhood shard file. |
+| `concept_opportunities_index.json` | `{concept_id: shard_path}` | Lookup map from concept ID to concept-opportunity shard file. |
+| `opportunity_slices.json` | slice arrays | Public question slices such as overall, bridges, frontier, and fast-follow. |
+| `curated_questions.json` | curated records | Hand-curated questions used in the public site surfaces. |
+
+## SQLite bundle tables
+
+| Table | Grain | Description |
+| --- | --- | --- |
+| `release_meta` | key-value | Release metadata and artifact paths. |
+| `release_metrics` | key-value | Corpus and graph counts for the public release. |
+| `top_questions` | one row per released top question | Lightweight question surface mirrored into SQLite. |
+| `questions` | one row per released question | Full public question table. |
+| `central_concepts` | one row per central concept | Central concept table mirrored from CSV. |
+| `concept_index` | one row per concept | Searchable concept records with aliases and app links. |
+| `graph_nodes`, `graph_edges` | one row per map node/edge | Lightweight public graph backbone. |
+| `opportunity_slices` | one row per pair in a named slice | Slice membership plus JSON payload. |
+| `concept_opportunities` | one row per concept-question pairing | Top nearby questions for each concept. |
+| `concept_neighborhoods` | one row per concept-neighbor relation | Incoming, outgoing, and top-neighbor records. |
+| `question_mediators` | one row per mediator within a question | Ranked mediator concepts for each question. |
+| `question_paths` | one row per supporting path | Ranked supporting paths and labels. |
+| `question_papers` | one row per starter paper within a path | Starter papers connected to a path. |
+| `question_neighborhoods` | one row per question | Cached source/target neighborhood JSON. |
+"""
 
 
 def chunk_mapping(mapping: dict[str, Any], output_dir: Path, stem: str) -> dict[str, str]:
@@ -1617,6 +1800,64 @@ def main() -> None:
         "frontiergraph-extended-abstract.pdf",
     )
     db_manifest = write_public_db_release_assets(PUBLIC_RELEASE_DB_PATH)
+    release_readme_path = write_public_download_text(
+        "frontiergraph-release-readme.md",
+        build_release_readme_markdown(
+            {
+                "papers": int(extraction_summary["records"]),
+                "normalized_links": int(hybrid_manifest["normalized_hybrid_rows"]),
+                "native_concepts": int(hybrid_manifest["unique_concepts_in_hybrid_corpus"]),
+                "visible_public_questions": int(candidates_df["pair_key"].astype(str).nunique()) if "pair_key" in candidates_df.columns else int(len(candidates_df)),
+            },
+            PUBLIC_APP_URL,
+        ),
+    )
+    data_dictionary_path = write_public_download_text(
+        "frontiergraph-data-dictionary.md",
+        build_data_dictionary_markdown(),
+    )
+
+    tier1_bundle = write_zip_bundle(
+        "frontiergraph-tier1-lightweight-exports.zip",
+        [
+            (public_path_to_local("/data/v2/top_questions.csv"), "top_questions.csv"),
+            (public_path_to_local("/data/v2/central_concepts.csv"), "central_concepts.csv"),
+            (public_path_to_local("/data/v2/curated_questions.json"), "curated_questions.json"),
+            (public_path_to_local("/data/v2/hybrid_corpus_manifest.json"), "hybrid_corpus_manifest.json"),
+            (public_path_to_local(release_readme_path), "README.md"),
+            (public_path_to_local(data_dictionary_path), "DATA_DICTIONARY.md"),
+        ],
+    )
+    tier2_bundle = write_zip_bundle(
+        "frontiergraph-tier2-structured-assets.zip",
+        [
+            (public_path_to_local("/data/v2/graph_backbone.json"), "graph_backbone.json"),
+            (public_path_to_local("/data/v2/concept_index.json"), "concept_index.json"),
+            (public_path_to_local("/data/v2/concept_neighborhoods_index.json"), "concept_neighborhoods_index.json"),
+            (public_path_to_local("/data/v2/concept_opportunities_index.json"), "concept_opportunities_index.json"),
+            (public_path_to_local("/data/v2/opportunity_slices.json"), "opportunity_slices.json"),
+            (public_path_to_local(release_readme_path), "README.md"),
+            (public_path_to_local(data_dictionary_path), "DATA_DICTIONARY.md"),
+            *bundle_entries_for_directory(NEIGHBORHOOD_SHARDS_DIR, "concept_neighborhoods"),
+            *bundle_entries_for_directory(OPPORTUNITY_SHARDS_DIR, "concept_opportunities"),
+        ],
+    )
+
+    artifact_details = {
+        "working_paper_pdf": build_download_file_entry(working_paper_download),
+        "extended_abstract_pdf": build_download_file_entry(extended_abstract_download),
+        "benchmark_manifest_json": build_download_file_entry("/data/v2/hybrid_corpus_manifest.json"),
+        "top_questions_csv": build_download_file_entry("/data/v2/top_questions.csv"),
+        "curated_questions_json": build_download_file_entry("/data/v2/curated_questions.json"),
+        "central_concepts_csv": build_download_file_entry("/data/v2/central_concepts.csv"),
+        "graph_backbone_json": build_download_file_entry("/data/v2/graph_backbone.json"),
+        "concept_index_json": build_download_file_entry("/data/v2/concept_index.json"),
+        "concept_neighborhoods_index_json": build_download_file_entry("/data/v2/concept_neighborhoods_index.json"),
+        "concept_opportunities_index_json": build_download_file_entry("/data/v2/concept_opportunities_index.json"),
+        "opportunity_slices_json": build_download_file_entry("/data/v2/opportunity_slices.json"),
+        "manifest_json": build_download_file_entry("/downloads/frontiergraph-economics-public.manifest.json"),
+        "checksum_txt": build_download_file_entry("/downloads/frontiergraph-economics-public.sha256.txt"),
+    }
 
     site_data = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -1672,10 +1913,19 @@ def main() -> None:
                 "filename": DB_FILENAME,
                 "public_url": db_manifest["public_url"],
                 "sha256": db_manifest["sha256"],
+                "db_size_bytes": db_manifest["db_size_bytes"],
                 "db_size_gb": db_manifest["db_size_gb"],
             },
             "checksum_path": "/downloads/frontiergraph-economics-public.sha256.txt",
             "manifest_path": "/downloads/frontiergraph-economics-public.manifest.json",
+            "guides": {
+                "readme": build_download_file_entry(release_readme_path),
+                "data_dictionary": build_download_file_entry(data_dictionary_path),
+            },
+            "tier_bundles": {
+                "tier1": tier1_bundle,
+                "tier2": tier2_bundle,
+            },
             "artifacts": {
                 "working_paper_pdf": working_paper_download,
                 "extended_abstract_pdf": extended_abstract_download,
@@ -1689,6 +1939,7 @@ def main() -> None:
                 "concept_opportunities_index_json": "/data/v2/concept_opportunities_index.json",
                 "opportunity_slices_json": "/data/v2/opportunity_slices.json",
             },
+            "artifact_details": artifact_details,
         },
     }
     write_json(GENERATED_DIR / "site-data.json", site_data)

@@ -645,10 +645,55 @@ h3 {
   gap: 1rem;
 }
 
+.download-guidance {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  border-radius: 1.35rem;
+  padding: 1rem 1.1rem;
+}
+
+.download-guidance summary {
+  cursor: pointer;
+  font-family: "Sora", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  list-style: none;
+}
+
+.download-guidance summary::-webkit-details-marker {
+  display: none;
+}
+
+.download-guidance-body {
+  margin-top: 0.9rem;
+}
+
+.download-guidance-grid {
+  margin-top: 0.8rem;
+}
+
+.download-guidance-actions {
+  margin-top: 1rem;
+}
+
 .download-meta {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
+}
+
+.artifact-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.85rem;
+}
+
+.download-panel-actions {
+  margin-top: 1rem;
 }
 
 .paper-hero .lede {

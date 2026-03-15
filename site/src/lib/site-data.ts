@@ -132,6 +132,12 @@ export type DownloadArtifactMap = {
   [key: string]: string;
 };
 
+export type DownloadFile = {
+  path: string;
+  filename: string;
+  size_bytes: number;
+};
+
 export type SiteData = {
   generated_at: string;
   app_url: string;
@@ -169,11 +175,21 @@ export type SiteData = {
       filename: string;
       public_url: string;
       sha256: string;
+      db_size_bytes: number;
       db_size_gb: number;
     };
     checksum_path: string;
     manifest_path: string;
+    guides: {
+      readme: DownloadFile;
+      data_dictionary: DownloadFile;
+    };
+    tier_bundles: {
+      tier1: DownloadFile;
+      tier2: DownloadFile;
+    };
     artifacts: DownloadArtifactMap;
+    artifact_details: Record<string, DownloadFile>;
   };
 };
 
@@ -327,6 +343,19 @@ export function formatCompact(value: number): string {
     notation: "compact",
     maximumFractionDigits: 1,
   }).format(value);
+}
+
+export function formatBytes(value: number): string {
+  if (!Number.isFinite(value) || value <= 0) return "0 B";
+  const units = ["B", "KB", "MB", "GB", "TB"];
+  let size = value;
+  let unit = 0;
+  while (size >= 1024 && unit < units.length - 1) {
+    size /= 1024;
+    unit += 1;
+  }
+  const digits = size >= 100 || unit === 0 ? 0 : size >= 10 ? 1 : 2;
+  return `${size.toFixed(digits)} ${units[unit]}`;
 }
 
 export function shortList(values: string[] | undefined, limit = 3): string {

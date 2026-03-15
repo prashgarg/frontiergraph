@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-15T12:12:37.647875+00:00",
+  "generated_at": "2026-03-15T13:27:32.447188+00:00",
   "app_url": "https://frontiergraph-app-1058669339361.us-central1.run.app",
   "repo_url": "https://github.com/prashgarg/frontiergraph",
   "public_label_glossary": {
@@ -8119,10 +8119,35 @@
       "filename": "frontiergraph-economics-public.db",
       "public_url": "https://storage.googleapis.com/frontiergraph-public-downloads-1058669339361/frontiergraph-economics-public.db",
       "sha256": "8b07503ebc6e125d8e917ccd7c3c155030340bca57517a76692953520560eb49",
+      "db_size_bytes": 1065947136,
       "db_size_gb": 0.99
     },
     "checksum_path": "/downloads/frontiergraph-economics-public.sha256.txt",
     "manifest_path": "/downloads/frontiergraph-economics-public.manifest.json",
+    "guides": {
+      "readme": {
+        "path": "/downloads/frontiergraph-release-readme.md",
+        "filename": "frontiergraph-release-readme.md",
+        "size_bytes": 2459
+      },
+      "data_dictionary": {
+        "path": "/downloads/frontiergraph-data-dictionary.md",
+        "filename": "frontiergraph-data-dictionary.md",
+        "size_bytes": 5506
+      }
+    },
+    "tier_bundles": {
+      "tier1": {
+        "path": "/downloads/frontiergraph-tier1-lightweight-exports.zip",
+        "filename": "frontiergraph-tier1-lightweight-exports.zip",
+        "size_bytes": 47189
+      },
+      "tier2": {
+        "path": "/downloads/frontiergraph-tier2-structured-assets.zip",
+        "filename": "frontiergraph-tier2-structured-assets.zip",
+        "size_bytes": 15893343
+      }
+    },
     "artifacts": {
       "working_paper_pdf": "/downloads/frontiergraph-working-paper.pdf",
       "extended_abstract_pdf": "/downloads/frontiergraph-extended-abstract.pdf",
@@ -8135,6 +8160,73 @@
       "concept_neighborhoods_index_json": "/data/v2/concept_neighborhoods_index.json",
       "concept_opportunities_index_json": "/data/v2/concept_opportunities_index.json",
       "opportunity_slices_json": "/data/v2/opportunity_slices.json"
+    },
+    "artifact_details": {
+      "working_paper_pdf": {
+        "path": "/downloads/frontiergraph-working-paper.pdf",
+        "filename": "frontiergraph-working-paper.pdf",
+        "size_bytes": 1498884
+      },
+      "extended_abstract_pdf": {
+        "path": "/downloads/frontiergraph-extended-abstract.pdf",
+        "filename": "frontiergraph-extended-abstract.pdf",
+        "size_bytes": 494013
+      },
+      "benchmark_manifest_json": {
+        "path": "/data/v2/hybrid_corpus_manifest.json",
+        "filename": "hybrid_corpus_manifest.json",
+        "size_bytes": 911
+      },
+      "top_questions_csv": {
+        "path": "/data/v2/top_questions.csv",
+        "filename": "top_questions.csv",
+        "size_bytes": 161516
+      },
+      "curated_questions_json": {
+        "path": "/data/v2/curated_questions.json",
+        "filename": "curated_questions.json",
+        "size_bytes": 39596
+      },
+      "central_concepts_csv": {
+        "path": "/data/v2/central_concepts.csv",
+        "filename": "central_concepts.csv",
+        "size_bytes": 50643
+      },
+      "graph_backbone_json": {
+        "path": "/data/v2/graph_backbone.json",
+        "filename": "graph_backbone.json",
+        "size_bytes": 4817269
+      },
+      "concept_index_json": {
+        "path": "/data/v2/concept_index.json",
+        "filename": "concept_index.json",
+        "size_bytes": 8367028
+      },
+      "concept_neighborhoods_index_json": {
+        "path": "/data/v2/concept_neighborhoods_index.json",
+        "filename": "concept_neighborhoods_index.json",
+        "size_bytes": 492898
+      },
+      "concept_opportunities_index_json": {
+        "path": "/data/v2/concept_opportunities_index.json",
+        "filename": "concept_opportunities_index.json",
+        "size_bytes": 357775
+      },
+      "opportunity_slices_json": {
+        "path": "/data/v2/opportunity_slices.json",
+        "filename": "opportunity_slices.json",
+        "size_bytes": 1108032
+      },
+      "manifest_json": {
+        "path": "/downloads/frontiergraph-economics-public.manifest.json",
+        "filename": "frontiergraph-economics-public.manifest.json",
+        "size_bytes": 369
+      },
+      "checksum_txt": {
+        "path": "/downloads/frontiergraph-economics-public.sha256.txt",
+        "filename": "frontiergraph-economics-public.sha256.txt",
+        "size_bytes": 100
+      }
     }
   }
 }
