@@ -3,11 +3,11 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-ENV_FILE="${1:-$REPO_DIR/deploy/public_beta.env}"
+ENV_FILE="${1:-$REPO_DIR/deploy/public_release.env}"
 
 if [[ ! -f "$ENV_FILE" ]]; then
   echo "Env file not found: $ENV_FILE"
-  echo "Copy deploy/public_beta.env.example to deploy/public_beta.env and fill it in."
+  echo "Copy deploy/public_release.env.example to deploy/public_release.env and fill it in."
   exit 1
 fi
 

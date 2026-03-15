@@ -19,7 +19,7 @@ export function buildHowItWorksContent(appUrl: string): {
   return {
     foundationHtml: [
       `FrontierGraph builds on the paper-level claim-graph extraction method introduced in <a href="https://arxiv.org/abs/2501.06873"><em>Causal Claims in Economics</em></a> and the project site <a href="https://www.causal.claims/">causal.claims</a>.`,
-      `That foundational work is about extracting paper-local structure from economics papers. FrontierGraph is a separate product layer that uses a public corpus, a ranking layer, and public cleanup rules to surface candidate research questions.`,
+      `That foundational work is about extracting paper-local structure from economics papers. FrontierGraph extends that idea with a published-journal corpus, a native concept vocabulary, deterministic graph ranking, release filtering, and a public interface for browsing candidate research questions.`,
     ],
     railItems: [
       "Not a causal estimate",
@@ -89,19 +89,19 @@ export function buildHowItWorksContent(appUrl: string): {
           {
             question: "Is this just embeddings or semantic similarity?",
             answerHtml: [
-              "No. The extraction foundation comes from paper-local structure, and the downstream ranking and public cleanup layers are deterministic, inspectable steps built on top of that extracted structure.",
+              "No. The extraction foundation comes from paper-local structure, and the downstream concept matching, ranking, and release-filtering layers are deterministic, inspectable steps built on top of that extracted structure.",
             ],
           },
           {
             question: "What is model-extracted, and what is deterministic?",
             answerHtml: [
-              "The model-extracted layer is the paper-level structure recovered from text. Ranking, ontology comparison, duplicate suppression, and the public cleanup steps are deterministic once that extracted layer is fixed.",
+              "The model-extracted layer is the paper-level structure recovered from text. Concept matching, ranking, and the release cleanup steps are deterministic once that extracted layer is fixed.",
             ],
           },
           {
             question: "What should I do after opening one card?",
             answerHtml: [
-              `Check close synonyms, read the papers to start with, inspect the related ideas, and decide whether the question looks like a mechanism, outcome, or setting question. If you want the deeper inspection layer, use <a href="${appUrl}">Inspect evidence</a>.`,
+              `Check close synonyms, read the papers to start with, inspect the related ideas, and decide whether the question looks like a mechanism, outcome, or setting question. If you want a slower topic-level reading, use <a href="${appUrl}">Open the literature map</a>.`,
             ],
           },
         ],
@@ -109,7 +109,7 @@ export function buildHowItWorksContent(appUrl: string): {
       {
         id: "limits",
         eyebrow: "Limits",
-        title: "What the current public build can miss",
+        title: "What the public release can miss",
         intro: "The right way to use FrontierGraph is with useful skepticism. It can save time, but it can also miss things or overstate how open a question really is.",
         questions: [
           {
@@ -139,21 +139,21 @@ export function buildHowItWorksContent(appUrl: string): {
         intro: "Most users do not need the technical glossary on first contact. It is still available when you want exact terms rather than public summaries.",
         questions: [
           {
-            question: "Why is Baseline exploratory the default?",
+            question: "Why does the public site keep one stable concept surface?",
             answerHtml: [
-              "Baseline exploratory is the public discovery regime because it keeps the visible surface broad enough to browse without making the public product too dense. It is a navigation choice, not a claim that this ontology layer is final truth.",
+              "Because most visitors need one readable browsing surface, not several competing ontology choices. The public release keeps one stable concept surface so the question list remains readable and versioned.",
             ],
           },
           {
-            question: "What is duplicate suppression?",
+            question: "What is release filtering?",
             answerHtml: [
-              "Duplicate suppression is a public cleanup layer that removes near-synonym loops from the visible ranking slice. It is a product decision meant to make the public list less repetitive, not a claim about final ontology truth.",
+              "Release filtering is the layer that removes near-synonym loops and repetitive wording from the visible ranking slice. It is there to make the public list easier to browse, not to claim that concept identity has been solved perfectly.",
             ],
           },
           {
-            question: "Where do path support, motif completion, and the other exact terms live?",
+            question: "Where do path support, motif reinforcement, and the other exact terms live?",
             answerHtml: [
-              `They stay on <a href="/method/">Method</a>, which is the exact glossary for the technical layer. Use this page to interpret the product, and Method when you want the precise scoring language.`,
+              `They stay on <a href="/method/">Method</a>, which is the technical glossary for the public release. Use this page to interpret the product, Method when you want the precise scoring language, and <a href="/downloads/">Downloads</a> when you want the paper PDFs.`,
             ],
           },
         ],

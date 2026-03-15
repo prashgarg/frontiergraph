@@ -1,16 +1,18 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import math
 import os
 import re
+import shutil
 import sqlite3
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
-from urllib.parse import quote
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 import networkx as nx
 import pandas as pd
@@ -22,18 +24,21 @@ GENERATED_DIR = SITE_ROOT / "src" / "generated"
 EDITORIAL_OPPORTUNITIES_PATH = SITE_ROOT / "src" / "content" / "editorial-opportunities.json"
 PUBLIC_LABEL_GLOSSARY_PATH = SITE_ROOT / "src" / "content" / "public-label-glossary.json"
 PUBLIC_DATA_DIR = SITE_ROOT / "public" / "data" / "v2"
+PUBLIC_DOWNLOADS_DIR = SITE_ROOT / "public" / "downloads"
 NEIGHBORHOOD_SHARDS_DIR = PUBLIC_DATA_DIR / "concept_neighborhoods"
 OPPORTUNITY_SHARDS_DIR = PUBLIC_DATA_DIR / "concept_opportunities"
 
-APP_URL = "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app"
 REPO_URL = "https://github.com/prashgarg/frontiergraph"
+DB_FILENAME = "frontiergraph-economics-public.db"
+GRAPH_URL = os.environ.get("FRONTIERGRAPH_PUBLIC_APP_URL", "/graph/")
+QUESTION_URL = "/questions/"
 PUBLIC_DB_URL = os.environ.get(
     "FRONTIERGRAPH_PUBLIC_DB_URL",
-    "https://storage.googleapis.com/frontiergraph-public-downloads-1058669339361/frontiergraph-economics-beta.db",
+    f"/downloads/{DB_FILENAME}",
 )
-DB_FILENAME = "frontiergraph-economics-beta.db"
-DB_SHA256 = "e755bcdc3b770fe139dfbbe870be3cc111b10fa95d50f6d6492c70e61c23cde8"
-DB_SIZE_GB = 2.33
+PUBLIC_RELEASE_DIR = ROOT / "data" / "production" / "frontiergraph_public_release"
+PUBLIC_APP_DB_PATH = PUBLIC_RELEASE_DIR / "frontiergraph-economics-public.db"
+PUBLIC_GRAPH_DB_PATH = PUBLIC_RELEASE_DIR / "frontiergraph-economics-public-graph.sqlite"
 
 EXTRACTION_SUMMARY_PATH = (
     ROOT
@@ -44,95 +49,15 @@ EXTRACTION_SUMMARY_PATH = (
     / "analysis"
     / "fwci_core150_adj150_corpus_summary.json"
 )
-BASELINE_MANIFEST_PATH = (
+HYBRID_CORPUS_MANIFEST_PATH = (
     ROOT
     / "data"
-    / "production"
-    / "frontiergraph_concept_compare_v1"
-    / "baseline"
-    / "manifest.json"
+    / "processed"
+    / "research_allocation_v2"
+    / "hybrid_corpus_manifest.json"
 )
-BASELINE_SUPPRESSION_DB_PATH = (
-    ROOT
-    / "data"
-    / "production"
-    / "frontiergraph_concept_compare_v1"
-    / "baseline"
-    / "suppression"
-    / "concept_exploratory_suppressed_top100k_app.sqlite"
-)
-BASELINE_GRAPH_DB_PATH = (
-    ROOT
-    / "data"
-    / "production"
-    / "frontiergraph_concept_compare_v1"
-    / "baseline"
-    / "concept_graph_exploratory.sqlite"
-)
-REGIME_SUMMARY_PATH = (
-    ROOT
-    / "data"
-    / "production"
-    / "frontiergraph_ontology_compare_v1"
-    / "analysis"
-    / "regime_summary.csv"
-)
-RANKING_OVERLAP_PATH = (
-    ROOT
-    / "data"
-    / "production"
-    / "frontiergraph_ontology_compare_v1"
-    / "analysis"
-    / "ranking_overlap_top100.csv"
-)
-SENSITIVITY_SUMMARY_PATH = (
-    ROOT
-    / "data"
-    / "production"
-    / "frontiergraph_ontology_compare_v1"
-    / "analysis"
-    / "sensitivity_summary.md"
-)
-SUPPRESSION_SUMMARY_PATH = (
-    ROOT
-    / "data"
-    / "production"
-    / "frontiergraph_concept_compare_v1"
-    / "baseline"
-    / "suppression"
-    / "analysis"
-    / "suppression_summary.json"
-)
-TOP100_BEFORE_PATH = (
-    ROOT
-    / "data"
-    / "production"
-    / "frontiergraph_concept_compare_v1"
-    / "baseline"
-    / "suppression"
-    / "analysis"
-    / "top100_before.csv"
-)
-TOP100_AFTER_PATH = (
-    ROOT
-    / "data"
-    / "production"
-    / "frontiergraph_concept_compare_v1"
-    / "baseline"
-    / "suppression"
-    / "analysis"
-    / "top100_after.csv"
-)
-REMOVED_BY_HARD_BLOCK_PATH = (
-    ROOT
-    / "data"
-    / "production"
-    / "frontiergraph_concept_compare_v1"
-    / "baseline"
-    / "suppression"
-    / "analysis"
-    / "removed_by_hard_block.csv"
-)
+WORKING_PAPER_PDF_PATH = ROOT / "paper" / "research_allocation_paper.pdf"
+EXTENDED_ABSTRACT_PDF_PATH = ROOT / "paper" / "extended_abstract_research_allocation.pdf"
 
 BACKBONE_NODE_LIMIT = 650
 BACKBONE_EDGE_LIMIT = 2200
@@ -314,6 +239,25 @@ def clean_public_text(value: Any) -> str:
     if text.lower() in {"", "na", "n/a", "nan", "none", "null", "undefined"}:
         return ""
     return text
+
+
+def append_query_value(base_url: str, params: dict[str, Any]) -> str:
+    parts = urlsplit(base_url)
+    query = dict(parse_qsl(parts.query, keep_blank_values=True))
+    for key, value in params.items():
+        cleaned = clean_public_text(value)
+        if cleaned:
+            query[key] = cleaned
+    return urlunsplit((parts.scheme, parts.netloc, parts.path, urlencode(query), parts.fragment))
+
+
+def build_question_link(pair_key: Any) -> str:
+    cleaned = clean_public_text(pair_key)
+    return f"{QUESTION_URL}#{cleaned}" if cleaned else QUESTION_URL
+
+
+def build_graph_link(query: Any) -> str:
+    return append_query_value(GRAPH_URL, {"q": query})
 
 
 def normalize_context_value(value: Any) -> str:
@@ -686,7 +630,7 @@ def load_representative_papers() -> dict[tuple[str, str], list[dict[str, Any]]]:
         ORDER BY candidate_u, candidate_v, representative_rank
     """
 
-    with connect(BASELINE_SUPPRESSION_DB_PATH) as conn:
+    with connect(PUBLIC_APP_DB_PATH) as conn:
         rows = conn.execute(sql).fetchall()
 
     lookup: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
@@ -767,7 +711,6 @@ def opportunity_record(
     editorial: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     values = dict(zip(columns, row))
-    pair_query = quote(f"{values['u_preferred_label']} -> {values['v_preferred_label']}")
     cooc_count = to_int(values["cooc_count"])
     top_source = top_values(values["u_top_countries"], limit=3)
     top_target = top_values(values["v_top_countries"], limit=3)
@@ -830,7 +773,7 @@ def opportunity_record(
             source_context_summary,
             target_context_summary,
         ),
-        "app_link": f"{APP_URL}?search={pair_query}",
+        "app_link": build_question_link(values["pair_key"]),
     }
 
 
@@ -844,17 +787,17 @@ def export_rows_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str
 
 
 def load_candidates() -> pd.DataFrame:
-    with connect(BASELINE_SUPPRESSION_DB_PATH) as conn:
+    with connect(PUBLIC_APP_DB_PATH) as conn:
         return pd.read_sql_query("SELECT * FROM candidates ORDER BY score DESC", conn)
 
 
 def load_node_details() -> pd.DataFrame:
-    with connect(BASELINE_SUPPRESSION_DB_PATH) as conn:
+    with connect(PUBLIC_APP_DB_PATH) as conn:
         return pd.read_sql_query("SELECT * FROM node_details", conn)
 
 
 def load_graph_tables() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    with connect(BASELINE_GRAPH_DB_PATH) as conn:
+    with connect(PUBLIC_GRAPH_DB_PATH) as conn:
         edges = pd.read_sql_query("SELECT * FROM concept_edges", conn)
         profiles = pd.read_sql_query("SELECT * FROM concept_edge_profiles", conn)
         contexts = pd.read_sql_query("SELECT * FROM concept_edge_contexts", conn)
@@ -1225,7 +1168,7 @@ def build_search_index(
                 "top_countries": top_values(getattr(row, "top_countries", None), limit=3),
                 "top_units": top_values(getattr(row, "top_units", None), limit=3),
                 "search_terms": search_terms,
-                "app_link": f"{APP_URL}?search={quote(str(row.preferred_label))}",
+                "app_link": build_graph_link(row.preferred_label),
             }
         )
     records.sort(key=lambda item: (item["weighted_degree"], item["instance_support"]), reverse=True)
@@ -1445,36 +1388,6 @@ def build_public_ranked_window(
     return visible[:limit]
 
 
-def build_compare_payload(regime_summary_df: pd.DataFrame, overlap_df: pd.DataFrame) -> dict[str, Any]:
-    display_names = {"broad": "Broad", "baseline": "Baseline", "conservative": "Conservative"}
-    summary_rows: list[dict[str, Any]] = []
-    for row in regime_summary_df.itertuples(index=False):
-        summary_rows.append(
-            {
-                "regime": row.regime,
-                "label": display_names.get(row.regime, row.label),
-                "head_count": int(row.head_count),
-                "hard_coverage": float(row.hard_coverage),
-                "soft_coverage": float(row.soft_coverage),
-                "strict_candidate_rows": int(row.strict_candidate_rows),
-                "exploratory_candidate_rows": int(row.exploratory_candidate_rows),
-                "strict_concept_edges": int(row.strict_concept_edges),
-                "exploratory_concept_edges": int(row.exploratory_concept_edges),
-            }
-        )
-    overlaps = overlap_df.to_dict("records")
-    return {
-        "default_view": {"regime": "baseline", "mapping": "exploratory"},
-        "best_strict_view": {"regime": "broad", "mapping": "strict"},
-        "summary": summary_rows,
-        "overlaps": overlaps,
-        "narrative": {
-            "default_reason": "Baseline exploratory keeps the head inventory compact while reaching essentially the same exploratory coverage as the other regimes.",
-            "strict_reason": "Broad strict is the clearest strict comparison view because it preserves more observed structure without fragmenting concepts as aggressively as the conservative regime.",
-        },
-    }
-
-
 def write_json(path: Path, payload: Any) -> None:
     def sanitize(value: Any) -> Any:
         if isinstance(value, float):
@@ -1488,6 +1401,47 @@ def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w") as handle:
         json.dump(sanitize(payload), handle, indent=2)
+
+
+def copy_public_download(source: Path, target_filename: str) -> str:
+    if not source.exists():
+        raise FileNotFoundError(f"Required public download asset is missing: {source}")
+    PUBLIC_DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
+    target_path = PUBLIC_DOWNLOADS_DIR / target_filename
+    shutil.copy2(source, target_path)
+    return f"/downloads/{target_filename}"
+
+
+def sha256_file(path: Path, chunk_size: int = 8 * 1024 * 1024) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        while True:
+            chunk = handle.read(chunk_size)
+            if not chunk:
+                break
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def write_public_db_release_assets(db_path: Path) -> dict[str, Any]:
+    if not db_path.exists():
+        raise FileNotFoundError(f"Required public database bundle is missing: {db_path}")
+    PUBLIC_DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
+    size_bytes = db_path.stat().st_size
+    sha256 = sha256_file(db_path)
+    manifest = {
+        "filename": DB_FILENAME,
+        "db_size_bytes": size_bytes,
+        "db_size_gb": round(size_bytes / (1024**3), 2),
+        "sha256": sha256,
+        "public_url": PUBLIC_DB_URL,
+        "published_at": datetime.now(timezone.utc).isoformat(),
+    }
+    write_json(PUBLIC_DOWNLOADS_DIR / "frontiergraph-economics-public.manifest.json", manifest)
+    (PUBLIC_DOWNLOADS_DIR / "frontiergraph-economics-public.sha256.txt").write_text(
+        f"{sha256}  {DB_FILENAME}\n"
+    )
+    return manifest
 
 
 def chunk_mapping(mapping: dict[str, Any], output_dir: Path, stem: str) -> dict[str, str]:
@@ -1507,16 +1461,11 @@ def chunk_mapping(mapping: dict[str, Any], output_dir: Path, stem: str) -> dict[
 def main() -> None:
     GENERATED_DIR.mkdir(parents=True, exist_ok=True)
     PUBLIC_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    PUBLIC_DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
 
     extraction_summary = read_json(EXTRACTION_SUMMARY_PATH)
-    baseline_manifest = read_json(BASELINE_MANIFEST_PATH)
-    suppression_summary = read_json(SUPPRESSION_SUMMARY_PATH)
+    hybrid_manifest = read_json(HYBRID_CORPUS_MANIFEST_PATH)
     editorial_opportunities = load_editorial_opportunities()
-    regime_summary_df = pd.read_csv(REGIME_SUMMARY_PATH)
-    overlap_df = pd.read_csv(RANKING_OVERLAP_PATH)
-    top100_before_df = pd.read_csv(TOP100_BEFORE_PATH)
-    top100_after_df = pd.read_csv(TOP100_AFTER_PATH)
-    removed_hard_df = pd.read_csv(REMOVED_BY_HARD_BLOCK_PATH)
 
     candidates_df = add_slice_flags(load_candidates())
     node_details_df = load_node_details()
@@ -1547,7 +1496,6 @@ def main() -> None:
         editorial_opportunities,
     )
     search_index = build_search_index(node_details_df, node_metrics_df, public_label_glossary)
-    compare_payload = build_compare_payload(regime_summary_df, overlap_df)
 
     central_concepts_df = (
         node_details_df.merge(node_metrics_df, left_on="concept_id", right_on="concept_id", how="left")
@@ -1573,7 +1521,7 @@ def main() -> None:
                 "neighbor_count": int(row.neighbor_count),
                 "top_countries": top_values(row.top_countries, limit=3),
                 "top_units": top_values(row.top_units, limit=3),
-                "app_link": f"{APP_URL}?search={quote(str(row.preferred_label))}",
+                "app_link": build_graph_link(row.preferred_label),
             }
         )
 
@@ -1617,54 +1565,45 @@ def main() -> None:
     write_json(PUBLIC_DATA_DIR / "concept_opportunities_index.json", opportunity_shard_index)
     write_json(PUBLIC_DATA_DIR / "opportunity_slices.json", slices)
     write_json(PUBLIC_DATA_DIR / "central_concepts.json", central_concepts_rows)
-    write_json(PUBLIC_DATA_DIR / "compare_summary.json", compare_payload)
-    write_json(
-        PUBLIC_DATA_DIR / "suppression_before_after.json",
-        {
-            "before": top100_before_df.to_dict("records"),
-            "after": top100_after_df.to_dict("records"),
-            "removed_by_hard_block": removed_hard_df.to_dict("records"),
-            "summary": suppression_summary,
-        },
-    )
+    write_json(PUBLIC_DATA_DIR / "hybrid_corpus_manifest.json", hybrid_manifest)
     export_rows_csv(
         PUBLIC_DATA_DIR / "central_concepts.csv",
         central_concepts_rows,
         ["concept_id", "label", "plain_label", "subtitle", "bucket_hint", "instance_support", "distinct_paper_support", "weighted_degree", "pagerank", "in_degree", "out_degree", "neighbor_count", "top_countries", "top_units", "app_link"],
     )
     export_rows_csv(
-        PUBLIC_DATA_DIR / "top_opportunities.csv",
+        PUBLIC_DATA_DIR / "top_questions.csv",
         slices["overall"],
         ["pair_key", "source_id", "target_id", "source_label", "target_label", "source_bucket", "target_bucket", "cross_field", "score", "base_score", "duplicate_penalty", "path_support_norm", "gap_bonus", "mediator_count", "motif_count", "cooc_count", "direct_link_status", "supporting_path_count", "why_now", "recommended_move", "slice_label", "public_pair_label", "question_family", "suppress_from_public_ranked_window", "top_mediator_labels", "representative_papers", "top_countries_source", "top_countries_target", "source_context_summary", "target_context_summary", "common_contexts", "app_link"],
     )
 
-    baseline_exploratory = next(
-        row for row in compare_payload["summary"] if row["regime"] == "baseline"
+    working_paper_download = copy_public_download(WORKING_PAPER_PDF_PATH, "frontiergraph-working-paper.pdf")
+    extended_abstract_download = copy_public_download(
+        EXTENDED_ABSTRACT_PDF_PATH,
+        "frontiergraph-extended-abstract.pdf",
     )
+    db_manifest = write_public_db_release_assets(PUBLIC_APP_DB_PATH)
+
     site_data = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "app_url": APP_URL,
+        "app_url": GRAPH_URL,
         "repo_url": REPO_URL,
         "public_label_glossary": public_label_glossary,
-        "default_view": {
-            "regime": "Baseline",
-            "mapping": "Exploratory",
-            "db_path": str(BASELINE_SUPPRESSION_DB_PATH),
-        },
         "metrics": {
             "papers": int(extraction_summary["records"]),
+            "papers_with_extracted_edges": int(hybrid_manifest["papers_with_extracted_edges"]),
+            "normalized_graph_papers": int(hybrid_manifest["normalized_benchmark_papers"]),
             "node_instances": int(extraction_summary["total_nodes"]),
             "edges": int(extraction_summary["total_edges"]),
-            "baseline_head_concepts": int(baseline_exploratory["head_count"]),
-            "baseline_soft_coverage": float(baseline_exploratory["soft_coverage"]),
-            "suppressed_candidate_count": int(suppression_summary["visible_count"]),
-            "duplicate_loops_removed_top100": int(suppression_summary["top100_removed_count"]),
+            "normalized_links": int(hybrid_manifest["normalized_hybrid_rows"]),
+            "normalized_directed_links": int(hybrid_manifest["normalized_directed_rows"]),
+            "normalized_undirected_links": int(hybrid_manifest["normalized_undirected_rows"]),
+            "native_concepts": int(hybrid_manifest["unique_concepts_in_hybrid_corpus"]),
+            "visible_public_questions": int(len(candidates_df)),
         },
         "home": {
             "featured_questions": featured_opportunities[:6],
-            "featured_opportunities": featured_opportunities[:6],
             "curated_questions": home_curated_questions,
-            "curated_opportunities": home_curated_questions,
             "featured_central_concepts": central_concepts_rows[:8],
             "graph_snapshot": {
                 "nodes": backbone_payload["counts"]["nodes"],
@@ -1694,45 +1633,21 @@ def main() -> None:
                 "underexplored": slices["underexplored"][:12],
             },
         },
-        "opportunities": {
-            "slices_path": "/data/v2/opportunity_slices.json",
-            "concept_opportunities_index_path": "/data/v2/concept_opportunities_index.json",
-            "curated_front_set": curated_front_set,
-            "top_slices": {
-                "overall": slices["overall"][:12],
-                "bridges": slices["bridges"][:12],
-                "frontier": slices["frontier"][:12],
-                "fast_follow": slices["fast_follow"][:12],
-                "underexplored": slices["underexplored"][:12],
-            },
-        },
-        "compare": {
-            "summary_path": "/data/v2/compare_summary.json",
-            "default_reason": compare_payload["narrative"]["default_reason"],
-            "strict_reason": compare_payload["narrative"]["strict_reason"],
-            "regimes": compare_payload["summary"],
-            "overlaps_preview": compare_payload["overlaps"][:12],
-        },
-        "suppression": {
-            "summary_path": "/data/v2/suppression_before_after.json",
-            "summary": suppression_summary,
-            "top_after": top100_after_df.head(12).to_dict("records"),
-            "top_before": top100_before_df.head(12).to_dict("records"),
-            "removed_preview": removed_hard_df.head(20).to_dict("records"),
-        },
         "downloads": {
-            "beta_db": {
+            "public_db": {
                 "filename": DB_FILENAME,
-                "public_url": PUBLIC_DB_URL,
-                "sha256": DB_SHA256,
-                "db_size_gb": DB_SIZE_GB,
+                "public_url": db_manifest["public_url"],
+                "sha256": db_manifest["sha256"],
+                "db_size_gb": db_manifest["db_size_gb"],
             },
-            "checksum_path": "/downloads/frontiergraph-economics-beta.sha256.txt",
-            "manifest_path": "/downloads/frontiergraph-economics-beta.manifest.json",
+            "checksum_path": "/downloads/frontiergraph-economics-public.sha256.txt",
+            "manifest_path": "/downloads/frontiergraph-economics-public.manifest.json",
             "artifacts": {
-                "top_opportunities_csv": "/data/v2/top_opportunities.csv",
+                "working_paper_pdf": working_paper_download,
+                "extended_abstract_pdf": extended_abstract_download,
+                "benchmark_manifest_json": "/data/v2/hybrid_corpus_manifest.json",
+                "top_questions_csv": "/data/v2/top_questions.csv",
                 "central_concepts_csv": "/data/v2/central_concepts.csv",
-                "compare_summary_json": "/data/v2/compare_summary.json",
                 "graph_backbone_json": "/data/v2/graph_backbone.json",
             },
         },

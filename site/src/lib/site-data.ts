@@ -4,12 +4,15 @@ import publicLabelGlossarySource from "../content/public-label-glossary.json";
 
 export type MetricBundle = {
   papers: number;
+  papers_with_extracted_edges: number;
+  normalized_graph_papers: number;
   node_instances: number;
   edges: number;
-  baseline_head_concepts: number;
-  baseline_soft_coverage: number;
-  suppressed_candidate_count: number;
-  duplicate_loops_removed_top100: number;
+  normalized_links: number;
+  normalized_directed_links: number;
+  normalized_undirected_links: number;
+  native_concepts: number;
+  visible_public_questions: number;
 };
 
 export type RepresentativePaper = {
@@ -125,42 +128,6 @@ export type ConceptLookupRecord = {
   app_link: string;
 };
 
-export type CompareRegime = {
-  regime: string;
-  label: string;
-  head_count: number;
-  hard_coverage: number;
-  soft_coverage: number;
-  strict_candidate_rows: number;
-  exploratory_candidate_rows: number;
-  strict_concept_edges: number;
-  exploratory_concept_edges: number;
-};
-
-export type CompareOverlap = {
-  left: string;
-  right: string;
-  intersection_top100: number;
-  jaccard_top100: number;
-};
-
-export type SuppressionSummary = {
-  candidate_count: number;
-  suppressed_count: number;
-  hard_same_family_count: number;
-  override_count: number;
-  visible_count: number;
-  top100_removed_count: number;
-  top100_overlap_count: number;
-  mean_duplicate_penalty_top100_after: number;
-  mean_duplicate_penalty_top500_before: number;
-  build_seconds: number;
-  lambda_weight: number;
-  generated_at: string;
-  top100_after_count: number;
-  removed_by_hard_block_count: number;
-};
-
 export type DownloadArtifactMap = {
   [key: string]: string;
 };
@@ -170,10 +137,6 @@ export type SiteData = {
   app_url: string;
   repo_url: string;
   public_label_glossary: Record<string, PublicLabelGloss>;
-  default_view: {
-    regime: string;
-    mapping: string;
-  };
   metrics: MetricBundle;
   home: {
     featured_questions: Opportunity[];
@@ -201,28 +164,8 @@ export type SiteData = {
     ranked_questions: Opportunity[];
     top_slices: Record<string, Opportunity[]>;
   };
-  opportunities?: {
-    slices_path: string;
-    concept_opportunities_index_path: string;
-    curated_front_set: CuratedQuestion[];
-    top_slices: Record<string, Opportunity[]>;
-  };
-  compare: {
-    summary_path: string;
-    default_reason: string;
-    strict_reason: string;
-    regimes: CompareRegime[];
-    overlaps_preview: CompareOverlap[];
-  };
-  suppression: {
-    summary_path: string;
-    summary: SuppressionSummary;
-    top_before: Record<string, unknown>[];
-    top_after: Record<string, unknown>[];
-    removed_preview: Record<string, unknown>[];
-  };
   downloads: {
-    beta_db: {
+    public_db: {
       filename: string;
       public_url: string;
       sha256: string;
@@ -295,10 +238,8 @@ function buildSiteData(): SiteData {
   const payload = siteData as SiteData;
   const editorialItems = normalizeEditorialSource();
   const glossarySource = normalizePublicLabelGlossarySource();
-  const questionPayload = payload.questions ?? payload.opportunities;
-  invariant(questionPayload, "Generated site data is missing questions/opportunities payload");
-  const homeLegacy = payload.home as Record<string, unknown>;
-  const homeCuratedPayload = payload.home.curated_questions ?? (homeLegacy.curated_opportunities as CuratedQuestion[] | undefined);
+  const questionPayload = payload.questions;
+  invariant(questionPayload, "Generated site data is missing questions payload");
   const availablePairs = new Set<string>();
   for (const row of Object.values(questionPayload?.top_slices ?? {}).flat()) availablePairs.add(row.pair_key);
   for (const row of questionPayload?.curated_front_set ?? []) availablePairs.add(row.pair_key);
@@ -340,7 +281,7 @@ function buildSiteData(): SiteData {
     home: {
       ...payload.home,
       curated_questions: validateCuratedSet(
-        homeCuratedPayload ?? [],
+        payload.home.curated_questions ?? [],
         expectedHome,
         "home.curated_questions",
       ),

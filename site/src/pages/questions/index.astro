@@ -19,7 +19,7 @@ const questions = data.questions.ranked_questions;
         These are starting points, not verdicts. Use them to decide what looks worth reading, scoping, or testing next.
       </p>
       <div class="button-row">
-        <a class="button-secondary" href={data.app_url}>Inspect evidence</a>
+        <a class="button-secondary" href={data.app_url}>Open literature map</a>
         <a class="button-tertiary" href="/how-it-works/">How it works</a>
       </div>
     </section>
@@ -93,11 +93,31 @@ const questions = data.questions.ranked_questions;
         <span class="eyebrow">Before you trust a question</span>
         <h2>Check what the evidence shown here means, and what it does not mean, before you decide a question is truly open.</h2>
         <div class="button-row">
-          <a class="button-secondary" href="/how-it-works/">Open How It Works</a>
+          <a class="button-secondary" href="/how-it-works/">Open How it works</a>
           <a class="button-tertiary" href="/method/">Open Method</a>
-          <a class="button-tertiary" href={data.app_url}>Inspect evidence</a>
+          <a class="button-tertiary" href={data.app_url}>Open literature map</a>
         </div>
       </article>
     </section>
   </main>
 </BaseLayout>
+
+<script is:inline>
+  const focusQuestionFromHash = () => {
+    const hash = window.location.hash;
+    if (!hash || hash.length <= 1) return;
+    const target = document.getElementById(hash.slice(1));
+    if (!(target instanceof HTMLElement)) return;
+    for (const card of document.querySelectorAll(".opportunity-card.is-targeted")) {
+      card.classList.remove("is-targeted");
+    }
+    target.classList.add("is-targeted");
+    const evidence = target.querySelector("[data-role='opportunity-evidence']");
+    if (evidence instanceof HTMLDetailsElement) {
+      evidence.open = true;
+    }
+  };
+
+  window.addEventListener("hashchange", focusQuestionFromHash);
+  window.addEventListener("load", focusQuestionFromHash);
+</script>

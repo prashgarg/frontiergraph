@@ -1,45 +1,41 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { data, formatNumber, formatPercent } from "../../lib/site-data";
-
-const baseline = data.compare.regimes.find((regime) => regime.regime === "baseline") ?? data.compare.regimes[0];
-const broad = data.compare.regimes.find((regime) => regime.regime === "broad");
-const conservative = data.compare.regimes.find((regime) => regime.regime === "conservative");
+import { data, formatNumber } from "../../lib/site-data";
 ---
 
 <BaseLayout
   title="Method | FrontierGraph"
-  description="How FrontierGraph builds a concept graph of economics and ranks underexplored links."
+  description="How FrontierGraph builds a public economics concept graph and ranks candidate research questions."
 >
   <main>
     <section class="page-hero">
       <span class="eyebrow">Method</span>
-      <h1>The technical appendix behind the public product.</h1>
+      <h1>The method notes behind the public FrontierGraph release.</h1>
       <p class="lede">
-        AI extracts graph structure from paper text. Ontology construction, ranking, comparison, and duplicate cleanup are deterministic and inspectable. This page is the exact glossary for the technical terms, while <a href="/how-it-works/">How It Works</a> is the public page for trust, limits, and interpretation.
+        FrontierGraph extracts paper-local graph structure from economics paper text, matches recurring labels into a native concept vocabulary, ranks missing links with deterministic graph rules, and then edits the released list to remove obvious duplicates and repetitive phrasing.
       </p>
       <div class="button-row">
-        <span class="field-pill">Default: {data.default_view.regime} {data.default_view.mapping}</span>
-        <a class="button-secondary" href="/how-it-works/">How It Works</a>
-        <a class="button-tertiary" href="/advanced/">Open Advanced</a>
-        <a class="button-secondary" href="/graph/">Open Literature Map</a>
+        <span class="field-pill">One canonical public release</span>
+        <a class="button-secondary" href="/how-it-works/">How it works</a>
+        <a class="button-secondary" href={data.downloads.artifacts.working_paper_pdf}>Read paper</a>
+        <a class="button-tertiary" href="/downloads/">Downloads</a>
+        <a class="button-secondary" href="/graph/">Open literature map</a>
       </div>
     </section>
 
     <section class="section">
       <article class="content-panel summary-panel">
         <span class="eyebrow">Short version</span>
-        <h2>FrontierGraph turns a published-paper corpus into a reusable concept map, then ranks the links that still look structurally incomplete.</h2>
+        <h2>FrontierGraph turns a large published-journal corpus into a reusable concept graph, then ranks the questions that still look structurally under-connected.</h2>
         <p class="card-copy">
-          The current public build uses <strong>{formatNumber(data.metrics.papers)}</strong> papers,
-          <strong> {formatNumber(data.metrics.node_instances)}</strong> extracted node instances, and
-          <strong> {formatNumber(data.metrics.edges)}</strong> extracted edges. The public surface defaults to
-          <strong> {baseline.label} exploratory</strong> because it stays compact without giving up much exploratory coverage.
+          The public release screens <strong>{formatNumber(data.metrics.papers)}</strong> published-journal papers, finds extracted graph structure in
+          <strong> {formatNumber(data.metrics.papers_with_extracted_edges)}</strong> of them, and carries
+          <strong> {formatNumber(data.metrics.normalized_graph_papers)}</strong> papers into the normalized concept graph used by the benchmark and the site.
         </p>
         <div class="pill-row">
-          <span class="field-pill">{formatPercent(baseline.soft_coverage)} exploratory coverage</span>
-          <span class="field-pill">{formatNumber(baseline.head_count)} baseline head concepts</span>
-          <span class="field-pill">{formatNumber(data.metrics.suppressed_candidate_count)} visible ranked links</span>
+          <span class="field-pill">{formatNumber(data.metrics.native_concepts)} native concepts</span>
+          <span class="field-pill">{formatNumber(data.metrics.normalized_links)} normalized links</span>
+          <span class="field-pill">{formatNumber(data.metrics.visible_public_questions)} released questions</span>
         </div>
       </article>
     </section>
@@ -54,11 +50,10 @@ const conservative = data.compare.regimes.find((regime) => regime.regime === "co
         </summary>
         <div class="method-body">
           <p>
-            The public build uses the current <strong>FWCI core150 + adjacent150</strong> source cut and its merged extraction corpus.
-            That keeps the graph tied to a curated published-paper sample rather than a broad scrape.
+            The public release starts from an OpenAlex-linked published-journal corpus built from the <strong>FWCI core150 + adjacent150</strong> journal cut. That keeps the site tied to a defined, versioned paper sample rather than to an unconstrained scrape.
           </p>
           <p>
-            Each paper contributes a local graph built from title and abstract text, so the final product is assembled from many paper-level structures rather than one global embedding pass.
+            Each paper contributes a paper-local graph built from title and abstract text. The larger literature object is assembled from those paper-level graphs, not from one global semantic pass over the corpus.
           </p>
         </div>
       </details>
@@ -72,34 +67,10 @@ const conservative = data.compare.regimes.find((regime) => regime.regime === "co
         </summary>
         <div class="method-body">
           <p>
-            The model extracts paper-local nodes and edges only. Nodes carry study-local context where available, while edges retain directionality, relation type, claim status, and evidence-method metadata.
+            The model extracts paper-local nodes and edges only. Nodes keep study-local wording where possible, while edges retain directionality, relation type, claim status, and evidence-method metadata when that information is visible in the text.
           </p>
           <p>
-            AI stops there. Ranking, ontology comparison, and cleanup all happen in deterministic downstream layers.
-          </p>
-        </div>
-      </details>
-
-      <details class="method-detail">
-        <summary>
-          <span>
-            <span class="eyebrow">Ontology</span>
-            <strong>Why Baseline exploratory is the default</strong>
-          </span>
-        </summary>
-        <div class="method-body">
-          <p>
-            FrontierGraph keeps three support-gated ontology regimes visible. The public default is
-            <strong> {baseline.label} exploratory</strong>, with <strong>{formatNumber(baseline.head_count)}</strong> head concepts and
-            <strong> {formatPercent(baseline.soft_coverage)}</strong> exploratory coverage.
-          </p>
-          <div class="pill-row">
-            {broad && <span class="field-pill">Broad: {formatNumber(broad.head_count)} heads</span>}
-            <span class="field-pill">Baseline: {formatNumber(baseline.head_count)} heads</span>
-            {conservative && <span class="field-pill">Conservative: {formatNumber(conservative.head_count)} heads</span>}
-          </div>
-          <p>
-            “Strict” mappings keep only high-confidence concept identity. “Exploratory” mappings widen coverage by adding nearest-head assignments for product-facing navigation and ranking.
+            The model stops there. Concept matching, ranking, and release filtering all happen in deterministic downstream layers once the paper-local graph tables are fixed.
           </p>
         </div>
       </details>
@@ -107,24 +78,40 @@ const conservative = data.compare.regimes.find((regime) => regime.regime === "co
       <details class="method-detail">
         <summary>
           <span>
-            <span class="eyebrow">Ranking and cleanup</span>
-            <strong>How missing links become the public opportunity surface</strong>
+            <span class="eyebrow">Concept identity</span>
+            <strong>How local labels become reusable concepts</strong>
           </span>
         </summary>
         <div class="method-body">
           <p>
-            The ranker combines deterministic graph signals such as path support, gap bonus, motif completion, mediator structure, co-occurrence scarcity, and hub penalties.
+            Recurring paper-local labels are matched into a native concept vocabulary rather than left as raw strings. The pipeline starts with lexical normalization and support-gated head concepts, then uses text embeddings to match harder labels to the nearest established concept while keeping mapping provenance.
           </p>
           <p>
-            A second deterministic suppression layer cleans near-synonym loops on the public Baseline exploratory top slice, leaving <strong>{formatNumber(data.metrics.suppressed_candidate_count)}</strong> visible candidates after cleanup.
+            In plain terms, close labels such as spelling variants, local abbreviations, and slightly different phrasings can still land on the same shared concept when the textual similarity is strong enough. The working paper documents the fuller normalization protocol and its release choices in more detail.
+          </p>
+        </div>
+      </details>
+
+      <details class="method-detail">
+        <summary>
+          <span>
+            <span class="eyebrow">Ranking and release</span>
+            <strong>How missing links become public research questions</strong>
+          </span>
+        </summary>
+        <div class="method-body">
+          <p>
+            The ranker combines deterministic graph signals such as path support, local gap structure, motif reinforcement, mediator structure, co-occurrence scarcity, and hub penalties.
           </p>
           <p>
-            On the public site, curated cards use editorial question order when they present a research direction, while the machine-ranked lists deliberately show neutral pair wording so the public surface does not imply causal direction from storage order alone.
+            After ranking, the release filter removes near-synonym loops and repetitive phrasing from the public list, leaving <strong>{formatNumber(data.metrics.visible_public_questions)}</strong> questions in the released browsing surface.
+          </p>
+          <p>
+            Curated cards use editorial question wording when they present a research direction, while the broader machine-ranked lists keep neutral pair wording so the public surface does not imply causal direction from storage order alone.
           </p>
           <div class="button-row">
             <a class="button-secondary" href="/questions/">See Research Questions</a>
-            <a class="button-tertiary" href="/how-it-works/">Read How It Works</a>
-            <a class="button-tertiary" href="/compare/">Inspect regime comparison</a>
+            <a class="button-tertiary" href="/how-it-works/">Read How it works</a>
           </div>
         </div>
       </details>
@@ -142,20 +129,20 @@ const conservative = data.compare.regimes.find((regime) => regime.regime === "co
             <p>The direct pair is weak or missing, but nearby concepts already connect the two sides of the question.</p>
           </article>
           <article>
-            <h3>Gap bonus</h3>
+            <h3>Gap structure</h3>
             <p>The surrounding neighborhood looks fuller than the direct link itself, so the pair may be lagging behind nearby work.</p>
           </article>
           <article>
-            <h3>Motifs</h3>
-            <p>Repeated local graph patterns that support the same connection. Useful for scoring, but hidden on the main public cards.</p>
+            <h3>Motif reinforcement</h3>
+            <p>Repeated local graph patterns that reinforce the same connection. Useful for ranking, but hidden on the main public cards.</p>
           </article>
           <article>
             <h3>Mediator count</h3>
             <p>The number of nearby concepts that help connect the two sides of the pair through the observed graph.</p>
           </article>
           <article>
-            <h3>Duplicate suppression</h3>
-            <p>The cleanup layer removes near-synonym loops from the public Baseline exploratory surface so the visible top slice is less repetitive.</p>
+            <h3>Release filter</h3>
+            <p>The release filter removes near-synonym loops and repeated wording so the public list stays easier to browse.</p>
           </article>
         </div>
       </details>

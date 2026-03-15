@@ -12,9 +12,9 @@ const {
   conceptIndexPath,
   neighborhoodsIndexPath,
   opportunitiesIndexPath,
-  appUrl = "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app",
+  appUrl = "/graph/",
   title = "Search the concept graph",
-  caption = "Look up a concept by label or alias, inspect its local neighborhood, and jump into the explorer for the full ranked context.",
+  caption = "Look up a concept by label or alias, inspect its local neighborhood, and open a focused map view when you want more context.",
 } = Astro.props;
 
 const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
@@ -44,7 +44,7 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
       </label>
       <div class="lookup-actions">
         <a class="button-secondary" href="/graph/">Open graph viewer</a>
-        <a class="button-primary" data-role="open-app" href={appUrl}>Open explorer</a>
+        <a class="button-primary" data-role="open-app" href={appUrl}>Open focused map</a>
       </div>
     </div>
 
@@ -161,7 +161,7 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
               ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
               <div class="mini-copy">${escapeHtml(item.direct_link_status)} · supported by ${formatNumber(safeNumber(item.supporting_path_count))} nearby concepts</div>
               <div class="mini-copy">Context: ${escapeHtml(item.source_context_summary)} on one side and ${escapeHtml(item.target_context_summary)} on the other.</div>
-              <a class="text-link" href="${escapeHtml(item.app_link)}">Open in explorer</a>
+              <a class="text-link" href="${escapeHtml(item.app_link)}">Open question card</a>
             </article>
           `,
         )

@@ -1,55 +1,73 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { data, formatCompact, formatNumber } from "../../lib/site-data";
+import { data, formatCompact } from "../../lib/site-data";
 
-const betaDb = data.downloads.beta_db;
+const publicDb = data.downloads.public_db;
 const artifacts = data.downloads.artifacts;
-const publicReady = Boolean(betaDb.public_url);
+const publicReady = Boolean(publicDb.public_url);
 ---
 
 <BaseLayout
   title="Downloads | FrontierGraph"
-  description="Download the FrontierGraph code, beta database, graph assets, and comparison summaries."
+  description="Download the FrontierGraph paper, extended abstract, public database package, and exported site assets."
 >
   <main>
     <section class="page-hero">
       <span class="eyebrow">Downloads</span>
-      <h1>Code, data, graph assets, and comparison summaries.</h1>
+      <h1>Paper, data, graph assets, and public release files.</h1>
       <p class="lede">
-        The public release exposes the repository, the current beta database package, the graph assets used by the site,
-        and the comparison summaries used to choose the default concept view.
+        The public release exposes the repository, the current working paper, the extended abstract, the downloadable SQLite bundle, and the static assets used by the site.
       </p>
       <div class="button-row">
         <a class="button-primary" href={data.repo_url}>Open repository</a>
-        <a class="button-secondary" href="/how-it-works/">How It Works</a>
-        <a class="button-tertiary" href="/advanced/">Back to advanced hub</a>
+        <a class="button-secondary" href={artifacts.working_paper_pdf}>Read working paper</a>
+        <a class="button-secondary" href="/how-it-works/">How it works</a>
+        <a class="button-tertiary" href="/graph/">Open literature map</a>
       </div>
     </section>
 
     <section class="section download-stack">
       <article class="download-panel">
+        <span class="eyebrow">Papers</span>
+        <h3>Working paper and extended abstract</h3>
+        <p class="download-copy">
+          Read the longer working-paper draft or the shorter extended abstract that explains the project, the benchmark, and the public research-question surface.
+        </p>
+        <div class="card-grid download-artifact-grid">
+          <a class="card artifact-card" href={artifacts.working_paper_pdf}>
+            <span class="eyebrow">Paper</span>
+            <h3>Working paper PDF</h3>
+            <p class="card-copy">The current economics-first working-paper draft behind the site and benchmark.</p>
+          </a>
+          <a class="card artifact-card" href={artifacts.extended_abstract_pdf}>
+            <span class="eyebrow">Short version</span>
+            <h3>Extended abstract PDF</h3>
+            <p class="card-copy">A shorter version for readers who want the setup and current findings without the full manuscript.</p>
+          </a>
+        </div>
+      </article>
+
+      <article class="download-panel">
         <span class="eyebrow">Main database</span>
-        <h3>{betaDb.filename}</h3>
+        <h3>{publicDb.filename}</h3>
         <div class="download-meta">
           <div>
             <span class="tiny-label">Approximate size</span>
-            <div class="big-number">{betaDb.db_size_gb} GB</div>
+            <div class="big-number">{publicDb.db_size_gb} GB</div>
           </div>
           <div>
             <span class="tiny-label">SHA-256</span>
-            <div class="card-copy">{betaDb.sha256.slice(0, 16)}...</div>
+            <div class="card-copy">{publicDb.sha256.slice(0, 16)}...</div>
           </div>
         </div>
         <p class="download-copy">
-          The public beta database package behind the release. It is accompanied by manifest and checksum files so users
-          can verify the bundle they download.
+          A downloadable SQLite bundle of the released site assets, including ranked questions, central concepts, concept lookups, neighborhood records, and the public literature-map backbone. Use the manifest and checksum if you want to verify the file you download.
         </p>
-        {!publicReady && <p class="warning-note">Public mirror pending. The metadata is live, but the object is not yet public.</p>}
         <div class="button-row">
           {publicReady ? (
-            <a class="button-primary" href={betaDb.public_url}>Download beta DB</a>
+            <a class="button-primary" href={publicDb.public_url}>Download public DB</a>
           ) : (
-            <span class="download-badge">Mirror pending</span>
+            <span class="download-badge">DB unavailable</span>
           )}
           <a class="button-secondary" href={data.downloads.checksum_path}>Checksum</a>
           <a class="button-secondary" href={data.downloads.manifest_path}>Manifest</a>
@@ -58,50 +76,64 @@ const publicReady = Boolean(betaDb.public_url);
 
       <article class="download-panel">
         <span class="eyebrow">Site assets</span>
-        <h3>Literature map, question, and comparison artifacts</h3>
+        <h3>Literature map, question, and benchmark artifacts</h3>
         <p class="download-copy">
-          These are the same static assets the public site uses for the literature map, top research questions, central concept
-          tables, and ontology comparison summaries.
+          These are the same static assets the public site uses for the literature map, ranked research questions, central concept tables, and benchmark summary facts.
         </p>
         <div class="card-grid download-artifact-grid">
           <a class="card artifact-card" href={artifacts.graph_backbone_json}>
             <span class="eyebrow">Map asset</span>
             <h3>Literature map JSON</h3>
-            <p class="card-copy">Observed baseline backbone used on the public literature map page.</p>
+            <p class="card-copy">Observed public backbone used on the literature map page.</p>
           </a>
           <a class="card artifact-card" href={artifacts.central_concepts_csv}>
             <span class="eyebrow">Concept export</span>
             <h3>Central concepts CSV</h3>
             <p class="card-copy">Weighted-degree and support statistics for the public central concept table.</p>
           </a>
-          <a class="card artifact-card" href={artifacts.top_opportunities_csv}>
+          <a class="card artifact-card" href={artifacts.top_questions_csv}>
             <span class="eyebrow">Question export</span>
-            <h3>Top research questions CSV</h3>
-            <p class="card-copy">The current suppressed baseline research-question surface in a lightweight tabular form.</p>
+            <h3>Top questions CSV</h3>
+            <p class="card-copy">The current cleaned default research-question surface in a lightweight tabular form.</p>
           </a>
-          <a class="card artifact-card" href={artifacts.compare_summary_json}>
-            <span class="eyebrow">Comparison export</span>
-            <h3>Compare summary JSON</h3>
-            <p class="card-copy">Broad, Baseline, and Conservative regime summaries used on the comparison page.</p>
+          <a class="card artifact-card" href={artifacts.benchmark_manifest_json}>
+            <span class="eyebrow">Benchmark facts</span>
+            <h3>Benchmark manifest JSON</h3>
+            <p class="card-copy">Canonical fuller-corpus counts for papers, normalized links, and native concepts used in the paper-facing benchmark.</p>
           </a>
         </div>
       </article>
 
       <article class="download-panel">
-        <span class="eyebrow">Working facts</span>
-        <h3>Current public build at a glance</h3>
+        <span class="eyebrow">Public release</span>
+        <h3>The release at a glance</h3>
+        <p class="download-copy">
+          The public site screens a larger published-journal benchmark than the visible question list itself. These counts separate the source corpus, the normalized graph, and the public-facing shortlist.
+        </p>
         <div class="metrics-grid">
           <article class="metric-card">
             <div class="metric-value">{formatCompact(data.metrics.papers)}</div>
-            <div class="metric-label">papers</div>
+            <div class="metric-label">published-journal papers screened</div>
           </article>
           <article class="metric-card">
-            <div class="metric-value">{formatCompact(data.metrics.baseline_head_concepts)}</div>
-            <div class="metric-label">baseline head concepts</div>
+            <div class="metric-value">{formatCompact(data.metrics.papers_with_extracted_edges)}</div>
+            <div class="metric-label">papers with extracted graph structure</div>
           </article>
           <article class="metric-card">
-            <div class="metric-value">{formatCompact(data.metrics.suppressed_candidate_count)}</div>
-            <div class="metric-label">visible candidates in the default public surface</div>
+            <div class="metric-value">{formatCompact(data.metrics.normalized_graph_papers)}</div>
+            <div class="metric-label">papers in the normalized concept graph</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-value">{formatCompact(data.metrics.normalized_links)}</div>
+            <div class="metric-label">normalized concept links</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-value">{formatCompact(data.metrics.native_concepts)}</div>
+            <div class="metric-label">native concepts</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-value">{formatCompact(data.metrics.visible_public_questions)}</div>
+            <div class="metric-label">questions in the released browsing surface</div>
           </article>
         </div>
       </article>

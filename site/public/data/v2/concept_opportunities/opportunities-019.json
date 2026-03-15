@@ -63,7 +63,7 @@
       "source_context_summary": "United States",
       "target_context_summary": "United States and China",
       "common_contexts": "econometric methods studies are common in United States; Method of Moments Quantile Regression (MMQR) studies are common in United States and China.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=econometric%20methods%20-%3E%20Method%20of%20Moments%20Quantile%20Regression%20%28MMQR%29"
+      "app_link": "/questions/#FG3C005959__FG3C006644"
     }
   ],
   "FG3C006539": [
@@ -131,7 +131,7 @@
       "source_context_summary": "United States, Canada, and related settings",
       "target_context_summary": "China and United States",
       "common_contexts": "Real Estate Investment Trusts (REITs) studies are common in United States, Canada, and related settings; investment studies are common in China and United States.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=Real%20Estate%20Investment%20Trusts%20%28REITs%29%20-%3E%20investment"
+      "app_link": "/questions/#FG3C000019__FG3C006539"
     }
   ],
   "FG3C005801": [
@@ -199,7 +199,7 @@
       "source_context_summary": "United States, Brazil, and related settings",
       "target_context_summary": "United States and United Kingdom",
       "common_contexts": "employer size studies are common in United States, Brazil, and related settings; unemployment studies are common in United States and United Kingdom.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=employer%20size%20-%3E%20unemployment"
+      "app_link": "/questions/#FG3C000009__FG3C005801"
     },
     {
       "pair_key": "FG3C000007__FG3C005801",
@@ -265,7 +265,7 @@
       "source_context_summary": "United States, Brazil, and related settings",
       "target_context_summary": "United States and China",
       "common_contexts": "employer size studies are common in United States, Brazil, and related settings; employment studies are common in United States and China.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=employer%20size%20-%3E%20employment"
+      "app_link": "/questions/#FG3C000007__FG3C005801"
     }
   ],
   "FG3C005310": [
@@ -330,7 +330,7 @@
       "source_context_summary": "No dominant source setting in the current public sample",
       "target_context_summary": "China and India",
       "common_contexts": "",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=balanced%20growth%20path%20-%3E%20economic%20growth"
+      "app_link": "/questions/#FG3C000001__FG3C005310"
     }
   ],
   "FG3C005031": [
@@ -400,7 +400,7 @@
       "source_context_summary": "developing countries, Latin America, and related settings",
       "target_context_summary": "United States, France, and related settings",
       "common_contexts": "inflation targeting studies are common in developing countries, Latin America, and related settings; household inflation expectations studies are common in United States, France, and related settings.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20targeting%20-%3E%20household%20inflation%20expectations"
+      "app_link": "/questions/#FG3C000303__FG3C005031"
     },
     {
       "pair_key": "FG3C000002__FG3C005031",
@@ -467,7 +467,7 @@
       "source_context_summary": "United States and China",
       "target_context_summary": "United States, France, and related settings",
       "common_contexts": "inflation studies are common in United States and China; household inflation expectations studies are common in United States, France, and related settings.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20-%3E%20household%20inflation%20expectations"
+      "app_link": "/questions/#FG3C000002__FG3C005031"
     }
   ],
   "FG3C004598": [
@@ -536,7 +536,7 @@
       "source_context_summary": "United States, Europe, and related settings",
       "target_context_summary": "China and United States",
       "common_contexts": "bank capital requirements studies are common in United States, Europe, and related settings; bank profitability studies are common in China and United States.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=bank%20capital%20requirements%20-%3E%20bank%20profitability"
+      "app_link": "/questions/#FG3C000259__FG3C004598"
     }
   ],
   "FG3C004702": [
@@ -605,7 +605,7 @@
       "source_context_summary": "China, Aotearoa New Zealand, and related settings",
       "target_context_summary": "United States, China, and related settings",
       "common_contexts": "stated preference survey studies are common in China, Aotearoa New Zealand, and related settings; preference heterogeneity studies are common in United States, China, and related settings.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=stated%20preference%20survey%20-%3E%20preference%20heterogeneity"
+      "app_link": "/questions/#FG3C000523__FG3C004702"
     }
   ],
   "FG3C006312": [
@@ -671,7 +671,7 @@
       "source_context_summary": "United States and China",
       "target_context_summary": "United States and United Kingdom",
       "common_contexts": "oil prices studies are common in United States and China; volatility of stock prices studies are common in United States and United Kingdom.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=oil%20prices%20-%3E%20volatility%20of%20stock%20prices"
+      "app_link": "/questions/#FG3C000034__FG3C006312"
     }
   ],
   "FG3C005734": [
@@ -738,7 +738,7 @@
       "source_context_summary": "China, Saudi Arabia, and related settings",
       "target_context_summary": "China and India",
       "common_contexts": "CO2 intensity studies are common in China, Saudi Arabia, and related settings; carbon emissions studies are common in China and India.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20intensity%20-%3E%20carbon%20emissions"
+      "app_link": "/questions/#FG3C000010__FG3C005734"
     },
     {
       "pair_key": "FG3C000003__FG3C005734",
@@ -805,7 +805,7 @@
       "source_context_summary": "China and India",
       "target_context_summary": "China, Saudi Arabia, and related settings",
       "common_contexts": "CO2 emissions studies are common in China and India; CO2 intensity studies are common in China, Saudi Arabia, and related settings.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emissions%20-%3E%20CO2%20intensity"
+      "app_link": "/questions/#FG3C000003__FG3C005734"
     }
   ],
   "FG3C002214": [
@@ -873,7 +873,7 @@
       "source_context_summary": "China and Taiwan",
       "target_context_summary": "China and India",
       "common_contexts": "technology level studies are common in China and Taiwan; green technology innovation studies are common in China and India.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=technology%20level%20-%3E%20green%20technology%20innovation"
+      "app_link": "/questions/#FG3C000094__FG3C002214"
     }
   ],
   "FG3C001837": [
@@ -942,7 +942,7 @@
       "source_context_summary": "China, Italy, and related settings",
       "target_context_summary": "China and India",
       "common_contexts": "firm size studies are common in China, Italy, and related settings; firm output studies are common in China and India.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=firm%20size%20-%3E%20firm%20output"
+      "app_link": "/questions/#FG3C000020__FG3C001837"
     }
   ],
   "FG3C002439": [
@@ -1009,7 +1009,7 @@
       "source_context_summary": "China and Europe",
       "target_context_summary": "Vietnam",
       "common_contexts": "green bond market studies are common in China and Europe; cryptocurrency market studies are common in Vietnam.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20bond%20market%20-%3E%20cryptocurrency%20market"
+      "app_link": "/questions/#FG3C001999__FG3C002439"
     },
     {
       "pair_key": "FG3C000559__FG3C002439",
@@ -1073,7 +1073,7 @@
       "source_context_summary": "Vietnam",
       "target_context_summary": "China",
       "common_contexts": "cryptocurrency market studies are common in Vietnam; Chinese stock market studies are common in China.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=cryptocurrency%20market%20-%3E%20Chinese%20stock%20market"
+      "app_link": "/questions/#FG3C000559__FG3C002439"
     }
   ],
   "FG3C003731": [
@@ -1140,7 +1140,7 @@
       "source_context_summary": "United States and Lao PDR",
       "target_context_summary": "United States and United Kingdom",
       "common_contexts": "foreign interest rates studies are common in United States and Lao PDR; real interest rates studies are common in United States and United Kingdom.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=foreign%20interest%20rates%20-%3E%20real%20interest%20rates"
+      "app_link": "/questions/#FG3C000254__FG3C003731"
     }
   ],
   "FG3C002389": [
@@ -1208,7 +1208,7 @@
       "source_context_summary": "United States",
       "target_context_summary": "European Union (27 member countries), European, and related settings",
       "common_contexts": "U.S. stock market studies are common in United States; oil market studies are common in European Union (27 member countries), European, and related settings.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=U.S.%20stock%20market%20-%3E%20oil%20market"
+      "app_link": "/questions/#FG3C001061__FG3C002389"
     },
     {
       "pair_key": "FG3C000284__FG3C002389",
@@ -1273,7 +1273,7 @@
       "source_context_summary": "United States",
       "target_context_summary": "China and United States",
       "common_contexts": "U.S. stock market studies are common in United States; stock market studies are common in China and United States.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=U.S.%20stock%20market%20-%3E%20stock%20market"
+      "app_link": "/questions/#FG3C000284__FG3C002389"
     }
   ],
   "FG3C005267": [
@@ -1342,7 +1342,7 @@
       "source_context_summary": "Canada, New Zealand, and related settings",
       "target_context_summary": "United States and China",
       "common_contexts": "inflation targets studies are common in Canada, New Zealand, and related settings; inflation studies are common in United States and China.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20targets%20-%3E%20inflation"
+      "app_link": "/questions/#FG3C000002__FG3C005267"
     }
   ],
   "FG3C006126": [
@@ -1409,7 +1409,7 @@
       "source_context_summary": "United States and China",
       "target_context_summary": "Philippines and North",
       "common_contexts": "oil prices studies are common in United States and China; foreign prices studies are common in Philippines and North.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=oil%20prices%20-%3E%20foreign%20prices"
+      "app_link": "/questions/#FG3C000034__FG3C006126"
     }
   ],
   "FG3C004847": [
@@ -1474,7 +1474,7 @@
       "source_context_summary": "China and India",
       "target_context_summary": "No dominant target setting in the current public sample",
       "common_contexts": "",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20growth%20-%3E%20immiserizing%20growth"
+      "app_link": "/questions/#FG3C000001__FG3C004847"
     }
   ],
   "FG3C005070": [
@@ -1542,7 +1542,7 @@
       "source_context_summary": "United States and China",
       "target_context_summary": "United States and Euro area",
       "common_contexts": "inflation studies are common in United States and China; Realized inflation studies are common in United States and Euro area.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20-%3E%20Realized%20inflation"
+      "app_link": "/questions/#FG3C000002__FG3C005070"
     }
   ],
   "FG3C004968": [
@@ -1608,7 +1608,7 @@
       "source_context_summary": "United States, China, and related settings",
       "target_context_summary": "United States",
       "common_contexts": "future prices studies are common in United States, China, and related settings; futures contracts studies are common in United States.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=future%20prices%20-%3E%20futures%20contracts"
+      "app_link": "/questions/#FG3C000735__FG3C004968"
     }
   ],
   "FG3C003193": [
@@ -1677,7 +1677,7 @@
       "source_context_summary": "Finland, Latin America, and related settings",
       "target_context_summary": "United States and China",
       "common_contexts": "unanticipated inflation studies are common in Finland, Latin America, and related settings; inflation studies are common in United States and China.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=unanticipated%20inflation%20-%3E%20inflation"
+      "app_link": "/questions/#FG3C000002__FG3C003193"
     }
   ],
   "FG3C004781": [
@@ -1746,7 +1746,7 @@
       "source_context_summary": "United States and China",
       "target_context_summary": "United Kingdom, China, and related settings",
       "common_contexts": "patent citations studies are common in United States and China; patent data studies are common in United Kingdom, China, and related settings.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=patent%20citations%20-%3E%20patent%20data"
+      "app_link": "/questions/#FG3C004781__FG3C004911"
     }
   ],
   "FG3C004547": [
@@ -1814,7 +1814,7 @@
       "source_context_summary": "China and United States",
       "target_context_summary": "United States and China",
       "common_contexts": "stock market crashes studies are common in China and United States; stock market returns studies are common in United States and China.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=stock%20market%20crashes%20-%3E%20stock%20market%20returns"
+      "app_link": "/questions/#FG3C000168__FG3C004547"
     }
   ],
   "FG3C003921": [
@@ -1882,7 +1882,7 @@
       "source_context_summary": "United States and Europe",
       "target_context_summary": "United States and United Kingdom",
       "common_contexts": "interest rate expectations studies are common in United States and Europe; short-term interest rate studies are common in United States and United Kingdom.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=interest%20rate%20expectations%20-%3E%20short-term%20interest%20rate"
+      "app_link": "/questions/#FG3C000404__FG3C003921"
     }
   ],
   "FG3C005991": [
@@ -1949,7 +1949,7 @@
       "source_context_summary": "China and India",
       "target_context_summary": "China and United States",
       "common_contexts": "CO2 emissions studies are common in China and India; aggregate emissions studies are common in China and United States.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emissions%20-%3E%20aggregate%20emissions"
+      "app_link": "/questions/#FG3C000003__FG3C005991"
     }
   ],
   "FG3C005378": [
@@ -2017,7 +2017,7 @@
       "source_context_summary": "Japan and United States",
       "target_context_summary": "China and Algeria",
       "common_contexts": "wind energy consumption studies are common in Japan and United States; electricity consumption studies are common in China and Algeria.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=wind%20energy%20consumption%20-%3E%20electricity%20consumption"
+      "app_link": "/questions/#FG3C000160__FG3C005378"
     },
     {
       "pair_key": "FG3C000014__FG3C005378",
@@ -2084,7 +2084,7 @@
       "source_context_summary": "Japan and United States",
       "target_context_summary": "China, India, and related settings",
       "common_contexts": "wind energy consumption studies are common in Japan and United States; energy consumption studies are common in China, India, and related settings.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=wind%20energy%20consumption%20-%3E%20energy%20consumption"
+      "app_link": "/questions/#FG3C000014__FG3C005378"
     }
   ],
   "FG3C006138": [
@@ -2153,7 +2153,7 @@
       "source_context_summary": "United States, Australia, and related settings",
       "target_context_summary": "United States and China",
       "common_contexts": "actual inflation studies are common in United States, Australia, and related settings; inflation studies are common in United States and China.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=actual%20inflation%20-%3E%20inflation"
+      "app_link": "/questions/#FG3C000002__FG3C006138"
     }
   ],
   "FG3C005637": [
@@ -2220,7 +2220,7 @@
       "source_context_summary": "Maine and NLD",
       "target_context_summary": "United States and China",
       "common_contexts": "expected output studies are common in Maine and NLD; output studies are common in United States and China.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=expected%20output%20-%3E%20output"
+      "app_link": "/questions/#FG3C000011__FG3C005637"
     }
   ],
   "FG3C003315": [
@@ -2287,7 +2287,7 @@
       "source_context_summary": "United States and United Kingdom",
       "target_context_summary": "United States and Japan",
       "common_contexts": "short-term interest rate studies are common in United States and United Kingdom; short rate studies are common in United States and Japan.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=short-term%20interest%20rate%20-%3E%20short%20rate"
+      "app_link": "/questions/#FG3C000404__FG3C003315"
     }
   ],
   "FG3C005091": [
@@ -2354,7 +2354,7 @@
       "source_context_summary": "United States and China",
       "target_context_summary": "United States",
       "common_contexts": "health care reform studies are common in United States and China; health care studies are common in United States.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=health%20care%20reform%20-%3E%20health%20care"
+      "app_link": "/questions/#FG3C001347__FG3C005091"
     }
   ],
   "FG3C001561": [
@@ -2423,7 +2423,7 @@
       "source_context_summary": "Turkey, United States, and related settings",
       "target_context_summary": "China and United States",
       "common_contexts": "market return studies are common in Turkey, United States, and related settings; stock returns studies are common in China and United States.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=market%20return%20-%3E%20stock%20returns"
+      "app_link": "/questions/#FG3C000035__FG3C001561"
     }
   ],
   "FG3C002369": [
@@ -2491,7 +2491,7 @@
       "source_context_summary": "China, United States, and related settings",
       "target_context_summary": "EU (23 countries), EU, and related settings",
       "common_contexts": "policy studies are common in China, United States, and related settings; policy analysis studies are common in EU (23 countries), EU, and related settings.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=policy%20-%3E%20policy%20analysis"
+      "app_link": "/questions/#FG3C001408__FG3C002369"
     }
   ],
   "FG3C004791": [
@@ -2559,7 +2559,7 @@
       "source_context_summary": "China, United States, and related settings",
       "target_context_summary": "China and India",
       "common_contexts": "carbon emissions reduction studies are common in China, United States, and related settings; carbon emissions studies are common in China and India.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20emissions%20reduction%20-%3E%20carbon%20emissions"
+      "app_link": "/questions/#FG3C000010__FG3C004791"
     }
   ],
   "FG3C001154": [
@@ -2627,7 +2627,7 @@
       "source_context_summary": "China and European Union",
       "target_context_summary": "Australia and China",
       "common_contexts": "Emission Trading Scheme (ETS) studies are common in China and European Union; emissions trading studies are common in Australia and China.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=Emission%20Trading%20Scheme%20%28ETS%29%20-%3E%20emissions%20trading"
+      "app_link": "/questions/#FG3C001154__FG3C003006"
     }
   ],
   "FG3C004123": [
@@ -2696,7 +2696,7 @@
       "source_context_summary": "United States and United Kingdom",
       "target_context_summary": "United States, Germany, and related settings",
       "common_contexts": "unemployment studies are common in United States and United Kingdom; unemployment fluctuations studies are common in United States, Germany, and related settings.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=unemployment%20-%3E%20unemployment%20fluctuations"
+      "app_link": "/questions/#FG3C000009__FG3C004123"
     }
   ],
   "FG3C005010": [
@@ -2763,7 +2763,7 @@
       "source_context_summary": "Germany",
       "target_context_summary": "China and United States",
       "common_contexts": "forward exchange rates studies are common in Germany; exchange rates studies are common in China and United States.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=forward%20exchange%20rates%20-%3E%20exchange%20rates"
+      "app_link": "/questions/#FG3C000072__FG3C005010"
     }
   ],
   "FG3C006667": [
@@ -2831,7 +2831,7 @@
       "source_context_summary": "China and United States",
       "target_context_summary": "China and United States",
       "common_contexts": "cross-sectional stock returns studies are common in China and United States; cross-section of expected returns studies are common in China and United States.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=cross-sectional%20stock%20returns%20-%3E%20cross-section%20of%20expected%20returns"
+      "app_link": "/questions/#FG3C002163__FG3C006667"
     }
   ],
   "FG3C004482": [
@@ -2900,7 +2900,7 @@
       "source_context_summary": "France, Spain, and related settings",
       "target_context_summary": "United States and United Kingdom",
       "common_contexts": "local unemployment rates studies are common in France, Spain, and related settings; unemployment studies are common in United States and United Kingdom.",
-      "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=local%20unemployment%20rates%20-%3E%20unemployment"
+      "app_link": "/questions/#FG3C000009__FG3C004482"
     }
   ]
 }

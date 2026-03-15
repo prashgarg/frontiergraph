@@ -1,7 +1,6 @@
 import { chromium } from "playwright";
 
 const baseUrl = process.argv[2] || "http://127.0.0.1:4173";
-const appUrl = process.argv[3] || "";
 
 function assert(condition, message) {
   if (!condition) {
@@ -36,11 +35,12 @@ async function main() {
   const nav = page.getByRole("navigation");
   assert(await nav.getByRole("link", { name: /^Home$/ }).isVisible(), "Home nav missing");
   assert(await nav.getByRole("link", { name: /^Research Questions$/ }).isVisible(), "Research Questions nav missing");
-  assert((await nav.getByRole("link", { name: /^Graph$/ }).count()) === 0, "Graph should not be a top-level nav item");
-  assert((await nav.getByRole("link", { name: /^FAQ$/ }).count()) === 0, "FAQ should not be a top-level nav item");
-  assert((await nav.getByRole("link", { name: /^Advanced$/ }).count()) === 0, "Advanced should not be a top-level nav item");
+  assert(await nav.getByRole("link", { name: /^How it works$/ }).isVisible(), "How it works nav missing");
+  assert(await nav.getByRole("link", { name: /^Method$/ }).isVisible(), "Method nav missing");
+  assert(await nav.getByRole("link", { name: /^Literature map$/ }).isVisible(), "Literature map nav missing");
+  assert(await nav.getByRole("link", { name: /^Downloads$/ }).isVisible(), "Downloads nav missing");
   const heroText = await page.locator("main .hero").first().innerText();
-  for (const token of ["graph", "neighborhood", "ontology", "Baseline exploratory", "path support", "motif", "surrounding literature"]) {
+  for (const token of ["Baseline exploratory", "path support", "motif"]) {
     assert(!heroText.includes(token), `Homepage hero should not include ${token}`);
   }
   assert(/Social platforms suggest people to follow from shared connections/i.test(heroText), "Homepage should include the analogy");
@@ -105,9 +105,9 @@ async function main() {
   assert(await page.getByRole("link", { name: /causal\.claims/i }).first().isVisible(), "causal.claims link missing");
   const howText = await page.locator("main").innerText();
   assert(/Not a causal estimate/i.test(howText), "How It Works should include what this is not");
-  assert(/Baseline exploratory/i.test(howText), "How It Works should mention Baseline exploratory");
-  assert(/duplicate suppression/i.test(howText), "How It Works should mention duplicate suppression");
-  assert(/separate product layer/i.test(howText), "How It Works should distinguish the current product from the foundational method");
+  assert(/stable concept surface/i.test(howText), "How It Works should explain the stable concept surface");
+  assert(/release filtering/i.test(howText), "How it works should mention release filtering");
+  assert(/native concept vocabulary/i.test(howText), "How It Works should mention the native concept vocabulary");
 
   await page.goto(`${baseUrl}/faq/`, { waitUntil: "domcontentloaded" });
   await page.waitForURL(/\/how-it-works\/$/);
@@ -144,53 +144,20 @@ async function main() {
   assert(!nearbyQuestionsText.includes("→"), "Nearby research questions should not use arrow syntax");
 
   await page.goto(`${baseUrl}/advanced/`, { waitUntil: "networkidle" });
-  assert(await page.getByRole("heading", { name: /Keep the main path simple/i }).isVisible(), "Advanced page missing");
+  assert(await page.getByRole("heading", { name: /Go deeper only when your question needs more context/i }).isVisible(), "Advanced page missing");
 
   await page.goto(`${baseUrl}/method/`, { waitUntil: "networkidle" });
-  assert(await page.getByRole("link", { name: /How It Works/i }).first().isVisible(), "Method should link back to How It Works");
+  assert(await page.getByRole("link", { name: /How it works/i }).first().isVisible(), "Method should link back to How it works");
+  assert(await page.getByRole("link", { name: /Read paper/i }).first().isVisible(), "Method should link to the paper");
 
-  await page.goto(`${baseUrl}/compare/`, { waitUntil: "networkidle" });
-  assert(await page.getByRole("link", { name: /See Research Questions/i }).isVisible(), "Compare page should link back to Research Questions");
+  await page.goto(`${baseUrl}/compare/`, { waitUntil: "domcontentloaded" });
+  await page.waitForURL(/\/method\/$/);
 
   await page.goto(`${baseUrl}/downloads/`, { waitUntil: "networkidle" });
-  assert(await page.getByRole("link", { name: /How It Works/i }).first().isVisible(), "Downloads page should link to How It Works");
-
-  if (appUrl) {
-    await page.goto(appUrl, { waitUntil: "networkidle" });
-    await page.waitForSelector("h1", { timeout: 60000 });
-    await page.getByRole("heading", { name: /Selected question/i }).waitFor({ timeout: 60000 });
-    await page.waitForTimeout(1200);
-    await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
-    const appText = await page.locator("body").innerText();
-    assert(/FrontierGraph Workbench/i.test(appText), "App should be framed as FrontierGraph Workbench");
-    assert(/Decide whether a question could become your next paper/i.test(appText), "App hero did not update");
-    assert(/Research Questions/i.test(appText) && /How It Works/i.test(appText), "App should link to Research Questions and How It Works");
-    assert(/Selected question/i.test(appText), "App should render selected question detail");
-    assert(/Papers on this exact question:/i.test(appText), "App should show direct literature status");
-    assert(/Papers to start with/i.test(appText), "App should show representative papers");
-    assert(/What to verify next/i.test(appText), "App should show the verification checklist");
-    assert(/Refine the list/i.test(appText), "App should hide shortlist controls behind a closed settings section");
-    assert(/Questions worth checking/i.test(appText), "App should show the simplified shortlist framing");
-    assert(!/Current concept surface/i.test(appText), "App should not show the old internal concept-surface caption");
-    const refineExpander = page.locator("[data-testid='stExpander']").filter({ hasText: /Refine the list/i });
-    assert((await refineExpander.count()) > 0, "App should expose Refine the list");
-    await refineExpander.first().click();
-    await page.waitForTimeout(300);
-    const refinedText = await page.locator("body").innerText();
-    assert(/Browse mode/i.test(refinedText), "App should rename shortlist mode to Browse mode");
-    assert(/Question style/i.test(refinedText), "App should rename question type to Question style");
-    assert(/General browse/i.test(refinedText), "App should show the renamed shortlist preset");
-    const advancedToolsExpander = page.locator("[data-testid='stExpander']").filter({ hasText: /Advanced tools/i });
-    assert((await advancedToolsExpander.count()) > 0, "App should expose Advanced tools");
-    await advancedToolsExpander.first().click();
-    await page.waitForTimeout(300);
-    const advancedText = await page.locator("body").innerText();
-    assert(/Concept lookup/i.test(advancedText), "Advanced tools should expose concept lookup");
-    assert(/Method/i.test(advancedText), "Advanced tools should expose method notes");
-    assert(/Literature map/i.test(advancedText), "Advanced tools should expose the literature map");
-    assert(/Technical details/i.test(advancedText) || /Technical details/i.test(appText), "Technical details expander missing");
-    assert(/Pinned questions to compare/i.test(advancedText), "App should expose the question comparison workflow");
-  }
+  assert(await page.getByRole("link", { name: /How it works/i }).first().isVisible(), "Downloads page should link to How it works");
+  assert(await page.getByRole("link", { name: /Read working paper/i }).isVisible(), "Downloads page should expose the working paper");
+  assert(await page.getByRole("link", { name: /Extended abstract PDF/i }).isVisible(), "Downloads page should expose the extended abstract");
+  assert(await page.getByText(/frontiergraph-economics-public\.db/i).isVisible(), "Downloads page should show the public DB bundle");
 
   assert(errors.length === 0, `Browser errors found:\n${errors.join("\n")}`);
   await browser.close();

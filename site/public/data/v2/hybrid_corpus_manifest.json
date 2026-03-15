@@ -1,0 +1,30 @@
+{
+  "source_selected_papers": 242595,
+  "source_year_min": 1976,
+  "source_year_max": 2026,
+  "papers_with_extracted_edges": 230929,
+  "raw_extracted_edges": 1443407,
+  "normalized_benchmark_papers": 230479,
+  "normalized_hybrid_rows": 1271014,
+  "normalized_directed_rows": 89737,
+  "normalized_undirected_rows": 1181277,
+  "unique_papers_in_hybrid_corpus": 230479,
+  "unique_concepts_in_hybrid_corpus": 6752,
+  "unique_directed_causal_pairs": 78167,
+  "unique_undirected_noncausal_pairs": 705514,
+  "edge_kind_counts": [
+    {
+      "edge_kind": "undirected_noncausal",
+      "normalized_rows": 1181277,
+      "distinct_pairs": 705514,
+      "unique_papers": 221192
+    },
+    {
+      "edge_kind": "directed_causal",
+      "normalized_rows": 89737,
+      "distinct_pairs": 78167,
+      "unique_papers": 23213
+    }
+  ],
+  "field_weighted_citation_impact_note": "FWCI denotes field-weighted citation impact."
+}

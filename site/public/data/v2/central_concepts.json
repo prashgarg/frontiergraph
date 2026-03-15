@@ -21,7 +21,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20growth"
+    "app_link": "/graph/?q=economic+growth"
   },
   {
     "concept_id": "FG3C000003",
@@ -45,7 +45,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emissions"
+    "app_link": "/graph/?q=CO2+emissions"
   },
   {
     "concept_id": "FG3C000010",
@@ -69,7 +69,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20emissions"
+    "app_link": "/graph/?q=carbon+emissions"
   },
   {
     "concept_id": "FG3C000018",
@@ -94,7 +94,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=renewable%20energy%20consumption"
+    "app_link": "/graph/?q=renewable+energy+consumption"
   },
   {
     "concept_id": "FG3C000014",
@@ -119,7 +119,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=energy%20consumption"
+    "app_link": "/graph/?q=energy+consumption"
   },
   {
     "concept_id": "FG3C000006",
@@ -144,7 +144,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=financial%20development"
+    "app_link": "/graph/?q=financial+development"
   },
   {
     "concept_id": "FG3C000064",
@@ -169,7 +169,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=ecological%20footprint"
+    "app_link": "/graph/?q=ecological+footprint"
   },
   {
     "concept_id": "FG3C000002",
@@ -193,7 +193,7 @@
       "other",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation"
+    "app_link": "/graph/?q=inflation"
   },
   {
     "concept_id": "FG3C000017",
@@ -218,7 +218,7 @@
       "region",
       "industry"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=trade%20openness"
+    "app_link": "/graph/?q=trade+openness"
   },
   {
     "concept_id": "FG3C000012",
@@ -242,7 +242,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=urbanization"
+    "app_link": "/graph/?q=urbanization"
   },
   {
     "concept_id": "FG3C000013",
@@ -266,7 +266,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=technological%20innovation"
+    "app_link": "/graph/?q=technological+innovation"
   },
   {
     "concept_id": "FG3C000015",
@@ -290,7 +290,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=foreign%20direct%20investments"
+    "app_link": "/graph/?q=foreign+direct+investments"
   },
   {
     "concept_id": "FG3C006644",
@@ -314,7 +314,7 @@
       "country",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=Method%20of%20Moments%20Quantile%20Regression%20%28MMQR%29"
+    "app_link": "/graph/?q=Method+of+Moments+Quantile+Regression+%28MMQR%29"
   },
   {
     "concept_id": "FG3C000068",
@@ -338,7 +338,7 @@
       "location",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=digital%20economy"
+    "app_link": "/graph/?q=digital+economy"
   },
   {
     "concept_id": "FG3C000053",
@@ -362,7 +362,7 @@
       "country",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20innovation"
+    "app_link": "/graph/?q=green+innovation"
   },
   {
     "concept_id": "FG3C004594",
@@ -386,7 +386,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20emissions%20%28CO2%20emissions%29"
+    "app_link": "/graph/?q=carbon+emissions+%28CO2+emissions%29"
   },
   {
     "concept_id": "FG3C000038",
@@ -410,7 +410,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=energy%20efficiency"
+    "app_link": "/graph/?q=energy+efficiency"
   },
   {
     "concept_id": "FG3C000011",
@@ -434,7 +434,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=output"
+    "app_link": "/graph/?q=output"
   },
   {
     "concept_id": "FG3C000059",
@@ -459,7 +459,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=renewable%20energy"
+    "app_link": "/graph/?q=renewable+energy"
   },
   {
     "concept_id": "FG3C000009",
@@ -483,7 +483,7 @@
       "individual",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=unemployment"
+    "app_link": "/graph/?q=unemployment"
   },
   {
     "concept_id": "FG3C000091",
@@ -508,7 +508,7 @@
       "region",
       "industry"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20growth%20%28GDP%29"
+    "app_link": "/graph/?q=economic+growth+%28GDP%29"
   },
   {
     "concept_id": "FG3C000016",
@@ -532,7 +532,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=human%20capital"
+    "app_link": "/graph/?q=human+capital"
   },
   {
     "concept_id": "FG3C000063",
@@ -556,7 +556,7 @@
       "country",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20finance"
+    "app_link": "/graph/?q=green+finance"
   },
   {
     "concept_id": "FG3C000025",
@@ -581,7 +581,7 @@
       "region",
       "household"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=income%20inequality"
+    "app_link": "/graph/?q=income+inequality"
   },
   {
     "concept_id": "FG3C000041",
@@ -605,7 +605,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=energy%20intensity"
+    "app_link": "/graph/?q=energy+intensity"
   },
   {
     "concept_id": "FG3C000004",
@@ -629,7 +629,7 @@
       "household",
       "individual"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=welfare"
+    "app_link": "/graph/?q=welfare"
   },
   {
     "concept_id": "FG3C000019",
@@ -653,7 +653,7 @@
       "firm",
       "industry"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=investment"
+    "app_link": "/graph/?q=investment"
   },
   {
     "concept_id": "FG3C000007",
@@ -677,7 +677,7 @@
       "firm",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=employment"
+    "app_link": "/graph/?q=employment"
   },
   {
     "concept_id": "FG3C000021",
@@ -702,7 +702,7 @@
       "country",
       "industry"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=productivity"
+    "app_link": "/graph/?q=productivity"
   },
   {
     "concept_id": "FG3C000040",
@@ -726,7 +726,7 @@
       "location",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20regulation"
+    "app_link": "/graph/?q=environmental+regulation"
   },
   {
     "concept_id": "FG3C000005",
@@ -750,7 +750,7 @@
       "individual",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=COVID-19%20pandemic"
+    "app_link": "/graph/?q=COVID-19+pandemic"
   },
   {
     "concept_id": "FG3C000024",
@@ -774,7 +774,7 @@
       "policy_unit",
       "organization"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=monetary%20policy"
+    "app_link": "/graph/?q=monetary+policy"
   },
   {
     "concept_id": "FG3C000081",
@@ -798,7 +798,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20quality"
+    "app_link": "/graph/?q=environmental+quality"
   },
   {
     "concept_id": "FG3C000035",
@@ -822,7 +822,7 @@
       "market",
       "product"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=stock%20returns"
+    "app_link": "/graph/?q=stock+returns"
   },
   {
     "concept_id": "FG3C000134",
@@ -847,7 +847,7 @@
       "firm",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20sustainability"
+    "app_link": "/graph/?q=environmental+sustainability"
   },
   {
     "concept_id": "FG3C000167",
@@ -871,7 +871,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20dioxide%20%28CO2%29%20emissions"
+    "app_link": "/graph/?q=carbon+dioxide+%28CO2%29+emissions"
   },
   {
     "concept_id": "FG3C000030",
@@ -895,7 +895,7 @@
       "country",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=innovation"
+    "app_link": "/graph/?q=innovation"
   },
   {
     "concept_id": "FG3C001420",
@@ -920,7 +920,7 @@
       "location",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20quality%20%28CO2%20emissions%29"
+    "app_link": "/graph/?q=environmental+quality+%28CO2+emissions%29"
   },
   {
     "concept_id": "FG3C000022",
@@ -944,7 +944,7 @@
       "firm",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=wages"
+    "app_link": "/graph/?q=wages"
   },
   {
     "concept_id": "FG3C000034",
@@ -968,7 +968,7 @@
       "market",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=oil%20prices"
+    "app_link": "/graph/?q=oil+prices"
   },
   {
     "concept_id": "FG3C000046",
@@ -992,7 +992,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=exports"
+    "app_link": "/graph/?q=exports"
   },
   {
     "concept_id": "FG3C000036",
@@ -1017,7 +1017,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=institutional%20quality"
+    "app_link": "/graph/?q=institutional+quality"
   },
   {
     "concept_id": "FG3C000008",
@@ -1041,7 +1041,7 @@
       "country",
       "household"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=income"
+    "app_link": "/graph/?q=income"
   },
   {
     "concept_id": "FG3C000094",
@@ -1065,7 +1065,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20technology%20innovation"
+    "app_link": "/graph/?q=green+technology+innovation"
   },
   {
     "concept_id": "FG3C000065",
@@ -1089,7 +1089,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=sustainable%20development"
+    "app_link": "/graph/?q=sustainable+development"
   },
   {
     "concept_id": "FG3C000026",
@@ -1113,7 +1113,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20development"
+    "app_link": "/graph/?q=economic+development"
   },
   {
     "concept_id": "FG3C000039",
@@ -1138,7 +1138,7 @@
       "other",
       "industry"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=globalization"
+    "app_link": "/graph/?q=globalization"
   },
   {
     "concept_id": "FG3C000124",
@@ -1162,7 +1162,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=natural%20resources"
+    "app_link": "/graph/?q=natural+resources"
   },
   {
     "concept_id": "FG3C000130",
@@ -1187,7 +1187,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20degradation"
+    "app_link": "/graph/?q=environmental+degradation"
   },
   {
     "concept_id": "FG3C000033",
@@ -1211,7 +1211,7 @@
       "country",
       "individual"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=consumption"
+    "app_link": "/graph/?q=consumption"
   },
   {
     "concept_id": "FG3C000160",
@@ -1235,7 +1235,7 @@
       "region",
       "household"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=electricity%20consumption"
+    "app_link": "/graph/?q=electricity+consumption"
   },
   {
     "concept_id": "FG3C000096",
@@ -1259,7 +1259,7 @@
       "firm",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=stock%20prices"
+    "app_link": "/graph/?q=stock+prices"
   },
   {
     "concept_id": "FG3C000203",
@@ -1283,7 +1283,7 @@
       "country",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20pollution"
+    "app_link": "/graph/?q=environmental+pollution"
   },
   {
     "concept_id": "FG3C000103",
@@ -1308,7 +1308,7 @@
       "region",
       "household"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=financial%20inclusion"
+    "app_link": "/graph/?q=financial+inclusion"
   },
   {
     "concept_id": "FG3C000048",
@@ -1332,7 +1332,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=foreign%20direct%20investment"
+    "app_link": "/graph/?q=foreign+direct+investment"
   },
   {
     "concept_id": "FG3C000215",
@@ -1356,7 +1356,7 @@
       "location",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20total%20factor%20productivity%20%28GTFP%29"
+    "app_link": "/graph/?q=green+total+factor+productivity+%28GTFP%29"
   },
   {
     "concept_id": "FG3C000072",
@@ -1380,7 +1380,7 @@
       "market",
       "country_pair"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=exchange%20rates"
+    "app_link": "/graph/?q=exchange+rates"
   },
   {
     "concept_id": "FG3C000055",
@@ -1405,7 +1405,7 @@
       "country_pair",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=trade"
+    "app_link": "/graph/?q=trade"
   },
   {
     "concept_id": "FG3C000323",
@@ -1430,7 +1430,7 @@
       "household",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=willingness%20to%20pay%20%28WTP%29"
+    "app_link": "/graph/?q=willingness+to+pay+%28WTP%29"
   },
   {
     "concept_id": "FG3C000110",
@@ -1455,7 +1455,7 @@
       "industry",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=output%20growth"
+    "app_link": "/graph/?q=output+growth"
   },
   {
     "concept_id": "FG3C000037",
@@ -1480,7 +1480,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=GDP"
+    "app_link": "/graph/?q=GDP"
   },
   {
     "concept_id": "FG3C000411",
@@ -1504,7 +1504,7 @@
       "region",
       "market"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=model%20parameters"
+    "app_link": "/graph/?q=model+parameters"
   },
   {
     "concept_id": "FG3C000074",
@@ -1528,7 +1528,7 @@
       "firm",
       "organization"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20policy%20uncertainty%20%28EPU%29"
+    "app_link": "/graph/?q=economic+policy+uncertainty+%28EPU%29"
   },
   {
     "concept_id": "FG3C000097",
@@ -1552,7 +1552,7 @@
       "location",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=industrial%20structure%20upgrading"
+    "app_link": "/graph/?q=industrial+structure+upgrading"
   },
   {
     "concept_id": "FG3C000020",
@@ -1577,7 +1577,7 @@
       "organization",
       "establishment"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=firm%20size"
+    "app_link": "/graph/?q=firm+size"
   },
   {
     "concept_id": "FG3C000044",
@@ -1601,7 +1601,7 @@
       "location",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=industrial%20structure"
+    "app_link": "/graph/?q=industrial+structure"
   },
   {
     "concept_id": "FG3C000027",
@@ -1625,7 +1625,7 @@
       "market",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=interest%20rates"
+    "app_link": "/graph/?q=interest+rates"
   },
   {
     "concept_id": "FG3C000060",
@@ -1650,7 +1650,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=GDP%20per%20capita"
+    "app_link": "/graph/?q=GDP+per+capita"
   },
   {
     "concept_id": "FG3C000117",
@@ -1674,7 +1674,7 @@
       "market",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=oil%20price"
+    "app_link": "/graph/?q=oil+price"
   },
   {
     "concept_id": "FG3C000071",
@@ -1698,7 +1698,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20policy%20uncertainty"
+    "app_link": "/graph/?q=economic+policy+uncertainty"
   },
   {
     "concept_id": "FG3C000045",
@@ -1722,7 +1722,7 @@
       "country",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=technological%20progress"
+    "app_link": "/graph/?q=technological+progress"
   },
   {
     "concept_id": "FG3C000070",
@@ -1746,7 +1746,7 @@
       "firm",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=productivity%20growth"
+    "app_link": "/graph/?q=productivity+growth"
   },
   {
     "concept_id": "FG3C000249",
@@ -1771,7 +1771,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=natural%20resource%20rents"
+    "app_link": "/graph/?q=natural+resource+rents"
   },
   {
     "concept_id": "FG3C000246",
@@ -1795,7 +1795,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20growth"
+    "app_link": "/graph/?q=green+growth"
   },
   {
     "concept_id": "FG3C000123",
@@ -1819,7 +1819,7 @@
       "market",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=oil%20price%20shocks"
+    "app_link": "/graph/?q=oil+price+shocks"
   },
   {
     "concept_id": "FG3C000121",
@@ -1844,7 +1844,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=greenhouse%20gas%20emissions"
+    "app_link": "/graph/?q=greenhouse+gas+emissions"
   },
   {
     "concept_id": "FG3C000029",
@@ -1868,7 +1868,7 @@
       "country",
       "household"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=education"
+    "app_link": "/graph/?q=education"
   },
   {
     "concept_id": "FG3C000042",
@@ -1892,7 +1892,7 @@
       "firm",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=trading%20volume"
+    "app_link": "/graph/?q=trading+volume"
   },
   {
     "concept_id": "FG3C002284",
@@ -1916,7 +1916,7 @@
       "country",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=firm%20total%20factor%20productivity%20%28TFP%29"
+    "app_link": "/graph/?q=firm+total+factor+productivity+%28TFP%29"
   },
   {
     "concept_id": "FG3C000028",
@@ -1940,7 +1940,7 @@
       "market",
       "industry"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=prices"
+    "app_link": "/graph/?q=prices"
   },
   {
     "concept_id": "FG3C000232",
@@ -1965,7 +1965,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=non-renewable%20energy%20consumption"
+    "app_link": "/graph/?q=non-renewable+energy+consumption"
   },
   {
     "concept_id": "FG3C000173",
@@ -1990,7 +1990,7 @@
       "individual",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=energy%20use"
+    "app_link": "/graph/?q=energy+use"
   },
   {
     "concept_id": "FG3C000061",
@@ -2015,7 +2015,7 @@
       "country",
       "industry"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=total%20factor%20productivity%20%28TFP%29"
+    "app_link": "/graph/?q=total+factor+productivity+%28TFP%29"
   },
   {
     "concept_id": "FG3C000384",
@@ -2040,7 +2040,7 @@
       "firm",
       "industry"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=information%20and%20communication%20technology%20%28ICT%29"
+    "app_link": "/graph/?q=information+and+communication+technology+%28ICT%29"
   },
   {
     "concept_id": "FG3C000089",
@@ -2064,7 +2064,7 @@
       "region",
       "organization"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=R%26D%20investment"
+    "app_link": "/graph/?q=R%26D+investment"
   },
   {
     "concept_id": "FG3C000051",
@@ -2088,7 +2088,7 @@
       "household",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=house%20prices"
+    "app_link": "/graph/?q=house+prices"
   },
   {
     "concept_id": "FG3C000050",
@@ -2112,7 +2112,7 @@
       "other",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=housing%20prices"
+    "app_link": "/graph/?q=housing+prices"
   },
   {
     "concept_id": "FG3C000202",
@@ -2136,7 +2136,7 @@
       "firm",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20bonds"
+    "app_link": "/graph/?q=green+bonds"
   },
   {
     "concept_id": "FG3C000242",
@@ -2160,7 +2160,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=digital%20finance"
+    "app_link": "/graph/?q=digital+finance"
   },
   {
     "concept_id": "FG3C000267",
@@ -2185,7 +2185,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=energy%20transition"
+    "app_link": "/graph/?q=energy+transition"
   },
   {
     "concept_id": "FG3C000043",
@@ -2209,7 +2209,7 @@
       "firm",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=volatility"
+    "app_link": "/graph/?q=volatility"
   },
   {
     "concept_id": "FG3C004120",
@@ -2233,7 +2233,7 @@
       "country",
       "individual"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=uncertainty%20measures"
+    "app_link": "/graph/?q=uncertainty+measures"
   },
   {
     "concept_id": "FG3C000101",
@@ -2258,7 +2258,7 @@
       "product",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=gold"
+    "app_link": "/graph/?q=gold"
   },
   {
     "concept_id": "FG3C000491",
@@ -2282,7 +2282,7 @@
       "country",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20efficiency"
+    "app_link": "/graph/?q=environmental+efficiency"
   },
   {
     "concept_id": "FG3C001218",
@@ -2307,7 +2307,7 @@
       "other",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=ecological%20footprints"
+    "app_link": "/graph/?q=ecological+footprints"
   },
   {
     "concept_id": "FG3C000085",
@@ -2332,7 +2332,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=gross%20domestic%20product%20%28GDP%29"
+    "app_link": "/graph/?q=gross+domestic+product+%28GDP%29"
   },
   {
     "concept_id": "FG3C003006",
@@ -2356,7 +2356,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=Emission%20Trading%20Scheme%20%28ETS%29"
+    "app_link": "/graph/?q=Emission+Trading+Scheme+%28ETS%29"
   },
   {
     "concept_id": "FG3C000090",
@@ -2380,7 +2380,7 @@
       "organization",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=financing%20constraints"
+    "app_link": "/graph/?q=financing+constraints"
   },
   {
     "concept_id": "FG3C000226",
@@ -2404,7 +2404,7 @@
       "organization",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=digital%20transformation"
+    "app_link": "/graph/?q=digital+transformation"
   },
   {
     "concept_id": "FG3C000056",
@@ -2429,7 +2429,7 @@
       "market",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=exchange%20rate"
+    "app_link": "/graph/?q=exchange+rate"
   },
   {
     "concept_id": "FG3C000184",
@@ -2453,7 +2453,7 @@
       "country",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20intensity"
+    "app_link": "/graph/?q=carbon+intensity"
   },
   {
     "concept_id": "FG3C000120",
@@ -2477,7 +2477,7 @@
       "country",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20regulations"
+    "app_link": "/graph/?q=environmental+regulations"
   },
   {
     "concept_id": "FG3C000140",
@@ -2501,7 +2501,7 @@
       "individual",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=income%20distribution"
+    "app_link": "/graph/?q=income+distribution"
   },
   {
     "concept_id": "FG3C000347",
@@ -2525,7 +2525,7 @@
       "location",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20emission%20intensity"
+    "app_link": "/graph/?q=carbon+emission+intensity"
   },
   {
     "concept_id": "FG3C000126",
@@ -2550,7 +2550,7 @@
       "industry",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=imports"
+    "app_link": "/graph/?q=imports"
   },
   {
     "concept_id": "FG3C000054",
@@ -2575,7 +2575,7 @@
       "location",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=population%20growth"
+    "app_link": "/graph/?q=population+growth"
   },
   {
     "concept_id": "FG3C005161",
@@ -2599,7 +2599,7 @@
       "country",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=state%20of%20the%20business%20cycle"
+    "app_link": "/graph/?q=state+of+the+business+cycle"
   },
   {
     "concept_id": "FG3C000292",
@@ -2624,7 +2624,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=coal%20consumption"
+    "app_link": "/graph/?q=coal+consumption"
   },
   {
     "concept_id": "FG3C000156",
@@ -2648,7 +2648,7 @@
       "market",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=crude%20oil%20prices"
+    "app_link": "/graph/?q=crude+oil+prices"
   },
   {
     "concept_id": "FG3C000227",
@@ -2672,7 +2672,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20technological%20innovation"
+    "app_link": "/graph/?q=green+technological+innovation"
   },
   {
     "concept_id": "FG3C000069",
@@ -2697,7 +2697,7 @@
       "industry",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=competition"
+    "app_link": "/graph/?q=competition"
   },
   {
     "concept_id": "FG3C000199",
@@ -2722,7 +2722,7 @@
       "region",
       "industry"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20complexity"
+    "app_link": "/graph/?q=economic+complexity"
   },
   {
     "concept_id": "FG3C000164",
@@ -2746,7 +2746,7 @@
       "organization",
       "policy_unit"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=government%20subsidies"
+    "app_link": "/graph/?q=government+subsidies"
   },
   {
     "concept_id": "FG3C000753",
@@ -2770,7 +2770,7 @@
       "other",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=high-speed%20rail"
+    "app_link": "/graph/?q=high-speed+rail"
   },
   {
     "concept_id": "FG3C005776",
@@ -2794,7 +2794,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=rate%20of%20growth"
+    "app_link": "/graph/?q=rate+of+growth"
   },
   {
     "concept_id": "FG3C000058",
@@ -2818,7 +2818,7 @@
       "location",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=population"
+    "app_link": "/graph/?q=population"
   },
   {
     "concept_id": "FG3C000436",
@@ -2843,7 +2843,7 @@
       "other",
       "market"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=geopolitical%20risks"
+    "app_link": "/graph/?q=geopolitical+risks"
   },
   {
     "concept_id": "FG3C001408",
@@ -2868,7 +2868,7 @@
       "policy_unit",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=policy"
+    "app_link": "/graph/?q=policy"
   },
   {
     "concept_id": "FG3C000087",
@@ -2893,7 +2893,7 @@
       "policy_unit",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=fiscal%20policy"
+    "app_link": "/graph/?q=fiscal+policy"
   },
   {
     "concept_id": "FG3C000118",
@@ -2917,7 +2917,7 @@
       "location",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=industrialization"
+    "app_link": "/graph/?q=industrialization"
   },
   {
     "concept_id": "FG3C000067",
@@ -2941,7 +2941,7 @@
       "organization",
       "industry"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=profitability"
+    "app_link": "/graph/?q=profitability"
   },
   {
     "concept_id": "FG3C000144",
@@ -2966,7 +2966,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20performance"
+    "app_link": "/graph/?q=economic+performance"
   },
   {
     "concept_id": "FG3C000078",
@@ -2991,7 +2991,7 @@
       "region",
       "industry"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=international%20trade"
+    "app_link": "/graph/?q=international+trade"
   },
   {
     "concept_id": "FG3C000168",
@@ -3015,7 +3015,7 @@
       "country",
       "industry"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=stock%20market%20returns"
+    "app_link": "/graph/?q=stock+market+returns"
   },
   {
     "concept_id": "FG3C000674",
@@ -3040,7 +3040,7 @@
       "market",
       "individual"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=price%20changes"
+    "app_link": "/graph/?q=price+changes"
   },
   {
     "concept_id": "FG3C000599",
@@ -3064,7 +3064,7 @@
       "country",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=US%20stock%20market"
+    "app_link": "/graph/?q=US+stock+market"
   },
   {
     "concept_id": "FG3C000083",
@@ -3088,7 +3088,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=trade%20liberalization"
+    "app_link": "/graph/?q=trade+liberalization"
   },
   {
     "concept_id": "FG3C000098",
@@ -3113,7 +3113,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=per%20capita%20income"
+    "app_link": "/graph/?q=per+capita+income"
   },
   {
     "concept_id": "FG3C000023",
@@ -3138,7 +3138,7 @@
       "market",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=social%20welfare"
+    "app_link": "/graph/?q=social+welfare"
   },
   {
     "concept_id": "FG3C000104",
@@ -3163,7 +3163,7 @@
       "firm",
       "industry"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=capital"
+    "app_link": "/graph/?q=capital"
   },
   {
     "concept_id": "FG3C000494",
@@ -3187,7 +3187,7 @@
       "location",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=digital%20economy%20development"
+    "app_link": "/graph/?q=digital+economy+development"
   },
   {
     "concept_id": "FG3C006328",
@@ -3212,7 +3212,7 @@
       "firm",
       "organization"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=number%20of%20agents"
+    "app_link": "/graph/?q=number+of+agents"
   },
   {
     "concept_id": "FG3C000138",
@@ -3237,7 +3237,7 @@
       "organization",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=systemic%20risk"
+    "app_link": "/graph/?q=systemic+risk"
   },
   {
     "concept_id": "FG3C000052",
@@ -3261,7 +3261,7 @@
       "region",
       "individual"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=unemployment%20rate"
+    "app_link": "/graph/?q=unemployment+rate"
   },
   {
     "concept_id": "FG3C001033",
@@ -3285,7 +3285,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20degradation%20%28CO2%20emissions%29"
+    "app_link": "/graph/?q=environmental+degradation+%28CO2+emissions%29"
   },
   {
     "concept_id": "FG3C000112",
@@ -3309,7 +3309,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=inflation%20rate"
+    "app_link": "/graph/?q=inflation+rate"
   },
   {
     "concept_id": "FG3C000100",
@@ -3333,7 +3333,7 @@
       "firm",
       "individual"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=investor%20sentiment"
+    "app_link": "/graph/?q=investor+sentiment"
   },
   {
     "concept_id": "FG3C000165",
@@ -3358,7 +3358,7 @@
       "market",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=geopolitical%20risk"
+    "app_link": "/graph/?q=geopolitical+risk"
   },
   {
     "concept_id": "FG3C001307",
@@ -3382,7 +3382,7 @@
       "country",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=load%20capacity%20factor%20%28LCF%29"
+    "app_link": "/graph/?q=load+capacity+factor+%28LCF%29"
   },
   {
     "concept_id": "FG3C005346",
@@ -3406,7 +3406,7 @@
       "individual",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=income%20tax%20rate"
+    "app_link": "/graph/?q=income+tax+rate"
   },
   {
     "concept_id": "FG3C000467",
@@ -3431,7 +3431,7 @@
       "individual",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emissions%20per%20capita"
+    "app_link": "/graph/?q=CO2+emissions+per+capita"
   },
   {
     "concept_id": "FG3C000128",
@@ -3455,7 +3455,7 @@
       "country",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=total%20factor%20productivity"
+    "app_link": "/graph/?q=total+factor+productivity"
   },
   {
     "concept_id": "FG3C000730",
@@ -3479,7 +3479,7 @@
       "country",
       "household"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=health"
+    "app_link": "/graph/?q=health"
   },
   {
     "concept_id": "FG3C000077",
@@ -3503,7 +3503,7 @@
       "market",
       "global"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=financial%20stability"
+    "app_link": "/graph/?q=financial+stability"
   },
   {
     "concept_id": "FG3C000057",
@@ -3527,7 +3527,7 @@
       "market",
       "organization"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=liquidity"
+    "app_link": "/graph/?q=liquidity"
   },
   {
     "concept_id": "FG3C000423",
@@ -3552,7 +3552,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=natural%20gas%20consumption"
+    "app_link": "/graph/?q=natural+gas+consumption"
   },
   {
     "concept_id": "FG3C000206",
@@ -3576,7 +3576,7 @@
       "other",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=government%20spending"
+    "app_link": "/graph/?q=government+spending"
   },
   {
     "concept_id": "FG3C000149",
@@ -3601,7 +3601,7 @@
       "country",
       "individual"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=poverty"
+    "app_link": "/graph/?q=poverty"
   },
   {
     "concept_id": "FG3C000209",
@@ -3626,7 +3626,7 @@
       "product",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=Bitcoin"
+    "app_link": "/graph/?q=Bitcoin"
   },
   {
     "concept_id": "FG3C000211",
@@ -3650,7 +3650,7 @@
       "region",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=air%20pollution"
+    "app_link": "/graph/?q=air+pollution"
   },
   {
     "concept_id": "FG3C002978",
@@ -3673,7 +3673,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=low-carbon%20city%20pilot%20policy"
+    "app_link": "/graph/?q=low-carbon+city+pilot+policy"
   },
   {
     "concept_id": "FG3C000092",
@@ -3697,7 +3697,7 @@
       "individual",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=economic%20activity"
+    "app_link": "/graph/?q=economic+activity"
   },
   {
     "concept_id": "FG3C000084",
@@ -3722,7 +3722,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=capital%20accumulation"
+    "app_link": "/graph/?q=capital+accumulation"
   },
   {
     "concept_id": "FG3C000031",
@@ -3747,7 +3747,7 @@
       "individual",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=transaction%20costs"
+    "app_link": "/graph/?q=transaction+costs"
   },
   {
     "concept_id": "FG3C000629",
@@ -3772,7 +3772,7 @@
       "region",
       "establishment"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=CO2%20emission"
+    "app_link": "/graph/?q=CO2+emission"
   },
   {
     "concept_id": "FG3C006136",
@@ -3796,7 +3796,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=innovation%20level"
+    "app_link": "/graph/?q=innovation+level"
   },
   {
     "concept_id": "FG3C001814",
@@ -3821,7 +3821,7 @@
       "individual",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=consumption-based%20carbon%20emissions"
+    "app_link": "/graph/?q=consumption-based+carbon+emissions"
   },
   {
     "concept_id": "FG3C000422",
@@ -3845,7 +3845,7 @@
       "organization",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=ESG%20performance"
+    "app_link": "/graph/?q=ESG+performance"
   },
   {
     "concept_id": "FG3C000076",
@@ -3870,7 +3870,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=climate%20change"
+    "app_link": "/graph/?q=climate+change"
   },
   {
     "concept_id": "FG3C000727",
@@ -3895,7 +3895,7 @@
       "other",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=tourism"
+    "app_link": "/graph/?q=tourism"
   },
   {
     "concept_id": "FG3C000591",
@@ -3919,7 +3919,7 @@
       "location",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=per%20capita%20CO2%20emissions"
+    "app_link": "/graph/?q=per+capita+CO2+emissions"
   },
   {
     "concept_id": "FG3C000219",
@@ -3944,7 +3944,7 @@
       "market",
       "product"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=price%20level"
+    "app_link": "/graph/?q=price+level"
   },
   {
     "concept_id": "FG3C000360",
@@ -3969,7 +3969,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=environmental%20taxes"
+    "app_link": "/graph/?q=environmental+taxes"
   },
   {
     "concept_id": "FG3C000623",
@@ -3992,7 +3992,7 @@
       "location",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=high-quality%20economic%20development"
+    "app_link": "/graph/?q=high-quality+economic+development"
   },
   {
     "concept_id": "FG3C000113",
@@ -4017,7 +4017,7 @@
       "organization",
       "individual"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=firm%20performance"
+    "app_link": "/graph/?q=firm+performance"
   },
   {
     "concept_id": "FG3C000472",
@@ -4041,7 +4041,7 @@
       "region",
       "organization"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=oil%20consumption"
+    "app_link": "/graph/?q=oil+consumption"
   },
   {
     "concept_id": "FG3C000678",
@@ -4065,7 +4065,7 @@
       "country",
       "product"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=implied%20volatility"
+    "app_link": "/graph/?q=implied+volatility"
   },
   {
     "concept_id": "FG3C000208",
@@ -4090,7 +4090,7 @@
       "other",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=public%20debt"
+    "app_link": "/graph/?q=public+debt"
   },
   {
     "concept_id": "FG3C000106",
@@ -4114,7 +4114,7 @@
       "organization",
       "individual"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=financial%20constraints"
+    "app_link": "/graph/?q=financial+constraints"
   },
   {
     "concept_id": "FG3C000425",
@@ -4138,7 +4138,7 @@
       "location",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=digital%20inclusive%20finance"
+    "app_link": "/graph/?q=digital+inclusive+finance"
   },
   {
     "concept_id": "FG3C000073",
@@ -4162,7 +4162,7 @@
       "establishment",
       "industry"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=firm%20productivity"
+    "app_link": "/graph/?q=firm+productivity"
   },
   {
     "concept_id": "FG3C000177",
@@ -4186,7 +4186,7 @@
       "region",
       "individual"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=United%20States"
+    "app_link": "/graph/?q=United+States"
   },
   {
     "concept_id": "FG3C000095",
@@ -4210,7 +4210,7 @@
       "individual",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=household%20income"
+    "app_link": "/graph/?q=household+income"
   },
   {
     "concept_id": "FG3C000437",
@@ -4234,7 +4234,7 @@
       "country",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20investment"
+    "app_link": "/graph/?q=green+investment"
   },
   {
     "concept_id": "FG3C000449",
@@ -4258,7 +4258,7 @@
       "firm",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=artificial%20intelligence%20%28AI%29"
+    "app_link": "/graph/?q=artificial+intelligence+%28AI%29"
   },
   {
     "concept_id": "FG3C006446",
@@ -4282,7 +4282,7 @@
       "location",
       "household"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=place%20of%20residence"
+    "app_link": "/graph/?q=place+of+residence"
   },
   {
     "concept_id": "FG3C000159",
@@ -4306,7 +4306,7 @@
       "other",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=monetary%20policy%20shocks"
+    "app_link": "/graph/?q=monetary+policy+shocks"
   },
   {
     "concept_id": "FG3C000643",
@@ -4330,7 +4330,7 @@
       "firm",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=equity%20returns"
+    "app_link": "/graph/?q=equity+returns"
   },
   {
     "concept_id": "FG3C000093",
@@ -4354,7 +4354,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=GDP%20growth"
+    "app_link": "/graph/?q=GDP+growth"
   },
   {
     "concept_id": "FG3C000222",
@@ -4379,7 +4379,7 @@
       "global",
       "organization"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=money%20supply"
+    "app_link": "/graph/?q=money+supply"
   },
   {
     "concept_id": "FG3C000047",
@@ -4403,7 +4403,7 @@
       "country",
       "household"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=uncertainty"
+    "app_link": "/graph/?q=uncertainty"
   },
   {
     "concept_id": "FG3C000403",
@@ -4428,7 +4428,7 @@
       "individual",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=human%20development"
+    "app_link": "/graph/?q=human+development"
   },
   {
     "concept_id": "FG3C000080",
@@ -4453,7 +4453,7 @@
       "country",
       "product"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=asset%20prices"
+    "app_link": "/graph/?q=asset+prices"
   },
   {
     "concept_id": "FG3C000335",
@@ -4477,7 +4477,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=digitalization"
+    "app_link": "/graph/?q=digitalization"
   },
   {
     "concept_id": "FG3C000122",
@@ -4502,7 +4502,7 @@
       "country_pair",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=real%20exchange%20rate"
+    "app_link": "/graph/?q=real+exchange+rate"
   },
   {
     "concept_id": "FG3C000475",
@@ -4527,7 +4527,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=technological%20innovations"
+    "app_link": "/graph/?q=technological+innovations"
   },
   {
     "concept_id": "FG3C000225",
@@ -4551,7 +4551,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=industrial%20agglomeration"
+    "app_link": "/graph/?q=industrial+agglomeration"
   },
   {
     "concept_id": "FG3C000620",
@@ -4576,7 +4576,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=renewable%20energy%20consumption%20%28REC%29"
+    "app_link": "/graph/?q=renewable+energy+consumption+%28REC%29"
   },
   {
     "concept_id": "FG3C000150",
@@ -4601,7 +4601,7 @@
       "region",
       "market"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=energy%20prices"
+    "app_link": "/graph/?q=energy+prices"
   },
   {
     "concept_id": "FG3C000722",
@@ -4625,7 +4625,7 @@
       "firm",
       "organization"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=green%20credit"
+    "app_link": "/graph/?q=green+credit"
   },
   {
     "concept_id": "FG3C000259",
@@ -4649,7 +4649,7 @@
       "firm",
       "country"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=bank%20profitability"
+    "app_link": "/graph/?q=bank+profitability"
   },
   {
     "concept_id": "FG3C000152",
@@ -4674,7 +4674,7 @@
       "region",
       "policy_unit"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=carbon%20tax"
+    "app_link": "/graph/?q=carbon+tax"
   },
   {
     "concept_id": "FG3C000158",
@@ -4699,7 +4699,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=employment%20growth"
+    "app_link": "/graph/?q=employment+growth"
   },
   {
     "concept_id": "FG3C000190",
@@ -4723,7 +4723,7 @@
       "firm",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=bid-ask%20spread"
+    "app_link": "/graph/?q=bid-ask+spread"
   },
   {
     "concept_id": "FG3C000547",
@@ -4747,7 +4747,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=renewable%20energy%20development"
+    "app_link": "/graph/?q=renewable+energy+development"
   },
   {
     "concept_id": "FG3C000318",
@@ -4772,7 +4772,7 @@
       "firm",
       "organization"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=greenhouse%20gas%20%28GHG%29%20emissions"
+    "app_link": "/graph/?q=greenhouse+gas+%28GHG%29+emissions"
   },
   {
     "concept_id": "FG3C000114",
@@ -4797,7 +4797,7 @@
       "industry",
       "firm"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=market%20concentration"
+    "app_link": "/graph/?q=market+concentration"
   },
   {
     "concept_id": "FG3C000325",
@@ -4822,7 +4822,7 @@
       "country_pair",
       "other"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=real%20exchange%20rates"
+    "app_link": "/graph/?q=real+exchange+rates"
   },
   {
     "concept_id": "FG3C000362",
@@ -4847,7 +4847,7 @@
       "other",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=renewable%20energy%20use"
+    "app_link": "/graph/?q=renewable+energy+use"
   },
   {
     "concept_id": "FG3C000162",
@@ -4872,6 +4872,6 @@
       "country_pair",
       "region"
     ],
-    "app_link": "https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app?search=terms%20of%20trade"
+    "app_link": "/graph/?q=terms+of+trade"
   }
 ]

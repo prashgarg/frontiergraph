@@ -1,47 +1,42 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { data } from "../../lib/site-data";
 ---
 
 <BaseLayout
   title="Advanced | FrontierGraph"
-  description="Advanced FrontierGraph pages for the literature map, method, compare views, and downloads."
+  description="Advanced FrontierGraph pages for the literature map, method notes, and downloads."
 >
   <main>
     <section class="page-hero">
       <span class="eyebrow">Advanced</span>
-      <h1>Keep the main path simple. Use these pages only when your question needs more machinery.</h1>
+      <h1>Go deeper only when your question needs more context.</h1>
       <p class="lede">
-        Most visitors should stay with Research Questions and Inspect Evidence. This page is a hub for the deeper pages that support inspection, comparison, and downloads.
+        Most visitors should stay with Research Questions. This page is a quiet index for the deeper pages: the literature map, the method notes, and the downloadable release files.
       </p>
       <div class="button-row">
         <a class="button-secondary" href="/questions/">Back to Research Questions</a>
-        <a class="button-tertiary" href="/how-it-works/">How It Works</a>
-        <a class="button-tertiary" href={data.app_url}>Inspect evidence</a>
+        <a class="button-tertiary" href="/how-it-works/">How it works</a>
+        <a class="button-tertiary" href="/method/">Method</a>
+        <a class="button-tertiary" href="/downloads/">Downloads</a>
       </div>
     </section>
 
     <section class="section">
       <div class="card-grid action-grid">
         <a class="card action-card" href="/graph/">
-          <span class="eyebrow">Advanced reading surface</span>
-          <h3>Literature Map (Advanced)</h3>
+          <span class="eyebrow">Topic reading</span>
+          <h3>Literature map</h3>
           <p class="card-copy">Inspect one topic, its related ideas, and the nearby research in more detail.</p>
         </a>
         <a class="card action-card" href="/method/">
           <span class="eyebrow">Technical appendix</span>
           <h3>Method</h3>
-          <p class="card-copy">Read the precise technical glossary, extraction notes, and regime definitions.</p>
-        </a>
-        <a class="card action-card" href="/compare/">
-          <span class="eyebrow">Sensitivity check</span>
-          <h3>Compare Views</h3>
-          <p class="card-copy">Inspect Broad, Baseline, and Conservative when you want an ontology-sensitivity check.</p>
+          <p class="card-copy">Read the extraction notes, concept-matching logic, ranking glossary, and release filtering rules.</p>
         </a>
         <a class="card action-card" href="/downloads/">
           <span class="eyebrow">Artifacts</span>
           <h3>Downloads</h3>
-          <p class="card-copy">Access the public database package, exported assets, and static summaries used by the site.</p>
+          <p class="card-copy">Access the working paper, extended abstract, public database package, and exported site assets.</p>
         </a>
       </div>
     </section>

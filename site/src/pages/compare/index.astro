@@ -1,109 +1,19 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { data, formatNumber, formatPercent, titleCase } from "../../lib/site-data";
-
-const regimes = data.compare.regimes;
-const baseline = regimes.find((regime) => regime.regime === "baseline") ?? regimes[0];
+const target = "/method/";
 ---
 
-<BaseLayout
-  title="Compare | FrontierGraph"
-  description="Compare Broad, Baseline, and Conservative ontology regimes and see why Baseline exploratory is the default public view."
->
-  <main>
-    <section class="page-hero">
-      <span class="eyebrow">Advanced comparison</span>
-      <h1>Compare ontology views only when your question needs a sensitivity check.</h1>
-      <p class="lede">
-        Baseline exploratory is the public surface. Broad and Conservative remain here as advanced sensitivity checks, not as parallel defaults for most visitors.
-      </p>
-      <div class="button-row">
-        <span class="field-pill">Default: {baseline.label} exploratory</span>
-        <a class="button-secondary" href="/questions/">See Research Questions</a>
-        <a class="button-tertiary" href="/advanced/">Back to advanced hub</a>
-      </div>
-    </section>
-
-    <section class="section split-section compare-note-grid">
-      <article class="content-panel">
-        <span class="eyebrow">Why Baseline exploratory</span>
-        <h2>{data.compare.default_reason}</h2>
-        <p class="card-copy">
-          Baseline keeps the head inventory compact enough to stay legible, while exploratory mapping reaches coverage that remains close to the broader regimes.
-        </p>
-      </article>
-      <article class="content-panel">
-        <span class="eyebrow">Best strict check</span>
-        <h2>{data.compare.strict_reason}</h2>
-        <p class="card-copy">
-          Broad strict remains the useful comparison point when you want a tighter concept identity view without collapsing all the way into the most conservative tail.
-        </p>
-      </article>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">Regimes</span>
-          <h2>A compact snapshot of the three ontology views</h2>
-        </div>
-        <p class="section-copy">These cards are here for comparison, not as parallel defaults.</p>
-      </div>
-      <div class="card-grid compare-regime-grid">
-        {regimes.map((regime) => (
-          <article class:list={["card", "compare-card", regime.regime === "baseline" && "is-default"]}>
-            <span class="eyebrow">{regime.label}</span>
-            <h3>{regime.label}</h3>
-            <p class="card-copy">
-              {formatNumber(regime.head_count)} head concepts · {formatPercent(regime.soft_coverage)} exploratory coverage
-            </p>
-            <div class="opportunity-stat-row">
-              <span>Hard {formatPercent(regime.hard_coverage)}</span>
-              <span class="field-pill">Strict rows {formatNumber(regime.strict_candidate_rows)}</span>
-              <span class="field-pill">Exploratory rows {formatNumber(regime.exploratory_candidate_rows)}</span>
-            </div>
-            <p class="mini-copy">
-              Strict edges {formatNumber(regime.strict_concept_edges)} · exploratory edges {formatNumber(regime.exploratory_concept_edges)}
-            </p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="section">
-      <details class="method-detail">
-        <summary>
-          <span>
-            <span class="eyebrow">Top-100 overlap</span>
-            <strong>Open the recommendation agreement table</strong>
-          </span>
-        </summary>
-        <div class="method-body">
-          <p>Overlap is measured on the top 100 candidate pairs surfaced by each regime and mapping combination.</p>
-          <div class="table-shell">
-            <table class="opportunity-table compare-table">
-              <thead>
-                <tr>
-                  <th>Left</th>
-                  <th>Right</th>
-                  <th>Intersection</th>
-                  <th>Jaccard</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.compare.overlaps_preview.map((row) => (
-                  <tr>
-                    <td>{titleCase(row.left.replaceAll("::", " "))}</td>
-                    <td>{titleCase(row.right.replaceAll("::", " "))}</td>
-                    <td>{formatNumber(row.intersection_top100)}</td>
-                    <td>{(row.jaccard_top100 * 100).toFixed(1)}%</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </details>
-    </section>
-  </main>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <script is:inline define:vars={{ target }}>
+      window.location.replace(target);
+    </script>
+    <p>Redirecting to <a href={target}>Method</a>.</p>
+  </body>
+</html>

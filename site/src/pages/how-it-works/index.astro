@@ -7,12 +7,12 @@ const content = buildHowItWorksContent(data.app_url);
 ---
 
 <BaseLayout
-  title="How It Works | FrontierGraph"
-  description="What FrontierGraph is, what it is not, how to read a research question card, and where the current public build can fail."
+  title="How it works | FrontierGraph"
+  description="What FrontierGraph is, what it is not, how to read a research question card, and where the public release can fail."
 >
   <main>
     <section class="page-hero">
-      <span class="eyebrow">How It Works</span>
+      <span class="eyebrow">How it works</span>
       <h1>How FrontierGraph helps you decide whether a question is worth pursuing.</h1>
       <p class="lede">
         Use FrontierGraph to find a question, read the quick evidence around it, and decide whether it could become
@@ -20,7 +20,8 @@ const content = buildHowItWorksContent(data.app_url);
       </p>
       <div class="button-row">
         <a class="button-primary" href="/questions/">Browse research questions</a>
-        <a class="button-secondary" href={data.app_url}>Inspect evidence</a>
+        <a class="button-secondary" href={data.app_url}>Open literature map</a>
+        <a class="button-tertiary" href={data.downloads.artifacts.working_paper_pdf}>Read paper</a>
         <a class="button-tertiary" href="/method/">Open Method</a>
       </div>
     </section>
@@ -112,12 +113,12 @@ const content = buildHowItWorksContent(data.app_url);
     <section class="section">
       <div class="cta-band">
         <span class="eyebrow">Next step</span>
-        <h2>Use the public site to browse, then inspect the evidence when you want deeper detail.</h2>
+        <h2>Use the public site to browse, then open the literature map when you want more context.</h2>
         <div class="button-row">
           <a class="button-primary" href="/questions/">Browse research questions</a>
           <a class="button-secondary" href="/method/">Open Method</a>
-          <a class="button-tertiary" href="/advanced/">Open Advanced</a>
-          <a class="button-tertiary" href={data.app_url}>Inspect evidence</a>
+          <a class="button-tertiary" href="/downloads/">Downloads</a>
+          <a class="button-tertiary" href={data.app_url}>Open literature map</a>
         </div>
       </div>
     </section>

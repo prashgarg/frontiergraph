@@ -29,16 +29,16 @@ const carouselSlides = homepageCarouselSlides.flatMap((slide) => {
 const formatNumber = (value: number) => new Intl.NumberFormat("en-GB").format(value);
 const scaleItems = [
   {
-    label: "published papers",
+    label: "published-journal papers screened",
     value: formatNumber(data.metrics.papers),
   },
   {
-    label: "extracted concept instances",
-    value: formatNumber(data.metrics.node_instances),
+    label: "papers in the normalized graph",
+    value: formatNumber(data.metrics.normalized_graph_papers),
   },
   {
-    label: "candidate questions screened",
-    value: formatNumber(data.metrics.suppressed_candidate_count),
+    label: "native concepts",
+    value: formatNumber(data.metrics.native_concepts),
   },
 ];
 ---
@@ -78,9 +78,9 @@ const scaleItems = [
         </div>
         <div class="hero-scale-strip" data-role="homepage-scale-strip">
           <div class="hero-scale-copy">
-            <span class="tiny-label">Current public build</span>
+            <span class="tiny-label">Public release</span>
             <p class="mini-copy">
-              Large enough to be useful, but still a screening surface rather than a verdict on what matters.
+              Large enough to be useful, but still meant to narrow the reading problem rather than settle what matters.
             </p>
           </div>
           <div class="hero-scale-metrics">
@@ -94,7 +94,8 @@ const scaleItems = [
         </div>
         <div class="hero-actions">
           <a class="button-primary" href="/questions/">Browse research questions</a>
-          <a class="button-secondary" href={data.app_url}>Inspect evidence</a>
+          <a class="button-secondary" href={data.app_url}>Open literature map</a>
+          <a class="button-tertiary" href={data.downloads.artifacts.working_paper_pdf}>Read paper</a>
         </div>
       </div>
     </section>
@@ -106,9 +107,9 @@ const scaleItems = [
     <section class="section">
       <div class="cta-band">
         <span class="eyebrow">Deeper evidence</span>
-        <h2>When a question looks promising, inspect the evidence.</h2>
+        <h2>When a question looks promising, inspect the surrounding topic.</h2>
         <div class="button-row">
-          <a class="button-primary" href={data.app_url}>Inspect evidence</a>
+          <a class="button-primary" href={data.app_url}>Open literature map</a>
           <a class="button-tertiary" href="/how-it-works/">How it works</a>
         </div>
       </div>

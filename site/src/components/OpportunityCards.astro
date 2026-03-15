@@ -85,6 +85,7 @@ const buildGlossNotes = (item: Opportunity) => {
     {items.map((item) => (
       <article
         class="opportunity-card"
+        id={item.pair_key}
         data-role="structured-opportunity-card"
         data-question-family={item.question_family}
         data-no-direct={String(item.cooc_count === 0)}
@@ -124,7 +125,7 @@ const buildGlossNotes = (item: Opportunity) => {
           directLinkStatus={item.direct_link_status}
           commonContexts={item.common_contexts}
         />
-        <a class="text-link" href={item.app_link}>Inspect evidence</a>
+        <a class="text-link" href={item.app_link}>Inspect this question</a>
       </article>
     ))}
   </div>
