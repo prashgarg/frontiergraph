@@ -66,8 +66,8 @@ const rootId = `editorial-carousel-${Math.random().toString(36).slice(2, 10)}`;
           <h3>{item.display_title || item.public_pair_label}</h3>
           <p class="card-copy">{item.display_why || item.why_now}</p>
           <div class="editorial-carousel-evidence">
-            <span>{item.direct_link_status}</span>
-            <span>{item.supporting_path_count} nearby concepts</span>
+            <span>{item.supporting_path_count} nearby topics</span>
+            <span>{item.representative_papers.length} starter papers</span>
             <span>{item.cross_field ? "Across fields" : "Within nearby field"}</span>
           </div>
           <p class="mini-copy">

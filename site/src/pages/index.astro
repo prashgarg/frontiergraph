@@ -1,52 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import EditorialQuestionCarousel from "../components/EditorialQuestionCarousel.astro";
 import { data } from "../lib/site-data";
-
-const climatePattern =
-  /\b(climate|carbon|co2|emissions?|pollution|environment(?:al)?|ecological|energy|oil|gas|electricity)\b/i;
-
-const isClimateHeavy = (item: (typeof data.home.featured_questions)[number]) =>
-  climatePattern.test(
-    [item.public_pair_label, item.display_title, item.display_why, item.why_now, item.question_family]
-      .filter(Boolean)
-      .join(" "),
-  );
-
-const buildHomeCarouselPool = () => {
-  const merged = Array.from(
-    new Map(
-      [...data.home.curated_questions, ...data.home.featured_questions].map((item) => [item.pair_key, item]),
-    ).values(),
-  );
-
-  const prioritized = [
-    ...merged.filter((item) => !isClimateHeavy(item)),
-    ...merged.filter((item) => isClimateHeavy(item)),
-  ];
-
-  const selected: typeof merged = [];
-  let climateCount = 0;
-
-  for (const item of prioritized) {
-    if (isClimateHeavy(item) && climateCount >= 1) continue;
-    selected.push(item);
-    if (isClimateHeavy(item)) climateCount += 1;
-    if (selected.length >= 10) break;
-  }
-
-  if (selected.length < 8) {
-    for (const item of prioritized) {
-      if (selected.some((candidate) => candidate.pair_key === item.pair_key)) continue;
-      selected.push(item);
-      if (selected.length >= 8) break;
-    }
-  }
-
-  return selected;
-};
-
-const homeCarouselPool = buildHomeCarouselPool();
 
 const formatNumber = (value: number) => new Intl.NumberFormat("en-GB").format(value);
 const scaleItems = [
@@ -63,6 +17,18 @@ const scaleItems = [
     value: formatNumber(data.metrics.native_concepts),
   },
 ];
+
+const fieldCards = data.questions.field_carousels.map((group) => ({
+  slug: group.slug,
+  title: group.title,
+  caption: group.caption,
+  sample: group.items[0],
+}));
+
+const exampleQuestion =
+  data.home.curated_questions.find((item) => item.pair_key === "FG3C000003__FG3C000208") ??
+  data.home.curated_questions.find((item) => /public debt/i.test(item.public_pair_label)) ??
+  data.home.curated_questions[0];
 ---
 
 <BaseLayout
@@ -70,11 +36,11 @@ const scaleItems = [
   description="FrontierGraph is a public interface for browsing open questions in the economics literature."
 >
   <main>
-    <section class="hero hero-home">
+    <section class="hero hero-home hero-home-simple">
       <div class="hero-panel hero-copy-panel hero-copy-panel-plain">
-        <h1>Open economics questions, grounded in nearby evidence.</h1>
+        <h1>A graph of open questions in economics.</h1>
         <p class="lede">
-          These questions sit close to existing topics, paths, and papers in the released graph, so you can start from something concrete instead of a blank page.
+          FrontierGraph organizes questions that sit near existing topics, paths, and papers, so you can see where the literature may still be open.
         </p>
         <div class="hero-actions">
           <a class="button-primary" href="/questions/">Browse questions</a>
@@ -83,14 +49,68 @@ const scaleItems = [
           <a class="button-tertiary" href="/downloads/">Download data</a>
         </div>
       </div>
-      <EditorialQuestionCarousel
-        items={homeCarouselPool}
-        title="A few concrete places to start"
-        sectionId="home-editorial-carousel"
-        variant="home"
-        sampleSize={6}
-      />
     </section>
+
+    <section class="section">
+      <div class="section-heading section-heading-compact">
+        <div>
+          <h2>Browse by field.</h2>
+        </div>
+      </div>
+      <div class="action-grid home-field-grid">
+        {fieldCards.map((group) => (
+          <article class="field-card home-field-card">
+            <span class="tiny-label">Field</span>
+            <h3>{group.title}</h3>
+            <p class="card-copy">{group.caption}</p>
+            {group.sample && (
+              <p class="mini-copy home-field-sample">
+                <strong>Example:</strong> {group.sample.display_title || group.sample.public_pair_label}
+              </p>
+            )}
+            <div class="button-row">
+              <a class="text-link" href={`/questions/#${group.slug}`}>Open field</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    {exampleQuestion && (
+      <section class="section">
+        <div class="section-heading section-heading-compact">
+          <div>
+            <h2>How one question appears.</h2>
+          </div>
+        </div>
+        <article class="card home-example-card">
+          <div class="home-example-grid">
+            <div>
+              <span class="tiny-label">Worked example</span>
+              <h3>{exampleQuestion.question_title || exampleQuestion.display_title || exampleQuestion.public_pair_label}</h3>
+              <p class="card-copy">{exampleQuestion.short_why || exampleQuestion.display_why || exampleQuestion.why_now}</p>
+              <p class="mini-copy">
+                <strong>First step:</strong> {exampleQuestion.first_next_step || exampleQuestion.display_first_step || exampleQuestion.recommended_move}
+              </p>
+              <div class="button-row">
+                <a class="text-link" href={`/questions/#${exampleQuestion.pair_key}`}>See question</a>
+                <a class="text-link" href={exampleQuestion.app_link}>Explore in app</a>
+              </div>
+            </div>
+            <div class="home-example-notes">
+              <p class="mini-copy">
+                <strong>Why it appears:</strong> the direct question is thin, but the surrounding literature already connects the component ideas.
+              </p>
+              <div class="home-example-evidence">
+                <span>{exampleQuestion.supporting_path_count} nearby topics</span>
+                <span>{exampleQuestion.representative_papers.length} starter papers</span>
+                <span>{exampleQuestion.cross_field ? "Across fields" : "Within nearby literature"}</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    )}
 
     <section class="section">
       <div class="release-strip" data-role="homepage-scale-strip">

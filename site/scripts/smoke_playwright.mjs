@@ -62,11 +62,11 @@ async function main() {
   await page.waitForSelector("h1");
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError", "For academics", "A simple analogy", "Why this exists"]);
   const homeHeroText = (await page.locator("h1").first().textContent()) || "";
-  assert(/Open economics questions,\s*grounded in nearby evidence\./i.test(homeHeroText), "Homepage hero missing");
+  assert(/A graph of open questions in economics\./i.test(homeHeroText), "Homepage hero missing");
   const nav = page.getByRole("navigation");
   assert(await nav.getByRole("link", { name: /^Home$/ }).isVisible(), "Home nav missing");
   assert(await nav.getByRole("link", { name: /^Questions$/ }).isVisible(), "Questions nav missing");
-  assert(await nav.getByRole("link", { name: /^Map$/ }).isVisible(), "Map nav missing");
+  assert(await nav.getByRole("link", { name: /^Graph$/ }).isVisible(), "Graph nav missing");
   assert(await nav.getByRole("link", { name: /^Paper$/ }).isVisible(), "Paper nav missing");
   assert(await nav.getByRole("link", { name: /^Downloads$/ }).isVisible(), "Downloads nav missing");
   assert((await page.getByRole("button", { name: /Dark mode/i }).count()) === 0, "Dark mode toggle should be removed");
@@ -76,9 +76,9 @@ async function main() {
   assert(await page.getByRole("link", { name: /^Explore in app$/ }).first().isVisible(), "Homepage app CTA missing");
   assert(await page.getByRole("link", { name: /^Read paper$/ }).first().isVisible(), "Homepage paper CTA missing");
   assert(await page.getByRole("link", { name: /^Download data$/ }).first().isVisible(), "Homepage data CTA missing");
-  assert(await page.locator('[data-role="home-editorial-carousel"]').isVisible(), "Homepage should show the editorial carousel");
-  assert((await page.locator('[data-role="home-editorial-carousel"] .editorial-carousel-dot').count()) === 6, "Homepage should sample 6 examples");
-  assert((await page.locator('[data-role="home-editorial-carousel"] [data-role="editorial-carousel-slide"][data-active="true"]').count()) === 1, "Homepage should show one active example");
+  assert(await page.getByRole("heading", { name: /Browse by field\./i }).isVisible(), "Homepage field section missing");
+  assert(await page.getByRole("heading", { name: /How one question appears\./i }).isVisible(), "Homepage worked example missing");
+  assert((await page.locator('[data-role="home-editorial-carousel"]').count()) === 0, "Homepage should not show the old editorial carousel");
   assert(await page.locator('[data-role="homepage-scale-strip"]').isVisible(), "Homepage release strip missing");
 
   await page.goto(`${baseUrl}/questions/`, { waitUntil: "networkidle" });
@@ -92,8 +92,9 @@ async function main() {
   const activePairs = await page.locator('[data-role^="field-carousel-"] [data-role="editorial-carousel-slide"][data-active="true"], [data-role^="use-case-carousel-"] [data-role="editorial-carousel-slide"][data-active="true"]').evaluateAll((nodes) => nodes.map((node) => node.getAttribute("data-pair-key")));
   assert(new Set(activePairs.filter(Boolean)).size === activePairs.filter(Boolean).length, "Questions page should not repeat the same active question across carousels");
   const rankedSection = page.locator('[data-role="overall-ranked-questions"]');
-  assert(await rankedSection.getByRole("button", { name: /No direct papers yet/i }).isVisible(), "Questions filters missing");
-  assert(await rankedSection.getByRole("button", { name: /Some direct evidence/i }).isVisible(), "Questions filters missing exact-evidence chip");
+  assert(await rankedSection.getByRole("button", { name: /Cross-area/i }).isVisible(), "Questions filters missing cross-area chip");
+  assert(await rankedSection.getByRole("button", { name: /Stronger nearby evidence/i }).isVisible(), "Questions filters missing stronger-evidence chip");
+  assert(await rankedSection.getByRole("button", { name: /Broader project/i }).isVisible(), "Questions filters missing broader-project chip");
   assert(await rankedSection.getByPlaceholder("Search by topic").isVisible(), "Questions search missing");
   assert((await page.getByRole("link", { name: /How it works/i }).count()) === 0, "Questions page should not point to How it works");
 
@@ -117,10 +118,9 @@ async function main() {
 
   await page.goto(`${baseUrl}/about/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
-  assert(await page.getByRole("heading", { name: /FrontierGraph helps narrow the reading problem/i }).isVisible(), "About hero missing");
-  assert(await page.getByRole("heading", { name: /^What this is$/ }).isVisible(), "About cards missing");
-  assert(await page.getByRole("heading", { name: /^How to use it$/ }).isVisible(), "About cards missing");
-  assert(await page.getByRole("heading", { name: /^What it does not do$/ }).isVisible(), "About cards missing");
+  assert(await page.getByRole("heading", { name: /^About$/ }).isVisible(), "About hero missing");
+  assert(await page.getByRole("heading", { name: /^Prashant Garg$/ }).isVisible(), "About profile missing");
+  assert(await page.getByText(/Imperial College London/i).first().isVisible(), "About affiliation missing");
 
   await page.goto(`${baseUrl}/downloads/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");

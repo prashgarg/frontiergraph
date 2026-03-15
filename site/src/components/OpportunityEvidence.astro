@@ -17,6 +17,7 @@ const {
 
 const uniqueMediatorLabels = Array.from(new Set(mediatorLabels.filter(Boolean)));
 const visiblePapers = representativePapers.filter((paper) => paper.title).slice(0, 3);
+const hasExactReleasedPaper = !/no direct papers yet/i.test(directLinkStatus);
 ---
 
 <details class="opportunity-detail" data-role="opportunity-evidence">
@@ -40,9 +41,11 @@ const visiblePapers = representativePapers.filter((paper) => paper.title).slice(
         </ul>
       </div>
     )}
-    <p class="mini-copy">
-      <strong>Papers on this exact question:</strong> {directLinkStatus}
-    </p>
+    {hasExactReleasedPaper && (
+      <p class="mini-copy">
+        <strong>Papers on this exact question:</strong> {directLinkStatus}
+      </p>
+    )}
     {commonContexts && (
       <p class="mini-copy">
         <strong>Common contexts:</strong> {commonContexts}

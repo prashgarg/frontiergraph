@@ -31,10 +31,9 @@ const {
 const rootId = `opportunity-cards-${Math.random().toString(36).slice(2, 10)}`;
 
 const filters = [
-  { id: "no-direct", label: "No direct papers yet" },
   { id: "cross-area", label: "Cross-area" },
-  { id: "exact-evidence", label: "Some direct evidence" },
-  { id: "indirect", label: "Mostly indirect evidence" },
+  { id: "strong-nearby", label: "Stronger nearby evidence" },
+  { id: "broader-project", label: "Broader project" },
 ];
 
 const buildGlossNotes = (item: Opportunity) => {
@@ -90,10 +89,9 @@ const buildGlossNotes = (item: Opportunity) => {
         data-role="structured-opportunity-card"
         data-card-index={String(index)}
         data-question-family={item.question_family}
-        data-no-direct={String(item.cooc_count === 0)}
         data-cross-area={String(item.cross_field)}
-        data-exact-evidence={String(item.cooc_count > 0)}
-        data-indirect={String(item.cooc_count === 0 && item.path_support_norm < 0.7)}
+        data-strong-nearby={String(item.supporting_path_count >= 20 || item.path_support_norm >= 0.65)}
+        data-broader-project={String(item.mediator_count >= 10 || item.supporting_path_count >= 30)}
         data-search-text={`${item.public_pair_label} ${item.source_label} ${item.target_label}`.toLowerCase()}
       >
         <div class="opportunity-kicker">
@@ -102,9 +100,6 @@ const buildGlossNotes = (item: Opportunity) => {
         </div>
         <h3>{item.public_pair_label}</h3>
         {buildGlossNotes(item) && <p class="mini-copy opportunity-label-note">{buildGlossNotes(item)}</p>}
-        <p class="mini-copy">
-          <strong>Papers on this exact question:</strong> {item.direct_link_status}
-        </p>
         <p class="mini-copy">
           <strong>Nearby linking concepts:</strong> {item.supporting_path_count}
         </p>
@@ -161,10 +156,9 @@ const buildGlossNotes = (item: Opportunity) => {
     let visibleLimit = Number(initialVisibleCount || 0);
 
     const filterToDataset = {
-      "no-direct": "noDirect",
       "cross-area": "crossArea",
-      "exact-evidence": "exactEvidence",
-      "indirect": "indirect",
+      "strong-nearby": "strongNearby",
+      "broader-project": "broaderProject",
     };
 
     const applyFilters = () => {

@@ -22,14 +22,16 @@ const questions = data.questions.ranked_questions;
     <section class="section">
       <div class="editorial-carousel-grid editorial-carousel-grid-fields">
         {data.questions.field_carousels.map((group, index) => (
-          <EditorialQuestionCarousel
-            items={group.items}
-            title={group.title}
-            caption={group.caption}
-            groupLabel="Field"
-            sectionId={`field-carousel-${group.slug}`}
-            initialDelayMs={index * 700}
-          />
+          <div id={group.slug}>
+            <EditorialQuestionCarousel
+              items={group.items}
+              title={group.title}
+              caption={group.caption}
+              groupLabel="Field"
+              sectionId={`field-carousel-${group.slug}`}
+              initialDelayMs={index * 700}
+            />
+          </div>
         ))}
       </div>
     </section>
