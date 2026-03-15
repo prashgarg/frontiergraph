@@ -132,7 +132,9 @@ async function main() {
 
   await page.goto(`${baseUrl}/paper/`, { waitUntil: "networkidle" });
   assert(await page.getByRole("heading", { name: /What Should Economics Work On Next/i }).first().isVisible(), "Paper page missing");
-  assert(await page.getByRole("link", { name: /^Explore in app$/ }).first().isVisible(), "Paper overview app CTA missing");
+  assert((await page.locator(".paper-hero .button-row a").count()) === 2, "Paper hero should only show paper-specific CTAs");
+  assert(await page.locator(".paper-hero .button-row").getByRole("link", { name: /^Download PDF$/ }).isVisible(), "Paper hero PDF CTA missing");
+  assert(await page.locator(".paper-hero .button-row").getByRole("link", { name: /^Open downloads$/ }).isVisible(), "Paper hero downloads CTA missing");
   assert((await page.locator(".paper-mermaid").count()) >= 1, "Paper page should render Mermaid diagrams");
   const paperText = await page.locator("main").innerText();
   assert(!/flowchart LR/i.test(paperText), "Paper page should not expose raw Mermaid source");
