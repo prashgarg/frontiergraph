@@ -29,9 +29,9 @@ const {
 const rootId = `opportunity-cards-${Math.random().toString(36).slice(2, 10)}`;
 
 const filters = [
-  { id: "no-direct", label: "No papers on this exact question yet" },
+  { id: "no-direct", label: "No direct papers yet" },
   { id: "cross-area", label: "Cross-area" },
-  { id: "exact-evidence", label: "Already some exact-paper evidence" },
+  { id: "exact-evidence", label: "Some direct evidence" },
   { id: "indirect", label: "Mostly indirect evidence" },
 ];
 
@@ -54,7 +54,6 @@ const buildGlossNotes = (item: Opportunity) => {
   {title && (
     <div class:list={["section-heading", !standalone && "section-heading-compact"]}>
       <div>
-        <span class="eyebrow">Ranked questions</span>
         <h2>{title}</h2>
       </div>
       {caption && <p class="section-copy">{caption}</p>}
@@ -63,8 +62,8 @@ const buildGlossNotes = (item: Opportunity) => {
   {enableFilters && (
     <div class="opportunity-filter-shell" data-role="opportunity-filter-shell">
       <label class="search-shell opportunity-search-shell">
-        <span>Search research questions</span>
-        <input type="search" placeholder="Search by topic or outcome" data-role="opportunity-search-input" />
+        <span>Search questions</span>
+        <input type="search" placeholder="Search by topic" data-role="opportunity-search-input" />
       </label>
       <div class="opportunity-filter-bar" data-role="opportunity-filter-bar">
         {filters.map((filter) => (
@@ -125,7 +124,7 @@ const buildGlossNotes = (item: Opportunity) => {
           directLinkStatus={item.direct_link_status}
           commonContexts={item.common_contexts}
         />
-        <a class="text-link" href={item.app_link}>Open in deeper app</a>
+        <a class="text-link" href={item.app_link}>Explore in app</a>
       </article>
     ))}
   </div>

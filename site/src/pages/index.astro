@@ -45,75 +45,35 @@ const scaleItems = [
 
 <BaseLayout
   title="FrontierGraph"
-  description="FrontierGraph helps academics find the next paper to work on."
+  description="FrontierGraph surfaces concrete research questions that could become the next paper."
 >
   <main>
-    <section class="hero hero-home hero-home-proof">
+    <section class="hero hero-home">
       <div class="hero-panel hero-copy-panel">
-        <span class="eyebrow">For academics</span>
-        <h1>Find the next paper to work on.</h1>
+        <h1>Find the next paper worth your time.</h1>
         <p class="lede">
-          Popular topics are often crowded, while neglected ones are often vague or weak. This helps surface questions
-          that still look open but already have enough nearby work to investigate seriously.
+          FrontierGraph surfaces research questions that still look open, but already sit near enough related work to investigate seriously.
         </p>
-        <div class="hero-detail-grid">
-          <div class="hero-analogy-card">
-            <span class="tiny-label">A simple analogy</span>
-            <p class="card-copy">
-              Social platforms suggest people to follow from shared connections. The same basic idea can help with
-              research: look for questions that are not yet studied directly very often, but already sit near enough
-              related work to be worth checking.
-            </p>
-          </div>
-          <div class="hero-problem-card">
-            <span class="tiny-label">Why this exists</span>
-            <p class="mini-copy">
-              The hard part is not finding topics. It is deciding which ideas are already crowded, which ones are too vague,
-              and which ones might genuinely become the next paper.
-            </p>
-            <p class="mini-copy hero-audience-line">
-              Useful for PhD students choosing topics, researchers scoping the next paper, and people moving into a nearby field.
-            </p>
-          </div>
-        </div>
-        <div class="hero-scale-strip" data-role="homepage-scale-strip">
-          <div class="hero-scale-copy">
-            <span class="tiny-label">Public release</span>
-            <p class="mini-copy">
-              Large enough to be useful, but still meant to narrow the reading problem rather than settle what matters.
-            </p>
-          </div>
-          <div class="hero-scale-metrics">
-            {scaleItems.map((item) => (
-              <div class="hero-scale-card">
-                <strong>{item.value}</strong>
-                <span>{item.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
         <div class="hero-actions">
-          <a class="button-primary" href="/questions/">Browse research questions</a>
-          <a class="button-secondary" href="/graph/">Open literature map</a>
-          <a class="button-tertiary" href={data.app_url}>Open deeper app</a>
-          <a class="button-tertiary" href="/paper/">Read on the web</a>
+          <a class="button-primary" href="/questions/">Browse questions</a>
+          <a class="button-secondary" href={data.app_url}>Explore in app</a>
+          <a class="button-tertiary" href="/paper/">Read paper</a>
+          <a class="button-tertiary" href="/downloads/">Download data</a>
         </div>
       </div>
+      <HomepageQuestionCarousel slides={carouselSlides} compact={true} />
     </section>
 
     <section class="section">
-      <HomepageQuestionCarousel slides={carouselSlides} />
-    </section>
-
-    <section class="section">
-      <div class="cta-band">
-        <span class="eyebrow">How to use it</span>
-        <h2>Browse first, inspect one topic, then go deeper only when the question is worth your time.</h2>
-        <div class="button-row">
-          <a class="button-primary" href="/graph/">Open literature map</a>
-          <a class="button-secondary" href={data.app_url}>Open deeper app</a>
-          <a class="button-tertiary" href="/paper/">Paper overview</a>
-          <a class="button-tertiary" href="/downloads/">Downloads</a>
+      <div class="release-strip" data-role="homepage-scale-strip">
+        <span class="tiny-label">Public release</span>
+        <div class="hero-scale-metrics">
+          {scaleItems.map((item) => (
+            <div class="hero-scale-card">
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

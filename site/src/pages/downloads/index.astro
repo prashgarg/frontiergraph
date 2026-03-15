@@ -12,41 +12,34 @@ const artifacts = data.downloads.artifacts;
 >
   <main>
     <section class="page-hero">
-      <span class="eyebrow">Downloads</span>
-      <h1>Take the paper, the lightweight tables, or the richer public graph bundle.</h1>
+      <h1>Take the paper, the tables, or the full public bundle.</h1>
       <p class="lede">
-        The release is split on purpose. Some readers want a skim-first paper and a spreadsheet. Others want machine-readable graph assets or the full public SQLite bundle for the deeper app.
+        Start with the paper or the lightweight tables, then move to the full bundle only if you want the app data.
       </p>
       <div class="button-row">
-        <a class="button-primary" href="/paper/">Open paper overview</a>
+        <a class="button-primary" href="/paper/">Read paper</a>
         <a class="button-secondary" href={artifacts.working_paper_pdf}>Download working paper PDF</a>
-        <a class="button-tertiary" href={data.app_url}>Open deeper app</a>
-        <a class="button-tertiary" href={data.repo_url}>Repository</a>
+        <a class="button-tertiary" href={data.app_url}>Explore in app</a>
       </div>
     </section>
 
     <section class="section download-stack">
       <article class="download-panel">
-        <span class="eyebrow">Paper</span>
         <h2>Read it on the web or take the PDF.</h2>
         <div class="card-grid download-artifact-grid">
           <a class="card artifact-card" href="/paper/">
-            <span class="eyebrow">Skim first</span>
             <h3>Paper overview</h3>
             <p class="card-copy">A shorter web version with the setup, strongest results, and direct links into the release.</p>
           </a>
           <a class="card artifact-card" href="/paper/full/">
-            <span class="eyebrow">Long read</span>
             <h3>Full HTML manuscript</h3>
             <p class="card-copy">The full working-paper draft in a site-native long-scroll format.</p>
           </a>
           <a class="card artifact-card" href={artifacts.working_paper_pdf}>
-            <span class="eyebrow">Portable</span>
             <h3>Working paper PDF</h3>
             <p class="card-copy">The tracked manuscript PDF used in the public release.</p>
           </a>
           <a class="card artifact-card" href={artifacts.extended_abstract_pdf}>
-            <span class="eyebrow">Short version</span>
             <h3>Extended abstract PDF</h3>
             <p class="card-copy">A shorter entry point if you want the core idea before the full manuscript.</p>
           </a>
@@ -57,26 +50,22 @@ const artifacts = data.downloads.artifacts;
         <span class="eyebrow">Tier 1</span>
         <h2>Lightweight exports for spreadsheets and quick reuse.</h2>
         <p class="download-copy">
-          Use these if you want the released question list, the central concept table, or the benchmark counts without touching the deeper app or the SQLite bundle.
+          Use these when you want the released surface without touching the app or the SQLite bundle.
         </p>
         <div class="card-grid download-artifact-grid">
           <a class="card artifact-card" href={artifacts.top_questions_csv}>
-            <span class="eyebrow">Question export</span>
             <h3>Top questions CSV</h3>
             <p class="card-copy">The current released research-question surface in a lightweight table.</p>
           </a>
           <a class="card artifact-card" href={artifacts.central_concepts_csv}>
-            <span class="eyebrow">Concept export</span>
             <h3>Central concepts CSV</h3>
             <p class="card-copy">Support and centrality statistics for the most prominent released concepts.</p>
           </a>
           <a class="card artifact-card" href={artifacts.curated_questions_json}>
-            <span class="eyebrow">Editorial set</span>
             <h3>Curated questions JSON</h3>
             <p class="card-copy">The hand-curated question sets used on the site front pages and shelves.</p>
           </a>
           <a class="card artifact-card" href={artifacts.benchmark_manifest_json}>
-            <span class="eyebrow">Benchmark facts</span>
             <h3>Benchmark manifest JSON</h3>
             <p class="card-copy">Canonical fuller-corpus counts for papers, normalized links, and native concepts.</p>
           </a>
@@ -87,26 +76,22 @@ const artifacts = data.downloads.artifacts;
         <span class="eyebrow">Tier 2</span>
         <h2>Structured graph assets for site-equivalent machine use.</h2>
         <p class="download-copy">
-          These are the static assets behind the public site: the literature-map backbone, the searchable concept index, and the concept-level neighborhood and opportunity shards.
+          These are the site-facing graph assets: the map backbone, concept index, and shard indexes.
         </p>
         <div class="card-grid download-artifact-grid">
           <a class="card artifact-card" href={artifacts.graph_backbone_json}>
-            <span class="eyebrow">Map</span>
             <h3>Literature map JSON</h3>
             <p class="card-copy">Observed nodes and edges used by the lightweight public literature map.</p>
           </a>
           <a class="card artifact-card" href={artifacts.concept_index_json}>
-            <span class="eyebrow">Lookup</span>
             <h3>Concept index JSON</h3>
             <p class="card-copy">Searchable concept records with labels, aliases, support, and app links.</p>
           </a>
           <a class="card artifact-card" href={artifacts.concept_neighborhoods_index_json}>
-            <span class="eyebrow">Neighborhoods</span>
             <h3>Concept neighborhoods index</h3>
             <p class="card-copy">Index into the concept-neighborhood shards used by the literature map and topic inspector.</p>
           </a>
           <a class="card artifact-card" href={artifacts.concept_opportunities_index_json}>
-            <span class="eyebrow">Opportunities</span>
             <h3>Concept opportunities index</h3>
             <p class="card-copy">Index into the concept-specific opportunity shards used across the site.</p>
           </a>
@@ -131,13 +116,13 @@ const artifacts = data.downloads.artifacts;
           </div>
         </div>
         <p class="download-copy">
-          This SQLite bundle is the public source of truth for the deeper app. It includes release metadata, ranked questions, concept index records, graph backbone tables, concept neighborhoods, concept-specific opportunities, and question-level evidence tables such as starter papers, mediators, and supporting paths.
+          This SQLite bundle is the public source of truth for the app. It includes the released questions, concept index, graph tables, neighborhoods, opportunities, and question-level evidence.
         </p>
         <div class="button-row">
           <a class="button-primary" href={publicDb.public_url}>Download public DB</a>
           <a class="button-secondary" href={data.downloads.manifest_path}>Manifest</a>
           <a class="button-secondary" href={data.downloads.checksum_path}>Checksum</a>
-          <a class="button-tertiary" href={data.app_url}>Open deeper app</a>
+          <a class="button-tertiary" href={data.app_url}>Explore in app</a>
         </div>
       </article>
 

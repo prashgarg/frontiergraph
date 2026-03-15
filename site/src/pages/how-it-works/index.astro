@@ -1,127 +1,19 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { data } from "../../lib/site-data";
-import { buildHowItWorksContent } from "../../content/how-it-works-content";
-
-const content = buildHowItWorksContent(data.app_url);
+const target = "/about/";
 ---
 
-<BaseLayout
-  title="How it works | FrontierGraph"
-  description="What FrontierGraph is, what it is not, how to read a research question card, and where the public release can fail."
->
-  <main>
-    <section class="page-hero">
-      <span class="eyebrow">How it works</span>
-      <h1>How FrontierGraph helps you decide whether a question is worth pursuing.</h1>
-      <p class="lede">
-        Use FrontierGraph to find a question, read the quick evidence around it, and decide whether it could become
-        your next paper. It is not a substitute for reading papers, checking close synonyms, or deciding whether a claim is true.
-      </p>
-      <div class="button-row">
-        <a class="button-primary" href="/questions/">Browse research questions</a>
-        <a class="button-secondary" href="/graph/">Open literature map</a>
-        <a class="button-tertiary" href={data.app_url}>Open deeper app</a>
-        <a class="button-tertiary" href="/paper/">Read paper on the web</a>
-        <a class="button-tertiary" href="/method/">Open Method</a>
-      </div>
-    </section>
-
-    <section class="section faq-top-grid">
-      <article class="content-panel faq-foundation-panel">
-        <span class="eyebrow">Start here</span>
-        <h2>Use the public list to spot a question, then inspect the evidence before you trust it.</h2>
-        <p class="card-copy">
-          Start on Research Questions, not on the technical pages. The point of the public site is to help you decide
-          what looks worth reading, scoping, or testing next.
-        </p>
-        <p class="card-copy">
-          When a question looks promising, inspect the related ideas and the starter papers before deciding it is truly open.
-        </p>
-      </article>
-
-      <aside class="content-panel faq-rail">
-        <span class="eyebrow">What this is not</span>
-        <h2>Use FrontierGraph as a discovery aid, not as a verdict.</h2>
-        <ul class="faq-rail-list">
-          {content.railItems.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
-      </aside>
-    </section>
-
-    <section class="section">
-      <article class="content-panel faq-foundation-panel">
-        <span class="eyebrow">Foundation</span>
-        <h2>FrontierGraph builds on earlier claim-graph extraction work, but it is not the same product.</h2>
-        {content.foundationHtml.map((paragraph) => (
-          <p class="card-copy" set:html={paragraph}></p>
-        ))}
-      </article>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">Themes</span>
-          <h2>Start with the question you actually have.</h2>
-        </div>
-        <p class="section-copy">
-          This page stays short on purpose. Use it to interpret the public product first, then open Method only if you want the exact technical terms.
-        </p>
-      </div>
-      <div class="faq-theme-grid">
-        {content.themes.map((theme) => (
-          <a class="card faq-theme-card" href={`#${theme.id}`}>
-            <span class="eyebrow">{theme.eyebrow}</span>
-            <h3>{theme.title}</h3>
-            <p class="card-copy">{theme.intro}</p>
-          </a>
-        ))}
-      </div>
-    </section>
-
-    {content.themes.map((theme) => (
-      <section class="section faq-section" id={theme.id}>
-        <div class="section-heading">
-          <div>
-            <span class="eyebrow">{theme.eyebrow}</span>
-            <h2>{theme.title}</h2>
-          </div>
-          <p class="section-copy">{theme.intro}</p>
-        </div>
-        <div class="faq-detail-stack">
-          {theme.questions.map((item, index) => (
-            <details class="method-detail faq-detail" open={index === 0}>
-              <summary>
-                <span>
-                  <span class="eyebrow">Question</span>
-                  <strong>{item.question}</strong>
-                </span>
-              </summary>
-              <div class="method-body">
-                {item.answerHtml.map((paragraph) => (
-                  <p set:html={paragraph}></p>
-                ))}
-              </div>
-            </details>
-          ))}
-        </div>
-      </section>
-    ))}
-
-    <section class="section">
-      <div class="cta-band">
-        <span class="eyebrow">Next step</span>
-        <h2>Use the public site to browse, then open the deeper app only when the question looks worth a closer look.</h2>
-        <div class="button-row">
-          <a class="button-primary" href="/questions/">Browse research questions</a>
-          <a class="button-secondary" href="/method/">Open Method</a>
-          <a class="button-tertiary" href="/downloads/">Downloads</a>
-          <a class="button-tertiary" href={data.app_url}>Open deeper app</a>
-        </div>
-      </div>
-    </section>
-  </main>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <script is:inline define:vars={{ target }}>
+      window.location.replace(target);
+    </script>
+    <p>Redirecting to <a href={target}>About</a>.</p>
+  </body>
+</html>

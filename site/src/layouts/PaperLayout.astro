@@ -40,8 +40,8 @@ const showToc = variant === "full" && toc.length > 0;
       <div class="button-row">
         <a class="button-primary" href={pdfUrl}>Download PDF</a>
         <a class="button-secondary" href={variant === "overview" ? "/paper/full/" : "/paper/"}>{variant === "overview" ? "Open full HTML paper" : "Open web overview"}</a>
-        <a class="button-tertiary" href="/questions/">Browse research questions</a>
-        <a class="button-tertiary" href={appUrl}>Open deeper app</a>
+        <a class="button-tertiary" href="/questions/">Browse questions</a>
+        <a class="button-tertiary" href={appUrl}>Explore in app</a>
       </div>
     </section>
 
@@ -63,13 +63,13 @@ const showToc = variant === "full" && toc.length > 0;
         <div class="paper-exit-card">
           <span class="eyebrow">Keep going</span>
           <h2>Read, inspect, or take the release away.</h2>
-          <div class="button-row">
-            <a class="button-primary" href={pdfUrl}>Download PDF</a>
-            <a class="button-secondary" href="/downloads/">Open downloads</a>
-            <a class="button-tertiary" href={appUrl}>Open deeper app</a>
-          </div>
+        <div class="button-row">
+          <a class="button-primary" href={pdfUrl}>Download PDF</a>
+          <a class="button-secondary" href="/downloads/">Open downloads</a>
+          <a class="button-tertiary" href={appUrl}>Explore in app</a>
         </div>
-      </article>
+      </div>
+    </article>
     </section>
   </main>
 </BaseLayout>

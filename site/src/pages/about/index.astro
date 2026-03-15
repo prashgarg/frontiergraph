@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { data } from "../../lib/site-data";
+---
+
+<BaseLayout
+  title="About | FrontierGraph"
+  description="What FrontierGraph is for, how to use it, and what it does not do."
+>
+  <main>
+    <section class="page-hero">
+      <h1>FrontierGraph helps narrow the reading problem.</h1>
+      <p class="lede">
+        Start with a question, inspect the nearby literature, and decide whether it looks worth your time. The public site is a discovery surface, not a verdict engine.
+      </p>
+      <div class="button-row">
+        <a class="button-primary" href="/questions/">Browse questions</a>
+        <a class="button-secondary" href={data.app_url}>Explore in app</a>
+        <a class="button-tertiary" href="/paper/">Read paper</a>
+        <a class="button-tertiary" href="/downloads/">Download data</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card-grid">
+        <article class="card">
+          <h2>What this is</h2>
+          <p class="card-copy">
+            FrontierGraph turns a large published-journal economics corpus into a shared concept graph and surfaces questions that still look open but already have enough nearby work to investigate seriously.
+          </p>
+        </article>
+        <article class="card">
+          <h2>How to use it</h2>
+          <p class="card-copy">
+            Start on Questions. Open the app when one idea looks promising and you want the paths, mediators, and starter papers. Use the paper or downloads only when you want the full method or the release files.
+          </p>
+        </article>
+        <article class="card">
+          <h2>What it does not do</h2>
+          <p class="card-copy">
+            It does not tell you that a claim is true, that a topic is important, or that no close paper already exists. It is a way to narrow what to read next, not to replace reading.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

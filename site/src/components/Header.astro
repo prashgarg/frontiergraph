@@ -3,10 +3,8 @@ import { data } from "../lib/site-data";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/questions/", label: "Research Questions" },
-  { href: "/how-it-works/", label: "How it works" },
-  { href: "/method/", label: "Method" },
-  { href: "/graph/", label: "Literature map" },
+  { href: "/questions/", label: "Questions" },
+  { href: "/graph/", label: "Map" },
   { href: "/paper/", label: "Paper" },
   { href: "/downloads/", label: "Downloads" },
 ];
@@ -16,7 +14,6 @@ const links = [
   <a href="/" class="brand-lockup">
     <span class="brand-mark" aria-hidden="true"></span>
     <span>
-      <span class="brand-kicker">For academics</span>
       <span class="brand-name">FrontierGraph</span>
     </span>
   </a>
@@ -28,7 +25,7 @@ const links = [
     </nav>
     <div class="site-nav-actions">
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">Dark mode</button>
-      <a href={data.app_url} class="header-cta">Open deeper app</a>
+      <a href={data.app_url} class="header-cta">Explore in app</a>
     </div>
   </div>
 </header>

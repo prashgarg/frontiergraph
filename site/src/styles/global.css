@@ -511,11 +511,11 @@ h3 {
 }
 
 .page-hero {
-  padding: 1.4rem 0 1rem;
+  padding: 1rem 0 0.8rem;
 }
 
 .page-hero p {
-  max-width: 48rem;
+  max-width: 42rem;
 }
 
 .section {
@@ -777,12 +777,7 @@ h3 {
 }
 
 .hero-home {
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-}
-
-.hero-home-proof {
-  grid-template-columns: minmax(0, 1fr);
-  align-items: stretch;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
 }
 
 .hero-copy-panel,
@@ -832,40 +827,13 @@ h3 {
   background: var(--surface);
 }
 
-.hero-detail-grid {
+.release-strip {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.75fr);
-  gap: 1rem;
-}
-
-.hero-analogy-card .card-copy,
-.hero-problem-card .mini-copy {
-  margin: 0.45rem 0 0;
-}
-
-.hero-audience-line {
-  padding-top: 0.7rem;
-  border-top: 1px solid var(--line);
-}
-
-.hero-scale-strip {
-  display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: 1rem;
-  padding: 1rem 1.05rem;
+  gap: 0.75rem;
+  padding: 0.95rem 1.05rem;
   border: 1px solid var(--line);
   border-radius: 1.15rem;
   background: var(--surface);
-}
-
-.hero-scale-copy {
-  display: grid;
-  gap: 0.35rem;
-  align-content: start;
-}
-
-.hero-scale-copy .mini-copy {
-  margin: 0;
 }
 
 .hero-scale-metrics {
@@ -902,21 +870,16 @@ h3 {
   gap: 1rem;
 }
 
+.homepage-carousel-panel-compact {
+  padding: 1.3rem;
+  gap: 0.75rem;
+}
+
 .homepage-carousel-heading {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
-}
-
-.homepage-carousel-heading h2 {
-  margin: 0.35rem 0 0;
-  font-size: 1.55rem;
-}
-
-.homepage-carousel-note {
-  margin: 0.65rem 0 0;
-  max-width: 32rem;
 }
 
 .homepage-carousel-controls {
@@ -952,6 +915,14 @@ h3 {
   border-radius: 1.3rem;
   background: var(--surface);
   box-shadow: var(--shadow);
+}
+
+.homepage-carousel-panel-compact .homepage-carousel-slide {
+  grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.05fr);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .homepage-carousel-slide[hidden] {
@@ -1006,6 +977,10 @@ h3 {
     radial-gradient(circle at 16% 18%, var(--proof-glow-a), transparent 25%),
     radial-gradient(circle at 84% 20%, var(--proof-glow-b), transparent 26%),
     var(--surface-strong);
+}
+
+.homepage-carousel-panel-compact .homepage-carousel-visual-shell {
+  padding: 0.7rem 0.8rem 0.2rem;
 }
 
 .homepage-carousel-visual {
@@ -1082,6 +1057,10 @@ h3 {
   align-content: start;
 }
 
+.homepage-carousel-panel-compact .homepage-carousel-copy {
+  padding-top: 0.2rem;
+}
+
 .homepage-carousel-tag {
   display: inline-flex;
   align-items: center;
@@ -1093,6 +1072,12 @@ h3 {
   color: color-mix(in srgb, var(--proof-source) 78%, var(--proof-target) 22%);
   font-size: 0.82rem;
   font-weight: 600;
+}
+
+.homepage-carousel-panel-compact .homepage-carousel-tag {
+  min-height: 1.8rem;
+  padding: 0 0.7rem;
+  font-size: 0.76rem;
 }
 
 .homepage-carousel-copy h3 {
@@ -1114,6 +1099,10 @@ h3 {
   display: inline-flex;
   gap: 0.5rem;
   justify-content: center;
+}
+
+.homepage-carousel-panel-compact .homepage-carousel-dots {
+  justify-content: flex-start;
 }
 
 .homepage-carousel-dot {
@@ -1969,13 +1958,32 @@ h3 {
   }
 
   .site-header,
-  .site-footer,
-  .site-nav-shell,
-  .site-nav-actions,
-  .site-nav,
-  .footer-links {
+  .site-footer {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .site-nav-shell {
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .site-nav,
+  .site-nav-actions,
+  .footer-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .site-nav a,
+  .footer-links a {
+    min-height: 1.7rem;
+  }
+
+  .site-nav-actions {
+    gap: 0.65rem;
   }
 
   .hero-visual .signal-card {
@@ -2006,8 +2014,6 @@ h3 {
     min-height: 28rem;
   }
 
-  .hero-detail-grid,
-  .hero-scale-strip,
   .hero-scale-metrics {
     grid-template-columns: 1fr;
   }
@@ -2024,7 +2030,34 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .homepage-carousel-note {
-    max-width: none;
+  .homepage-carousel-panel-compact .homepage-carousel-slide {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    gap: 0.7rem;
+    padding-top: 1rem;
+  }
+
+  .site-nav-shell {
+    gap: 0.6rem;
+  }
+
+  .site-nav,
+  .site-nav-actions,
+  .footer-links {
+    gap: 0.45rem 0.85rem;
+  }
+
+  .site-nav a,
+  .footer-links a {
+    font-size: 0.95rem;
+  }
+
+  .theme-toggle,
+  .header-cta {
+    min-height: 2.45rem;
   }
 }

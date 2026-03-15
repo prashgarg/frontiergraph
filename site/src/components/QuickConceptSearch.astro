@@ -9,10 +9,9 @@ const rootId = `quick-concept-search-${Math.random().toString(36).slice(2, 10)}`
 ---
 
 <section id={rootId} class="quick-search-card" data-concept-index-path={conceptIndexPath}>
-  <span class="eyebrow">Search the public graph</span>
   <h3>Start with one concept you already care about.</h3>
   <p class="card-copy">
-    Search by label or alias, then jump straight into the questions page or a focused literature-map view with that concept preloaded.
+    Search by label or alias, then jump into questions, the map, or the app with that topic preloaded.
   </p>
   <label class="search-shell">
     <span>Find a concept</span>
@@ -23,9 +22,9 @@ const rootId = `quick-concept-search-${Math.random().toString(36).slice(2, 10)}`
     <p class="mini-copy">Search to preview one concept before you open a page.</p>
   </div>
   <div class="button-row">
-    <a class="button-secondary" href="/questions/">Browse research questions</a>
-    <a class="button-tertiary" href="/graph/">Open literature map</a>
-    <a class="button-tertiary" href={appUrl}>Open focused map</a>
+    <a class="button-secondary" href="/questions/">Browse questions</a>
+    <a class="button-tertiary" href="/graph/">Open map</a>
+    <a class="button-tertiary" href={appUrl}>Explore in app</a>
   </div>
 </section>
 
@@ -73,8 +72,8 @@ const rootId = `quick-concept-search-${Math.random().toString(36).slice(2, 10)}`
       <p class="mini-copy">Study settings: ${escapeHtml(listText((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
       <div class="button-row">
         <a class="button-primary" href="/questions/">See nearby questions</a>
-        <a class="button-secondary" href="/graph/?q=${labelQuery}">Open this map view</a>
-        <a class="button-tertiary" href="${escapeHtml(concept.app_link || appUrl)}">Open in deeper app</a>
+        <a class="button-secondary" href="/graph/?q=${labelQuery}">Open this map</a>
+        <a class="button-tertiary" href="${escapeHtml(concept.app_link || appUrl)}">Explore in app</a>
       </div>
     `;
   };

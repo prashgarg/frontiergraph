@@ -29,10 +29,9 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
 >
   <div class="graph-toolbar">
     <div>
-      <span class="eyebrow">Literature map</span>
-      <h2>Start with the topic summary, then open the map only when you need it.</h2>
+      <h2>Read one topic, then widen out only when you need it.</h2>
       <p class="card-copy">
-        Search for a topic, read the nearby research in plain language, and switch to the full map only when you want wider orientation across the public snapshot.
+        Search for a topic, read the nearby research in plain language, and only then open the full map.
       </p>
     </div>
     <label class="search-shell">
@@ -51,7 +50,6 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     <aside class="graph-inspector">
       <section class="sidebar-card inspector-card">
         <div class="inspector-head">
-          <span class="eyebrow">Topic summary</span>
           <h3>Selected topic</h3>
         </div>
         <div data-role="selected-concept">
@@ -607,7 +605,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       <p class="mini-copy">Aliases: ${escapeHtml(listText((concept.aliases || []).slice(0, 6), "No alternate labels in the current public sample"))}</p>
       <p class="mini-copy">${escapeHtml(visibilityCopy)}</p>
       <div class="button-row">
-        <a class="button-secondary" href="${escapeHtml(concept.app_link)}">Open in deeper app</a>
+        <a class="button-secondary" href="${escapeHtml(concept.app_link)}">Explore in app</a>
       </div>
     `;
   };
@@ -693,7 +691,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
             ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
             <div class="mini-copy">${escapeHtml(item.direct_link_status)} - linked by ${formatNumber(safeNumber(item.supporting_path_count))} related ideas</div>
             <div class="mini-copy">Common contexts: ${escapeHtml(item.source_context_summary)} on one side and ${escapeHtml(item.target_context_summary)} on the other.</div>
-            <a class="text-link" href="${escapeHtml(item.app_link)}">Open in deeper app</a>
+            <a class="text-link" href="${escapeHtml(item.app_link)}">Explore in app</a>
           </article>
         `,
       )

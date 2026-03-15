@@ -62,5 +62,5 @@ If you just want to browse, start with the site. If a question looks promising, 
 
 - [Open the full HTML manuscript](/paper/full/)
 - [Download the working paper PDF](/downloads/frontiergraph-working-paper.pdf)
-- [Browse research questions](/questions/)
+- [Browse questions](/questions/)
 - [Open the literature map](/graph/)

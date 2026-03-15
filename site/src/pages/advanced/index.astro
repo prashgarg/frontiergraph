@@ -1,56 +1,19 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { data } from "../../lib/site-data";
+const target = "/downloads/";
 ---
 
-<BaseLayout
-  title="Advanced | FrontierGraph"
-  description="Advanced FrontierGraph pages for the literature map, method notes, and downloads."
->
-  <main>
-    <section class="page-hero">
-      <span class="eyebrow">Advanced</span>
-      <h1>Go deeper only when your question needs more context.</h1>
-      <p class="lede">
-        Most visitors should stay with Research Questions. This page is a quiet index for the deeper pages: the literature map, the method notes, and the downloadable release files.
-      </p>
-      <div class="button-row">
-        <a class="button-secondary" href="/questions/">Back to Research Questions</a>
-        <a class="button-tertiary" href="/how-it-works/">How it works</a>
-        <a class="button-tertiary" href={data.app_url}>Deeper app</a>
-        <a class="button-tertiary" href="/method/">Method</a>
-        <a class="button-tertiary" href="/downloads/">Downloads</a>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="card-grid action-grid">
-        <a class="card action-card" href="/graph/">
-          <span class="eyebrow">Topic reading</span>
-          <h3>Literature map</h3>
-          <p class="card-copy">Inspect one topic, its related ideas, and the nearby research in more detail.</p>
-        </a>
-        <a class="card action-card" href={data.app_url}>
-          <span class="eyebrow">Work area</span>
-          <h3>Deeper app</h3>
-          <p class="card-copy">Move from a released question into supporting paths, starter papers, mediators, and side-by-side comparison.</p>
-        </a>
-        <a class="card action-card" href="/method/">
-          <span class="eyebrow">Technical appendix</span>
-          <h3>Method</h3>
-          <p class="card-copy">Read the extraction notes, concept-matching logic, ranking glossary, and release filtering rules.</p>
-        </a>
-        <a class="card action-card" href="/paper/">
-          <span class="eyebrow">Longform</span>
-          <h3>Paper</h3>
-          <p class="card-copy">Read the web overview or the full HTML manuscript before downloading the PDF.</p>
-        </a>
-        <a class="card action-card" href="/downloads/">
-          <span class="eyebrow">Artifacts</span>
-          <h3>Downloads</h3>
-          <p class="card-copy">Access the working paper, extended abstract, public database package, and exported site assets.</p>
-        </a>
-      </div>
-    </section>
-  </main>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <script is:inline define:vars={{ target }}>
+      window.location.replace(target);
+    </script>
+    <p>Redirecting to <a href={target}>Downloads</a>.</p>
+  </body>
+</html>

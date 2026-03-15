@@ -14,9 +14,10 @@ interface Slide {
 
 interface Props {
   slides: Slide[];
+  compact?: boolean;
 }
 
-const { slides } = Astro.props;
+const { slides, compact = false } = Astro.props;
 const rootId = `homepage-carousel-${Math.random().toString(36).slice(2, 10)}`;
 
 const splitNodeLabel = (label: string) => {
@@ -33,14 +34,14 @@ const mediatorLabelPositions = [
 ];
 ---
 
-<section class="hero-panel homepage-carousel-panel" data-role="homepage-carousel" id={rootId}>
+<section
+  class:list={["hero-panel", "homepage-carousel-panel", compact && "homepage-carousel-panel-compact"]}
+  data-role="homepage-carousel"
+  id={rootId}
+>
   <div class="homepage-carousel-heading">
     <div>
-      <span class="eyebrow">A few speculative questions</span>
-      <h2>What this looks like in practice</h2>
-      <p class="mini-copy homepage-carousel-note">
-        One speculative question at a time. The point is to show what a promising next paper can look like.
-      </p>
+      <span class="tiny-label">Featured question</span>
     </div>
     <div class="homepage-carousel-controls" aria-label="Example controls">
       <button class="button-tertiary homepage-carousel-button" type="button" data-role="carousel-prev" aria-label="Previous example">
@@ -104,17 +105,15 @@ const mediatorLabelPositions = [
         </div>
 
         <div class="homepage-carousel-copy" data-style={slide.visualStyle}>
-          <span class="homepage-carousel-tag">Speculative question</span>
+          <span class="homepage-carousel-tag">Featured question</span>
           <h3>{slide.questionTitle}</h3>
-          <p class="card-copy">
-            <strong>Why it might matter:</strong> {slide.why}
-          </p>
+          <p class="card-copy">{slide.why}</p>
           <p class="mini-copy">
-            <strong>One way to start:</strong> {slide.how}
+            <strong>Start with:</strong> {slide.how}
           </p>
           <div class="button-row homepage-carousel-actions">
-            <a class="text-link" href={slide.questionHref}>See this question</a>
-            <a class="text-link" href={slide.appHref}>Inspect this question</a>
+            <a class="text-link" href={slide.questionHref}>See question</a>
+            <a class="text-link" href={slide.appHref}>Explore in app</a>
           </div>
         </div>
       </article>
@@ -200,5 +199,5 @@ const mediatorLabelPositions = [
   root.addEventListener("focusout", startTimer);
 
   render();
-  startTimer();
+  if (slides.length > 1) startTimer();
 </script>
