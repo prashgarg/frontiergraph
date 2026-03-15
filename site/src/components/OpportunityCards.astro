@@ -14,6 +14,7 @@ interface Props {
   standalone?: boolean;
   sectionId?: string;
   enableFilters?: boolean;
+  initialVisibleCount?: number;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   standalone = true,
   sectionId = "ranked-opportunities",
   enableFilters = false,
+  initialVisibleCount = 0,
 } = Astro.props;
 
 const rootId = `opportunity-cards-${Math.random().toString(36).slice(2, 10)}`;
@@ -81,11 +83,12 @@ const buildGlossNotes = (item: Opportunity) => {
     </div>
   )}
   <div class:list={["opportunity-cards", compact && "compact"]}>
-    {items.map((item) => (
+    {items.map((item, index) => (
       <article
         class="opportunity-card"
         id={item.pair_key}
         data-role="structured-opportunity-card"
+        data-card-index={String(index)}
         data-question-family={item.question_family}
         data-no-direct={String(item.cooc_count === 0)}
         data-cross-area={String(item.cross_field)}
@@ -128,6 +131,13 @@ const buildGlossNotes = (item: Opportunity) => {
       </article>
     ))}
   </div>
+  {enableFilters && initialVisibleCount > 0 && (
+    <div class="opportunity-load-more" data-role="opportunity-load-more-shell" hidden>
+      <button class="button-secondary" type="button" data-role="opportunity-load-more">
+        Show more questions
+      </button>
+    </div>
+  )}
   {enableFilters && (
     <p class="card-copy opportunity-empty-state" data-role="opportunity-filter-empty" hidden>
       No questions match the current search or filter combination. Try clearing a chip or editing the search.
@@ -136,7 +146,7 @@ const buildGlossNotes = (item: Opportunity) => {
 </section>
 
 {enableFilters && (
-  <script is:inline define:vars={{ rootId }} type="module">
+  <script is:inline define:vars={{ rootId, initialVisibleCount }} type="module">
     const root = document.getElementById(rootId);
     if (!(root instanceof HTMLElement)) throw new Error("Opportunity cards root missing");
 
@@ -144,8 +154,11 @@ const buildGlossNotes = (item: Opportunity) => {
     const chips = Array.from(root.querySelectorAll('[data-role="opportunity-filter-chip"]'));
     const searchInput = root.querySelector('[data-role="opportunity-search-input"]');
     const emptyState = root.querySelector('[data-role="opportunity-filter-empty"]');
+    const loadMoreShell = root.querySelector('[data-role="opportunity-load-more-shell"]');
+    const loadMoreButton = root.querySelector('[data-role="opportunity-load-more"]');
     const active = new Set();
     let query = "";
+    let visibleLimit = Number(initialVisibleCount || 0);
 
     const filterToDataset = {
       "no-direct": "noDirect",
@@ -155,16 +168,41 @@ const buildGlossNotes = (item: Opportunity) => {
     };
 
     const applyFilters = () => {
+      const hasActiveFilters = active.size > 0 || Boolean(query);
+      const matchingCards = [];
       let visibleCount = 0;
       for (const card of cards) {
         const matchesFilters = Array.from(active).every((filterId) => card.dataset[filterToDataset[filterId]] === "true");
         const matchesSearch = !query || (card.dataset.searchText || "").includes(query);
+        if (matchesFilters && matchesSearch) matchingCards.push(card);
         const visible = matchesFilters && matchesSearch;
         card.hidden = !visible;
-        if (visible) visibleCount += 1;
       }
+
+      const targetPair = window.location.hash ? window.location.hash.slice(1) : "";
+      if (!hasActiveFilters && visibleLimit > 0 && targetPair) {
+        const targetIndex = matchingCards.findIndex((matchingCard) => matchingCard.id === targetPair);
+        if (targetIndex >= visibleLimit) {
+          visibleLimit = targetIndex + 1;
+        }
+      }
+
+      matchingCards.forEach((card, index) => {
+        const visible = !visibleLimit || hasActiveFilters || index < visibleLimit;
+        card.hidden = !visible;
+        if (visible) visibleCount += 1;
+      });
+
       if (emptyState instanceof HTMLElement) {
         emptyState.hidden = visibleCount > 0;
+      }
+      if (loadMoreShell instanceof HTMLElement) {
+        const hasMore = !hasActiveFilters && visibleLimit > 0 && matchingCards.length > visibleLimit;
+        loadMoreShell.hidden = !hasMore;
+        if (hasMore && loadMoreButton instanceof HTMLButtonElement) {
+          const remaining = matchingCards.length - visibleLimit;
+          loadMoreButton.textContent = remaining > 18 ? "Show 18 more questions" : `Show ${remaining} more questions`;
+        }
       }
     };
 
@@ -190,6 +228,14 @@ const buildGlossNotes = (item: Opportunity) => {
       });
     }
 
+    if (loadMoreButton instanceof HTMLButtonElement) {
+      loadMoreButton.addEventListener("click", () => {
+        visibleLimit += 18;
+        applyFilters();
+      });
+    }
+
+    window.addEventListener("hashchange", applyFilters);
     applyFilters();
   </script>
 )}

@@ -50,23 +50,18 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     <div class="graph-panel graph-panel-secondary">
       <div class="graph-controls">
         <div class="graph-status-shell">
-        <div class="graph-status" data-role="hover-card" aria-live="polite">
-            Search or click a topic. The map opens in one local view first, with the full graph available when you need it.
+          <div class="graph-status" data-role="hover-card" aria-live="polite">
+            Search or click a topic. Start with the local neighborhood, then widen only when you need the full map.
+          </div>
         </div>
-      </div>
-      <div class="graph-control-row">
+        <div class="graph-control-row">
           <button class="button-secondary" type="button" data-role="toggle-map-mode">Show full map</button>
-          <button class="button-secondary" type="button" data-role="toggle-layout-mode">Rearrange</button>
-          <button class="button-tertiary" type="button" data-role="zoom-out">Zoom out</button>
-          <button class="button-tertiary" type="button" data-role="zoom-in">Zoom in</button>
           <button class="button-tertiary" type="button" data-role="reset-view">Reset view</button>
-          <button class="button-tertiary" type="button" data-role="reset-layout">Reset layout</button>
-          <button class="button-tertiary" type="button" data-role="reset-focus">Reset topic</button>
         </div>
       </div>
       <svg class="graph-canvas" data-role="graph-canvas" viewBox="0 0 1120 860" aria-label="Literature map"></svg>
       <div class="graph-help-row">
-        <span class="mini-copy">Wheel or pinch to zoom. Drag the background to pan. Reset view returns to the default frame.</span>
+        <span class="mini-copy">Wheel or pinch to zoom. Drag the background to pan. Reset view returns to the default local frame.</span>
       </div>
     </div>
 
@@ -87,13 +82,13 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
           </div>
         </details>
         <details class="inspector-detail" open>
-          <summary>Readable summary</summary>
+          <summary>Why it matters</summary>
           <div data-role="selection-list-view">
-            <p class="card-copy">A keyboard-readable summary of the current selection will appear here.</p>
+            <p class="card-copy">A short reading summary of the current topic will appear here.</p>
           </div>
         </details>
         <details class="inspector-detail">
-          <summary>Questions</summary>
+          <summary>Questions touching this topic</summary>
           <div data-role="selected-opportunities">
             <p class="card-copy">The strongest released questions touching the selected topic will appear here.</p>
           </div>
@@ -111,7 +106,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const GRAPH_HEIGHT = 860;
   const MIN_SCALE = 0.55;
   const MAX_SCALE = 4;
-  const FOCUSED_NEIGHBOR_LIMIT = 10;
+  const FOCUSED_NEIGHBOR_LIMIT = 8;
+  const FOCUSED_LABEL_LIMIT = 4;
   const LAYOUT_MIN_X = -0.24;
   const LAYOUT_MAX_X = 1.24;
   const LAYOUT_MIN_Y = -0.2;
@@ -133,12 +129,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const selectionListView = root.querySelector('[data-role="selection-list-view"]');
   const selectedOpportunities = root.querySelector('[data-role="selected-opportunities"]');
   const centralList = root.querySelector('[data-role="central-list"]');
-  const resetFocus = root.querySelector('[data-role="reset-focus"]');
-  const resetLayout = root.querySelector('[data-role="reset-layout"]');
   const resetView = root.querySelector('[data-role="reset-view"]');
-  const zoomIn = root.querySelector('[data-role="zoom-in"]');
-  const zoomOut = root.querySelector('[data-role="zoom-out"]');
-  const toggleLayoutMode = root.querySelector('[data-role="toggle-layout-mode"]');
   const toggleMapMode = root.querySelector('[data-role="toggle-map-mode"]');
 
   const shardCache = new Map();
@@ -207,9 +198,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   };
 
   const updateLayoutModeButton = () => {
-    if (!(toggleLayoutMode instanceof HTMLButtonElement)) return;
-    toggleLayoutMode.textContent = layoutMode ? "Finish rearranging" : "Rearrange";
-    toggleLayoutMode.classList.toggle("is-active", layoutMode);
+    return;
   };
 
   const updateMapModeButton = () => {
@@ -290,6 +279,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         nodes: graph.nodes,
         edges: graph.edges,
         selectedNeighbors: allNeighbors,
+        labelNeighbors: new Set(),
       };
     }
 
@@ -302,6 +292,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       nodes: visibleNodes,
       edges: visibleEdges,
       selectedNeighbors: new Set(focusedNeighborIds),
+      labelNeighbors: new Set(focusedNeighborIds.slice(0, FOCUSED_LABEL_LIMIT)),
     };
   };
 
@@ -421,7 +412,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         return;
       }
     }
-    hoverCard.textContent = "Search or click a topic. The map opens in one local view first, with the full graph available when you need it.";
+    hoverCard.textContent = "Search or click a topic. Start with the local neighborhood, then widen only when you need the full map.";
   };
 
   const renderCentralList = () => {
@@ -444,14 +435,14 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const renderListView = () => {
     const concept = selectedId ? conceptMap.get(selectedId) : null;
     if (!concept) {
-      selectionListView.innerHTML = `<p class="card-copy">A keyboard-readable summary of the current selection will appear here.</p>`;
+      selectionListView.innerHTML = `<p class="card-copy">A short reading summary of the current topic will appear here.</p>`;
       return;
     }
     const topNeighbors = (currentNeighborhood?.top_neighbors || []).slice(0, 5);
     const nearbyOpportunities = currentOpportunities.slice(0, 3);
     selectionListView.innerHTML = `
       <div class="neighbor-group">
-        <h4>Quick summary</h4>
+        <h4>Why it matters</h4>
         <p class="card-copy">
           ${escapeHtml(conceptTitle(concept))} has ${formatNumber(safeNumber(concept.in_degree))} incoming observed links,
           ${formatNumber(safeNumber(concept.out_degree))} outgoing observed links,
@@ -476,7 +467,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         </div>
       </div>
       <div class="neighbor-group">
-        <h4>Nearby questions</h4>
+        <h4>Questions touching this topic</h4>
         <div class="selection-opportunity-stack">
           ${nearbyOpportunities.length
             ? nearbyOpportunities
@@ -504,7 +495,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const edgeMarkup = [];
     const visibleState = getVisibleGraphState();
     const selectedActive = Boolean(selectedId) && isInBackbone(selectedId);
-    const { focusedActive, nodes: visibleNodes, edges: visibleEdges, selectedNeighbors } = visibleState;
+    const { focusedActive, nodes: visibleNodes, edges: visibleEdges, selectedNeighbors, labelNeighbors } = visibleState;
 
     for (const edge of visibleEdges) {
       const source = graph.nodeMap.get(edge.source);
@@ -522,7 +513,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       const isDimmed = mapMode === "global" && selectedActive && !isSelected && !isNeighbor;
       const radius = Math.max(2.8, Math.min(24, 2.8 + Math.log10(safeNumber(node.weighted_degree) + 1) * 4.4));
       const showLabel = focusedActive
-        ? isSelected
+        ? isSelected || labelNeighbors.has(node.id)
         : node.show_label ||
           isSelected ||
           (isNeighbor && selectedNeighbors.size <= FOCUSED_NEIGHBOR_LIMIT) ||
@@ -599,8 +590,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         <span class="field-pill">${formatNumber(safeNumber(concept.in_degree))} incoming observed links</span>
         <span class="field-pill">${formatNumber(safeNumber(concept.out_degree))} outgoing observed links</span>
       </div>
-      <p class="mini-copy">Common contexts: ${escapeHtml(listText((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
-      <p class="mini-copy">Common units: ${escapeHtml(listText((concept.top_units || []).slice(0, 3), "No dominant unit in the current public sample"))}</p>
+      <p class="mini-copy"><strong>Why it matters:</strong> ${escapeHtml(listText((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
       <p class="mini-copy">${escapeHtml(visibilityCopy)}</p>
       <div class="button-row">
         <a class="button-secondary" href="${escapeHtml(concept.app_link)}">Explore in app</a>
@@ -654,7 +644,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         <ul class="neighbor-list">${renderItems(neighborhood.outgoing || [])}</ul>
       </div>
       <div class="neighbor-group">
-        <h4>Linked nearby topics</h4>
+        <h4>Nearby topics</h4>
         <ul class="neighbor-list">${renderItems(neighborhood.top_neighbors || [])}</ul>
       </div>
     `;
@@ -804,34 +794,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   if (searchInput instanceof HTMLInputElement) {
     searchInput.addEventListener("input", (event) => runSearch(event.target.value));
   }
-  if (resetFocus instanceof HTMLButtonElement) {
-    resetFocus.addEventListener("click", () => {
-      mapMode = "focused";
-      updateMapModeButton();
-      if (defaultConceptId) selectConcept(defaultConceptId);
-    });
-  }
-  if (resetLayout instanceof HTMLButtonElement) {
-    resetLayout.addEventListener("click", () => {
-      if (!graph) return;
-      restoreInitialLayout();
-    });
-  }
   if (resetView instanceof HTMLButtonElement) {
     resetView.addEventListener("click", setDefaultViewport);
-  }
-  if (zoomIn instanceof HTMLButtonElement) {
-    zoomIn.addEventListener("click", () => zoomAtPoint(1.15, canvas.getBoundingClientRect().left + 120, canvas.getBoundingClientRect().top + 120));
-  }
-  if (zoomOut instanceof HTMLButtonElement) {
-    zoomOut.addEventListener("click", () => zoomAtPoint(1 / 1.15, canvas.getBoundingClientRect().left + 120, canvas.getBoundingClientRect().top + 120));
-  }
-  if (toggleLayoutMode instanceof HTMLButtonElement) {
-    toggleLayoutMode.addEventListener("click", () => {
-      layoutMode = !layoutMode;
-      updateLayoutModeButton();
-      restoreStatus();
-    });
   }
   if (toggleMapMode instanceof HTMLButtonElement) {
     toggleMapMode.addEventListener("click", () => {

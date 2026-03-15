@@ -89,6 +89,9 @@ BACKBONE_LAYOUT_SPREAD = 1.38
 NEIGHBOR_LIMIT = 15
 CONCEPT_OPPORTUNITY_LIMIT = 12
 FEATURED_OPPORTUNITY_LIMIT = 12
+PUBLIC_RANKED_WINDOW_LIMIT = 60
+FIELD_CAROUSEL_LIMIT = 12
+USE_CASE_CAROUSEL_LIMIT = 12
 SHARD_SIZE = 256
 EDITORIAL_REQUIRED_FIELDS = (
     "pair_key",
@@ -116,26 +119,49 @@ FIELD_SHELF_DEFS = [
         "slug": "macro-finance",
         "title": "Macro and finance",
         "caption": "Questions about fiscal space, monetary transmission, and aggregate demand that still feel paper-shaped.",
+        "match_tokens": ["debt", "monetary", "inflation", "credit", "bank", "interest", "aggregate demand"],
     },
     {
         "slug": "development-urban",
         "title": "Development and urban",
         "caption": "Questions about growth, cities, capital deepening, and distribution that a development reader can act on quickly.",
+        "match_tokens": ["urban", "city", "education", "wage", "inequality", "development", "human capital"],
     },
     {
         "slug": "trade-globalization",
         "title": "Trade and globalization",
         "caption": "Questions where trade exposure, imports, or exports may matter more than the standard growth framing suggests.",
+        "match_tokens": ["trade", "export", "import", "sanctions", "globalization", "fdi"],
     },
     {
         "slug": "climate-energy",
         "title": "Climate and energy",
         "caption": "Questions that connect emissions, energy demand, and policy channels without collapsing into generic climate pairings.",
+        "match_tokens": ["carbon", "emissions", "pollution", "environmental quality", "energy", "oil", "gas", "electricity", "mineral rents"],
     },
     {
         "slug": "innovation-productivity",
         "title": "Innovation and productivity",
         "caption": "Questions about whether cleaner innovation, environmental outcomes, and productivity really move together.",
+        "match_tokens": ["innovation", "green innovation", "technology", "r&d", "productivity", "complexity"],
+    },
+]
+
+USE_CASE_CAROUSEL_DEFS = [
+    {
+        "slug": "strong-nearby-evidence",
+        "title": "Questions with stronger nearby evidence",
+        "caption": "These have more surrounding structure already in the released graph.",
+    },
+    {
+        "slug": "phd-topic",
+        "title": "Broader project candidates",
+        "caption": "These feel large enough to grow into a project without losing a concrete starting point.",
+    },
+    {
+        "slug": "open-little-direct",
+        "title": "Open questions with little direct work",
+        "caption": "These still look open in the current public sample.",
     },
 ]
 
@@ -1385,6 +1411,161 @@ def build_editorial_groups(
     return groups
 
 
+def auto_question_title(public_pair_label: Any) -> str:
+    label = clean_public_text(public_pair_label)
+    if not label:
+        return "Open question"
+    return label[:1].upper() + label[1:]
+
+
+def display_category(row: dict[str, Any]) -> str:
+    if bool(row.get("cross_field")) and to_int(row.get("cooc_count", 0)) == 0:
+        return "Cross-area question"
+    if to_int(row.get("cooc_count", 0)) == 0:
+        return "Little direct work"
+    if bool(row.get("cross_field")):
+        return "Cross-area evidence"
+    return "Nearby evidence"
+
+
+def decorate_carousel_record(
+    row: dict[str, Any],
+    editorial: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    editorial_entry = editorial.get(clean_public_text(row.get("pair_key")), {})
+    return {
+        **row,
+        "display_title": clean_public_text(editorial_entry.get("question_title")) or auto_question_title(row.get("public_pair_label")),
+        "display_why": clean_public_text(editorial_entry.get("short_why")) or clean_public_text(row.get("why_now")),
+        "display_first_step": clean_public_text(editorial_entry.get("first_next_step")) or clean_public_text(row.get("recommended_move")),
+        "display_category": clean_public_text(editorial_entry.get("editorial_strength")).replace("-", " ").title() or display_category(row),
+    }
+
+
+def row_match_text(row: dict[str, Any]) -> str:
+    return " ".join(
+        normalized_label_key(value)
+        for value in (
+            row.get("source_label"),
+            row.get("target_label"),
+            row.get("public_pair_label"),
+            row.get("question_family"),
+            row.get("why_now"),
+        )
+        if clean_public_text(value)
+    )
+
+
+def row_matches_tokens(row: dict[str, Any], tokens: list[str]) -> bool:
+    haystack = row_match_text(row)
+    return any(normalized_label_key(token) in haystack for token in tokens)
+
+
+def family_key(row: dict[str, Any]) -> str:
+    return clean_public_text(row.get("question_family")) or clean_public_text(row.get("pair_key"))
+
+
+def append_unique_records(
+    target: list[dict[str, Any]],
+    rows: list[dict[str, Any]],
+    *,
+    editorial: dict[str, dict[str, Any]],
+    limit: int,
+    family_cap: int = 2,
+) -> list[dict[str, Any]]:
+    seen_pairs = {clean_public_text(item.get("pair_key")) for item in target}
+    family_counts: dict[str, int] = defaultdict(int)
+    for item in target:
+        family_counts[family_key(item)] += 1
+
+    for row in rows:
+        pair_key = clean_public_text(row.get("pair_key"))
+        if not pair_key or pair_key in seen_pairs:
+            continue
+        key = family_key(row)
+        if family_counts[key] >= family_cap:
+            continue
+        target.append(decorate_carousel_record(row, editorial))
+        seen_pairs.add(pair_key)
+        family_counts[key] += 1
+        if len(target) >= limit:
+            break
+    return target
+
+
+def build_field_carousels(
+    overall_rows: list[dict[str, Any]],
+    curated_rows: list[dict[str, Any]],
+    definitions: list[dict[str, Any]],
+    editorial: dict[str, dict[str, Any]],
+    limit: int = FIELD_CAROUSEL_LIMIT,
+) -> list[dict[str, Any]]:
+    groups: list[dict[str, Any]] = []
+    for definition in definitions:
+        slug = definition["slug"]
+        anchors = [row for row in curated_rows if slug in row.get("field_shelves", [])]
+        matches = [row for row in overall_rows if row_matches_tokens(row, definition.get("match_tokens", []))]
+        items = append_unique_records([], anchors, editorial=editorial, limit=limit)
+        items = append_unique_records(items, matches, editorial=editorial, limit=limit)
+        items = append_unique_records(items, overall_rows, editorial=editorial, limit=limit)
+        groups.append(
+            {
+                "slug": slug,
+                "title": definition["title"],
+                "caption": definition["caption"],
+                "items": items[:limit],
+            }
+        )
+    return groups
+
+
+def build_use_case_carousels(
+    overall_rows: list[dict[str, Any]],
+    curated_rows: list[dict[str, Any]],
+    definitions: list[dict[str, Any]],
+    editorial: dict[str, dict[str, Any]],
+    limit: int = USE_CASE_CAROUSEL_LIMIT,
+) -> list[dict[str, Any]]:
+    groups: list[dict[str, Any]] = []
+
+    for definition in definitions:
+        slug = definition["slug"]
+        anchors = [row for row in curated_rows if slug in row.get("collection_tags", [])]
+        if slug == "strong-nearby-evidence":
+            matches = sorted(
+                overall_rows,
+                key=lambda row: (
+                    -to_float(row.get("path_support_norm"), 0.0),
+                    -to_int(row.get("supporting_path_count", 0)),
+                    public_window_penalty(row),
+                ),
+            )
+        elif slug == "phd-topic":
+            matches = sorted(
+                overall_rows,
+                key=lambda row: (
+                    -to_int(row.get("mediator_count", 0)),
+                    -to_int(row.get("supporting_path_count", 0)),
+                    public_window_penalty(row),
+                ),
+            )
+        else:
+            matches = [row for row in overall_rows if to_int(row.get("cooc_count", 0)) == 0]
+
+        items = append_unique_records([], anchors, editorial=editorial, limit=limit)
+        items = append_unique_records(items, matches, editorial=editorial, limit=limit)
+        items = append_unique_records(items, overall_rows, editorial=editorial, limit=limit)
+        groups.append(
+            {
+                "slug": slug,
+                "title": definition["title"],
+                "caption": definition["caption"],
+                "items": items[:limit],
+            }
+        )
+    return groups
+
+
 def build_public_ranked_window(
     overall_rows: list[dict[str, Any]],
     excluded_pair_keys: set[str],
@@ -1767,10 +1948,22 @@ def main() -> None:
         raise ValueError("Questions front set must contain exactly 6 questions")
     field_shelves = build_editorial_groups(editorial_records, FIELD_SHELF_DEFS, "field_shelves")
     collections = build_editorial_groups(editorial_records, COLLECTION_DEFS, "collection_tags")
+    field_carousels = build_field_carousels(
+        slices["overall"],
+        editorial_records,
+        FIELD_SHELF_DEFS,
+        editorial_opportunities,
+    )
+    use_case_carousels = build_use_case_carousels(
+        slices["overall"],
+        editorial_records,
+        USE_CASE_CAROUSEL_DEFS,
+        editorial_opportunities,
+    )
     ranked_questions = build_public_ranked_window(
         slices["overall"],
         {row["pair_key"] for row in editorial_records},
-        limit=12,
+        limit=PUBLIC_RANKED_WINDOW_LIMIT,
     )
 
     write_json(PUBLIC_DATA_DIR / "graph_backbone.json", backbone_payload)
@@ -1899,6 +2092,8 @@ def main() -> None:
             "curated_front_set": curated_front_set,
             "field_shelves": field_shelves,
             "collections": collections,
+            "field_carousels": field_carousels,
+            "use_case_carousels": use_case_carousels,
             "ranked_questions": ranked_questions,
             "top_slices": {
                 "overall": slices["overall"][:12],

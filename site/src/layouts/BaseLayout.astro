@@ -13,7 +13,7 @@ const { title, description, shellClass = "site-shell" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,14 +26,6 @@ const { title, description, shellClass = "site-shell" } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script is:inline>
-      (() => {
-        const savedTheme = window.localStorage.getItem("frontiergraph-theme");
-        if (savedTheme === "dark" || savedTheme === "light") {
-          document.documentElement.dataset.theme = savedTheme;
-        }
-      })();
-    </script>
     <title>{title}</title>
   </head>
   <body>

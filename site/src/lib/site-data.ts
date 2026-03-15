@@ -56,6 +56,10 @@ export type Opportunity = {
   target_context_summary: string;
   common_contexts?: string;
   app_link: string;
+  display_title?: string;
+  display_why?: string;
+  display_first_step?: string;
+  display_category?: string;
 };
 
 export type PublicLabelGloss = {
@@ -88,6 +92,13 @@ export type CuratedQuestionGroup = {
   title: string;
   caption: string;
   items: CuratedQuestion[];
+};
+
+export type QuestionCarouselGroup = {
+  slug: string;
+  title: string;
+  caption: string;
+  items: Opportunity[];
 };
 
 export type CentralConcept = {
@@ -167,6 +178,8 @@ export type SiteData = {
     curated_front_set: CuratedQuestion[];
     field_shelves: CuratedQuestionGroup[];
     collections: CuratedQuestionGroup[];
+    field_carousels: QuestionCarouselGroup[];
+    use_case_carousels: QuestionCarouselGroup[];
     ranked_questions: Opportunity[];
     top_slices: Record<string, Opportunity[]>;
   };
@@ -250,6 +263,19 @@ function validateQuestionGroups(
   return groups;
 }
 
+function validateCarouselGroups(
+  groups: QuestionCarouselGroup[],
+  label: string,
+  expectedCount: number,
+  expectedItems: number,
+): QuestionCarouselGroup[] {
+  invariant(groups.length === expectedCount, `${label} should contain exactly ${expectedCount} groups`);
+  for (const group of groups) {
+    invariant(group.items.length === expectedItems, `${label}.${group.slug} should contain exactly ${expectedItems} questions`);
+  }
+  return groups;
+}
+
 function buildSiteData(): SiteData {
   const payload = siteData as SiteData;
   const editorialItems = normalizeEditorialSource();
@@ -263,6 +289,12 @@ function buildSiteData(): SiteData {
     for (const row of group.items ?? []) availablePairs.add(row.pair_key);
   }
   for (const group of questionPayload?.collections ?? []) {
+    for (const row of group.items ?? []) availablePairs.add(row.pair_key);
+  }
+  for (const group of questionPayload?.field_carousels ?? []) {
+    for (const row of group.items ?? []) availablePairs.add(row.pair_key);
+  }
+  for (const group of questionPayload?.use_case_carousels ?? []) {
     for (const row of group.items ?? []) availablePairs.add(row.pair_key);
   }
   for (const item of editorialItems) {
@@ -311,6 +343,8 @@ function buildSiteData(): SiteData {
       ),
       field_shelves: validateQuestionGroups(questionPayload?.field_shelves ?? [], "questions.field_shelves", 5),
       collections: validateQuestionGroups(questionPayload?.collections ?? [], "questions.collections", 5),
+      field_carousels: validateCarouselGroups(questionPayload?.field_carousels ?? [], "questions.field_carousels", 5, 12),
+      use_case_carousels: validateCarouselGroups(questionPayload?.use_case_carousels ?? [], "questions.use_case_carousels", 3, 12),
     },
   };
 }

@@ -1,32 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HomepageQuestionCarousel from "../components/HomepageQuestionCarousel.astro";
-import { homepageCarouselSlides } from "../content/homepage-carousel";
+import EditorialQuestionCarousel from "../components/EditorialQuestionCarousel.astro";
 import { data } from "../lib/site-data";
 
-const lookup = new Map();
-for (const item of data.home.curated_questions) lookup.set(item.pair_key, item);
-for (const item of data.questions.curated_front_set) lookup.set(item.pair_key, item);
-for (const group of data.questions.field_shelves) {
-  for (const item of group.items) lookup.set(item.pair_key, item);
-}
-for (const group of data.questions.collections) {
-  for (const item of group.items) lookup.set(item.pair_key, item);
-}
-
-const carouselSlides = homepageCarouselSlides.flatMap((slide) => {
-  const match = slide.pairKey ? lookup.get(slide.pairKey) : null;
-  if (slide.pairKey && !match && !slide.primaryHref) return [];
-  return [
-    {
-      ...slide,
-      primaryHref: slide.primaryHref ?? (slide.pairKey ? `/questions/#${slide.pairKey}` : "/paper/full/"),
-      primaryLabel: slide.primaryLabel ?? (slide.pairKey ? "See question" : "Read paper"),
-      secondaryHref: slide.secondaryHref ?? match?.app_link ?? data.app_url,
-      secondaryLabel: slide.secondaryLabel ?? "Explore in app",
-    },
-  ];
-});
+const homeCarouselPool = Array.from(
+  new Map(
+    [...data.home.curated_questions, ...data.home.featured_questions].map((item) => [item.pair_key, item]),
+  ).values(),
+);
 
 const formatNumber = (value: number) => new Intl.NumberFormat("en-GB").format(value);
 const scaleItems = [
@@ -52,10 +33,9 @@ const scaleItems = [
   <main>
     <section class="hero hero-home">
       <div class="hero-panel hero-copy-panel hero-copy-panel-plain">
-        <span class="eyebrow">Released question set</span>
-        <h1>Questions the economics literature appears ready to answer.</h1>
+        <h1>Open economics questions, grounded in nearby evidence.</h1>
         <p class="lede">
-          Each question here sits close to existing topics, paths, and papers in the released graph, so you can start reading from something concrete rather than from a blank page.
+          These questions sit close to existing topics, paths, and papers in the released graph, so you can start from something concrete instead of a blank page.
         </p>
         <div class="hero-actions">
           <a class="button-primary" href="/questions/">Browse questions</a>
@@ -64,7 +44,13 @@ const scaleItems = [
           <a class="button-tertiary" href="/downloads/">Download data</a>
         </div>
       </div>
-      <HomepageQuestionCarousel slides={carouselSlides} compact={true} />
+      <EditorialQuestionCarousel
+        items={homeCarouselPool}
+        title="A few concrete places to start"
+        sectionId="home-editorial-carousel"
+        variant="home"
+        sampleSize={6}
+      />
     </section>
 
     <section class="section">

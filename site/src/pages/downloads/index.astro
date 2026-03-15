@@ -7,6 +7,26 @@ const artifacts = data.downloads.artifacts;
 const artifactDetails = data.downloads.artifact_details;
 const guides = data.downloads.guides;
 const tierBundles = data.downloads.tier_bundles;
+
+const tier1Files = [
+  { title: "Top questions CSV", path: artifacts.top_questions_csv, size: artifactDetails.top_questions_csv.size_bytes },
+  { title: "Central concepts CSV", path: artifacts.central_concepts_csv, size: artifactDetails.central_concepts_csv.size_bytes },
+  { title: "Curated questions JSON", path: artifacts.curated_questions_json, size: artifactDetails.curated_questions_json.size_bytes },
+  { title: "Benchmark manifest JSON", path: artifacts.benchmark_manifest_json, size: artifactDetails.benchmark_manifest_json.size_bytes },
+];
+
+const tier2Files = [
+  { title: "Literature map JSON", path: artifacts.graph_backbone_json, size: artifactDetails.graph_backbone_json.size_bytes },
+  { title: "Concept index JSON", path: artifacts.concept_index_json, size: artifactDetails.concept_index_json.size_bytes },
+  { title: "Concept neighborhoods index", path: artifacts.concept_neighborhoods_index_json, size: artifactDetails.concept_neighborhoods_index_json.size_bytes },
+  { title: "Concept opportunities index", path: artifacts.concept_opportunities_index_json, size: artifactDetails.concept_opportunities_index_json.size_bytes },
+];
+
+const tier3Files = [
+  { title: publicDb.filename, path: publicDb.public_url, size: publicDb.db_size_bytes },
+  { title: "Manifest", path: data.downloads.manifest_path, size: artifactDetails.manifest_json.size_bytes },
+  { title: "Checksum", path: data.downloads.checksum_path, size: artifactDetails.checksum_txt.size_bytes },
+];
 ---
 
 <BaseLayout
@@ -15,230 +35,123 @@ const tierBundles = data.downloads.tier_bundles;
 >
   <main>
     <section class="page-hero">
-      <h1>Download released data and graph files.</h1>
+      <h1>Download the released files.</h1>
       <p class="lede">
-        Start with the lightweight tables. Move to the SQLite bundle only if you want the full released bundle.
+        Start with the small tables unless you already know you need the full SQLite bundle.
       </p>
-      <div class="button-row">
-        <a class="button-primary" href={artifacts.top_questions_csv}>Download top questions CSV</a>
-        <a class="button-secondary" href={publicDb.public_url}>Download public DB</a>
-        <a class="button-secondary" href={guides.data_dictionary.path}>Open data dictionary</a>
-      </div>
     </section>
 
     <section class="section download-stack">
-      <details class="download-guidance" open>
-        <summary>Which download should I choose?</summary>
-        <div class="download-guidance-body">
-          <p class="download-copy">
-            Start small unless you already know you need the SQLite bundle. Each tier below has a different use case, and the README plus data dictionary explain the fields and table names in more detail.
-          </p>
-          <div class="card-grid download-guidance-grid">
-            <article class="card">
-              <h3>Tier 1: lightweight exports</h3>
-              <p class="card-copy">Best for spreadsheets, quick sorting, RA handoffs, and reading lists. You can answer “what are the questions?” without loading any graph assets.</p>
-            </article>
-            <article class="card">
-              <h3>Tier 2: structured graph assets</h3>
-              <p class="card-copy">Best for rebuilding the public map, concept lookup, and question slices. Use this if you want machine-readable JSON without touching SQLite.</p>
-            </article>
-            <article class="card">
-              <h3>Tier 3: rich public graph bundle</h3>
-              <p class="card-copy">Best for deeper local work. The SQLite bundle joins released questions, concept lookup, neighborhoods, paths, mediators, and paper tables.</p>
-            </article>
+      <div class="button-row download-doc-row">
+        <a class="button-secondary" href={guides.readme.path}>README ({formatBytes(guides.readme.size_bytes)})</a>
+        <a class="button-secondary" href={guides.data_dictionary.path}>Data dictionary ({formatBytes(guides.data_dictionary.size_bytes)})</a>
+      </div>
+
+      <div class="editorial-carousel-grid editorial-carousel-grid-use-cases download-tier-grid">
+        <article class="download-panel download-tier-tile">
+          <span class="eyebrow">Tier 1</span>
+          <h2>Lightweight tables</h2>
+          <p class="download-copy">Best for spreadsheets, reading lists, and quick sorting.</p>
+          <div class="download-tier-meta">
+            <span>{formatBytes(tierBundles.tier1.size_bytes)}</span>
+            <span>CSV and small JSON files</span>
           </div>
-        <div class="button-row download-guidance-actions">
-            <a class="button-secondary" href={guides.readme.path}>Open README ({formatBytes(guides.readme.size_bytes)})</a>
-            <a class="button-secondary" href={guides.data_dictionary.path}>Open data dictionary ({formatBytes(guides.data_dictionary.size_bytes)})</a>
+          <div class="button-row">
+            <a class="button-primary" href={tierBundles.tier1.path}>Download all</a>
+          </div>
+          <details class="download-tier-detail">
+            <summary>What’s inside</summary>
+            <ul class="download-tier-list">
+              {tier1Files.map((file) => (
+                <li>
+                  <a href={file.path}>{file.title}</a>
+                  <span>{formatBytes(file.size)}</span>
+                </li>
+              ))}
+            </ul>
+          </details>
+        </article>
+
+        <article class="download-panel download-tier-tile">
+          <span class="eyebrow">Tier 2</span>
+          <h2>Structured graph assets</h2>
+          <p class="download-copy">Best for rebuilding the public map or using the released JSON directly.</p>
+          <div class="download-tier-meta">
+            <span>{formatBytes(tierBundles.tier2.size_bytes)}</span>
+            <span>Machine-readable site assets</span>
+          </div>
+          <div class="button-row">
+            <a class="button-primary" href={tierBundles.tier2.path}>Download all</a>
+          </div>
+          <details class="download-tier-detail">
+            <summary>What’s inside</summary>
+            <ul class="download-tier-list">
+              {tier2Files.map((file) => (
+                <li>
+                  <a href={file.path}>{file.title}</a>
+                  <span>{formatBytes(file.size)}</span>
+                </li>
+              ))}
+            </ul>
+          </details>
+        </article>
+
+        <article class="download-panel download-tier-tile">
+          <span class="eyebrow">Tier 3</span>
+          <h2>SQLite bundle</h2>
+          <p class="download-copy">Best for deeper local analysis and app-equivalent evidence tables.</p>
+          <div class="download-tier-meta">
+            <span>{formatBytes(publicDb.db_size_bytes)}</span>
+            <span>{publicDb.filename}</span>
+          </div>
+          <div class="button-row">
+            <a class="button-primary" href={publicDb.public_url}>Download all</a>
+          </div>
+          <details class="download-tier-detail">
+            <summary>What’s inside</summary>
+            <ul class="download-tier-list">
+              {tier3Files.map((file) => (
+                <li>
+                  <a href={file.path}>{file.title}</a>
+                  <span>{formatBytes(file.size)}</span>
+                </li>
+              ))}
+            </ul>
+          </details>
+        </article>
+      </div>
+
+      <details class="download-guidance">
+        <summary>About the release</summary>
+        <div class="download-guidance-body">
+          <div class="metrics-grid">
+            <article class="metric-card">
+              <div class="metric-value">{formatCompact(data.metrics.papers)}</div>
+              <div class="metric-label">published-journal papers screened</div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-value">{formatCompact(data.metrics.papers_with_extracted_edges)}</div>
+              <div class="metric-label">papers with extracted graph structure</div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-value">{formatCompact(data.metrics.normalized_graph_papers)}</div>
+              <div class="metric-label">papers in the normalized concept graph</div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-value">{formatCompact(data.metrics.normalized_links)}</div>
+              <div class="metric-label">normalized concept links</div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-value">{formatCompact(data.metrics.native_concepts)}</div>
+              <div class="metric-label">native concepts</div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-value">{formatCompact(data.metrics.visible_public_questions)}</div>
+              <div class="metric-label">questions in the released browsing surface</div>
+            </article>
           </div>
         </div>
       </details>
-
-      <article class="download-panel">
-        <span class="eyebrow">Tier 1</span>
-        <h2>Lightweight exports for spreadsheets and quick reuse.</h2>
-        <p class="download-copy">
-          Use these when you want the released surface without touching the app or the SQLite bundle.
-        </p>
-        <div class="download-meta">
-          <div>
-            <span class="tiny-label">Tier package</span>
-            <div class="big-number">{formatBytes(tierBundles.tier1.size_bytes)}</div>
-          </div>
-          <div>
-            <span class="tiny-label">Includes</span>
-            <div class="card-copy">tables, manifest, README, and data dictionary</div>
-          </div>
-          <div>
-            <span class="tiny-label">Best for</span>
-            <div class="card-copy">spreadsheet work, shortlist reviews, and quick reuse</div>
-          </div>
-        </div>
-        <div class="card-grid download-artifact-grid">
-          <a class="card artifact-card" href={artifacts.top_questions_csv}>
-            <h3>Top questions CSV</h3>
-            <p class="card-copy">The current released research-question surface in a lightweight table.</p>
-            <div class="artifact-meta-row">
-              <span class="download-badge">{formatBytes(artifactDetails.top_questions_csv.size_bytes)}</span>
-              <span class="tiny-label">{artifactDetails.top_questions_csv.filename}</span>
-            </div>
-          </a>
-          <a class="card artifact-card" href={artifacts.central_concepts_csv}>
-            <h3>Central concepts CSV</h3>
-            <p class="card-copy">Support and centrality statistics for the most prominent released concepts.</p>
-            <div class="artifact-meta-row">
-              <span class="download-badge">{formatBytes(artifactDetails.central_concepts_csv.size_bytes)}</span>
-              <span class="tiny-label">{artifactDetails.central_concepts_csv.filename}</span>
-            </div>
-          </a>
-          <a class="card artifact-card" href={artifacts.curated_questions_json}>
-            <h3>Curated questions JSON</h3>
-            <p class="card-copy">The hand-curated question sets used on the site front pages and shelves.</p>
-            <div class="artifact-meta-row">
-              <span class="download-badge">{formatBytes(artifactDetails.curated_questions_json.size_bytes)}</span>
-              <span class="tiny-label">{artifactDetails.curated_questions_json.filename}</span>
-            </div>
-          </a>
-          <a class="card artifact-card" href={artifacts.benchmark_manifest_json}>
-            <h3>Benchmark manifest JSON</h3>
-            <p class="card-copy">Canonical fuller-corpus counts for papers, normalized links, and native concepts.</p>
-            <div class="artifact-meta-row">
-              <span class="download-badge">{formatBytes(artifactDetails.benchmark_manifest_json.size_bytes)}</span>
-              <span class="tiny-label">{artifactDetails.benchmark_manifest_json.filename}</span>
-            </div>
-          </a>
-        </div>
-        <div class="button-row download-panel-actions">
-          <a class="button-primary" href={tierBundles.tier1.path}>Download Tier 1 bundle ({formatBytes(tierBundles.tier1.size_bytes)})</a>
-          <a class="button-secondary" href={guides.readme.path}>README ({formatBytes(guides.readme.size_bytes)})</a>
-          <a class="button-secondary" href={guides.data_dictionary.path}>Data dictionary ({formatBytes(guides.data_dictionary.size_bytes)})</a>
-        </div>
-      </article>
-
-      <article class="download-panel">
-        <span class="eyebrow">Tier 2</span>
-        <h2>Structured graph assets for site-equivalent machine use.</h2>
-        <p class="download-copy">
-          These are the site-facing graph assets: the map backbone, concept index, and shard indexes.
-        </p>
-        <div class="download-meta">
-          <div>
-            <span class="tiny-label">Tier package</span>
-            <div class="big-number">{formatBytes(tierBundles.tier2.size_bytes)}</div>
-          </div>
-          <div>
-            <span class="tiny-label">Includes</span>
-            <div class="card-copy">core JSON assets, shard directories, README, and data dictionary</div>
-          </div>
-          <div>
-            <span class="tiny-label">Best for</span>
-            <div class="card-copy">machine-readable map builds, local APIs, and topic tooling</div>
-          </div>
-        </div>
-        <div class="card-grid download-artifact-grid">
-          <a class="card artifact-card" href={artifacts.graph_backbone_json}>
-            <h3>Literature map JSON</h3>
-            <p class="card-copy">Observed nodes and edges used by the lightweight public literature map.</p>
-            <div class="artifact-meta-row">
-              <span class="download-badge">{formatBytes(artifactDetails.graph_backbone_json.size_bytes)}</span>
-              <span class="tiny-label">{artifactDetails.graph_backbone_json.filename}</span>
-            </div>
-          </a>
-          <a class="card artifact-card" href={artifacts.concept_index_json}>
-            <h3>Concept index JSON</h3>
-            <p class="card-copy">Searchable concept records with labels, aliases, support, and app links.</p>
-            <div class="artifact-meta-row">
-              <span class="download-badge">{formatBytes(artifactDetails.concept_index_json.size_bytes)}</span>
-              <span class="tiny-label">{artifactDetails.concept_index_json.filename}</span>
-            </div>
-          </a>
-          <a class="card artifact-card" href={artifacts.concept_neighborhoods_index_json}>
-            <h3>Concept neighborhoods index</h3>
-            <p class="card-copy">Index into the concept-neighborhood shards used by the literature map and topic inspector.</p>
-            <div class="artifact-meta-row">
-              <span class="download-badge">{formatBytes(artifactDetails.concept_neighborhoods_index_json.size_bytes)}</span>
-              <span class="tiny-label">{artifactDetails.concept_neighborhoods_index_json.filename}</span>
-            </div>
-          </a>
-          <a class="card artifact-card" href={artifacts.concept_opportunities_index_json}>
-            <h3>Concept opportunities index</h3>
-            <p class="card-copy">Index into the concept-specific opportunity shards used across the site.</p>
-            <div class="artifact-meta-row">
-              <span class="download-badge">{formatBytes(artifactDetails.concept_opportunities_index_json.size_bytes)}</span>
-              <span class="tiny-label">{artifactDetails.concept_opportunities_index_json.filename}</span>
-            </div>
-          </a>
-        </div>
-        <div class="button-row download-panel-actions">
-          <a class="button-primary" href={tierBundles.tier2.path}>Download Tier 2 bundle ({formatBytes(tierBundles.tier2.size_bytes)})</a>
-          <a class="button-secondary" href={guides.readme.path}>README ({formatBytes(guides.readme.size_bytes)})</a>
-          <a class="button-secondary" href={guides.data_dictionary.path}>Data dictionary ({formatBytes(guides.data_dictionary.size_bytes)})</a>
-        </div>
-      </article>
-
-      <article class="download-panel">
-        <span class="eyebrow">Tier 3</span>
-        <h2>The released SQLite bundle for local analysis.</h2>
-        <div class="download-meta">
-          <div>
-            <span class="tiny-label">Bundle</span>
-            <div class="big-number">{publicDb.filename}</div>
-          </div>
-          <div>
-            <span class="tiny-label">Approximate size</span>
-            <div class="big-number">{formatBytes(publicDb.db_size_bytes)}</div>
-          </div>
-          <div>
-            <span class="tiny-label">SHA-256</span>
-            <div class="card-copy">{publicDb.sha256.slice(0, 16)}...</div>
-          </div>
-        </div>
-        <p class="download-copy">
-          This SQLite bundle is the public source of truth for the app. It includes the released questions, concept index, graph tables, neighborhoods, opportunities, and question-level evidence.
-        </p>
-        <div class="button-row">
-          <a class="button-primary" href={publicDb.public_url}>Download Tier 3 bundle ({formatBytes(publicDb.db_size_bytes)})</a>
-          <a class="button-secondary" href={data.downloads.manifest_path}>Manifest ({formatBytes(artifactDetails.manifest_json.size_bytes)})</a>
-          <a class="button-secondary" href={data.downloads.checksum_path}>Checksum ({formatBytes(artifactDetails.checksum_txt.size_bytes)})</a>
-          <a class="button-secondary" href={guides.readme.path}>README ({formatBytes(guides.readme.size_bytes)})</a>
-          <a class="button-secondary" href={guides.data_dictionary.path}>Data dictionary ({formatBytes(guides.data_dictionary.size_bytes)})</a>
-          <a class="button-tertiary" href={data.app_url}>Explore in app</a>
-        </div>
-      </article>
-
-      <article class="download-panel">
-        <span class="eyebrow">Release scale</span>
-        <h2>What sits behind the public surface.</h2>
-        <p class="download-copy">
-          The public browsing surface is much smaller than the underlying literature benchmark. These counts separate the published-journal source corpus, the normalized graph, and the released question list.
-        </p>
-        <div class="metrics-grid">
-          <article class="metric-card">
-            <div class="metric-value">{formatCompact(data.metrics.papers)}</div>
-            <div class="metric-label">published-journal papers screened</div>
-          </article>
-          <article class="metric-card">
-            <div class="metric-value">{formatCompact(data.metrics.papers_with_extracted_edges)}</div>
-            <div class="metric-label">papers with extracted graph structure</div>
-          </article>
-          <article class="metric-card">
-            <div class="metric-value">{formatCompact(data.metrics.normalized_graph_papers)}</div>
-            <div class="metric-label">papers in the normalized concept graph</div>
-          </article>
-          <article class="metric-card">
-            <div class="metric-value">{formatCompact(data.metrics.normalized_links)}</div>
-            <div class="metric-label">normalized concept links</div>
-          </article>
-          <article class="metric-card">
-            <div class="metric-value">{formatCompact(data.metrics.native_concepts)}</div>
-            <div class="metric-label">native concepts</div>
-          </article>
-          <article class="metric-card">
-            <div class="metric-value">{formatCompact(data.metrics.visible_public_questions)}</div>
-            <div class="metric-label">questions in the released browsing surface</div>
-          </article>
-        </div>
-      </article>
     </section>
   </main>
 </BaseLayout>

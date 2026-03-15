@@ -61,37 +61,36 @@ async function main() {
   await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError", "For academics", "A simple analogy", "Why this exists"]);
-  assert(await page.getByRole("heading", { name: /Questions the economics literature appears ready to answer\./i }).isVisible(), "Homepage hero missing");
+  const homeHeroText = (await page.locator("h1").first().textContent()) || "";
+  assert(/Open economics questions,\s*grounded in nearby evidence\./i.test(homeHeroText), "Homepage hero missing");
   const nav = page.getByRole("navigation");
   assert(await nav.getByRole("link", { name: /^Home$/ }).isVisible(), "Home nav missing");
   assert(await nav.getByRole("link", { name: /^Questions$/ }).isVisible(), "Questions nav missing");
   assert(await nav.getByRole("link", { name: /^Map$/ }).isVisible(), "Map nav missing");
   assert(await nav.getByRole("link", { name: /^Paper$/ }).isVisible(), "Paper nav missing");
   assert(await nav.getByRole("link", { name: /^Downloads$/ }).isVisible(), "Downloads nav missing");
+  assert((await page.getByRole("button", { name: /Dark mode/i }).count()) === 0, "Dark mode toggle should be removed");
   assert((await nav.getByRole("link", { name: /How it works/i }).count()) === 0, "How it works should not remain in nav");
   assert((await nav.getByRole("link", { name: /^Method$/ }).count()) === 0, "Method should not remain in nav");
   assert(await page.getByRole("link", { name: /^Browse questions$/ }).first().isVisible(), "Homepage CTA missing");
   assert(await page.getByRole("link", { name: /^Explore in app$/ }).first().isVisible(), "Homepage app CTA missing");
   assert(await page.getByRole("link", { name: /^Read paper$/ }).first().isVisible(), "Homepage paper CTA missing");
   assert(await page.getByRole("link", { name: /^Download data$/ }).first().isVisible(), "Homepage data CTA missing");
-  assert(await page.locator('[data-role="homepage-carousel"]').isVisible(), "Homepage should show the featured example");
-  assert((await page.locator('[data-role="homepage-carousel-slide"]').count()) === 3, "Homepage should show 3 featured examples");
-  assert(await page.getByText(/Featured example/i).first().isVisible(), "Homepage should label the example");
-  assert(await page.getByText(/Public debt and CO2 emissions/i).isVisible(), "Homepage lead example missing");
+  assert(await page.locator('[data-role="home-editorial-carousel"]').isVisible(), "Homepage should show the editorial carousel");
+  assert((await page.locator('[data-role="home-editorial-carousel"] .editorial-carousel-dot').count()) === 6, "Homepage should sample 6 examples");
+  assert((await page.locator('[data-role="home-editorial-carousel"] [data-role="editorial-carousel-slide"][data-active="true"]').count()) === 1, "Homepage should show one active example");
   assert(await page.locator('[data-role="homepage-scale-strip"]').isVisible(), "Homepage release strip missing");
 
   await page.goto(`${baseUrl}/questions/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
-  assert(await page.getByRole("heading", { name: /Browse released questions from the literature graph\./i }).isVisible(), "Questions hero missing");
-  assert(
-    (await page.locator('[data-role="questions-curated-front-set"] [data-role="curated-opportunity-card"]').count()) === 6,
-    "Questions page should show exactly 6 curated cards",
-  );
-  assert((await page.locator('[data-role^="field-shelf-"]').count()) === 5, "Questions page should show 5 field shelves");
-  assert((await page.locator('[data-role^="question-collection-"]').count()) === 5, "Questions page should show 5 question collections");
-  assert(await page.getByRole("heading", { name: /Browse by field/i }).isVisible(), "Questions field heading missing");
-  assert(await page.getByRole("heading", { name: /Browse by use case/i }).isVisible(), "Questions use-case heading missing");
+  assert(await page.getByRole("heading", { name: /Browse questions by field\./i }).isVisible(), "Questions hero missing");
+  assert((await page.locator('[data-role^="field-carousel-"]').count()) === 5, "Questions page should show 5 field carousels");
+  assert((await page.locator('[data-role^="use-case-carousel-"]').count()) === 3, "Questions page should show 3 use-case carousels");
+  assert((await page.getByText(/Start here/i).count()) === 0, "Questions page should not show Start here");
+  assert((await page.getByText(/Hand-curated question/i).count()) === 0, "Questions page should not show hand-curated tags");
+  const activePairs = await page.locator('[data-role^="field-carousel-"] [data-role="editorial-carousel-slide"][data-active="true"], [data-role^="use-case-carousel-"] [data-role="editorial-carousel-slide"][data-active="true"]').evaluateAll((nodes) => nodes.map((node) => node.getAttribute("data-pair-key")));
+  assert(new Set(activePairs.filter(Boolean)).size === activePairs.filter(Boolean).length, "Questions page should not repeat the same active question across carousels");
   const rankedSection = page.locator('[data-role="overall-ranked-questions"]');
   assert(await rankedSection.getByRole("button", { name: /No direct papers yet/i }).isVisible(), "Questions filters missing");
   assert(await rankedSection.getByRole("button", { name: /Some direct evidence/i }).isVisible(), "Questions filters missing exact-evidence chip");
@@ -103,6 +102,10 @@ async function main() {
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
   assert(await page.getByRole("heading", { name: /Read one topic through its nearby literature/i }).isVisible(), "Map hero missing");
   assert(await page.getByRole("heading", { name: /Selected topic/i }).isVisible(), "Map selected-topic panel missing");
+  assert((await page.getByRole("button", { name: /Rearrange/i }).count()) === 0, "Map should not show rearrange button");
+  assert((await page.getByRole("button", { name: /Zoom in/i }).count()) === 0, "Map should not show zoom-in button");
+  assert((await page.getByRole("button", { name: /Reset topic/i }).count()) === 0, "Map should not show reset-topic button");
+  assert(await page.getByText(/Why it matters/i).first().isVisible(), "Map should show why-it-matters section");
   const focusedNodeCount = await page.locator("[data-node-id]").count();
   assert(focusedNodeCount > 0, "Focused map rendered no nodes");
   await page.getByRole("button", { name: /Show full map/i }).click();
@@ -121,18 +124,15 @@ async function main() {
 
   await page.goto(`${baseUrl}/downloads/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
-  assert(await page.getByRole("heading", { name: /Download released data and graph files\./i }).isVisible(), "Downloads hero missing");
-  assert(await page.getByRole("link", { name: /Download top questions CSV/i }).first().isVisible(), "Downloads hero should point to lightweight exports");
-  assert(await page.getByRole("link", { name: /Open data dictionary/i }).first().isVisible(), "Downloads hero should expose the data dictionary");
-  assert(await page.getByText(/Which download should I choose\?/i).isVisible(), "Downloads page should expose guidance");
-  assert(await page.getByRole("link", { name: /Download Tier 1 bundle/i }).isVisible(), "Downloads page should expose the tier 1 bundle");
-  assert(await page.getByRole("link", { name: /Download Tier 2 bundle/i }).isVisible(), "Downloads page should expose the tier 2 bundle");
-  assert((await page.getByRole("link", { name: /README/i }).count()) >= 1, "Downloads page should expose a README button");
-  assert((await page.getByRole("link", { name: /Data dictionary/i }).count()) >= 2, "Downloads page should expose data dictionary links inside the downloads page");
+  assert(await page.getByRole("heading", { name: /Download the released files\./i }).isVisible(), "Downloads hero missing");
+  assert((await page.getByRole("link", { name: /^README/i }).count()) >= 1, "Downloads page should expose a README button");
+  assert((await page.getByRole("link", { name: /^Data dictionary/i }).count()) >= 1, "Downloads page should expose the data dictionary");
+  assert((await page.getByRole("link", { name: /^Download all$/ }).count()) === 3, "Downloads page should show one Download all action per tier");
+  assert(await page.getByText(/About the release/i).isVisible(), "Downloads page should keep the release explanation collapsed");
   assert((await page.getByRole("link", { name: /Full HTML manuscript/i }).count()) === 0, "Downloads page should not duplicate the paper route");
   assert((await page.getByRole("link", { name: /Working paper PDF/i }).count()) === 0, "Downloads page should not duplicate paper downloads");
   assert((await page.getByRole("link", { name: /Extended abstract PDF/i }).count()) === 0, "Downloads page should not duplicate the abstract downloads");
-  assert(await page.getByText(/frontiergraph-economics-public\.db/i).isVisible(), "Downloads page should show the public DB bundle");
+  assert(await page.getByText(/frontiergraph-economics-public\.db/i).first().isVisible(), "Downloads page should show the public DB bundle");
   assert(await page.getByText(/Tier 1/i).first().isVisible(), "Downloads page should show tiered releases");
 
   await page.goto(`${baseUrl}/paper/`, { waitUntil: "networkidle" });
