@@ -123,10 +123,11 @@ async function main() {
 
   await page.goto(`${baseUrl}/downloads/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
-  assert(await page.getByRole("heading", { name: /Take the paper, the tables, or the full public bundle/i }).isVisible(), "Downloads hero missing");
-  assert(await page.getByRole("link", { name: /Full HTML manuscript/i }).first().isVisible(), "Downloads page should expose the HTML manuscript");
-  assert(await page.getByRole("link", { name: /Working paper PDF/i }).first().isVisible(), "Downloads page should expose the working paper");
-  assert(await page.getByRole("link", { name: /Extended abstract PDF/i }).isVisible(), "Downloads page should expose the extended abstract");
+  assert(await page.getByRole("heading", { name: /Take the tables or the full public bundle/i }).isVisible(), "Downloads hero missing");
+  assert(await page.getByRole("link", { name: /Download top questions CSV/i }).first().isVisible(), "Downloads hero should point to lightweight exports");
+  assert((await page.getByRole("link", { name: /Full HTML manuscript/i }).count()) === 0, "Downloads page should not duplicate the paper route");
+  assert((await page.getByRole("link", { name: /Working paper PDF/i }).count()) === 0, "Downloads page should not duplicate paper downloads");
+  assert((await page.getByRole("link", { name: /Extended abstract PDF/i }).count()) === 0, "Downloads page should not duplicate the abstract downloads");
   assert(await page.getByText(/frontiergraph-economics-public\.db/i).isVisible(), "Downloads page should show the public DB bundle");
   assert(await page.getByText(/Tier 1/i).first().isVisible(), "Downloads page should show tiered releases");
 

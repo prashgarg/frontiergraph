@@ -8,40 +8,22 @@ const artifacts = data.downloads.artifacts;
 
 <BaseLayout
   title="Downloads | FrontierGraph"
-  description="Download the FrontierGraph paper, lightweight exports, structured graph assets, and the rich public graph bundle."
+  description="Download lightweight FrontierGraph exports, structured graph assets, and the rich public graph bundle."
 >
   <main>
     <section class="page-hero">
-      <h1>Take the paper, the tables, or the full public bundle.</h1>
+      <h1>Take the tables or the full public bundle.</h1>
       <p class="lede">
-        Start with the paper or the lightweight tables, then move to the full bundle only if you want the app data.
+        Start with the lightweight exports, then move to the full bundle only if you want the app data.
       </p>
       <div class="button-row">
-        <a class="button-primary" href="/paper/">Read paper</a>
-        <a class="button-secondary" href={artifacts.working_paper_pdf}>Download working paper PDF</a>
+        <a class="button-primary" href={artifacts.top_questions_csv}>Download top questions CSV</a>
+        <a class="button-secondary" href={publicDb.public_url}>Download public DB</a>
         <a class="button-tertiary" href={data.app_url}>Explore in app</a>
       </div>
     </section>
 
     <section class="section download-stack">
-      <article class="download-panel">
-        <h2>Read it on the web or take the PDF.</h2>
-        <div class="card-grid download-artifact-grid">
-          <a class="card artifact-card" href="/paper/">
-            <h3>Full HTML manuscript</h3>
-            <p class="card-copy">The full working-paper draft in a site-native long-scroll format.</p>
-          </a>
-          <a class="card artifact-card" href={artifacts.working_paper_pdf}>
-            <h3>Working paper PDF</h3>
-            <p class="card-copy">The tracked manuscript PDF used in the public release.</p>
-          </a>
-          <a class="card artifact-card" href={artifacts.extended_abstract_pdf}>
-            <h3>Extended abstract PDF</h3>
-            <p class="card-copy">A shorter entry point if you want the core idea before the full manuscript.</p>
-          </a>
-        </div>
-      </article>
-
       <article class="download-panel">
         <span class="eyebrow">Tier 1</span>
         <h2>Lightweight exports for spreadsheets and quick reuse.</h2>
