@@ -62,20 +62,10 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       <section class="sidebar-card inspector-card graph-question-shell">
         <div class="inspector-head">
           <h3>Questions touching this topic</h3>
-          <p class="card-copy">Released questions involving the selected topic appear here first.</p>
+          <p class="card-copy">Start with one of these. The panel on the right shows why it surfaced and the strongest nearby paths behind it.</p>
         </div>
         <div data-role="selected-opportunities">
           <p class="card-copy">The strongest released questions touching the selected topic will appear here.</p>
-        </div>
-      </section>
-
-      <section class="sidebar-card inspector-card graph-question-shell">
-        <div class="inspector-head">
-          <h3>Possible question prompts</h3>
-          <p class="card-copy">Simple prompts generated from nearby topics in the local map.</p>
-        </div>
-        <div data-role="selection-list-view">
-          <p class="card-copy">Simple prompts built from nearby topics will appear here.</p>
         </div>
       </section>
 
@@ -90,11 +80,22 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       </section>
     </aside>
 
-    <div class="graph-panel graph-panel-secondary">
+    <div class="graph-main-panel">
+      <section class="sidebar-card inspector-card graph-question-focus">
+        <div class="inspector-head">
+          <h3>Selected question and paths</h3>
+          <p class="card-copy">Choose a question card on the left to see the strongest nearby path structure behind it.</p>
+        </div>
+        <div data-role="selected-question">
+          <p class="card-copy">Choose a topic, then choose a question card to see a path-based reading here.</p>
+        </div>
+      </section>
+
+      <div class="graph-panel graph-panel-secondary">
       <div class="graph-controls">
         <div class="graph-status-shell">
           <div class="graph-status" data-role="hover-card" aria-live="polite">
-            Start with a topic chip or search. The cards on the left show questions touching that topic. Hover a node or edge for quick details.
+            Start with a topic chip or search. The cards on the left are the main reading. Hover a node or edge for quick details.
           </div>
         </div>
         <div class="graph-control-row">
@@ -103,6 +104,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         </div>
         <div class="graph-legend" aria-hidden="true">
           <span><i class="graph-legend-dot is-selected"></i>Selected topic</span>
+          <span><i class="graph-legend-dot is-question"></i>Question counterpart</span>
           <span><i class="graph-legend-dot is-neighbor"></i>Nearby topic</span>
           <span><i class="graph-legend-dot is-context"></i>Context topic</span>
         </div>
@@ -112,8 +114,9 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         <div class="graph-tooltip" data-role="graph-tooltip" hidden></div>
       </div>
       <div class="graph-help-row">
-        <span class="mini-copy">Click any node to switch topic. Wheel or pinch to zoom. Use the full-map toggle only when you need broader context.</span>
+        <span class="mini-copy">The graph shows the selected topic, the other side of the selected question, and the strongest nearby context. Click any node to switch topic.</span>
       </div>
+    </div>
     </div>
   </div>
 </section>
@@ -157,7 +160,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const canvas = root.querySelector('[data-role="graph-canvas"]');
   const selectedConcept = root.querySelector('[data-role="selected-concept"]');
   const selectedNeighborhood = root.querySelector('[data-role="selected-neighborhood"]');
-  const selectionListView = root.querySelector('[data-role="selection-list-view"]');
+  const selectedQuestion = root.querySelector('[data-role="selected-question"]');
   const selectedOpportunities = root.querySelector('[data-role="selected-opportunities"]');
   const centralList = root.querySelector('[data-role="central-list"]');
   const resetView = root.querySelector('[data-role="reset-view"]');
@@ -174,6 +177,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   let centralConcepts = [];
   let currentNeighborhood = null;
   let currentOpportunities = [];
+  let activeQuestionPairKey = null;
   let layoutMode = false;
   let mapMode = "focused";
   let interaction = null;
@@ -227,6 +231,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const subtitle = conceptSubtitle(concept);
     return subtitle ? `${conceptTitle(concept)}: ${subtitle}.` : "";
   };
+  const normalizeLabel = (value) => String(value || "").trim().toLowerCase();
   const estimateChipWidth = (label) => clamp(78 + String(label || "").length * 6.4, 86, 248);
   const conciseQuestionReason = (item) => {
     const pathCount = safeNumber(item.supporting_path_count);
@@ -243,11 +248,68 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     return "Nearby work already brings these two sides close together in the released map.";
   };
   const staticGuideText =
-    "Start with a topic chip or search. The cards on the left show questions touching that topic. Hover a node or edge for quick details.";
-  const buildFocusedPositionMap = (neighborIds) => {
+    "Start with a topic chip or search. The cards on the left are the main reading. Hover a node or edge for quick details.";
+  const questionTitle = (item) => {
+    const source = item?.source_label || conceptLabel(item?.source_id, "");
+    const target = item?.target_label || conceptLabel(item?.target_id, "");
+    if (source && target) return `How do ${source} and ${target} connect?`;
+    return item?.public_pair_label || "Candidate question";
+  };
+  const currentQuestion = () =>
+    activeQuestionPairKey ? currentOpportunities.find((item) => item.pair_key === activeQuestionPairKey) || null : null;
+  const resolveMediatorConceptId = (label) => {
+    const needle = normalizeLabel(label);
+    if (!needle) return null;
+    const exact = concepts.find((concept) => normalizeLabel(concept.plain_label || concept.label) === needle);
+    return exact?.concept_id || null;
+  };
+  const escapeAttr = (value) => escapeHtml(value ?? "");
+  const buildFocusedPositionMap = (neighborIds, { counterpartId = null, mediatorIds = [] } = {}) => {
     const positionMap = new Map();
     const centerX = GRAPH_WIDTH * 0.5;
     const centerY = GRAPH_HEIGHT * 0.5;
+    const pathMode = Boolean(counterpartId) || mediatorIds.length > 0;
+    if (pathMode) {
+      const selectedX = GRAPH_WIDTH * 0.24;
+      const counterpartX = GRAPH_WIDTH * 0.78;
+      positionMap.set(selectedId, { x: selectedX, y: centerY, angle: Math.PI });
+      if (counterpartId) {
+        positionMap.set(counterpartId, { x: counterpartX, y: centerY, angle: 0 });
+      }
+      const mediatorAnchors =
+        mediatorIds.length <= 1
+          ? [{ x: GRAPH_WIDTH * 0.52, y: centerY, angle: -Math.PI / 2 }]
+          : mediatorIds.length === 2
+            ? [
+                { x: GRAPH_WIDTH * 0.5, y: centerY - 110, angle: -Math.PI / 2 },
+                { x: GRAPH_WIDTH * 0.5, y: centerY + 110, angle: Math.PI / 2 },
+              ]
+            : [
+                { x: GRAPH_WIDTH * 0.48, y: centerY - 122, angle: -Math.PI / 2 },
+                { x: GRAPH_WIDTH * 0.55, y: centerY, angle: 0 },
+                { x: GRAPH_WIDTH * 0.48, y: centerY + 122, angle: Math.PI / 2 },
+              ];
+      mediatorIds.forEach((neighborId, index) => {
+        const anchor = mediatorAnchors[index] || mediatorAnchors[mediatorAnchors.length - 1];
+        positionMap.set(neighborId, anchor);
+      });
+      const remaining = neighborIds.filter((neighborId) => !positionMap.has(neighborId));
+      if (remaining.length) {
+        const radiusX = 210;
+        const radiusY = 170;
+        const step = (Math.PI * 2) / remaining.length;
+        remaining.forEach((neighborId, index) => {
+          const angle = -Math.PI / 2 + step * index;
+          positionMap.set(neighborId, {
+            x: centerX + Math.cos(angle) * radiusX,
+            y: centerY + Math.sin(angle) * radiusY,
+            angle,
+          });
+        });
+      }
+      return positionMap;
+    }
+
     positionMap.set(selectedId, { x: centerX, y: centerY, angle: -Math.PI / 2 });
     if (!neighborIds.length) return positionMap;
 
@@ -374,6 +436,20 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
 
   const getVisibleGraphState = () => {
     const selectedActive = Boolean(selectedId) && isInBackbone(selectedId);
+    const activeQuestion = currentQuestion();
+    const questionCounterpartId = activeQuestion
+      ? activeQuestion.source_id === selectedId
+        ? activeQuestion.target_id
+        : activeQuestion.target_id === selectedId
+          ? activeQuestion.source_id
+          : null
+      : null;
+    const mediatorIds = activeQuestion
+      ? (activeQuestion.top_mediator_labels || [])
+          .map((label) => resolveMediatorConceptId(label))
+          .filter((conceptId) => conceptId && isInBackbone(conceptId))
+          .slice(0, 3)
+      : [];
     const allNeighbors = new Set();
 
     if (selectedActive) {
@@ -394,7 +470,15 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       };
     }
 
-    const focusedNeighborIds = getFocusedNeighborIds(selectedId);
+    const focusedNeighborIds = [];
+    const pushFocusedNeighbor = (conceptId) => {
+      if (!conceptId || conceptId === selectedId) return;
+      if (focusedNeighborIds.includes(conceptId)) return;
+      focusedNeighborIds.push(conceptId);
+    };
+    pushFocusedNeighbor(questionCounterpartId);
+    mediatorIds.forEach(pushFocusedNeighbor);
+    getFocusedNeighborIds(selectedId).forEach(pushFocusedNeighbor);
     const visibleIds = new Set([selectedId, ...focusedNeighborIds]);
     const visibleEdges = graph.edges.filter((edge) => visibleIds.has(edge.source) && visibleIds.has(edge.target));
     const visibleNodes = graph.nodes.filter((node) => visibleIds.has(node.id));
@@ -404,7 +488,10 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       edges: visibleEdges,
       selectedNeighbors: new Set(focusedNeighborIds),
       labelNeighbors: new Set(focusedNeighborIds),
-      renderPositionMap: buildFocusedPositionMap(focusedNeighborIds),
+      renderPositionMap: buildFocusedPositionMap(focusedNeighborIds, {
+        counterpartId: questionCounterpartId,
+        mediatorIds,
+      }),
     };
   };
 
@@ -544,72 +631,114 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     }
   };
 
-  const renderListView = () => {
+  const renderQuestionDetail = () => {
     const concept = selectedId ? conceptMap.get(selectedId) : null;
-    if (!concept) {
-      selectionListView.innerHTML = `<p class="card-copy">Simple prompts built from nearby topics will appear here.</p>`;
+    if (!concept || !(selectedQuestion instanceof HTMLElement)) {
       return;
     }
-    const releasedOtherIds = new Set(
-      currentOpportunities
-        .flatMap((item) => [item.source_id, item.target_id])
-        .filter((conceptId) => conceptId && conceptId !== selectedId),
-    );
-    const prompts = [];
-    const used = new Set();
-    const pushPrompt = (item, template, promptType) => {
-      if (!item?.concept_id) return;
-      if (used.has(item.concept_id)) return;
-      const neighborLabel = conceptLabel(item.concept_id, item.label);
-      if (!neighborLabel) return;
-      used.add(item.concept_id);
-      prompts.push({
-        conceptId: item.concept_id,
-        title: template(neighborLabel),
-        note: `${formatNumber(safeNumber(item.support_count))} local papers already connect these topics nearby.`,
-        type: promptType,
-      });
-    };
-
-    for (const item of currentNeighborhood?.outgoing || []) {
-      if (releasedOtherIds.has(item.concept_id)) continue;
-      pushPrompt(item, (neighborLabel) => `How does ${conceptTitle(concept)} shape ${neighborLabel}?`, "Leads toward");
-      if (prompts.length >= 4) break;
-    }
-    if (prompts.length < 4) {
-      for (const item of currentNeighborhood?.incoming || []) {
-        if (releasedOtherIds.has(item.concept_id)) continue;
-        pushPrompt(item, (neighborLabel) => `How does ${neighborLabel} shape ${conceptTitle(concept)}?`, "Builds on");
-        if (prompts.length >= 4) break;
+    const question = currentQuestion();
+    if (!question) {
+      const fallbackItems = (currentNeighborhood?.top_neighbors || []).slice(0, 3);
+      selectedQuestion.innerHTML = fallbackItems.length
+        ? `
+          <p class="card-copy">This topic does not currently have a released question in the public set, but the nearby neighborhood still suggests plausible next moves.</p>
+          <div class="graph-prompt-stack">
+            ${fallbackItems
+              .map(
+                (item) => `
+                  <article class="graph-prompt-card">
+                    <span class="tiny-label">Possible question</span>
+                    <strong>${escapeHtml(`What links ${conceptTitle(concept)} and ${conceptLabel(item.concept_id, item.label)}?`)}</strong>
+                    <p class="mini-copy">${formatNumber(safeNumber(item.support_count))} local papers already connect these topics nearby.</p>
+                    <button class="list-link list-link-tight" type="button" data-neighbor-id="${escapeAttr(item.concept_id)}">
+                      <span>Open neighboring topic</span>
+                      <span>${escapeHtml(conceptLabel(item.concept_id, item.label))}</span>
+                    </button>
+                  </article>
+                `,
+              )
+              .join("")}
+          </div>
+        `
+        : `<p class="card-copy">Choose a topic with released questions to see path-based detail here.</p>`;
+      for (const button of selectedQuestion.querySelectorAll("[data-neighbor-id]")) {
+        button.addEventListener("click", () => selectConcept(button.dataset.neighborId));
       }
-    }
-    if (prompts.length < 4) {
-      for (const item of currentNeighborhood?.top_neighbors || []) {
-        pushPrompt(item, (neighborLabel) => `What links ${conceptTitle(concept)} and ${neighborLabel}?`, "Nearby prompt");
-        if (prompts.length >= 4) break;
-      }
+      return;
     }
 
-    selectionListView.innerHTML = prompts.length
-      ? prompts
-          .map(
-            (item) => `
-              <article class="graph-prompt-card">
-                <span class="tiny-label">${escapeHtml(item.type)}</span>
-                <strong>${escapeHtml(item.title)}</strong>
-                <p class="mini-copy">${escapeHtml(item.note)}</p>
-                <button class="list-link list-link-tight" type="button" data-neighbor-id="${escapeHtml(item.conceptId)}">
-                  <span>Open neighboring topic</span>
-                  <span>${escapeHtml(conceptLabel(item.conceptId))}</span>
-                </button>
+    const mediatorLabels = Array.isArray(question.top_mediator_labels) ? question.top_mediator_labels.filter(Boolean).slice(0, 3) : [];
+    const pathStrips = mediatorLabels.length
+      ? mediatorLabels
+          .map((label, index) => {
+            const mediatorId = resolveMediatorConceptId(label);
+            const control = mediatorId
+              ? `<button class="button-tertiary path-strip-action" type="button" data-mediator-id="${escapeAttr(mediatorId)}">Open topic</button>`
+              : "";
+            return `
+              <article class="path-strip-card">
+                <span class="tiny-label">Path ${index + 1}</span>
+                <div class="path-strip">
+                  <span>${escapeHtml(question.source_label)}</span>
+                  <span class="path-strip-arrow" aria-hidden="true">→</span>
+                  <span>${escapeHtml(label)}</span>
+                  <span class="path-strip-arrow" aria-hidden="true">→</span>
+                  <span>${escapeHtml(question.target_label)}</span>
+                </div>
+                ${control}
               </article>
-            `,
-          )
+            `;
+          })
           .join("")
-      : `<p class="card-copy">No simple prompt could be generated from the current local neighborhood in the released map.</p>`;
+      : `<p class="mini-copy">No named mediator topics were exported for this question in the current public release.</p>`;
 
-    for (const button of selectionListView.querySelectorAll("[data-neighbor-id]")) {
-      button.addEventListener("click", () => selectConcept(button.dataset.neighborId));
+    const papers = Array.isArray(question.representative_papers) ? question.representative_papers.slice(0, 3) : [];
+    selectedQuestion.innerHTML = `
+      <article class="graph-question-focus-card">
+        <span class="tiny-label">Selected question</span>
+        <h4>${escapeHtml(questionTitle(question))}</h4>
+        <p class="card-copy">${escapeHtml(question.why_now || conciseQuestionReason(question))}</p>
+        <div class="graph-question-meta">
+          <span>${formatNumber(safeNumber(question.supporting_path_count))} supporting paths</span>
+          <span>${formatNumber(safeNumber(question.mediator_count))} nearby topics</span>
+          <span>${formatNumber(safeNumber(question.motif_count))} supporting motifs</span>
+        </div>
+        <p class="mini-copy"><strong>A useful first step:</strong> ${escapeHtml(question.recommended_move || "Start with the nearby literature and pin down the concrete empirical setting.")}</p>
+        <div class="graph-question-actions button-row">
+          <a class="button-secondary" href="/questions/#${escapeAttr(question.pair_key)}">See question</a>
+          <a class="button-tertiary" href="${escapeAttr(question.app_link)}">Explore in app</a>
+        </div>
+      </article>
+      <div class="graph-question-subgrid">
+        <section class="question-detail-panel">
+          <h4>Paths nearby</h4>
+          <p class="mini-copy">These are the mediator topics most often connecting the two sides in the current public release.</p>
+          <div class="path-strip-stack">${pathStrips}</div>
+        </section>
+        <section class="question-detail-panel">
+          <h4>Starter papers</h4>
+          <p class="mini-copy">Representative papers near this question in the released sample.</p>
+          ${
+            papers.length
+              ? `<ul class="question-paper-list">
+                  ${papers
+                    .map(
+                      (paper) => `
+                        <li>
+                          <strong>${escapeHtml(paper.title || "Untitled paper")}</strong>
+                          <span>${paper.year ? escapeHtml(String(paper.year)) : "Year unknown"}</span>
+                        </li>
+                      `,
+                    )
+                    .join("")}
+                </ul>`
+              : `<p class="mini-copy">No representative papers were exported for this question in the current public release.</p>`
+          }
+        </section>
+      </div>
+    `;
+    for (const button of selectedQuestion.querySelectorAll("[data-mediator-id]")) {
+      button.addEventListener("click", () => selectConcept(button.dataset.mediatorId));
     }
   };
 
@@ -618,6 +747,14 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const edgeMarkup = [];
     const visibleState = getVisibleGraphState();
     const selectedActive = Boolean(selectedId) && isInBackbone(selectedId);
+    const activeQuestion = currentQuestion();
+    const questionCounterpartId = activeQuestion
+      ? activeQuestion.source_id === selectedId
+        ? activeQuestion.target_id
+        : activeQuestion.target_id === selectedId
+          ? activeQuestion.source_id
+          : null
+      : null;
     const {
       focusedActive,
       nodes: visibleNodes,
@@ -641,18 +778,22 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
 
     for (const node of visibleNodes) {
       const isSelected = node.id === selectedId;
+      const isQuestionTarget = Boolean(questionCounterpartId) && node.id === questionCounterpartId;
       const isNeighbor = selectedNeighbors.has(node.id);
-      const isDimmed = mapMode === "global" && selectedActive && !isSelected && !isNeighbor;
+      const isDimmed = mapMode === "global" && selectedActive && !isSelected && !isNeighbor && !isQuestionTarget;
       const renderState = nodeRenderState(node, renderPositionMap);
       const radius = focusedActive
         ? isSelected
           ? 26
-          : Math.max(12, Math.min(20, 11.5 + Math.log10(safeNumber(node.weighted_degree) + 1) * 2.4))
+          : isQuestionTarget
+            ? 22
+            : Math.max(12, Math.min(20, 11.5 + Math.log10(safeNumber(node.weighted_degree) + 1) * 2.4))
         : Math.max(2.8, Math.min(24, 2.8 + Math.log10(safeNumber(node.weighted_degree) + 1) * 4.4));
       const showLabel = focusedActive
-        ? isSelected || labelNeighbors.has(node.id)
+        ? isSelected || isQuestionTarget || labelNeighbors.has(node.id)
         : node.show_label ||
           isSelected ||
+          isQuestionTarget ||
           (isNeighbor && selectedNeighbors.size <= FOCUSED_NEIGHBOR_LIMIT) ||
           (isNeighbor && safeNumber(node.weighted_degree) >= 65);
       const label = node.plain_label || node.label;
@@ -663,17 +804,17 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         : renderState.y - (radius + (isSelected ? 16 : 8));
       const chipY = labelAbove ? labelY - 20 : labelY - 18;
       nodeMarkup.push(
-        `<g class="graph-node-group${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeHtml(node.id)}">
-          ${focusedActive ? `<circle class="graph-node-halo${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}" cx="${renderState.x}" cy="${renderState.y}" r="${radius + (isSelected ? 10 : 7)}"></circle>` : ""}
+        `<g class="graph-node-group${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}${isNeighbor ? " is-neighbor" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeHtml(node.id)}">
+          ${focusedActive ? `<circle class="graph-node-halo${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}${isNeighbor ? " is-neighbor" : ""}" cx="${renderState.x}" cy="${renderState.y}" r="${radius + (isSelected ? 10 : isQuestionTarget ? 8 : 7)}"></circle>` : ""}
           <circle class="graph-node" cx="${renderState.x}" cy="${renderState.y}" r="${radius}"></circle>
           ${
             showLabel
               ? focusedActive
-                ? `<g class="graph-label-chip${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}">
+                ? `<g class="graph-label-chip${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}${isNeighbor ? " is-neighbor" : ""}">
                     <rect x="${renderState.x - labelWidth / 2}" y="${chipY}" width="${labelWidth}" height="28" rx="14" ry="14"></rect>
-                    <text class="graph-label graph-label-chip-text${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>
+                    <text class="graph-label graph-label-chip-text${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}${isNeighbor ? " is-neighbor" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>
                   </g>`
-                : `<text class="graph-label${isSelected ? " is-selected" : ""}${isNeighbor ? " is-neighbor" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>`
+                : `<text class="graph-label${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}${isNeighbor ? " is-neighbor" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>`
               : ""
           }
         </g>`,
@@ -752,7 +893,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const shardPath = neighborhoodIndex[conceptId];
     if (!shardPath) {
       selectedNeighborhood.innerHTML = `<p class="card-copy">No precomputed surrounding-literature summary is available for this topic in the current public sample.</p>`;
-      renderListView();
+      renderQuestionDetail();
       return;
     }
     const shard = await fetchJson(shardPath);
@@ -760,7 +901,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     currentNeighborhood = neighborhood || null;
     if (!neighborhood) {
       selectedNeighborhood.innerHTML = `<p class="card-copy">No surrounding-literature entry was found for this topic in the current public sample.</p>`;
-      renderListView();
+      renderQuestionDetail();
       return;
     }
 
@@ -800,7 +941,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     for (const button of selectedNeighborhood.querySelectorAll("[data-neighbor-id]")) {
       button.addEventListener("click", () => selectConcept(button.dataset.neighborId));
     }
-    renderListView();
+    renderQuestionDetail();
   };
 
   const renderOpportunities = async (conceptId) => {
@@ -808,36 +949,55 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const shardPath = opportunitiesIndex[conceptId];
     if (!shardPath) {
       selectedOpportunities.innerHTML = `<p class="card-copy">No public research question touching this topic is available in the current public sample.</p>`;
-      renderListView();
+      renderQuestionDetail();
       return;
     }
     const shard = await fetchJson(shardPath);
     const opportunities = shard[conceptId] || [];
     currentOpportunities = opportunities;
     if (!opportunities.length) {
+      activeQuestionPairKey = null;
       selectedOpportunities.innerHTML = `<p class="card-copy">No public research question touching this topic is available in the current public sample.</p>`;
-      renderListView();
+      renderQuestionDetail();
       return;
     }
-    selectedOpportunities.innerHTML = opportunities
-      .slice(0, 5)
-      .map(
-        (item) => `
-          <article class="graph-opportunity-card">
-            <strong>${escapeHtml(item.public_pair_label)}</strong>
-            ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
-            <p class="mini-copy">${escapeHtml(conciseQuestionReason(item))}</p>
-            <p class="mini-copy"><strong>First step:</strong> ${escapeHtml(item.recommended_move || "Start with the nearby literature and pin down the concrete empirical setting.")}</p>
-            <div class="button-row">
-              <a class="button-secondary" href="/questions/#${escapeHtml(item.pair_key)}">See question</a>
-              <a class="button-tertiary" href="${escapeHtml(item.app_link)}">Explore in app</a>
-            </div>
-          </article>
-        `,
-      )
-      .join("");
+    activeQuestionPairKey = opportunities.some((item) => item.pair_key === activeQuestionPairKey)
+      ? activeQuestionPairKey
+      : opportunities[0]?.pair_key || null;
+
+    const paintOpportunities = () => {
+      selectedOpportunities.innerHTML = opportunities
+        .slice(0, 5)
+        .map(
+          (item) => `
+            <article class="graph-opportunity-card${item.pair_key === activeQuestionPairKey ? " is-active" : ""}" data-pair-key="${escapeAttr(item.pair_key)}">
+              <span class="tiny-label">${escapeHtml(item.slice_label || "Released question")}</span>
+              <strong>${escapeHtml(questionTitle(item))}</strong>
+              ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
+              <p class="mini-copy">${escapeHtml(conciseQuestionReason(item))}</p>
+              <p class="mini-copy"><strong>First step:</strong> ${escapeHtml(item.recommended_move || "Start with the nearby literature and pin down the concrete empirical setting.")}</p>
+              <div class="button-row">
+                <button class="button-secondary" type="button" data-select-pair="${escapeAttr(item.pair_key)}">View paths</button>
+                <a class="button-tertiary" href="${escapeHtml(item.app_link)}">Explore in app</a>
+              </div>
+            </article>
+          `,
+        )
+        .join("");
+      for (const button of selectedOpportunities.querySelectorAll("[data-select-pair]")) {
+        button.addEventListener("click", () => {
+          activeQuestionPairKey = button.dataset.selectPair;
+          paintOpportunities();
+          renderSelectedConcept(conceptMap.get(conceptId));
+          renderQuestionDetail();
+          renderGraph();
+        });
+      }
+    };
+
+    paintOpportunities();
     renderSelectedConcept(conceptMap.get(conceptId));
-    renderListView();
+    renderQuestionDetail();
   };
 
   const selectConcept = async (conceptId) => {
@@ -847,9 +1007,12 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     if (!concept) return;
     currentNeighborhood = null;
     currentOpportunities = [];
+    activeQuestionPairKey = null;
     selectedNeighborhood.innerHTML = `<p class="card-copy">Loading nearby topics...</p>`;
     selectedOpportunities.innerHTML = `<p class="card-copy">Loading released questions touching this topic...</p>`;
-    selectionListView.innerHTML = `<p class="card-copy">Loading simple prompts from nearby topics...</p>`;
+    if (selectedQuestion instanceof HTMLElement) {
+      selectedQuestion.innerHTML = `<p class="card-copy">Loading path-based question detail...</p>`;
+    }
     renderGraph();
     renderSelectedConcept(concept);
     restoreStatus();

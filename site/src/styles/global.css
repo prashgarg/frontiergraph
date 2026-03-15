@@ -1815,6 +1815,12 @@ h3 {
   align-items: start;
 }
 
+.graph-main-panel {
+  display: grid;
+  gap: 0.95rem;
+  min-width: 0;
+}
+
 .graph-panel {
   border: 1px solid var(--line);
   border-radius: 1.25rem;
@@ -1882,6 +1888,10 @@ h3 {
 
 .graph-legend-dot.is-selected {
   background: #e0b04f;
+}
+
+.graph-legend-dot.is-question {
+  background: rgba(31, 50, 72, 0.88);
 }
 
 .graph-legend-dot.is-neighbor {
@@ -1979,9 +1989,20 @@ h3 {
   stroke: rgba(44, 125, 111, 0.16);
 }
 
+.graph-node-halo.is-question-target {
+  fill: rgba(31, 50, 72, 0.12);
+  stroke: rgba(31, 50, 72, 0.18);
+}
+
 .graph-node-halo.is-selected {
   fill: rgba(224, 176, 79, 0.24);
   stroke: rgba(212, 146, 42, 0.2);
+}
+
+.graph-node-group.is-question-target .graph-node {
+  fill: rgba(31, 50, 72, 0.88);
+  stroke: rgba(255, 253, 248, 0.98);
+  stroke-width: 2.2;
 }
 
 .graph-node-group.is-neighbor .graph-node {
@@ -2016,6 +2037,10 @@ h3 {
   fill: var(--graph-label-strong);
 }
 
+.graph-label.is-question-target {
+  fill: var(--accent-strong);
+}
+
 .graph-label.is-selected {
   fill: var(--graph-label-selected);
 }
@@ -2028,6 +2053,11 @@ h3 {
 
 .graph-label-chip.is-neighbor rect {
   fill: rgba(243, 249, 247, 0.98);
+}
+
+.graph-label-chip.is-question-target rect {
+  fill: rgba(242, 245, 248, 0.98);
+  stroke: rgba(31, 50, 72, 0.16);
 }
 
 .graph-label-chip.is-selected rect {
@@ -2113,6 +2143,7 @@ h3 {
 }
 
 .graph-topic-card,
+.graph-question-focus,
 .graph-question-shell,
 .graph-neighborhood-shell {
   display: grid;
@@ -2134,6 +2165,12 @@ h3 {
   margin-top: 0.75rem;
 }
 
+.graph-opportunity-card.is-active {
+  border-color: rgba(31, 50, 72, 0.24);
+  background: color-mix(in srgb, var(--panel-strong) 92%, transparent);
+  box-shadow: 0 10px 24px rgba(31, 50, 72, 0.08);
+}
+
 .graph-opportunity-card strong,
 .graph-prompt-card strong {
   display: block;
@@ -2142,6 +2179,110 @@ h3 {
 .graph-opportunity-card .button-row,
 .graph-topic-card .button-row {
   margin-top: 0.2rem;
+}
+
+.graph-question-focus-card {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.graph-question-focus-card h4,
+.question-detail-panel h4 {
+  margin: 0;
+}
+
+.graph-question-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.graph-question-meta span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.graph-question-subgrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.question-detail-panel {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.95rem;
+  background: color-mix(in srgb, var(--surface-strong) 86%, transparent);
+}
+
+.path-strip-stack,
+.graph-prompt-stack {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.path-strip-card {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+  background: var(--surface-strong);
+}
+
+.path-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  color: var(--text);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.path-strip span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.path-strip-arrow {
+  color: var(--accent-soft);
+  font-weight: 700;
+}
+
+.path-strip-action {
+  justify-self: start;
+}
+
+.question-paper-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.question-paper-list li {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.question-paper-list strong {
+  font-size: 0.98rem;
+}
+
+.question-paper-list span {
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 .list-link-tight {
@@ -2526,6 +2667,10 @@ h3 {
   .download-meta,
   .editorial-carousel-grid-fields,
   .editorial-carousel-grid-use-cases {
+    grid-template-columns: 1fr;
+  }
+
+  .graph-question-subgrid {
     grid-template-columns: 1fr;
   }
 

@@ -108,7 +108,7 @@ async function main() {
   assert((await page.getByRole("button", { name: /Zoom in/i }).count()) === 0, "Map should not show zoom-in button");
   assert((await page.getByRole("button", { name: /Reset topic/i }).count()) === 0, "Map should not show reset-topic button");
   assert(await page.getByRole("heading", { name: /Questions touching this topic/i }).isVisible(), "Graph page should prioritize questions");
-  assert(await page.getByRole("heading", { name: /Possible question prompts/i }).isVisible(), "Graph page should show generated prompts");
+  assert(await page.getByRole("heading", { name: /Selected question and paths/i }).isVisible(), "Graph page should show path-based question detail");
   const focusedNodeCount = await page.locator("[data-node-id]").count();
   assert(focusedNodeCount > 0, "Focused map rendered no nodes");
   await page.getByRole("button", { name: /Show full map/i }).click();
