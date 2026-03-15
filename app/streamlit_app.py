@@ -32,14 +32,40 @@ def inject_css() -> None:
     st.markdown(
         """
         <style>
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+        :root {
+            --paper: #f6f1e8;
+            --paper-strong: #fffdf8;
+            --surface: rgba(255, 253, 248, 0.98);
+            --surface-muted: rgba(246, 240, 230, 0.95);
+            --line: rgba(37, 48, 66, 0.12);
+            --line-strong: rgba(37, 48, 66, 0.2);
+            --ink: #18263a;
+            --muted: #5b6676;
+            --accent: #1f3248;
+            --accent-soft: #2d776d;
+            --shadow: 0 14px 38px rgba(39, 52, 70, 0.08);
+        }
         .stApp {
-            background: #f8f7f3;
-            color: #182226;
+            background:
+                radial-gradient(circle at 18% 14%, rgba(45, 119, 109, 0.08), transparent 26%),
+                radial-gradient(circle at 82% 10%, rgba(31, 50, 72, 0.05), transparent 28%),
+                linear-gradient(180deg, #faf6ef 0%, var(--paper) 56%, #fbf8f2 100%);
+            color: var(--ink);
+            font-family: "Source Sans 3", sans-serif;
+        }
+        header[data-testid="stHeader"],
+        div[data-testid="stToolbar"],
+        div[data-testid="stDecoration"],
+        #MainMenu,
+        footer {
+            display: none !important;
         }
         .block-container {
             max-width: 1240px;
-            padding-top: 1.35rem;
-            padding-bottom: 2.8rem;
+            padding-top: 0.9rem;
+            padding-bottom: 3rem;
         }
         .stApp,
         .stApp p,
@@ -48,83 +74,108 @@ def inject_css() -> None:
         .stApp .stCaption,
         .stApp [data-testid="stMarkdownContainer"],
         .stApp [data-testid="stMarkdownContainer"] * {
-            color: #182226;
+            color: var(--ink);
         }
         h1, h2, h3 {
-            font-family: Georgia, "Times New Roman", serif;
-            color: #182226;
+            font-family: "Newsreader", Georgia, serif;
+            color: var(--ink);
+            letter-spacing: -0.02em;
         }
         .hero-shell {
-            padding: 0 0 1rem 0;
-            border-bottom: 1px solid rgba(24, 34, 38, 0.10);
-            margin-bottom: 1rem;
+            padding: 1.15rem 1.2rem;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.2rem;
         }
         .eyebrow {
             font-size: 0.74rem;
-            letter-spacing: 0.14em;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
-            color: #5b666c;
+            color: var(--accent-soft);
             margin-bottom: 0.35rem;
         }
         .hero-title {
-            font-size: 2.25rem;
-            line-height: 1.04;
+            font-size: 2.1rem;
+            line-height: 1;
             margin: 0;
         }
         .hero-copy {
-            max-width: 50rem;
+            max-width: 48rem;
             margin-top: 0.55rem;
-            color: #546066;
-            line-height: 1.6;
-            font-size: 0.99rem;
+            color: var(--muted);
+            line-height: 1.62;
+            font-size: 1rem;
         }
         .app-nav {
-            margin: 0.2rem 0 1rem;
-            color: #5d696f;
-            font-size: 0.95rem;
+            margin: 0.15rem 0 1rem;
+            color: var(--muted);
+            font-size: 0.96rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.9rem;
         }
         .app-nav a {
-            color: #2e5f8a;
+            color: var(--accent);
             text-decoration: none;
-            margin-right: 1rem;
         }
         .stApp a {
-            color: #2e5f8a;
+            color: var(--accent);
         }
         .stApp a:hover {
-            color: #1f4d73;
+            color: var(--accent-soft);
         }
         .summary-card {
-            border: 1px solid rgba(24, 34, 38, 0.10);
-            border-radius: 10px;
-            background: #ffffff;
-            padding: 0.95rem 1rem;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--surface);
+            padding: 1rem 1.05rem;
             margin-bottom: 0.8rem;
+            min-height: 100%;
+            box-shadow: var(--shadow);
         }
         .summary-card strong {
             display: block;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.3rem;
+            color: var(--muted);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 600;
         }
         [data-testid="stMetric"] {
-            border: 1px solid rgba(24, 34, 38, 0.10);
-            border-radius: 8px;
-            background: #ffffff;
-            padding: 0.8rem 0.9rem;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--surface);
+            padding: 0.9rem 0.95rem;
+            box-shadow: var(--shadow);
         }
         [data-testid="stMetric"] *,
         [data-testid="stMetricLabel"],
         [data-testid="stMetricValue"] {
-            color: #182226 !important;
+            color: var(--ink) !important;
+        }
+        [data-testid="stMetricLabel"] {
+            font-size: 0.8rem !important;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted) !important;
+        }
+        [data-testid="stMetricValue"] {
+            font-family: "Newsreader", Georgia, serif !important;
+            font-size: 2rem !important;
         }
         [data-testid="stExpander"] {
-            border: 1px solid rgba(24, 34, 38, 0.10);
-            border-radius: 8px;
-            background: #ffffff;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--surface);
+            box-shadow: var(--shadow);
         }
         [data-testid="stExpander"] *,
         [data-testid="stExpanderDetails"] *,
         [data-testid="stExpanderSummary"] * {
-            color: #182226 !important;
+            color: var(--ink) !important;
         }
         .stApp [data-baseweb="input"],
         .stApp [data-baseweb="base-input"],
@@ -138,7 +189,7 @@ def inject_css() -> None:
         .stApp [data-testid="stSelectbox"],
         .stApp [data-testid="stRadio"],
         .stApp [data-testid="stSlider"] {
-            color: #182226;
+            color: var(--ink);
         }
         .stApp [data-baseweb="input"] *,
         .stApp [data-baseweb="base-input"] *,
@@ -151,13 +202,13 @@ def inject_css() -> None:
         .stApp [data-testid="stSelectbox"] *,
         .stApp [data-testid="stRadio"] *,
         .stApp [data-testid="stSlider"] * {
-            color: #182226 !important;
+            color: var(--ink) !important;
         }
         .stApp input,
         .stApp textarea,
         .stApp select {
-            color: #182226 !important;
-            -webkit-text-fill-color: #182226;
+            color: var(--ink) !important;
+            -webkit-text-fill-color: var(--ink);
         }
         .stApp input::placeholder,
         .stApp textarea::placeholder {
@@ -165,11 +216,61 @@ def inject_css() -> None:
             -webkit-text-fill-color: #7a858b;
         }
         .stApp button {
-            color: #182226;
+            color: var(--ink);
+        }
+        .stButton > button,
+        .stDownloadButton > button {
+            border-radius: 999px;
+            border: 1px solid var(--line-strong);
+            background: var(--surface);
+            color: var(--ink);
+            padding: 0.48rem 1rem;
+            font-weight: 600;
+        }
+        .stButton > button[kind="primary"],
+        .stDownloadButton > button[kind="primary"] {
+            background: var(--accent);
+            color: #f8f5ee;
+            border-color: var(--accent);
+        }
+        .stRadio [role="radiogroup"] {
+            gap: 0.45rem;
+        }
+        .stRadio [role="radio"] {
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--surface);
+            padding: 0.35rem 0.75rem;
+        }
+        .stApp [data-testid="stDataFrame"],
+        .stApp [data-testid="stTable"] {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--surface);
+            box-shadow: var(--shadow);
         }
         .stApp [data-testid="stDataFrame"] *,
         .stApp [data-testid="stTable"] * {
-            color: #182226 !important;
+            color: var(--ink) !important;
+        }
+        @media (max-width: 820px) {
+            .hero-shell {
+                padding: 1rem 1rem 1.05rem;
+            }
+            .hero-title {
+                font-size: 1.75rem;
+            }
+            .hero-copy {
+                font-size: 0.98rem;
+            }
+            .block-container {
+                padding-left: 0.95rem;
+                padding-right: 0.95rem;
+            }
+            .app-nav {
+                font-size: 0.9rem;
+            }
         }
         </style>
         """,
@@ -395,7 +496,7 @@ def plain_recommended_move(value: Any) -> str:
     mapping = {
         "Direct empirical test": "A direct empirical test looks like the natural next step.",
         "Focused empirical test": "A focused empirical test looks like the natural next step.",
-        "Scoping review before a bridge paper": "A short review may help connect the two nearby literatures before a direct empirical paper.",
+        "Scoping review before a bridge paper": "A short review or pilot can connect the two nearby literatures before a direct test.",
         "Seminar seed or targeted replication map": "This looks most useful as a seminar seed or a targeted replication map.",
         "Synthesis plus pilot design": "A synthesis paper plus a small pilot design looks like a sensible first move.",
         "Bridge paper across literatures": "A paper that connects two nearby literatures looks like the natural next step.",
@@ -491,16 +592,20 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
     papers = bundle["papers"]
     neighborhoods = bundle["neighborhoods"]
 
-    st.markdown(f"### {label_for_question(question)}")
-    render_summary_card("Why this question appears", str(question.get("why_now", "")))
-    render_summary_card("Direct-literature status", str(question.get("direct_link_status", "")))
-    render_summary_card("A useful first step", plain_recommended_move(question.get("recommended_move", "")))
+    st.markdown(f"## {label_for_question(question)}")
+    st.markdown(str(question.get("why_now", "")))
+
+    summary_cols = st.columns(2)
+    with summary_cols[0]:
+        render_summary_card("Direct literature", str(question.get("direct_link_status", "")))
+    with summary_cols[1]:
+        render_summary_card("A useful first step", plain_recommended_move(question.get("recommended_move", "")))
 
     metrics_cols = st.columns(3)
     metrics_cols[0].metric("Nearby linking concepts", f"{int(question['mediator_count'])}")
     metrics_cols[1].metric("Repeated local patterns", f"{int(question['motif_count'])}")
     metrics_cols[2].metric("Direct papers in release", f"{int(question['cooc_count'])}")
-    st.caption("These counts refer to the current public release. They describe nearby support in the released graph, not the full economics literature.")
+    st.caption("These counts refer to the current public FrontierGraph release. They describe nearby support in the released graph, not the full economics literature.")
 
     papers_preview = (
         papers.drop_duplicates(subset=["paper_id"], keep="first")
@@ -508,15 +613,15 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
         .rename(columns={"title": "Paper", "year": "Year", "edge_src_label": "Edge source", "edge_dst_label": "Edge target"})
         .head(8)
     )
-    st.markdown("**Papers to begin with**")
+    if not mediators.empty:
+        mediator_labels = [str(row.mediator_label) for row in mediators.head(6).itertuples(index=False)]
+        render_summary_card("Nearby linking concepts", ", ".join(mediator_labels))
+
+    st.markdown("### Papers to begin with")
     if papers_preview.empty:
         st.caption("No paper list was exported for this question in the current public release.")
     else:
         st.dataframe(papers_preview, use_container_width=True, hide_index=True)
-
-    nearby_labels = [str(row.mediator_label) for row in mediators.head(6).itertuples(index=False)]
-    if nearby_labels:
-        st.caption("Nearby linking concepts: " + ", ".join(nearby_labels))
 
     brief = question_brief_markdown(question, mediators, papers, paths)
     st.download_button(
@@ -592,7 +697,7 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
         only_cross = st.checkbox("Only cross-bucket questions", key="question_cross_only")
 
     direct_filters = st.multiselect(
-        "Direct-literature status",
+        "Direct literature",
         options=status_options,
         default=status_options,
     )
@@ -604,18 +709,8 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
         return
 
     preview = filtered.head(shortlist_size).copy()
-    preview_table = preview.loc[:, ["public_pair_label", "direct_link_status", "recommended_move", "mediator_count"]].copy()
-    preview_table["recommended_move"] = preview_table["recommended_move"].map(plain_recommended_move)
-    preview_table.columns = ["Question", "Direct literature", "Suggested first step", "Nearby linking concepts"]
-    st.dataframe(preview_table, use_container_width=True, hide_index=True)
-    st.download_button(
-        "Export shortlist CSV",
-        data=shortlist_csv(filtered.head(100)),
-        file_name="frontiergraph_shortlist.csv",
-        mime="text/csv",
-    )
-
-    candidate_map = {str(row.pair_key): row for row in preview.itertuples(index=False)}
+    candidate_frame = filtered.head(max(shortlist_size, 50)).copy()
+    candidate_map = {str(row.pair_key): row for row in candidate_frame.itertuples(index=False)}
     default_pair = pair_default if pair_default in candidate_map else next(iter(candidate_map))
     sync_from_query("question_selection", default_pair, "_sync_question_selection")
     selection = st.selectbox(
@@ -639,6 +734,18 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
         st.rerun()
 
     render_question_detail(db_path, selection, concept_lookup)
+
+    st.markdown("### Current shortlist")
+    preview_table = preview.loc[:, ["public_pair_label", "direct_link_status", "recommended_move", "mediator_count"]].copy()
+    preview_table["recommended_move"] = preview_table["recommended_move"].map(plain_recommended_move)
+    preview_table.columns = ["Question", "Direct literature", "Suggested first step", "Nearby linking concepts"]
+    st.dataframe(preview_table, use_container_width=True, hide_index=True)
+    st.download_button(
+        "Export shortlist CSV",
+        data=shortlist_csv(filtered.head(100)),
+        file_name="frontiergraph_shortlist.csv",
+        mime="text/csv",
+    )
 
 
 def concept_graphviz(concept: pd.Series, neighbors: pd.DataFrame) -> str:
@@ -699,14 +806,14 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
         st.warning("That concept was not found in the public bundle.")
         return
 
-    st.markdown(f"### {concept['plain_label']}")
+    st.markdown(f"## {concept['plain_label']}")
     if str(concept.get("subtitle", "")).strip():
         st.caption(str(concept["subtitle"]))
     metrics_cols = st.columns(3)
     metrics_cols[0].metric("Mapped node mentions", f"{int(concept['instance_support']):,}")
     metrics_cols[1].metric("Papers in release", f"{int(concept['distinct_paper_support']):,}")
     metrics_cols[2].metric("Nearby topics", f"{int(concept['neighbor_count']):,}")
-    st.caption("These counts refer to the current public release. They describe where the topic sits in the released graph; they are not a claim about overall importance.")
+    st.caption("These counts refer to the current public FrontierGraph release. They describe where the topic sits in the released graph; they are not a claim about overall importance.")
 
     countries = ", ".join(top_value_labels(concept.get("top_countries_json")))
     units = ", ".join(top_value_labels(concept.get("top_units_json")))
@@ -715,7 +822,7 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
 
     left, right = st.columns([1.0, 1.15])
     with left:
-        st.markdown("**Local map**")
+        st.markdown("### Local neighborhood")
         try:
             st.graphviz_chart(concept_graphviz(concept, neighbors), use_container_width=True)
         except Exception:
@@ -723,10 +830,10 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
     with right:
         n_left, n_right = st.columns(2)
         with n_left:
-            st.markdown("**Incoming neighbors**")
+            st.markdown("### Incoming")
             st.dataframe(neighbors[neighbors["direction"] == "incoming"].head(10), use_container_width=True, hide_index=True)
         with n_right:
-            st.markdown("**Outgoing neighbors**")
+            st.markdown("### Outgoing")
             st.dataframe(neighbors[neighbors["direction"] == "outgoing"].head(10), use_container_width=True, hide_index=True)
 
     nearby_questions = []
@@ -739,7 +846,7 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
                 "Suggested first step": plain_recommended_move(payload.get("recommended_move", "")),
             }
         )
-    st.markdown("**Nearby questions touching this topic**")
+    st.markdown("### Questions touching this topic")
     st.dataframe(pd.DataFrame(nearby_questions), use_container_width=True, hide_index=True)
 
 
@@ -885,9 +992,9 @@ def main() -> None:
         """
         <div class="hero-shell">
             <div class="eyebrow">FrontierGraph app</div>
-            <h1 class="hero-title">Inspect one released question or topic.</h1>
+            <h1 class="hero-title">Inspect one question or topic in the released graph.</h1>
             <p class="hero-copy">
-                Use the app when you want the nearby topics, paths, and paper lists behind a released question. Counts and tables refer to the current public release, not the full literature.
+                Use the app when you want the nearby topics, supporting paths, and paper lists behind one released question. Counts and tables refer to the current public release, not the full literature.
             </p>
         </div>
         """,
@@ -916,7 +1023,7 @@ def main() -> None:
         "question": "Questions",
         "concept": "Topics",
         "compare": "Compare",
-        "advanced": "Technical tables",
+        "advanced": "Tables",
     }
     view_keys = list(view_labels.keys())
     sync_from_query("active_view", view_default if view_default in view_keys else "question", "_sync_active_view")

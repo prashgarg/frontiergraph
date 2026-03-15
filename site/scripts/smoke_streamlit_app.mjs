@@ -43,7 +43,7 @@ async function main() {
   await page.waitForSelector("h1", { timeout: 30000 });
   await page.getByText(/Search questions/i).first().waitFor({ timeout: 30000 });
   await textDoesNotContain(page, ["Traceback", "sqlite3.OperationalError", "ModuleNotFoundError"]);
-  assert(await page.getByRole("heading", { name: /Inspect one released question or topic/i }).isVisible(), "App hero missing");
+  assert(await page.getByRole("heading", { name: /Inspect one question or topic in the released graph/i }).isVisible(), "App hero missing");
   assert(await page.getByText(/Search questions/i).first().isVisible(), "Question search missing");
   await assertReadableText(page, "label", "App form labels");
   await assertReadableText(page, '[data-testid="stMetric"] label', "Metric labels");
@@ -56,10 +56,10 @@ async function main() {
   await textDoesNotContain(page, ["Traceback", "sqlite3.OperationalError"]);
   assert(await page.getByText(/Find a topic/i).first().isVisible(), "Concept view input missing");
   assert(await page.getByText(/economic growth/i).first().isVisible(), "Concept deep link did not resolve");
-  await page.getByText(/Local map/i).first().waitFor({ timeout: 30000 });
-  await page.getByText(/Nearby questions touching this topic/i).first().waitFor({ timeout: 30000 });
-  assert(await page.getByText(/Local map/i).first().isVisible(), "Concept local map missing");
-  assert(await page.getByText(/Nearby questions touching this topic/i).first().isVisible(), "Concept opportunity table missing");
+  await page.getByText(/Local neighborhood/i).first().waitFor({ timeout: 30000 });
+  await page.getByText(/Questions touching this topic/i).first().waitFor({ timeout: 30000 });
+  assert(await page.getByText(/Local neighborhood/i).first().isVisible(), "Concept local map missing");
+  assert(await page.getByText(/Questions touching this topic/i).first().isVisible(), "Concept opportunity table missing");
   await assertReadableText(page, '[data-testid="stDataFrame"]', "Concept tables");
 
   await page.goto(`${baseUrl}/?view=compare&pairs=FG3C000010__FG3C003971,FG3C000003__FG3C000208`, { waitUntil: "domcontentloaded" });

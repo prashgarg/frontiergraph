@@ -61,7 +61,7 @@ async function main() {
   await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError", "For academics", "A simple analogy", "Why this exists"]);
-  assert(await page.getByRole("heading", { name: /Browse open questions in the economics literature\./i }).isVisible(), "Homepage hero missing");
+  assert(await page.getByRole("heading", { name: /Questions the economics literature appears ready to answer\./i }).isVisible(), "Homepage hero missing");
   const nav = page.getByRole("navigation");
   assert(await nav.getByRole("link", { name: /^Home$/ }).isVisible(), "Home nav missing");
   assert(await nav.getByRole("link", { name: /^Questions$/ }).isVisible(), "Questions nav missing");
@@ -71,13 +71,13 @@ async function main() {
   assert((await nav.getByRole("link", { name: /How it works/i }).count()) === 0, "How it works should not remain in nav");
   assert((await nav.getByRole("link", { name: /^Method$/ }).count()) === 0, "Method should not remain in nav");
   assert(await page.getByRole("link", { name: /^Browse questions$/ }).first().isVisible(), "Homepage CTA missing");
-  assert(await page.getByRole("link", { name: /^Open app$/ }).first().isVisible(), "Homepage app CTA missing");
+  assert(await page.getByRole("link", { name: /^Explore in app$/ }).first().isVisible(), "Homepage app CTA missing");
   assert(await page.getByRole("link", { name: /^Read paper$/ }).first().isVisible(), "Homepage paper CTA missing");
   assert(await page.getByRole("link", { name: /^Download data$/ }).first().isVisible(), "Homepage data CTA missing");
   assert(await page.locator('[data-role="homepage-carousel"]').isVisible(), "Homepage should show the featured example");
   assert((await page.locator('[data-role="homepage-carousel-slide"]').count()) === 3, "Homepage should show 3 featured examples");
   assert(await page.getByText(/Featured example/i).first().isVisible(), "Homepage should label the example");
-  assert(await page.getByText(/How does public debt shape CO2 emissions/i).isVisible(), "Homepage lead example missing");
+  assert(await page.getByText(/Public debt and CO2 emissions/i).isVisible(), "Homepage lead example missing");
   assert(await page.locator('[data-role="homepage-scale-strip"]').isVisible(), "Homepage release strip missing");
 
   await page.goto(`${baseUrl}/questions/`, { waitUntil: "networkidle" });
@@ -101,9 +101,7 @@ async function main() {
   await page.goto(`${baseUrl}/graph/`, { waitUntil: "networkidle" });
   await page.waitForSelector('[data-role="graph-canvas"]');
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
-  assert(await page.getByRole("heading", { name: /Use the map when you already have a topic in mind/i }).isVisible(), "Map hero missing");
-  assert(await page.getByRole("link", { name: /^Browse questions$/ }).first().isVisible(), "Map should link back to questions");
-  assert(await page.getByRole("link", { name: /^Open app$/ }).first().isVisible(), "Map should link to app");
+  assert(await page.getByRole("heading", { name: /Read one topic through its nearby literature/i }).isVisible(), "Map hero missing");
   assert(await page.getByRole("heading", { name: /Selected topic/i }).isVisible(), "Map selected-topic panel missing");
   const focusedNodeCount = await page.locator("[data-node-id]").count();
   assert(focusedNodeCount > 0, "Focused map rendered no nodes");

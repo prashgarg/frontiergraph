@@ -61,11 +61,6 @@ const rootId = `homepage-carousel-${Math.random().toString(36).slice(2, 10)}`;
                 <path d="M242 220 L406 160" class="homepage-carousel-line" />
                 <path d="M112 152 Q258 120 396 152" class="homepage-carousel-line homepage-carousel-line-candidate" />
 
-                <text x="258" y="48" class="homepage-carousel-legend-label">Observed path</text>
-                <path d="M204 58 L316 58" class="homepage-carousel-line homepage-carousel-line-legend" />
-                <text x="258" y="78" class="homepage-carousel-legend-label">Missing direct link</text>
-                <path d="M204 88 L316 88" class="homepage-carousel-line homepage-carousel-line-candidate homepage-carousel-line-legend" />
-
                 <circle cx="84" cy="160" r="34" class="homepage-carousel-node homepage-carousel-node-source" />
                 <circle cx="228" cy="100" r="25" class="homepage-carousel-node homepage-carousel-node-mediator" />
                 <circle cx="228" cy="220" r="25" class="homepage-carousel-node homepage-carousel-node-mediator homepage-carousel-node-soft" />
@@ -85,11 +80,6 @@ const rootId = `homepage-carousel-${Math.random().toString(36).slice(2, 10)}`;
                 <path d="M228 96 L406 160" class="homepage-carousel-line homepage-carousel-line-later" />
                 <path d="M112 160 L228 224" class="homepage-carousel-line homepage-carousel-line-later" />
                 <path d="M228 224 L406 160" class="homepage-carousel-line homepage-carousel-line-later" />
-
-                <text x="258" y="48" class="homepage-carousel-legend-label">Direct claim first</text>
-                <path d="M196 58 L320 58" class="homepage-carousel-line homepage-carousel-line-strong homepage-carousel-line-legend" />
-                <text x="258" y="78" class="homepage-carousel-legend-label">Mechanisms later</text>
-                <path d="M196 88 L320 88" class="homepage-carousel-line homepage-carousel-line-later homepage-carousel-line-legend" />
 
                 <circle cx="84" cy="160" r="34" class="homepage-carousel-node homepage-carousel-node-source" />
                 <circle cx="228" cy="96" r="24" class="homepage-carousel-node homepage-carousel-node-mediator" />
@@ -112,11 +102,6 @@ const rootId = `homepage-carousel-${Math.random().toString(36).slice(2, 10)}`;
                 <path d="M256 160 L414 160" class="homepage-carousel-line homepage-carousel-line-strong" />
                 <path d="M236 240 L414 160" class="homepage-carousel-line" />
                 <path d="M104 152 Q254 108 400 152" class="homepage-carousel-line homepage-carousel-line-candidate" />
-
-                <text x="258" y="48" class="homepage-carousel-legend-label">Three nearby channels</text>
-                <path d="M200 58 L316 58" class="homepage-carousel-line homepage-carousel-line-legend" />
-                <text x="258" y="78" class="homepage-carousel-legend-label">Candidate direct question</text>
-                <path d="M200 88 L316 88" class="homepage-carousel-line homepage-carousel-line-candidate homepage-carousel-line-legend" />
 
                 <circle cx="78" cy="160" r="32" class="homepage-carousel-node homepage-carousel-node-source" />
                 <circle cx="222" cy="80" r="22" class="homepage-carousel-node homepage-carousel-node-mediator homepage-carousel-node-soft" />
@@ -175,7 +160,6 @@ const rootId = `homepage-carousel-${Math.random().toString(36).slice(2, 10)}`;
   const next = root.querySelector('[data-role="carousel-next"]');
   let activeIndex = slides.findIndex((slide) => slide.getAttribute("data-active") === "true");
   if (activeIndex < 0) activeIndex = 0;
-  let timer;
 
   const render = () => {
     slides.forEach((slide, index) => {
@@ -190,44 +174,20 @@ const rootId = `homepage-carousel-${Math.random().toString(36).slice(2, 10)}`;
     });
   };
 
-  const stopTimer = () => {
-    if (timer) {
-      window.clearInterval(timer);
-      timer = undefined;
-    }
-  };
-
-  const startTimer = () => {
-    stopTimer();
-    timer = window.setInterval(() => {
-      activeIndex = (activeIndex + 1) % slides.length;
-      render();
-    }, 7000);
-  };
-
   prev?.addEventListener("click", () => {
     activeIndex = (activeIndex - 1 + slides.length) % slides.length;
     render();
-    startTimer();
   });
   next?.addEventListener("click", () => {
     activeIndex = (activeIndex + 1) % slides.length;
     render();
-    startTimer();
   });
   dots.forEach((dot, index) => {
     dot.addEventListener("click", () => {
       activeIndex = index;
       render();
-      startTimer();
     });
   });
 
-  root.addEventListener("mouseenter", stopTimer);
-  root.addEventListener("mouseleave", startTimer);
-  root.addEventListener("focusin", stopTimer);
-  root.addEventListener("focusout", startTimer);
-
   render();
-  if (slides.length > 1) startTimer();
 </script>
