@@ -1,37 +1,59 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { data } from "../../lib/site-data";
 ---
 
 <BaseLayout
   title="About | FrontierGraph"
-  description="What FrontierGraph is for, how to use it, and what it does not do."
+  description="Why FrontierGraph exists, what it is for, and who made it."
 >
   <main>
     <section class="page-hero">
-      <h1>FrontierGraph helps narrow the reading problem.</h1>
+      <h1>Why FrontierGraph exists.</h1>
       <p class="lede">
-        Start with a question, inspect the nearby literature, and decide whether it is useful for your own reading or project design. The public site is a discovery surface, not a verdict engine.
+        FrontierGraph came out of a simple personal problem: how to choose a research question when your interests are wider than any one field, paper, or method.
       </p>
     </section>
 
     <section class="section">
       <div class="card-grid">
         <article class="card">
-          <h2>What this is</h2>
+          <h2>Why I built it</h2>
           <p class="card-copy">
-            FrontierGraph turns a large published-journal economics corpus into a shared concept graph and surfaces questions that still look open but already have enough nearby work to investigate seriously.
+            Since PhD application season, I have found it hard to start from one narrow question. My interests have always ranged widely, and I cared less about picking something I could supply quickly than about finding the question where an hour of attention might matter most.
+          </p>
+          <p class="card-copy">
+            In the early years of my PhD, that was difficult. Later, once I was writing papers and working in teams, I could spread across multiple projects. Over time I developed a kind of specialization in measurement using machine-learning tools and network ideas, but my topic interests stayed eclectic. I never found a purely supply-first way of choosing questions very satisfying; the better starting point is usually some mix of what is feasible and what seems worth doing. FrontierGraph comes out of that tension.
           </p>
         </article>
         <article class="card">
-          <h2>How to use it</h2>
+          <h2>Why it matters now</h2>
           <p class="card-copy">
-            Start on Questions. Open the app when you want paths, linking concepts, and papers attached to nearby edges. Use the paper or downloads when you want the full method or the release files.
+            FrontierGraph is meant to help researchers, especially PhD students, explore questions that still look open but already sit close to enough related work to investigate seriously.
+          </p>
+          <p class="card-copy">
+            That matters even more as AI increases how much work we can do. If the supply of analysis rises, direction matters more, not less. The scarce input becomes attention and judgment.
           </p>
         </article>
         <article class="card">
-          <h2>What it does not do</h2>
+          <h2>What you can do here</h2>
           <p class="card-copy">
-            It does not tell you that a claim is true, that a topic is important, or that no close paper already exists. It is a way to narrow what to read next, not to replace reading.
+            Start on <a href="/questions/">Questions</a> if you want possible paper ideas. Open the app when you want the nearby topics, paths, and papers behind one question. Use the <a href="/paper/">paper</a> or <a href="/downloads/">downloads</a> if you want the method and release files.
+          </p>
+        </article>
+        <article class="card">
+          <h2>What it does not claim</h2>
+          <p class="card-copy">
+            FrontierGraph does not tell you that a question is important, that a claim is true, or that no close paper already exists. It is a way to narrow what to read next, not a substitute for judgment.
+          </p>
+        </article>
+        <article class="card">
+          <h2>About the author</h2>
+          <p class="card-copy">
+            FrontierGraph is a project by <strong>Prashant Garg</strong>. It reflects an interest in research allocation, measurement, machine-learning tools, and network structure in economics.
+          </p>
+          <p class="card-copy">
+            <a href="/paper/">Read the paper</a> · <a href={data.repo_url}>GitHub repository</a> · <a href="/downloads/">Download the release files</a>
           </p>
         </article>
       </div>
