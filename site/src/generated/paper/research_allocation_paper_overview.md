@@ -3,7 +3,7 @@ title: "What FrontierGraph Finds"
 description: "A web-first overview of the FrontierGraph paper and public release."
 eyebrow: "Web overview"
 author: "Prashant Garg"
-date: "March 2026"
+date: "15 March 2026"
 ---
 
 # What FrontierGraph Finds
@@ -60,7 +60,7 @@ If you just want to browse, start with the site. If a question looks promising, 
 
 ## Read more
 
-- [Open the full HTML manuscript](/paper/full/)
+- [Open the HTML manuscript](/paper/)
 - [Download the working paper PDF](/downloads/frontiergraph-working-paper.pdf)
 - [Browse questions](/questions/)
 - [Open the literature map](/graph/)

@@ -14,6 +14,9 @@ interface Props {
   deck?: string;
   toc?: TocEntry[];
   pdfUrl: string;
+  author?: string;
+  draftLabel?: string;
+  lastUpdated?: string;
 }
 
 const {
@@ -23,6 +26,9 @@ const {
   deck = "",
   toc = [],
   pdfUrl,
+  author = "",
+  draftLabel = "",
+  lastUpdated = "",
 } = Astro.props;
 const showToc = toc.length > 0;
 ---
@@ -32,6 +38,13 @@ const showToc = toc.length > 0;
     <section class="page-hero paper-hero">
       <span class="eyebrow">{eyebrow}</span>
       <h1>{title}</h1>
+      {author && <p class="paper-author">{author}</p>}
+      {(draftLabel || lastUpdated) && (
+        <div class="paper-hero-meta">
+          {draftLabel && <p class="paper-draft-label">{draftLabel}</p>}
+          {lastUpdated && <p class="paper-last-updated">Last Updated: {lastUpdated}</p>}
+        </div>
+      )}
       {deck && <p class="lede">{deck}</p>}
       <div class="button-row">
         <a class="button-primary" href={pdfUrl}>Download PDF</a>

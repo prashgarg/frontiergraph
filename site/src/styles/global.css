@@ -877,6 +877,72 @@ h3 {
   max-width: 64rem;
 }
 
+.paper-hero {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 0.25rem;
+  padding: 1.35rem 0 1.2rem;
+}
+
+.paper-hero .eyebrow,
+.paper-hero .lede,
+.paper-hero p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.paper-hero h1 {
+  max-width: 14ch;
+  margin: 0.2rem auto 0;
+  font-size: clamp(2.35rem, 5.1vw, 4.7rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+.paper-author {
+  margin: 0.35rem 0 0;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
+
+.paper-hero-meta {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+}
+
+.paper-draft-label,
+.paper-last-updated {
+  margin: 0;
+  color: var(--muted);
+}
+
+.paper-draft-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(159, 107, 18, 0.24);
+  background: rgba(159, 107, 18, 0.08);
+  color: #7a5713;
+  font-size: 0.94rem;
+  font-weight: 600;
+}
+
+.paper-last-updated {
+  font-size: 0.95rem;
+}
+
+.paper-hero .button-row {
+  justify-content: center;
+  margin-top: 0.95rem;
+}
+
 .paper-shell {
   display: grid;
   grid-template-columns: minmax(230px, 280px) minmax(0, 1fr);
@@ -2559,5 +2625,13 @@ h3 {
 
   .page-hero h1 {
     font-size: clamp(1.3rem, 6vw, 1.85rem);
+  }
+
+  .paper-hero h1 {
+    font-size: clamp(2rem, 11vw, 3.1rem);
+  }
+
+  .paper-author {
+    font-size: 1.06rem;
   }
 }

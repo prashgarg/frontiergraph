@@ -106,7 +106,7 @@ def transform_full_markdown() -> str:
         description="Full HTML manuscript for the FrontierGraph working paper.",
         eyebrow="Working paper",
         author="Prashant Garg",
-        date="March 2026",
+        date="15 March 2026",
     )
 
 
@@ -119,7 +119,7 @@ def transform_overview_markdown() -> str:
         description="A web-first overview of the FrontierGraph paper and public release.",
         eyebrow="Web overview",
         author="Prashant Garg",
-        date="March 2026",
+        date="15 March 2026",
     )
 
 
