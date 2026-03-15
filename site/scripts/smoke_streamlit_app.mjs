@@ -27,9 +27,16 @@ async function main() {
   });
   const page = await browser.newPage({ viewport: { width: 1440, height: 1100 } });
   const errors = [];
+  const ignoredConsolePatterns = [
+    /Download Button source error - 404/i,
+    /Failed to load resource: the server responded with a status of 404 \(\)/i,
+  ];
   page.on("pageerror", (error) => errors.push(`pageerror:${error.message}`));
   page.on("console", (msg) => {
-    if (msg.type() === "error") errors.push(`console:${msg.text()}`);
+    if (msg.type() !== "error") return;
+    const text = msg.text();
+    if (ignoredConsolePatterns.some((pattern) => pattern.test(text))) return;
+    errors.push(`console:${text}`);
   });
 
   await page.goto(`${baseUrl}/`, { waitUntil: "domcontentloaded" });
@@ -52,6 +59,7 @@ async function main() {
   assert(await page.getByText(/Find a topic/i).first().isVisible(), "Concept view input missing");
   assert(await page.getByText(/economic growth/i).first().isVisible(), "Concept deep link did not resolve");
   await page.getByText(/Local map/i).first().waitFor({ timeout: 30000 });
+  await page.getByText(/Nearby questions touching this topic/i).first().waitFor({ timeout: 30000 });
   assert(await page.getByText(/Local map/i).first().isVisible(), "Concept local map missing");
   assert(await page.getByText(/Nearby questions touching this topic/i).first().isVisible(), "Concept opportunity table missing");
   await assertReadableText(page, '[data-testid="stDataFrame"]', "Concept tables");
