@@ -18,66 +18,46 @@ const authorLinks = [
 >
   <main>
     <section class="page-hero">
-      <h1>Why FrontierGraph exists.</h1>
+      <h1>About</h1>
       <p class="lede">
-        FrontierGraph came out of a simple personal problem: how to choose a research question when your interests are wider than any one field, paper, or method.
+        Prashant Garg is an economist at Imperial College London. FrontierGraph grew out of a simple question: how do we choose open questions worth sustained attention?
       </p>
     </section>
 
     <section class="section">
-      <div class="card-grid">
-        <article class="card">
-          <h2>Why I built it</h2>
-          <p class="card-copy">
-            Since PhD application season, I have found it hard to start from one narrow question. My interests have always ranged widely, and I cared less about picking something I could supply quickly than about finding the question where an hour of attention might matter most.
-          </p>
-          <p class="card-copy">
-            In the early years of my PhD, that was difficult. Later, once I was writing papers and working in teams, I could spread across multiple projects. Over time I developed a kind of specialization in measurement using machine-learning tools and network ideas, but my topic interests stayed eclectic. I never found a purely supply-first way of choosing questions very satisfying; the better starting point is usually some mix of what is feasible and what seems worth doing. FrontierGraph comes out of that tension.
-          </p>
-        </article>
-        <article class="card">
-          <h2>Why it matters now</h2>
-          <p class="card-copy">
-            FrontierGraph is meant to help researchers, especially PhD students, explore questions that still look open but already sit close to enough related work to investigate seriously.
-          </p>
-          <p class="card-copy">
-            That matters even more as AI increases how much work we can do. If the supply of analysis rises, direction matters more, not less. The scarce input becomes attention and judgment.
-          </p>
-        </article>
-        <article class="card">
-          <h2>What you can do here</h2>
-          <p class="card-copy">
-            Start on <a href="/questions/">Questions</a> if you want possible paper ideas. Open the app when you want the nearby topics, paths, and papers behind one question. Use the <a href="/paper/">paper</a> or <a href="/downloads/">downloads</a> if you want the method and release files.
-          </p>
-        </article>
-        <article class="card">
-          <h2>What it does not claim</h2>
-          <p class="card-copy">
-            FrontierGraph does not tell you that a question is important, that a claim is true, or that no close paper already exists. It is a way to narrow what to read next, not a substitute for judgment.
-          </p>
-        </article>
-        <article class="card">
-          <h2>About the author</h2>
-          <p class="card-copy">
-            <strong>Prashant Garg</strong><br />
-            Imperial College London
-          </p>
-          <p class="card-copy">
-            Research interests: research allocation, measurement, machine-learning methods, and network structure in economics.
-          </p>
-          <div class="about-link-grid" aria-label="Author links">
-            {authorLinks.map((link) => (
-              <a class="about-link-chip" href={link.href} target="_blank" rel="noreferrer">
-                <span class="about-link-badge" aria-hidden="true">{link.badge}</span>
-                <span>{link.label}</span>
-              </a>
-            ))}
+      <article class="card about-profile-card">
+        <div class="about-profile-grid">
+          <div class="about-profile-copy">
+            <h2>Prashant Garg</h2>
+            <p class="card-copy">
+              I have always found it hard to start from one narrow question. Since PhD application season, I have cared less about choosing the first thing I could supply quickly than about finding the question where an hour of attention might matter most.
+            </p>
+            <p class="card-copy">
+              Early in my PhD that made focus difficult. Later, working across papers and teams, I developed a specialization in measurement with machine-learning tools and network ideas while keeping fairly eclectic topic interests. FrontierGraph came out of that tension. As AI makes it easier to produce more work, the direction problem matters more, not less.
+            </p>
+            <p class="card-copy about-brief-note">
+              FrontierGraph maps open economics questions that sit near existing work. It helps narrow what to read next, but it is not a substitute for judgment.
+            </p>
           </div>
-          <p class="card-copy">
-            <a href="/paper/">Read the paper</a> · <a href={data.repo_url}>Project repository</a> · <a href="/downloads/">Download the release files</a>
-          </p>
-        </article>
-      </div>
+          <aside class="about-profile-meta" aria-label="Author details">
+            <p class="about-meta-label">Affiliation</p>
+            <p class="card-copy">Imperial College London</p>
+            <p class="about-meta-label">Research interests</p>
+            <p class="card-copy">Research allocation, measurement, machine-learning methods, and network structure in economics.</p>
+            <div class="about-link-grid" aria-label="Author links">
+              {authorLinks.map((link) => (
+                <a class="about-link-chip" href={link.href} target="_blank" rel="noreferrer">
+                  <span class="about-link-badge" aria-hidden="true">{link.badge}</span>
+                  <span>{link.label}</span>
+                </a>
+              ))}
+            </div>
+            <p class="card-copy about-meta-links">
+              <a href="/paper/">Read the paper</a> · <a href={data.repo_url}>Project repository</a> · <a href="/downloads/">Download the release files</a>
+            </p>
+          </aside>
+        </div>
+      </article>
     </section>
   </main>
 </BaseLayout>

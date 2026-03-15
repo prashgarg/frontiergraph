@@ -433,6 +433,50 @@ h3 {
   margin-top: 1.4rem;
 }
 
+.about-profile-card {
+  padding: 1.1rem 1.15rem;
+}
+
+.about-profile-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.95fr);
+  gap: 1.15rem;
+  align-items: start;
+}
+
+.about-profile-copy h2 {
+  margin: 0 0 0.55rem;
+}
+
+.about-profile-copy .card-copy + .card-copy,
+.about-profile-meta .card-copy + .about-meta-label,
+.about-profile-meta .about-link-grid,
+.about-profile-meta .about-meta-links {
+  margin-top: 0.95rem;
+}
+
+.about-profile-meta {
+  padding-left: 1rem;
+  border-left: 1px solid var(--line);
+}
+
+.about-meta-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-brief-note {
+  color: var(--text);
+}
+
+.about-meta-links {
+  font-size: 0.98rem;
+}
+
 .about-link-grid {
   display: flex;
   flex-wrap: wrap;
@@ -2448,6 +2492,17 @@ h3 {
 
   .homepage-carousel-panel-compact .homepage-carousel-slide {
     grid-template-columns: 1fr;
+  }
+
+  .about-profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-profile-meta {
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 1rem;
   }
 }
 
