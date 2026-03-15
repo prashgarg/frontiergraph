@@ -76,8 +76,9 @@ async function main() {
   assert(await page.getByRole("link", { name: /^Explore in app$/ }).first().isVisible(), "Homepage app CTA missing");
   assert(await page.getByRole("link", { name: /^Read paper$/ }).first().isVisible(), "Homepage paper CTA missing");
   assert(await page.getByRole("link", { name: /^Download data$/ }).first().isVisible(), "Homepage data CTA missing");
-  assert(await page.getByRole("heading", { name: /Browse by field\./i }).isVisible(), "Homepage field section missing");
-  assert(await page.getByRole("heading", { name: /How one question appears\./i }).isVisible(), "Homepage worked example missing");
+  assert(await page.getByText(/^What$/).first().isVisible(), "Homepage what card missing");
+  assert(await page.getByText(/^Why$/).first().isVisible(), "Homepage why card missing");
+  assert(await page.getByRole("link", { name: /About the project/i }).isVisible(), "Homepage about link missing");
   assert((await page.locator('[data-role="home-editorial-carousel"]').count()) === 0, "Homepage should not show the old editorial carousel");
   assert(await page.locator('[data-role="homepage-scale-strip"]').isVisible(), "Homepage release strip missing");
 
