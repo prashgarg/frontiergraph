@@ -7,7 +7,7 @@ const scaleItems = [
   {
     label: "papers screened",
     value: formatNumber(data.metrics.papers),
-    help: "Papers screened from the journal corpus before building the public release.",
+    help: "242,595 papers from 1976 to 2026 screened from the journal corpus before building the public release.",
   },
   {
     label: "journals covered",
@@ -17,12 +17,12 @@ const scaleItems = [
   {
     label: "topic links",
     value: formatNumber(data.metrics.edges),
-    help: "Directed topic-to-topic links extracted from papers and used to build the map.",
+    help: "1,443,407 topic-to-topic links extracted from titles and abstracts and then used to build the map.",
   },
   {
     label: "suggested questions",
     value: formatNumber(data.metrics.visible_public_questions),
-    help: "Question suggestions currently exposed in the public browser after release filters.",
+    help: "Question suggestions generated from missing direct links that already have nearby supporting paths or starter papers.",
   },
 ];
 ---
@@ -41,11 +41,11 @@ const scaleItems = [
         <div class="hero-actions hero-actions-home">
           <a class="button-secondary" href="/questions/">Browse questions</a>
           <a class="button-secondary" href="/paper/">Working paper</a>
-          <a class="button-tertiary" href="/downloads/">Download data</a>
-          <a class="button-tertiary" href={data.app_url}>Open app for papers</a>
+          <a class="button-secondary" href="/downloads/">Download data</a>
+          <a class="button-secondary" href={data.app_url}>Explorer</a>
         </div>
         <p class="mini-copy">
-          <a href="/paper/">The working paper explains the method behind the public browser.</a>
+          <a href="/paper/">The working paper sets out the method and benchmark results behind FrontierGraph.</a>
         </p>
       </div>
       <div class="hero-visual-panel home-hero-side hero-visual-panel-home">

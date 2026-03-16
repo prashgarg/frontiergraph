@@ -73,14 +73,14 @@ async function main() {
   assert((await nav.getByRole("link", { name: /How it works/i }).count()) === 0, "How it works should not remain in nav");
   assert((await nav.getByRole("link", { name: /^Method$/ }).count()) === 0, "Method should not remain in nav");
   assert(await page.getByRole("link", { name: /^Browse questions$/ }).first().isVisible(), "Homepage CTA missing");
-  assert(await page.getByRole("link", { name: /^Open app for papers$/ }).first().isVisible(), "Homepage app CTA missing");
+  assert(await page.getByRole("link", { name: /^Explorer$/ }).first().isVisible(), "Homepage explorer CTA missing");
   assert(await page.getByRole("link", { name: /^Working paper$/ }).first().isVisible(), "Homepage paper CTA missing");
   assert(await page.getByRole("link", { name: /^Download data$/ }).first().isVisible(), "Homepage data CTA missing");
   assert(await page.getByText(/^What$/).first().isVisible(), "Homepage what card missing");
   assert(await page.getByText(/^Why$/).first().isVisible(), "Homepage why card missing");
   assert(await page.getByText(/How to read the map/i).isVisible(), "Homepage graph explainer section missing");
   assert(await page.getByRole("link", { name: /About the project/i }).isVisible(), "Homepage about link missing");
-  assert(await page.getByRole("link", { name: /The working paper explains the method behind the public browser\./i }).isVisible(), "Homepage paper-method link missing");
+  assert(await page.getByRole("link", { name: /The working paper sets out the method and benchmark results behind FrontierGraph\./i }).isVisible(), "Homepage paper-method link missing");
   const feedbackTrigger = page.getByRole("button", { name: /^Give feedback$/ });
   assert(await feedbackTrigger.isVisible(), "Site feedback trigger missing");
   await feedbackTrigger.click();
@@ -195,7 +195,7 @@ async function main() {
 
   await page.goto(`${baseUrl}/paper/`, { waitUntil: "networkidle" });
   assert(await page.getByRole("heading", { name: /What Should Economics Ask Next/i }).first().isVisible(), "Paper page missing");
-  assert(await page.getByText(/The working paper explains the method behind the public browser\./i).isVisible(), "Paper deck missing");
+  assert(await page.getByText(/The working paper sets out the method and benchmark results behind FrontierGraph\./i).isVisible(), "Paper deck missing");
   assert(await page.getByRole("button", { name: /^Give feedback$/ }).isVisible(), "Paper page should keep feedback access");
   assert((await page.locator(".paper-hero .button-row a").count()) === 2, "Paper hero should only show paper-specific CTAs");
   assert(await page.locator(".paper-hero .button-row").getByRole("link", { name: /^Download PDF$/ }).isVisible(), "Paper hero PDF CTA missing");
@@ -224,7 +224,7 @@ async function main() {
   await page.waitForSelector("h1");
   assert(await page.getByRole("heading", { name: /Browse questions from the broad preview\./i }).isVisible(), "Broad questions hero missing");
   assert(await page.getByText(/broader 16\.5k-topic regime directly/i).isVisible(), "Broad questions should explain the regime swap");
-  assert(await page.getByRole("link", { name: /Open in app for papers and export/i }).first().isVisible(), "Broad questions should expose app links");
+  assert(await page.getByRole("link", { name: /Open in Explorer/i }).first().isVisible(), "Broad questions should expose explorer links");
 
   await page.goto(`${baseUrl}/broad/graph/`, { waitUntil: "networkidle" });
   await page.waitForSelector('[data-role="search-input"]');
