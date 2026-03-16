@@ -734,9 +734,9 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
           <p class="mini-copy">These are the clearest nearby routes already linking the two sides in the released map.</p>
           <div class="path-strip-stack">${pathStrips}</div>
         </section>
-        <section class="question-detail-panel">
-          <h4>Starter papers</h4>
-          <p class="mini-copy">Use these papers first when you want a concrete place to begin reading around this question.</p>
+        <details class="question-detail-disclosure">
+          <summary>Show starter papers${papers.length ? ` (${papers.length})` : ""}</summary>
+          <p class="mini-copy">Open this when you want a concrete place to begin reading around this question.</p>
           ${
             papers.length
               ? `<ul class="question-paper-list">
@@ -753,7 +753,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
                 </ul>`
               : `<p class="mini-copy">No starter-paper preview was exported for this question in the current public release.</p>`
           }
-        </section>
+        </details>
       </div>
     `;
     for (const button of selectedQuestion.querySelectorAll("[data-mediator-id]")) {

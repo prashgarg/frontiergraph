@@ -2589,7 +2589,7 @@ h3 {
 
 .graph-question-subgrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.9rem;
 }
 
@@ -2600,6 +2600,25 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 0.95rem;
   background: color-mix(in srgb, var(--surface-strong) 86%, transparent);
+}
+
+.question-detail-disclosure {
+  display: grid;
+  gap: 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 0.95rem;
+  background: color-mix(in srgb, var(--surface-strong) 84%, transparent);
+  padding: 0.9rem 1rem;
+}
+
+.question-detail-disclosure summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.question-detail-disclosure[open] summary {
+  margin-bottom: 0.1rem;
 }
 
 .path-strip-stack,
