@@ -4,6 +4,14 @@
     "label": "economic growth",
     "plain_label": "economic growth",
     "subtitle": "",
+    "display_concept_id": "FG3C000001",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "economic growth (output)",
+      "import growth",
+      "growth hypothesis"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 3949,
     "distinct_paper_support": 3942,
@@ -28,6 +36,14 @@
     "label": "CO2 emissions",
     "plain_label": "CO2 emissions",
     "subtitle": "",
+    "display_concept_id": "FG3C000003",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "closed economies",
+      "combined forecasts",
+      "carbon emissions (CO2 emissions)"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 1547,
     "distinct_paper_support": 1547,
@@ -52,6 +68,14 @@
     "label": "carbon emissions",
     "plain_label": "carbon emissions",
     "subtitle": "",
+    "display_concept_id": "FG3C000010",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "transport CO2 emissions",
+      "overall carbon emissions",
+      "cap-and-trade policy"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 1290,
     "distinct_paper_support": 1286,
@@ -76,6 +100,14 @@
     "label": "renewable energy consumption",
     "plain_label": "renewable energy consumption",
     "subtitle": "",
+    "display_concept_id": "FG3C000018",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "renewable energy consumption per capita",
+      "consumption of renewable energy",
+      "total renewable energy consumption"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 1076,
     "distinct_paper_support": 1076,
@@ -101,6 +133,14 @@
     "label": "energy consumption",
     "plain_label": "energy consumption",
     "subtitle": "",
+    "display_concept_id": "FG3C000014",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "disaggregated energy consumption",
+      "resource consumption",
+      "energy consumption / energy use"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 1121,
     "distinct_paper_support": 1115,
@@ -126,6 +166,14 @@
     "label": "financial development",
     "plain_label": "financial development",
     "subtitle": "",
+    "display_concept_id": "FG3C000006",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "development of financial institutions",
+      "domestic financial development",
+      "financial development indicators"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 1239,
     "distinct_paper_support": 1231,
@@ -151,6 +199,14 @@
     "label": "ecological footprint",
     "plain_label": "ecological footprint",
     "subtitle": "",
+    "display_concept_id": "FG3C000064",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "environmental footprint",
+      "ecological footprint (environmental sustainability)",
+      "per capita ecological footprint"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 434,
     "distinct_paper_support": 428,
@@ -176,6 +232,14 @@
     "label": "inflation",
     "plain_label": "inflation",
     "subtitle": "",
+    "display_concept_id": "FG3C000002",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "foreign inflation",
+      "past inflation",
+      "aggregate inflation"
+    ],
     "bucket_hint": "core",
     "instance_support": 1689,
     "distinct_paper_support": 1677,
@@ -200,6 +264,13 @@
     "label": "trade openness",
     "plain_label": "trade openness",
     "subtitle": "",
+    "display_concept_id": "FG3C000017",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "degree of trade openness",
+      "trade openness (TO)"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 905,
     "distinct_paper_support": 903,
@@ -225,6 +296,14 @@
     "label": "urbanization",
     "plain_label": "urbanization",
     "subtitle": "",
+    "display_concept_id": "FG3C000012",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "urbanization (urban population)",
+      "rapid urbanization",
+      "urban size"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 1001,
     "distinct_paper_support": 998,
@@ -249,6 +328,14 @@
     "label": "technological innovation",
     "plain_label": "technological innovation",
     "subtitle": "",
+    "display_concept_id": "FG3C000013",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "agricultural technological innovation",
+      "technological investment",
+      "corporate technological innovation"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 870,
     "distinct_paper_support": 869,
@@ -273,6 +360,14 @@
     "label": "foreign direct investments",
     "plain_label": "foreign direct investments",
     "subtitle": "",
+    "display_concept_id": "FG3C000015",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "foreign firm",
+      "FDI (Foreign Direct Investment)",
+      "export promotion policies"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 801,
     "distinct_paper_support": 801,
@@ -297,6 +392,14 @@
     "label": "Method of Moments Quantile Regression (MMQR)",
     "plain_label": "Method of Moments Quantile Regression (MMQR)",
     "subtitle": "",
+    "display_concept_id": "FG3C006644",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "parameter values",
+      "Quantile regression techniques",
+      "observed data"
+    ],
     "bucket_hint": "core",
     "instance_support": 2281,
     "distinct_paper_support": 2191,
@@ -321,6 +424,13 @@
     "label": "digital economy",
     "plain_label": "digital economy",
     "subtitle": "",
+    "display_concept_id": "FG3C000068",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "development of the digital economy",
+      "digital economy development level"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 334,
     "distinct_paper_support": 334,
@@ -345,6 +455,14 @@
     "label": "green innovation",
     "plain_label": "green innovation",
     "subtitle": "",
+    "display_concept_id": "FG3C000053",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "green enterprises",
+      "firms' green innovation",
+      "green R&D investment"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 562,
     "distinct_paper_support": 539,
@@ -369,6 +487,14 @@
     "label": "carbon emissions (CO2 emissions)",
     "plain_label": "carbon emissions (CO2 emissions)",
     "subtitle": "",
+    "display_concept_id": "FG3C004594",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "overall emissions",
+      "cumulative CO2 emissions",
+      "global greenhouse gas emissions"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 641,
     "distinct_paper_support": 614,
@@ -393,6 +519,14 @@
     "label": "energy efficiency",
     "plain_label": "energy efficiency",
     "subtitle": "",
+    "display_concept_id": "FG3C000038",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "energy-efficient technologies",
+      "energy efficiency (energy intensity)",
+      "fossil fuel efficiency"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 546,
     "distinct_paper_support": 542,
@@ -417,6 +551,14 @@
     "label": "output",
     "plain_label": "output",
     "subtitle": "",
+    "display_concept_id": "FG3C000011",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "output (aggregate output)",
+      "output changes",
+      "U.S. output"
+    ],
     "bucket_hint": "core",
     "instance_support": 1053,
     "distinct_paper_support": 1045,
@@ -441,6 +583,14 @@
     "label": "renewable energy",
     "plain_label": "renewable energy",
     "subtitle": "",
+    "display_concept_id": "FG3C000059",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "renewable energy capacity",
+      "renewable energy index",
+      "alternative and nuclear energy"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 566,
     "distinct_paper_support": 563,
@@ -466,6 +616,14 @@
     "label": "unemployment",
     "plain_label": "unemployment",
     "subtitle": "",
+    "display_concept_id": "FG3C000009",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "level of unemployment",
+      "rate of unemployment",
+      "European unemployment"
+    ],
     "bucket_hint": "core",
     "instance_support": 1101,
     "distinct_paper_support": 1071,
@@ -490,6 +648,14 @@
     "label": "economic growth (GDP)",
     "plain_label": "economic growth (GDP)",
     "subtitle": "",
+    "display_concept_id": "FG3C000091",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "economic performance (GDP)",
+      "real per capita GDP growth",
+      "economic growth (output)"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 328,
     "distinct_paper_support": 328,
@@ -515,6 +681,14 @@
     "label": "human capital",
     "plain_label": "human capital",
     "subtitle": "",
+    "display_concept_id": "FG3C000016",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "accumulation of human capital",
+      "rural human capital",
+      "Human capital intensity"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 789,
     "distinct_paper_support": 789,
@@ -539,6 +713,14 @@
     "label": "green finance",
     "plain_label": "green finance",
     "subtitle": "",
+    "display_concept_id": "FG3C000063",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "green fiscal policies",
+      "green insurance",
+      "green financial policies"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 413,
     "distinct_paper_support": 405,
@@ -563,6 +745,14 @@
     "label": "income inequality",
     "plain_label": "income inequality",
     "subtitle": "",
+    "display_concept_id": "FG3C000025",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "inequality measures",
+      "within-country income inequality",
+      "income disparity"
+    ],
     "bucket_hint": "core",
     "instance_support": 627,
     "distinct_paper_support": 616,
@@ -588,6 +778,14 @@
     "label": "energy intensity",
     "plain_label": "energy intensity",
     "subtitle": "",
+    "display_concept_id": "FG3C000041",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "energy intensity (energy efficiency)",
+      "renewable energy intensity",
+      "energy intensity effect"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 531,
     "distinct_paper_support": 529,
@@ -612,6 +810,14 @@
     "label": "welfare",
     "plain_label": "welfare",
     "subtitle": "",
+    "display_concept_id": "FG3C000004",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "U.S. welfare",
+      "welfare (aggregate welfare)",
+      "welfare of the poor"
+    ],
     "bucket_hint": "core",
     "instance_support": 1306,
     "distinct_paper_support": 1304,
@@ -636,6 +842,14 @@
     "label": "investment",
     "plain_label": "investment",
     "subtitle": "",
+    "display_concept_id": "FG3C000019",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "time-varying investment opportunities",
+      "investment (aggregate)",
+      "investment in risky assets"
+    ],
     "bucket_hint": "core",
     "instance_support": 927,
     "distinct_paper_support": 914,
@@ -660,6 +874,14 @@
     "label": "employment",
     "plain_label": "employment",
     "subtitle": "",
+    "display_concept_id": "FG3C000007",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "firm-level employment",
+      "service employment",
+      "industry employment"
+    ],
     "bucket_hint": "core",
     "instance_support": 957,
     "distinct_paper_support": 955,
@@ -684,6 +906,14 @@
     "label": "productivity",
     "plain_label": "productivity",
     "subtitle": "",
+    "display_concept_id": "FG3C000021",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "long-run productivity growth",
+      "firm productivity / performance",
+      "domestic productivity"
+    ],
     "bucket_hint": "core",
     "instance_support": 948,
     "distinct_paper_support": 941,
@@ -709,6 +939,14 @@
     "label": "environmental regulation",
     "plain_label": "environmental regulation",
     "subtitle": "",
+    "display_concept_id": "FG3C000040",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "local environmental regulations",
+      "voluntary environmental regulation",
+      "environmental regulation policies"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 544,
     "distinct_paper_support": 533,
@@ -733,6 +971,14 @@
     "label": "COVID-19 pandemic",
     "plain_label": "COVID-19 pandemic",
     "subtitle": "",
+    "display_concept_id": "FG3C000005",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "coronavirus pandemic",
+      "pandemics",
+      "COVID-19 pandemic onset"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 1067,
     "distinct_paper_support": 1067,
@@ -757,6 +1003,14 @@
     "label": "monetary policy",
     "plain_label": "monetary policy",
     "subtitle": "",
+    "display_concept_id": "FG3C000024",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "monetary policy (interest rate)",
+      "monetary policy framework",
+      "Federal Reserve monetary policy"
+    ],
     "bucket_hint": "core",
     "instance_support": 837,
     "distinct_paper_support": 827,
@@ -781,6 +1035,14 @@
     "label": "environmental quality",
     "plain_label": "environmental quality",
     "subtitle": "",
+    "display_concept_id": "FG3C000081",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "environmental quality / environmental degradation",
+      "regional environmental quality",
+      "minimum quality standards"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 381,
     "distinct_paper_support": 380,
@@ -805,6 +1067,14 @@
     "label": "stock returns",
     "plain_label": "stock returns",
     "subtitle": "",
+    "display_concept_id": "FG3C000035",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "past stock returns",
+      "global stock returns",
+      "intraday returns"
+    ],
     "bucket_hint": "core",
     "instance_support": 680,
     "distinct_paper_support": 672,
@@ -829,6 +1099,14 @@
     "label": "environmental sustainability",
     "plain_label": "environmental sustainability",
     "subtitle": "",
+    "display_concept_id": "FG3C000134",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "sustainability performance",
+      "environmental sustainability / environmental quality",
+      "environmental sustainability (ecological footprint)"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 327,
     "distinct_paper_support": 327,
@@ -852,8 +1130,16 @@
   {
     "concept_id": "FG3C000167",
     "label": "carbon dioxide (CO2) emissions",
-    "plain_label": "carbon dioxide (CO2) emissions",
+    "plain_label": "carbon dioxide (CO2) emission",
     "subtitle": "",
+    "display_concept_id": "FG3C000167",
+    "display_refined": true,
+    "display_refinement_confidence": 0.8188,
+    "alternate_display_labels": [
+      "carbon (CO2) emissions",
+      "total carbon dioxide emissions",
+      "provincial CO2 emissions"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 200,
     "distinct_paper_support": 199,
@@ -878,6 +1164,14 @@
     "label": "innovation",
     "plain_label": "innovation",
     "subtitle": "",
+    "display_concept_id": "FG3C000030",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "innovation (general)",
+      "innovation rate",
+      "innovation outcomes"
+    ],
     "bucket_hint": "core",
     "instance_support": 587,
     "distinct_paper_support": 583,
@@ -902,6 +1196,14 @@
     "label": "environmental quality (CO2 emissions)",
     "plain_label": "environmental quality",
     "subtitle": "environmental outcomes measured through CO2 emissions",
+    "display_concept_id": "FG3C001420",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "environmental quality (carbon emissions)",
+      "institution quality",
+      "overall emissions"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 336,
     "distinct_paper_support": 335,
@@ -927,6 +1229,14 @@
     "label": "wages",
     "plain_label": "wages",
     "subtitle": "",
+    "display_concept_id": "FG3C000022",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "local wages",
+      "domestic wages",
+      "Manufacturing wages"
+    ],
     "bucket_hint": "core",
     "instance_support": 834,
     "distinct_paper_support": 828,
@@ -951,6 +1261,14 @@
     "label": "oil prices",
     "plain_label": "oil prices",
     "subtitle": "",
+    "display_concept_id": "FG3C000034",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "WTI oil price",
+      "petroleum prices",
+      "global oil price"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 473,
     "distinct_paper_support": 473,
@@ -975,6 +1293,14 @@
     "label": "exports",
     "plain_label": "exports",
     "subtitle": "",
+    "display_concept_id": "FG3C000046",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "aggregate exports",
+      "U.S. exports",
+      "exports and imports"
+    ],
     "bucket_hint": "core",
     "instance_support": 530,
     "distinct_paper_support": 523,
@@ -999,6 +1325,14 @@
     "label": "institutional quality",
     "plain_label": "institutional quality",
     "subtitle": "",
+    "display_concept_id": "FG3C000036",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "institution quality",
+      "institutional rules",
+      "country institutional quality"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 557,
     "distinct_paper_support": 556,
@@ -1024,6 +1358,14 @@
     "label": "income",
     "plain_label": "income",
     "subtitle": "",
+    "display_concept_id": "FG3C000008",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "income level groups",
+      "Income (per capita)",
+      "country income groups"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 857,
     "distinct_paper_support": 856,
@@ -1048,6 +1390,14 @@
     "label": "green technology innovation",
     "plain_label": "green technology innovation",
     "subtitle": "",
+    "display_concept_id": "FG3C000094",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "urban green technology innovation",
+      "digital technology innovation",
+      "green technology adoption"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 316,
     "distinct_paper_support": 315,
@@ -1072,6 +1422,14 @@
     "label": "sustainable development",
     "plain_label": "sustainable development",
     "subtitle": "",
+    "display_concept_id": "FG3C000065",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Sustainable Development (SD)",
+      "Official Development Assistance (ODA)",
+      "long-term sustainable development"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 398,
     "distinct_paper_support": 398,
@@ -1096,6 +1454,14 @@
     "label": "economic development",
     "plain_label": "economic development",
     "subtitle": "",
+    "display_concept_id": "FG3C000026",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "national economic development",
+      "Macroeconomic development",
+      "green economy development"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 540,
     "distinct_paper_support": 540,
@@ -1120,6 +1486,13 @@
     "label": "globalization",
     "plain_label": "globalization",
     "subtitle": "",
+    "display_concept_id": "FG3C000039",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "globalization level",
+      "globalization (overall)"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 473,
     "distinct_paper_support": 470,
@@ -1145,6 +1518,14 @@
     "label": "natural resources",
     "plain_label": "natural resources",
     "subtitle": "",
+    "display_concept_id": "FG3C000124",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "environmental resources",
+      "water resources",
+      "total natural resources"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 402,
     "distinct_paper_support": 400,
@@ -1169,6 +1550,10 @@
     "label": "environmental degradation",
     "plain_label": "environmental degradation",
     "subtitle": "",
+    "display_concept_id": "FG3C000130",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [],
     "bucket_hint": "adjacent",
     "instance_support": 209,
     "distinct_paper_support": 209,
@@ -1194,6 +1579,14 @@
     "label": "consumption",
     "plain_label": "consumption",
     "subtitle": "",
+    "display_concept_id": "FG3C000033",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "consumption (aggregate)",
+      "nondurable consumption",
+      "consumption goods"
+    ],
     "bucket_hint": "core",
     "instance_support": 809,
     "distinct_paper_support": 798,
@@ -1218,6 +1611,12 @@
     "label": "electricity consumption",
     "plain_label": "electricity consumption",
     "subtitle": "",
+    "display_concept_id": "FG3C000160",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Industrial electricity consumption"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 220,
     "distinct_paper_support": 219,
@@ -1242,6 +1641,14 @@
     "label": "stock prices",
     "plain_label": "stock prices",
     "subtitle": "",
+    "display_concept_id": "FG3C000096",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "stock market data",
+      "financial market prices",
+      "stock index"
+    ],
     "bucket_hint": "core",
     "instance_support": 551,
     "distinct_paper_support": 542,
@@ -1266,6 +1673,14 @@
     "label": "environmental pollution",
     "plain_label": "environmental pollution",
     "subtitle": "",
+    "display_concept_id": "FG3C000203",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "pollution level",
+      "environmental quality / pollution",
+      "environmental pollution / environmental quality"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 257,
     "distinct_paper_support": 256,
@@ -1290,6 +1705,13 @@
     "label": "financial inclusion",
     "plain_label": "financial inclusion",
     "subtitle": "",
+    "display_concept_id": "FG3C000103",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "financial inclusion (index)",
+      "financial exclusion"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 272,
     "distinct_paper_support": 270,
@@ -1315,6 +1737,12 @@
     "label": "foreign direct investment",
     "plain_label": "foreign direct investment",
     "subtitle": "",
+    "display_concept_id": "FG3C000048",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "investment in agriculture"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 410,
     "distinct_paper_support": 410,
@@ -1339,6 +1767,14 @@
     "label": "green total factor productivity (GTFP)",
     "plain_label": "green total factor productivity (GTFP)",
     "subtitle": "",
+    "display_concept_id": "FG3C000215",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "agricultural green total factor productivity (AGTFP)",
+      "enterprise green total factor productivity (GTFP)",
+      "industrial green total factor productivity (GTFP)"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 174,
     "distinct_paper_support": 174,
@@ -1363,6 +1799,14 @@
     "label": "exchange rates",
     "plain_label": "exchange rates",
     "subtitle": "",
+    "display_concept_id": "FG3C000072",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "EUR/USD exchange rate",
+      "official exchange rate",
+      "freight rates"
+    ],
     "bucket_hint": "core",
     "instance_support": 556,
     "distinct_paper_support": 545,
@@ -1387,6 +1831,14 @@
     "label": "trade",
     "plain_label": "trade",
     "subtitle": "",
+    "display_concept_id": "FG3C000055",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "trades",
+      "trade performance",
+      "international trade (trade flows)"
+    ],
     "bucket_hint": "core",
     "instance_support": 431,
     "distinct_paper_support": 429,
@@ -1412,6 +1864,14 @@
     "label": "willingness to pay (WTP)",
     "plain_label": "willingness to pay (WTP)",
     "subtitle": "",
+    "display_concept_id": "FG3C000323",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "willingness to pay (WTP) values",
+      "mean willingness to pay (mean WTP)",
+      "willingness-to-pay"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 620,
     "distinct_paper_support": 604,
@@ -1437,6 +1897,14 @@
     "label": "output growth",
     "plain_label": "output growth",
     "subtitle": "",
+    "display_concept_id": "FG3C000110",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "slower economic growth",
+      "growth rate of output",
+      "future output growth"
+    ],
     "bucket_hint": "core",
     "instance_support": 508,
     "distinct_paper_support": 498,
@@ -1462,6 +1930,14 @@
     "label": "GDP",
     "plain_label": "GDP",
     "subtitle": "",
+    "display_concept_id": "FG3C000037",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "GDP loss",
+      "city GDP",
+      "GDP per-capita"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 485,
     "distinct_paper_support": 483,
@@ -1487,6 +1963,14 @@
     "label": "model parameters",
     "plain_label": "model parameters",
     "subtitle": "",
+    "display_concept_id": "FG3C000411",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "parameters of the model",
+      "Model performance metrics",
+      "proposed model"
+    ],
     "bucket_hint": "core",
     "instance_support": 1079,
     "distinct_paper_support": 1055,
@@ -1511,6 +1995,12 @@
     "label": "economic policy uncertainty (EPU)",
     "plain_label": "economic policy uncertainty (EPU)",
     "subtitle": "",
+    "display_concept_id": "FG3C000074",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "US economic policy uncertainty (US EPU)"
+    ],
     "bucket_hint": "core",
     "instance_support": 346,
     "distinct_paper_support": 334,
@@ -1535,6 +2025,13 @@
     "label": "industrial structure upgrading",
     "plain_label": "industrial structure upgrading",
     "subtitle": "",
+    "display_concept_id": "FG3C000097",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "upgrading industrial structures",
+      "Industrial structural upgrading"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 298,
     "distinct_paper_support": 298,
@@ -1559,6 +2056,14 @@
     "label": "firm size",
     "plain_label": "firm size",
     "subtitle": "",
+    "display_concept_id": "FG3C000020",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "small firm size",
+      "start-up size",
+      "optimal firm size"
+    ],
     "bucket_hint": "core",
     "instance_support": 735,
     "distinct_paper_support": 733,
@@ -1584,6 +2089,14 @@
     "label": "industrial structure",
     "plain_label": "industrial structure",
     "subtitle": "",
+    "display_concept_id": "FG3C000044",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "regional industrial structure",
+      "industrial structure (IS)",
+      "industrial structure change"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 505,
     "distinct_paper_support": 504,
@@ -1608,6 +2121,14 @@
     "label": "interest rates",
     "plain_label": "interest rates",
     "subtitle": "",
+    "display_concept_id": "FG3C000027",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "interest rate variables",
+      "monetary policy (interest rate)",
+      "U.S. interest rates"
+    ],
     "bucket_hint": "core",
     "instance_support": 728,
     "distinct_paper_support": 727,
@@ -1632,6 +2153,14 @@
     "label": "GDP per capita",
     "plain_label": "GDP per capita",
     "subtitle": "",
+    "display_concept_id": "FG3C000060",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Gross domestic product (GDP) per capita",
+      "regional GDP per capita",
+      "Income (per capita)"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 425,
     "distinct_paper_support": 423,
@@ -1657,6 +2186,14 @@
     "label": "oil price",
     "plain_label": "oil price",
     "subtitle": "",
+    "display_concept_id": "FG3C000117",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "crude oil spot price",
+      "global oil price",
+      "oil price dynamics"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 363,
     "distinct_paper_support": 356,
@@ -1681,6 +2218,14 @@
     "label": "economic policy uncertainty",
     "plain_label": "economic policy uncertainty",
     "subtitle": "",
+    "display_concept_id": "FG3C000071",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "economic policy uncertainty index",
+      "economic policy uncertainty (EPU)",
+      "US policy uncertainty"
+    ],
     "bucket_hint": "core",
     "instance_support": 325,
     "distinct_paper_support": 321,
@@ -1705,6 +2250,14 @@
     "label": "technological progress",
     "plain_label": "technological progress",
     "subtitle": "",
+    "display_concept_id": "FG3C000045",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Biased technological progress",
+      "agricultural technological innovation",
+      "rate of technological progress"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 434,
     "distinct_paper_support": 432,
@@ -1729,6 +2282,14 @@
     "label": "productivity growth",
     "plain_label": "productivity growth",
     "subtitle": "",
+    "display_concept_id": "FG3C000070",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "long-run productivity growth",
+      "industry productivity growth",
+      "firm productivity growth"
+    ],
     "bucket_hint": "core",
     "instance_support": 420,
     "distinct_paper_support": 412,
@@ -1753,6 +2314,14 @@
     "label": "natural resource rents",
     "plain_label": "natural resource rents",
     "subtitle": "",
+    "display_concept_id": "FG3C000249",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "natural resource price volatility",
+      "housing rent",
+      "rent"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 252,
     "distinct_paper_support": 251,
@@ -1778,6 +2347,14 @@
     "label": "green growth",
     "plain_label": "green growth",
     "subtitle": "",
+    "display_concept_id": "FG3C000246",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "green growth (GG)",
+      "green development level",
+      "economic growth (output)"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 147,
     "distinct_paper_support": 145,
@@ -1802,6 +2379,14 @@
     "label": "oil price shocks",
     "plain_label": "oil price shocks",
     "subtitle": "",
+    "display_concept_id": "FG3C000123",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "unexpected oil price shocks",
+      "real oil price shocks",
+      "oil inventories"
+    ],
     "bucket_hint": "core",
     "instance_support": 306,
     "distinct_paper_support": 293,
@@ -1826,6 +2411,14 @@
     "label": "greenhouse gas emissions",
     "plain_label": "greenhouse gas emissions",
     "subtitle": "",
+    "display_concept_id": "FG3C000121",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "global greenhouse gas emissions",
+      "total greenhouse gas emissions",
+      "per capita greenhouse gas emissions"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 256,
     "distinct_paper_support": 255,
@@ -1851,6 +2444,14 @@
     "label": "education",
     "plain_label": "education",
     "subtitle": "",
+    "display_concept_id": "FG3C000029",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "demand for education",
+      "maternal education",
+      "years of education"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 535,
     "distinct_paper_support": 533,
@@ -1875,6 +2476,14 @@
     "label": "trading volume",
     "plain_label": "trading volume",
     "subtitle": "",
+    "display_concept_id": "FG3C000042",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "traded volume",
+      "option trading volume",
+      "stock trading volume"
+    ],
     "bucket_hint": "core",
     "instance_support": 500,
     "distinct_paper_support": 495,
@@ -1899,6 +2508,14 @@
     "label": "firm total factor productivity (TFP)",
     "plain_label": "firm total factor productivity (TFP)",
     "subtitle": "",
+    "display_concept_id": "FG3C002284",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "firm total factor productivity",
+      "aggregate TFP",
+      "total factor productivity (TFP) of manufacturing firms"
+    ],
     "bucket_hint": "core",
     "instance_support": 259,
     "distinct_paper_support": 257,
@@ -1923,6 +2540,14 @@
     "label": "prices",
     "plain_label": "prices",
     "subtitle": "",
+    "display_concept_id": "FG3C000028",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "industrial prices",
+      "US prices",
+      "current prices"
+    ],
     "bucket_hint": "core",
     "instance_support": 583,
     "distinct_paper_support": 579,
@@ -1947,6 +2572,14 @@
     "label": "non-renewable energy consumption",
     "plain_label": "non-renewable energy consumption",
     "subtitle": "",
+    "display_concept_id": "FG3C000232",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "non-fossil energy consumption",
+      "non-renewable (fossil) energy consumption",
+      "Primary energy use"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 188,
     "distinct_paper_support": 188,
@@ -1972,6 +2605,14 @@
     "label": "energy use",
     "plain_label": "energy use",
     "subtitle": "",
+    "display_concept_id": "FG3C000173",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "coal use",
+      "Energy use (energy consumption)",
+      "drug use"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 226,
     "distinct_paper_support": 226,
@@ -1997,6 +2638,12 @@
     "label": "total factor productivity (TFP)",
     "plain_label": "total factor productivity (TFP)",
     "subtitle": "",
+    "display_concept_id": "FG3C000061",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "productivity (TFP)"
+    ],
     "bucket_hint": "core",
     "instance_support": 283,
     "distinct_paper_support": 283,
@@ -2022,6 +2669,14 @@
     "label": "information and communication technology (ICT)",
     "plain_label": "information and communication technology (ICT)",
     "subtitle": "",
+    "display_concept_id": "FG3C000384",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "information and communication technology (ICT) development",
+      "cap-and-trade programs",
+      "Bangladesh"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 270,
     "distinct_paper_support": 269,
@@ -2047,6 +2702,14 @@
     "label": "R&D investment",
     "plain_label": "R&D investment",
     "subtitle": "",
+    "display_concept_id": "FG3C000089",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "corporate R&D investment",
+      "investment in research and development (R&D)",
+      "firms' R&D investment"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 275,
     "distinct_paper_support": 275,
@@ -2071,6 +2734,14 @@
     "label": "house prices",
     "plain_label": "house prices",
     "subtitle": "",
+    "display_concept_id": "FG3C000051",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "U.S. house prices",
+      "house sale price",
+      "single-family house prices"
+    ],
     "bucket_hint": "core",
     "instance_support": 471,
     "distinct_paper_support": 470,
@@ -2095,6 +2766,14 @@
     "label": "housing prices",
     "plain_label": "housing prices",
     "subtitle": "",
+    "display_concept_id": "FG3C000050",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "urban housing prices",
+      "scarcity",
+      "Housing rental prices"
+    ],
     "bucket_hint": "core",
     "instance_support": 341,
     "distinct_paper_support": 340,
@@ -2119,6 +2798,14 @@
     "label": "green bonds",
     "plain_label": "green bonds",
     "subtitle": "",
+    "display_concept_id": "FG3C000202",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "green bonds (GBs)",
+      "Green financial assets",
+      "Green bond financing"
+    ],
     "bucket_hint": "core",
     "instance_support": 272,
     "distinct_paper_support": 257,
@@ -2143,6 +2830,14 @@
     "label": "digital finance",
     "plain_label": "digital finance",
     "subtitle": "",
+    "display_concept_id": "FG3C000242",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "coverage breadth of digital finance",
+      "digital finance (DF)",
+      "international finance"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 139,
     "distinct_paper_support": 131,
@@ -2167,6 +2862,14 @@
     "label": "energy transition",
     "plain_label": "energy transition",
     "subtitle": "",
+    "display_concept_id": "FG3C000267",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "global energy transition",
+      "clean energy transition",
+      "sustainable energy transition"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 188,
     "distinct_paper_support": 186,
@@ -2192,6 +2895,14 @@
     "label": "volatility",
     "plain_label": "volatility",
     "subtitle": "",
+    "display_concept_id": "FG3C000043",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "S&P 500 volatility",
+      "volatility models",
+      "good volatility"
+    ],
     "bucket_hint": "core",
     "instance_support": 529,
     "distinct_paper_support": 523,
@@ -2216,6 +2927,14 @@
     "label": "uncertainty measures",
     "plain_label": "uncertainty measures",
     "subtitle": "",
+    "display_concept_id": "FG3C004120",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "output uncertainty",
+      "high uncertainty",
+      "World Uncertainty Index (WUI)"
+    ],
     "bucket_hint": "core",
     "instance_support": 459,
     "distinct_paper_support": 444,
@@ -2240,6 +2959,14 @@
     "label": "gold",
     "plain_label": "gold",
     "subtitle": "",
+    "display_concept_id": "FG3C000101",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "US stocks",
+      "bond flows",
+      "safe-haven property"
+    ],
     "bucket_hint": "core",
     "instance_support": 323,
     "distinct_paper_support": 318,
@@ -2265,6 +2992,14 @@
     "label": "environmental efficiency",
     "plain_label": "environmental efficiency",
     "subtitle": "",
+    "display_concept_id": "FG3C000491",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "land use efficiency",
+      "carbon emissions efficiency",
+      "efficiency considerations"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 163,
     "distinct_paper_support": 160,
@@ -2289,6 +3024,10 @@
     "label": "ecological footprints",
     "plain_label": "ecological footprints",
     "subtitle": "",
+    "display_concept_id": "FG3C001218",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [],
     "bucket_hint": "adjacent",
     "instance_support": 86,
     "distinct_paper_support": 86,
@@ -2314,6 +3053,14 @@
     "label": "gross domestic product (GDP)",
     "plain_label": "gross domestic product (GDP)",
     "subtitle": "",
+    "display_concept_id": "FG3C000085",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "gross national product (GNP)",
+      "GDP (gross domestic product)",
+      "gross state product (GSP)"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 319,
     "distinct_paper_support": 319,
@@ -2337,8 +3084,16 @@
   {
     "concept_id": "FG3C003006",
     "label": "Emission Trading Scheme (ETS)",
-    "plain_label": "Emission Trading Scheme (ETS)",
+    "plain_label": "emissions trading system",
     "subtitle": "",
+    "display_concept_id": "FG3C003000",
+    "display_refined": true,
+    "display_refinement_confidence": 0.8266,
+    "alternate_display_labels": [
+      "carbon emissions trading policy",
+      "carbon emission trading scheme",
+      "New Zealand Emissions Trading Scheme (NZ ETS)"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 259,
     "distinct_paper_support": 254,
@@ -2363,6 +3118,14 @@
     "label": "financing constraints",
     "plain_label": "financing constraints",
     "subtitle": "",
+    "display_concept_id": "FG3C000090",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "financing constraint",
+      "external financing constraints",
+      "financing constraints of enterprises"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 295,
     "distinct_paper_support": 295,
@@ -2387,6 +3150,12 @@
     "label": "digital transformation",
     "plain_label": "digital transformation",
     "subtitle": "",
+    "display_concept_id": "FG3C000226",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "digital transformation of enterprises"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 136,
     "distinct_paper_support": 136,
@@ -2411,6 +3180,10 @@
     "label": "exchange rate",
     "plain_label": "exchange rate",
     "subtitle": "",
+    "display_concept_id": "FG3C000056",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [],
     "bucket_hint": "core",
     "instance_support": 337,
     "distinct_paper_support": 337,
@@ -2436,6 +3209,14 @@
     "label": "carbon intensity",
     "plain_label": "carbon intensity",
     "subtitle": "",
+    "display_concept_id": "FG3C000184",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "carbon intensity (CI)",
+      "carbon intensity of energy",
+      "investment intensity"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 164,
     "distinct_paper_support": 164,
@@ -2460,6 +3241,14 @@
     "label": "environmental regulations",
     "plain_label": "environmental regulations",
     "subtitle": "",
+    "display_concept_id": "FG3C000120",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "local environmental regulations",
+      "informal environmental regulations",
+      "voluntary environmental regulation"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 299,
     "distinct_paper_support": 296,
@@ -2484,6 +3273,14 @@
     "label": "income distribution",
     "plain_label": "income distribution",
     "subtitle": "",
+    "display_concept_id": "FG3C000140",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "income level groups",
+      "lower income countries",
+      "country income groups"
+    ],
     "bucket_hint": "core",
     "instance_support": 499,
     "distinct_paper_support": 495,
@@ -2508,6 +3305,14 @@
     "label": "carbon emission intensity",
     "plain_label": "carbon emission intensity",
     "subtitle": "",
+    "display_concept_id": "FG3C000347",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "industrial carbon intensity",
+      "corporate carbon emission intensity",
+      "carbon-intensive industries"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 124,
     "distinct_paper_support": 124,
@@ -2532,6 +3337,14 @@
     "label": "imports",
     "plain_label": "imports",
     "subtitle": "",
+    "display_concept_id": "FG3C000126",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Imports of goods and services",
+      "oil imports",
+      "food imports"
+    ],
     "bucket_hint": "core",
     "instance_support": 296,
     "distinct_paper_support": 291,
@@ -2557,6 +3370,14 @@
     "label": "population growth",
     "plain_label": "population growth",
     "subtitle": "",
+    "display_concept_id": "FG3C000054",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "population change",
+      "population increase",
+      "population growth rates"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 393,
     "distinct_paper_support": 393,
@@ -2582,6 +3403,14 @@
     "label": "state of the business cycle",
     "plain_label": "state of the business cycle",
     "subtitle": "",
+    "display_concept_id": "FG3C005161",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Business cycle conditions",
+      "business cycle phase",
+      "business sector"
+    ],
     "bucket_hint": "core",
     "instance_support": 547,
     "distinct_paper_support": 541,
@@ -2606,6 +3435,14 @@
     "label": "coal consumption",
     "plain_label": "coal consumption",
     "subtitle": "",
+    "display_concept_id": "FG3C000292",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "coal energy consumption",
+      "coal production",
+      "proportion of coal consumption"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 166,
     "distinct_paper_support": 163,
@@ -2631,6 +3468,14 @@
     "label": "crude oil prices",
     "plain_label": "crude oil prices",
     "subtitle": "",
+    "display_concept_id": "FG3C000156",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "crude oil spot price",
+      "global crude oil prices",
+      "Energy futures prices"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 273,
     "distinct_paper_support": 268,
@@ -2655,6 +3500,14 @@
     "label": "green technological innovation",
     "plain_label": "green technological innovation",
     "subtitle": "",
+    "display_concept_id": "FG3C000227",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "green industrial policy",
+      "strategic green innovation",
+      "sustainable innovation"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 219,
     "distinct_paper_support": 209,
@@ -2679,6 +3532,14 @@
     "label": "competition",
     "plain_label": "competition",
     "subtitle": "",
+    "display_concept_id": "FG3C000069",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "level of competition",
+      "R&D competition",
+      "Competition among firms"
+    ],
     "bucket_hint": "core",
     "instance_support": 385,
     "distinct_paper_support": 382,
@@ -2704,6 +3565,14 @@
     "label": "economic complexity",
     "plain_label": "economic complexity",
     "subtitle": "",
+    "display_concept_id": "FG3C000199",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "model complexity",
+      "eigenvector centrality",
+      "patient complexity"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 199,
     "distinct_paper_support": 196,
@@ -2729,6 +3598,14 @@
     "label": "government subsidies",
     "plain_label": "government subsidies",
     "subtitle": "",
+    "display_concept_id": "FG3C000164",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "green subsidies",
+      "government environmental subsidies",
+      "environmental subsidies"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 230,
     "distinct_paper_support": 228,
@@ -2753,6 +3630,14 @@
     "label": "high-speed rail",
     "plain_label": "high-speed rail",
     "subtitle": "",
+    "display_concept_id": "FG3C000753",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "high-speed rail (HSR) development",
+      "High-speed rail (HSR) entry",
+      "high-speed rail (HSR) operation"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 196,
     "distinct_paper_support": 193,
@@ -2777,6 +3662,14 @@
     "label": "rate of growth",
     "plain_label": "rate of growth",
     "subtitle": "",
+    "display_concept_id": "FG3C005776",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "equilibrium growth rate",
+      "Solow growth model",
+      "growth rate of the economy"
+    ],
     "bucket_hint": "core",
     "instance_support": 450,
     "distinct_paper_support": 440,
@@ -2801,6 +3694,14 @@
     "label": "population",
     "plain_label": "population",
     "subtitle": "",
+    "display_concept_id": "FG3C000058",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "This book",
+      "monotonicity",
+      "suburbanization"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 404,
     "distinct_paper_support": 404,
@@ -2825,6 +3726,14 @@
     "label": "geopolitical risks",
     "plain_label": "geopolitical risks",
     "subtitle": "",
+    "display_concept_id": "FG3C000436",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "political risk index",
+      "geopolitical conflicts",
+      "geopolitical acts"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 256,
     "distinct_paper_support": 241,
@@ -2850,6 +3759,14 @@
     "label": "policy",
     "plain_label": "policy",
     "subtitle": "",
+    "display_concept_id": "FG3C001408",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "policy makers",
+      "policy frameworks",
+      "policy making"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 477,
     "distinct_paper_support": 469,
@@ -2875,6 +3792,14 @@
     "label": "fiscal policy",
     "plain_label": "fiscal policy",
     "subtitle": "",
+    "display_concept_id": "FG3C000087",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "discretionary fiscal policy",
+      "countercyclical fiscal policy",
+      "fiscal policy cyclicality"
+    ],
     "bucket_hint": "core",
     "instance_support": 366,
     "distinct_paper_support": 359,
@@ -2900,6 +3825,13 @@
     "label": "industrialization",
     "plain_label": "industrialization",
     "subtitle": "",
+    "display_concept_id": "FG3C000118",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "de-industrialization",
+      "industrialization process"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 248,
     "distinct_paper_support": 248,
@@ -2924,6 +3856,14 @@
     "label": "profitability",
     "plain_label": "profitability",
     "subtitle": "",
+    "display_concept_id": "FG3C000067",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "expected profitability",
+      "firm-level profitability",
+      "airline profitability"
+    ],
     "bucket_hint": "core",
     "instance_support": 375,
     "distinct_paper_support": 374,
@@ -2948,6 +3888,14 @@
     "label": "economic performance",
     "plain_label": "economic performance",
     "subtitle": "",
+    "display_concept_id": "FG3C000144",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "institutional performance",
+      "economic performance / economic growth",
+      "economic states"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 206,
     "distinct_paper_support": 205,
@@ -2973,6 +3921,14 @@
     "label": "international trade",
     "plain_label": "international trade",
     "subtitle": "",
+    "display_concept_id": "FG3C000078",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "international trade (trade flows)",
+      "world growth",
+      "rice"
+    ],
     "bucket_hint": "core",
     "instance_support": 299,
     "distinct_paper_support": 297,
@@ -2998,6 +3954,14 @@
     "label": "stock market returns",
     "plain_label": "stock market returns",
     "subtitle": "",
+    "display_concept_id": "FG3C000168",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "global stock returns",
+      "Bullish market conditions",
+      "industry stock returns"
+    ],
     "bucket_hint": "core",
     "instance_support": 251,
     "distinct_paper_support": 244,
@@ -3022,6 +3986,14 @@
     "label": "price changes",
     "plain_label": "price changes",
     "subtitle": "",
+    "display_concept_id": "FG3C000674",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "relative price levels",
+      "competitive price",
+      "price decreases"
+    ],
     "bucket_hint": "core",
     "instance_support": 519,
     "distinct_paper_support": 502,
@@ -3047,6 +4019,14 @@
     "label": "US stock market",
     "plain_label": "US stock market",
     "subtitle": "",
+    "display_concept_id": "FG3C000599",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "stock market data",
+      "New York Stock Exchange (NYSE)",
+      "stock index"
+    ],
     "bucket_hint": "core",
     "instance_support": 322,
     "distinct_paper_support": 309,
@@ -3071,6 +4051,14 @@
     "label": "trade liberalization",
     "plain_label": "trade liberalization",
     "subtitle": "",
+    "display_concept_id": "FG3C000083",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "multilateral trade liberalization",
+      "international trade / trade liberalization",
+      "trade liberalization policies"
+    ],
     "bucket_hint": "core",
     "instance_support": 281,
     "distinct_paper_support": 280,
@@ -3095,6 +4083,14 @@
     "label": "per capita income",
     "plain_label": "per capita income",
     "subtitle": "",
+    "display_concept_id": "FG3C000098",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Income (per capita)",
+      "per capita disposable income",
+      "regional per capita income"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 301,
     "distinct_paper_support": 301,
@@ -3120,6 +4116,14 @@
     "label": "social welfare",
     "plain_label": "social welfare",
     "subtitle": "",
+    "display_concept_id": "FG3C000023",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "overall social welfare",
+      "countries' welfare",
+      "expected social welfare"
+    ],
     "bucket_hint": "core",
     "instance_support": 597,
     "distinct_paper_support": 596,
@@ -3145,6 +4149,14 @@
     "label": "capital",
     "plain_label": "capital",
     "subtitle": "",
+    "display_concept_id": "FG3C000104",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "domestic capital accumulation",
+      "central and western cities",
+      "large country"
+    ],
     "bucket_hint": "core",
     "instance_support": 315,
     "distinct_paper_support": 313,
@@ -3170,6 +4182,13 @@
     "label": "digital economy development",
     "plain_label": "digital economy development",
     "subtitle": "",
+    "display_concept_id": "FG3C000494",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "digital economy development level",
+      "digital transformation of enterprises"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 101,
     "distinct_paper_support": 101,
@@ -3194,6 +4213,14 @@
     "label": "number of agents",
     "plain_label": "number of agents",
     "subtitle": "",
+    "display_concept_id": "FG3C006328",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "parameter values",
+      "number of firms (n)",
+      "number of traders"
+    ],
     "bucket_hint": "core",
     "instance_support": 529,
     "distinct_paper_support": 513,
@@ -3219,6 +4246,14 @@
     "label": "systemic risk",
     "plain_label": "systemic risk",
     "subtitle": "",
+    "display_concept_id": "FG3C000138",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "systemic risk / financial stability",
+      "systemic risk measures",
+      "systemic risk in financial networks"
+    ],
     "bucket_hint": "core",
     "instance_support": 285,
     "distinct_paper_support": 284,
@@ -3244,6 +4279,14 @@
     "label": "unemployment rate",
     "plain_label": "unemployment rate",
     "subtitle": "",
+    "display_concept_id": "FG3C000052",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Unemployment rate (u)",
+      "U.S. unemployment rate",
+      "rate of unemployment"
+    ],
     "bucket_hint": "core",
     "instance_support": 358,
     "distinct_paper_support": 358,
@@ -3268,6 +4311,13 @@
     "label": "environmental degradation (CO2 emissions)",
     "plain_label": "environmental degradation (CO2 emissions)",
     "subtitle": "",
+    "display_concept_id": "FG3C001033",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "environmental monitoring decentralization",
+      "carbon (CO2) emissions"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 70,
     "distinct_paper_support": 70,
@@ -3292,6 +4342,14 @@
     "label": "inflation rate",
     "plain_label": "inflation rate",
     "subtitle": "",
+    "display_concept_id": "FG3C000112",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "past inflation",
+      "high inflation rates",
+      "inflation targeting regimes"
+    ],
     "bucket_hint": "core",
     "instance_support": 291,
     "distinct_paper_support": 289,
@@ -3316,6 +4374,14 @@
     "label": "investor sentiment",
     "plain_label": "investor sentiment",
     "subtitle": "",
+    "display_concept_id": "FG3C000100",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "market-wide sentiment",
+      "firm-specific investor sentiment",
+      "investor sentiment index"
+    ],
     "bucket_hint": "core",
     "instance_support": 301,
     "distinct_paper_support": 299,
@@ -3340,6 +4406,14 @@
     "label": "geopolitical risk",
     "plain_label": "geopolitical risk",
     "subtitle": "",
+    "display_concept_id": "FG3C000165",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "global geopolitical risk",
+      "geopolitical uncertainty",
+      "major events"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 191,
     "distinct_paper_support": 191,
@@ -3365,6 +4439,13 @@
     "label": "load capacity factor (LCF)",
     "plain_label": "ecological carrying capacity",
     "subtitle": "measured here with load capacity factor",
+    "display_concept_id": "FG3C001306",
+    "display_refined": true,
+    "display_refinement_confidence": 0.8168,
+    "alternate_display_labels": [
+      "Environmental sustainability (Load Capacity Factor, LCF)",
+      "load capacity factor (environmental quality)"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 53,
     "distinct_paper_support": 53,
@@ -3389,6 +4470,14 @@
     "label": "income tax rate",
     "plain_label": "income tax rate",
     "subtitle": "",
+    "display_concept_id": "FG3C005346",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "tax-based consolidations",
+      "tax system",
+      "labor income tax rate"
+    ],
     "bucket_hint": "core",
     "instance_support": 410,
     "distinct_paper_support": 386,
@@ -3413,6 +4502,14 @@
     "label": "CO2 emissions per capita",
     "plain_label": "CO2 emissions per capita",
     "subtitle": "",
+    "display_concept_id": "FG3C000467",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "emissions per capita",
+      "carbon dioxide emissions per capita",
+      "per capita greenhouse gas emissions"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 120,
     "distinct_paper_support": 120,
@@ -3438,6 +4535,14 @@
     "label": "total factor productivity",
     "plain_label": "total factor productivity",
     "subtitle": "",
+    "display_concept_id": "FG3C000128",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "productivity (TFP)",
+      "total factor productivity of enterprises",
+      "total productivity"
+    ],
     "bucket_hint": "core",
     "instance_support": 205,
     "distinct_paper_support": 205,
@@ -3462,6 +4567,14 @@
     "label": "health",
     "plain_label": "health",
     "subtitle": "",
+    "display_concept_id": "FG3C000730",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Health care systems",
+      "Poor health",
+      "health state utility values"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 432,
     "distinct_paper_support": 422,
@@ -3486,6 +4599,14 @@
     "label": "financial stability",
     "plain_label": "financial stability",
     "subtitle": "",
+    "display_concept_id": "FG3C000077",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "global financial stability",
+      "financial stability risks",
+      "stability of the financial system"
+    ],
     "bucket_hint": "core",
     "instance_support": 325,
     "distinct_paper_support": 325,
@@ -3510,6 +4631,14 @@
     "label": "liquidity",
     "plain_label": "liquidity",
     "subtitle": "",
+    "display_concept_id": "FG3C000057",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "liquidity variables",
+      "liquidity factor",
+      "liquidity conditions"
+    ],
     "bucket_hint": "core",
     "instance_support": 429,
     "distinct_paper_support": 427,
@@ -3534,6 +4663,13 @@
     "label": "natural gas consumption",
     "plain_label": "natural gas consumption",
     "subtitle": "",
+    "display_concept_id": "FG3C000423",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "natural gas energy consumption",
+      "nuclear power plants"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 109,
     "distinct_paper_support": 109,
@@ -3559,6 +4695,14 @@
     "label": "government spending",
     "plain_label": "government spending",
     "subtitle": "",
+    "display_concept_id": "FG3C000206",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "composition of government spending",
+      "government budget balance",
+      "private spending"
+    ],
     "bucket_hint": "core",
     "instance_support": 242,
     "distinct_paper_support": 238,
@@ -3583,6 +4727,14 @@
     "label": "poverty",
     "plain_label": "poverty",
     "subtitle": "",
+    "display_concept_id": "FG3C000149",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "household poverty",
+      "incidence of poverty",
+      "poverty status"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 267,
     "distinct_paper_support": 265,
@@ -3608,6 +4760,14 @@
     "label": "Bitcoin",
     "plain_label": "Bitcoin",
     "subtitle": "",
+    "display_concept_id": "FG3C000209",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Monero",
+      "VIX futures",
+      "Ethereum (ETH)"
+    ],
     "bucket_hint": "core",
     "instance_support": 185,
     "distinct_paper_support": 178,
@@ -3633,6 +4793,14 @@
     "label": "air pollution",
     "plain_label": "air pollution",
     "subtitle": "",
+    "display_concept_id": "FG3C000211",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "air pollutants",
+      "urban air pollution",
+      "air pollution / air quality"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 162,
     "distinct_paper_support": 161,
@@ -3657,6 +4825,14 @@
     "label": "low-carbon city pilot policy",
     "plain_label": "low-carbon city pilot policy",
     "subtitle": "",
+    "display_concept_id": "FG3C002978",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "low-carbon pilot cities",
+      "low-carbon pilot policies",
+      "carbon emissions trading pilot policy"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 106,
     "distinct_paper_support": 94,
@@ -3680,6 +4856,14 @@
     "label": "economic activity",
     "plain_label": "economic activity",
     "subtitle": "",
+    "display_concept_id": "FG3C000092",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "industrial activity",
+      "physical activity",
+      "activity restrictions"
+    ],
     "bucket_hint": "core",
     "instance_support": 322,
     "distinct_paper_support": 321,
@@ -3704,6 +4888,14 @@
     "label": "capital accumulation",
     "plain_label": "capital accumulation",
     "subtitle": "",
+    "display_concept_id": "FG3C000084",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "domestic capital accumulation",
+      "rate of capital accumulation",
+      "accumulation of capital"
+    ],
     "bucket_hint": "core",
     "instance_support": 332,
     "distinct_paper_support": 332,
@@ -3729,6 +4921,14 @@
     "label": "transaction costs",
     "plain_label": "transaction costs",
     "subtitle": "",
+    "display_concept_id": "FG3C000031",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "transaction cost economics",
+      "transactions",
+      "transaction fees"
+    ],
     "bucket_hint": "core",
     "instance_support": 575,
     "distinct_paper_support": 571,
@@ -3754,6 +4954,14 @@
     "label": "CO2 emission",
     "plain_label": "CO2 emission",
     "subtitle": "",
+    "display_concept_id": "FG3C000629",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "CO2",
+      "CO2 emission performance",
+      "emission levels"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 78,
     "distinct_paper_support": 78,
@@ -3777,8 +4985,16 @@
   {
     "concept_id": "FG3C006136",
     "label": "innovation level",
-    "plain_label": "innovation level",
+    "plain_label": "innovation outcomes",
     "subtitle": "",
+    "display_concept_id": "FG3C013404",
+    "display_refined": true,
+    "display_refinement_confidence": 0.5001,
+    "alternate_display_labels": [
+      "innovation rate",
+      "level of innovation",
+      "quality of innovation"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 231,
     "distinct_paper_support": 224,
@@ -3803,6 +5019,13 @@
     "label": "consumption-based carbon emissions",
     "plain_label": "consumption-based carbon emissions",
     "subtitle": "",
+    "display_concept_id": "FG3C001814",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "consumption-based carbon dioxide emissions",
+      "sustainable consumption"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 54,
     "distinct_paper_support": 54,
@@ -3828,6 +5051,14 @@
     "label": "ESG performance",
     "plain_label": "ESG performance",
     "subtitle": "",
+    "display_concept_id": "FG3C000422",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "ESG factors",
+      "firms' ESG performance",
+      "sustainable performance"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 123,
     "distinct_paper_support": 123,
@@ -3852,6 +5083,14 @@
     "label": "climate change",
     "plain_label": "climate change",
     "subtitle": "",
+    "display_concept_id": "FG3C000076",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "climate-related financial risks",
+      "climate change policy",
+      "temperature change"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 290,
     "distinct_paper_support": 282,
@@ -3877,6 +5116,14 @@
     "label": "tourism",
     "plain_label": "tourism",
     "subtitle": "",
+    "display_concept_id": "FG3C000727",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "tourism growth",
+      "tourism activities",
+      "tourism (tourist arrivals)"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 188,
     "distinct_paper_support": 177,
@@ -3902,6 +5149,14 @@
     "label": "per capita CO2 emissions",
     "plain_label": "per capita CO2 emissions",
     "subtitle": "",
+    "display_concept_id": "FG3C000591",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "per capita carbon dioxide emissions",
+      "CO emissions",
+      "historical emissions"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 113,
     "distinct_paper_support": 111,
@@ -3926,6 +5181,14 @@
     "label": "price level",
     "plain_label": "price level",
     "subtitle": "",
+    "display_concept_id": "FG3C000219",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "relative price levels",
+      "initial price level",
+      "price level / inflation"
+    ],
     "bucket_hint": "core",
     "instance_support": 336,
     "distinct_paper_support": 333,
@@ -3951,6 +5214,14 @@
     "label": "environmental taxes",
     "plain_label": "environmental taxes",
     "subtitle": "",
+    "display_concept_id": "FG3C000360",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "green taxes",
+      "environmental tax reforms",
+      "environmental tax reform"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 168,
     "distinct_paper_support": 166,
@@ -3976,6 +5247,14 @@
     "label": "high-quality economic development",
     "plain_label": "high-quality economic development",
     "subtitle": "",
+    "display_concept_id": "FG3C000623",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "high-quality agricultural development",
+      "high-quality development",
+      "high-quality development of the manufacturing industry"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 119,
     "distinct_paper_support": 118,
@@ -3999,6 +5278,13 @@
     "label": "firm performance",
     "plain_label": "firm performance",
     "subtitle": "",
+    "display_concept_id": "FG3C000113",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "firms' performance",
+      "firm financial performance"
+    ],
     "bucket_hint": "core",
     "instance_support": 206,
     "distinct_paper_support": 206,
@@ -4024,6 +5310,14 @@
     "label": "oil consumption",
     "plain_label": "oil consumption",
     "subtitle": "",
+    "display_concept_id": "FG3C000472",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "petroleum consumption",
+      "crude oil consumption",
+      "oil dependence"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 131,
     "distinct_paper_support": 130,
@@ -4048,6 +5342,14 @@
     "label": "implied volatility",
     "plain_label": "implied volatility",
     "subtitle": "",
+    "display_concept_id": "FG3C000678",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "S&P 500 volatility",
+      "volatility models",
+      "implied volatility indices"
+    ],
     "bucket_hint": "core",
     "instance_support": 333,
     "distinct_paper_support": 316,
@@ -4072,6 +5374,14 @@
     "label": "public debt",
     "plain_label": "public debt",
     "subtitle": "",
+    "display_concept_id": "FG3C000208",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "public debt (debt-to-GDP ratio)",
+      "government debt level",
+      "federal debt"
+    ],
     "bucket_hint": "core",
     "instance_support": 181,
     "distinct_paper_support": 179,
@@ -4097,6 +5407,14 @@
     "label": "financial constraints",
     "plain_label": "financial constraints",
     "subtitle": "",
+    "display_concept_id": "FG3C000106",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "financial constraints (financially constrained firms)",
+      "financial slack",
+      "financial obstacles"
+    ],
     "bucket_hint": "core",
     "instance_support": 291,
     "distinct_paper_support": 288,
@@ -4121,6 +5439,12 @@
     "label": "digital inclusive finance",
     "plain_label": "digital inclusive finance",
     "subtitle": "",
+    "display_concept_id": "FG3C000425",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "inclusive finance"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 82,
     "distinct_paper_support": 82,
@@ -4145,6 +5469,14 @@
     "label": "firm productivity",
     "plain_label": "firm productivity",
     "subtitle": "",
+    "display_concept_id": "FG3C000073",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "productivity (TFP)",
+      "average firm productivity",
+      "firm productivity / performance"
+    ],
     "bucket_hint": "core",
     "instance_support": 287,
     "distinct_paper_support": 287,
@@ -4169,6 +5501,14 @@
     "label": "United States",
     "plain_label": "United States",
     "subtitle": "",
+    "display_concept_id": "FG3C000177",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "new EU member states",
+      "economic states",
+      "US states"
+    ],
     "bucket_hint": "core",
     "instance_support": 491,
     "distinct_paper_support": 446,
@@ -4193,6 +5533,14 @@
     "label": "household income",
     "plain_label": "household income",
     "subtitle": "",
+    "display_concept_id": "FG3C000095",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "household income level",
+      "individual income",
+      "average income"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 387,
     "distinct_paper_support": 386,
@@ -4217,6 +5565,14 @@
     "label": "green investment",
     "plain_label": "green investment",
     "subtitle": "",
+    "display_concept_id": "FG3C000437",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Green financial assets",
+      "green consumption",
+      "green investors"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 138,
     "distinct_paper_support": 135,
@@ -4241,6 +5597,14 @@
     "label": "artificial intelligence (AI)",
     "plain_label": "artificial intelligence (AI)",
     "subtitle": "",
+    "display_concept_id": "FG3C000449",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "artificial intelligence development",
+      "artificial intelligence (AI) adoption",
+      "observed data"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 109,
     "distinct_paper_support": 108,
@@ -4265,6 +5629,14 @@
     "label": "place of residence",
     "plain_label": "place of residence",
     "subtitle": "",
+    "display_concept_id": "FG3C006446",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "parameter values",
+      "region of residence",
+      "usual care (control)"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 483,
     "distinct_paper_support": 470,
@@ -4289,6 +5661,14 @@
     "label": "monetary policy shocks",
     "plain_label": "monetary policy shocks",
     "subtitle": "",
+    "display_concept_id": "FG3C000159",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Expansionary monetary policy shock",
+      "Contractionary monetary policy shocks",
+      "real effects of monetary policy"
+    ],
     "bucket_hint": "core",
     "instance_support": 189,
     "distinct_paper_support": 187,
@@ -4313,6 +5693,14 @@
     "label": "equity returns",
     "plain_label": "equity returns",
     "subtitle": "",
+    "display_concept_id": "FG3C000643",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "value of equity",
+      "global stock returns",
+      "international equity flows"
+    ],
     "bucket_hint": "core",
     "instance_support": 358,
     "distinct_paper_support": 351,
@@ -4337,6 +5725,14 @@
     "label": "GDP growth",
     "plain_label": "GDP growth",
     "subtitle": "",
+    "display_concept_id": "FG3C000093",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "GDP decline",
+      "economic growth (output)",
+      "global growth"
+    ],
     "bucket_hint": "core",
     "instance_support": 233,
     "distinct_paper_support": 233,
@@ -4361,6 +5757,14 @@
     "label": "money supply",
     "plain_label": "money supply",
     "subtitle": "",
+    "display_concept_id": "FG3C000222",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "money supply announcements",
+      "money supply (M2)",
+      "quantity of money"
+    ],
     "bucket_hint": "core",
     "instance_support": 263,
     "distinct_paper_support": 258,
@@ -4386,6 +5790,14 @@
     "label": "uncertainty",
     "plain_label": "uncertainty",
     "subtitle": "",
+    "display_concept_id": "FG3C000047",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "uncertainties",
+      "radical uncertainty",
+      "pandemic uncertainty"
+    ],
     "bucket_hint": "core",
     "instance_support": 366,
     "distinct_paper_support": 366,
@@ -4410,6 +5822,14 @@
     "label": "human development",
     "plain_label": "human development",
     "subtitle": "",
+    "display_concept_id": "FG3C000403",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Human development (HDI)",
+      "human behavior",
+      "long-run economic development"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 122,
     "distinct_paper_support": 122,
@@ -4435,6 +5855,14 @@
     "label": "asset prices",
     "plain_label": "asset prices",
     "subtitle": "",
+    "display_concept_id": "FG3C000080",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "state prices",
+      "financial asset prices",
+      "financial market prices"
+    ],
     "bucket_hint": "core",
     "instance_support": 327,
     "distinct_paper_support": 326,
@@ -4460,6 +5888,13 @@
     "label": "digitalization",
     "plain_label": "digitalization",
     "subtitle": "",
+    "display_concept_id": "FG3C000335",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "level of digitalization",
+      "industrial digitalization"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 124,
     "distinct_paper_support": 123,
@@ -4484,6 +5919,12 @@
     "label": "real exchange rate",
     "plain_label": "real exchange rate",
     "subtitle": "",
+    "display_concept_id": "FG3C000122",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "real exchange rate overvaluation"
+    ],
     "bucket_hint": "core",
     "instance_support": 212,
     "distinct_paper_support": 212,
@@ -4509,6 +5950,14 @@
     "label": "technological innovations",
     "plain_label": "technological innovations",
     "subtitle": "",
+    "display_concept_id": "FG3C000475",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "technological revolutions",
+      "rate of technological change",
+      "technological externalities"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 226,
     "distinct_paper_support": 226,
@@ -4534,6 +5983,14 @@
     "label": "industrial agglomeration",
     "plain_label": "industrial agglomeration",
     "subtitle": "",
+    "display_concept_id": "FG3C000225",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Industrial activities",
+      "Beijing-Tianjin-Hebei urban agglomeration",
+      "agricultural industrial agglomeration"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 163,
     "distinct_paper_support": 163,
@@ -4558,6 +6015,10 @@
     "label": "renewable energy consumption (REC)",
     "plain_label": "renewable energy consumption (REC)",
     "subtitle": "",
+    "display_concept_id": "FG3C000620",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [],
     "bucket_hint": "adjacent",
     "instance_support": 80,
     "distinct_paper_support": 80,
@@ -4583,6 +6044,14 @@
     "label": "energy prices",
     "plain_label": "energy prices",
     "subtitle": "",
+    "display_concept_id": "FG3C000150",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "energy price uncertainty",
+      "energy price increases",
+      "energy price fluctuations"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 210,
     "distinct_paper_support": 210,
@@ -4608,6 +6077,14 @@
     "label": "green credit",
     "plain_label": "green credit",
     "subtitle": "",
+    "display_concept_id": "FG3C000722",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "tradable green certificates",
+      "Green credit policy (Green Credit Guidelines)",
+      "commercial credit"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 118,
     "distinct_paper_support": 114,
@@ -4632,6 +6109,14 @@
     "label": "bank profitability",
     "plain_label": "bank profitability",
     "subtitle": "",
+    "display_concept_id": "FG3C000259",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "banks' profitability",
+      "higher profitability",
+      "bank business models"
+    ],
     "bucket_hint": "core",
     "instance_support": 146,
     "distinct_paper_support": 145,
@@ -4656,6 +6141,13 @@
     "label": "carbon tax",
     "plain_label": "carbon tax",
     "subtitle": "",
+    "display_concept_id": "FG3C000152",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "resource tax",
+      "CO2 tax"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 186,
     "distinct_paper_support": 185,
@@ -4681,6 +6173,14 @@
     "label": "employment growth",
     "plain_label": "employment growth",
     "subtitle": "",
+    "display_concept_id": "FG3C000158",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "net employment growth",
+      "firm employment growth",
+      "local employment growth"
+    ],
     "bucket_hint": "core",
     "instance_support": 233,
     "distinct_paper_support": 231,
@@ -4706,6 +6206,14 @@
     "label": "bid-ask spread",
     "plain_label": "bid-ask spread",
     "subtitle": "",
+    "display_concept_id": "FG3C000190",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "relative bid-ask spreads",
+      "market liquidity (bid-ask spread)",
+      "bid-ask bounce"
+    ],
     "bucket_hint": "core",
     "instance_support": 364,
     "distinct_paper_support": 356,
@@ -4730,6 +6238,12 @@
     "label": "renewable energy development",
     "plain_label": "renewable energy development",
     "subtitle": "",
+    "display_concept_id": "FG3C000547",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "new energy industry development"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 75,
     "distinct_paper_support": 75,
@@ -4754,6 +6268,14 @@
     "label": "greenhouse gas (GHG) emissions",
     "plain_label": "greenhouse gas (GHG) emissions",
     "subtitle": "",
+    "display_concept_id": "FG3C000318",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "total greenhouse gas emissions",
+      "greenhouse gas emission reductions",
+      "global greenhouse gas emissions"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 113,
     "distinct_paper_support": 113,
@@ -4779,6 +6301,14 @@
     "label": "market concentration",
     "plain_label": "market concentration",
     "subtitle": "",
+    "display_concept_id": "FG3C000114",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "banking sector concentration",
+      "customer concentration",
+      "market concentration / market structure"
+    ],
     "bucket_hint": "core",
     "instance_support": 283,
     "distinct_paper_support": 283,
@@ -4804,6 +6334,14 @@
     "label": "real exchange rates",
     "plain_label": "real exchange rates",
     "subtitle": "",
+    "display_concept_id": "FG3C000325",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "persistence of real exchange rates",
+      "bilateral real exchange rates",
+      "real exchange rate misalignment"
+    ],
     "bucket_hint": "core",
     "instance_support": 187,
     "distinct_paper_support": 182,
@@ -4829,6 +6367,12 @@
     "label": "renewable energy use",
     "plain_label": "renewable energy use",
     "subtitle": "",
+    "display_concept_id": "FG3C000362",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "use of renewable energy"
+    ],
     "bucket_hint": "adjacent",
     "instance_support": 115,
     "distinct_paper_support": 115,
@@ -4854,6 +6398,14 @@
     "label": "terms of trade",
     "plain_label": "terms of trade",
     "subtitle": "",
+    "display_concept_id": "FG3C000162",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "terms of trade volatility",
+      "deterioration in the terms of trade",
+      "trade elasticity"
+    ],
     "bucket_hint": "core",
     "instance_support": 298,
     "distinct_paper_support": 293,

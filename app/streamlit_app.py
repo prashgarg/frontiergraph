@@ -27,7 +27,8 @@ QUESTIONS_URL = f"{SITE_URL}/questions/"
 GRAPH_URL = f"{SITE_URL}/graph/"
 PAPER_URL = f"{SITE_URL}/paper/"
 DOWNLOADS_URL = f"{SITE_URL}/downloads/"
-DEFAULT_DB = Path("data/production/frontiergraph_public_release/frontiergraph-economics-public.db")
+DEFAULT_DB = Path(os.environ.get("FRONTIERGRAPH_PUBLIC_RELEASE_DB", "/tmp/frontiergraph-economics-public.db"))
+LEGACY_DEFAULT_DB = Path("data/production/frontiergraph_public_release/frontiergraph-economics-public.db")
 FALLBACK_DB = Path(
     "data/production/frontiergraph_concept_compare_v1/baseline/suppression/concept_exploratory_suppressed_top100k_app.sqlite"
 )
@@ -405,13 +406,30 @@ def track_once(state_key: str, event: str, properties: dict[str, Any]) -> None:
 
 def choose_db_path() -> str:
     env_db = os.environ.get("ECON_OPPORTUNITY_DB", "").strip()
-    if env_db:
+    if env_db and bundle_is_usable(Path(env_db)):
         return env_db
-    if DEFAULT_DB.exists():
+    if bundle_is_usable(DEFAULT_DB):
         return str(DEFAULT_DB)
+    if bundle_is_usable(LEGACY_DEFAULT_DB):
+        return str(LEGACY_DEFAULT_DB)
     if FALLBACK_DB.exists():
         return str(FALLBACK_DB)
     return str(DEFAULT_DB)
+
+
+def bundle_is_usable(path: Path) -> bool:
+    if not path.exists():
+        return False
+    try:
+        with sqlite3.connect(path) as conn:
+            top_questions = conn.execute("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='top_questions'").fetchone()
+            questions = conn.execute("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='questions'").fetchone()
+            if not top_questions or not questions or top_questions[0] <= 0 or questions[0] <= 0:
+                return False
+            counts = conn.execute("SELECT (SELECT count(*) FROM top_questions), (SELECT count(*) FROM questions)").fetchone()
+            return bool(counts and counts[0] > 0 and counts[1] > 0)
+    except sqlite3.DatabaseError:
+        return False
 
 
 def query_df(db_path: str, sql: str, params: tuple[Any, ...] = ()) -> pd.DataFrame:
@@ -439,15 +457,28 @@ def load_release_metrics(db_path: str) -> dict[str, int]:
     return {str(key): int(value) for key, value in rows}
 
 
-@st.cache_data(show_spinner="Loading released questions...")
+@st.cache_data(show_spinner="Loading question candidates...")
 def load_questions(db_path: str) -> pd.DataFrame:
-    df = query_df(db_path, "SELECT * FROM questions ORDER BY score DESC, pair_key")
+    df = query_df(
+        db_path,
+        """
+        SELECT *
+        FROM questions
+        ORDER BY score DESC, public_specificity_score DESC, pair_key
+        """,
+    )
     if df.empty:
         return df
-    for column in ["score", "base_score", "duplicate_penalty", "path_support_norm", "gap_bonus"]:
+    for column in ["score", "base_score", "duplicate_penalty", "path_support_norm", "gap_bonus", "public_specificity_score"]:
         df[column] = pd.to_numeric(df[column], errors="coerce")
     for column in ["mediator_count", "motif_count", "cooc_count", "supporting_path_count", "cross_field"]:
         df[column] = pd.to_numeric(df[column], errors="coerce").fillna(0).astype(int)
+    df["display_priority"] = (
+        df["score"].fillna(0.0)
+        + 0.05 * df["public_specificity_score"].fillna(0.0)
+        + 0.01 * df["supporting_path_count"].fillna(0)
+    )
+    df = df.sort_values(by=["display_priority", "score", "pair_key"], ascending=[False, False, True], kind="mergesort").reset_index(drop=True)
     return df
 
 
@@ -469,7 +500,7 @@ def load_question_bundle(db_path: str, pair_key: str) -> dict[str, Any]:
     mediators = query_df(
         db_path,
         """
-        SELECT pair_key, rank, mediator_concept_id, mediator_label, score
+        SELECT pair_key, rank, mediator_concept_id, mediator_label, mediator_baseline_label, score
         FROM question_mediators
         WHERE pair_key = ?
         ORDER BY rank
@@ -480,7 +511,7 @@ def load_question_bundle(db_path: str, pair_key: str) -> dict[str, Any]:
     paths = query_df(
         db_path,
         """
-        SELECT pair_key, rank, path_len, path_score, path_text, path_nodes_json, path_labels_json
+        SELECT pair_key, rank, path_len, path_score, path_text, path_nodes_json, path_labels_json, path_baseline_labels_json
         FROM question_paths
         WHERE pair_key = ?
         ORDER BY rank
@@ -491,7 +522,17 @@ def load_question_bundle(db_path: str, pair_key: str) -> dict[str, Any]:
     papers = query_df(
         db_path,
         """
-        SELECT pair_key, path_rank, paper_rank, paper_id, title, year, edge_src_label, edge_dst_label
+        SELECT
+            pair_key,
+            path_rank,
+            paper_rank,
+            paper_id,
+            title,
+            year,
+            edge_src_label,
+            edge_src_baseline_label,
+            edge_dst_label,
+            edge_dst_baseline_label
         FROM question_papers
         WHERE pair_key = ?
         ORDER BY path_rank, paper_rank
@@ -551,6 +592,10 @@ def load_concept_bundle(db_path: str, concept_id: str) -> dict[str, Any]:
 
 
 def label_for_question(row: pd.Series) -> str:
+    source_label = str(row.get("source_display_label") or row.get("source_label") or "").strip()
+    target_label = str(row.get("target_display_label") or row.get("target_label") or "").strip()
+    if source_label and target_label:
+        return f"{source_label} and {target_label}"
     return str(row.get("public_pair_label") or f"{row.get('source_label', '')} and {row.get('target_label', '')}")
 
 
@@ -586,6 +631,8 @@ def question_text_blob(row: pd.Series | dict[str, Any]) -> str:
         str(value or "").lower()
         for value in (
             row.get("public_pair_label"),
+            row.get("source_display_label"),
+            row.get("target_display_label"),
             row.get("source_label"),
             row.get("target_label"),
             row.get("why_now"),
@@ -603,8 +650,11 @@ def plain_direct_status(value: Any) -> str:
     text = str(value or "").strip()
     mapping = {
         "No direct papers yet in the current public sample": "No exact released paper yet",
+        "No direct papers yet in the current public release": "No exact released paper yet",
         "A few direct papers in the current public sample": "A few exact released papers",
+        "A few direct papers already exist in the current public release": "A few exact released papers",
         "Direct literature exists in the current public sample": "Direct released papers exist",
+        "Direct literature already exists in the current public release": "Direct released papers exist",
     }
     return mapping.get(text, text)
 
@@ -629,14 +679,14 @@ def plain_recommended_move(value: Any) -> str:
     mapping = {
         "Direct empirical test": "A direct empirical test looks like the natural next step.",
         "Focused empirical test": "A focused empirical test looks like the natural next step.",
-        "Scoping review before a bridge paper": "A short review or pilot can connect the two nearby literatures before a direct test.",
+        "Scoping review before a bridge paper": "Start with a short review or pilot that follows the nearby links between the two topics.",
         "Seminar seed or targeted replication map": "This looks most useful as a seminar seed or a targeted replication map.",
         "Synthesis plus pilot design": "A synthesis paper plus a small pilot design looks like a sensible first move.",
-        "Bridge paper across literatures": "A paper that connects two nearby literatures looks like the natural next step.",
+        "Bridge paper across literatures": "A paper that follows the nearby links between the two topics looks like the natural next step.",
         "This looks ready for a direct empirical follow-through.": "A direct empirical test looks like the natural next step.",
         "Treat this as a missing direct test, not a settled result.": "Treat this as an open direct question, not a settled result.",
-        "Use this as a focused follow-up question in the nearby literature.": "Use this as a focused follow-up question in the nearby literature.",
-        "Start with a bridge review or cross-field pilot.": "A short review or pilot can help connect the two nearby literatures.",
+        "Use this as a focused follow-up question in the nearby literature.": "Use this as a focused follow-up question around the nearby papers.",
+        "Start with a bridge review or cross-field pilot.": "Start with a short review or pilot that follows the nearby links between the two topics.",
     }
     return mapping.get(text, text)
 
@@ -649,17 +699,17 @@ def question_surface_summary(row: pd.Series | dict[str, Any]) -> str:
     pieces: list[str] = []
     if path_count and mediator_count:
         pieces.append(
-            f"{format(path_count, ',')} nearby paths and {format(mediator_count, ',')} mediator topics already connect the two sides in the released map."
+            f"{format(path_count, ',')} nearby paths and {format(mediator_count, ',')} intermediate topics already connect the two sides in the public release."
         )
     elif path_count:
-        pieces.append(f"{format(path_count, ',')} nearby paths already connect the two sides in the released map.")
+        pieces.append(f"{format(path_count, ',')} nearby paths already connect the two sides in the public release.")
     elif mediator_count:
-        pieces.append(f"{format(mediator_count, ',')} nearby topics already connect the two sides in the released map.")
+        pieces.append(f"{format(mediator_count, ',')} intermediate topics already connect the two sides in the public release.")
     if cross_field:
         pieces.append("It bridges areas that are often read separately.")
     if common_contexts:
         pieces.append(common_contexts[0].upper() + common_contexts[1:])
-    return " ".join(pieces[:3]) or "This question sits close to nearby work in the current public release."
+    return " ".join(pieces[:3]) or "This question already sits near directed links and papers in the current public release."
 
 
 def question_is_broader_project(row: pd.Series | dict[str, Any]) -> bool:
@@ -824,8 +874,8 @@ def question_brief_markdown(question: pd.Series, mediators: pd.DataFrame, papers
         "## Why this question is on the list",
         question_surface_summary(question),
         "",
-        "## Nearby linking concepts",
-        *(mediator_lines or ["- No stable mediator preview in the current public release."]),
+        "## Intermediate topics already nearby",
+        *(mediator_lines or ["- No stable intermediate-topic preview in the current public release."]),
         "",
         "## Papers to begin with",
         *(paper_lines or ["- No paper list was exported for this question in the public release."]),
@@ -924,6 +974,8 @@ def question_filter_frame(
         needle = search.strip().lower()
         filtered = filtered[
             filtered["public_pair_label"].str.lower().str.contains(needle, na=False)
+            | filtered["source_display_label"].fillna("").str.lower().str.contains(needle, na=False)
+            | filtered["target_display_label"].fillna("").str.lower().str.contains(needle, na=False)
             | filtered["source_label"].str.lower().str.contains(needle, na=False)
             | filtered["target_label"].str.lower().str.contains(needle, na=False)
             | filtered["why_now"].str.lower().str.contains(needle, na=False)
@@ -1015,14 +1067,14 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
     with summary_cols[0]:
         mediator_labels = [str(row.mediator_label) for row in mediators.head(5).itertuples(index=False)]
         render_summary_card(
-            "Nearby topics",
-            ", ".join(mediator_labels) if mediator_labels else "No stable nearby-topic summary was exported for this question.",
+            "Intermediate topics",
+            ", ".join(mediator_labels) if mediator_labels else "No stable intermediate-topic summary was exported for this question.",
         )
     with summary_cols[1]:
         render_summary_card("What to do first", plain_recommended_move(question.get("recommended_move", "")))
 
     metrics_cols = st.columns(3)
-    metrics_cols[0].metric("Nearby topics", f"{int(question['mediator_count'])}")
+    metrics_cols[0].metric("Intermediate topics", f"{int(question['mediator_count'])}")
     metrics_cols[1].metric("Supporting paths", f"{int(question['supporting_path_count'])}")
     metrics_cols[2].metric("Project shape", question_project_shape(question))
     if str(question.get("common_contexts") or "").strip():
@@ -1083,7 +1135,7 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
         )
 
     with st.expander("Technical tables", expanded=False):
-        st.markdown("**Top mediators**")
+        st.markdown("**Top intermediate topics**")
         st.dataframe(mediators, use_container_width=True, hide_index=True)
 
         path_frame = paths.copy()
@@ -1091,9 +1143,12 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
             path_frame["path_labels"] = path_frame["path_labels_json"].map(
                 lambda value: " -> ".join(parse_json(value)) if parse_json(value) else ""
             )
+            path_frame["baseline_path_labels"] = path_frame["path_baseline_labels_json"].map(
+                lambda value: " -> ".join(parse_json(value)) if parse_json(value) else ""
+            )
             st.markdown("**Supporting paths**")
             st.dataframe(
-                path_frame.loc[:, ["rank", "path_len", "path_score", "path_labels"]],
+                path_frame.loc[:, ["rank", "path_len", "path_score", "path_labels", "baseline_path_labels"]],
                 use_container_width=True,
                 hide_index=True,
             )
@@ -1165,7 +1220,7 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
     filtered = question_filter_frame(questions, search, direct_filters, only_cross, broader_project_only)
 
     if filtered.empty:
-        st.warning("No released questions match the current filters.")
+        st.warning("No question candidates match the current filters.")
         return
 
     preview = diversified_question_preview(filtered, shortlist_size)
@@ -1247,7 +1302,7 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
     with st.expander("More questions in this shortlist", expanded=False):
         preview_table = preview.loc[:, ["public_pair_label", "supporting_path_count", "mediator_count", "recommended_move"]].copy()
         preview_table["Nearby support"] = preview_table.apply(
-            lambda row: f"{int(row['supporting_path_count'])} supporting paths · {int(row['mediator_count'])} nearby topics",
+            lambda row: f"{int(row['supporting_path_count'])} supporting paths · {int(row['mediator_count'])} intermediate topics",
             axis=1,
         )
         preview_table["recommended_move"] = preview_table["recommended_move"].map(plain_recommended_move)
@@ -1354,7 +1409,7 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
     metrics_cols[0].metric("Topic mentions", f"{int(concept['instance_support']):,}")
     metrics_cols[1].metric("Papers in release", f"{int(concept['distinct_paper_support']):,}")
     metrics_cols[2].metric("Nearby topics", f"{int(concept['neighbor_count']):,}")
-    st.caption("These counts refer to the current public FrontierGraph release. They describe where the topic sits in the released graph; they are not a claim about overall importance.")
+    st.caption("These counts refer to the current public FrontierGraph release. They describe how this topic sits in the released topic map, not overall importance.")
 
     summary_cols = st.columns(2)
     with summary_cols[0]:
@@ -1365,7 +1420,7 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
     with summary_cols[1]:
         render_summary_card(
             "What to inspect first",
-            "Start with the released questions below, then move through nearby topics if you want a broader local reading.",
+            "Start with the question candidates below, then move through nearby topics if you want a broader local reading.",
         )
 
     countries = ", ".join(top_value_labels(concept.get("top_countries_json")))
@@ -1374,7 +1429,7 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
         render_summary_card("Common contexts", f"Countries: {countries or 'not surfaced'}<br/>Units: {units or 'not surfaced'}")
     st.markdown("### Questions touching this topic")
     if opportunities.empty:
-        st.caption("No released questions touching this topic are available in the current public release.")
+        st.caption("No public question candidates touching this topic are available in the current public release.")
     else:
         for row in opportunities.head(5).itertuples(index=False):
             payload = parse_json(row.row_json)
@@ -1382,7 +1437,7 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
                 st.markdown(f"**{payload.get('public_pair_label', f'{row.source_label} and {row.target_label}')}**")
                 st.caption(question_surface_summary(payload))
                 st.write(plain_recommended_move(payload.get("recommended_move", "")))
-                if st.button("Open question", key=f"open-topic-question-{row.pair_key}"):
+                if st.button("Open question detail", key=f"open-topic-question-{row.pair_key}"):
                     set_query_params(view="question", pair=str(row.pair_key))
                     st.rerun()
 
@@ -1496,7 +1551,7 @@ def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd
                 st.markdown(f"**{label_for_question(question)}**")
                 st.caption(plain_recommended_move(question["recommended_move"]))
                 st.write(f"Exact released papers: {int(question['cooc_count'])}")
-                st.write(f"Nearby topics: {int(question['mediator_count'])}")
+                st.write(f"Intermediate topics: {int(question['mediator_count'])}")
                 if not papers.empty:
                     st.markdown("**Papers to begin with**")
                     for paper in papers.itertuples(index=False):
@@ -1528,7 +1583,7 @@ def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd
                 st.caption(str(concept.get("subtitle", "")))
                 st.write(f"Papers in release: {int(concept['distinct_paper_support']):,}")
                 st.write(f"Nearby topics: {int(concept['neighbor_count']):,}")
-                st.write(f"Nearby released questions: {len(opportunities):,}")
+                st.write(f"Nearby question candidates: {len(opportunities):,}")
                 if not neighbors.empty:
                     st.markdown("**Nearest neighbors**")
                     for row in neighbors.head(4).itertuples(index=False):
@@ -1633,7 +1688,7 @@ def main() -> None:
         st.stop()
 
     if questions.empty or concepts.empty:
-        st.error("The canonical public bundle is missing the released questions or concepts tables.")
+        st.error("The canonical public bundle is missing the question-candidate or topic tables.")
         st.stop()
 
     concept_lookup = {

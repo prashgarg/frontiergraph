@@ -5,15 +5,17 @@
 | Field | Meaning |
 | --- | --- |
 | `pair_key` | Stable public identifier for a released question, built from a normalized concept pair. |
-| `concept_id` | Stable public identifier for a normalized concept in the native ontology. |
+| `concept_id` | Stable public identifier for a topic in the public concept layer. |
 
 ## `top_questions.csv`
 
 | Field | Meaning |
 | --- | --- |
 | `pair_key` | Stable public question identifier. |
+| `source_display_label`, `target_display_label` | Public-facing labels used by the site and app when a cleaner or narrower wording is available. |
+| `display_refinement_confidence` | Confidence score for the public display refinement layer. |
 | `source_id`, `target_id` | Concept IDs for the two ends of the question. |
-| `source_label`, `target_label` | Reader-facing concept labels. |
+| `source_label`, `target_label` | Baseline concept labels preserved for reproducibility. |
 | `source_bucket`, `target_bucket` | Coarse location of each concept in the public graph. |
 | `cross_field` | Whether the two concepts sit across different broad buckets. |
 | `score` | Final public ranking score. |
@@ -21,18 +23,19 @@
 | `duplicate_penalty` | Downweight applied when many near-duplicate questions cluster together. |
 | `path_support_norm` | Normalized support from nearby paths in the graph. |
 | `gap_bonus` | Bonus for links that look underexplored relative to the local neighborhood. |
-| `mediator_count` | Count of nearby linking concepts supporting the question. |
+| `mediator_count` | Count of intermediate topics supporting the question. |
 | `motif_count` | Count of repeated local patterns around the question. |
-| `cooc_count` | Count of direct papers already observed in the public sample. |
+| `cooc_count` | Count of direct papers already observed in the public release. |
 | `direct_link_status` | Reader-facing summary of direct-literature presence. |
-| `supporting_path_count` | Count of nearby linking concepts surfaced in the release. |
+| `supporting_path_count` | Count of supporting paths surfaced in the release. |
 | `why_now` | Plain-language explanation of why the question is on the release surface. |
 | `recommended_move` | Suggested first research move. |
 | `slice_label` | Slice or family label used on the public site. |
 | `public_pair_label` | Plain-language pair label. |
 | `question_family` | Family label used to avoid repetitive windows. |
 | `suppress_from_public_ranked_window` | Whether the question is kept out of the default ranked window. |
-| `top_mediator_labels` | JSON list of the most important mediating concepts. |
+| `top_mediator_labels` | JSON list of the most important intermediate topics in display form. |
+| `top_mediator_baseline_labels` | JSON list of the corresponding baseline mediator labels kept for reproducibility. |
 | `representative_papers` | JSON list of papers to begin with, attached to nearby edges. |
 | `top_countries_source`, `top_countries_target` | JSON lists of common settings for each side of the pair. |
 | `source_context_summary`, `target_context_summary` | Short context summaries for each side. |
@@ -44,9 +47,13 @@
 | Field | Meaning |
 | --- | --- |
 | `concept_id` | Stable concept identifier. |
-| `label` | Preferred concept label. |
-| `plain_label` | Smoothed public label if one exists. |
+| `label` | Baseline preferred concept label. |
+| `plain_label` | Public display label used by the site and app. |
 | `subtitle` | Public clarifier used where concept naming needs context. |
+| `display_concept_id` | Concept ID for the display-layer refinement when one exists. |
+| `display_refined` | Whether the public display label comes from the finer display layer. |
+| `display_refinement_confidence` | Confidence score for the display-layer refinement. |
+| `alternate_display_labels` | Alternate finer labels considered for the public surface. |
 | `bucket_hint` | Coarse placement of the concept in the graph. |
 | `instance_support` | Number of mapped node mentions assigned to the concept. |
 | `distinct_paper_support` | Number of distinct papers touching the concept. |

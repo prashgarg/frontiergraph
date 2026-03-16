@@ -73,8 +73,8 @@ async function main() {
   assert((await nav.getByRole("link", { name: /How it works/i }).count()) === 0, "How it works should not remain in nav");
   assert((await nav.getByRole("link", { name: /^Method$/ }).count()) === 0, "Method should not remain in nav");
   assert(await page.getByRole("link", { name: /^Browse questions$/ }).first().isVisible(), "Homepage CTA missing");
-  assert(await page.getByRole("link", { name: /^Explore in app$/ }).first().isVisible(), "Homepage app CTA missing");
-  assert(await page.getByRole("link", { name: /^Read paper$/ }).first().isVisible(), "Homepage paper CTA missing");
+  assert(await page.getByRole("link", { name: /^Open app for papers and export$/ }).first().isVisible(), "Homepage app CTA missing");
+  assert(await page.getByRole("link", { name: /^Working paper$/ }).first().isVisible(), "Homepage paper CTA missing");
   assert(await page.getByRole("link", { name: /^Download data$/ }).first().isVisible(), "Homepage data CTA missing");
   assert(await page.getByText(/^What$/).first().isVisible(), "Homepage what card missing");
   assert(await page.getByText(/^Why$/).first().isVisible(), "Homepage why card missing");

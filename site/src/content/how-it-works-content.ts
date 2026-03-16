@@ -19,7 +19,7 @@ export function buildHowItWorksContent(appUrl: string): {
   return {
     foundationHtml: [
       `FrontierGraph builds on the paper-level claim-graph extraction method introduced in <a href="https://arxiv.org/abs/2501.06873"><em>Causal Claims in Economics</em></a> and the project site <a href="https://www.causal.claims/">causal.claims</a>.`,
-      `That foundational work is about extracting paper-local structure from economics papers. FrontierGraph extends that idea with a published-journal corpus, a native concept vocabulary, deterministic graph ranking, release filtering, and a public interface for browsing candidate research questions.`,
+      `That foundational work is about extracting paper-local structure from economics papers. FrontierGraph extends that idea with a published-journal corpus, a topic vocabulary for public browsing, deterministic graph ranking, release filtering, and a public interface for browsing candidate research questions.`,
     ],
     railItems: [
       "Not a causal estimate",
@@ -69,7 +69,7 @@ export function buildHowItWorksContent(appUrl: string): {
           {
             question: "What does \"No direct papers yet\" mean?",
             answerHtml: [
-              "It means the current public sample does not show direct papers linking the pair in the surfaced form. It does not mean the question has never been studied under synonyms, neighboring labels, or outside the current build.",
+              "It means the current public release does not show direct papers linking the pair in the surfaced form. It does not mean the question has never been studied under synonyms, neighboring labels, or outside the current build.",
             ],
           },
           {
@@ -101,7 +101,7 @@ export function buildHowItWorksContent(appUrl: string): {
           {
             question: "What should I do after opening one card?",
             answerHtml: [
-              `Check close synonyms, read the papers to start with, inspect the related ideas, and decide whether the question looks like a mechanism, outcome, or setting question. If you want a slower topic-level reading with paths and evidence tables, use <a href="${appUrl}">Open the deeper app</a>.`,
+              `Check close synonyms, read the papers to start with, inspect the related ideas, and decide whether the question looks like a mechanism, outcome, or setting question. If you want papers, tables, and export, use <a href="${appUrl}">Open the app workspace</a>.`,
             ],
           },
         ],

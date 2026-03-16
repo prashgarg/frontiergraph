@@ -44,6 +44,7 @@ PUBLIC_DB_URL = os.environ.get(
     "https://storage.googleapis.com/frontiergraph-public-downloads-1058669339361/frontiergraph-economics-public.db",
 )
 PUBLIC_RELEASE_DIR = ROOT / "data" / "production" / "frontiergraph_public_release"
+DEFAULT_PUBLIC_RELEASE_DB_PATH = Path(os.environ.get("FRONTIERGRAPH_PUBLIC_RELEASE_DB", f"/tmp/{DB_FILENAME}"))
 SOURCE_PUBLIC_APP_DB_PATH = Path(
     os.environ.get(
         "FRONTIERGRAPH_PUBLIC_SOURCE_DB",
@@ -56,9 +57,13 @@ SOURCE_PUBLIC_APP_DB_PATH = Path(
         / "concept_exploratory_suppressed_top100k_app.sqlite",
     )
 )
-PUBLIC_RELEASE_DB_PATH = PUBLIC_RELEASE_DIR / DB_FILENAME
+PUBLIC_RELEASE_DB_PATH = DEFAULT_PUBLIC_RELEASE_DB_PATH
 PUBLIC_GRAPH_DB_PATH = PUBLIC_RELEASE_DIR / "frontiergraph-economics-public-graph.sqlite"
 PAPER_SYNC_SCRIPT = ROOT / "scripts" / "sync_paper_site_assets.py"
+DISPLAY_REFINEMENT_SCRIPT = ROOT / "scripts" / "build_public_display_refinement.py"
+DISPLAY_REFINEMENT_PATH = PUBLIC_RELEASE_DIR / "display_refinement_v1.json"
+BASELINE_ONTOLOGY_DB_PATH = ROOT / "data" / "production" / "frontiergraph_ontology_compare_v1" / "baseline" / "ontology_v3.sqlite"
+BROAD_ONTOLOGY_DB_PATH = ROOT / "data" / "production" / "frontiergraph_ontology_compare_v1" / "broad" / "ontology_v3.sqlite"
 
 EXTRACTION_SUMMARY_PATH = (
     ROOT
@@ -151,7 +156,7 @@ USE_CASE_CAROUSEL_DEFS = [
     {
         "slug": "strong-nearby-evidence",
         "title": "Questions with stronger nearby evidence",
-        "caption": "These have more surrounding structure already in the released graph.",
+        "caption": "These already sit near more directed links, intermediate topics, and papers in the public release.",
     },
     {
         "slug": "phd-topic",
@@ -161,7 +166,7 @@ USE_CASE_CAROUSEL_DEFS = [
     {
         "slug": "open-little-direct",
         "title": "Open questions with little direct work",
-        "caption": "These still look open in the current public sample.",
+        "caption": "These still look open in the current public release.",
     },
 ]
 
@@ -174,7 +179,7 @@ COLLECTION_DEFS = [
     {
         "slug": "open-little-direct",
         "title": "Open questions with little direct work",
-        "caption": "These look especially useful when you want a topic that still seems open in the current public sample.",
+        "caption": "These look especially useful when you want a topic that still seems open in the current public release.",
     },
     {
         "slug": "strong-nearby-evidence",
@@ -209,6 +214,65 @@ PUBLIC_WINDOW_BLOCKLIST_PHRASES = (
     "relative prices",
     "distance",
 )
+PUBLIC_METHOD_TOPIC_PHRASES = (
+    "model performance metrics",
+    "method of moments quantile regression",
+    "multivariate garch framework",
+    "garch 1 1 model",
+    "consistency and asymptotic normality of estimator",
+    "quantile regression",
+    "asymptotic normality",
+    "granger causality",
+    "cointegration",
+    "panel ardl",
+    "markov switching",
+    "estimator",
+    "forecast accuracy",
+    "s p 500 volatility",
+    "quality adjusted life year",
+    "willingness to pay",
+    "contingent valuation methods",
+    "ordinary least squares",
+    "arrival of new information",
+    "rate of growth",
+    "regional development level",
+    "economic development level",
+    "health related quality of life",
+    "overlapping generations model",
+    "error correction model",
+    "vector error correction",
+    "impulse response function",
+    "stochastic frontier analysis",
+)
+GENERIC_PUBLIC_TOPIC_TERMS = {
+    "consumption",
+    "credit",
+    "development",
+    "economic development",
+    "economic growth",
+    "education",
+    "employment",
+    "exports",
+    "financial development",
+    "geopolitical risks",
+    "human capital",
+    "information and communication technologies",
+    "inflation",
+    "innovation",
+    "institutional quality",
+    "institutions",
+    "investment",
+    "model parameters",
+    "monetary policy",
+    "output growth",
+    "price changes",
+    "product innovation",
+    "productivity",
+    "public debt",
+    "trade",
+    "trade openness",
+    "volatility",
+}
 
 TOKEN_STOPWORDS = {
     "and",
@@ -258,6 +322,44 @@ COUNTRY_CODE_ALIASES = {
 def read_json(path: Path) -> dict[str, Any]:
     with path.open() as handle:
         return json.load(handle)
+
+
+def ensure_display_refinement_artifact() -> Path:
+    required_inputs = [
+        SOURCE_PUBLIC_APP_DB_PATH,
+        BASELINE_ONTOLOGY_DB_PATH,
+        BROAD_ONTOLOGY_DB_PATH,
+        DISPLAY_REFINEMENT_SCRIPT,
+    ]
+    artifact_missing = not DISPLAY_REFINEMENT_PATH.exists()
+    artifact_stale = artifact_missing or any(
+        path.exists() and path.stat().st_mtime > DISPLAY_REFINEMENT_PATH.stat().st_mtime
+        for path in required_inputs
+    )
+    if artifact_stale:
+        subprocess.run(
+            [
+                sys.executable,
+                str(DISPLAY_REFINEMENT_SCRIPT),
+                "--source-db",
+                str(SOURCE_PUBLIC_APP_DB_PATH),
+                "--baseline-ontology-db",
+                str(BASELINE_ONTOLOGY_DB_PATH),
+                "--broad-ontology-db",
+                str(BROAD_ONTOLOGY_DB_PATH),
+                "--output-path",
+                str(DISPLAY_REFINEMENT_PATH),
+            ],
+            check=True,
+        )
+    return DISPLAY_REFINEMENT_PATH
+
+
+def load_display_refinement() -> dict[str, Any]:
+    path = ensure_display_refinement_artifact()
+    payload = read_json(path)
+    concepts = payload.get("concepts", {})
+    return concepts if isinstance(concepts, dict) else {}
 
 
 def connect(db_path: Path) -> sqlite3.Connection:
@@ -336,6 +438,11 @@ def normalized_label_key(value: Any) -> str:
     text = re.sub(r"[^a-z0-9\s]", " ", text)
     text = re.sub(r"\s+", " ", text)
     return text.strip()
+
+
+def token_count(value: Any) -> int:
+    normalized = normalized_label_key(value)
+    return len([token for token in normalized.split() if token])
 
 
 def significant_tokens(*values: Any) -> list[str]:
@@ -424,14 +531,43 @@ def public_label_payload(
     concept_id: str | None,
     raw_label: Any,
     glossary: dict[str, dict[str, Any]],
+    display_refinement: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, str]:
     label = clean_public_text(raw_label) or str(concept_id or "")
-    entry = glossary.get(str(concept_id or ""), {})
-    plain_label = clean_public_text(entry.get("plain_label")) or label
+    refinement = (display_refinement or {}).get(str(concept_id or ""), {})
+    display_label = clean_public_text(refinement.get("display_label")) or label
+    display_concept_id = clean_public_text(refinement.get("display_concept_id")) or str(concept_id or "")
+    entry = glossary.get(str(concept_id or ""), {}) or glossary.get(display_concept_id, {})
+    plain_label = clean_public_text(entry.get("plain_label")) or display_label
     subtitle = clean_public_text(entry.get("subtitle"))
     return {
+        "baseline_label": label,
+        "display_label": display_label,
+        "display_concept_id": display_concept_id,
+        "display_refined": bool(refinement.get("display_refined", False)),
+        "display_refinement_confidence": round(to_float(refinement.get("display_refinement_confidence"), 0.0), 4),
+        "alternate_display_labels": uniq_keep_order(
+            [clean_public_text(value) for value in refinement.get("alternate_display_labels", []) if clean_public_text(value)],
+            limit=3,
+        ),
         "plain_label": plain_label,
         "subtitle": subtitle,
+    }
+
+
+def concept_display_row(
+    concept_id: str,
+    raw_label: Any,
+    glossary: dict[str, dict[str, Any]],
+    display_refinement: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    payload = public_label_payload(concept_id, raw_label, glossary, display_refinement)
+    return {
+        "display_label": payload["plain_label"],
+        "display_concept_id": payload["display_concept_id"],
+        "display_refined": payload["display_refined"],
+        "display_refinement_confidence": payload["display_refinement_confidence"],
+        "alternate_display_labels": payload["alternate_display_labels"],
     }
 
 
@@ -482,12 +618,12 @@ def recommended_move(values: dict[str, Any]) -> str:
     mediator_count = to_int(values.get("mediator_count", 0))
     cross_bucket = bool(values.get("cross_bucket", False))
     if cross_bucket and cooc_count <= 0:
-        return "A short review or pilot can help connect the two nearby literatures."
+        return "Start with a short review or pilot study that follows the nearby links between the two topics."
     if path_support >= 0.95 and mediator_count >= 10:
         return "A direct empirical test looks like the natural next step."
     if cooc_count <= 0:
-        return "Treat this as an open direct question, not a settled result."
-    return "Use this as a focused follow-up question in the nearby literature."
+        return "Treat this as an open direct question in the current public release."
+    return "Use this as a focused follow-up question around the nearby papers."
 
 
 def plain_language_context(values: list[str], fallback: str) -> str:
@@ -510,8 +646,8 @@ def why_now(values: dict[str, Any]) -> str:
     support_level = "strong" if path_support >= 0.95 else "visible"
     if cooc_count <= 0:
         return (
-            f"{source_label} and {target_label} are close in the surrounding graph, "
-            f"but the public sample shows no direct papers linking them yet."
+            f"{source_label} and {target_label} already sit near the same short paths and papers, "
+            f"but the current public release shows no direct paper linking them yet."
         )
     if cooc_count == 1:
         direct_copy = "one direct paper so far"
@@ -521,7 +657,7 @@ def why_now(values: dict[str, Any]) -> str:
         direct_copy = "an existing direct literature in the public sample"
     return (
         f"{source_label} and {target_label} already have {direct_copy}, "
-        f"while {mediator_count} nearby concepts provide {support_level} support for a more direct follow-up."
+        f"while {mediator_count} intermediate topics provide {support_level} support for a more direct follow-up."
     )
 
 
@@ -529,6 +665,7 @@ def resolve_top_mediator_labels(
     raw: Any,
     concept_label_lookup: dict[str, str],
     glossary: dict[str, dict[str, Any]],
+    display_refinement: dict[str, dict[str, Any]],
     limit: int = 3,
 ) -> list[str]:
     labels: list[str] = []
@@ -540,12 +677,36 @@ def resolve_top_mediator_labels(
         if not concept_id:
             continue
         raw_label = concept_label_lookup.get(concept_id, concept_id)
-        public_label = public_label_payload(concept_id, raw_label, glossary)["plain_label"]
+        public_label = public_label_payload(concept_id, raw_label, glossary, display_refinement)["plain_label"]
         normalized = normalized_label_key(public_label)
         if not public_label or not normalized or normalized in seen:
             continue
         seen.add(normalized)
         labels.append(public_label)
+        if len(labels) >= limit:
+            break
+    return labels
+
+
+def resolve_top_mediator_baseline_labels(
+    raw: Any,
+    concept_label_lookup: dict[str, str],
+    limit: int = 3,
+) -> list[str]:
+    labels: list[str] = []
+    seen: set[str] = set()
+    for item in parse_json_list(raw):
+        if not isinstance(item, dict):
+            continue
+        concept_id = str(item.get("mediator", "")).strip()
+        if not concept_id:
+            continue
+        baseline_label = clean_public_text(concept_label_lookup.get(concept_id, concept_id))
+        normalized = normalized_label_key(baseline_label)
+        if not baseline_label or not normalized or normalized in seen:
+            continue
+        seen.add(normalized)
+        labels.append(baseline_label)
         if len(labels) >= limit:
             break
     return labels
@@ -594,12 +755,13 @@ def select_representative_papers(
     papers: list[dict[str, Any]],
     concept_label_lookup: dict[str, str],
     glossary: dict[str, dict[str, Any]],
+    display_refinement: dict[str, dict[str, Any]],
 ) -> list[dict[str, Any]]:
     if not papers:
         return []
 
-    source_public = public_label_payload(values["u"], values["u_preferred_label"], glossary)["plain_label"]
-    target_public = public_label_payload(values["v"], values["v_preferred_label"], glossary)["plain_label"]
+    source_public = public_label_payload(values["u"], values["u_preferred_label"], glossary, display_refinement)["plain_label"]
+    target_public = public_label_payload(values["v"], values["v_preferred_label"], glossary, display_refinement)["plain_label"]
 
     scored: list[tuple[float, dict[str, Any]]] = []
     for paper in papers:
@@ -632,6 +794,18 @@ def select_representative_papers(
                 "year": to_int(paper["year"]),
                 "edge_src": str(paper["edge_src"]),
                 "edge_dst": str(paper["edge_dst"]),
+                "edge_src_display_label": public_label_payload(
+                    str(paper["edge_src"]),
+                    concept_label_lookup.get(str(paper["edge_src"]), str(paper["edge_src"])),
+                    glossary,
+                    display_refinement,
+                )["plain_label"],
+                "edge_dst_display_label": public_label_payload(
+                    str(paper["edge_dst"]),
+                    concept_label_lookup.get(str(paper["edge_dst"]), str(paper["edge_dst"])),
+                    glossary,
+                    display_refinement,
+                )["plain_label"],
             }
         )
     return out
@@ -708,6 +882,62 @@ def load_representative_papers() -> dict[tuple[str, str], list[dict[str, Any]]]:
     return lookup
 
 
+def topic_broadness_penalty(label: str, distinct_paper_support: int, refined: bool) -> float:
+    normalized = normalized_label_key(label)
+    penalty = 0.0
+    if normalized in GENERIC_PUBLIC_TOPIC_TERMS:
+        penalty += 10.0
+    if any(phrase in normalized for phrase in PUBLIC_METHOD_TOPIC_PHRASES):
+        penalty += 14.0
+    if token_count(label) <= 2:
+        penalty += 2.5
+    if distinct_paper_support >= 8000:
+        penalty += 4.0
+    elif distinct_paper_support >= 4000:
+        penalty += 2.0
+    if not refined:
+        penalty += 2.5
+    return penalty
+
+
+def public_specificity_score(
+    values: dict[str, Any],
+    source_public: dict[str, Any],
+    target_public: dict[str, Any],
+) -> float:
+    score = 0.0
+    if source_public["display_refined"]:
+        score += 5.0
+    if target_public["display_refined"]:
+        score += 5.0
+    score += min(to_int(values.get("mediator_count", 0)), 20) * 0.35
+    score += min(to_int(values.get("supporting_path_count", values.get("mediator_count", 0))), 20) * 0.25
+    score += min(to_float(values.get("path_support_norm", 0.0)), 1.0) * 5.0
+    if to_int(values.get("cooc_count", 0)) <= 0:
+        score += 1.6
+    if source_public["display_refined"] and target_public["display_refined"]:
+        score += 2.0
+    source_penalty = topic_broadness_penalty(
+        source_public["plain_label"],
+        to_int(values.get("u_distinct_paper_support", 0)),
+        bool(source_public["display_refined"]),
+    )
+    target_penalty = topic_broadness_penalty(
+        target_public["plain_label"],
+        to_int(values.get("v_distinct_paper_support", 0)),
+        bool(target_public["display_refined"]),
+    )
+    score -= source_penalty + target_penalty
+    if (
+        normalized_label_key(source_public["plain_label"]) in GENERIC_PUBLIC_TOPIC_TERMS
+        and normalized_label_key(target_public["plain_label"]) in GENERIC_PUBLIC_TOPIC_TERMS
+        and not source_public["display_refined"]
+        and not target_public["display_refined"]
+    ):
+        score -= 6.0
+    return round(score, 4)
+
+
 def infer_question_family(source_label: str, target_label: str) -> str:
     combined = f"{normalized_label_key(source_label)} {normalized_label_key(target_label)}"
     if "public debt" in combined and any(token in combined for token in ("co2", "carbon", "environmental", "emissions")):
@@ -741,23 +971,32 @@ def infer_question_family(source_label: str, target_label: str) -> str:
 
 def public_window_penalty(row: dict[str, Any]) -> tuple[int, int]:
     penalty = 0
-    label_blob = " ".join(
-        [
-            normalized_label_key(row.get("source_label")),
-            normalized_label_key(row.get("target_label")),
-            normalized_label_key(row.get("public_pair_label")),
-        ]
-    )
+    source_label = normalized_label_key(row.get("source_display_label") or row.get("source_label"))
+    target_label = normalized_label_key(row.get("target_display_label") or row.get("target_label"))
+    label_blob = " ".join([source_label, target_label, normalized_label_key(row.get("public_pair_label"))])
     if any(phrase in label_blob for phrase in PUBLIC_WINDOW_BLOCKLIST_PHRASES):
         penalty += 25
+    if any(phrase in label_blob for phrase in PUBLIC_METHOD_TOPIC_PHRASES):
+        penalty += 20
+    if source_label in GENERIC_PUBLIC_TOPIC_TERMS:
+        penalty += 9
+    if target_label in GENERIC_PUBLIC_TOPIC_TERMS:
+        penalty += 9
+    if source_label in GENERIC_PUBLIC_TOPIC_TERMS and target_label in GENERIC_PUBLIC_TOPIC_TERMS:
+        penalty += 10
     if len(row.get("representative_papers", [])) < 2:
         penalty += 8
     if not row.get("common_contexts"):
         penalty += 4
     if len(row.get("top_mediator_labels", [])) < 2:
         penalty += 4
+    if not row.get("source_display_refined"):
+        penalty += 2
+    if not row.get("target_display_refined"):
+        penalty += 2
     if row.get("suppress_from_public_ranked_window"):
         penalty += 100
+    penalty -= int(round(max(min(to_float(row.get("public_specificity_score", 0.0)), 18.0), -18.0)))
     return penalty, to_int(row.get("cooc_count", 0))
 
 
@@ -766,6 +1005,7 @@ def opportunity_record(
     columns: list[str],
     concept_label_lookup: dict[str, str],
     glossary: dict[str, dict[str, Any]],
+    display_refinement: dict[str, dict[str, Any]],
     representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
     editorial: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
@@ -773,8 +1013,8 @@ def opportunity_record(
     cooc_count = to_int(values["cooc_count"])
     top_source = top_values(values["u_top_countries"], limit=3)
     top_target = top_values(values["v_top_countries"], limit=3)
-    source_public = public_label_payload(values["u"], values["u_preferred_label"], glossary)
-    target_public = public_label_payload(values["v"], values["v_preferred_label"], glossary)
+    source_public = public_label_payload(values["u"], values["u_preferred_label"], glossary, display_refinement)
+    target_public = public_label_payload(values["v"], values["v_preferred_label"], glossary, display_refinement)
     editorial_entry = (editorial or {}).get(str(values["pair_key"]), {})
     cross_field = clean_public_text(values.get("u_bucket_hint")) != clean_public_text(values.get("v_bucket_hint"))
     representative_papers = select_representative_papers(
@@ -786,15 +1026,34 @@ def opportunity_record(
         ],
         concept_label_lookup,
         glossary,
+        display_refinement,
     )
-    source_context_summary = plain_language_context(top_source, "No dominant source setting in the current public sample")
-    target_context_summary = plain_language_context(top_target, "No dominant target setting in the current public sample")
+    source_context_summary = plain_language_context(top_source, "No dominant source setting in the current public release")
+    target_context_summary = plain_language_context(top_target, "No dominant target setting in the current public release")
+    specificity_score = public_specificity_score(values, source_public, target_public)
+    display_refinement_confidence = round(
+        (
+            to_float(source_public["display_refinement_confidence"])
+            + to_float(target_public["display_refinement_confidence"])
+        )
+        / 2.0,
+        4,
+    )
     return {
         "pair_key": values["pair_key"],
         "source_id": values["u"],
         "target_id": values["v"],
         "source_label": values["u_preferred_label"],
         "target_label": values["v_preferred_label"],
+        "source_display_label": source_public["plain_label"],
+        "target_display_label": target_public["plain_label"],
+        "source_display_concept_id": source_public["display_concept_id"],
+        "target_display_concept_id": target_public["display_concept_id"],
+        "source_display_refined": source_public["display_refined"],
+        "target_display_refined": target_public["display_refined"],
+        "display_refinement_confidence": display_refinement_confidence,
+        "source_alternate_display_labels": source_public["alternate_display_labels"],
+        "target_alternate_display_labels": target_public["alternate_display_labels"],
         "source_bucket": values["u_bucket_hint"],
         "target_bucket": values["v_bucket_hint"],
         "cross_field": cross_field,
@@ -808,7 +1067,13 @@ def opportunity_record(
         "cooc_count": cooc_count,
         "direct_link_status": direct_link_status(cooc_count),
         "supporting_path_count": to_int(values["mediator_count"]),
-        "why_now": why_now(values),
+        "why_now": why_now(
+            {
+                **values,
+                "u_preferred_label": source_public["plain_label"],
+                "v_preferred_label": target_public["plain_label"],
+            }
+        ),
         "recommended_move": recommended_move(values),
         "slice_label": public_slice_label(values),
         "public_pair_label": stable_public_pair_label(
@@ -817,11 +1082,29 @@ def opportunity_record(
             values.get("u_bucket_hint"),
             values.get("v_bucket_hint"),
         ),
-        "top_mediator_labels": resolve_top_mediator_labels(values.get("top_mediators_json"), concept_label_lookup, glossary, limit=3),
         "representative_papers": representative_papers,
         "question_family": clean_public_text(editorial_entry.get("question_family"))
         or infer_question_family(source_public["plain_label"], target_public["plain_label"]),
         "suppress_from_public_ranked_window": bool(editorial_entry.get("suppress_from_public_ranked_window", False)),
+        "top_mediator_display_labels": resolve_top_mediator_labels(
+            values.get("top_mediators_json"),
+            concept_label_lookup,
+            glossary,
+            display_refinement,
+            limit=3,
+        ),
+        "top_mediator_labels": resolve_top_mediator_labels(
+            values.get("top_mediators_json"),
+            concept_label_lookup,
+            glossary,
+            display_refinement,
+            limit=3,
+        ),
+        "top_mediator_baseline_labels": resolve_top_mediator_baseline_labels(
+            values.get("top_mediators_json"),
+            concept_label_lookup,
+            limit=3,
+        ),
         "top_countries_source": top_source,
         "top_countries_target": top_target,
         "source_context_summary": source_context_summary,
@@ -832,6 +1115,7 @@ def opportunity_record(
             source_context_summary,
             target_context_summary,
         ),
+        "public_specificity_score": specificity_score,
         "app_link": build_app_question_link(values["pair_key"]),
     }
 
@@ -879,20 +1163,32 @@ def build_slices(
     df: pd.DataFrame,
     concept_label_lookup: dict[str, str],
     glossary: dict[str, dict[str, Any]],
+    display_refinement: dict[str, dict[str, Any]],
     representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
     editorial: dict[str, dict[str, Any]],
 ) -> dict[str, list[dict[str, Any]]]:
     columns = list(df.columns)
     def top_records(mask: pd.Series | None, limit: int = 100) -> list[dict[str, Any]]:
+        raw_limit = max(limit * 30, 2500)
         if mask is None:
-            subset = df.head(limit)
+            subset = df.head(raw_limit)
         else:
-            subset = df.loc[mask].head(limit)
+            subset = df.loc[mask].head(raw_limit)
         subset_rows = [tuple(row) for row in subset.itertuples(index=False, name=None)]
-        return [
-            opportunity_record(row, columns, concept_label_lookup, glossary, representative_papers_lookup, editorial)
+        records = [
+            opportunity_record(row, columns, concept_label_lookup, glossary, display_refinement, representative_papers_lookup, editorial)
             for row in subset_rows
         ]
+        records.sort(
+            key=lambda row: (
+                is_climate_heavy(row),
+                public_window_penalty(row),
+                -to_float(row.get("public_specificity_score", 0.0)),
+                -to_float(row.get("score", 0.0)),
+                str(row.get("pair_key", "")),
+            )
+        )
+        return records[:limit]
 
     return {
         "overall": top_records(None),
@@ -972,6 +1268,7 @@ def build_backbone(
     edge_contexts_df: pd.DataFrame,
     edge_exemplars_df: pd.DataFrame,
     glossary: dict[str, dict[str, Any]],
+    display_refinement: dict[str, dict[str, Any]],
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     top_node_ids = set(node_metrics_df.head(BACKBONE_NODE_LIMIT)["concept_id"])
     edges_subset = edges_df[
@@ -1033,13 +1330,17 @@ def build_backbone(
         metrics = central_metrics.get(concept_id, {})
         pos = positions.get(concept_id, {"x": 0.5, "y": 0.5})
         aliases = uniq_keep_order(parse_json_list(detail.get("aliases_json")), limit=8)
-        public_label = public_label_payload(concept_id, detail.get("preferred_label", concept_id), glossary)
+        public_label = public_label_payload(concept_id, detail.get("preferred_label", concept_id), glossary, display_refinement)
         backbone_nodes.append(
             {
                 "id": concept_id,
                 "label": detail.get("preferred_label", concept_id),
                 "plain_label": public_label["plain_label"],
                 "subtitle": public_label["subtitle"],
+                "display_concept_id": public_label["display_concept_id"],
+                "display_refined": public_label["display_refined"],
+                "display_refinement_confidence": public_label["display_refinement_confidence"],
+                "alternate_display_labels": public_label["alternate_display_labels"],
                 "aliases": aliases,
                 "alias_count": len(parse_json_list(detail.get("aliases_json"))),
                 "bucket_hint": detail.get("bucket_hint", "unknown"),
@@ -1101,6 +1402,8 @@ def build_neighborhoods(
     edges_df: pd.DataFrame,
     edge_profiles_df: pd.DataFrame,
     edge_contexts_df: pd.DataFrame,
+    glossary: dict[str, dict[str, Any]],
+    display_refinement: dict[str, dict[str, Any]],
 ) -> dict[str, Any]:
     node_label_map = nodes_df.set_index("concept_id")["preferred_label"].to_dict()
     edge_profile_map = {
@@ -1119,7 +1422,12 @@ def build_neighborhoods(
         context = edge_context_map.get(key)
         payload = {
             "concept_id": row.target_concept_id,
-            "label": node_label_map.get(row.target_concept_id, row.target_concept_id),
+            "label": public_label_payload(
+                row.target_concept_id,
+                node_label_map.get(row.target_concept_id, row.target_concept_id),
+                glossary,
+                display_refinement,
+            )["plain_label"],
             "support_count": int(row.support_count),
             "distinct_papers": int(row.distinct_papers),
             "avg_stability": round(float(row.avg_stability), 4),
@@ -1133,7 +1441,12 @@ def build_neighborhoods(
             {
                 **payload,
                 "concept_id": row.source_concept_id,
-                "label": node_label_map.get(row.source_concept_id, row.source_concept_id),
+                "label": public_label_payload(
+                    row.source_concept_id,
+                    node_label_map.get(row.source_concept_id, row.source_concept_id),
+                    glossary,
+                    display_refinement,
+                )["plain_label"],
             }
         )
 
@@ -1163,6 +1476,7 @@ def build_concept_opportunities(
     candidates_df: pd.DataFrame,
     concept_label_lookup: dict[str, str],
     glossary: dict[str, dict[str, Any]],
+    display_refinement: dict[str, dict[str, Any]],
     representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
     editorial: dict[str, dict[str, Any]],
 ) -> dict[str, list[dict[str, Any]]]:
@@ -1174,6 +1488,7 @@ def build_concept_opportunities(
             columns,
             concept_label_lookup,
             glossary,
+            display_refinement,
             representative_papers_lookup,
             editorial,
         )
@@ -1198,6 +1513,7 @@ def build_search_index(
     nodes_df: pd.DataFrame,
     node_metrics_df: pd.DataFrame,
     glossary: dict[str, dict[str, Any]],
+    display_refinement: dict[str, dict[str, Any]],
 ) -> list[dict[str, Any]]:
     metrics_map = node_metrics_df.set_index("concept_id").to_dict("index")
     records: list[dict[str, Any]] = []
@@ -1205,16 +1521,24 @@ def build_search_index(
         metrics = metrics_map.get(row.concept_id, {})
         aliases = uniq_keep_order(parse_json_list(row.aliases_json), limit=12)
         search_terms = uniq_keep_order(
-            [str(row.preferred_label).lower(), public_label_payload(row.concept_id, row.preferred_label, glossary)["plain_label"].lower()] + [alias.lower() for alias in aliases],
+            [
+                str(row.preferred_label).lower(),
+                public_label_payload(row.concept_id, row.preferred_label, glossary, display_refinement)["plain_label"].lower(),
+            ]
+            + [alias.lower() for alias in aliases],
             limit=20,
         )
-        public_label = public_label_payload(row.concept_id, row.preferred_label, glossary)
+        public_label = public_label_payload(row.concept_id, row.preferred_label, glossary, display_refinement)
         records.append(
             {
                 "concept_id": row.concept_id,
                 "label": row.preferred_label,
                 "plain_label": public_label["plain_label"],
                 "subtitle": public_label["subtitle"],
+                "display_concept_id": public_label["display_concept_id"],
+                "display_refined": public_label["display_refined"],
+                "display_refinement_confidence": public_label["display_refinement_confidence"],
+                "alternate_display_labels": public_label["alternate_display_labels"],
                 "aliases": aliases,
                 "bucket_hint": row.bucket_hint,
                 "instance_support": int(row.instance_support),
@@ -1357,6 +1681,7 @@ def build_editorial_records(
     candidates_df: pd.DataFrame,
     concept_label_lookup: dict[str, str],
     glossary: dict[str, dict[str, Any]],
+    display_refinement: dict[str, dict[str, Any]],
     representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
 ) -> list[dict[str, Any]]:
     available_pair_keys = {str(value) for value in candidates_df["pair_key"].tolist()}
@@ -1376,6 +1701,7 @@ def build_editorial_records(
             columns,
             concept_label_lookup,
             glossary,
+            display_refinement,
             representative_papers_lookup,
             editorial,
         )
@@ -1790,12 +2116,12 @@ def write_public_db_release_assets(db_path: Path) -> dict[str, Any]:
 def build_release_readme_markdown(metrics: dict[str, Any], app_url: str) -> str:
     return f"""# FrontierGraph public release README
 
-FrontierGraph is a public research-allocation release built from a published-journal economics corpus. The current release covers {metrics["papers"]:,} screened papers, {metrics["normalized_links"]:,} normalized links, {metrics["native_concepts"]:,} native concepts, and {metrics["visible_public_questions"]:,} released questions.
+FrontierGraph is a public release built from a published-journal economics corpus. The current release covers {metrics["papers"]:,} screened papers, {metrics["normalized_links"]:,} extracted directed links, {metrics["native_concepts"]:,} mapped topics, and {metrics["visible_public_questions"]:,} question candidates in the public release.
 
 ## Stable identifiers
 
 - `pair_key`: stable public identifier for a research question or concept pair
-- `concept_id`: stable public identifier for a normalized concept
+- `concept_id`: stable public identifier for a topic in the public concept layer
 
 ## Which tier should I use?
 
@@ -1805,8 +2131,8 @@ FrontierGraph is a public research-allocation release built from a published-jou
 
 ## What each file is for
 
-- `top_questions.csv`: one row per released question, with ranking fields, nearby support, and app link.
-- `central_concepts.csv`: one row per central concept, with support and graph prominence measures.
+- `top_questions.csv`: one row per released question candidate, with baseline labels, display labels, nearby support, and app link.
+- `central_concepts.csv`: one row per central topic, with baseline labels, display labels, and graph prominence measures.
 - `curated_questions.json`: the hand-curated site questions shown in featured shelves.
 - `hybrid_corpus_manifest.json`: canonical release counts for the fuller published-journal benchmark.
 - `graph_backbone.json`: the lightweight literature map used on the public site.
@@ -1820,7 +2146,7 @@ FrontierGraph is a public research-allocation release built from a published-jou
 
 - CSV files are the easiest entry point for spreadsheets and quick scripts.
 - Several CSV columns store lists as JSON strings so the same fields can survive spreadsheet export.
-- The SQLite bundle is the most complete public package. It includes question-level tables such as `question_mediators`, `question_paths`, and `question_papers`.
+- The SQLite bundle is the most complete public package. It includes question-level tables such as `question_mediators`, `question_paths`, and `question_papers`, plus both baseline and display labels where the public wording has been refined.
 
 ## Public surfaces
 
@@ -1838,15 +2164,17 @@ def build_data_dictionary_markdown() -> str:
 | Field | Meaning |
 | --- | --- |
 | `pair_key` | Stable public identifier for a released question, built from a normalized concept pair. |
-| `concept_id` | Stable public identifier for a normalized concept in the native ontology. |
+| `concept_id` | Stable public identifier for a topic in the public concept layer. |
 
 ## `top_questions.csv`
 
 | Field | Meaning |
 | --- | --- |
 | `pair_key` | Stable public question identifier. |
+| `source_display_label`, `target_display_label` | Public-facing labels used by the site and app when a cleaner or narrower wording is available. |
+| `display_refinement_confidence` | Confidence score for the public display refinement layer. |
 | `source_id`, `target_id` | Concept IDs for the two ends of the question. |
-| `source_label`, `target_label` | Reader-facing concept labels. |
+| `source_label`, `target_label` | Baseline concept labels preserved for reproducibility. |
 | `source_bucket`, `target_bucket` | Coarse location of each concept in the public graph. |
 | `cross_field` | Whether the two concepts sit across different broad buckets. |
 | `score` | Final public ranking score. |
@@ -1854,18 +2182,19 @@ def build_data_dictionary_markdown() -> str:
 | `duplicate_penalty` | Downweight applied when many near-duplicate questions cluster together. |
 | `path_support_norm` | Normalized support from nearby paths in the graph. |
 | `gap_bonus` | Bonus for links that look underexplored relative to the local neighborhood. |
-| `mediator_count` | Count of nearby linking concepts supporting the question. |
+| `mediator_count` | Count of intermediate topics supporting the question. |
 | `motif_count` | Count of repeated local patterns around the question. |
-| `cooc_count` | Count of direct papers already observed in the public sample. |
+| `cooc_count` | Count of direct papers already observed in the public release. |
 | `direct_link_status` | Reader-facing summary of direct-literature presence. |
-| `supporting_path_count` | Count of nearby linking concepts surfaced in the release. |
+| `supporting_path_count` | Count of supporting paths surfaced in the release. |
 | `why_now` | Plain-language explanation of why the question is on the release surface. |
 | `recommended_move` | Suggested first research move. |
 | `slice_label` | Slice or family label used on the public site. |
 | `public_pair_label` | Plain-language pair label. |
 | `question_family` | Family label used to avoid repetitive windows. |
 | `suppress_from_public_ranked_window` | Whether the question is kept out of the default ranked window. |
-| `top_mediator_labels` | JSON list of the most important mediating concepts. |
+| `top_mediator_labels` | JSON list of the most important intermediate topics in display form. |
+| `top_mediator_baseline_labels` | JSON list of the corresponding baseline mediator labels kept for reproducibility. |
 | `representative_papers` | JSON list of papers to begin with, attached to nearby edges. |
 | `top_countries_source`, `top_countries_target` | JSON lists of common settings for each side of the pair. |
 | `source_context_summary`, `target_context_summary` | Short context summaries for each side. |
@@ -1877,9 +2206,13 @@ def build_data_dictionary_markdown() -> str:
 | Field | Meaning |
 | --- | --- |
 | `concept_id` | Stable concept identifier. |
-| `label` | Preferred concept label. |
-| `plain_label` | Smoothed public label if one exists. |
+| `label` | Baseline preferred concept label. |
+| `plain_label` | Public display label used by the site and app. |
 | `subtitle` | Public clarifier used where concept naming needs context. |
+| `display_concept_id` | Concept ID for the display-layer refinement when one exists. |
+| `display_refined` | Whether the public display label comes from the finer display layer. |
+| `display_refinement_confidence` | Confidence score for the display-layer refinement. |
+| `alternate_display_labels` | Alternate finer labels considered for the public surface. |
 | `bucket_hint` | Coarse placement of the concept in the graph. |
 | `instance_support` | Number of mapped node mentions assigned to the concept. |
 | `distinct_paper_support` | Number of distinct papers touching the concept. |
@@ -1951,6 +2284,7 @@ def main() -> None:
     representative_papers_lookup = load_representative_papers()
     public_concept_ids = {str(value) for value in node_details_df["concept_id"].tolist()}
     public_label_glossary = load_public_label_glossary(public_concept_ids)
+    display_refinement = load_display_refinement()
     concept_label_lookup = (
         node_details_df.set_index("concept_id")["preferred_label"].to_dict()
     )
@@ -1965,16 +2299,25 @@ def main() -> None:
         edge_contexts_df,
         edge_exemplars_df,
         public_label_glossary,
+        display_refinement,
     )
-    neighborhoods = build_neighborhoods(node_details_df, graph_edges_df, edge_profiles_df, edge_contexts_df)
+    neighborhoods = build_neighborhoods(
+        node_details_df,
+        graph_edges_df,
+        edge_profiles_df,
+        edge_contexts_df,
+        public_label_glossary,
+        display_refinement,
+    )
     concept_opportunities = build_concept_opportunities(
         candidates_df,
         concept_label_lookup,
         public_label_glossary,
+        display_refinement,
         representative_papers_lookup,
         editorial_opportunities,
     )
-    search_index = build_search_index(node_details_df, node_metrics_df, public_label_glossary)
+    search_index = build_search_index(node_details_df, node_metrics_df, public_label_glossary, display_refinement)
 
     central_concepts_df = (
         node_details_df.merge(node_metrics_df, left_on="concept_id", right_on="concept_id", how="left")
@@ -1983,13 +2326,17 @@ def main() -> None:
     )
     central_concepts_rows = []
     for row in central_concepts_df.head(200).itertuples(index=False):
-        public_label = public_label_payload(row.concept_id, row.preferred_label, public_label_glossary)
+        public_label = public_label_payload(row.concept_id, row.preferred_label, public_label_glossary, display_refinement)
         central_concepts_rows.append(
             {
                 "concept_id": row.concept_id,
                 "label": row.preferred_label,
                 "plain_label": public_label["plain_label"],
                 "subtitle": public_label["subtitle"],
+                "display_concept_id": public_label["display_concept_id"],
+                "display_refined": public_label["display_refined"],
+                "display_refinement_confidence": public_label["display_refinement_confidence"],
+                "alternate_display_labels": public_label["alternate_display_labels"],
                 "bucket_hint": row.bucket_hint,
                 "instance_support": int(row.instance_support),
                 "distinct_paper_support": int(row.distinct_paper_support),
@@ -2008,6 +2355,7 @@ def main() -> None:
         candidates_df,
         concept_label_lookup,
         public_label_glossary,
+        display_refinement,
         representative_papers_lookup,
         editorial_opportunities,
     )
@@ -2017,6 +2365,7 @@ def main() -> None:
         candidates_df,
         concept_label_lookup,
         public_label_glossary,
+        display_refinement,
         representative_papers_lookup,
     )
     home_curated_questions = [row for row in editorial_records if bool(row["homepage_featured"])]
@@ -2061,12 +2410,77 @@ def main() -> None:
     export_rows_csv(
         PUBLIC_DATA_DIR / "central_concepts.csv",
         central_concepts_rows,
-        ["concept_id", "label", "plain_label", "subtitle", "bucket_hint", "instance_support", "distinct_paper_support", "weighted_degree", "pagerank", "in_degree", "out_degree", "neighbor_count", "top_countries", "top_units", "app_link"],
+        [
+            "concept_id",
+            "label",
+            "plain_label",
+            "subtitle",
+            "display_concept_id",
+            "display_refined",
+            "display_refinement_confidence",
+            "alternate_display_labels",
+            "bucket_hint",
+            "instance_support",
+            "distinct_paper_support",
+            "weighted_degree",
+            "pagerank",
+            "in_degree",
+            "out_degree",
+            "neighbor_count",
+            "top_countries",
+            "top_units",
+            "app_link",
+        ],
     )
     export_rows_csv(
         PUBLIC_DATA_DIR / "top_questions.csv",
         slices["overall"],
-        ["pair_key", "source_id", "target_id", "source_label", "target_label", "source_bucket", "target_bucket", "cross_field", "score", "base_score", "duplicate_penalty", "path_support_norm", "gap_bonus", "mediator_count", "motif_count", "cooc_count", "direct_link_status", "supporting_path_count", "why_now", "recommended_move", "slice_label", "public_pair_label", "question_family", "suppress_from_public_ranked_window", "top_mediator_labels", "representative_papers", "top_countries_source", "top_countries_target", "source_context_summary", "target_context_summary", "common_contexts", "app_link"],
+        [
+            "pair_key",
+            "source_id",
+            "target_id",
+            "source_label",
+            "target_label",
+            "source_display_label",
+            "target_display_label",
+            "source_display_concept_id",
+            "target_display_concept_id",
+            "source_display_refined",
+            "target_display_refined",
+            "display_refinement_confidence",
+            "source_alternate_display_labels",
+            "target_alternate_display_labels",
+            "source_bucket",
+            "target_bucket",
+            "cross_field",
+            "score",
+            "base_score",
+            "duplicate_penalty",
+            "path_support_norm",
+            "gap_bonus",
+            "mediator_count",
+            "motif_count",
+            "cooc_count",
+            "direct_link_status",
+            "supporting_path_count",
+            "why_now",
+            "recommended_move",
+            "slice_label",
+            "public_pair_label",
+            "question_family",
+            "suppress_from_public_ranked_window",
+            "top_mediator_labels",
+            "top_mediator_display_labels",
+            "top_mediator_baseline_labels",
+            "representative_papers",
+            "top_countries_source",
+            "top_countries_target",
+            "source_context_summary",
+            "target_context_summary",
+            "common_contexts",
+            "public_specificity_score",
+            "app_link",
+        ],
     )
 
     working_paper_download = copy_public_download(WORKING_PAPER_PDF_PATH, "frontiergraph-working-paper.pdf")

@@ -2035,7 +2035,7 @@
       },
       {
         "concept_id": "FG3C005391",
-        "label": "wage bargaining",
+        "label": "wage setting",
         "support_count": 3,
         "distinct_papers": 3,
         "avg_stability": 0.9567,
@@ -2333,7 +2333,7 @@
       },
       {
         "concept_id": "FG3C005391",
-        "label": "wage bargaining",
+        "label": "wage setting",
         "support_count": 3,
         "distinct_papers": 3,
         "avg_stability": 0.9567,
@@ -4677,7 +4677,7 @@
       },
       {
         "concept_id": "FG3C001717",
-        "label": "price-cost margins",
+        "label": "price-cost margin",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.98,
@@ -5092,7 +5092,7 @@
       },
       {
         "concept_id": "FG3C001717",
-        "label": "price-cost margins",
+        "label": "price-cost margin",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.98,
@@ -5473,7 +5473,7 @@
       },
       {
         "concept_id": "FG3C002465",
-        "label": "out-of-pocket payments",
+        "label": "out-of-pocket payment",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -6313,7 +6313,7 @@
       },
       {
         "concept_id": "FG3C002465",
-        "label": "out-of-pocket payments",
+        "label": "out-of-pocket payment",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -6901,7 +6901,7 @@
       },
       {
         "concept_id": "FG3C004229",
-        "label": "out-of-pocket expenditures",
+        "label": "out-of-pocket expenditure",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -7321,7 +7321,7 @@
       },
       {
         "concept_id": "FG3C004229",
-        "label": "out-of-pocket expenditures",
+        "label": "out-of-pocket expenditure",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -7793,7 +7793,7 @@
       },
       {
         "concept_id": "FG3C006501",
-        "label": "laissez-faire policy",
+        "label": "laissez-faire",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.68,
@@ -7903,7 +7903,7 @@
       },
       {
         "concept_id": "FG3C006501",
-        "label": "laissez-faire policy",
+        "label": "laissez-faire",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.68,
@@ -11503,7 +11503,7 @@
       },
       {
         "concept_id": "FG3C002465",
-        "label": "out-of-pocket payments",
+        "label": "out-of-pocket payment",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -11559,7 +11559,7 @@
       },
       {
         "concept_id": "FG3C004761",
-        "label": "geographic region",
+        "label": "geographic regions",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -12009,7 +12009,7 @@
       },
       {
         "concept_id": "FG3C002465",
-        "label": "out-of-pocket payments",
+        "label": "out-of-pocket payment",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -12065,7 +12065,7 @@
       },
       {
         "concept_id": "FG3C004761",
-        "label": "geographic region",
+        "label": "geographic regions",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -12121,7 +12121,7 @@
     "incoming": [
       {
         "concept_id": "FG3C001420",
-        "label": "environmental quality (CO2 emissions)",
+        "label": "environmental quality",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -12487,7 +12487,7 @@
       },
       {
         "concept_id": "FG3C003050",
-        "label": "forecasts",
+        "label": "individual forecasts",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -12879,7 +12879,7 @@
       },
       {
         "concept_id": "FG3C003050",
-        "label": "forecasts",
+        "label": "individual forecasts",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -12933,7 +12933,7 @@
       },
       {
         "concept_id": "FG3C001420",
-        "label": "environmental quality (CO2 emissions)",
+        "label": "environmental quality",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -14662,7 +14662,7 @@
       },
       {
         "concept_id": "FG3C000843",
-        "label": "Health maintenance organizations (HMOs)",
+        "label": "health maintenance organization (HMO)",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -15138,7 +15138,7 @@
       },
       {
         "concept_id": "FG3C005750",
-        "label": "option value of waiting",
+        "label": "value of waiting",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.53,
@@ -15507,7 +15507,7 @@
       },
       {
         "concept_id": "FG3C005750",
-        "label": "option value of waiting",
+        "label": "value of waiting",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.53,
@@ -15947,7 +15947,7 @@
       },
       {
         "concept_id": "FG3C004229",
-        "label": "out-of-pocket expenditures",
+        "label": "out-of-pocket expenditure",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -16005,7 +16005,7 @@
       },
       {
         "concept_id": "FG3C004229",
-        "label": "out-of-pocket expenditures",
+        "label": "out-of-pocket expenditure",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -17862,7 +17862,7 @@
       },
       {
         "concept_id": "FG3C001508",
-        "label": "ordinary least squares (OLS)",
+        "label": "ordinary least squares",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -18079,7 +18079,7 @@
       },
       {
         "concept_id": "FG3C001420",
-        "label": "environmental quality (CO2 emissions)",
+        "label": "environmental quality",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 0.5,
@@ -18554,7 +18554,7 @@
       },
       {
         "concept_id": "FG3C001420",
-        "label": "environmental quality (CO2 emissions)",
+        "label": "environmental quality",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 0.5,
@@ -19974,7 +19974,7 @@
       },
       {
         "concept_id": "FG3C004769",
-        "label": "weak separability",
+        "label": "separability",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -21990,7 +21990,7 @@
       },
       {
         "concept_id": "FG3C006487",
-        "label": "New Keynesian models",
+        "label": "New-Keynesian model",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.0,
@@ -22206,7 +22206,7 @@
       },
       {
         "concept_id": "FG3C006487",
-        "label": "New Keynesian models",
+        "label": "New-Keynesian model",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.0,
@@ -22595,7 +22595,7 @@
       },
       {
         "concept_id": "FG3C005855",
-        "label": "Markov-switching models",
+        "label": "Markov-switching model",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -22898,7 +22898,7 @@
       },
       {
         "concept_id": "FG3C005855",
-        "label": "Markov-switching models",
+        "label": "Markov-switching model",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -23010,7 +23010,7 @@
     "incoming": [
       {
         "concept_id": "FG3C002749",
-        "label": "error correction models",
+        "label": "error-correction model",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 0.525,
@@ -23852,7 +23852,7 @@
       },
       {
         "concept_id": "FG3C002749",
-        "label": "error correction models",
+        "label": "error-correction model",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 0.525,
@@ -25899,7 +25899,7 @@
       },
       {
         "concept_id": "FG3C001420",
-        "label": "environmental quality (CO2 emissions)",
+        "label": "environmental quality",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.67,
@@ -26311,7 +26311,7 @@
       },
       {
         "concept_id": "FG3C001420",
-        "label": "environmental quality (CO2 emissions)",
+        "label": "environmental quality",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.67,
@@ -30099,7 +30099,7 @@
       },
       {
         "concept_id": "FG3C002316",
-        "label": "EU Emissions Trading Scheme (EU ETS)",
+        "label": "EU Emission Trading Scheme (EU ETS)",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.0,
@@ -30365,7 +30365,7 @@
       },
       {
         "concept_id": "FG3C003968",
-        "label": "permit prices",
+        "label": "permit trading",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -30617,7 +30617,7 @@
       },
       {
         "concept_id": "FG3C003968",
-        "label": "permit prices",
+        "label": "permit trading",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -30669,7 +30669,7 @@
       },
       {
         "concept_id": "FG3C002316",
-        "label": "EU Emissions Trading Scheme (EU ETS)",
+        "label": "EU Emission Trading Scheme (EU ETS)",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.0,
@@ -33004,7 +33004,7 @@
       },
       {
         "concept_id": "FG3C001717",
-        "label": "price-cost margins",
+        "label": "price-cost margin",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.41,
@@ -33442,7 +33442,7 @@
       },
       {
         "concept_id": "FG3C001717",
-        "label": "price-cost margins",
+        "label": "price-cost margin",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.41,
@@ -38044,7 +38044,7 @@
       },
       {
         "concept_id": "FG3C003006",
-        "label": "Emission Trading Scheme (ETS)",
+        "label": "emissions trading system",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -38194,7 +38194,7 @@
       },
       {
         "concept_id": "FG3C000167",
-        "label": "carbon dioxide (CO2) emissions",
+        "label": "carbon dioxide (CO2) emission",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -38538,7 +38538,7 @@
       },
       {
         "concept_id": "FG3C000167",
-        "label": "carbon dioxide (CO2) emissions",
+        "label": "carbon dioxide (CO2) emission",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -39277,7 +39277,7 @@
       },
       {
         "concept_id": "FG3C003242",
-        "label": "monitoring",
+        "label": "monitoring effort",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.0,
@@ -39700,7 +39700,7 @@
       },
       {
         "concept_id": "FG3C003242",
-        "label": "monitoring",
+        "label": "monitoring effort",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.0,
@@ -41822,7 +41822,7 @@
       },
       {
         "concept_id": "FG3C004045",
-        "label": "Massachusetts health reform",
+        "label": "Massachusetts health care reform",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -43879,7 +43879,7 @@
       },
       {
         "concept_id": "FG3C006162",
-        "label": "terms of trade effects",
+        "label": "terms-of-trade effect",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -44656,7 +44656,7 @@
       },
       {
         "concept_id": "FG3C006162",
-        "label": "terms of trade effects",
+        "label": "terms-of-trade effect",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -45637,7 +45637,7 @@
       },
       {
         "concept_id": "FG3C001420",
-        "label": "environmental quality (CO2 emissions)",
+        "label": "environmental quality",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.49,
@@ -46093,7 +46093,7 @@
       },
       {
         "concept_id": "FG3C001420",
-        "label": "environmental quality (CO2 emissions)",
+        "label": "environmental quality",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.49,
@@ -47220,7 +47220,7 @@
       },
       {
         "concept_id": "FG3C005391",
-        "label": "wage bargaining",
+        "label": "wage setting",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -49738,7 +49738,7 @@
     "incoming": [
       {
         "concept_id": "FG3C005765",
-        "label": "progression-free survival (PFS)",
+        "label": "progression-free survival",
         "support_count": 4,
         "distinct_papers": 3,
         "avg_stability": 0.59,
@@ -49906,7 +49906,7 @@
       },
       {
         "concept_id": "FG3C006085",
-        "label": "High-deductible health plans (HDHPs)",
+        "label": "high-deductible health plans",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -50066,7 +50066,7 @@
       },
       {
         "concept_id": "FG3C006345",
-        "label": "treatment",
+        "label": "no treatment",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.87,
@@ -50120,7 +50120,7 @@
     "top_neighbors": [
       {
         "concept_id": "FG3C005765",
-        "label": "progression-free survival (PFS)",
+        "label": "progression-free survival",
         "support_count": 4,
         "distinct_papers": 3,
         "avg_stability": 0.59,
@@ -50262,7 +50262,7 @@
       },
       {
         "concept_id": "FG3C006345",
-        "label": "treatment",
+        "label": "no treatment",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.87,
@@ -50366,7 +50366,7 @@
       },
       {
         "concept_id": "FG3C006085",
-        "label": "High-deductible health plans (HDHPs)",
+        "label": "high-deductible health plans",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -50622,7 +50622,7 @@
       },
       {
         "concept_id": "FG3C001307",
-        "label": "load capacity factor (LCF)",
+        "label": "ecological carrying capacity",
         "support_count": 2,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -50876,7 +50876,7 @@
       },
       {
         "concept_id": "FG3C001420",
-        "label": "environmental quality (CO2 emissions)",
+        "label": "environmental quality",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.07,
@@ -51024,7 +51024,7 @@
       },
       {
         "concept_id": "FG3C001307",
-        "label": "load capacity factor (LCF)",
+        "label": "ecological carrying capacity",
         "support_count": 2,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -51278,7 +51278,7 @@
       },
       {
         "concept_id": "FG3C001420",
-        "label": "environmental quality (CO2 emissions)",
+        "label": "environmental quality",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.07,
@@ -54409,7 +54409,7 @@
     "incoming": [
       {
         "concept_id": "FG3C000847",
-        "label": "Accountable care organizations (ACOs)",
+        "label": "accountable care organizations",
         "support_count": 3,
         "distinct_papers": 3,
         "avg_stability": 0.68,
@@ -54841,7 +54841,7 @@
     "top_neighbors": [
       {
         "concept_id": "FG3C000847",
-        "label": "Accountable care organizations (ACOs)",
+        "label": "accountable care organizations",
         "support_count": 3,
         "distinct_papers": 3,
         "avg_stability": 0.68,
@@ -61194,7 +61194,7 @@
       },
       {
         "concept_id": "FG3C003050",
-        "label": "forecasts",
+        "label": "individual forecasts",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 0.84,
@@ -61598,7 +61598,7 @@
       },
       {
         "concept_id": "FG3C003050",
-        "label": "forecasts",
+        "label": "individual forecasts",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 0.84,
@@ -63418,7 +63418,7 @@
       },
       {
         "concept_id": "FG3C002316",
-        "label": "EU Emissions Trading Scheme (EU ETS)",
+        "label": "EU Emission Trading Scheme (EU ETS)",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.02,
@@ -66895,7 +66895,7 @@
       },
       {
         "concept_id": "FG3C005517",
-        "label": "U.S. stock market volatility",
+        "label": "S&P 500 volatility",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -67271,7 +67271,7 @@
       },
       {
         "concept_id": "FG3C005517",
-        "label": "U.S. stock market volatility",
+        "label": "S&P 500 volatility",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -69752,7 +69752,7 @@
       },
       {
         "concept_id": "FG3C005035",
-        "label": "2008\u20132009 global financial crisis",
+        "label": "financial crisis 2007\u20132009",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -70134,7 +70134,7 @@
       },
       {
         "concept_id": "FG3C005035",
-        "label": "2008\u20132009 global financial crisis",
+        "label": "financial crisis 2007\u20132009",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -71988,7 +71988,7 @@
       },
       {
         "concept_id": "FG3C005356",
-        "label": "low-carbon technology innovation",
+        "label": "low-carbon technologies",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 1.0,
@@ -72341,7 +72341,7 @@
       },
       {
         "concept_id": "FG3C005356",
-        "label": "low-carbon technology innovation",
+        "label": "low-carbon technologies",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 1.0,
@@ -76743,7 +76743,7 @@
       },
       {
         "concept_id": "FG3C005002",
-        "label": "repayment rates",
+        "label": "loan repayment",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.53,
@@ -77103,7 +77103,7 @@
       },
       {
         "concept_id": "FG3C005002",
-        "label": "repayment rates",
+        "label": "loan repayment",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.53,
@@ -79232,7 +79232,7 @@
       },
       {
         "concept_id": "FG3C000847",
-        "label": "Accountable care organizations (ACOs)",
+        "label": "accountable care organizations",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.82,
@@ -79864,7 +79864,7 @@
       },
       {
         "concept_id": "FG3C004761",
-        "label": "geographic region",
+        "label": "geographic regions",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 1.0,
@@ -80302,7 +80302,7 @@
       },
       {
         "concept_id": "FG3C004761",
-        "label": "geographic region",
+        "label": "geographic regions",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 1.0,
@@ -84078,7 +84078,7 @@
     "incoming": [
       {
         "concept_id": "FG3C005337",
-        "label": "myocardial infarction",
+        "label": "acute myocardial infarction patients",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 0.82,
@@ -84182,7 +84182,7 @@
       },
       {
         "concept_id": "FG3C005892",
-        "label": "analysts' earnings forecasts",
+        "label": "analyst earnings forecasts",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -84420,7 +84420,7 @@
       },
       {
         "concept_id": "FG3C003050",
-        "label": "forecasts",
+        "label": "individual forecasts",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.68,
@@ -84448,7 +84448,7 @@
     "top_neighbors": [
       {
         "concept_id": "FG3C005337",
-        "label": "myocardial infarction",
+        "label": "acute myocardial infarction patients",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 0.82,
@@ -84656,7 +84656,7 @@
       },
       {
         "concept_id": "FG3C003050",
-        "label": "forecasts",
+        "label": "individual forecasts",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.68,
@@ -84760,7 +84760,7 @@
       },
       {
         "concept_id": "FG3C005892",
-        "label": "analysts' earnings forecasts",
+        "label": "analyst earnings forecasts",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -88424,7 +88424,7 @@
       },
       {
         "concept_id": "FG3C003050",
-        "label": "forecasts",
+        "label": "individual forecasts",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -88588,7 +88588,7 @@
       },
       {
         "concept_id": "FG3C003050",
-        "label": "forecasts",
+        "label": "individual forecasts",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -93605,7 +93605,7 @@
       },
       {
         "concept_id": "FG3C005286",
-        "label": "horizontal merger",
+        "label": "merger",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 0.975,
@@ -94462,7 +94462,7 @@
       },
       {
         "concept_id": "FG3C005286",
-        "label": "horizontal merger",
+        "label": "merger",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 0.975,
@@ -98378,7 +98378,7 @@
       },
       {
         "concept_id": "FG3C004229",
-        "label": "out-of-pocket expenditures",
+        "label": "out-of-pocket expenditure",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.73,
@@ -98798,7 +98798,7 @@
       },
       {
         "concept_id": "FG3C004229",
-        "label": "out-of-pocket expenditures",
+        "label": "out-of-pocket expenditure",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.73,
@@ -100621,7 +100621,7 @@
       },
       {
         "concept_id": "FG3C001420",
-        "label": "environmental quality (CO2 emissions)",
+        "label": "environmental quality",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -100980,7 +100980,7 @@
       },
       {
         "concept_id": "FG3C001420",
-        "label": "environmental quality (CO2 emissions)",
+        "label": "environmental quality",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -101334,7 +101334,7 @@
       },
       {
         "concept_id": "FG3C001420",
-        "label": "environmental quality (CO2 emissions)",
+        "label": "environmental quality",
         "support_count": 2,
         "distinct_papers": 1,
         "avg_stability": 0.935,
@@ -101916,7 +101916,7 @@
       },
       {
         "concept_id": "FG3C001420",
-        "label": "environmental quality (CO2 emissions)",
+        "label": "environmental quality",
         "support_count": 2,
         "distinct_papers": 1,
         "avg_stability": 0.935,
@@ -107132,7 +107132,7 @@
       },
       {
         "concept_id": "FG3C006303",
-        "label": "debt levels",
+        "label": "level of debt",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.82,
@@ -113648,7 +113648,7 @@
       },
       {
         "concept_id": "FG3C000812",
-        "label": "Quality-adjusted life-years (QALYs)",
+        "label": "quality adjusted life year (QALY)",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -113838,7 +113838,7 @@
       },
       {
         "concept_id": "FG3C000812",
-        "label": "Quality-adjusted life-years (QALYs)",
+        "label": "quality adjusted life year (QALY)",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -118166,7 +118166,7 @@
       },
       {
         "concept_id": "FG3C006235",
-        "label": "empirical implications",
+        "label": "Implications",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 1.0,
@@ -118380,7 +118380,7 @@
       },
       {
         "concept_id": "FG3C006235",
-        "label": "empirical implications",
+        "label": "Implications",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 1.0,
@@ -119352,7 +119352,7 @@
       },
       {
         "concept_id": "FG3C004761",
-        "label": "geographic region",
+        "label": "geographic regions",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -120401,7 +120401,7 @@
       },
       {
         "concept_id": "FG3C006487",
-        "label": "New Keynesian models",
+        "label": "New-Keynesian model",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -121935,7 +121935,7 @@
       },
       {
         "concept_id": "FG3C005136",
-        "label": "logistic regression model",
+        "label": "logistic regression",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -122105,7 +122105,7 @@
       },
       {
         "concept_id": "FG3C005136",
-        "label": "logistic regression model",
+        "label": "logistic regression",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -123471,7 +123471,7 @@
       },
       {
         "concept_id": "FG3C003968",
-        "label": "permit prices",
+        "label": "permit trading",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.12,
@@ -123834,7 +123834,7 @@
       },
       {
         "concept_id": "FG3C003968",
-        "label": "permit prices",
+        "label": "permit trading",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.69,
@@ -124249,7 +124249,7 @@
       },
       {
         "concept_id": "FG3C003968",
-        "label": "permit prices",
+        "label": "permit trading",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.69,
@@ -124331,7 +124331,7 @@
     "incoming": [
       {
         "concept_id": "FG3C003939",
-        "label": "crude oil futures prices",
+        "label": "crude oil futures price",
         "support_count": 6,
         "distinct_papers": 2,
         "avg_stability": 1.0,
@@ -124511,7 +124511,7 @@
     "outgoing": [
       {
         "concept_id": "FG3C003939",
-        "label": "crude oil futures prices",
+        "label": "crude oil futures price",
         "support_count": 14,
         "distinct_papers": 8,
         "avg_stability": 0.9764,
@@ -124667,7 +124667,7 @@
     "top_neighbors": [
       {
         "concept_id": "FG3C003939",
-        "label": "crude oil futures prices",
+        "label": "crude oil futures price",
         "support_count": 14,
         "distinct_papers": 8,
         "avg_stability": 0.9764,
@@ -125451,7 +125451,7 @@
       },
       {
         "concept_id": "FG3C002487",
-        "label": "free trade agreements (FTAs)",
+        "label": "free trade agreements",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.02,
@@ -125817,7 +125817,7 @@
       },
       {
         "concept_id": "FG3C002487",
-        "label": "free trade agreements (FTAs)",
+        "label": "free trade agreements",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.02,
@@ -126440,7 +126440,7 @@
       },
       {
         "concept_id": "FG3C000812",
-        "label": "Quality-adjusted life-years (QALYs)",
+        "label": "quality adjusted life year (QALY)",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.02,
@@ -129877,7 +129877,7 @@
       },
       {
         "concept_id": "FG3C000167",
-        "label": "carbon dioxide (CO2) emissions",
+        "label": "carbon dioxide (CO2) emission",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -130320,7 +130320,7 @@
       },
       {
         "concept_id": "FG3C000167",
-        "label": "carbon dioxide (CO2) emissions",
+        "label": "carbon dioxide (CO2) emission",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -131828,7 +131828,7 @@
       },
       {
         "concept_id": "FG3C006131",
-        "label": "rate of innovation",
+        "label": "innovation rate",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.93,
@@ -133078,7 +133078,7 @@
       },
       {
         "concept_id": "FG3C003006",
-        "label": "Emission Trading Scheme (ETS)",
+        "label": "emissions trading system",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -139929,7 +139929,7 @@
       },
       {
         "concept_id": "FG3C006136",
-        "label": "innovation level",
+        "label": "innovation outcomes",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -140321,7 +140321,7 @@
       },
       {
         "concept_id": "FG3C006136",
-        "label": "innovation level",
+        "label": "innovation outcomes",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -141284,7 +141284,7 @@
       },
       {
         "concept_id": "FG3C000812",
-        "label": "Quality-adjusted life-years (QALYs)",
+        "label": "quality adjusted life year (QALY)",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.82,
@@ -141310,7 +141310,7 @@
       },
       {
         "concept_id": "FG3C001508",
-        "label": "ordinary least squares (OLS)",
+        "label": "ordinary least squares",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.68,
@@ -143124,7 +143124,7 @@
       },
       {
         "concept_id": "FG3C005761",
-        "label": "political fragmentation",
+        "label": "government fragmentation",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.82,
@@ -143260,7 +143260,7 @@
       },
       {
         "concept_id": "FG3C005761",
-        "label": "political fragmentation",
+        "label": "government fragmentation",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.82,
@@ -145810,7 +145810,7 @@
     "incoming": [
       {
         "concept_id": "FG3C003006",
-        "label": "Emission Trading Scheme (ETS)",
+        "label": "emissions trading system",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 1.0,
@@ -146000,7 +146000,7 @@
       },
       {
         "concept_id": "FG3C002799",
-        "label": "Renewable Portfolio Standard (RPS)",
+        "label": "renewable portfolio standards",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -146313,7 +146313,7 @@
     "top_neighbors": [
       {
         "concept_id": "FG3C003006",
-        "label": "Emission Trading Scheme (ETS)",
+        "label": "emissions trading system",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 1.0,
@@ -146699,7 +146699,7 @@
       },
       {
         "concept_id": "FG3C002799",
-        "label": "Renewable Portfolio Standard (RPS)",
+        "label": "renewable portfolio standards",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -150784,7 +150784,7 @@
       },
       {
         "concept_id": "FG3C003968",
-        "label": "permit prices",
+        "label": "permit trading",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 1.0,
@@ -151144,7 +151144,7 @@
       },
       {
         "concept_id": "FG3C003968",
-        "label": "permit prices",
+        "label": "permit trading",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 1.0,
@@ -154261,7 +154261,7 @@
       },
       {
         "concept_id": "FG3C000771",
-        "label": "risk-adjusted returns",
+        "label": "risk-adjusted return",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -154417,7 +154417,7 @@
       },
       {
         "concept_id": "FG3C005750",
-        "label": "option value of waiting",
+        "label": "value of waiting",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -154659,7 +154659,7 @@
       },
       {
         "concept_id": "FG3C000771",
-        "label": "risk-adjusted returns",
+        "label": "risk-adjusted return",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -154815,7 +154815,7 @@
       },
       {
         "concept_id": "FG3C005750",
-        "label": "option value of waiting",
+        "label": "value of waiting",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -156274,7 +156274,7 @@
       },
       {
         "concept_id": "FG3C001905",
-        "label": "maximum likelihood estimator (MLE)",
+        "label": "maximum likelihood estimators",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -156300,7 +156300,7 @@
       },
       {
         "concept_id": "FG3C002749",
-        "label": "error correction models",
+        "label": "error-correction model",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.02,
@@ -156410,7 +156410,7 @@
       },
       {
         "concept_id": "FG3C001905",
-        "label": "maximum likelihood estimator (MLE)",
+        "label": "maximum likelihood estimators",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -156436,7 +156436,7 @@
       },
       {
         "concept_id": "FG3C002749",
-        "label": "error correction models",
+        "label": "error-correction model",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.02,
@@ -156846,7 +156846,7 @@
       },
       {
         "concept_id": "FG3C005391",
-        "label": "wage bargaining",
+        "label": "wage setting",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -157092,7 +157092,7 @@
       },
       {
         "concept_id": "FG3C005391",
-        "label": "wage bargaining",
+        "label": "wage setting",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -158470,7 +158470,7 @@
       },
       {
         "concept_id": "FG3C002343",
-        "label": "model performance",
+        "label": "Model performance metrics",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -158742,7 +158742,7 @@
       },
       {
         "concept_id": "FG3C002343",
-        "label": "model performance",
+        "label": "Model performance metrics",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -159000,7 +159000,7 @@
     "incoming": [
       {
         "concept_id": "FG3C005368",
-        "label": "real-world data (RWD)",
+        "label": "real-world data",
         "support_count": 4,
         "distinct_papers": 4,
         "avg_stability": 0.935,
@@ -159300,7 +159300,7 @@
       },
       {
         "concept_id": "FG3C005368",
-        "label": "real-world data (RWD)",
+        "label": "real-world data",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -159328,7 +159328,7 @@
     "top_neighbors": [
       {
         "concept_id": "FG3C005368",
-        "label": "real-world data (RWD)",
+        "label": "real-world data",
         "support_count": 4,
         "distinct_papers": 4,
         "avg_stability": 0.935,
@@ -159794,7 +159794,7 @@
       },
       {
         "concept_id": "FG3C003563",
-        "label": "firms' investment decisions",
+        "label": "firm investment decisions",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -160036,7 +160036,7 @@
       },
       {
         "concept_id": "FG3C003563",
-        "label": "firms' investment decisions",
+        "label": "firm investment decisions",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -164064,7 +164064,7 @@
       },
       {
         "concept_id": "FG3C004795",
-        "label": "post-earnings announcement drift (PEAD)",
+        "label": "post-earnings announcement drift",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.87,
@@ -164614,7 +164614,7 @@
       },
       {
         "concept_id": "FG3C004795",
-        "label": "post-earnings announcement drift (PEAD)",
+        "label": "post-earnings announcement drift",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.87,
@@ -164724,7 +164724,7 @@
       },
       {
         "concept_id": "FG3C005517",
-        "label": "U.S. stock market volatility",
+        "label": "S&P 500 volatility",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -165797,7 +165797,7 @@
       },
       {
         "concept_id": "FG3C006345",
-        "label": "treatment",
+        "label": "no treatment",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.87,
@@ -165918,7 +165918,7 @@
       },
       {
         "concept_id": "FG3C006345",
-        "label": "treatment",
+        "label": "no treatment",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.87,
@@ -167245,7 +167245,7 @@
       },
       {
         "concept_id": "FG3C006136",
-        "label": "innovation level",
+        "label": "innovation outcomes",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -167853,7 +167853,7 @@
     "outgoing": [
       {
         "concept_id": "FG3C001162",
-        "label": "Expected Shortfall (ES)",
+        "label": "energy structure (ES)",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 0.685,
@@ -168269,7 +168269,7 @@
     "top_neighbors": [
       {
         "concept_id": "FG3C001162",
-        "label": "Expected Shortfall (ES)",
+        "label": "energy structure (ES)",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 0.685,
@@ -168767,7 +168767,7 @@
       },
       {
         "concept_id": "FG3C004045",
-        "label": "Massachusetts health reform",
+        "label": "Massachusetts health care reform",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -169433,7 +169433,7 @@
       },
       {
         "concept_id": "FG3C004045",
-        "label": "Massachusetts health reform",
+        "label": "Massachusetts health care reform",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -175952,7 +175952,7 @@
       },
       {
         "concept_id": "FG3C006100",
-        "label": "hedonic model",
+        "label": "hedonic models",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 1.0,
@@ -176382,7 +176382,7 @@
       },
       {
         "concept_id": "FG3C006100",
-        "label": "hedonic model",
+        "label": "hedonic models",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 1.0,
@@ -182416,7 +182416,7 @@
       },
       {
         "concept_id": "FG3C005412",
-        "label": "urban density",
+        "label": "urban size",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.27,
@@ -182614,7 +182614,7 @@
       },
       {
         "concept_id": "FG3C004813",
-        "label": "land use regulation",
+        "label": "land use regulations",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.0,
@@ -182812,7 +182812,7 @@
       },
       {
         "concept_id": "FG3C004813",
-        "label": "land use regulation",
+        "label": "land use regulations",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.0,
@@ -182942,7 +182942,7 @@
       },
       {
         "concept_id": "FG3C005412",
-        "label": "urban density",
+        "label": "urban size",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.27,
@@ -183030,7 +183030,7 @@
       },
       {
         "concept_id": "FG3C005391",
-        "label": "wage bargaining",
+        "label": "wage setting",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -183390,7 +183390,7 @@
       },
       {
         "concept_id": "FG3C005391",
-        "label": "wage bargaining",
+        "label": "wage setting",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -183656,7 +183656,7 @@
       },
       {
         "concept_id": "FG3C003819",
-        "label": "credit default swaps (CDS)",
+        "label": "credit default swaps",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -184386,7 +184386,7 @@
     "incoming": [
       {
         "concept_id": "FG3C006513",
-        "label": "stochastic discount factor",
+        "label": "Stochastic discount factors",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 0.455,
@@ -185110,7 +185110,7 @@
       },
       {
         "concept_id": "FG3C006513",
-        "label": "stochastic discount factor",
+        "label": "Stochastic discount factors",
         "support_count": 2,
         "distinct_papers": 2,
         "avg_stability": 0.455,
@@ -189080,7 +189080,7 @@
       },
       {
         "concept_id": "FG3C005429",
-        "label": "machine learning techniques",
+        "label": "Quantile regression techniques",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.98,
@@ -189284,7 +189284,7 @@
       },
       {
         "concept_id": "FG3C005429",
-        "label": "machine learning techniques",
+        "label": "Quantile regression techniques",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 0.98,
@@ -189897,7 +189897,7 @@
       },
       {
         "concept_id": "FG3C006402",
-        "label": "corporate income tax",
+        "label": "Corporate income taxes",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -196796,7 +196796,7 @@
       },
       {
         "concept_id": "FG3C004926",
-        "label": "implementation",
+        "label": "implementation issues",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,
@@ -197206,7 +197206,7 @@
       },
       {
         "concept_id": "FG3C004926",
-        "label": "implementation",
+        "label": "implementation issues",
         "support_count": 1,
         "distinct_papers": 1,
         "avg_stability": 1.0,

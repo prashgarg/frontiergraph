@@ -31,7 +31,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     <div class="graph-toolbar-copy">
       <h2>Choose a topic and start with the questions around it.</h2>
       <p class="card-copy">
-        Choose one topic, then read the strongest nearby questions. Open the graph only when you want local context.
+        Choose one topic, then read the strongest nearby questions. Each question is grounded in nearby directed links, intermediate topics, and papers.
       </p>
       <label class="search-shell graph-search-shell">
         <span>Search topic</span>
@@ -57,10 +57,10 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
           <section class="sidebar-card inspector-card graph-question-shell">
             <div class="inspector-head">
               <h3>Questions touching this topic</h3>
-              <p class="mini-copy">Choose one. The right side shows why it surfaced and the strongest nearby paths behind it.</p>
+              <p class="mini-copy">Choose one. The right side shows why it surfaced, which intermediate topics already connect it, and where to start reading.</p>
             </div>
             <div data-role="selected-opportunities">
-              <p class="card-copy">The strongest released questions touching the selected topic will appear here.</p>
+              <p class="card-copy">The strongest question candidates touching the selected topic will appear here.</p>
             </div>
           </section>
 
@@ -195,6 +195,13 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const value = String(concept?.subtitle ?? "").trim();
     return value && !["na", "n/a", "nan", "null", "undefined", "none"].includes(value.toLowerCase()) ? value : "";
   };
+  const questionSideLabel = (item, side) => {
+    if (!item) return "";
+    if (side === "source") {
+      return item?.source_display_label || item?.source_label || conceptLabel(item?.source_id, "");
+    }
+    return item?.target_display_label || item?.target_label || conceptLabel(item?.target_id, "");
+  };
   const conceptLabel = (conceptId, fallback = "") => {
     const concept = conceptMap.get(conceptId);
     return concept ? conceptTitle(concept) : fallback;
@@ -209,21 +216,21 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const pathCount = safeNumber(item.supporting_path_count);
     const mediatorCount = safeNumber(item.mediator_count);
     if (pathCount > 0 && mediatorCount > 0) {
-      return `${formatNumber(pathCount)} nearby paths and ${formatNumber(mediatorCount)} mediator topics already connect these two sides in the released map.`;
+      return `${formatNumber(pathCount)} nearby paths and ${formatNumber(mediatorCount)} intermediate topics already connect these two sides in the public release.`;
     }
     if (pathCount > 0) {
-      return `${formatNumber(pathCount)} nearby paths already connect these two sides in the released map.`;
+      return `${formatNumber(pathCount)} nearby paths already connect these two sides in the public release.`;
     }
     if (mediatorCount > 0) {
-      return `${formatNumber(mediatorCount)} mediator topics already connect these two sides in the released map.`;
+      return `${formatNumber(mediatorCount)} intermediate topics already connect these two sides in the public release.`;
     }
-    return "Nearby work already brings these two sides close together in the released map.";
+    return "Nearby directed links and papers already bring these two sides close together in the public release.";
   };
   const staticGuideText =
     "Choose a question first. Open the graph only when you want local context around it.";
   const questionTitle = (item) => {
-    const source = item?.source_label || conceptLabel(item?.source_id, "");
-    const target = item?.target_label || conceptLabel(item?.target_id, "");
+    const source = questionSideLabel(item, "source");
+    const target = questionSideLabel(item, "target");
     if (source && target) return `How do ${source} and ${target} connect?`;
     return item?.public_pair_label || "Candidate question";
   };
@@ -260,13 +267,14 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const questionPriorityScore = (item, selectedConceptId) => {
     const counterpart = conceptMap.get(questionCounterpartId(item, selectedConceptId));
     const baseScore = safeNumber(item.score);
+    const specificityBonus = safeNumber(item.public_specificity_score) * 0.65;
     const pathScore = Math.min(safeNumber(item.supporting_path_count), 12) * 2.8;
     const mediatorScore = Math.min(safeNumber(item.mediator_count), 8) * 1.45;
     const motifScore = Math.min(safeNumber(item.motif_count), 8) * 0.8;
     const crossBonus = safeNumber(item.cross_field) ? 1.4 : 0;
     const exactPenalty = Math.min(safeNumber(item.cooc_count), 3) * 1.35;
     const counterpartPenalty = genericTopicPenalty(counterpart);
-    return baseScore + pathScore + mediatorScore + motifScore + crossBonus - exactPenalty - counterpartPenalty;
+    return baseScore + specificityBonus + pathScore + mediatorScore + motifScore + crossBonus - exactPenalty - counterpartPenalty;
   };
   const currentQuestion = () =>
     activeQuestionPairKey ? currentOpportunities.find((item) => item.pair_key === activeQuestionPairKey) || null : null;
@@ -458,7 +466,9 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
           : null
       : null;
     const mediatorIds = activeQuestion
-      ? (activeQuestion.top_mediator_labels || [])
+      ? ((activeQuestion.top_mediator_display_labels && activeQuestion.top_mediator_display_labels.length
+          ? activeQuestion.top_mediator_display_labels
+          : activeQuestion.top_mediator_labels) || [])
           .map((label) => resolveMediatorConceptId(label))
           .filter((conceptId) => conceptId && isInBackbone(conceptId))
           .slice(0, 3)
@@ -662,7 +672,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       const fallbackItems = (currentNeighborhood?.top_neighbors || []).slice(0, 3);
       selectedQuestion.innerHTML = fallbackItems.length
         ? `
-          <p class="card-copy">This topic does not currently have a released question in the public set, but the nearby neighborhood still suggests plausible next moves.</p>
+          <p class="card-copy">This topic does not currently have a released question in the public set, but nearby directed links still suggest plausible next moves.</p>
           <div class="graph-prompt-stack">
             ${fallbackItems
               .map(
@@ -670,7 +680,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
                   <article class="graph-prompt-card">
                     <span class="tiny-label">Possible question</span>
                     <strong>${escapeHtml(`What links ${conceptTitle(concept)} and ${conceptLabel(item.concept_id, item.label)}?`)}</strong>
-                    <p class="mini-copy">${formatNumber(safeNumber(item.support_count))} local papers already connect these topics nearby.</p>
+                    <p class="mini-copy">${formatNumber(safeNumber(item.support_count))} local papers already connect these topics through nearby links.</p>
                     <button class="list-link list-link-tight" type="button" data-neighbor-id="${escapeAttr(item.concept_id)}">
                       <span>Open neighboring topic</span>
                       <span>${escapeHtml(conceptLabel(item.concept_id, item.label))}</span>
@@ -681,14 +691,20 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
               .join("")}
           </div>
         `
-        : `<p class="card-copy">Choose a topic with released questions to see path-based detail here.</p>`;
+        : `<p class="card-copy">Choose a topic with visible question candidates to see path-based detail here.</p>`;
       for (const button of selectedQuestion.querySelectorAll("[data-neighbor-id]")) {
         button.addEventListener("click", () => selectConcept(button.dataset.neighborId));
       }
       return;
     }
 
-    const mediatorLabels = Array.isArray(question.top_mediator_labels) ? question.top_mediator_labels.filter(Boolean).slice(0, 3) : [];
+    const mediatorLabels = Array.isArray(question.top_mediator_display_labels) && question.top_mediator_display_labels.length
+      ? question.top_mediator_display_labels.filter(Boolean).slice(0, 3)
+      : Array.isArray(question.top_mediator_labels)
+        ? question.top_mediator_labels.filter(Boolean).slice(0, 3)
+        : [];
+    const sourceLabel = questionSideLabel(question, "source");
+    const targetLabel = questionSideLabel(question, "target");
     const pathStrips = mediatorLabels.length
       ? mediatorLabels
           .map((label, index) => {
@@ -700,18 +716,18 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
               <article class="path-strip-card">
                 <span class="tiny-label">Path ${index + 1}</span>
                 <div class="path-strip">
-                  <span class="path-node-chip is-anchor">${escapeHtml(question.source_label)}</span>
+                  <span class="path-node-chip is-anchor">${escapeHtml(sourceLabel)}</span>
                   <span class="path-strip-arrow" aria-hidden="true">→</span>
                   <span class="path-node-chip is-mediator">${escapeHtml(label)}</span>
                   <span class="path-strip-arrow" aria-hidden="true">→</span>
-                  <span class="path-node-chip is-anchor">${escapeHtml(question.target_label)}</span>
+                  <span class="path-node-chip is-anchor">${escapeHtml(targetLabel)}</span>
                 </div>
                 ${control}
               </article>
             `;
           })
           .join("")
-      : `<p class="mini-copy">No named mediator topics were exported for this question in the current public release.</p>`;
+      : `<p class="mini-copy">No named intermediate topics were exported for this question in the current public release.</p>`;
 
     const papers = Array.isArray(question.representative_papers) ? question.representative_papers.slice(0, 3) : [];
     selectedQuestion.innerHTML = `
@@ -720,7 +736,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         <p class="card-copy focus-summary"><strong>Why this surfaced:</strong> ${escapeHtml(conciseQuestionReason(question))}</p>
         <div class="graph-question-meta">
           <span>${formatNumber(safeNumber(question.supporting_path_count))} supporting paths</span>
-          <span>${formatNumber(safeNumber(question.mediator_count))} nearby topics</span>
+          <span>${formatNumber(safeNumber(question.mediator_count))} intermediate topics</span>
           <span>${escapeHtml(questionProjectShapeLabel(question))}</span>
         </div>
         <p class="mini-copy focus-step"><strong>What to inspect first:</strong> ${escapeHtml(question.recommended_move || "Start with the nearby literature and pin down the concrete empirical setting.")}</p>
@@ -731,7 +747,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       <div class="graph-question-subgrid">
         <section class="question-detail-panel">
           <h4>Supporting paths</h4>
-          <p class="mini-copy">These are the clearest nearby routes already linking the two sides in the released map.</p>
+          <p class="mini-copy">These are the clearest short routes already linking the two sides through nearby topics and papers.</p>
           <div class="path-strip-stack">${pathStrips}</div>
         </section>
         <details class="question-detail-disclosure">
@@ -880,7 +896,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         const edge = graph.edgeMap.get(edgeElement.dataset.edgeId);
         showTooltip(event, `
           <strong>${escapeHtml(conceptLabel(edge.source, graph.nodeMap.get(edge.source).label))} to ${escapeHtml(conceptLabel(edge.target, graph.nodeMap.get(edge.target).label))}</strong><br />
-          ${formatNumber(safeNumber(edge.support_count))} papers support this local relation.
+          ${formatNumber(safeNumber(edge.support_count))} papers mention this nearby directed relation.
         `);
       });
       edgeElement.addEventListener("mousemove", moveTooltip);
@@ -901,8 +917,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         ${conceptSubtitle(concept) ? `<p class="mini-copy opportunity-label-note">${escapeHtml(conceptSubtitle(concept))}</p>` : ""}
       </div>
       <div class="graph-topic-strip-meta">
-        <span class="graph-topic-stat">${formatNumber(safeNumber(concept.distinct_paper_support))} papers in the released map</span>
-        <span class="graph-topic-stat">${formatNumber(questionCount)} released questions touch this topic</span>
+        <span class="graph-topic-stat">${formatNumber(safeNumber(concept.distinct_paper_support))} papers in the public release</span>
+        <span class="graph-topic-stat">${formatNumber(questionCount)} question candidates touch this topic</span>
       </div>
       <div class="button-row graph-topic-strip-actions">
         <button class="button-secondary" type="button" data-role="change-topic">Change topic</button>
@@ -921,7 +937,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     currentNeighborhood = null;
     const shardPath = neighborhoodIndex[conceptId];
     if (!shardPath) {
-      selectedNeighborhood.innerHTML = `<p class="card-copy">No nearby topics were exported for this topic in the current public sample.</p>`;
+      selectedNeighborhood.innerHTML = `<p class="card-copy">No nearby topics were exported for this topic in the current public release.</p>`;
       renderQuestionDetail();
       return;
     }
@@ -929,7 +945,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const neighborhood = shard[conceptId];
     currentNeighborhood = neighborhood || null;
     if (!neighborhood) {
-      selectedNeighborhood.innerHTML = `<p class="card-copy">No nearby-topic entry was found for this topic in the current public sample.</p>`;
+      selectedNeighborhood.innerHTML = `<p class="card-copy">No nearby-topic entry was found for this topic in the current public release.</p>`;
       renderQuestionDetail();
       return;
     }
@@ -959,7 +975,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
             .join("")}
         </div>
       `
-      : `<p class="card-copy">No nearby topics were exported for this topic in the current public sample.</p>`;
+      : `<p class="card-copy">No nearby topics were exported for this topic in the current public release.</p>`;
     for (const button of selectedNeighborhood.querySelectorAll("[data-neighbor-id]")) {
       button.addEventListener("click", () => selectConcept(button.dataset.neighborId));
     }
@@ -970,7 +986,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     currentOpportunities = [];
     const shardPath = opportunitiesIndex[conceptId];
     if (!shardPath) {
-      selectedOpportunities.innerHTML = `<p class="card-copy">No public research question touching this topic is available in the current public sample.</p>`;
+      selectedOpportunities.innerHTML = `<p class="card-copy">No public question candidate touching this topic is available in the current public release.</p>`;
       renderQuestionDetail();
       return;
     }
@@ -983,7 +999,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     currentOpportunities = opportunities;
     if (!currentOpportunities.length) {
       activeQuestionPairKey = null;
-      selectedOpportunities.innerHTML = `<p class="card-copy">No public research question touching this topic is available in the current public sample.</p>`;
+      selectedOpportunities.innerHTML = `<p class="card-copy">No public question candidate touching this topic is available in the current public release.</p>`;
       renderQuestionDetail();
       return;
     }
@@ -1037,7 +1053,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     currentOpportunities = [];
     activeQuestionPairKey = null;
     selectedNeighborhood.innerHTML = `<p class="card-copy">Loading nearby topics...</p>`;
-    selectedOpportunities.innerHTML = `<p class="card-copy">Loading released questions touching this topic...</p>`;
+    selectedOpportunities.innerHTML = `<p class="card-copy">Loading question candidates touching this topic...</p>`;
     if (selectedQuestion instanceof HTMLElement) {
       selectedQuestion.innerHTML = `<p class="card-copy">Loading path-based question detail...</p>`;
     }
@@ -1125,7 +1141,10 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const params = new URLSearchParams(window.location.search);
     const query = params.get("q");
     const exact = query
-      ? concepts.find((concept) => concept.label.toLowerCase() === query.toLowerCase())
+      ? concepts.find((concept) => {
+          const needle = query.toLowerCase();
+          return (concept.plain_label || concept.label).toLowerCase() === needle || concept.label.toLowerCase() === needle;
+        })
       : null;
     if (exact) {
       await selectConcept(exact.concept_id);

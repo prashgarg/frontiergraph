@@ -4,7 +4,9 @@ import csv
 import hashlib
 import json
 import os
+import shutil
 import sqlite3
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -14,7 +16,8 @@ SITE_ROOT = ROOT / "site"
 PUBLIC_DATA_DIR = SITE_ROOT / "public" / "data" / "v2"
 PUBLIC_DOWNLOADS_DIR = SITE_ROOT / "public" / "downloads"
 GENERATED_SITE_DATA_PATH = SITE_ROOT / "src" / "generated" / "site-data.json"
-OUTPUT_DB_PATH = ROOT / "data" / "production" / "frontiergraph_public_release" / "frontiergraph-economics-public.db"
+DEFAULT_OUTPUT_DB_PATH = Path("/tmp/frontiergraph-economics-public.db")
+OUTPUT_DB_PATH = Path(os.environ.get("FRONTIERGRAPH_PUBLIC_RELEASE_DB", str(DEFAULT_OUTPUT_DB_PATH)))
 SOURCE_DB_PATH = Path(
     os.environ.get(
         "FRONTIERGRAPH_PUBLIC_SOURCE_DB",
@@ -30,6 +33,65 @@ SOURCE_DB_PATH = Path(
 MANIFEST_PATH = PUBLIC_DOWNLOADS_DIR / "frontiergraph-economics-public.manifest.json"
 CHECKSUM_PATH = PUBLIC_DOWNLOADS_DIR / "frontiergraph-economics-public.sha256.txt"
 DEFAULT_PUBLIC_URL = "https://storage.googleapis.com/frontiergraph-public-downloads-1058669339361/frontiergraph-economics-public.db"
+GENERIC_PUBLIC_TOPIC_TERMS = {
+    "consumption",
+    "credit",
+    "development",
+    "economic development",
+    "economic growth",
+    "education",
+    "employment",
+    "exports",
+    "financial development",
+    "geopolitical risks",
+    "human capital",
+    "information and communication technologies",
+    "inflation",
+    "innovation",
+    "institutional quality",
+    "institutions",
+    "investment",
+    "model parameters",
+    "monetary policy",
+    "output growth",
+    "price changes",
+    "product innovation",
+    "productivity",
+    "public debt",
+    "trade",
+    "trade openness",
+    "volatility",
+}
+PUBLIC_METHOD_TOPIC_PHRASES = (
+    "model performance metrics",
+    "method of moments quantile regression",
+    "multivariate garch framework",
+    "garch 1 1 model",
+    "consistency and asymptotic normality of estimator",
+    "quantile regression",
+    "asymptotic normality",
+    "granger causality",
+    "cointegration",
+    "panel ardl",
+    "markov switching",
+    "estimator",
+    "forecast accuracy",
+    "s p 500 volatility",
+    "quality adjusted life year",
+    "willingness to pay",
+    "contingent valuation methods",
+    "ordinary least squares",
+    "arrival of new information",
+    "rate of growth",
+    "regional development level",
+    "economic development level",
+    "health related quality of life",
+    "overlapping generations model",
+    "error correction model",
+    "vector error correction",
+    "impulse response function",
+    "stochastic frontier analysis",
+)
 
 
 def read_json(path: Path) -> Any:
@@ -63,6 +125,38 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def verify_bundle_db(path: Path) -> None:
+    conn = sqlite3.connect(path)
+    try:
+        integrity = conn.execute("PRAGMA integrity_check").fetchone()
+        if not integrity or integrity[0] != "ok":
+            raise RuntimeError(f"Bundle integrity check failed for {path}: {integrity[0] if integrity else 'unknown'}")
+        required_tables = [
+            "app_meta",
+            "release_meta",
+            "release_metrics",
+            "top_questions",
+            "questions",
+            "central_concepts",
+            "concept_index",
+            "question_mediators",
+            "question_paths",
+            "question_papers",
+        ]
+        counts = {
+            table: conn.execute(f"SELECT count(*) FROM {table}").fetchone()[0]
+            for table in required_tables
+        }
+    finally:
+        conn.close()
+
+    missing = [table for table, count in counts.items() if count <= 0]
+    if missing:
+        raise RuntimeError(
+            f"Bundle validation failed for {path}: expected populated tables, but found empty tables {', '.join(missing)}"
+        )
+
+
 def parse_json_list(value: str | None) -> list[Any]:
     if not value:
         return []
@@ -71,6 +165,75 @@ def parse_json_list(value: str | None) -> list[Any]:
     except Exception:
         return []
     return loaded if isinstance(loaded, list) else []
+
+
+def clean_public_text(value: Any) -> str:
+    return " ".join(str(value or "").strip().split())
+
+
+def normalized_label_key(value: Any) -> str:
+    return " ".join(
+        "".join(ch if ch.isalnum() or ch.isspace() else " " for ch in str(value or "").lower()).split()
+    )
+
+
+def token_count(value: Any) -> int:
+    return len([token for token in normalized_label_key(value).split() if token])
+
+
+def topic_broadness_penalty(label: str, distinct_paper_support: int, refined: bool) -> float:
+    normalized = normalized_label_key(label)
+    penalty = 0.0
+    if normalized in GENERIC_PUBLIC_TOPIC_TERMS:
+        penalty += 10.0
+    if any(phrase in normalized for phrase in PUBLIC_METHOD_TOPIC_PHRASES):
+        penalty += 14.0
+    if token_count(label) <= 2:
+        penalty += 2.5
+    if distinct_paper_support >= 8000:
+        penalty += 4.0
+    elif distinct_paper_support >= 4000:
+        penalty += 2.0
+    if not refined:
+        penalty += 2.5
+    return penalty
+
+
+def bundle_public_specificity_score(
+    *,
+    source_label: str,
+    target_label: str,
+    source_refined: bool,
+    target_refined: bool,
+    source_support: int,
+    target_support: int,
+    mediator_count: int,
+    supporting_path_count: int,
+    path_support_norm: float,
+    cooc_count: int,
+) -> float:
+    score = 0.0
+    if source_refined:
+        score += 5.0
+    if target_refined:
+        score += 5.0
+    score += min(mediator_count, 20) * 0.35
+    score += min(supporting_path_count, 20) * 0.25
+    score += min(path_support_norm, 1.0) * 5.0
+    if cooc_count <= 0:
+        score += 1.6
+    if source_refined and target_refined:
+        score += 2.0
+    score -= topic_broadness_penalty(source_label, source_support, source_refined)
+    score -= topic_broadness_penalty(target_label, target_support, target_refined)
+    if (
+        normalized_label_key(source_label) in GENERIC_PUBLIC_TOPIC_TERMS
+        and normalized_label_key(target_label) in GENERIC_PUBLIC_TOPIC_TERMS
+        and not source_refined
+        and not target_refined
+    ):
+        score -= 6.0
+    return round(score, 4)
 
 
 def label_lookup_from_assets(
@@ -114,10 +277,10 @@ def top_values_from_json(value: str | None, *, limit: int = 3) -> list[str]:
 
 def direct_literature_status(cooc_count: int) -> str:
     if cooc_count <= 0:
-        return "No direct papers yet in the current public sample"
+        return "No direct papers yet in the current public release"
     if cooc_count <= 3:
-        return "A few direct papers already exist in the current public sample"
-    return "Direct literature already exists in the current public sample"
+        return "A few direct papers already exist in the current public release"
+    return "Direct literature already exists in the current public release"
 
 
 def recommendation_play(row: sqlite3.Row) -> str:
@@ -129,9 +292,9 @@ def recommendation_play(row: sqlite3.Row) -> str:
     motif_count = int(row["motif_count"] or 0)
 
     if cross_field and cooc_count <= 0 and path_support >= 0.7:
-        return "A paper that connects two nearby literatures looks like the natural next step."
+        return "A paper that follows the nearby links between the two topics looks like the natural next step."
     if cross_field and cooc_count <= 0:
-        return "A short review may help connect the two nearby literatures before a direct empirical paper."
+        return "Start with a short review or pilot that follows the nearby links between the two topics."
     if gap_bonus >= 0.4 and mediator_count >= 25:
         return "A direct empirical test looks like the natural next step."
     if gap_bonus >= 0.4:
@@ -165,12 +328,12 @@ def plain_context(values: list[str], fallback: str) -> str:
 def why_now(row: sqlite3.Row, source_plain: str, target_plain: str) -> str:
     return (
         f"{source_plain} and {target_plain} already sit near "
-        f"{int(row['mediator_count'] or 0)} nearby linking concepts in the released graph, "
-        f"while the direct literature remains at {int(row['cooc_count'] or 0)} papers in the current public sample."
+        f"{int(row['mediator_count'] or 0)} intermediate topics in the public release, "
+        f"while the direct literature remains at {int(row['cooc_count'] or 0)} papers in the current public release."
     )
 
 
-def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, str]:
+def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tuple[int, str]:
     site_data = read_json(GENERATED_SITE_DATA_PATH)
     top_questions = load_csv_rows(PUBLIC_DATA_DIR / "top_questions.csv")
     central_concepts = load_csv_rows(PUBLIC_DATA_DIR / "central_concepts.csv")
@@ -213,6 +376,13 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
             target_id TEXT,
             source_label TEXT,
             target_label TEXT,
+            source_display_label TEXT,
+            target_display_label TEXT,
+            source_display_concept_id TEXT,
+            target_display_concept_id TEXT,
+            source_display_refined INTEGER,
+            target_display_refined INTEGER,
+            display_refinement_confidence REAL,
             source_bucket TEXT,
             target_bucket TEXT,
             cross_field INTEGER,
@@ -233,12 +403,14 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
             question_family TEXT,
             suppress_from_public_ranked_window INTEGER,
             top_mediator_labels_json TEXT,
+            top_mediator_baseline_labels_json TEXT,
             representative_papers_json TEXT,
             top_countries_source_json TEXT,
             top_countries_target_json TEXT,
             source_context_summary TEXT,
             target_context_summary TEXT,
             common_contexts TEXT,
+            public_specificity_score REAL,
             app_link TEXT
         );
         CREATE TABLE questions (
@@ -247,6 +419,13 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
             target_id TEXT,
             source_label TEXT,
             target_label TEXT,
+            source_display_label TEXT,
+            target_display_label TEXT,
+            source_display_concept_id TEXT,
+            target_display_concept_id TEXT,
+            source_display_refined INTEGER,
+            target_display_refined INTEGER,
+            display_refinement_confidence REAL,
             source_bucket TEXT,
             target_bucket TEXT,
             cross_field INTEGER,
@@ -267,12 +446,14 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
             question_family TEXT,
             suppress_from_public_ranked_window INTEGER,
             top_mediator_labels_json TEXT,
+            top_mediator_baseline_labels_json TEXT,
             representative_papers_json TEXT,
             top_countries_source_json TEXT,
             top_countries_target_json TEXT,
             source_context_summary TEXT,
             target_context_summary TEXT,
             common_contexts TEXT,
+            public_specificity_score REAL,
             app_link TEXT
         );
         CREATE TABLE central_concepts (
@@ -280,6 +461,10 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
             label TEXT,
             plain_label TEXT,
             subtitle TEXT,
+            display_concept_id TEXT,
+            display_refined INTEGER,
+            display_refinement_confidence REAL,
+            alternate_display_labels_json TEXT,
             bucket_hint TEXT,
             instance_support INTEGER,
             distinct_paper_support INTEGER,
@@ -297,6 +482,10 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
             label TEXT,
             plain_label TEXT,
             subtitle TEXT,
+            display_concept_id TEXT,
+            display_refined INTEGER,
+            display_refinement_confidence REAL,
+            alternate_display_labels_json TEXT,
             aliases_json TEXT,
             bucket_hint TEXT,
             instance_support INTEGER,
@@ -316,6 +505,10 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
             label TEXT,
             plain_label TEXT,
             subtitle TEXT,
+            display_concept_id TEXT,
+            display_refined INTEGER,
+            display_refinement_confidence REAL,
+            alternate_display_labels_json TEXT,
             aliases_json TEXT,
             alias_count INTEGER,
             bucket_hint TEXT,
@@ -384,6 +577,7 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
             rank INTEGER,
             mediator_concept_id TEXT,
             mediator_label TEXT,
+            mediator_baseline_label TEXT,
             score REAL,
             PRIMARY KEY (pair_key, rank, mediator_concept_id)
         );
@@ -395,6 +589,7 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
             path_text TEXT,
             path_nodes_json TEXT,
             path_labels_json TEXT,
+            path_baseline_labels_json TEXT,
             PRIMARY KEY (pair_key, rank)
         );
         CREATE TABLE question_papers (
@@ -406,8 +601,10 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
             year INTEGER,
             edge_src TEXT,
             edge_src_label TEXT,
+            edge_src_baseline_label TEXT,
             edge_dst TEXT,
             edge_dst_label TEXT,
+            edge_dst_baseline_label TEXT,
             PRIMARY KEY (pair_key, path_rank, paper_rank, paper_id)
         );
         CREATE TABLE question_neighborhoods (
@@ -421,6 +618,10 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
             label,
             plain_label,
             subtitle,
+            display_concept_id,
+            display_refined,
+            display_refinement_confidence,
+            alternate_display_labels_json,
             bucket_hint,
             instance_support,
             distinct_paper_support,
@@ -498,6 +699,8 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
         prepared = {
             **row,
             "cross_field": int(str(row["cross_field"]).lower() == "true"),
+            "source_display_refined": int(str(row.get("source_display_refined", "")).lower() == "true"),
+            "target_display_refined": int(str(row.get("target_display_refined", "")).lower() == "true"),
             "score": float(row["score"]),
             "base_score": float(row["base_score"]),
             "duplicate_penalty": float(row["duplicate_penalty"]),
@@ -507,11 +710,14 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
             "motif_count": int(row["motif_count"]),
             "cooc_count": int(row["cooc_count"]),
             "supporting_path_count": int(row["supporting_path_count"]),
+            "display_refinement_confidence": float(row.get("display_refinement_confidence", 0.0) or 0.0),
             "suppress_from_public_ranked_window": int(str(row["suppress_from_public_ranked_window"]).lower() == "true"),
             "top_mediator_labels_json": row["top_mediator_labels"],
+            "top_mediator_baseline_labels_json": row.get("top_mediator_baseline_labels", "[]"),
             "representative_papers_json": row["representative_papers"],
             "top_countries_source_json": row["top_countries_source"],
             "top_countries_target_json": row["top_countries_target"],
+            "public_specificity_score": float(row.get("public_specificity_score", 0.0) or 0.0),
         }
         existing = deduped_top_questions.get(prepared["pair_key"])
         if existing is None or prepared["score"] > existing["score"]:
@@ -521,22 +727,26 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
         """
         INSERT INTO top_questions VALUES (
             :pair_key, :source_id, :target_id, :source_label, :target_label,
+            :source_display_label, :target_display_label, :source_display_concept_id, :target_display_concept_id,
+            :source_display_refined, :target_display_refined, :display_refinement_confidence,
             :source_bucket, :target_bucket, :cross_field, :score, :base_score,
             :duplicate_penalty, :path_support_norm, :gap_bonus, :mediator_count,
             :motif_count, :cooc_count, :direct_link_status, :supporting_path_count,
             :why_now, :recommended_move, :slice_label, :public_pair_label,
-            :question_family, :suppress_from_public_ranked_window, :top_mediator_labels_json,
+            :question_family, :suppress_from_public_ranked_window, :top_mediator_labels_json, :top_mediator_baseline_labels_json,
             :representative_papers_json, :top_countries_source_json, :top_countries_target_json,
-            :source_context_summary, :target_context_summary, :common_contexts, :app_link
+            :source_context_summary, :target_context_summary, :common_contexts, :public_specificity_score, :app_link
         )
         """,
         deduped_top_questions.values(),
     )
+    top_question_lookup = dict(deduped_top_questions)
 
     conn.executemany(
         """
         INSERT INTO central_concepts VALUES (
-            :concept_id, :label, :plain_label, :subtitle, :bucket_hint,
+            :concept_id, :label, :plain_label, :subtitle, :display_concept_id, :display_refined,
+            :display_refinement_confidence, :alternate_display_labels_json, :bucket_hint,
             :instance_support, :distinct_paper_support, :weighted_degree,
             :pagerank, :in_degree, :out_degree, :neighbor_count,
             :top_countries_json, :top_units_json, :app_link
@@ -552,6 +762,9 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
                 "in_degree": int(row["in_degree"]),
                 "out_degree": int(row["out_degree"]),
                 "neighbor_count": int(row["neighbor_count"]),
+                "display_refined": int(bool(row.get("display_refined", False))),
+                "display_refinement_confidence": float(row.get("display_refinement_confidence", 0.0) or 0.0),
+                "alternate_display_labels_json": sqlite_json(row.get("alternate_display_labels", [])),
                 "top_countries_json": row["top_countries"],
                 "top_units_json": row["top_units"],
             }
@@ -562,7 +775,8 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
     conn.executemany(
         """
         INSERT INTO concept_index VALUES (
-            :concept_id, :label, :plain_label, :subtitle, :aliases_json,
+            :concept_id, :label, :plain_label, :subtitle, :display_concept_id, :display_refined,
+            :display_refinement_confidence, :alternate_display_labels_json, :aliases_json,
             :bucket_hint, :instance_support, :distinct_paper_support,
             :weighted_degree, :pagerank, :in_degree, :out_degree,
             :neighbor_count, :top_countries_json, :top_units_json,
@@ -575,6 +789,10 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
                 "label": row["label"],
                 "plain_label": row.get("plain_label", ""),
                 "subtitle": row.get("subtitle", ""),
+                "display_concept_id": row.get("display_concept_id", ""),
+                "display_refined": int(bool(row.get("display_refined", False))),
+                "display_refinement_confidence": float(row.get("display_refinement_confidence", 0.0) or 0.0),
+                "alternate_display_labels_json": sqlite_json(row.get("alternate_display_labels", [])),
                 "aliases_json": sqlite_json(row.get("aliases", [])),
                 "bucket_hint": row.get("bucket_hint", ""),
                 "instance_support": int(row.get("instance_support", 0)),
@@ -596,7 +814,8 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
     conn.executemany(
         """
         INSERT INTO graph_nodes VALUES (
-            :id, :label, :plain_label, :subtitle, :aliases_json, :alias_count,
+            :id, :label, :plain_label, :subtitle, :display_concept_id, :display_refined,
+            :display_refinement_confidence, :alternate_display_labels_json, :aliases_json, :alias_count,
             :bucket_hint, :instance_support, :distinct_paper_support, :x, :y,
             :weighted_degree, :pagerank, :in_degree, :out_degree, :neighbor_count,
             :bucket_group, :show_label
@@ -605,6 +824,9 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
         [
             {
                 **row,
+                "display_refined": int(bool(row.get("display_refined", False))),
+                "display_refinement_confidence": float(row.get("display_refinement_confidence", 0.0) or 0.0),
+                "alternate_display_labels_json": sqlite_json(row.get("alternate_display_labels", [])),
                 "aliases_json": sqlite_json(row.get("aliases", [])),
                 "show_label": int(bool(row.get("show_label", False))),
             }
@@ -710,6 +932,7 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
     )
 
     label_lookup = label_lookup_from_assets(concept_index, graph_backbone, central_concepts)
+    concept_display_lookup = {str(row.get("concept_id", "")): row for row in concept_index}
 
     source_conn = sqlite3.connect(source_db_path)
     source_conn.row_factory = sqlite3.Row
@@ -727,14 +950,56 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
             for item in parse_json_list(row["top_mediators_json"])[:3]
             if isinstance(item, dict) and str(item.get("mediator", "")).strip()
         ]
-        source_context_summary = plain_context(top_source, "No dominant source setting in the current public sample")
-        target_context_summary = plain_context(top_target, "No dominant target setting in the current public sample")
+        source_context_summary = plain_context(top_source, "No dominant source setting in the current public release")
+        target_context_summary = plain_context(top_target, "No dominant target setting in the current public release")
+        public_row = top_question_lookup.get(str(row["pair_key"]), {})
+        source_display_label = clean_public_text(public_row.get("source_display_label")) or clean_public_text(
+            concept_display_lookup.get(source_id, {}).get("plain_label")
+        ) or source_plain
+        target_display_label = clean_public_text(public_row.get("target_display_label")) or clean_public_text(
+            concept_display_lookup.get(target_id, {}).get("plain_label")
+        ) or target_plain
+        source_display_refined = int(
+            str(public_row.get("source_display_refined", "")).lower() == "true"
+            or bool(concept_display_lookup.get(source_id, {}).get("display_refined", False))
+        )
+        target_display_refined = int(
+            str(public_row.get("target_display_refined", "")).lower() == "true"
+            or bool(concept_display_lookup.get(target_id, {}).get("display_refined", False))
+        )
+        display_refinement_confidence = float(public_row.get("display_refinement_confidence", 0.0) or 0.0) or round(
+            (
+                float(concept_display_lookup.get(source_id, {}).get("display_refinement_confidence", 0.0) or 0.0)
+                + float(concept_display_lookup.get(target_id, {}).get("display_refinement_confidence", 0.0) or 0.0)
+            )
+            / 2.0,
+            4,
+        )
+        specificity_score = float(public_row.get("public_specificity_score", 0.0) or 0.0) or bundle_public_specificity_score(
+            source_label=source_display_label,
+            target_label=target_display_label,
+            source_refined=bool(source_display_refined),
+            target_refined=bool(target_display_refined),
+            source_support=int(row["u_distinct_paper_support"]) if "u_distinct_paper_support" in row.keys() else 0,
+            target_support=int(row["v_distinct_paper_support"]) if "v_distinct_paper_support" in row.keys() else 0,
+            mediator_count=int(row["mediator_count"] or 0),
+            supporting_path_count=int(row["mediator_count"] or 0),
+            path_support_norm=float(row["path_support_norm"] or 0.0),
+            cooc_count=int(row["cooc_count"] or 0),
+        )
         prepared = {
             "pair_key": str(row["pair_key"]),
             "source_id": source_id,
             "target_id": target_id,
             "source_label": str(row["u_preferred_label"] or source_plain),
             "target_label": str(row["v_preferred_label"] or target_plain),
+            "source_display_label": source_display_label,
+            "target_display_label": target_display_label,
+            "source_display_concept_id": clean_public_text(public_row.get("source_display_concept_id")) or clean_public_text(concept_display_lookup.get(source_id, {}).get("display_concept_id")) or source_id,
+            "target_display_concept_id": clean_public_text(public_row.get("target_display_concept_id")) or clean_public_text(concept_display_lookup.get(target_id, {}).get("display_concept_id")) or target_id,
+            "source_display_refined": source_display_refined,
+            "target_display_refined": target_display_refined,
+            "display_refinement_confidence": display_refinement_confidence,
             "source_bucket": str(row["u_bucket_hint"] or ""),
             "target_bucket": str(row["v_bucket_hint"] or ""),
             "cross_field": int(str(row["u_bucket_hint"] or "") != str(row["v_bucket_hint"] or "")),
@@ -748,20 +1013,39 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
             "cooc_count": int(row["cooc_count"] or 0),
             "direct_link_status": direct_literature_status(int(row["cooc_count"] or 0)),
             "supporting_path_count": int(row["mediator_count"] or 0),
-            "why_now": why_now(row, source_plain, target_plain),
-            "recommended_move": recommendation_play(row),
-            "slice_label": slice_label(row),
-            "public_pair_label": f"{source_plain} and {target_plain}",
-            "question_family": "",
-            "suppress_from_public_ranked_window": 0,
-            "top_mediator_labels_json": sqlite_json(top_mediator_labels),
-            "representative_papers_json": "[]",
-            "top_countries_source_json": sqlite_json(top_source),
-            "top_countries_target_json": sqlite_json(top_target),
-            "source_context_summary": source_context_summary,
-            "target_context_summary": target_context_summary,
-            "common_contexts": f"Source-side settings most often mention {source_context_summary}. Target-side settings most often mention {target_context_summary}.",
-            "app_link": f"{site_data['app_url']}?view=question&pair={row['pair_key']}",
+            "why_now": clean_public_text(public_row.get("why_now")) or why_now(row, source_display_label, target_display_label),
+            "recommended_move": clean_public_text(public_row.get("recommended_move")) or recommendation_play(row),
+            "slice_label": clean_public_text(public_row.get("slice_label")) or slice_label(row),
+            "public_pair_label": clean_public_text(public_row.get("public_pair_label")) or f"{source_display_label} and {target_display_label}",
+            "question_family": clean_public_text(public_row.get("question_family")),
+            "suppress_from_public_ranked_window": int(str(public_row.get("suppress_from_public_ranked_window", "")).lower() == "true"),
+            "top_mediator_labels_json": sqlite_json(
+                parse_json_list(public_row.get("top_mediator_labels")) or top_mediator_labels
+            ),
+            "top_mediator_baseline_labels_json": sqlite_json(
+                parse_json_list(public_row.get("top_mediator_baseline_labels"))
+                or [
+                    clean_public_text(concept_display_lookup.get(str(item.get("mediator", "")), {}).get("label"))
+                    or str(item.get("mediator", ""))
+                    for item in parse_json_list(row["top_mediators_json"])[:3]
+                    if isinstance(item, dict) and str(item.get("mediator", "")).strip()
+                ]
+            ),
+            "representative_papers_json": public_row.get("representative_papers_json")
+            or public_row.get("representative_papers")
+            or "[]",
+            "top_countries_source_json": public_row.get("top_countries_source_json")
+            or public_row.get("top_countries_source")
+            or sqlite_json(top_source),
+            "top_countries_target_json": public_row.get("top_countries_target_json")
+            or public_row.get("top_countries_target")
+            or sqlite_json(top_target),
+            "source_context_summary": clean_public_text(public_row.get("source_context_summary")) or source_context_summary,
+            "target_context_summary": clean_public_text(public_row.get("target_context_summary")) or target_context_summary,
+            "common_contexts": clean_public_text(public_row.get("common_contexts"))
+            or f"Source-side settings most often mention {source_context_summary}. Target-side settings most often mention {target_context_summary}.",
+            "public_specificity_score": specificity_score,
+            "app_link": clean_public_text(public_row.get("app_link")) or f"{site_data['app_url']}?view=question&pair={row['pair_key']}",
         }
         existing = full_question_rows.get(prepared["pair_key"])
         if existing is None or prepared["score"] > existing["score"]:
@@ -771,13 +1055,15 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
         """
         INSERT INTO questions VALUES (
             :pair_key, :source_id, :target_id, :source_label, :target_label,
+            :source_display_label, :target_display_label, :source_display_concept_id, :target_display_concept_id,
+            :source_display_refined, :target_display_refined, :display_refinement_confidence,
             :source_bucket, :target_bucket, :cross_field, :score, :base_score,
             :duplicate_penalty, :path_support_norm, :gap_bonus, :mediator_count,
             :motif_count, :cooc_count, :direct_link_status, :supporting_path_count,
             :why_now, :recommended_move, :slice_label, :public_pair_label,
-            :question_family, :suppress_from_public_ranked_window, :top_mediator_labels_json,
+            :question_family, :suppress_from_public_ranked_window, :top_mediator_labels_json, :top_mediator_baseline_labels_json,
             :representative_papers_json, :top_countries_source_json, :top_countries_target_json,
-            :source_context_summary, :target_context_summary, :common_contexts, :app_link
+            :source_context_summary, :target_context_summary, :common_contexts, :public_specificity_score, :app_link
         )
         """,
         full_question_rows.values(),
@@ -785,13 +1071,14 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
 
     conn.executemany(
         """
-        INSERT OR REPLACE INTO question_mediators VALUES (?, ?, ?, ?, ?)
+        INSERT OR REPLACE INTO question_mediators VALUES (?, ?, ?, ?, ?, ?)
         """,
         [
             (
                 str(row["pair_key"]),
                 int(row["rank"]),
                 str(row["mediator_concept_id"]),
+                clean_public_text(label_lookup.get(str(row["mediator_concept_id"]), str(row["mediator_label"]))),
                 str(row["mediator_label"]),
                 float(row["score"]),
             )
@@ -816,7 +1103,7 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
         ],
     )
 
-    question_paths_payload: list[tuple[str, int, int, float, str, str, str]] = []
+    question_paths_payload: list[tuple[str, int, int, float, str, str, str, str]] = []
     for row in source_conn.execute(
         """
         SELECT
@@ -834,6 +1121,10 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
     ):
         path_nodes = [str(value) for value in parse_json_list(row["path_nodes_json"])]
         path_labels = [label_lookup.get(node_id, node_id) for node_id in path_nodes]
+        path_baseline_labels = [
+            clean_public_text(concept_display_lookup.get(node_id, {}).get("label")) or label_lookup.get(node_id, node_id)
+            for node_id in path_nodes
+        ]
         question_paths_payload.append(
             (
                 str(row["pair_key"]),
@@ -843,13 +1134,14 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
                 str(row["path_text"]),
                 sqlite_json(path_nodes),
                 sqlite_json(path_labels),
+                sqlite_json(path_baseline_labels),
             )
         )
-    conn.executemany("INSERT OR REPLACE INTO question_paths VALUES (?, ?, ?, ?, ?, ?, ?)", question_paths_payload)
+    conn.executemany("INSERT OR REPLACE INTO question_paths VALUES (?, ?, ?, ?, ?, ?, ?, ?)", question_paths_payload)
 
     conn.executemany(
         """
-        INSERT OR REPLACE INTO question_papers VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT OR REPLACE INTO question_papers VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         [
             (
@@ -861,8 +1153,10 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
                 int(row["year"]) if row["year"] is not None else 0,
                 str(row["edge_src"]),
                 label_lookup.get(str(row["edge_src"]), str(row["edge_src"])),
+                clean_public_text(concept_display_lookup.get(str(row["edge_src"]), {}).get("label")) or str(row["edge_src"]),
                 str(row["edge_dst"]),
                 label_lookup.get(str(row["edge_dst"]), str(row["edge_dst"])),
+                clean_public_text(concept_display_lookup.get(str(row["edge_dst"]), {}).get("label")) or str(row["edge_dst"]),
             )
             for row in source_conn.execute(
                 """
@@ -915,6 +1209,23 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
 
     sha256 = sha256_file(output_path)
     return output_path.stat().st_size, sha256
+
+
+def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, str]:
+    with tempfile.TemporaryDirectory(prefix="frontiergraph-public-db-") as temp_dir:
+        temp_output_path = Path(temp_dir) / output_path.name
+        size_bytes, sha256 = build_sqlite_bundle_at_path(temp_output_path, source_db_path)
+        verify_bundle_db(temp_output_path)
+
+        ensure_parent(output_path)
+        copy_target = output_path.with_suffix(output_path.suffix + ".tmp")
+        if copy_target.exists() or copy_target.is_symlink():
+            copy_target.unlink()
+        shutil.copy2(temp_output_path, copy_target)
+        verify_bundle_db(copy_target)
+        copy_target.replace(output_path)
+        verify_bundle_db(output_path)
+        return size_bytes, sha256
 
 
 def update_release_artifacts(size_bytes: int, sha256: str, public_url: str) -> None:
