@@ -1930,13 +1930,75 @@ h3 {
 }
 
 .graph-stage {
-  grid-template-columns: minmax(460px, 1.18fr) minmax(0, 0.82fr);
+  display: grid;
+  gap: 1rem;
+}
+
+.graph-idle-shell {
+  min-height: 13rem;
+  align-content: center;
+  background: color-mix(in srgb, var(--surface-strong) 84%, transparent);
+}
+
+.graph-active-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.graph-topic-strip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: end;
+  padding: 1.05rem 1.15rem;
+}
+
+.graph-topic-strip-main {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.graph-topic-strip-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.graph-topic-stat {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.2rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.graph-topic-strip-actions {
+  margin-top: 0;
+  justify-self: end;
+}
+
+.graph-master-detail {
+  display: grid;
+  grid-template-columns: minmax(320px, 400px) minmax(0, 1fr);
+  gap: 1rem;
   align-items: start;
 }
 
-.graph-main-panel {
+.graph-chooser-rail {
   display: grid;
+  gap: 0.9rem;
+  align-self: start;
+}
+
+.graph-detail-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
   gap: 1rem;
+  align-items: start;
   min-width: 0;
 }
 
@@ -2009,6 +2071,21 @@ h3 {
   display: grid;
   gap: 0.9rem;
   align-self: start;
+}
+
+.graph-context-panel {
+  display: grid;
+  gap: 0.85rem;
+  align-self: start;
+}
+
+.graph-context-panel .graph-controls {
+  margin-bottom: 0;
+}
+
+.graph-context-panel .graph-canvas {
+  aspect-ratio: 1 / 1.02;
+  min-height: clamp(24rem, 31vw, 32rem);
 }
 
 .central-list {
@@ -2228,7 +2305,7 @@ h3 {
   gap: 0.55rem;
 }
 
-.graph-topic-card,
+.graph-topic-strip,
 .graph-question-focus,
 .graph-question-shell,
 .graph-neighborhood-shell {
@@ -2263,7 +2340,7 @@ h3 {
 }
 
 .graph-opportunity-card .button-row,
-.graph-topic-card .button-row {
+.graph-topic-strip .button-row {
   margin-top: 0.2rem;
 }
 
@@ -2287,6 +2364,11 @@ h3 {
 .graph-question-focus-card h4,
 .question-detail-panel h4 {
   margin: 0;
+}
+
+.graph-question-focus-card h4 {
+  font-size: clamp(1.22rem, 1.4vw, 1.55rem);
+  line-height: 1.15;
 }
 
 .graph-question-meta {
@@ -2315,6 +2397,69 @@ h3 {
   min-height: 1.85rem;
   padding: 0.1rem 0.62rem;
   font-size: 0.87rem;
+}
+
+.graph-question-row {
+  display: grid;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.9rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 0.95rem;
+  background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 140ms ease, background 140ms ease, transform 140ms ease, box-shadow 140ms ease;
+}
+
+.graph-question-row:hover {
+  border-color: var(--line-strong);
+  background: color-mix(in srgb, var(--panel-strong) 94%, transparent);
+  transform: translateY(-1px);
+}
+
+.graph-question-row.is-active {
+  border-color: rgba(31, 50, 72, 0.24);
+  background: color-mix(in srgb, var(--panel-strong) 96%, transparent);
+  box-shadow: 0 10px 24px rgba(31, 50, 72, 0.09);
+}
+
+.graph-question-row strong {
+  display: block;
+}
+
+.graph-topic-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.topic-chip-button {
+  display: grid;
+  gap: 0.1rem;
+  min-height: 3.1rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 0.95rem;
+  background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
+}
+
+.topic-chip-button:hover {
+  border-color: var(--line-strong);
+  background: color-mix(in srgb, var(--panel-strong) 94%, transparent);
+  transform: translateY(-1px);
+}
+
+.topic-chip-button small {
+  color: var(--muted);
+  font-size: 0.8rem;
 }
 
 .graph-question-subgrid {
@@ -2777,6 +2922,8 @@ h3 {
   .graph-toolbar,
   .graph-layout,
   .graph-stage,
+  .graph-master-detail,
+  .graph-detail-workspace,
   .lookup-grid,
   .method-top-grid,
   .glossary-grid,
@@ -2797,6 +2944,15 @@ h3 {
 
   .graph-question-subgrid {
     grid-template-columns: 1fr;
+  }
+
+  .graph-topic-strip {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .graph-topic-strip-actions {
+    justify-self: start;
   }
 
   .faq-rail {

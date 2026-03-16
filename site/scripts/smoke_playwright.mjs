@@ -106,15 +106,18 @@ async function main() {
   assert((await page.getByRole("link", { name: /How it works/i }).count()) === 0, "Questions page should not point to How it works");
 
   await page.goto(`${baseUrl}/graph/`, { waitUntil: "networkidle" });
-  await page.waitForSelector('[data-role="graph-canvas"]');
+  await page.waitForSelector('[data-role="graph-idle"]');
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
   assert(await page.getByRole("heading", { name: /Choose a topic and start with the questions around it/i }).first().isVisible(), "Graph hero missing");
-  assert(await page.getByRole("heading", { name: /Selected topic/i }).isVisible(), "Map selected-topic panel missing");
+  assert(await page.getByRole("heading", { name: /Start with a topic/i }).isVisible(), "Graph idle state missing");
   assert((await page.getByRole("button", { name: /Rearrange/i }).count()) === 0, "Map should not show rearrange button");
   assert((await page.getByRole("button", { name: /Zoom in/i }).count()) === 0, "Map should not show zoom-in button");
   assert((await page.getByRole("button", { name: /Reset topic/i }).count()) === 0, "Map should not show reset-topic button");
+  await page.locator('[data-role="central-list"] .list-link').first().click();
+  await page.waitForSelector('[data-role="graph-active"]:not([hidden])');
   assert(await page.getByRole("heading", { name: /Questions touching this topic/i }).isVisible(), "Graph page should prioritize questions");
-  assert(await page.getByRole("heading", { name: /Selected question and paths/i }).isVisible(), "Graph page should show path-based question detail");
+  assert(await page.getByRole("heading", { name: /Selected question/i }).isVisible(), "Graph page should show question detail");
+  assert(await page.getByRole("heading", { name: /Graph context/i }).isVisible(), "Graph page should keep graph context visible");
   const focusedNodeCount = await page.locator("[data-node-id]").count();
   assert(focusedNodeCount > 0, "Focused map rendered no nodes");
   await page.getByRole("button", { name: /Show full map/i }).click();
