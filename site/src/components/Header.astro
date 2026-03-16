@@ -1,20 +1,37 @@
 ---
 import { data } from "../lib/site-data";
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/questions/", label: "Questions" },
-  { href: "/graph/", label: "Graph" },
-  { href: "/paper/", label: "Paper" },
-  { href: "/downloads/", label: "Downloads" },
-];
+interface Props {
+  navPrefix?: string;
+  appUrl?: string;
+  appLabel?: string;
+  brandHref?: string;
+  variantLabel?: string;
+  links?: { href: string; label: string }[];
+}
+
+const {
+  navPrefix = "",
+  appUrl = data.app_url,
+  appLabel = "Open app",
+  brandHref = navPrefix ? `${navPrefix}/` : "/",
+  variantLabel = "",
+  links = [
+    { href: `${navPrefix}/`, label: "Home" },
+    { href: `${navPrefix}/questions/`, label: "Questions" },
+    { href: `${navPrefix}/graph/`, label: "Graph" },
+    { href: `${navPrefix}/paper/`, label: "Paper" },
+    { href: `${navPrefix}/downloads/`, label: "Downloads" },
+  ],
+} = Astro.props;
 ---
 
 <header class="site-header">
-  <a href="/" class="brand-lockup">
+  <a href={brandHref} class="brand-lockup">
     <span class="brand-mark" aria-hidden="true"></span>
     <span>
       <span class="brand-name">FrontierGraph</span>
+      {variantLabel && <span class="site-variant-pill">{variantLabel}</span>}
     </span>
   </a>
   <div class="site-nav-shell">
@@ -24,7 +41,7 @@ const links = [
       ))}
     </nav>
     <div class="site-nav-actions">
-      <a href={data.app_url} class="header-cta">App workspace</a>
+      <a href={appUrl} class="header-cta">{appLabel}</a>
     </div>
   </div>
 </header>

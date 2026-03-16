@@ -5,7 +5,7 @@ import { data } from "../lib/site-data";
 const formatNumber = (value: number) => new Intl.NumberFormat("en-GB").format(value);
 const scaleItems = [
   {
-    label: "published-journal papers screened",
+    label: "papers screened",
     value: formatNumber(data.metrics.papers),
   },
   {
@@ -32,7 +32,7 @@ const scaleItems = [
       <div class="hero-panel hero-copy-panel hero-copy-panel-plain hero-copy-panel-home">
         <h1>Organizing open questions in economics.</h1>
         <p class="lede">
-          Browse question candidates surfaced from nearby topics, directed links, and papers in a published-journal economics corpus.
+          Browse question candidates that emerge when nearby topics and papers start pointing toward the same gap in a large economics corpus.
         </p>
         <div class="hero-actions hero-actions-home">
           <a class="button-primary" href="/questions/">Browse questions</a>
@@ -46,9 +46,9 @@ const scaleItems = [
         <article class="card home-intro-card">
           <span class="tiny-label">What</span>
           <ul class="home-intro-list">
-            <li>Question candidates surfaced from nearby directed links and papers.</li>
+            <li>Question candidates surfaced from nearby topics and papers.</li>
             <li>Each question stays tied to intermediate topics and papers to start with.</li>
-            <li>Public browser, working paper, and downloadable data in one release.</li>
+            <li>The map helps you inspect one short route before you read more widely.</li>
           </ul>
         </article>
         <article class="card home-intro-card">

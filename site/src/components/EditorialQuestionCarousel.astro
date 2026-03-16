@@ -77,40 +77,42 @@ const areaPreview = (item: Opportunity) =>
           <span class="editorial-carousel-tag">{item.display_category || item.slice_label || "Open question"}</span>
           <h3>{item.display_title || item.public_pair_label}</h3>
           <p class="card-copy">{item.display_why || item.why_now}</p>
-          <div class="editorial-carousel-evidence">
-            <span
-              class="editorial-evidence-chip"
-              tabindex="0"
-              aria-label={nearbyTopicsPreview(item) || `${item.supporting_path_count} nearby topics`}
-            >
-              <span>{item.supporting_path_count} nearby topics</span>
-              {nearbyTopicsPreview(item) && <span class="editorial-evidence-preview">{nearbyTopicsPreview(item)}</span>}
-            </span>
-            <span
-              class="editorial-evidence-chip"
-              tabindex="0"
-              aria-label={starterPaperPreview(item) || `${item.representative_papers.length} starter papers`}
-            >
-              <span>{item.representative_papers.length} starter papers</span>
-              {starterPaperPreview(item) && <span class="editorial-evidence-preview editorial-evidence-preview-wide">{starterPaperPreview(item)}</span>}
-            </span>
-            <span
-              class="editorial-evidence-chip"
-              tabindex="0"
-              aria-label={areaPreview(item)}
-            >
-              <span>{item.cross_field ? "Across fields" : "Same nearby field"}</span>
-              <span class="editorial-evidence-preview">{areaPreview(item)}</span>
-            </span>
-          </div>
-          {item.display_first_step && (
-            <p class="mini-copy">
-              <strong>First step:</strong> {item.display_first_step}
-            </p>
-          )}
-          <div class="button-row editorial-carousel-actions">
-            <a class="text-link" href={`/questions/#${item.pair_key}`}>See question</a>
-            <a class="text-link" href={item.app_link}>Open in app for papers and export</a>
+          <div class="editorial-carousel-footer">
+            <div class="editorial-carousel-evidence">
+              <span
+                class="editorial-evidence-chip"
+                tabindex="0"
+                aria-label={nearbyTopicsPreview(item) || `${item.supporting_path_count} nearby topics`}
+              >
+                <span>{item.supporting_path_count} nearby topics</span>
+                {nearbyTopicsPreview(item) && <span class="editorial-evidence-preview">{nearbyTopicsPreview(item)}</span>}
+              </span>
+              <span
+                class="editorial-evidence-chip"
+                tabindex="0"
+                aria-label={starterPaperPreview(item) || `${item.representative_papers.length} starter papers`}
+              >
+                <span>{item.representative_papers.length} starter papers</span>
+                {starterPaperPreview(item) && <span class="editorial-evidence-preview editorial-evidence-preview-wide">{starterPaperPreview(item)}</span>}
+              </span>
+              <span
+                class="editorial-evidence-chip"
+                tabindex="0"
+                aria-label={areaPreview(item)}
+              >
+                <span>{item.cross_field ? "Across fields" : "Same nearby field"}</span>
+                <span class="editorial-evidence-preview">{areaPreview(item)}</span>
+              </span>
+            </div>
+            {item.display_first_step && (
+              <p class="mini-copy">
+                <strong>First step:</strong> {item.display_first_step}
+              </p>
+            )}
+            <div class="button-row editorial-carousel-actions">
+              <a class="text-link" href={`/questions/#${item.pair_key}`}>See question</a>
+              <a class="text-link" href={item.app_link}>Open in app for papers and export</a>
+            </div>
           </div>
         </div>
       </article>

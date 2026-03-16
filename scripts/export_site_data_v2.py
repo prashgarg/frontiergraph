@@ -692,6 +692,27 @@ def short_path_line(values: dict[str, Any]) -> str:
     return "Nearby papers touch both sides, but the local route is still thin."
 
 
+def generated_first_step(values: dict[str, Any]) -> str:
+    source_label = clean_public_text(values.get("source_display_label") or values.get("source_label"))
+    target_label = clean_public_text(values.get("target_display_label") or values.get("target_label"))
+    mediators = uniq_keep_order(
+        [clean_public_text(value) for value in values.get("top_mediator_labels", []) if clean_public_text(value)],
+        limit=3,
+    )
+    if len(mediators) >= 3:
+        return (
+            f"Start by tracing {source_label} to {target_label} through {mediators[0]}, {mediators[1]}, "
+            f"and {mediators[2]} before testing the endpoint link directly."
+        )
+    if len(mediators) == 2:
+        return f"Start by testing whether {mediators[0]} and {mediators[1]} are the main channels linking {source_label} to {target_label}."
+    if len(mediators) == 1:
+        return f"Start with {mediators[0]} as the first channel linking {source_label} to {target_label}."
+    if to_int(values.get("cooc_count", 0)) <= 0:
+        return f"Start with a short review that narrows where {source_label} could plausibly reach {target_label}."
+    return f"Start with the nearby papers and tighten the mechanism connecting {source_label} to {target_label}."
+
+
 def resolve_top_mediator_labels(
     raw: Any,
     concept_label_lookup: dict[str, str],
@@ -1895,7 +1916,7 @@ def decorate_carousel_record(
         **row,
         "display_title": custom_title or auto_question_title(row.get("public_pair_label")),
         "display_why": custom_why or short_path_line(row),
-        "display_first_step": custom_first_step,
+        "display_first_step": custom_first_step or generated_first_step(row),
         "display_category": custom_category
         or editorial_strength.replace("-", " ").title()
         or display_category(row),

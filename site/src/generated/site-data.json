@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-16T20:19:11.345430+00:00",
+  "generated_at": "2026-03-16T20:32:07.748400+00:00",
   "app_url": "https://frontiergraph-app-1058669339361.us-central1.run.app",
   "repo_url": "https://github.com/prashgarg/frontiergraph",
   "public_label_glossary": {
@@ -5945,7 +5945,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000455__FG3C003050",
             "display_title": "Individual forecasts and long-term interest rate",
             "display_why": "Closest route runs through short-term interest rate and expected rate of inflation.",
-            "display_first_step": "",
+            "display_first_step": "Start by testing whether short-term interest rate and expected rate of inflation are the main channels linking individual forecasts to long-term interest rate.",
             "display_category": "Little direct work"
           },
           {
@@ -6050,7 +6050,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000094__FG3C001436",
             "display_title": "Cost of debt and green technology innovation",
             "display_why": "Linked nearby through carbon intensity, ESG ratings, and cost of equity capital.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing green technology innovation to cost of debt through carbon intensity, ESG ratings, and cost of equity capital before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -6154,7 +6154,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000071__FG3C002924",
             "display_title": "Economic policy uncertainty and net interest margin",
             "display_why": "Linked nearby through inflation, default risk, and market concentration.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing economic policy uncertainty to net interest margin through inflation, default risk, and market concentration before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -6258,7 +6258,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000027__FG3C000279",
             "display_title": "Interest rates and oil price volatility",
             "display_why": "Linked nearby through inflation, oil prices, and gold prices.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing oil price volatility to interest rates through inflation, oil prices, and gold prices before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -6361,7 +6361,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001534__FG3C002284",
             "display_title": "Firm total factor productivity (TFP) and unconventional monetary policy",
             "display_why": "Linked nearby through exports, firm risk, and imports.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing unconventional monetary policy to firm total factor productivity (TFP) through exports, firm risk, and imports before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -6464,7 +6464,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000003__FG3C001534",
             "display_title": "Unconventional monetary policy and CO2 emissions",
             "display_why": "Linked nearby through exports, inflation, and imports.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing unconventional monetary policy to CO2 emissions through exports, inflation, and imports before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -6568,7 +6568,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000159__FG3C000423",
             "display_title": "Monetary policy shocks and natural gas consumption",
             "display_why": "Linked nearby through inflation, real GDP, and exchange rate.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing monetary policy shocks to natural gas consumption through inflation, real GDP, and exchange rate before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           }
         ]
@@ -6990,7 +6990,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001452__FG3C002172",
             "display_title": "Microfinance and catastrophic health expenditures",
             "display_why": "Linked nearby through poor countries, gender (male vs female), and poverty.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing microfinance to catastrophic health expenditures through poor countries, gender (male vs female), and poverty before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -7094,7 +7094,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000022__FG3C000753",
             "display_title": "Wages and high-speed rail",
             "display_why": "Linked nearby through housing prices, travel time, and accessibility.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing high-speed rail to wages through housing prices, travel time, and accessibility before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -7198,7 +7198,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000114__FG3C003577",
             "display_title": "Market concentration and essential medicines",
             "display_why": "Linked nearby through health care utilization, retail prices, and for-profit hospitals.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing market concentration to essential medicines through health care utilization, retail prices, and for-profit hospitals before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -7301,7 +7301,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000236__FG3C001758",
             "display_title": "Inward foreign direct investment (FDI) and regional economic growth",
             "display_why": "Linked nearby through environmental regulations, energy consumption, and technology transfer.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing inward foreign direct investment (FDI) to regional economic growth through environmental regulations, energy consumption, and technology transfer before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -7405,7 +7405,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C002284__FG3C002513",
             "display_title": "Firm total factor productivity (TFP) and level of urbanization",
             "display_why": "Linked nearby through emissions trading system, green innovation, and Energy efficiency (EE).",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing level of urbanization to firm total factor productivity (TFP) through emissions trading system, green innovation, and Energy efficiency (EE) before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -7509,7 +7509,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000009__FG3C002438",
             "display_title": "Unemployment and Special economic zones",
             "display_why": "Linked nearby through structural changes, investment, and productivity growth.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing Special economic zones to unemployment through structural changes, investment, and productivity growth before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -7614,7 +7614,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000025__FG3C002438",
             "display_title": "Income inequality and Special economic zones",
             "display_why": "Linked nearby through financial liberalization, technological progress, and innovation.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing Special economic zones to income inequality through financial liberalization, technological progress, and innovation before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           }
         ]
@@ -8036,7 +8036,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001635__FG3C001922",
             "display_title": "Export product quality and high-tech industry",
             "display_why": "Linked nearby through innovation, firm productivity, and innovation performance.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing high-tech industry to export product quality through innovation, firm productivity, and innovation performance before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -8139,7 +8139,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000167__FG3C004133",
             "display_title": "Import penetration and carbon dioxide (CO2) emission",
             "display_why": "Linked nearby through poverty, income, and technology.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing import penetration to carbon dioxide (CO2) emission through poverty, income, and technology before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -8244,7 +8244,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000022__FG3C002487",
             "display_title": "Free trade agreements and wages",
             "display_why": "Linked nearby through productivity, trade liberalization, and international trade (trade flows).",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing free trade agreements to wages through productivity, trade liberalization, and international trade (trade flows) before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -8350,7 +8350,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000499__FG3C002487",
             "display_title": "Free trade agreements and skill premium",
             "display_why": "Linked nearby through trade liberalization, developing countries, and market access.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing free trade agreements to skill premium through trade liberalization, developing countries, and market access before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -8456,7 +8456,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000078__FG3C000199",
             "display_title": "International trade and economic complexity",
             "display_why": "Linked nearby through economic growth, CO2 emissions, and renewable energy consumption.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing economic complexity to international trade through economic growth, CO2 emissions, and renewable energy consumption before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -8561,7 +8561,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000072__FG3C004338",
             "display_title": "Exchange rates and international trade (trade flows)",
             "display_why": "Linked nearby through trade, capital flows, and investment level.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing exchange rates to international trade (trade flows) through trade, capital flows, and investment level before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -8665,7 +8665,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000083__FG3C000215",
             "display_title": "Trade liberalization and green total factor productivity (GTFP)",
             "display_why": "Linked nearby through foreign direct investments, environmental regulation, and inward foreign direct investment (FDI).",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing trade liberalization to green total factor productivity (GTFP) through foreign direct investments, environmental regulation, and inward foreign direct investment (FDI) before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           }
         ]
@@ -8776,7 +8776,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000034__FG3C000167",
             "display_title": "Carbon dioxide (CO2) emission and oil prices",
             "display_why": "Linked nearby through economic growth, renewable energy consumption, and energy consumption.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing oil prices to carbon dioxide (CO2) emission through economic growth, renewable energy consumption, and energy consumption before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -8877,7 +8877,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000056__FG3C000167",
             "display_title": "Exchange rate and carbon dioxide (CO2) emission",
             "display_why": "Linked nearby through fossil fuel consumption, foreign direct investments, and inflation.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing exchange rate to carbon dioxide (CO2) emission through fossil fuel consumption, foreign direct investments, and inflation before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -8981,7 +8981,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000081__FG3C003006",
             "display_title": "Emissions trading system and environmental quality",
             "display_why": "Linked nearby through technological innovation, energy consumption, and carbon emissions.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing emissions trading system to environmental quality through technological innovation, energy consumption, and carbon emissions before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -9085,7 +9085,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000018__FG3C002978",
             "display_title": "Low-carbon city pilot policy and renewable energy consumption",
             "display_why": "Linked nearby through technological innovation, carbon emissions, and financial development.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing low-carbon city pilot policy to renewable energy consumption through technological innovation, carbon emissions, and financial development before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -9189,7 +9189,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000064__FG3C002978",
             "display_title": "Ecological footprint and low-carbon city pilot policy",
             "display_why": "Linked nearby through technological innovation, energy consumption, and financial development.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing low-carbon city pilot policy to ecological footprint through technological innovation, energy consumption, and financial development before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -9293,7 +9293,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000152__FG3C001307",
             "display_title": "Carbon tax and ecological carrying capacity",
             "display_why": "Linked nearby through GDP, technological innovation, and economic growth (GDP).",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing carbon tax to ecological carrying capacity through GDP, technological innovation, and economic growth (GDP) before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -9397,7 +9397,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000123__FG3C001307",
             "display_title": "Oil price shocks and ecological carrying capacity",
             "display_why": "Linked nearby through economic growth, GDP, and natural resources.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing oil price shocks to ecological carrying capacity through economic growth, GDP, and natural resources before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -9501,7 +9501,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000003__FG3C000722",
             "display_title": "CO2 emissions and green credit",
             "display_why": "Linked nearby through green innovation, renewable energy, and green technology innovation.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing green credit to CO2 emissions through green innovation, renewable energy, and green technology innovation before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -9602,7 +9602,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000167__FG3C003108",
             "display_title": "Carbon dioxide (CO2) emission and Green credit policy (GCP)",
             "display_why": "Linked nearby through technological innovation, energy intensity, and green innovation.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing Green credit policy (GCP) to carbon dioxide (CO2) emission through technological innovation, energy intensity, and green innovation before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -9706,7 +9706,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000164__FG3C000167",
             "display_title": "Carbon dioxide (CO2) emission and government subsidies",
             "display_why": "Linked nearby through technological innovation, green innovation, and environmental innovation.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing government subsidies to carbon dioxide (CO2) emission through technological innovation, green innovation, and environmental innovation before testing the endpoint link directly.",
             "display_category": "Little direct work"
           }
         ]
@@ -10023,7 +10023,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000053__FG3C005175",
             "display_title": "Small and medium-sized firms and green innovation",
             "display_why": "Linked nearby through R&D investment, competition, and capital investment.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing small and medium-sized firms to green innovation through R&D investment, competition, and capital investment before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -10127,7 +10127,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000053__FG3C002799",
             "display_title": "Green innovation and renewable portfolio standards",
             "display_why": "Linked nearby through carbon emissions, carbon emissions trading, and green bonds.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing renewable portfolio standards to green innovation through carbon emissions, carbon emissions trading, and green bonds before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -10230,7 +10230,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001735__FG3C006136",
             "display_title": "Political connections and innovation outcomes",
             "display_why": "Linked nearby through government subsidies, government financial support, and environmental regulation intensity.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing political connections to innovation outcomes through government subsidies, government financial support, and environmental regulation intensity before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -10334,7 +10334,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C004911__FG3C006136",
             "display_title": "Patent citations and innovation outcomes",
             "display_why": "Linked nearby through knowledge spillovers, absorptive capacity, and firm size.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing patent citations to innovation outcomes through knowledge spillovers, absorptive capacity, and firm size before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -10439,7 +10439,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001874__FG3C006136",
             "display_title": "Innovation outcomes and transport infrastructure",
             "display_why": "Linked nearby through regional integration, mobility, and high-speed rail (HSR) network.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing transport infrastructure to innovation outcomes through regional integration, mobility, and high-speed rail (HSR) network before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -10540,7 +10540,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000061__FG3C000425",
             "display_title": "Total factor productivity (TFP) and digital inclusive finance",
             "display_why": "Linked nearby through technological innovation, financing constraints, and technological progress.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing digital inclusive finance to total factor productivity (TFP) through technological innovation, financing constraints, and technological progress before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -10644,7 +10644,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000215__FG3C000717",
             "display_title": "Digital financial inclusion and green total factor productivity (GTFP)",
             "display_why": "Linked nearby through urban-rural income gap, industrial structure, and green technology innovation.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing digital financial inclusion to green total factor productivity (GTFP) through urban-rural income gap, industrial structure, and green technology innovation before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -10747,7 +10747,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000215__FG3C000335",
             "display_title": "Digitalization and green total factor productivity (GTFP)",
             "display_why": "Linked nearby through technological innovation, environmental regulation, and green innovation.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing digitalization to green total factor productivity (GTFP) through technological innovation, environmental regulation, and green innovation before testing the endpoint link directly.",
             "display_category": "Little direct work"
           }
         ]
@@ -10860,7 +10860,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000003__FG3C000159",
             "display_title": "Monetary policy shocks and CO2 emissions",
             "display_why": "Linked nearby through income inequality, GDP, and real GDP.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing monetary policy shocks to CO2 emissions through income inequality, GDP, and real GDP before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -10965,7 +10965,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000018__FG3C000279",
             "display_title": "Oil price volatility and renewable energy consumption",
             "display_why": "Linked nearby through financial development, economic growth (GDP), and inflation.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing oil price volatility to renewable energy consumption through financial development, economic growth (GDP), and inflation before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -11070,7 +11070,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000018__FG3C000044",
             "display_title": "Industrial structure and renewable energy consumption",
             "display_why": "Linked nearby through carbon emissions, CO2 emissions, and urbanization.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing industrial structure to renewable energy consumption through carbon emissions, CO2 emissions, and urbanization before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -11173,7 +11173,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000003__FG3C000494",
             "display_title": "CO2 emissions and digital economy development",
             "display_why": "Linked nearby through energy consumption, technological innovation, and energy intensity.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing digital economy development to CO2 emissions through energy consumption, technological innovation, and energy intensity before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -11275,7 +11275,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000010__FG3C000425",
             "display_title": "Carbon emissions and digital inclusive finance",
             "display_why": "Linked nearby through economic growth, technological innovation, and industrial structure.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing digital inclusive finance to carbon emissions through economic growth, technological innovation, and industrial structure before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -11379,7 +11379,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000063__FG3C001307",
             "display_title": "Ecological carrying capacity and green finance",
             "display_why": "Linked nearby through technological innovation, economic growth, and renewable energy consumption.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing green finance to ecological carrying capacity through technological innovation, economic growth, and renewable energy consumption before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -11484,7 +11484,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000015__FG3C001954",
             "display_title": "Foreign direct investments and load capacity factor",
             "display_why": "Linked nearby through economic growth, renewable energy consumption, and human capital.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing foreign direct investments to load capacity factor through economic growth, renewable energy consumption, and human capital before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -11588,7 +11588,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000246__FG3C003006",
             "display_title": "Emissions trading system and green growth",
             "display_why": "Linked nearby through technological innovation, carbon emissions, and green innovation.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing emissions trading system to green growth through technological innovation, carbon emissions, and green innovation before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -11691,7 +11691,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000003__FG3C002978",
             "display_title": "CO2 emissions and low-carbon city pilot policy",
             "display_why": "Linked nearby through technological innovation, energy consumption, and foreign direct investments.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing low-carbon city pilot policy to CO2 emissions through technological innovation, energy consumption, and foreign direct investments before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -11795,7 +11795,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000347__FG3C000753",
             "display_title": "Carbon emission intensity and high-speed rail",
             "display_why": "Linked nearby through technological innovation, industrial structure upgrading, and corporate digital transformation.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing high-speed rail to carbon emission intensity through technological innovation, industrial structure upgrading, and corporate digital transformation before testing the endpoint link directly.",
             "display_category": "Little direct work"
           }
         ]
@@ -11905,7 +11905,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000039__FG3C001452",
             "display_title": "Catastrophic health expenditures and globalization",
             "display_why": "Linked nearby through income inequality, insurance status, and unemployment.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing globalization to catastrophic health expenditures through income inequality, insurance status, and unemployment before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -12009,7 +12009,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001814__FG3C002438",
             "display_title": "Consumption-based carbon emissions and Special economic zones",
             "display_why": "Linked nearby through technological innovation, green finance, and economic development.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing Special economic zones to consumption-based carbon emissions through technological innovation, green finance, and economic development before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -12112,7 +12112,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000083__FG3C001721",
             "display_title": "Gender pay gap and trade liberalization",
             "display_why": "Linked nearby through product market competition, labour markets, and firm size.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing trade liberalization to gender pay gap through product market competition, labour markets, and firm size before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -12216,7 +12216,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000039__FG3C000227",
             "display_title": "Globalization and green technological innovation",
             "display_why": "Linked nearby through carbon emissions, CO2 emissions, and energy consumption.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing green technological innovation to globalization through carbon emissions, CO2 emissions, and energy consumption before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -12322,7 +12322,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000199__FG3C001420",
             "display_title": "Economic complexity and environmental quality",
             "display_why": "Linked nearby through economic growth, renewable energy consumption, and financial development.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing economic complexity to environmental quality through economic growth, renewable energy consumption, and financial development before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -12426,7 +12426,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000089__FG3C001307",
             "display_title": "Ecological carrying capacity and R&D investment",
             "display_why": "Linked nearby through technological innovation, energy transition, and green technology.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing R&D investment to ecological carrying capacity through technological innovation, energy transition, and green technology before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -12529,7 +12529,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000061__FG3C005566",
             "display_title": "Total factor productivity (TFP) and carbon emissions trading",
             "display_why": "Linked nearby through technological innovation, firm total factor productivity (TFP), and green technology innovation.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing carbon emissions trading to total factor productivity (TFP) through technological innovation, firm total factor productivity (TFP), and green technology innovation before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -12633,7 +12633,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000071__FG3C000215",
             "display_title": "Economic policy uncertainty and green total factor productivity (GTFP)",
             "display_why": "Linked nearby through green innovation, technical efficiency, and green technological innovation.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing economic policy uncertainty to green total factor productivity (GTFP) through green innovation, technical efficiency, and green technological innovation before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -12737,7 +12737,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000063__FG3C002284",
             "display_title": "Firm total factor productivity (TFP) and green finance",
             "display_why": "Linked nearby through technological innovation, green innovation, and technological progress.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing green finance to firm total factor productivity (TFP) through technological innovation, green innovation, and technological progress before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -12835,7 +12835,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000013__FG3C002623",
             "display_title": "U.S. economic policy uncertainty and technological innovation",
             "display_why": "Closest route runs through carbon dioxide (CO2) emission.",
-            "display_first_step": "",
+            "display_first_step": "Start with carbon dioxide (CO2) emission as the first channel linking technological innovation to U.S. economic policy uncertainty.",
             "display_category": "Cross-area question"
           }
         ]
@@ -12948,7 +12948,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000069__FG3C005515",
             "display_title": "Choice data and competition",
             "display_why": "Linked nearby through innovation, productivity, and R&D intensity.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing competition to choice data through innovation, productivity, and R&D intensity before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -13052,7 +13052,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001564__FG3C003050",
             "display_title": "Bond returns and individual forecasts",
             "display_why": "Linked nearby through forecast errors, short-term interest rate, and individual stock returns.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing individual forecasts to bond returns through forecast errors, short-term interest rate, and individual stock returns before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -13152,7 +13152,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C003008__FG3C004938",
             "display_title": "Pattern of trade and voluntary export restraints (VERs)",
             "display_why": "Linked nearby through tariff, firm size (small vs large), and tariffs.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing voluntary export restraints (VERs) to pattern of trade through tariff, firm size (small vs large), and tariffs before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -13254,7 +13254,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000190__FG3C001821",
             "display_title": "Bid-ask spread and enterprise digital transformation",
             "display_why": "Linked nearby through information asymmetry, informed trading, and media coverage.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing enterprise digital transformation to bid-ask spread through information asymmetry, informed trading, and media coverage before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -13356,7 +13356,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001922__FG3C003131",
             "display_title": "Export product quality and intellectual property rights",
             "display_why": "Linked nearby through innovation, entrepreneurship, and enterprise performance.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing intellectual property rights to export product quality through innovation, entrepreneurship, and enterprise performance before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -13461,7 +13461,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000215__FG3C001001",
             "display_title": "Economic sanctions and green total factor productivity (GTFP)",
             "display_why": "Linked nearby through inward foreign direct investment (FDI), green innovations, and infrastructure.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing economic sanctions to green total factor productivity (GTFP) through inward foreign direct investment (FDI), green innovations, and infrastructure before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -13564,7 +13564,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000061__FG3C002438",
             "display_title": "Total factor productivity (TFP) and Special economic zones",
             "display_why": "Linked nearby through technological progress, technological innovation, and innovation.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing Special economic zones to total factor productivity (TFP) through technological progress, technological innovation, and innovation before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
@@ -13666,7 +13666,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000384__FG3C002623",
             "display_title": "U.S. economic policy uncertainty and information and communication technology (ICT)",
             "display_why": "Closest route runs through carbon dioxide (CO2) emission and social interactions.",
-            "display_first_step": "",
+            "display_first_step": "Start by testing whether carbon dioxide (CO2) emission and social interactions are the main channels linking information and communication technology (ICT) to U.S. economic policy uncertainty.",
             "display_category": "Cross-area question"
           },
           {
@@ -13767,7 +13767,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000811__FG3C003802",
             "display_title": "Expected stock returns and high frequency traders",
             "display_why": "Linked nearby through media coverage, liquidity commonality, and volatility.",
-            "display_first_step": "",
+            "display_first_step": "Start by tracing high frequency traders to expected stock returns through media coverage, liquidity commonality, and volatility before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -13868,7 +13868,7 @@
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000681__FG3C002623",
             "display_title": "U.S. economic policy uncertainty and foreign direct investment (FDI) inflow",
             "display_why": "Closest route runs through carbon dioxide (CO2) emission and international spillovers.",
-            "display_first_step": "",
+            "display_first_step": "Start by testing whether carbon dioxide (CO2) emission and international spillovers are the main channels linking foreign direct investment (FDI) inflow to U.S. economic policy uncertainty.",
             "display_category": "Cross-area question"
           }
         ]
@@ -30748,7 +30748,7 @@
       "tier2": {
         "path": "/downloads/frontiergraph-tier2-structured-assets.zip",
         "filename": "frontiergraph-tier2-structured-assets.zip",
-        "size_bytes": 19508193
+        "size_bytes": 19508211
       }
     },
     "artifacts": {
