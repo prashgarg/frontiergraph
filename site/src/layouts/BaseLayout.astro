@@ -29,6 +29,7 @@ const {
 } = Astro.props;
 const posthogKey = import.meta.env.PUBLIC_POSTHOG_KEY || "";
 const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || "https://eu.i.posthog.com";
+const pageTitle = title.replaceAll("FrontierGraph", "Frontier Graph");
 ---
 
 <!doctype html>
@@ -45,7 +46,7 @@ const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || "https://eu.i.posthog
       href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <title>{title}</title>
+    <title>{pageTitle}</title>
     {
       posthogKey ? (
         <script is:inline define:vars={{ posthogKey, posthogHost }}>
@@ -66,7 +67,7 @@ const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || "https://eu.i.posthog
     <div class={shellClass}>
       <Header navPrefix={navPrefix} appUrl={appUrl} appLabel={appLabel} variantLabel={variantLabel} links={links} currentPath={currentPath} />
       <slot />
-      <FeedbackWidget surfaceLabel={title} />
+      <FeedbackWidget surfaceLabel={pageTitle} />
       <Footer navPrefix={navPrefix} />
     </div>
   </body>
