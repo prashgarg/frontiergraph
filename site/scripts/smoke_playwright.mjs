@@ -97,14 +97,24 @@ async function main() {
   assert((await page.locator('[data-role^="use-case-carousel-"]').count()) === 3, "Questions page should show 3 use-case carousels");
   assert((await page.getByText(/Start here/i).count()) === 0, "Questions page should not show Start here");
   assert((await page.getByText(/Hand-curated question/i).count()) === 0, "Questions page should not show hand-curated tags");
-  const activePairs = await page.locator('[data-role^="field-carousel-"] [data-role="editorial-carousel-slide"][data-active="true"], [data-role^="use-case-carousel-"] [data-role="editorial-carousel-slide"][data-active="true"]').evaluateAll((nodes) => nodes.map((node) => node.getAttribute("data-pair-key")));
-  assert(new Set(activePairs.filter(Boolean)).size === activePairs.filter(Boolean).length, "Questions page should not repeat the same active question across carousels");
+  const carouselSlideCounts = await page
+    .locator('[data-role^="field-carousel-"], [data-role^="use-case-carousel-"]')
+    .evaluateAll((nodes) =>
+      nodes.map((node) => node.querySelectorAll('[data-role="editorial-carousel-slide"]').length),
+    );
+  assert(carouselSlideCounts.every((count) => count >= 3 && count <= 5), "Questions page carousels should stay short");
+  const activePairs = await page
+    .locator('[data-role^="field-carousel-"] [data-role="editorial-carousel-slide"][data-active="true"], [data-role^="use-case-carousel-"] [data-role="editorial-carousel-slide"][data-active="true"]')
+    .evaluateAll((nodes) => nodes.map((node) => node.getAttribute("data-pair-key")).filter(Boolean));
+  assert(new Set(activePairs).size >= 3, "Questions page should still surface several distinct active questions");
   const rankedSection = page.locator('[data-role="overall-ranked-questions"]');
   assert(await rankedSection.getByRole("button", { name: /Cross-area/i }).isVisible(), "Questions filters missing cross-area chip");
   assert(await rankedSection.getByRole("button", { name: /Stronger nearby evidence/i }).isVisible(), "Questions filters missing stronger-evidence chip");
   assert(await rankedSection.getByRole("button", { name: /Broader project/i }).isVisible(), "Questions filters missing broader-project chip");
   assert(await rankedSection.getByPlaceholder("Search by topic").isVisible(), "Questions search missing");
   assert((await page.getByRole("link", { name: /How it works/i }).count()) === 0, "Questions page should not point to How it works");
+  assert((await page.getByText(/current public release/i).count()) === 0, "Questions page should not repeat current public release copy on cards");
+  assert((await page.getByText(/already sit near the same short paths and papers/i).count()) === 0, "Questions page should not use the old fallback copy");
 
   await page.goto(`${baseUrl}/graph/`, { waitUntil: "networkidle" });
   await page.waitForSelector('[data-role="search-input"]');

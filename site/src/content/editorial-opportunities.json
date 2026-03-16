@@ -95,12 +95,12 @@
     "question_family": "innovation-environment",
     "suppress_from_public_ranked_window": true
   },
-  "FG3C000030__FG3C001420": {
-    "pair_key": "FG3C000030__FG3C001420",
-    "question_title": "When does innovation improve environmental quality?",
-    "short_why": "Innovation is often framed as a growth story first, which can hide when cleaner process change improves environmental outcomes.",
-    "first_next_step": "Split innovation by direction and test whether cleaner innovation improves environmental quality while scale-expanding innovation does not.",
-    "who_its_for": "Innovation, environment, and productivity researchers.",
+  "FG3C000061__FG3C001431": {
+    "pair_key": "FG3C000061__FG3C001431",
+    "question_title": "When does green credit policy raise total factor productivity?",
+    "short_why": "The strongest nearby route runs through state-owned enterprises, firm productivity, and R&D investment, which makes this look like a policy-channel question rather than a generic green-finance pairing.",
+    "first_next_step": "Start with green-credit eligibility or policy shocks, then trace firm productivity through financing conditions, R&D spending, and state exposure.",
+    "who_its_for": "Productivity, industrial policy, and green-finance researchers.",
     "homepage_featured": false,
     "questions_featured": false,
     "display_order": 7,
@@ -108,15 +108,15 @@
     "field_shelves": ["innovation-productivity"],
     "collection_tags": [],
     "editorial_strength": "field",
-    "question_family": "innovation-environment",
+    "question_family": "green-credit-policy-total-factor-productivity",
     "suppress_from_public_ranked_window": true
   },
-  "FG3C000029__FG3C000194": {
-    "pair_key": "FG3C000029__FG3C000194",
-    "question_title": "How does education reshape wage inequality?",
-    "short_why": "Education is central to human-capital debates, but its role in wage dispersion is often treated descriptively rather than as the main question.",
-    "first_next_step": "Compare expansions in education access or attainment with later changes in within-cohort wage dispersion.",
-    "who_its_for": "Labor, education, and development researchers.",
+  "FG3C000012__FG3C001452": {
+    "pair_key": "FG3C000012__FG3C001452",
+    "question_title": "When does urbanization reduce catastrophic health spending?",
+    "short_why": "The closest route runs through household size, household income, and per-capita income, which makes this feel more like a concrete urban-service question than a generic development pairing.",
+    "first_next_step": "Use city expansion, migration, or service-access changes to test when urbanization starts lowering catastrophic out-of-pocket health spending.",
+    "who_its_for": "Development, urban, and health economists.",
     "homepage_featured": false,
     "questions_featured": false,
     "display_order": 8,
@@ -124,7 +124,7 @@
     "field_shelves": ["development-urban"],
     "collection_tags": ["open-little-direct", "phd-topic"],
     "editorial_strength": "field",
-    "question_family": "education-inequality",
+    "question_family": "urban-health-spending",
     "suppress_from_public_ranked_window": true
   },
   "FG3C000024__FG3C001672": {
@@ -175,12 +175,12 @@
     "question_family": "trade-environment",
     "suppress_from_public_ranked_window": true
   },
-  "FG3C000126__FG3C001420": {
-    "pair_key": "FG3C000126__FG3C001420",
-    "question_title": "How do imports change environmental quality?",
-    "short_why": "Import exposure can change production composition and energy use, but environmental quality is rarely treated as the main consequence.",
-    "first_next_step": "Split intermediate, capital, and consumer imports and test whether their environmental effects differ across sectors.",
-    "who_its_for": "Trade, globalization, and environment researchers.",
+  "FG3C000083__FG3C001452": {
+    "pair_key": "FG3C000083__FG3C001452",
+    "question_title": "How do trade reforms change catastrophic health spending?",
+    "short_why": "The nearest route runs through poverty, poor countries, and income inequality, which gives this a clearer mechanism than a generic trade-and-health headline.",
+    "first_next_step": "Start with tariff or quota changes, then trace household health spending through income shocks and poverty exposure.",
+    "who_its_for": "Trade, development, and health economists.",
     "homepage_featured": false,
     "questions_featured": false,
     "display_order": 12,
@@ -188,7 +188,7 @@
     "field_shelves": ["trade-globalization"],
     "collection_tags": [],
     "editorial_strength": "field",
-    "question_family": "trade-environment",
+    "question_family": "trade-health-spending",
     "suppress_from_public_ranked_window": true
   }
 }

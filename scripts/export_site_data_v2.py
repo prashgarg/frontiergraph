@@ -24,21 +24,24 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 SITE_ROOT = ROOT / "site"
 GENERATED_DIR = SITE_ROOT / "src" / "generated"
+GENERATED_SITE_DATA_PATH = GENERATED_DIR / os.environ.get("FRONTIERGRAPH_SITE_DATA_FILENAME", "site-data.json")
 EDITORIAL_OPPORTUNITIES_PATH = SITE_ROOT / "src" / "content" / "editorial-opportunities.json"
 PUBLIC_LABEL_GLOSSARY_PATH = SITE_ROOT / "src" / "content" / "public-label-glossary.json"
-PUBLIC_DATA_DIR = SITE_ROOT / "public" / "data" / "v2"
+PUBLIC_DATA_SEGMENT = os.environ.get("FRONTIERGRAPH_PUBLIC_DATA_SEGMENT", "v2")
+PUBLIC_DATA_URL_PREFIX = f"/data/{PUBLIC_DATA_SEGMENT}"
+PUBLIC_DATA_DIR = SITE_ROOT / "public" / "data" / PUBLIC_DATA_SEGMENT
 PUBLIC_DOWNLOADS_DIR = SITE_ROOT / "public" / "downloads"
 NEIGHBORHOOD_SHARDS_DIR = PUBLIC_DATA_DIR / "concept_neighborhoods"
 OPPORTUNITY_SHARDS_DIR = PUBLIC_DATA_DIR / "concept_opportunities"
 
 REPO_URL = "https://github.com/prashgarg/frontiergraph"
 DB_FILENAME = "frontiergraph-economics-public.db"
-SITE_GRAPH_URL = "/graph/"
+SITE_GRAPH_URL = os.environ.get("FRONTIERGRAPH_SITE_GRAPH_URL", "/graph/")
 PUBLIC_APP_URL = os.environ.get(
     "FRONTIERGRAPH_PUBLIC_APP_URL",
     "https://frontiergraph-app-1058669339361.us-central1.run.app",
 )
-QUESTION_URL = "/questions/"
+QUESTION_URL = os.environ.get("FRONTIERGRAPH_QUESTION_URL", "/questions/")
 PUBLIC_DB_URL = os.environ.get(
     "FRONTIERGRAPH_PUBLIC_DB_URL",
     "https://storage.googleapis.com/frontiergraph-public-downloads-1058669339361/frontiergraph-economics-public.db",
@@ -58,7 +61,12 @@ SOURCE_PUBLIC_APP_DB_PATH = Path(
     )
 )
 PUBLIC_RELEASE_DB_PATH = DEFAULT_PUBLIC_RELEASE_DB_PATH
-PUBLIC_GRAPH_DB_PATH = PUBLIC_RELEASE_DIR / "frontiergraph-economics-public-graph.sqlite"
+PUBLIC_GRAPH_DB_PATH = Path(
+    os.environ.get(
+        "FRONTIERGRAPH_PUBLIC_GRAPH_DB",
+        str(PUBLIC_RELEASE_DIR / "frontiergraph-economics-public-graph.sqlite"),
+    )
+)
 PAPER_SYNC_SCRIPT = ROOT / "scripts" / "sync_paper_site_assets.py"
 DISPLAY_REFINEMENT_SCRIPT = ROOT / "scripts" / "build_public_display_refinement.py"
 DISPLAY_REFINEMENT_PATH = PUBLIC_RELEASE_DIR / "display_refinement_v1.json"
@@ -95,8 +103,10 @@ NEIGHBOR_LIMIT = 15
 CONCEPT_OPPORTUNITY_LIMIT = 12
 FEATURED_OPPORTUNITY_LIMIT = 12
 PUBLIC_RANKED_WINDOW_LIMIT = 60
-FIELD_CAROUSEL_LIMIT = 12
-USE_CASE_CAROUSEL_LIMIT = 12
+CAROUSEL_ANCHOR_COUNT = 3
+CAROUSEL_MAX_ADDITIONS = 2
+FIELD_CAROUSEL_LIMIT = CAROUSEL_ANCHOR_COUNT + CAROUSEL_MAX_ADDITIONS
+USE_CASE_CAROUSEL_LIMIT = CAROUSEL_ANCHOR_COUNT + CAROUSEL_MAX_ADDITIONS
 SHARD_SIZE = 256
 EDITORIAL_REQUIRED_FIELDS = (
     "pair_key",
@@ -618,12 +628,12 @@ def recommended_move(values: dict[str, Any]) -> str:
     mediator_count = to_int(values.get("mediator_count", 0))
     cross_bucket = bool(values.get("cross_bucket", False))
     if cross_bucket and cooc_count <= 0:
-        return "Start with a short review or pilot study that follows the nearby links between the two topics."
+        return "Start with a short review or pilot study that follows the nearest mediating topics."
     if path_support >= 0.95 and mediator_count >= 10:
         return "A direct empirical test looks like the natural next step."
     if cooc_count <= 0:
-        return "Treat this as an open direct question in the current public release."
-    return "Use this as a focused follow-up question around the nearby papers."
+        return "A short synthesis or pilot design looks like the sensible first move."
+    return "Use the nearby papers to define a tighter follow-up around the same mechanism."
 
 
 def plain_language_context(values: list[str], fallback: str) -> str:
@@ -645,20 +655,32 @@ def why_now(values: dict[str, Any]) -> str:
     path_support = to_float(values.get("path_support_norm", 0.0))
     support_level = "strong" if path_support >= 0.95 else "visible"
     if cooc_count <= 0:
-        return (
-            f"{source_label} and {target_label} already sit near the same short paths and papers, "
-            f"but the current public release shows no direct paper linking them yet."
-        )
+        if mediator_count > 0:
+            return f"{source_label} and {target_label} are already linked by {mediator_count} nearby intermediate topics."
+        return f"Nearby papers touch both {source_label} and {target_label}, but the local route is still thin."
     if cooc_count == 1:
         direct_copy = "one direct paper so far"
     elif cooc_count <= 5:
         direct_copy = f"{cooc_count} direct papers so far"
     else:
-        direct_copy = "an existing direct literature in the public sample"
+        direct_copy = "an existing direct literature"
     return (
-        f"{source_label} and {target_label} already have {direct_copy}, "
-        f"while {mediator_count} intermediate topics provide {support_level} support for a more direct follow-up."
+        f"{source_label} and {target_label} already have {direct_copy}, while {mediator_count} nearby topics provide {support_level} support for a tighter follow-up."
     )
+
+
+def short_path_line(values: dict[str, Any]) -> str:
+    mediators = uniq_keep_order(
+        [clean_public_text(value) for value in values.get("top_mediator_labels", []) if clean_public_text(value)],
+        limit=4,
+    )
+    if len(mediators) >= 3:
+        return f"Linked nearby through {mediators[0]}, {mediators[1]}, and {mediators[2]}."
+    if len(mediators) == 2:
+        return f"Closest route runs through {mediators[0]} and {mediators[1]}."
+    if len(mediators) == 1:
+        return f"Closest route runs through {mediators[0]}."
+    return "Nearby papers touch both sides, but the local route is still thin."
 
 
 def resolve_top_mediator_labels(
@@ -1773,11 +1795,13 @@ def decorate_carousel_record(
     editorial: dict[str, dict[str, Any]],
 ) -> dict[str, Any]:
     editorial_entry = editorial.get(clean_public_text(row.get("pair_key")), {})
+    custom_why = clean_public_text(editorial_entry.get("short_why"))
+    custom_first_step = clean_public_text(editorial_entry.get("first_next_step"))
     return {
         **row,
         "display_title": clean_public_text(editorial_entry.get("question_title")) or auto_question_title(row.get("public_pair_label")),
-        "display_why": clean_public_text(editorial_entry.get("short_why")) or clean_public_text(row.get("why_now")),
-        "display_first_step": clean_public_text(editorial_entry.get("first_next_step")) or clean_public_text(row.get("recommended_move")),
+        "display_why": custom_why or short_path_line(row),
+        "display_first_step": custom_first_step,
         "display_category": clean_public_text(editorial_entry.get("editorial_strength")).replace("-", " ").title() or display_category(row),
     }
 
@@ -1819,6 +1843,18 @@ CLIMATE_HEAVY_TOKENS = (
     "electricity",
 )
 
+CAROUSEL_BLOCKLIST_FAMILIES = {
+    "covid-19-pandemic-net-interest-margin",
+    "education-inequality",
+    "green-finance-life-expectancy",
+    "gross-domestic-product-industrialization",
+    "high-tech-industry-export-product-quality",
+    "individual-forecasts-long-term-interest-rate",
+    "us-stock-market-volatility-spillovers",
+    "volatility-spillovers-us-stock-market",
+    "wage-setting-costs",
+}
+
 
 def climate_signal_count(row: dict[str, Any]) -> int:
     haystack = row_match_text(row)
@@ -1836,6 +1872,80 @@ def row_matches_tokens(row: dict[str, Any], tokens: list[str]) -> bool:
 
 def family_key(row: dict[str, Any]) -> str:
     return clean_public_text(row.get("question_family")) or clean_public_text(row.get("pair_key"))
+
+
+def endpoint_signature(row: dict[str, Any]) -> tuple[str, str]:
+    left = normalized_label_key(row.get("source_display_label") or row.get("source_label"))
+    right = normalized_label_key(row.get("target_display_label") or row.get("target_label"))
+    return tuple(sorted([left, right]))
+
+
+def row_has_direct_title_overlap(row: dict[str, Any]) -> bool:
+    source_label = clean_public_text(row.get("source_display_label") or row.get("source_label"))
+    target_label = clean_public_text(row.get("target_display_label") or row.get("target_label"))
+    source_phrase = normalized_label_key(source_label)
+    target_phrase = normalized_label_key(target_label)
+    source_tokens = set(significant_tokens(source_label))
+    target_tokens = set(significant_tokens(target_label))
+    if not source_tokens or not target_tokens:
+        return False
+
+    for paper in row.get("representative_papers", []):
+        title = normalized_label_key(paper.get("title"))
+        title_tokens = set(title.split())
+        source_hit = (source_phrase and source_phrase in title) or bool(source_tokens & title_tokens)
+        target_hit = (target_phrase and target_phrase in title) or bool(target_tokens & title_tokens)
+        if source_hit and target_hit:
+            return True
+    return False
+
+
+def row_looks_like_duplicate_family(candidate: dict[str, Any], existing_rows: list[dict[str, Any]]) -> bool:
+    candidate_family = family_key(candidate)
+    candidate_signature = endpoint_signature(candidate)
+    candidate_tokens = set(
+        significant_tokens(
+            candidate.get("source_display_label") or candidate.get("source_label"),
+            candidate.get("target_display_label") or candidate.get("target_label"),
+        )
+    )
+    for existing in existing_rows:
+        if family_key(existing) == candidate_family:
+            return True
+        if endpoint_signature(existing) == candidate_signature:
+            return True
+        existing_tokens = set(
+            significant_tokens(
+                existing.get("source_display_label") or existing.get("source_label"),
+                existing.get("target_display_label") or existing.get("target_label"),
+            )
+        )
+        if len(candidate_tokens & existing_tokens) >= 3:
+            return True
+    return False
+
+
+def strict_autofill_candidate(
+    row: dict[str, Any],
+    existing_rows: list[dict[str, Any]],
+    *,
+    allow_climate: bool,
+) -> bool:
+    if family_key(row) in CAROUSEL_BLOCKLIST_FAMILIES:
+        return False
+    if to_int(row.get("supporting_path_count", 0)) < 5:
+        return False
+    if to_int(row.get("mediator_count", 0)) < 3:
+        return False
+    if to_float(row.get("public_specificity_score", 0.0)) < 4.0:
+        return False
+    if not allow_climate and is_climate_heavy(row):
+        return False
+    if row_has_direct_title_overlap(row):
+        return False
+    if row_looks_like_duplicate_family(row, existing_rows):
+        return False
+    return True
 
 
 def append_unique_records(
@@ -1874,6 +1984,30 @@ def append_unique_records(
     return target
 
 
+def append_strict_autofill_records(
+    target: list[dict[str, Any]],
+    rows: list[dict[str, Any]],
+    *,
+    editorial: dict[str, dict[str, Any]],
+    max_additions: int,
+    allow_climate: bool,
+) -> list[dict[str, Any]]:
+    additions = 0
+    seen_pairs = {clean_public_text(item.get("pair_key")) for item in target}
+    for row in rows:
+        pair_key = clean_public_text(row.get("pair_key"))
+        if not pair_key or pair_key in seen_pairs:
+            continue
+        if not strict_autofill_candidate(row, target, allow_climate=allow_climate):
+            continue
+        target.append(decorate_carousel_record(row, editorial))
+        seen_pairs.add(pair_key)
+        additions += 1
+        if additions >= max_additions:
+            break
+    return target
+
+
 def build_field_carousels(
     overall_rows: list[dict[str, Any]],
     curated_rows: list[dict[str, Any]],
@@ -1892,10 +2026,20 @@ def build_field_carousels(
             [row for row in overall_rows if row_matches_tokens(row, definition.get("match_tokens", []))],
             key=lambda row: (is_climate_heavy(row), public_window_penalty(row)),
         )
-        climate_cap = None if slug == "climate-energy" else 0
-        items = append_unique_records([], anchors, editorial=editorial, limit=limit, climate_cap=climate_cap)
-        items = append_unique_records(items, matches, editorial=editorial, limit=limit, climate_cap=climate_cap)
-        items = append_unique_records(items, overall_rows, editorial=editorial, limit=limit, climate_cap=climate_cap)
+        items = append_unique_records(
+            [],
+            anchors[:CAROUSEL_ANCHOR_COUNT],
+            editorial=editorial,
+            limit=min(limit, CAROUSEL_ANCHOR_COUNT),
+            climate_cap=None,
+        )
+        items = append_strict_autofill_records(
+            items,
+            matches,
+            editorial=editorial,
+            max_additions=CAROUSEL_MAX_ADDITIONS,
+            allow_climate=slug == "climate-energy",
+        )
         groups.append(
             {
                 "slug": slug,
@@ -1948,10 +2092,20 @@ def build_use_case_carousels(
                 key=lambda row: (is_climate_heavy(row), public_window_penalty(row)),
             )
 
-        climate_cap = 1
-        items = append_unique_records([], anchors, editorial=editorial, limit=limit, climate_cap=climate_cap)
-        items = append_unique_records(items, matches, editorial=editorial, limit=limit, climate_cap=climate_cap)
-        items = append_unique_records(items, overall_rows, editorial=editorial, limit=limit, climate_cap=climate_cap)
+        items = append_unique_records(
+            [],
+            anchors[:CAROUSEL_ANCHOR_COUNT],
+            editorial=editorial,
+            limit=min(limit, CAROUSEL_ANCHOR_COUNT),
+            climate_cap=None,
+        )
+        items = append_strict_autofill_records(
+            items,
+            matches,
+            editorial=editorial,
+            max_additions=CAROUSEL_MAX_ADDITIONS,
+            allow_climate=False,
+        )
         groups.append(
             {
                 "slug": slug,
@@ -2265,7 +2419,7 @@ def chunk_mapping(mapping: dict[str, Any], output_dir: Path, stem: str) -> dict[
         shard_path = output_dir / shard_name
         write_json(shard_path, {key: value for key, value in shard_items})
         for key, _value in shard_items:
-            shard_index[key] = f"/data/v2/{output_dir.name}/{shard_name}"
+            shard_index[key] = f"{PUBLIC_DATA_URL_PREFIX}/{output_dir.name}/{shard_name}"
     return shard_index
 
 
@@ -2370,15 +2524,19 @@ def main() -> None:
     )
     home_curated_questions = [row for row in editorial_records if bool(row["homepage_featured"])]
     curated_front_set = [row for row in editorial_records if bool(row["questions_featured"])]
-    home_roles = [str(row.get("homepage_role", "")) for row in home_curated_questions]
-    if home_roles.count("lead") != 1 or home_roles.count("supporting") != 2:
-        raise ValueError("Homepage curation must contain exactly one lead question and two supporting questions")
-    if len(home_curated_questions) != 3:
-        raise ValueError("Homepage curation must contain exactly 3 questions")
-    if len(curated_front_set) != 6:
-        raise ValueError("Questions front set must contain exactly 6 questions")
-    field_shelves = build_editorial_groups(editorial_records, FIELD_SHELF_DEFS, "field_shelves")
-    collections = build_editorial_groups(editorial_records, COLLECTION_DEFS, "collection_tags")
+    if editorial_records:
+        home_roles = [str(row.get("homepage_role", "")) for row in home_curated_questions]
+        if home_roles.count("lead") != 1 or home_roles.count("supporting") != 2:
+            raise ValueError("Homepage curation must contain exactly one lead question and two supporting questions")
+        if len(home_curated_questions) != 3:
+            raise ValueError("Homepage curation must contain exactly 3 questions")
+        if len(curated_front_set) != 6:
+            raise ValueError("Questions front set must contain exactly 6 questions")
+        field_shelves = build_editorial_groups(editorial_records, FIELD_SHELF_DEFS, "field_shelves")
+        collections = build_editorial_groups(editorial_records, COLLECTION_DEFS, "collection_tags")
+    else:
+        field_shelves = []
+        collections = []
     field_carousels = build_field_carousels(
         slices["overall"],
         editorial_records,
@@ -2509,10 +2667,10 @@ def main() -> None:
     tier1_bundle = write_zip_bundle(
         "frontiergraph-tier1-lightweight-exports.zip",
         [
-            (public_path_to_local("/data/v2/top_questions.csv"), "top_questions.csv"),
-            (public_path_to_local("/data/v2/central_concepts.csv"), "central_concepts.csv"),
-            (public_path_to_local("/data/v2/curated_questions.json"), "curated_questions.json"),
-            (public_path_to_local("/data/v2/hybrid_corpus_manifest.json"), "hybrid_corpus_manifest.json"),
+            (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/top_questions.csv"), "top_questions.csv"),
+            (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/central_concepts.csv"), "central_concepts.csv"),
+            (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/curated_questions.json"), "curated_questions.json"),
+            (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/hybrid_corpus_manifest.json"), "hybrid_corpus_manifest.json"),
             (public_path_to_local(release_readme_path), "README.md"),
             (public_path_to_local(data_dictionary_path), "DATA_DICTIONARY.md"),
         ],
@@ -2520,11 +2678,11 @@ def main() -> None:
     tier2_bundle = write_zip_bundle(
         "frontiergraph-tier2-structured-assets.zip",
         [
-            (public_path_to_local("/data/v2/graph_backbone.json"), "graph_backbone.json"),
-            (public_path_to_local("/data/v2/concept_index.json"), "concept_index.json"),
-            (public_path_to_local("/data/v2/concept_neighborhoods_index.json"), "concept_neighborhoods_index.json"),
-            (public_path_to_local("/data/v2/concept_opportunities_index.json"), "concept_opportunities_index.json"),
-            (public_path_to_local("/data/v2/opportunity_slices.json"), "opportunity_slices.json"),
+            (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/graph_backbone.json"), "graph_backbone.json"),
+            (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/concept_index.json"), "concept_index.json"),
+            (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/concept_neighborhoods_index.json"), "concept_neighborhoods_index.json"),
+            (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/concept_opportunities_index.json"), "concept_opportunities_index.json"),
+            (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/opportunity_slices.json"), "opportunity_slices.json"),
             (public_path_to_local(release_readme_path), "README.md"),
             (public_path_to_local(data_dictionary_path), "DATA_DICTIONARY.md"),
             *bundle_entries_for_directory(NEIGHBORHOOD_SHARDS_DIR, "concept_neighborhoods"),
@@ -2535,15 +2693,15 @@ def main() -> None:
     artifact_details = {
         "working_paper_pdf": build_download_file_entry(working_paper_download),
         "extended_abstract_pdf": build_download_file_entry(extended_abstract_download),
-        "benchmark_manifest_json": build_download_file_entry("/data/v2/hybrid_corpus_manifest.json"),
-        "top_questions_csv": build_download_file_entry("/data/v2/top_questions.csv"),
-        "curated_questions_json": build_download_file_entry("/data/v2/curated_questions.json"),
-        "central_concepts_csv": build_download_file_entry("/data/v2/central_concepts.csv"),
-        "graph_backbone_json": build_download_file_entry("/data/v2/graph_backbone.json"),
-        "concept_index_json": build_download_file_entry("/data/v2/concept_index.json"),
-        "concept_neighborhoods_index_json": build_download_file_entry("/data/v2/concept_neighborhoods_index.json"),
-        "concept_opportunities_index_json": build_download_file_entry("/data/v2/concept_opportunities_index.json"),
-        "opportunity_slices_json": build_download_file_entry("/data/v2/opportunity_slices.json"),
+        "benchmark_manifest_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/hybrid_corpus_manifest.json"),
+        "top_questions_csv": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/top_questions.csv"),
+        "curated_questions_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/curated_questions.json"),
+        "central_concepts_csv": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/central_concepts.csv"),
+        "graph_backbone_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/graph_backbone.json"),
+        "concept_index_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/concept_index.json"),
+        "concept_neighborhoods_index_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/concept_neighborhoods_index.json"),
+        "concept_opportunities_index_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/concept_opportunities_index.json"),
+        "opportunity_slices_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/opportunity_slices.json"),
         "manifest_json": build_download_file_entry("/downloads/frontiergraph-economics-public.manifest.json"),
         "checksum_txt": build_download_file_entry("/downloads/frontiergraph-economics-public.sha256.txt"),
     }
@@ -2572,19 +2730,19 @@ def main() -> None:
             "graph_snapshot": {
                 "nodes": backbone_payload["counts"]["nodes"],
                 "edges": backbone_payload["counts"]["edges"],
-                "path": "/data/v2/graph_backbone.json",
+                "path": f"{PUBLIC_DATA_URL_PREFIX}/graph_backbone.json",
             },
         },
         "graph": {
-            "backbone_path": "/data/v2/graph_backbone.json",
-            "concept_index_path": "/data/v2/concept_index.json",
-            "concept_neighborhoods_index_path": "/data/v2/concept_neighborhoods_index.json",
-            "concept_opportunities_index_path": "/data/v2/concept_opportunities_index.json",
-            "central_concepts_path": "/data/v2/central_concepts.json",
+            "backbone_path": f"{PUBLIC_DATA_URL_PREFIX}/graph_backbone.json",
+            "concept_index_path": f"{PUBLIC_DATA_URL_PREFIX}/concept_index.json",
+            "concept_neighborhoods_index_path": f"{PUBLIC_DATA_URL_PREFIX}/concept_neighborhoods_index.json",
+            "concept_opportunities_index_path": f"{PUBLIC_DATA_URL_PREFIX}/concept_opportunities_index.json",
+            "central_concepts_path": f"{PUBLIC_DATA_URL_PREFIX}/central_concepts.json",
         },
         "questions": {
-            "slices_path": "/data/v2/opportunity_slices.json",
-            "concept_opportunities_index_path": "/data/v2/concept_opportunities_index.json",
+            "slices_path": f"{PUBLIC_DATA_URL_PREFIX}/opportunity_slices.json",
+            "concept_opportunities_index_path": f"{PUBLIC_DATA_URL_PREFIX}/concept_opportunities_index.json",
             "curated_front_set": curated_front_set,
             "field_shelves": field_shelves,
             "collections": collections,
@@ -2620,20 +2778,20 @@ def main() -> None:
             "artifacts": {
                 "working_paper_pdf": working_paper_download,
                 "extended_abstract_pdf": extended_abstract_download,
-                "benchmark_manifest_json": "/data/v2/hybrid_corpus_manifest.json",
-                "top_questions_csv": "/data/v2/top_questions.csv",
-                "curated_questions_json": "/data/v2/curated_questions.json",
-                "central_concepts_csv": "/data/v2/central_concepts.csv",
-                "graph_backbone_json": "/data/v2/graph_backbone.json",
-                "concept_index_json": "/data/v2/concept_index.json",
-                "concept_neighborhoods_index_json": "/data/v2/concept_neighborhoods_index.json",
-                "concept_opportunities_index_json": "/data/v2/concept_opportunities_index.json",
-                "opportunity_slices_json": "/data/v2/opportunity_slices.json",
+                "benchmark_manifest_json": f"{PUBLIC_DATA_URL_PREFIX}/hybrid_corpus_manifest.json",
+                "top_questions_csv": f"{PUBLIC_DATA_URL_PREFIX}/top_questions.csv",
+                "curated_questions_json": f"{PUBLIC_DATA_URL_PREFIX}/curated_questions.json",
+                "central_concepts_csv": f"{PUBLIC_DATA_URL_PREFIX}/central_concepts.csv",
+                "graph_backbone_json": f"{PUBLIC_DATA_URL_PREFIX}/graph_backbone.json",
+                "concept_index_json": f"{PUBLIC_DATA_URL_PREFIX}/concept_index.json",
+                "concept_neighborhoods_index_json": f"{PUBLIC_DATA_URL_PREFIX}/concept_neighborhoods_index.json",
+                "concept_opportunities_index_json": f"{PUBLIC_DATA_URL_PREFIX}/concept_opportunities_index.json",
+                "opportunity_slices_json": f"{PUBLIC_DATA_URL_PREFIX}/opportunity_slices.json",
             },
             "artifact_details": artifact_details,
         },
     }
-    write_json(GENERATED_DIR / "site-data.json", site_data)
+    write_json(GENERATED_SITE_DATA_PATH, site_data)
 
 
 if __name__ == "__main__":

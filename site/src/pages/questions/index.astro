@@ -26,7 +26,6 @@ const questions = data.questions.ranked_questions;
             <EditorialQuestionCarousel
               items={group.items}
               title={group.title}
-              caption={group.caption}
               groupLabel="Field"
               sectionId={`field-carousel-${group.slug}`}
               initialDelayMs={index * 700}
@@ -42,7 +41,6 @@ const questions = data.questions.ranked_questions;
           <EditorialQuestionCarousel
             items={group.items}
             title={group.title}
-            caption={group.caption}
             groupLabel="Use case"
             sectionId={`use-case-carousel-${group.slug}`}
             initialDelayMs={(index + data.questions.field_carousels.length) * 700}

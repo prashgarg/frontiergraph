@@ -21,6 +21,8 @@ export type RepresentativePaper = {
   year: number;
   edge_src: string;
   edge_dst: string;
+  edge_src_display_label?: string;
+  edge_dst_display_label?: string;
 };
 
 export type Opportunity = {
@@ -29,6 +31,15 @@ export type Opportunity = {
   target_id: string;
   source_label: string;
   target_label: string;
+  source_display_label?: string;
+  target_display_label?: string;
+  source_display_concept_id?: string;
+  target_display_concept_id?: string;
+  source_display_refined?: boolean;
+  target_display_refined?: boolean;
+  display_refinement_confidence?: number;
+  source_alternate_display_labels?: string[];
+  target_alternate_display_labels?: string[];
   source_bucket: string;
   target_bucket: string;
   cross_field: boolean;
@@ -49,12 +60,15 @@ export type Opportunity = {
   question_family: string;
   suppress_from_public_ranked_window?: boolean;
   top_mediator_labels: string[];
+  top_mediator_display_labels?: string[];
+  top_mediator_baseline_labels?: string[];
   representative_papers: RepresentativePaper[];
   top_countries_source: string[];
   top_countries_target: string[];
   source_context_summary: string;
   target_context_summary: string;
   common_contexts?: string;
+  public_specificity_score?: number;
   app_link: string;
   display_title?: string;
   display_why?: string;
@@ -106,6 +120,10 @@ export type CentralConcept = {
   label: string;
   plain_label?: string;
   subtitle?: string;
+  display_concept_id?: string;
+  display_refined?: boolean;
+  display_refinement_confidence?: number;
+  alternate_display_labels?: string[];
   bucket_hint: string;
   instance_support: number;
   distinct_paper_support: number;
@@ -124,6 +142,10 @@ export type ConceptLookupRecord = {
   label: string;
   plain_label?: string;
   subtitle?: string;
+  display_concept_id?: string;
+  display_refined?: boolean;
+  display_refinement_confidence?: number;
+  alternate_display_labels?: string[];
   aliases: string[];
   bucket_hint: string;
   instance_support: number;
@@ -267,11 +289,15 @@ function validateCarouselGroups(
   groups: QuestionCarouselGroup[],
   label: string,
   expectedCount: number,
-  expectedItems: number,
+  minItems: number,
+  maxItems: number,
 ): QuestionCarouselGroup[] {
   invariant(groups.length === expectedCount, `${label} should contain exactly ${expectedCount} groups`);
   for (const group of groups) {
-    invariant(group.items.length === expectedItems, `${label}.${group.slug} should contain exactly ${expectedItems} questions`);
+    invariant(
+      group.items.length >= minItems && group.items.length <= maxItems,
+      `${label}.${group.slug} should contain between ${minItems} and ${maxItems} questions`,
+    );
   }
   return groups;
 }
@@ -343,8 +369,8 @@ function buildSiteData(): SiteData {
       ),
       field_shelves: validateQuestionGroups(questionPayload?.field_shelves ?? [], "questions.field_shelves", 5),
       collections: validateQuestionGroups(questionPayload?.collections ?? [], "questions.collections", 5),
-      field_carousels: validateCarouselGroups(questionPayload?.field_carousels ?? [], "questions.field_carousels", 5, 12),
-      use_case_carousels: validateCarouselGroups(questionPayload?.use_case_carousels ?? [], "questions.use_case_carousels", 3, 12),
+      field_carousels: validateCarouselGroups(questionPayload?.field_carousels ?? [], "questions.field_carousels", 5, 3, 5),
+      use_case_carousels: validateCarouselGroups(questionPayload?.use_case_carousels ?? [], "questions.use_case_carousels", 3, 3, 5),
     },
   };
 }
@@ -393,7 +419,7 @@ export function formatBytes(value: number): string {
 }
 
 export function shortList(values: string[] | undefined, limit = 3): string {
-  if (!values || values.length === 0) return "No dominant setting in the current public sample";
+  if (!values || values.length === 0) return "No dominant setting in the current public release";
   return values.slice(0, limit).join(", ");
 }
 

@@ -24,6 +24,18 @@ const {
 } = Astro.props;
 
 const rootId = `editorial-carousel-${Math.random().toString(36).slice(2, 10)}`;
+
+const joinPreview = (values: string[]) => values.filter(Boolean).join(", ");
+const nearbyTopicsPreview = (item: Opportunity) => joinPreview((item.top_mediator_labels || []).slice(0, 4));
+const starterPaperPreview = (item: Opportunity) =>
+  (item.representative_papers || [])
+    .slice(0, 2)
+    .map((paper) => (paper.year > 0 ? `${paper.title} (${paper.year})` : paper.title))
+    .join(" | ");
+const areaPreview = (item: Opportunity) =>
+  item.cross_field
+    ? "The two endpoint topics sit in different field shelves."
+    : "The two endpoint topics sit in the same nearby field shelf.";
 ---
 
 <section
@@ -66,16 +78,39 @@ const rootId = `editorial-carousel-${Math.random().toString(36).slice(2, 10)}`;
           <h3>{item.display_title || item.public_pair_label}</h3>
           <p class="card-copy">{item.display_why || item.why_now}</p>
           <div class="editorial-carousel-evidence">
-            <span>{item.supporting_path_count} nearby topics</span>
-            <span>{item.representative_papers.length} starter papers</span>
-            <span>{item.cross_field ? "Across fields" : "Within nearby field"}</span>
+            <span
+              class="editorial-evidence-chip"
+              tabindex="0"
+              title={nearbyTopicsPreview(item)}
+            >
+              <span>{item.supporting_path_count} nearby topics</span>
+              {nearbyTopicsPreview(item) && <span class="editorial-evidence-preview">{nearbyTopicsPreview(item)}</span>}
+            </span>
+            <span
+              class="editorial-evidence-chip"
+              tabindex="0"
+              title={starterPaperPreview(item)}
+            >
+              <span>{item.representative_papers.length} starter papers</span>
+              {starterPaperPreview(item) && <span class="editorial-evidence-preview editorial-evidence-preview-wide">{starterPaperPreview(item)}</span>}
+            </span>
+            <span
+              class="editorial-evidence-chip"
+              tabindex="0"
+              title={areaPreview(item)}
+            >
+              <span>{item.cross_field ? "Across fields" : "Same nearby field"}</span>
+              <span class="editorial-evidence-preview">{areaPreview(item)}</span>
+            </span>
           </div>
-          <p class="mini-copy">
-            <strong>First step:</strong> {item.display_first_step || item.recommended_move}
-          </p>
+          {item.display_first_step && (
+            <p class="mini-copy">
+              <strong>First step:</strong> {item.display_first_step}
+            </p>
+          )}
           <div class="button-row editorial-carousel-actions">
             <a class="text-link" href={`/questions/#${item.pair_key}`}>See question</a>
-            <a class="text-link" href={item.app_link}>Explore in app</a>
+            <a class="text-link" href={item.app_link}>Open in app for papers and export</a>
           </div>
         </div>
       </article>
