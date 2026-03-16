@@ -7,16 +7,9 @@ import { data } from "../../lib/site-data";
 <BaseLayout
   title="Graph | FrontierGraph"
   description="Choose a topic and start with the questions around it."
-  shellClass="site-shell site-shell-wide"
+  shellClass="site-shell"
 >
   <main>
-    <section class="page-hero">
-      <h1>Choose a topic and start with the questions around it.</h1>
-      <p class="lede">
-        Start with one topic, see the questions touching it, and use the graph only as nearby context.
-      </p>
-    </section>
-
     <GraphWorkbench
       graphPath={data.graph.backbone_path}
       conceptIndexPath={data.graph.concept_index_path}

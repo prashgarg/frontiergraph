@@ -28,17 +28,17 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   data-central-concepts-path={centralConceptsPath}
 >
   <div class="graph-toolbar">
-    <div>
+    <div class="graph-toolbar-copy">
       <h2>Choose a topic and start with the questions around it.</h2>
       <p class="card-copy">
-        Search for a topic or start with one of the suggestions below. Start with the question cards first; the graph only supplies local context.
+        Choose one topic, then read the strongest nearby questions. Open the graph only when you want local context.
       </p>
+      <label class="search-shell graph-search-shell">
+        <span>Search topic</span>
+        <input type="search" placeholder="Search labels or aliases" data-role="search-input" />
+        <div class="search-results" data-role="search-results"></div>
+      </label>
     </div>
-    <label class="search-shell">
-      <span>Search topic</span>
-      <input type="search" placeholder="Search labels or aliases" data-role="search-input" />
-      <div class="search-results" data-role="search-results"></div>
-    </label>
   </div>
 
   <div class="graph-jumpbar">
@@ -47,14 +47,6 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   </div>
 
   <div class="graph-stage">
-    <section class="sidebar-card inspector-card graph-idle-shell" data-role="graph-idle">
-      <div class="inspector-head">
-        <h3>Start with a topic</h3>
-      </div>
-      <p class="card-copy">Choose a topic above to see the strongest released questions touching it.</p>
-      <p class="mini-copy">Once you pick one, this page will switch to a selected question, the strongest nearby paths behind it, and the local graph as context.</p>
-    </section>
-
     <div class="graph-active-shell" data-role="graph-active" hidden>
       <section class="sidebar-card inspector-card graph-topic-strip" data-role="selected-concept">
         <p class="card-copy">Selected-topic context will appear here.</p>
@@ -92,30 +84,30 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
             </div>
           </section>
 
-          <section class="graph-panel graph-panel-secondary graph-context-panel">
-            <div class="inspector-head graph-context-head">
-              <h3>Graph context</h3>
-              <p class="mini-copy">Use the graph only when you want the local neighborhood around the selected question.</p>
-            </div>
-            <div class="graph-controls">
-              <div class="graph-status-shell">
-                <div class="graph-status" data-role="hover-card" aria-live="polite">
-                  Choose a topic, then start with the question list on the left. The graph is there to show local context around the selected question.
+          <details class="graph-context-disclosure">
+            <summary>Show local graph</summary>
+            <p class="mini-copy graph-context-note">Open this when you want the local neighborhood around the selected question.</p>
+            <section class="graph-panel graph-panel-secondary graph-context-panel">
+              <div class="graph-controls">
+                <div class="graph-status-shell">
+                  <div class="graph-status" data-role="hover-card" aria-live="polite">
+                    Choose a question first, then open the graph when you want local context around it.
+                  </div>
+                </div>
+                <div class="graph-control-row">
+                  <button class="button-secondary" type="button" data-role="toggle-map-mode">Show full map</button>
+                  <button class="button-tertiary" type="button" data-role="reset-view">Reset view</button>
                 </div>
               </div>
-              <div class="graph-control-row">
-                <button class="button-secondary" type="button" data-role="toggle-map-mode">Show full map</button>
-                <button class="button-tertiary" type="button" data-role="reset-view">Reset view</button>
+              <div class="graph-canvas-shell">
+                <svg class="graph-canvas" data-role="graph-canvas" viewBox="0 0 1120 860" aria-label="Literature map"></svg>
+                <div class="graph-tooltip" data-role="graph-tooltip" hidden></div>
               </div>
-            </div>
-            <div class="graph-canvas-shell">
-              <svg class="graph-canvas" data-role="graph-canvas" viewBox="0 0 1120 860" aria-label="Literature map"></svg>
-              <div class="graph-tooltip" data-role="graph-tooltip" hidden></div>
-            </div>
-            <div class="graph-help-row">
-              <span class="mini-copy">Click a question first. Use the graph only to inspect the local neighborhood around it or to switch topic.</span>
-            </div>
-          </section>
+              <div class="graph-help-row">
+                <span class="mini-copy">Use the graph to inspect the local neighborhood around the selected question or switch topic.</span>
+              </div>
+            </section>
+          </details>
         </div>
       </div>
     </div>
@@ -159,7 +151,6 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const hoverCard = root.querySelector('[data-role="hover-card"]');
   const graphTooltip = root.querySelector('[data-role="graph-tooltip"]');
   const canvas = root.querySelector('[data-role="graph-canvas"]');
-  const idleShell = root.querySelector('[data-role="graph-idle"]');
   const activeShell = root.querySelector('[data-role="graph-active"]');
   const selectedConcept = root.querySelector('[data-role="selected-concept"]');
   const selectedNeighborhood = root.querySelector('[data-role="selected-neighborhood"]');
@@ -229,7 +220,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     return "Nearby work already brings these two sides close together in the released map.";
   };
   const staticGuideText =
-    "Choose a topic, then start with the question list on the left. Use the graph only when you want local context around the selected question.";
+    "Choose a question first. Open the graph only when you want local context around it.";
   const questionTitle = (item) => {
     const source = item?.source_label || conceptLabel(item?.source_id, "");
     const target = item?.target_label || conceptLabel(item?.target_id, "");
@@ -623,9 +614,6 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const updateSelectionState = () => {
     const hasSelection = Boolean(selectedId && conceptMap.get(selectedId));
     root.classList.toggle("is-topic-selected", hasSelection);
-    if (idleShell instanceof HTMLElement) {
-      idleShell.hidden = hasSelection;
-    }
     if (activeShell instanceof HTMLElement) {
       activeShell.hidden = !hasSelection;
     }
@@ -736,9 +724,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
           <span>${escapeHtml(questionProjectShapeLabel(question))}</span>
         </div>
         <p class="mini-copy focus-step"><strong>What to inspect first:</strong> ${escapeHtml(question.recommended_move || "Start with the nearby literature and pin down the concrete empirical setting.")}</p>
-        <div class="graph-question-actions button-row">
-          <a class="button-secondary" href="/questions/#${escapeAttr(question.pair_key)}">See question</a>
-          <a class="button-tertiary" href="${escapeAttr(question.app_link)}">Explore in app</a>
+        <div class="graph-question-actions">
+          <a class="button-secondary" href="${escapeAttr(question.app_link)}">Open in app for papers and export</a>
         </div>
       </article>
       <div class="graph-question-subgrid">
@@ -919,7 +906,6 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       </div>
       <div class="button-row graph-topic-strip-actions">
         <button class="button-secondary" type="button" data-role="change-topic">Change topic</button>
-        <a class="button-tertiary" href="${escapeHtml(concept.app_link)}">Explore in app</a>
       </div>
     `;
     const changeTopicButton = selectedConcept.querySelector('[data-role="change-topic"]');

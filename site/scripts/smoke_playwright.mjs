@@ -77,6 +77,7 @@ async function main() {
   assert(await page.getByRole("link", { name: /^Read paper$/ }).first().isVisible(), "Homepage paper CTA missing");
   assert(await page.getByRole("link", { name: /^Download data$/ }).first().isVisible(), "Homepage data CTA missing");
   assert(await page.getByText(/^What$/).first().isVisible(), "Homepage what card missing");
+  assert(await page.getByText(/^What is a graph\?$/).first().isVisible(), "Homepage graph explainer missing");
   assert(await page.getByText(/^Why$/).first().isVisible(), "Homepage why card missing");
   assert(await page.getByRole("link", { name: /About the project/i }).isVisible(), "Homepage about link missing");
   const feedbackTrigger = page.getByRole("button", { name: /^Give feedback$/ });
@@ -106,10 +107,11 @@ async function main() {
   assert((await page.getByRole("link", { name: /How it works/i }).count()) === 0, "Questions page should not point to How it works");
 
   await page.goto(`${baseUrl}/graph/`, { waitUntil: "networkidle" });
-  await page.waitForSelector('[data-role="graph-idle"]');
+  await page.waitForSelector('[data-role="search-input"]');
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
   assert(await page.getByRole("heading", { name: /Choose a topic and start with the questions around it/i }).first().isVisible(), "Graph hero missing");
-  assert(await page.getByRole("heading", { name: /Start with a topic/i }).isVisible(), "Graph idle state missing");
+  assert(await page.getByPlaceholder("Search labels or aliases").isVisible(), "Graph search missing");
+  assert((await page.getByRole("heading", { name: /Start with a topic/i }).count()) === 0, "Graph page should not show the old idle card");
   assert((await page.getByRole("button", { name: /Rearrange/i }).count()) === 0, "Map should not show rearrange button");
   assert((await page.getByRole("button", { name: /Zoom in/i }).count()) === 0, "Map should not show zoom-in button");
   assert((await page.getByRole("button", { name: /Reset topic/i }).count()) === 0, "Map should not show reset-topic button");
@@ -117,7 +119,10 @@ async function main() {
   await page.waitForSelector('[data-role="graph-active"]:not([hidden])');
   assert(await page.getByRole("heading", { name: /Questions touching this topic/i }).isVisible(), "Graph page should prioritize questions");
   assert(await page.getByRole("heading", { name: /Selected question/i }).isVisible(), "Graph page should show question detail");
-  assert(await page.getByRole("heading", { name: /Graph context/i }).isVisible(), "Graph page should keep graph context visible");
+  assert(await page.getByText(/Selected topic/i).isVisible(), "Graph page should show selected topic context");
+  assert(await page.getByText(/Show local graph/i).isVisible(), "Graph page should keep graph context available");
+  await page.getByText(/Show local graph/i).click();
+  await page.waitForTimeout(300);
   const focusedNodeCount = await page.locator("[data-node-id]").count();
   assert(focusedNodeCount > 0, "Focused map rendered no nodes");
   await page.getByRole("button", { name: /Show full map/i }).click();
