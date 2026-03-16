@@ -2449,7 +2449,14 @@ def write_public_db_release_assets(db_path: Path) -> dict[str, Any]:
 def build_release_readme_markdown(metrics: dict[str, Any], app_url: str) -> str:
     return f"""# FrontierGraph public release README
 
-FrontierGraph is a public release built from a published-journal economics corpus. The current release covers {metrics["papers"]:,} screened papers, {metrics["normalized_links"]:,} extracted directed links, {metrics["native_concepts"]:,} mapped topics, and {metrics["visible_public_questions"]:,} question candidates in the public release.
+FrontierGraph is a public browser for suggested research questions in economics. This release starts from {metrics["papers"]:,} papers screened from 1976 to 2026 and packages the public question tables, graph assets, and SQLite bundle that sit behind the site.
+
+## Start here
+
+- If you want a spreadsheet-friendly entry point, start with `top_questions.csv`.
+- If you want topic search and summary statistics, add `central_concepts.csv`.
+- If you want the same JSON and shard files the public site uses, download Tier 2.
+- If you want the full local evidence tables in one file, download `frontiergraph-economics-public.db`.
 
 ## Stable identifiers
 
@@ -2458,39 +2465,43 @@ FrontierGraph is a public release built from a published-journal economics corpu
 
 ## Which tier should I use?
 
-- **Tier 1: lightweight exports**. Use these if you want spreadsheet-friendly question tables or quick concept summaries.
-- **Tier 2: structured graph assets**. Use these if you want the same public graph objects the site uses: the literature map, concept index, neighborhoods, opportunity shards, and slice files.
-- **Tier 3: rich public graph bundle**. Use the SQLite bundle if you want to explore locally, reproduce the public app surface, or join question-level evidence tables without rebuilding the release.
+- **Tier 1: lightweight exports**. Use these if you want spreadsheet-friendly question tables, shortlist reviews, or quick concept summaries.
+- **Tier 2: structured graph assets**. Use these if you want the same literature map, concept index, neighborhoods, opportunity shards, and slice files the public site uses.
+- **Tier 3: SQLite bundle**. Use this if you want the full local evidence tables in one file for Python, R, or DB Browser for SQLite.
 
 ## What each file is for
 
-- `top_questions.csv`: one row per released question candidate, with baseline labels, display labels, nearby support, and app link.
+- `top_questions.csv`: one row per suggested question, with display labels, nearby support, path counts, starter papers, and explorer link.
 - `central_concepts.csv`: one row per central topic, with baseline labels, display labels, and graph prominence measures.
 - `curated_questions.json`: the hand-curated site questions shown in featured shelves.
-- `hybrid_corpus_manifest.json`: canonical release counts for the fuller published-journal benchmark.
+- `hybrid_corpus_manifest.json`: release counts for the broader benchmark corpus.
 - `graph_backbone.json`: the lightweight literature map used on the public site.
 - `concept_index.json`: searchable concept records with aliases, support, and app links.
 - `concept_neighborhoods_index.json`: index into the concept-neighborhood shard files.
 - `concept_opportunities_index.json`: index into the concept-opportunity shard files.
 - `opportunity_slices.json`: grouped question slices used for the public question page.
-- `frontiergraph-economics-public.db`: the rich public SQLite bundle.
+- `frontiergraph-economics-public.db`: the full public SQLite bundle.
 
-## Notes on formats
+## How to read the release
 
+- Suggested questions are surfaced because nearby topics and papers already imply short local routes between the two sides.
+- Topic links in the graph are ordered topic-to-topic relations extracted from titles and abstracts. They help organize the literature, but they are not final causal judgments.
 - CSV files are the easiest entry point for spreadsheets and quick scripts.
 - Several CSV columns store lists as JSON strings so the same fields can survive spreadsheet export.
-- The SQLite bundle is the most complete public package. It includes question-level tables such as `question_mediators`, `question_paths`, and `question_papers`, plus both baseline and display labels where the public wording has been refined.
+- The SQLite bundle is the most complete public package. It includes question-level tables such as `question_mediators`, `question_paths`, and `question_papers`, plus both baseline and public display labels.
 
 ## Public surfaces
 
 - Site: https://frontiergraph.com
-- App: {app_url}
+- Explorer: {app_url}
 - Repository: {REPO_URL}
 """
 
 
 def build_data_dictionary_markdown() -> str:
     return """# FrontierGraph data dictionary
+
+This guide summarizes the main fields in the public download files. If you want one row per suggested question, start with `top_questions.csv`. If you want the full local evidence tables, use the SQLite bundle.
 
 ## Shared identifiers
 
@@ -2513,26 +2524,26 @@ def build_data_dictionary_markdown() -> str:
 | `score` | Final public ranking score. |
 | `base_score` | Pre-penalty score before duplicate downweighting. |
 | `duplicate_penalty` | Downweight applied when many near-duplicate questions cluster together. |
-| `path_support_norm` | Normalized support from nearby paths in the graph. |
+| `path_support_norm` | Normalized support from nearby topic paths in the graph. |
 | `gap_bonus` | Bonus for links that look underexplored relative to the local neighborhood. |
 | `mediator_count` | Count of intermediate topics supporting the question. |
 | `motif_count` | Count of repeated local patterns around the question. |
 | `cooc_count` | Count of direct papers already observed in the public release. |
 | `direct_link_status` | Reader-facing summary of direct-literature presence. |
-| `supporting_path_count` | Count of supporting paths surfaced in the release. |
-| `why_now` | Plain-language explanation of why the question is on the release surface. |
-| `recommended_move` | Suggested first research move. |
+| `supporting_path_count` | Count of supporting topic paths surfaced in the release. |
+| `why_now` | Plain-language explanation of why the suggested question appears on the public surface. |
+| `recommended_move` | Suggested first research move or reading strategy. |
 | `slice_label` | Slice or family label used on the public site. |
 | `public_pair_label` | Plain-language pair label. |
 | `question_family` | Family label used to avoid repetitive windows. |
 | `suppress_from_public_ranked_window` | Whether the question is kept out of the default ranked window. |
-| `top_mediator_labels` | JSON list of the most important intermediate topics in display form. |
+| `top_mediator_labels` | JSON list of the most important intermediate topics in public display form. |
 | `top_mediator_baseline_labels` | JSON list of the corresponding baseline mediator labels kept for reproducibility. |
-| `representative_papers` | JSON list of papers to begin with, attached to nearby edges. |
+| `representative_papers` | JSON list of starter papers attached to nearby paths and edges. |
 | `top_countries_source`, `top_countries_target` | JSON lists of common settings for each side of the pair. |
 | `source_context_summary`, `target_context_summary` | Short context summaries for each side. |
 | `common_contexts` | Plain-language summary of overlapping settings. |
-| `app_link` | Deep link into the public app. |
+| `app_link` | Deep link into the public explorer. |
 
 ## `central_concepts.csv`
 
@@ -2554,7 +2565,7 @@ def build_data_dictionary_markdown() -> str:
 | `in_degree`, `out_degree` | Directed degree counts in the graph tables. |
 | `neighbor_count` | Number of distinct neighboring concepts. |
 | `top_countries`, `top_units` | JSON lists of common settings and units. |
-| `app_link` | Deep link into the public app. |
+| `app_link` | Deep link into the public explorer. |
 
 ## Structured JSON assets
 

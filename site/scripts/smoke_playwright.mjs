@@ -183,13 +183,13 @@ async function main() {
   await page.goto(`${baseUrl}/downloads/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
   assert(await page.getByRole("heading", { name: /Download the released files\./i }).isVisible(), "Downloads hero missing");
-  assert((await page.getByRole("link", { name: /^README/i }).count()) >= 1, "Downloads page should expose a README button");
+  assert((await page.getByRole("link", { name: /^Release guide/i }).count()) >= 1, "Downloads page should expose the release guide");
   assert((await page.getByRole("link", { name: /^Data dictionary/i }).count()) >= 1, "Downloads page should expose the data dictionary");
-  assert((await page.getByRole("link", { name: /^Download all$/ }).count()) === 3, "Downloads page should show one Download all action per tier");
+  assert((await page.getByRole("link", { name: /^Working paper PDF/i }).count()) >= 1, "Downloads page should expose the working paper");
+  assert((await page.getByRole("link", { name: /^Extended abstract PDF/i }).count()) >= 1, "Downloads page should expose the extended abstract");
+  assert((await page.getByRole("link", { name: /^Download bundle$/ }).count()) === 2, "Downloads page should show bundle downloads for tiers 1 and 2");
+  assert((await page.getByRole("link", { name: /^Download database$/ }).count()) === 1, "Downloads page should expose the SQLite database download");
   assert(await page.getByText(/About the release/i).isVisible(), "Downloads page should keep the release explanation collapsed");
-  assert((await page.getByRole("link", { name: /Full HTML manuscript/i }).count()) === 0, "Downloads page should not duplicate the paper route");
-  assert((await page.getByRole("link", { name: /Working paper PDF/i }).count()) === 0, "Downloads page should not duplicate paper downloads");
-  assert((await page.getByRole("link", { name: /Extended abstract PDF/i }).count()) === 0, "Downloads page should not duplicate the abstract downloads");
   assert(await page.getByText(/frontiergraph-economics-public\.db/i).first().isVisible(), "Downloads page should show the public DB bundle");
   assert(await page.getByText(/Tier 1/i).first().isVisible(), "Downloads page should show tiered releases");
 

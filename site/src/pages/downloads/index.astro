@@ -7,6 +7,49 @@ const artifacts = data.downloads.artifacts;
 const artifactDetails = data.downloads.artifact_details;
 const guides = data.downloads.guides;
 const tierBundles = data.downloads.tier_bundles;
+const docs = [
+  { title: "Release guide", path: guides.readme.path, size: guides.readme.size_bytes },
+  { title: "Data dictionary", path: guides.data_dictionary.path, size: guides.data_dictionary.size_bytes },
+  { title: "Working paper PDF", path: artifacts.working_paper_pdf, size: artifactDetails.working_paper_pdf.size_bytes },
+  {
+    title: "Extended abstract PDF",
+    path: artifacts.extended_abstract_pdf,
+    size: artifactDetails.extended_abstract_pdf.size_bytes,
+  },
+];
+
+const releaseMetrics = [
+  {
+    value: formatCompact(data.metrics.papers),
+    label: "papers screened",
+    help: "Papers from 1976 to 2026 screened before building the public release.",
+  },
+  {
+    value: formatCompact(data.metrics.papers_with_extracted_edges),
+    label: "papers with extracted topic links",
+    help: "Papers where at least one topic-to-topic relation was extracted from titles and abstracts.",
+  },
+  {
+    value: formatCompact(data.metrics.normalized_graph_papers),
+    label: "papers kept in the public graph",
+    help: "Papers retained after normalization and release filtering in the concept-level graph.",
+  },
+  {
+    value: formatCompact(data.metrics.normalized_links),
+    label: "topic links in the public graph",
+    help: "Normalized topic-to-topic links that remain in the released graph.",
+  },
+  {
+    value: formatCompact(data.metrics.native_concepts),
+    label: "topics in the browser",
+    help: "Mapped topics that appear in the public browsing layer and downloads.",
+  },
+  {
+    value: formatCompact(data.metrics.visible_public_questions),
+    label: "suggested questions in the release",
+    help: "Suggested questions that remain after release filtering on the current public surface.",
+  },
+];
 
 const tier1Files = [
   { title: "Top questions CSV", path: artifacts.top_questions_csv, size: artifactDetails.top_questions_csv.size_bytes },
@@ -31,33 +74,34 @@ const tier3Files = [
 
 <BaseLayout
   title="Downloads | FrontierGraph"
-  description="Download released FrontierGraph tables, graph assets, and the SQLite bundle."
+  description="Download FrontierGraph tables, graph assets, release guides, and the SQLite bundle."
 >
   <main>
     <section class="page-hero">
       <h1>Download the released files.</h1>
       <p class="lede">
-        Start with the small tables unless you already know you need the full SQLite bundle.
+        Start with the small tables if you want spreadsheet-friendly files. Use the SQLite bundle if you want the full local evidence tables.
       </p>
     </section>
 
     <section class="section download-stack">
       <div class="button-row download-doc-row">
-        <a class="button-secondary" href={guides.readme.path}>README ({formatBytes(guides.readme.size_bytes)})</a>
-        <a class="button-secondary" href={guides.data_dictionary.path}>Data dictionary ({formatBytes(guides.data_dictionary.size_bytes)})</a>
+        {docs.map((doc) => (
+          <a class="button-secondary" href={doc.path}>{doc.title} ({formatBytes(doc.size)})</a>
+        ))}
       </div>
 
       <div class="editorial-carousel-grid editorial-carousel-grid-use-cases download-tier-grid">
         <article class="download-panel download-tier-tile">
           <span class="eyebrow">Tier 1</span>
           <h2>Lightweight tables</h2>
-          <p class="download-copy">Best for spreadsheets, reading lists, and quick sorting.</p>
+          <p class="download-copy">Best if you want spreadsheet-friendly question tables, shortlist reviews, or quick filtering.</p>
           <div class="download-tier-meta">
             <span>{formatBytes(tierBundles.tier1.size_bytes)}</span>
             <span>CSV and small JSON files</span>
           </div>
           <div class="button-row">
-            <a class="button-primary" href={tierBundles.tier1.path}>Download all</a>
+            <a class="button-primary" href={tierBundles.tier1.path}>Download bundle</a>
           </div>
           <details class="download-tier-detail">
             <summary>What’s inside</summary>
@@ -75,13 +119,13 @@ const tier3Files = [
         <article class="download-panel download-tier-tile">
           <span class="eyebrow">Tier 2</span>
           <h2>Structured graph assets</h2>
-          <p class="download-copy">Best for rebuilding the public map or using the released JSON directly.</p>
+          <p class="download-copy">Best if you want the same JSON and shard files that power the public site.</p>
           <div class="download-tier-meta">
             <span>{formatBytes(tierBundles.tier2.size_bytes)}</span>
             <span>Machine-readable site assets</span>
           </div>
           <div class="button-row">
-            <a class="button-primary" href={tierBundles.tier2.path}>Download all</a>
+            <a class="button-primary" href={tierBundles.tier2.path}>Download bundle</a>
           </div>
           <details class="download-tier-detail">
             <summary>What’s inside</summary>
@@ -99,13 +143,13 @@ const tier3Files = [
         <article class="download-panel download-tier-tile">
           <span class="eyebrow">Tier 3</span>
           <h2>SQLite bundle</h2>
-          <p class="download-copy">Best for deeper local analysis and app-equivalent evidence tables.</p>
+          <p class="download-copy">Best if you want the full local evidence tables in one SQLite file for Python, R, or DB Browser.</p>
           <div class="download-tier-meta">
             <span>{formatBytes(publicDb.db_size_bytes)}</span>
             <span>{publicDb.filename}</span>
           </div>
           <div class="button-row">
-            <a class="button-primary" href={publicDb.public_url}>Download all</a>
+            <a class="button-primary" href={publicDb.public_url}>Download database</a>
           </div>
           <details class="download-tier-detail">
             <summary>What’s inside</summary>
@@ -125,30 +169,18 @@ const tier3Files = [
         <summary>About the release</summary>
         <div class="download-guidance-body">
           <div class="metrics-grid">
-            <article class="metric-card">
-              <div class="metric-value">{formatCompact(data.metrics.papers)}</div>
-              <div class="metric-label">published-journal papers screened</div>
-            </article>
-            <article class="metric-card">
-              <div class="metric-value">{formatCompact(data.metrics.papers_with_extracted_edges)}</div>
-              <div class="metric-label">papers with extracted graph structure</div>
-            </article>
-            <article class="metric-card">
-              <div class="metric-value">{formatCompact(data.metrics.normalized_graph_papers)}</div>
-              <div class="metric-label">papers in the normalized concept graph</div>
-            </article>
-            <article class="metric-card">
-              <div class="metric-value">{formatCompact(data.metrics.normalized_links)}</div>
-              <div class="metric-label">normalized concept links</div>
-            </article>
-            <article class="metric-card">
-              <div class="metric-value">{formatCompact(data.metrics.native_concepts)}</div>
-              <div class="metric-label">native concepts</div>
-            </article>
-            <article class="metric-card">
-              <div class="metric-value">{formatCompact(data.metrics.visible_public_questions)}</div>
-              <div class="metric-label">questions in the released browsing surface</div>
-            </article>
+            {releaseMetrics.map((metric) => (
+              <article class="metric-card">
+                <div class="metric-value">{metric.value}</div>
+                <div class="hero-scale-label-row">
+                  <span>{metric.label}</span>
+                  <span class="info-tip">
+                    <button class="info-tip-trigger" type="button" aria-label={`Explain ${metric.label}`}>i</button>
+                    <span class="info-tip-panel">{metric.help}</span>
+                  </span>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </details>

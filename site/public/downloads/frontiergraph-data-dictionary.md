@@ -1,5 +1,7 @@
 # FrontierGraph data dictionary
 
+This guide summarizes the main fields in the public download files. If you want one row per suggested question, start with `top_questions.csv`. If you want the full local evidence tables, use the SQLite bundle.
+
 ## Shared identifiers
 
 | Field | Meaning |
@@ -21,26 +23,26 @@
 | `score` | Final public ranking score. |
 | `base_score` | Pre-penalty score before duplicate downweighting. |
 | `duplicate_penalty` | Downweight applied when many near-duplicate questions cluster together. |
-| `path_support_norm` | Normalized support from nearby paths in the graph. |
+| `path_support_norm` | Normalized support from nearby topic paths in the graph. |
 | `gap_bonus` | Bonus for links that look underexplored relative to the local neighborhood. |
 | `mediator_count` | Count of intermediate topics supporting the question. |
 | `motif_count` | Count of repeated local patterns around the question. |
 | `cooc_count` | Count of direct papers already observed in the public release. |
 | `direct_link_status` | Reader-facing summary of direct-literature presence. |
-| `supporting_path_count` | Count of supporting paths surfaced in the release. |
-| `why_now` | Plain-language explanation of why the question is on the release surface. |
-| `recommended_move` | Suggested first research move. |
+| `supporting_path_count` | Count of supporting topic paths surfaced in the release. |
+| `why_now` | Plain-language explanation of why the suggested question appears on the public surface. |
+| `recommended_move` | Suggested first research move or reading strategy. |
 | `slice_label` | Slice or family label used on the public site. |
 | `public_pair_label` | Plain-language pair label. |
 | `question_family` | Family label used to avoid repetitive windows. |
 | `suppress_from_public_ranked_window` | Whether the question is kept out of the default ranked window. |
-| `top_mediator_labels` | JSON list of the most important intermediate topics in display form. |
+| `top_mediator_labels` | JSON list of the most important intermediate topics in public display form. |
 | `top_mediator_baseline_labels` | JSON list of the corresponding baseline mediator labels kept for reproducibility. |
-| `representative_papers` | JSON list of papers to begin with, attached to nearby edges. |
+| `representative_papers` | JSON list of starter papers attached to nearby paths and edges. |
 | `top_countries_source`, `top_countries_target` | JSON lists of common settings for each side of the pair. |
 | `source_context_summary`, `target_context_summary` | Short context summaries for each side. |
 | `common_contexts` | Plain-language summary of overlapping settings. |
-| `app_link` | Deep link into the public app. |
+| `app_link` | Deep link into the public explorer. |
 
 ## `central_concepts.csv`
 
@@ -62,7 +64,7 @@
 | `in_degree`, `out_degree` | Directed degree counts in the graph tables. |
 | `neighbor_count` | Number of distinct neighboring concepts. |
 | `top_countries`, `top_units` | JSON lists of common settings and units. |
-| `app_link` | Deep link into the public app. |
+| `app_link` | Deep link into the public explorer. |
 
 ## Structured JSON assets
 
