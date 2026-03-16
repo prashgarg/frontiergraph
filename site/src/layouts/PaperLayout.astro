@@ -15,6 +15,8 @@ interface Props {
   toc?: TocEntry[];
   pdfUrl: string;
   author?: string;
+  authorUrl?: string;
+  affiliation?: string;
   draftLabel?: string;
   lastUpdated?: string;
 }
@@ -27,6 +29,8 @@ const {
   toc = [],
   pdfUrl,
   author = "",
+  authorUrl = "",
+  affiliation = "",
   draftLabel = "",
   lastUpdated = "",
 } = Astro.props;
@@ -38,7 +42,18 @@ const showToc = toc.length > 0;
     <section class="page-hero paper-hero">
       <span class="eyebrow">{eyebrow}</span>
       <h1>{title}</h1>
-      {author && <p class="paper-author">{author}</p>}
+      {(author || affiliation) && (
+        <div class="paper-author-block">
+          {author && (
+            authorUrl ? (
+              <a class="paper-author" href={authorUrl}>{author}</a>
+            ) : (
+              <p class="paper-author">{author}</p>
+            )
+          )}
+          {affiliation && <p class="paper-affiliation">{affiliation}</p>}
+        </div>
+      )}
       {(draftLabel || lastUpdated) && (
         <div class="paper-hero-meta">
           {draftLabel && <p class="paper-draft-label">{draftLabel}</p>}

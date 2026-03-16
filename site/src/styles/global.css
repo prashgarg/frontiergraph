@@ -1015,20 +1015,37 @@ h3 {
 }
 
 .paper-hero h1 {
-  max-width: 14ch;
+  max-width: none;
   margin: 0.2rem auto 0;
   font-size: clamp(2.35rem, 5.1vw, 4.7rem);
   line-height: 0.95;
   letter-spacing: -0.045em;
 }
 
+.paper-author-block {
+  display: grid;
+  gap: 0.18rem;
+  justify-items: center;
+  margin-top: 0.35rem;
+}
+
 .paper-author {
-  margin: 0.35rem 0 0;
+  margin: 0;
   font-family: "Source Sans 3", sans-serif;
   font-size: 1.18rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   color: var(--text);
+}
+
+.paper-author[href]:hover {
+  color: var(--accent-strong);
+}
+
+.paper-affiliation {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
 }
 
 .paper-hero-meta {
@@ -3436,6 +3453,10 @@ h3 {
     font-size: 1.06rem;
   }
 
+  .paper-affiliation {
+    font-size: 0.93rem;
+  }
+
   .feedback-widget {
     right: 0.8rem;
     bottom: 0.8rem;
@@ -3461,6 +3482,13 @@ h3 {
   .feedback-actions .button-primary,
   .feedback-actions .button-tertiary {
     width: 100%;
+  }
+}
+
+@media (min-width: 960px) {
+  .paper-hero h1 {
+    white-space: nowrap;
+    font-size: clamp(2.7rem, 4.2vw, 4.55rem);
   }
 }
 
