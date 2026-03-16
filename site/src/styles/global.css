@@ -545,11 +545,12 @@ h3 {
 }
 
 .home-intro-grid-hero {
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 22rem));
+  justify-content: center;
 }
 
 .home-hero-side {
-  align-self: end;
+  align-self: center;
 }
 
 .home-intro-card {
@@ -1210,8 +1211,9 @@ h3 {
 }
 
 .hero-home {
-  grid-template-columns: minmax(320px, 0.82fr) minmax(460px, 1.18fr);
-  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 1.1rem;
 }
 
 .hero-copy-panel,
@@ -1226,6 +1228,31 @@ h3 {
   background: transparent;
   box-shadow: none;
   padding: 0.55rem 0 0;
+}
+
+.hero-copy-panel-home {
+  width: min(56rem, 100%);
+  align-items: center;
+  text-align: center;
+}
+
+.hero-copy-panel-home h1,
+.hero-copy-panel-home .lede {
+  max-width: 44rem;
+}
+
+.hero-actions-home {
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.hero-visual-panel-home {
+  width: min(48rem, 100%);
+  align-items: center;
+}
+
+.home-intro-grid-hero .home-intro-card {
+  width: 100%;
 }
 
 .hero-copy-panel strong,
@@ -3063,6 +3090,10 @@ h3 {
 
   .home-intro-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero-actions-home {
+    flex-wrap: wrap;
   }
 
   .about-profile-meta {

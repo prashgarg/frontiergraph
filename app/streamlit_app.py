@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sqlite3
 import sys
 import urllib.error
@@ -675,6 +676,50 @@ def question_project_shape(row: pd.Series | dict[str, Any]) -> str:
     return "Broader project" if question_is_broader_project(row) else "Focused question"
 
 
+def compact_author_text(value: Any) -> str:
+    raw = str(value or "").strip()
+    if not raw:
+        return ""
+    parts = [part.strip() for part in re.split(r";|\|", raw) if part.strip()]
+    if not parts:
+        return raw
+    if len(parts) >= 3:
+        return f"{parts[0]}, {parts[1]} et al."
+    if len(parts) == 2:
+        return f"{parts[0]}, {parts[1]}"
+    return parts[0]
+
+
+def paper_preview_frame(papers: pd.DataFrame, limit: int = 3) -> pd.DataFrame:
+    if papers.empty:
+        return papers
+    frame = papers.copy()
+    for column in ["path_rank", "paper_rank", "year", "fwci"]:
+        if column not in frame.columns:
+            frame[column] = pd.NA
+    frame["path_rank_sort"] = pd.to_numeric(frame["path_rank"], errors="coerce").fillna(9999)
+    frame["paper_rank_sort"] = pd.to_numeric(frame["paper_rank"], errors="coerce").fillna(9999)
+    frame["year_sort"] = pd.to_numeric(frame["year"], errors="coerce").fillna(0)
+    frame["fwci_sort"] = pd.to_numeric(frame["fwci"], errors="coerce").fillna(-1.0)
+    frame = frame.sort_values(
+        by=["path_rank_sort", "paper_rank_sort", "fwci_sort", "year_sort"],
+        ascending=[True, True, False, False],
+        kind="mergesort",
+    )
+    frame = frame.drop_duplicates(subset=["paper_id"], keep="first")
+    return frame.head(limit)
+
+
+def paper_preview_metadata(row: pd.Series | dict[str, Any]) -> tuple[str, str]:
+    year = row.get("year")
+    year_text = str(int(year)) if pd.notna(year) and str(year).strip() else ""
+    authors_text = compact_author_text(row.get("authors"))
+    venue_text = str(row.get("venue") or row.get("journal") or row.get("source_display_name") or "").strip()
+    edge_text = f"{str(row.get('edge_src_label') or '').strip()} -> {str(row.get('edge_dst_label') or '').strip()}".strip(" ->")
+    top_line = " · ".join([part for part in [year_text, authors_text, venue_text] if part])
+    return top_line, edge_text
+
+
 QUESTION_SUGGESTION_TERMS = (
     "public debt",
     "urbanization",
@@ -759,8 +804,12 @@ def question_brief_markdown(question: pd.Series, mediators: pd.DataFrame, papers
         for row in mediators.head(6).itertuples(index=False)
     ]
     paper_lines = [
-        f"- {row.title} ({int(row.year)}) [{row.edge_src_label} -> {row.edge_dst_label}]"
-        for row in papers.drop_duplicates(subset=["paper_id"]).head(6).itertuples(index=False)
+        (
+            lambda top_line, edge_line: f"- {row.title}"
+            + (f" ({top_line})" if top_line else "")
+            + (f" [{edge_line}]" if edge_line else "")
+        )(*paper_preview_metadata(row._asdict()))
+        for row in paper_preview_frame(papers, limit=6).itertuples(index=False)
     ]
     path_lines = [
         f"- {row.path_text}"
@@ -996,17 +1045,20 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
                     st.markdown(f"**{path_text}**")
                     st.caption(f"Path score {float(row.path_score):.1f}")
 
-    papers_preview = papers.drop_duplicates(subset=["paper_id"], keep="first").head(3)
+    papers_preview = paper_preview_frame(papers, limit=3)
     with detail_cols[1]:
         st.markdown("### Papers to begin with")
         if papers_preview.empty:
             st.caption("No paper list was exported for this question in the current public release.")
         else:
             for row in papers_preview.itertuples(index=False):
+                top_line, edge_line = paper_preview_metadata(row._asdict())
                 with st.container(border=True):
                     st.markdown(f"**{row.title}**")
-                    edge_text = f"{row.edge_src_label} -> {row.edge_dst_label}".strip(" ->")
-                    st.caption(f"{int(row.year)} · {edge_text}" if row.year else edge_text)
+                    if top_line:
+                        st.caption(top_line)
+                    if edge_line:
+                        st.caption(edge_line)
 
     action_cols = st.columns(3)
     with action_cols[0]:
@@ -1439,7 +1491,7 @@ def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd
             question = bundle["question"]
             if question is None:
                 continue
-            papers = bundle["papers"].drop_duplicates(subset=["paper_id"]).head(3)
+            papers = paper_preview_frame(bundle["papers"], limit=3)
             with col:
                 st.markdown(f"**{label_for_question(question)}**")
                 st.caption(plain_recommended_move(question["recommended_move"]))
@@ -1448,7 +1500,8 @@ def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd
                 if not papers.empty:
                     st.markdown("**Papers to begin with**")
                     for paper in papers.itertuples(index=False):
-                        st.markdown(f"- {paper.title} ({int(paper.year)})")
+                        top_line, _edge_line = paper_preview_metadata(paper._asdict())
+                        st.markdown(f"- {paper.title}" + (f" ({top_line})" if top_line else ""))
     else:
         concept_map = {str(row.concept_id): row for row in concepts.head(150).itertuples(index=False)}
         ensure_widget_state("compare_concept_ids", [])
@@ -1562,6 +1615,9 @@ def main() -> None:
             <h1 class="hero-title">Read one question or topic at a time.</h1>
             <p class="hero-copy">
                 Start with a question or a topic below. Search and pick one object first; filters and technical tables stay out of the way until you need them.
+            </p>
+            <p class="hero-copy" style="margin-top: 0.2rem;">
+                The public app can take 5 to 10 seconds to load the first time.
             </p>
         </div>
         """,
