@@ -81,7 +81,7 @@ const areaPreview = (item: Opportunity) =>
             <span
               class="editorial-evidence-chip"
               tabindex="0"
-              title={nearbyTopicsPreview(item)}
+              aria-label={nearbyTopicsPreview(item) || `${item.supporting_path_count} nearby topics`}
             >
               <span>{item.supporting_path_count} nearby topics</span>
               {nearbyTopicsPreview(item) && <span class="editorial-evidence-preview">{nearbyTopicsPreview(item)}</span>}
@@ -89,7 +89,7 @@ const areaPreview = (item: Opportunity) =>
             <span
               class="editorial-evidence-chip"
               tabindex="0"
-              title={starterPaperPreview(item)}
+              aria-label={starterPaperPreview(item) || `${item.representative_papers.length} starter papers`}
             >
               <span>{item.representative_papers.length} starter papers</span>
               {starterPaperPreview(item) && <span class="editorial-evidence-preview editorial-evidence-preview-wide">{starterPaperPreview(item)}</span>}
@@ -97,7 +97,7 @@ const areaPreview = (item: Opportunity) =>
             <span
               class="editorial-evidence-chip"
               tabindex="0"
-              title={areaPreview(item)}
+              aria-label={areaPreview(item)}
             >
               <span>{item.cross_field ? "Across fields" : "Same nearby field"}</span>
               <span class="editorial-evidence-preview">{areaPreview(item)}</span>

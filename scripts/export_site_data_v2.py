@@ -26,6 +26,7 @@ SITE_ROOT = ROOT / "site"
 GENERATED_DIR = SITE_ROOT / "src" / "generated"
 GENERATED_SITE_DATA_PATH = GENERATED_DIR / os.environ.get("FRONTIERGRAPH_SITE_DATA_FILENAME", "site-data.json")
 EDITORIAL_OPPORTUNITIES_PATH = SITE_ROOT / "src" / "content" / "editorial-opportunities.json"
+QUESTIONS_CAROUSEL_ASSIGNMENTS_PATH = SITE_ROOT / "src" / "content" / "questions-carousel-assignments.json"
 PUBLIC_LABEL_GLOSSARY_PATH = SITE_ROOT / "src" / "content" / "public-label-glossary.json"
 PUBLIC_DATA_SEGMENT = os.environ.get("FRONTIERGRAPH_PUBLIC_DATA_SEGMENT", "v2")
 PUBLIC_DATA_URL_PREFIX = f"/data/{PUBLIC_DATA_SEGMENT}"
@@ -102,11 +103,15 @@ BACKBONE_LAYOUT_SPREAD = 1.38
 NEIGHBOR_LIMIT = 15
 CONCEPT_OPPORTUNITY_LIMIT = 12
 FEATURED_OPPORTUNITY_LIMIT = 12
-PUBLIC_RANKED_WINDOW_LIMIT = 60
+PUBLIC_RANKED_WINDOW_LIMIT = 120
+PUBLIC_SLICE_EXPORT_LIMIT = 220
+CAROUSEL_GROUP_SIZE = 10
+FIELD_CAROUSEL_COUNT = 5
+USE_CASE_CAROUSEL_COUNT = 3
 CAROUSEL_ANCHOR_COUNT = 3
 CAROUSEL_MAX_ADDITIONS = 2
-FIELD_CAROUSEL_LIMIT = CAROUSEL_ANCHOR_COUNT + CAROUSEL_MAX_ADDITIONS
-USE_CASE_CAROUSEL_LIMIT = CAROUSEL_ANCHOR_COUNT + CAROUSEL_MAX_ADDITIONS
+FIELD_CAROUSEL_LIMIT = CAROUSEL_GROUP_SIZE
+USE_CASE_CAROUSEL_LIMIT = CAROUSEL_GROUP_SIZE
 SHARD_SIZE = 256
 EDITORIAL_REQUIRED_FIELDS = (
     "pair_key",
@@ -122,6 +127,10 @@ EDITORIAL_REQUIRED_FIELDS = (
     "collection_tags",
     "editorial_strength",
     "question_family",
+)
+
+QUESTION_CAROUSEL_ASSIGNMENT_ITEM_FIELDS = (
+    "pair_key",
 )
 
 PUBLIC_LABEL_GLOSSARY_REQUIRED_FIELDS = (
@@ -1190,7 +1199,7 @@ def build_slices(
     editorial: dict[str, dict[str, Any]],
 ) -> dict[str, list[dict[str, Any]]]:
     columns = list(df.columns)
-    def top_records(mask: pd.Series | None, limit: int = 100) -> list[dict[str, Any]]:
+    def top_records(mask: pd.Series | None, limit: int = PUBLIC_SLICE_EXPORT_LIMIT) -> list[dict[str, Any]]:
         raw_limit = max(limit * 30, 2500)
         if mask is None:
             subset = df.head(raw_limit)
@@ -1672,6 +1681,80 @@ def load_editorial_opportunities() -> dict[str, dict[str, Any]]:
     return editorial
 
 
+def load_questions_carousel_assignments() -> dict[str, list[dict[str, Any]]]:
+    payload = read_json(QUESTIONS_CAROUSEL_ASSIGNMENTS_PATH)
+    if not isinstance(payload, dict):
+        raise ValueError("questions-carousel-assignments.json must be an object")
+
+    def normalize_groups(section_key: str, expected_count: int) -> list[dict[str, Any]]:
+        groups = payload.get(section_key)
+        if not isinstance(groups, list) or len(groups) != expected_count:
+            raise ValueError(f"{section_key} must contain exactly {expected_count} groups")
+        normalized_groups: list[dict[str, Any]] = []
+        for group in groups:
+            if not isinstance(group, dict):
+                raise ValueError(f"{section_key} entries must be objects")
+            slug = clean_public_text(group.get("slug"))
+            title = clean_public_text(group.get("title"))
+            items = group.get("items")
+            if not slug or not title:
+                raise ValueError(f"{section_key} groups must include slug and title")
+            if not isinstance(items, list) or len(items) != CAROUSEL_GROUP_SIZE:
+                raise ValueError(f"{section_key}.{slug} must contain exactly {CAROUSEL_GROUP_SIZE} items")
+            normalized_items: list[dict[str, Any]] = []
+            seen_in_group: set[str] = set()
+            for item in items:
+                if not isinstance(item, dict):
+                    raise ValueError(f"{section_key}.{slug} items must be objects")
+                missing = [field for field in QUESTION_CAROUSEL_ASSIGNMENT_ITEM_FIELDS if field not in item]
+                if missing:
+                    raise ValueError(
+                        f"{section_key}.{slug} item is missing required fields: {', '.join(missing)}"
+                    )
+                pair_key = clean_public_text(item.get("pair_key"))
+                if not pair_key:
+                    raise ValueError(f"{section_key}.{slug} item must include pair_key")
+                if pair_key in seen_in_group:
+                    raise ValueError(f"{section_key}.{slug} repeats pair_key {pair_key}")
+                seen_in_group.add(pair_key)
+                normalized_items.append(
+                    {
+                        "pair_key": pair_key,
+                        "display_title": clean_public_text(item.get("display_title")),
+                        "display_why": clean_public_text(item.get("display_why")),
+                        "display_first_step": clean_public_text(item.get("display_first_step")),
+                        "display_category": clean_public_text(item.get("display_category")),
+                    }
+                )
+            normalized_groups.append(
+                {
+                    "slug": slug,
+                    "title": title,
+                    "items": normalized_items,
+                }
+            )
+        return normalized_groups
+
+    normalized = {
+        "field_carousels": normalize_groups("field_carousels", FIELD_CAROUSEL_COUNT),
+        "use_case_carousels": normalize_groups("use_case_carousels", USE_CASE_CAROUSEL_COUNT),
+    }
+    seen_pairs: set[str] = set()
+    duplicates: set[str] = set()
+    for group in normalized["field_carousels"] + normalized["use_case_carousels"]:
+        for item in group["items"]:
+            pair_key = item["pair_key"]
+            if pair_key in seen_pairs:
+                duplicates.add(pair_key)
+            seen_pairs.add(pair_key)
+    if duplicates:
+        raise ValueError(
+            "questions-carousel-assignments.json must keep pair_keys globally unique: "
+            + ", ".join(sorted(duplicates))
+        )
+    return normalized
+
+
 def load_public_label_glossary(valid_concept_ids: set[str]) -> dict[str, dict[str, Any]]:
     payload = read_json(PUBLIC_LABEL_GLOSSARY_PATH)
     if not isinstance(payload, dict):
@@ -1793,16 +1876,29 @@ def display_category(row: dict[str, Any]) -> str:
 def decorate_carousel_record(
     row: dict[str, Any],
     editorial: dict[str, dict[str, Any]],
+    assignment: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     editorial_entry = editorial.get(clean_public_text(row.get("pair_key")), {})
-    custom_why = clean_public_text(editorial_entry.get("short_why"))
-    custom_first_step = clean_public_text(editorial_entry.get("first_next_step"))
+    assignment_entry = assignment or {}
+    custom_title = clean_public_text(assignment_entry.get("display_title")) or clean_public_text(
+        editorial_entry.get("question_title")
+    )
+    custom_why = clean_public_text(assignment_entry.get("display_why")) or clean_public_text(
+        editorial_entry.get("short_why")
+    )
+    custom_first_step = clean_public_text(assignment_entry.get("display_first_step")) or clean_public_text(
+        editorial_entry.get("first_next_step")
+    )
+    custom_category = clean_public_text(assignment_entry.get("display_category"))
+    editorial_strength = clean_public_text(editorial_entry.get("editorial_strength"))
     return {
         **row,
-        "display_title": clean_public_text(editorial_entry.get("question_title")) or auto_question_title(row.get("public_pair_label")),
+        "display_title": custom_title or auto_question_title(row.get("public_pair_label")),
         "display_why": custom_why or short_path_line(row),
         "display_first_step": custom_first_step,
-        "display_category": clean_public_text(editorial_entry.get("editorial_strength")).replace("-", " ").title() or display_category(row),
+        "display_category": custom_category
+        or editorial_strength.replace("-", " ").title()
+        or display_category(row),
     }
 
 
@@ -2115,6 +2211,68 @@ def build_use_case_carousels(
             }
         )
     return groups
+
+
+def build_curated_questions_carousels(
+    assignments: dict[str, list[dict[str, Any]]],
+    candidates_df: pd.DataFrame,
+    concept_label_lookup: dict[str, str],
+    glossary: dict[str, dict[str, Any]],
+    display_refinement: dict[str, dict[str, Any]],
+    representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
+    editorial: dict[str, dict[str, Any]],
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    pair_keys = [
+        item["pair_key"]
+        for group in assignments["field_carousels"] + assignments["use_case_carousels"]
+        for item in group["items"]
+    ]
+    available_pair_keys = {str(value) for value in candidates_df["pair_key"].tolist()}
+    missing_pairs = [pair_key for pair_key in pair_keys if pair_key not in available_pair_keys]
+    if missing_pairs:
+        raise ValueError(
+            "Carousel pair_keys are missing from the exported opportunity set: "
+            + ", ".join(sorted(missing_pairs))
+        )
+
+    subset_df = candidates_df[candidates_df["pair_key"].isin(pair_keys)].copy()
+    columns = list(subset_df.columns)
+    record_by_pair: dict[str, dict[str, Any]] = {}
+    for row in subset_df.itertuples(index=False, name=None):
+        record = opportunity_record(
+            tuple(row),
+            columns,
+            concept_label_lookup,
+            glossary,
+            display_refinement,
+            representative_papers_lookup,
+            editorial,
+        )
+        existing = record_by_pair.get(record["pair_key"])
+        if existing is None or safe_number_for_sort(record["score"]) > safe_number_for_sort(existing["score"]):
+            record_by_pair[record["pair_key"]] = record
+
+    def render_groups(groups: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        rendered: list[dict[str, Any]] = []
+        for group in groups:
+            items: list[dict[str, Any]] = []
+            for assignment in group["items"]:
+                pair_key = assignment["pair_key"]
+                base = record_by_pair.get(pair_key)
+                if base is None:
+                    raise ValueError(f"Missing resolved carousel record for {pair_key}")
+                items.append(decorate_carousel_record(base, editorial, assignment))
+            rendered.append(
+                {
+                    "slug": group["slug"],
+                    "title": group["title"],
+                    "caption": "",
+                    "items": items,
+                }
+            )
+        return rendered
+
+    return render_groups(assignments["field_carousels"]), render_groups(assignments["use_case_carousels"])
 
 
 def build_public_ranked_window(
@@ -2432,6 +2590,7 @@ def main() -> None:
     extraction_summary = read_json(EXTRACTION_SUMMARY_PATH)
     hybrid_manifest = read_json(HYBRID_CORPUS_MANIFEST_PATH)
     editorial_opportunities = load_editorial_opportunities()
+    questions_carousel_assignments = load_questions_carousel_assignments()
 
     candidates_df = add_slice_flags(load_candidates())
     node_details_df = load_node_details()
@@ -2537,21 +2696,23 @@ def main() -> None:
     else:
         field_shelves = []
         collections = []
-    field_carousels = build_field_carousels(
-        slices["overall"],
-        editorial_records,
-        FIELD_SHELF_DEFS,
+    field_carousels, use_case_carousels = build_curated_questions_carousels(
+        questions_carousel_assignments,
+        candidates_df,
+        concept_label_lookup,
+        public_label_glossary,
+        display_refinement,
+        representative_papers_lookup,
         editorial_opportunities,
     )
-    use_case_carousels = build_use_case_carousels(
-        slices["overall"],
-        editorial_records,
-        USE_CASE_CAROUSEL_DEFS,
-        editorial_opportunities,
-    )
+    top_carousel_pair_keys = {
+        item["pair_key"]
+        for group in field_carousels + use_case_carousels
+        for item in group["items"]
+    }
     ranked_questions = build_public_ranked_window(
         slices["overall"],
-        {row["pair_key"] for row in editorial_records},
+        {row["pair_key"] for row in editorial_records} | top_carousel_pair_keys,
         limit=PUBLIC_RANKED_WINDOW_LIMIT,
     )
 

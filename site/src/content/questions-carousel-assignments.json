@@ -1,0 +1,134 @@
+{
+  "field_carousels": [
+    {
+      "slug": "macro-finance",
+      "title": "Macro and finance",
+      "items": [
+        { "pair_key": "FG3C000024__FG3C001672" },
+        { "pair_key": "FG3C000014__FG3C000024" },
+        { "pair_key": "FG3C000003__FG3C000208" },
+        { "pair_key": "FG3C000455__FG3C003050" },
+        { "pair_key": "FG3C000094__FG3C001436" },
+        { "pair_key": "FG3C000071__FG3C002924" },
+        { "pair_key": "FG3C000027__FG3C000279" },
+        { "pair_key": "FG3C001534__FG3C002284" },
+        { "pair_key": "FG3C000003__FG3C001534" },
+        { "pair_key": "FG3C000159__FG3C000423" }
+      ]
+    },
+    {
+      "slug": "development-urban",
+      "title": "Development and urban",
+      "items": [
+        { "pair_key": "FG3C000012__FG3C000110" },
+        { "pair_key": "FG3C000012__FG3C001452" },
+        { "pair_key": "FG3C000010__FG3C000019" },
+        { "pair_key": "FG3C001452__FG3C002172" },
+        { "pair_key": "FG3C000022__FG3C000753" },
+        { "pair_key": "FG3C000114__FG3C003577" },
+        { "pair_key": "FG3C000236__FG3C001758" },
+        { "pair_key": "FG3C002284__FG3C002513" },
+        { "pair_key": "FG3C000009__FG3C002438" },
+        { "pair_key": "FG3C000025__FG3C002438" }
+      ]
+    },
+    {
+      "slug": "trade-globalization",
+      "title": "Trade and globalization",
+      "items": [
+        { "pair_key": "FG3C000083__FG3C001452" },
+        { "pair_key": "FG3C000014__FG3C001221" },
+        { "pair_key": "FG3C000046__FG3C000203" },
+        { "pair_key": "FG3C001635__FG3C001922" },
+        { "pair_key": "FG3C000167__FG3C004133" },
+        { "pair_key": "FG3C000022__FG3C002487" },
+        { "pair_key": "FG3C000499__FG3C002487" },
+        { "pair_key": "FG3C000078__FG3C000199" },
+        { "pair_key": "FG3C000072__FG3C004338" },
+        { "pair_key": "FG3C000083__FG3C000215" }
+      ]
+    },
+    {
+      "slug": "climate-energy",
+      "title": "Climate and energy",
+      "items": [
+        { "pair_key": "FG3C000034__FG3C000167" },
+        { "pair_key": "FG3C000056__FG3C000167" },
+        { "pair_key": "FG3C000081__FG3C003006" },
+        { "pair_key": "FG3C000018__FG3C002978" },
+        { "pair_key": "FG3C000064__FG3C002978" },
+        { "pair_key": "FG3C000152__FG3C001307" },
+        { "pair_key": "FG3C000123__FG3C001307" },
+        { "pair_key": "FG3C000003__FG3C000722" },
+        { "pair_key": "FG3C000167__FG3C003108" },
+        { "pair_key": "FG3C000164__FG3C000167" }
+      ]
+    },
+    {
+      "slug": "innovation-productivity",
+      "title": "Innovation and productivity",
+      "items": [
+        { "pair_key": "FG3C000061__FG3C001431" },
+        { "pair_key": "FG3C000021__FG3C000053" },
+        { "pair_key": "FG3C000053__FG3C005175" },
+        { "pair_key": "FG3C000053__FG3C002799" },
+        { "pair_key": "FG3C001735__FG3C006136" },
+        { "pair_key": "FG3C004911__FG3C006136" },
+        { "pair_key": "FG3C001874__FG3C006136" },
+        { "pair_key": "FG3C000061__FG3C000425" },
+        { "pair_key": "FG3C000215__FG3C000717" },
+        { "pair_key": "FG3C000215__FG3C000335" }
+      ]
+    }
+  ],
+  "use_case_carousels": [
+    {
+      "slug": "strong-nearby-evidence",
+      "title": "Questions with stronger nearby evidence",
+      "items": [
+        { "pair_key": "FG3C000003__FG3C000159" },
+        { "pair_key": "FG3C000018__FG3C000279" },
+        { "pair_key": "FG3C000018__FG3C000044" },
+        { "pair_key": "FG3C000003__FG3C000494" },
+        { "pair_key": "FG3C000010__FG3C000425" },
+        { "pair_key": "FG3C000063__FG3C001307" },
+        { "pair_key": "FG3C000015__FG3C001954" },
+        { "pair_key": "FG3C000246__FG3C003006" },
+        { "pair_key": "FG3C000003__FG3C002978" },
+        { "pair_key": "FG3C000347__FG3C000753" }
+      ]
+    },
+    {
+      "slug": "phd-topic",
+      "title": "Broader project candidates",
+      "items": [
+        { "pair_key": "FG3C000039__FG3C001452" },
+        { "pair_key": "FG3C001814__FG3C002438" },
+        { "pair_key": "FG3C000083__FG3C001721" },
+        { "pair_key": "FG3C000039__FG3C000227" },
+        { "pair_key": "FG3C000199__FG3C001420" },
+        { "pair_key": "FG3C000089__FG3C001307" },
+        { "pair_key": "FG3C000061__FG3C005566" },
+        { "pair_key": "FG3C000071__FG3C000215" },
+        { "pair_key": "FG3C000063__FG3C002284" },
+        { "pair_key": "FG3C000013__FG3C002623" }
+      ]
+    },
+    {
+      "slug": "open-little-direct",
+      "title": "Open questions with little direct work",
+      "items": [
+        { "pair_key": "FG3C000069__FG3C005515" },
+        { "pair_key": "FG3C001564__FG3C003050" },
+        { "pair_key": "FG3C003008__FG3C004938" },
+        { "pair_key": "FG3C000190__FG3C001821" },
+        { "pair_key": "FG3C001922__FG3C003131" },
+        { "pair_key": "FG3C000215__FG3C001001" },
+        { "pair_key": "FG3C000061__FG3C002438" },
+        { "pair_key": "FG3C000384__FG3C002623" },
+        { "pair_key": "FG3C000811__FG3C003802" },
+        { "pair_key": "FG3C000681__FG3C002623" }
+      ]
+    }
+  ]
+}

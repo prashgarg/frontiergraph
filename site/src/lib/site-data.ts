@@ -1,5 +1,6 @@
 import siteData from "../generated/site-data.json";
 import editorialSource from "../content/editorial-opportunities.json";
+import questionsCarouselAssignmentsSource from "../content/questions-carousel-assignments.json";
 import publicLabelGlossarySource from "../content/public-label-glossary.json";
 
 export type MetricBundle = {
@@ -113,6 +114,20 @@ export type QuestionCarouselGroup = {
   title: string;
   caption: string;
   items: Opportunity[];
+};
+
+export type QuestionCarouselAssignmentItem = {
+  pair_key: string;
+  display_title?: string;
+  display_why?: string;
+  display_first_step?: string;
+  display_category?: string;
+};
+
+export type QuestionCarouselAssignmentGroup = {
+  slug: string;
+  title: string;
+  items: QuestionCarouselAssignmentItem[];
 };
 
 export type CentralConcept = {
@@ -250,6 +265,22 @@ function normalizePublicLabelGlossarySource(): Record<string, PublicLabelGloss> 
   return payload;
 }
 
+function normalizeQuestionsCarouselAssignmentsSource(): {
+  field_carousels: QuestionCarouselAssignmentGroup[];
+  use_case_carousels: QuestionCarouselAssignmentGroup[];
+} {
+  const payload = questionsCarouselAssignmentsSource as {
+    field_carousels?: QuestionCarouselAssignmentGroup[];
+    use_case_carousels?: QuestionCarouselAssignmentGroup[];
+  };
+  invariant(Array.isArray(payload.field_carousels), "Carousel assignments must include field_carousels");
+  invariant(Array.isArray(payload.use_case_carousels), "Carousel assignments must include use_case_carousels");
+  return {
+    field_carousels: payload.field_carousels,
+    use_case_carousels: payload.use_case_carousels,
+  };
+}
+
 function validateCuratedSet(
   actual: CuratedQuestion[],
   expected: EditorialQuestion[],
@@ -288,23 +319,46 @@ function validateQuestionGroups(
 function validateCarouselGroups(
   groups: QuestionCarouselGroup[],
   label: string,
-  expectedCount: number,
-  minItems: number,
-  maxItems: number,
+  expectedAssignments: QuestionCarouselAssignmentGroup[],
 ): QuestionCarouselGroup[] {
-  invariant(groups.length === expectedCount, `${label} should contain exactly ${expectedCount} groups`);
-  for (const group of groups) {
-    invariant(
-      group.items.length >= minItems && group.items.length <= maxItems,
-      `${label}.${group.slug} should contain between ${minItems} and ${maxItems} questions`,
-    );
+  invariant(groups.length === expectedAssignments.length, `${label} should contain exactly ${expectedAssignments.length} groups`);
+  for (let index = 0; index < expectedAssignments.length; index += 1) {
+    const group = groups[index];
+    const expected = expectedAssignments[index];
+    invariant(group.slug === expected.slug, `${label}[${index}] should use slug ${expected.slug}`);
+    invariant(group.title === expected.title, `${label}.${group.slug} title is out of sync with assignments`);
+    invariant(group.items.length === expected.items.length, `${label}.${group.slug} should contain exactly ${expected.items.length} questions`);
+    for (let itemIndex = 0; itemIndex < expected.items.length; itemIndex += 1) {
+      const actualItem = group.items[itemIndex];
+      const expectedItem = expected.items[itemIndex];
+      invariant(
+        actualItem?.pair_key === expectedItem?.pair_key,
+        `${label}.${group.slug}[${itemIndex}] should contain pair_key ${expectedItem?.pair_key}`,
+      );
+    }
   }
   return groups;
+}
+
+function invariantGlobalCarouselUniqueness(groups: QuestionCarouselGroup[]): void {
+  const seen = new Set<string>();
+  const duplicates = new Set<string>();
+  for (const group of groups) {
+    for (const item of group.items) {
+      if (seen.has(item.pair_key)) duplicates.add(item.pair_key);
+      seen.add(item.pair_key);
+    }
+  }
+  invariant(
+    duplicates.size === 0,
+    `Top carousel pair_keys must stay globally unique; duplicates: ${Array.from(duplicates).join(", ")}`,
+  );
 }
 
 function buildSiteData(): SiteData {
   const payload = siteData as SiteData;
   const editorialItems = normalizeEditorialSource();
+  const carouselAssignments = normalizeQuestionsCarouselAssignmentsSource();
   const glossarySource = normalizePublicLabelGlossarySource();
   const questionPayload = payload.questions;
   invariant(questionPayload, "Generated site data is missing questions payload");
@@ -350,6 +404,18 @@ function buildSiteData(): SiteData {
     invariant((actual.plain_label ?? "") === (entry.plain_label ?? ""), `public_label_glossary has stale plain_label for ${conceptId}`);
   }
 
+  const validatedFieldCarousels = validateCarouselGroups(
+    questionPayload?.field_carousels ?? [],
+    "questions.field_carousels",
+    carouselAssignments.field_carousels,
+  );
+  const validatedUseCaseCarousels = validateCarouselGroups(
+    questionPayload?.use_case_carousels ?? [],
+    "questions.use_case_carousels",
+    carouselAssignments.use_case_carousels,
+  );
+  invariantGlobalCarouselUniqueness([...validatedFieldCarousels, ...validatedUseCaseCarousels]);
+
   return {
     ...payload,
     home: {
@@ -369,8 +435,8 @@ function buildSiteData(): SiteData {
       ),
       field_shelves: validateQuestionGroups(questionPayload?.field_shelves ?? [], "questions.field_shelves", 5),
       collections: validateQuestionGroups(questionPayload?.collections ?? [], "questions.collections", 5),
-      field_carousels: validateCarouselGroups(questionPayload?.field_carousels ?? [], "questions.field_carousels", 5, 3, 5),
-      use_case_carousels: validateCarouselGroups(questionPayload?.use_case_carousels ?? [], "questions.use_case_carousels", 3, 3, 5),
+      field_carousels: validatedFieldCarousels,
+      use_case_carousels: validatedUseCaseCarousels,
     },
   };
 }

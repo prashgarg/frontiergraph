@@ -102,11 +102,16 @@ async function main() {
     .evaluateAll((nodes) =>
       nodes.map((node) => node.querySelectorAll('[data-role="editorial-carousel-slide"]').length),
     );
-  assert(carouselSlideCounts.every((count) => count >= 3 && count <= 5), "Questions page carousels should stay short");
-  const activePairs = await page
-    .locator('[data-role^="field-carousel-"] [data-role="editorial-carousel-slide"][data-active="true"], [data-role^="use-case-carousel-"] [data-role="editorial-carousel-slide"][data-active="true"]')
+  assert(carouselSlideCounts.every((count) => count === 10), "Questions page carousels should each contain exactly 10 questions");
+  const carouselPairs = await page
+    .locator('[data-role^="field-carousel-"] [data-role="editorial-carousel-slide"], [data-role^="use-case-carousel-"] [data-role="editorial-carousel-slide"]')
     .evaluateAll((nodes) => nodes.map((node) => node.getAttribute("data-pair-key")).filter(Boolean));
-  assert(new Set(activePairs).size >= 3, "Questions page should still surface several distinct active questions");
+  assert(carouselPairs.length === 80, "Questions page should expose 80 curated carousel slots");
+  assert(new Set(carouselPairs).size === 80, "Questions page carousel slots should stay globally unique");
+  const evidenceChipsWithTitle = await page
+    .locator('[data-role^="field-carousel-"] .editorial-evidence-chip[title], [data-role^="use-case-carousel-"] .editorial-evidence-chip[title]')
+    .count();
+  assert(evidenceChipsWithTitle === 0, "Questions page evidence chips should not use native title tooltips");
   const rankedSection = page.locator('[data-role="overall-ranked-questions"]');
   assert(await rankedSection.getByRole("button", { name: /Cross-area/i }).isVisible(), "Questions filters missing cross-area chip");
   assert(await rankedSection.getByRole("button", { name: /Stronger nearby evidence/i }).isVisible(), "Questions filters missing stronger-evidence chip");
@@ -115,6 +120,32 @@ async function main() {
   assert((await page.getByRole("link", { name: /How it works/i }).count()) === 0, "Questions page should not point to How it works");
   assert((await page.getByText(/current public release/i).count()) === 0, "Questions page should not repeat current public release copy on cards");
   assert((await page.getByText(/already sit near the same short paths and papers/i).count()) === 0, "Questions page should not use the old fallback copy");
+  const visibleCountBefore = await rankedSection
+    .locator('[data-role="structured-opportunity-card"]:not([hidden])')
+    .count();
+  assert(visibleCountBefore === 24, "Questions ranked list should show 24 cards initially");
+  const loadMoreButton = rankedSection.getByRole("button", { name: /Show .* more questions/i });
+  assert(await loadMoreButton.isVisible(), "Questions ranked list should show a load-more button");
+  await loadMoreButton.click();
+  await page.waitForTimeout(200);
+  const visibleCountAfter = await rankedSection
+    .locator('[data-role="structured-opportunity-card"]:not([hidden])')
+    .count();
+  assert(visibleCountAfter === 48, "Questions ranked list should add 24 cards after one load-more click");
+  await rankedSection.getByRole("button", { name: /Stronger nearby evidence/i }).click();
+  await page.waitForTimeout(200);
+  assert(
+    (await rankedSection.locator('[data-role="structured-opportunity-card"]:not([hidden])').count()) > 0,
+    "Stronger nearby evidence filter should return non-empty results",
+  );
+  await rankedSection.getByRole("button", { name: /Stronger nearby evidence/i }).click();
+  await rankedSection.getByRole("button", { name: /Broader project/i }).click();
+  await page.waitForTimeout(200);
+  assert(
+    (await rankedSection.locator('[data-role="structured-opportunity-card"]:not([hidden])').count()) > 0,
+    "Broader project filter should return non-empty results",
+  );
+  await rankedSection.getByRole("button", { name: /Broader project/i }).click();
 
   await page.goto(`${baseUrl}/graph/`, { waitUntil: "networkidle" });
   await page.waitForSelector('[data-role="search-input"]');
