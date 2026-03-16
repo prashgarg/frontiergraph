@@ -93,7 +93,7 @@ async function main() {
   await page.goto(`${baseUrl}/questions/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
-  assert(await page.getByRole("heading", { name: /Browse questions by field\./i }).isVisible(), "Questions hero missing");
+  assert(await page.getByRole("heading", { name: /Browse suggested questions by field\./i }).isVisible(), "Questions hero missing");
   assert(await page.getByText(/These questions are surfaced because nearby topics and papers already suggest short mechanism routes between the two sides\./i).isVisible(), "Questions helper line missing");
   assert((await page.locator('[data-role^="field-carousel-"]').count()) === 5, "Questions page should show 5 field carousels");
   assert((await page.locator('[data-role^="use-case-carousel-"]').count()) === 3, "Questions page should show 3 use-case carousels");
@@ -118,7 +118,6 @@ async function main() {
   assert(await rankedSection.getByRole("button", { name: /Cross-area/i }).isVisible(), "Questions filters missing cross-area chip");
   assert(await rankedSection.getByRole("button", { name: /Stronger nearby evidence/i }).isVisible(), "Questions filters missing stronger-evidence chip");
   assert(await rankedSection.getByRole("button", { name: /Broader project/i }).isVisible(), "Questions filters missing broader-project chip");
-  assert(await rankedSection.getByPlaceholder("Search by topic").isVisible(), "Questions search missing");
   assert((await page.getByRole("link", { name: /How it works/i }).count()) === 0, "Questions page should not point to How it works");
   assert((await page.getByText(/current public release/i).count()) === 0, "Questions page should not repeat current public release copy on cards");
   assert((await page.getByText(/already sit near the same short paths and papers/i).count()) === 0, "Questions page should not use the old fallback copy");
@@ -153,7 +152,7 @@ async function main() {
   await page.waitForSelector('[data-role="search-input"]');
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
   assert(await page.getByRole("heading", { name: /Choose a topic and start with the questions around it/i }).first().isVisible(), "Graph hero missing");
-  assert(await page.getByPlaceholder("Search labels or aliases").isVisible(), "Graph search missing");
+  assert(await page.getByPlaceholder("Search topics or close variants").isVisible(), "Graph search missing");
   assert((await page.getByRole("heading", { name: /Start with a topic/i }).count()) === 0, "Graph page should not show the old idle card");
   assert((await page.getByRole("button", { name: /Rearrange/i }).count()) === 0, "Map should not show rearrange button");
   assert((await page.getByRole("button", { name: /Zoom in/i }).count()) === 0, "Map should not show zoom-in button");

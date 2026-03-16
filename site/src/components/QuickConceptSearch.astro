@@ -11,11 +11,11 @@ const rootId = `quick-concept-search-${Math.random().toString(36).slice(2, 10)}`
 <section id={rootId} class="quick-search-card" data-concept-index-path={conceptIndexPath}>
   <h3>Start with one concept you already care about.</h3>
   <p class="card-copy">
-    Search by label or alias, then jump into questions, the map, or the app with that topic preloaded.
+    Search by topic name or a close variant, then jump into questions, the map, or the app with that topic preloaded.
   </p>
   <label class="search-shell">
-    <span>Find a concept</span>
-    <input type="search" placeholder="Search labels or aliases" data-role="search-input" />
+    <span>Find a topic</span>
+    <input type="search" placeholder="Search topics or close variants" data-role="search-input" />
     <div class="search-results" data-role="search-results"></div>
   </label>
   <div class="quick-search-preview" data-role="preview">
@@ -24,7 +24,7 @@ const rootId = `quick-concept-search-${Math.random().toString(36).slice(2, 10)}`
   <div class="button-row">
     <a class="button-secondary" href="/questions/">Browse questions</a>
     <a class="button-tertiary" href="/graph/">Open graph</a>
-    <a class="button-tertiary" href={appUrl}>Explore in app</a>
+    <a class="button-tertiary" href={appUrl}>Open app for papers and export</a>
   </div>
 </section>
 
@@ -50,6 +50,61 @@ const rootId = `quick-concept-search-${Math.random().toString(36).slice(2, 10)}`
     const normalized = String(value ?? "").trim().toLowerCase();
     return normalized && !["na", "n/a", "nan", "null", "undefined", "none"].includes(normalized);
   };
+  const normalizeText = (value) =>
+    String(value ?? "")
+      .toLowerCase()
+      .normalize("NFKD")
+      .replace(/[^\p{L}\p{N}]+/gu, " ")
+      .trim()
+      .replace(/\s+/g, " ");
+  const singularizeToken = (token) => {
+    if (token.endsWith("ies") && token.length > 4) return `${token.slice(0, -3)}y`;
+    if (token.endsWith("es") && token.length > 4 && /(ses|xes|zes|ches|shes)$/.test(token)) return token.slice(0, -2);
+    if (token.endsWith("s") && token.length > 3 && !token.endsWith("ss")) return token.slice(0, -1);
+    return token;
+  };
+  const tokenize = (value) => Array.from(new Set(normalizeText(value).split(" ").filter(Boolean).map(singularizeToken)));
+  const normalizeForSearch = (value) => tokenize(value).join(" ");
+  const scoreTextMatch = (text, query, queryTokens, baseWeight) => {
+    if (!text) return 0;
+    let score = 0;
+    if (text === query) score += 120 * baseWeight;
+    else if (text.startsWith(query)) score += (90 - Math.min(text.length - query.length, 18)) * baseWeight;
+    else if (text.includes(query)) score += 52 * baseWeight;
+    const normalizedText = normalizeForSearch(text);
+    const normalizedQuery = normalizeForSearch(query);
+    if (normalizedText === normalizedQuery) score += 190 * baseWeight;
+    else if (normalizedText.startsWith(normalizedQuery)) score += (96 - Math.min(normalizedText.length - normalizedQuery.length, 18)) * baseWeight;
+    else if (normalizedText.includes(normalizedQuery)) score += 58 * baseWeight;
+    const textTokens = tokenize(text);
+    const coveredTokens = queryTokens.filter((token) => textTokens.includes(token)).length;
+    if (coveredTokens > 0) {
+      score += coveredTokens * 18 * baseWeight;
+      if (coveredTokens === queryTokens.length) score += 26 * baseWeight;
+    }
+    return score;
+  };
+  const searchConcepts = (query) => {
+    const normalized = normalizeText(query);
+    if (!normalized) return [];
+    const queryTokens = tokenize(normalized);
+    return concepts
+      .map((concept) => {
+        const plainLabel = normalizeText(concept.plain_label || concept.label);
+        const aliases = (concept.aliases || []).map((alias) => normalizeText(alias)).filter(Boolean);
+        const searchTerms = (concept.search_terms || []).map((term) => normalizeText(term)).filter(Boolean);
+        let score = 0;
+        score += scoreTextMatch(plainLabel, normalized, queryTokens, 3.4);
+        for (const alias of aliases) score = Math.max(score, scoreTextMatch(alias, normalized, queryTokens, 2.6));
+        for (const term of searchTerms) score = Math.max(score, scoreTextMatch(term, normalized, queryTokens, 1.15));
+        if (!score) return null;
+        return { concept, score };
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score || b.concept.weighted_degree - a.concept.weighted_degree)
+      .slice(0, 8)
+      .map((entry) => entry.concept);
+  };
   const listText = (values, fallback) => {
     const cleaned = Array.isArray(values) ? values.filter(isMeaningful) : [];
     return cleaned.length ? cleaned.join(", ") : fallback;
@@ -63,37 +118,33 @@ const rootId = `quick-concept-search-${Math.random().toString(36).slice(2, 10)}`
     const labelQuery = encodeURIComponent(concept.label);
     preview.innerHTML = `
       <div class="selected-title-row">
-        <h4>${escapeHtml(concept.label)}</h4>
+        <h4>${escapeHtml(concept.plain_label || concept.label)}</h4>
         <span class="field-pill">${escapeHtml(concept.bucket_hint)}</span>
       </div>
       <p class="mini-copy">
         ${formatNumber(concept.distinct_paper_support)} papers · ${formatNumber(concept.instance_support)} node instances · ${formatNumber(concept.neighbor_count)} nearby concepts
       </p>
-      <p class="mini-copy">Study settings: ${escapeHtml(listText((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
+      <p class="mini-copy">Study settings: ${escapeHtml(listText((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public release"))}</p>
       <div class="button-row">
         <a class="button-primary" href="/questions/">See nearby questions</a>
         <a class="button-secondary" href="/graph/?q=${labelQuery}">Open this graph</a>
-        <a class="button-tertiary" href="${escapeHtml(concept.app_link || appUrl)}">Explore in app</a>
+        <a class="button-tertiary" href="${escapeHtml(concept.app_link || appUrl)}">Open app for papers and export</a>
       </div>
     `;
   };
 
   const runSearch = (query) => {
-    const normalized = query.trim().toLowerCase();
-    if (!normalized) {
+    if (!query.trim()) {
       searchResults.innerHTML = "";
       renderPreview(null);
       return;
     }
-    const matches = concepts
-      .filter((concept) => (concept.search_terms || []).some((term) => term.includes(normalized)))
-      .sort((a, b) => b.weighted_degree - a.weighted_degree)
-      .slice(0, 8);
+    const matches = searchConcepts(query);
     searchResults.innerHTML = matches
       .map(
         (concept) => `
           <button class="search-hit" type="button" data-concept-id="${escapeHtml(concept.concept_id)}">
-            <strong>${escapeHtml(concept.label)}</strong>
+            <strong>${escapeHtml(concept.plain_label || concept.label)}</strong>
             <span>${formatNumber(concept.distinct_paper_support)} papers</span>
           </button>
         `,
@@ -105,7 +156,7 @@ const rootId = `quick-concept-search-${Math.random().toString(36).slice(2, 10)}`
         renderPreview(concept || null);
         searchResults.innerHTML = "";
         if (searchInput instanceof HTMLInputElement) {
-          searchInput.value = concept?.label || "";
+          searchInput.value = concept?.plain_label || concept?.label || "";
         }
       });
     }

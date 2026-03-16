@@ -44,10 +44,6 @@ const filters = [
   )}
   {enableFilters && (
     <div class="opportunity-filter-shell" data-role="opportunity-filter-shell">
-      <label class="search-shell opportunity-search-shell">
-        <span>Search questions</span>
-        <input type="search" placeholder="Search by topic" data-role="opportunity-search-input" />
-      </label>
       <div class="opportunity-filter-bar" data-role="opportunity-filter-bar">
         {filters.map((filter) => (
           <button
@@ -74,10 +70,9 @@ const filters = [
         data-cross-area={String(item.cross_field)}
         data-strong-nearby={String(item.supporting_path_count >= 5)}
         data-broader-project={String(item.mediator_count >= 6 || item.supporting_path_count >= 8)}
-        data-search-text={`${item.public_pair_label} ${item.source_label} ${item.target_label} ${item.source_display_label || ""} ${item.target_display_label || ""}`.toLowerCase()}
       >
         <div class="opportunity-kicker">
-          <span>Ranked question</span>
+          <span>Suggested question</span>
           {item.cross_field && <span>Cross-area</span>}
         </div>
         <h3>{item.public_pair_label}</h3>
@@ -116,7 +111,7 @@ const filters = [
   )}
   {enableFilters && (
     <p class="card-copy opportunity-empty-state" data-role="opportunity-filter-empty" hidden>
-      No questions match the current search or filter combination. Try clearing a chip or editing the search.
+      No suggested questions match the current filters. Try clearing a chip.
     </p>
   )}
 </section>
@@ -128,12 +123,10 @@ const filters = [
 
     const cards = Array.from(root.querySelectorAll('[data-role="structured-opportunity-card"]'));
     const chips = Array.from(root.querySelectorAll('[data-role="opportunity-filter-chip"]'));
-    const searchInput = root.querySelector('[data-role="opportunity-search-input"]');
     const emptyState = root.querySelector('[data-role="opportunity-filter-empty"]');
     const loadMoreShell = root.querySelector('[data-role="opportunity-load-more-shell"]');
     const loadMoreButton = root.querySelector('[data-role="opportunity-load-more"]');
     const active = new Set();
-    let query = "";
     let visibleLimit = Number(initialVisibleCount || 0);
 
     const filterToDataset = {
@@ -143,14 +136,13 @@ const filters = [
     };
 
     const applyFilters = () => {
-      const hasActiveFilters = active.size > 0 || Boolean(query);
+      const hasActiveFilters = active.size > 0;
       const matchingCards = [];
       let visibleCount = 0;
       for (const card of cards) {
         const matchesFilters = Array.from(active).every((filterId) => card.dataset[filterToDataset[filterId]] === "true");
-        const matchesSearch = !query || (card.dataset.searchText || "").includes(query);
-        if (matchesFilters && matchesSearch) matchingCards.push(card);
-        const visible = matchesFilters && matchesSearch;
+        if (matchesFilters) matchingCards.push(card);
+        const visible = matchesFilters;
         card.hidden = !visible;
       }
 
@@ -192,13 +184,6 @@ const filters = [
         }
         chip.setAttribute("aria-pressed", String(active.has(filterId)));
         chip.classList.toggle("is-active", active.has(filterId));
-        applyFilters();
-      });
-    }
-
-    if (searchInput instanceof HTMLInputElement) {
-      searchInput.addEventListener("input", () => {
-        query = searchInput.value.trim().toLowerCase();
         applyFilters();
       });
     }

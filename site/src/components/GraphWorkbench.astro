@@ -37,7 +37,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       </p>
       <label class="search-shell graph-search-shell">
         <span>Search topic</span>
-        <input type="search" placeholder="Search labels or aliases" data-role="search-input" />
+        <input type="search" placeholder="Search topics or close variants" data-role="search-input" />
         <div class="search-results" data-role="search-results"></div>
       </label>
     </div>
@@ -189,6 +189,61 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const safeNumber = (value) => {
     const numeric = Number(value);
     return Number.isFinite(numeric) ? numeric : 0;
+  };
+  const normalizeText = (value) =>
+    String(value ?? "")
+      .toLowerCase()
+      .normalize("NFKD")
+      .replace(/[^\p{L}\p{N}]+/gu, " ")
+      .trim()
+      .replace(/\s+/g, " ");
+  const singularizeToken = (token) => {
+    if (token.endsWith("ies") && token.length > 4) return `${token.slice(0, -3)}y`;
+    if (token.endsWith("es") && token.length > 4 && /(ses|xes|zes|ches|shes)$/.test(token)) return token.slice(0, -2);
+    if (token.endsWith("s") && token.length > 3 && !token.endsWith("ss")) return token.slice(0, -1);
+    return token;
+  };
+  const tokenize = (value) => Array.from(new Set(normalizeText(value).split(" ").filter(Boolean).map(singularizeToken)));
+  const normalizeForSearch = (value) => tokenize(value).join(" ");
+  const scoreTextMatch = (text, query, queryTokens, baseWeight) => {
+    if (!text) return 0;
+    let score = 0;
+    if (text === query) score += 120 * baseWeight;
+    else if (text.startsWith(query)) score += (90 - Math.min(text.length - query.length, 18)) * baseWeight;
+    else if (text.includes(query)) score += 52 * baseWeight;
+    const normalizedText = normalizeForSearch(text);
+    const normalizedQuery = normalizeForSearch(query);
+    if (normalizedText === normalizedQuery) score += 190 * baseWeight;
+    else if (normalizedText.startsWith(normalizedQuery)) score += (96 - Math.min(normalizedText.length - normalizedQuery.length, 18)) * baseWeight;
+    else if (normalizedText.includes(normalizedQuery)) score += 58 * baseWeight;
+    const textTokens = tokenize(text);
+    const coveredTokens = queryTokens.filter((token) => textTokens.includes(token)).length;
+    if (coveredTokens > 0) {
+      score += coveredTokens * 18 * baseWeight;
+      if (coveredTokens === queryTokens.length) score += 26 * baseWeight;
+    }
+    return score;
+  };
+  const searchConcepts = (query) => {
+    const normalized = normalizeText(query);
+    if (!normalized) return [];
+    const queryTokens = tokenize(normalized);
+    return concepts
+      .map((concept) => {
+        const plainLabel = normalizeText(concept.plain_label || concept.label);
+        const aliases = (concept.aliases || []).map((alias) => normalizeText(alias)).filter(Boolean);
+        const searchTerms = (concept.search_terms || []).map((term) => normalizeText(term)).filter(Boolean);
+        let score = 0;
+        score += scoreTextMatch(plainLabel, normalized, queryTokens, 3.4);
+        for (const alias of aliases) score = Math.max(score, scoreTextMatch(alias, normalized, queryTokens, 2.6));
+        for (const term of searchTerms) score = Math.max(score, scoreTextMatch(term, normalized, queryTokens, 1.15));
+        if (!score) return null;
+        return { concept, score };
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score || b.concept.weighted_degree - a.concept.weighted_degree)
+      .slice(0, 8)
+      .map((entry) => entry.concept);
   };
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
   const isInBackbone = (conceptId) => Boolean(graph?.nodeMap?.has(conceptId));
@@ -1075,15 +1130,11 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   };
 
   const runSearch = (query) => {
-    const normalized = query.trim().toLowerCase();
-    if (!normalized) {
+    if (!query.trim()) {
       searchResults.innerHTML = "";
       return;
     }
-    const matches = concepts
-      .filter((concept) => concept.search_terms.some((term) => term.includes(normalized)))
-      .sort((a, b) => b.weighted_degree - a.weighted_degree)
-      .slice(0, 8);
+    const matches = searchConcepts(query);
     searchResults.innerHTML = matches
       .map(
         (concept) => `
@@ -1142,14 +1193,9 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     updateMapModeButton();
     const params = new URLSearchParams(window.location.search);
     const query = params.get("q");
-    const exact = query
-      ? concepts.find((concept) => {
-          const needle = query.toLowerCase();
-          return (concept.plain_label || concept.label).toLowerCase() === needle || concept.label.toLowerCase() === needle;
-        })
-      : null;
-    if (exact) {
-      await selectConcept(exact.concept_id);
+    const selected = query ? searchConcepts(query)[0] : null;
+    if (selected) {
+      await selectConcept(selected.concept_id);
     } else {
       restoreStatus();
     }

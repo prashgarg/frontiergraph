@@ -13,8 +13,8 @@ const {
   neighborhoodsIndexPath,
   opportunitiesIndexPath,
   appUrl = "/graph/",
-  title = "Search the concept graph",
-  caption = "Look up a concept by label or alias, inspect its local neighborhood, and open the app when you want the full detail view.",
+  title = "Search the topic map",
+  caption = "Look up one topic by name or close variant, inspect its nearby questions and connections, and open the app when you want papers, tables, and export.",
 } = Astro.props;
 
 const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
@@ -37,29 +37,29 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
   <div class="lookup-grid">
     <div class="lookup-card lookup-card-search">
       <label class="search-shell lookup-search">
-        <span>Find a concept</span>
-        <input type="search" placeholder="Search labels or aliases" data-role="search-input" />
+        <span>Find a topic</span>
+        <input type="search" placeholder="Search topics or close variants" data-role="search-input" />
         <div class="search-results" data-role="search-results"></div>
       </label>
       <div class="lookup-actions">
         <a class="button-secondary" href="/graph/">Open graph</a>
-        <a class="button-primary" data-role="open-app" href={appUrl}>Explore in app</a>
+        <a class="button-primary" data-role="open-app" href={appUrl}>Open app for papers and export</a>
       </div>
     </div>
 
     <div class="lookup-card" data-role="concept-panel">
-      <h3>Selected concept</h3>
-      <p class="card-copy">Search above to inspect a concept and see the strongest opportunities touching it.</p>
+      <h3>Selected topic</h3>
+      <p class="card-copy">Search above to inspect one topic and see the strongest question candidates touching it.</p>
     </div>
 
     <div class="lookup-card" data-role="opportunities-panel">
-      <h3>Top opportunities around this concept</h3>
-      <p class="card-copy">Ranked links touching the selected concept will appear here.</p>
+      <h3>Top question candidates around this topic</h3>
+      <p class="card-copy">The strongest nearby question candidates will appear here.</p>
     </div>
 
     <div class="lookup-card" data-role="neighbors-panel">
-      <h3>Observed neighborhood</h3>
-      <p class="card-copy">Top incoming and outgoing observed links will appear here.</p>
+      <h3>Nearby directed links</h3>
+      <p class="card-copy">The strongest incoming and outgoing links will appear here.</p>
     </div>
   </div>
 </section>
@@ -97,6 +97,61 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
     const numeric = Number(value);
     return Number.isFinite(numeric) ? numeric : 0;
   };
+  const normalizeText = (value) =>
+    String(value ?? "")
+      .toLowerCase()
+      .normalize("NFKD")
+      .replace(/[^\p{L}\p{N}]+/gu, " ")
+      .trim()
+      .replace(/\s+/g, " ");
+  const singularizeToken = (token) => {
+    if (token.endsWith("ies") && token.length > 4) return `${token.slice(0, -3)}y`;
+    if (token.endsWith("es") && token.length > 4 && /(ses|xes|zes|ches|shes)$/.test(token)) return token.slice(0, -2);
+    if (token.endsWith("s") && token.length > 3 && !token.endsWith("ss")) return token.slice(0, -1);
+    return token;
+  };
+  const tokenize = (value) => Array.from(new Set(normalizeText(value).split(" ").filter(Boolean).map(singularizeToken)));
+  const normalizeForSearch = (value) => tokenize(value).join(" ");
+  const scoreTextMatch = (text, query, queryTokens, baseWeight) => {
+    if (!text) return 0;
+    let score = 0;
+    if (text === query) score += 120 * baseWeight;
+    else if (text.startsWith(query)) score += (90 - Math.min(text.length - query.length, 18)) * baseWeight;
+    else if (text.includes(query)) score += 52 * baseWeight;
+    const normalizedText = normalizeForSearch(text);
+    const normalizedQuery = normalizeForSearch(query);
+    if (normalizedText === normalizedQuery) score += 190 * baseWeight;
+    else if (normalizedText.startsWith(normalizedQuery)) score += (96 - Math.min(normalizedText.length - normalizedQuery.length, 18)) * baseWeight;
+    else if (normalizedText.includes(normalizedQuery)) score += 58 * baseWeight;
+    const textTokens = tokenize(text);
+    const coveredTokens = queryTokens.filter((token) => textTokens.includes(token)).length;
+    if (coveredTokens > 0) {
+      score += coveredTokens * 18 * baseWeight;
+      if (coveredTokens === queryTokens.length) score += 26 * baseWeight;
+    }
+    return score;
+  };
+  const searchConcepts = (query) => {
+    const normalized = normalizeText(query);
+    if (!normalized) return [];
+    const queryTokens = tokenize(normalized);
+    return concepts
+      .map((concept) => {
+        const plainLabel = normalizeText(concept.plain_label || concept.label);
+        const aliases = (concept.aliases || []).map((alias) => normalizeText(alias)).filter(Boolean);
+        const searchTerms = (concept.search_terms || []).map((term) => normalizeText(term)).filter(Boolean);
+        let score = 0;
+        score += scoreTextMatch(plainLabel, normalized, queryTokens, 3.4);
+        for (const alias of aliases) score = Math.max(score, scoreTextMatch(alias, normalized, queryTokens, 2.6));
+        for (const term of searchTerms) score = Math.max(score, scoreTextMatch(term, normalized, queryTokens, 1.15));
+        if (!score) return null;
+        return { concept, score };
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score || b.concept.weighted_degree - a.concept.weighted_degree)
+      .slice(0, 10)
+      .map((entry) => entry.concept);
+  };
   const isMeaningful = (value) => {
     const normalized = String(value ?? "").trim().toLowerCase();
     return normalized && !["na", "n/a", "nan", "null", "undefined", "none"].includes(normalized);
@@ -125,16 +180,16 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
   const renderConcept = (concept) => {
     conceptPanel.innerHTML = `
       <div class="selected-title-row">
-        <h3>${escapeHtml(conceptTitle(concept))}</h3>
+        <h3>${escapeHtml(concept.plain_label || conceptTitle(concept))}</h3>
         <span class="field-pill">${escapeHtml(concept.bucket_hint)}</span>
       </div>
       ${conceptSubtitle(concept) ? `<p class="mini-copy opportunity-label-note">${escapeHtml(conceptSubtitle(concept))}</p>` : ""}
       <p class="card-copy">
         ${formatNumber(safeNumber(concept.instance_support))} mapped node mentions · ${formatNumber(safeNumber(concept.distinct_paper_support))} papers · ${formatNumber(safeNumber(concept.neighbor_count))} nearby concepts
       </p>
-      <p class="mini-copy">Typical study settings: ${escapeHtml(joinList((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
-      <p class="mini-copy">Common units: ${escapeHtml(joinList((concept.top_units || []).slice(0, 3), "No dominant unit in the current public sample"))}</p>
-      <p class="mini-copy">Aliases: ${escapeHtml(joinList((concept.aliases || []).slice(0, 8), "No alternate labels in the current public sample"))}</p>
+      <p class="mini-copy">Typical study settings: ${escapeHtml(joinList((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public release"))}</p>
+      <p class="mini-copy">Common units: ${escapeHtml(joinList((concept.top_units || []).slice(0, 3), "No dominant unit in the current public release"))}</p>
+      <p class="mini-copy">Aliases: ${escapeHtml(joinList((concept.aliases || []).slice(0, 8), "No alternate labels in the current public release"))}</p>
     `;
     if (openAppLink instanceof HTMLAnchorElement) {
       openAppLink.href = concept.app_link;
@@ -144,23 +199,23 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
   const renderOpportunities = async (conceptId) => {
     const shardPath = opportunitiesIndex[conceptId];
     if (!shardPath) {
-      opportunitiesPanel.innerHTML = `<h3>Top opportunities around this concept</h3><p class="card-copy">No released question currently touches this concept.</p>`;
+      opportunitiesPanel.innerHTML = `<h3>Top question candidates around this topic</h3><p class="card-copy">No public question candidate currently touches this topic.</p>`;
       return;
     }
     const shard = await fetchJson(shardPath);
     const opportunities = shard[conceptId] || [];
     opportunitiesPanel.innerHTML = `
-      <h3>Top opportunities around this concept</h3>
+      <h3>Top question candidates around this topic</h3>
       ${opportunities
         .slice(0, 6)
         .map(
           (item) => `
             <article class="mini-opportunity">
-              <strong>${escapeHtml(item.public_pair_label)}</strong>
+              <strong>${escapeHtml(item.source_display_label || item.source_label)} and ${escapeHtml(item.target_display_label || item.target_label)}</strong>
               ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
-              <div class="mini-copy">${escapeHtml(item.direct_link_status)} · ${formatNumber(safeNumber(item.supporting_path_count))} nearby linking concepts in the released graph</div>
+              <div class="mini-copy">${escapeHtml(item.direct_link_status)} · ${formatNumber(safeNumber(item.supporting_path_count))} supporting paths nearby</div>
               <div class="mini-copy">Context: ${escapeHtml(item.source_context_summary)} on one side and ${escapeHtml(item.target_context_summary)} on the other.</div>
-              <a class="text-link" href="${escapeHtml(item.app_link)}">Explore in app</a>
+              <a class="text-link" href="${escapeHtml(item.app_link)}">Open in app for papers and export</a>
             </article>
           `,
         )
@@ -171,13 +226,13 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
   const renderNeighbors = async (conceptId) => {
     const shardPath = neighborhoodIndex[conceptId];
     if (!shardPath) {
-      neighborsPanel.innerHTML = `<h3>Observed neighborhood</h3><p class="card-copy">No precomputed neighborhood is available for this concept.</p>`;
+      neighborsPanel.innerHTML = `<h3>Nearby directed links</h3><p class="card-copy">No precomputed neighborhood is available for this topic.</p>`;
       return;
     }
     const shard = await fetchJson(shardPath);
     const neighborhood = shard[conceptId];
     if (!neighborhood) {
-      neighborsPanel.innerHTML = `<h3>Observed neighborhood</h3><p class="card-copy">No precomputed neighborhood is available for this concept.</p>`;
+      neighborsPanel.innerHTML = `<h3>Nearby directed links</h3><p class="card-copy">No precomputed neighborhood is available for this topic.</p>`;
       return;
     }
     const renderItems = (items) =>
@@ -188,7 +243,7 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
         )
         .join("");
     neighborsPanel.innerHTML = `
-      <h3>Observed neighborhood</h3>
+      <h3>Nearby directed links</h3>
       <div class="neighbor-group">
         <h4>Incoming</h4>
         <ul class="neighbor-list">${renderItems(neighborhood.incoming || [])}</ul>
@@ -212,15 +267,11 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
   };
 
   const runSearch = (query) => {
-    const normalized = query.trim().toLowerCase();
-    if (!normalized) {
+    if (!query.trim()) {
       searchResults.innerHTML = "";
       return;
     }
-    const matches = concepts
-      .filter((concept) => (concept.search_terms || []).some((term) => term.includes(normalized)))
-      .sort((a, b) => b.weighted_degree - a.weighted_degree)
-      .slice(0, 10);
+    const matches = searchConcepts(query);
     searchResults.innerHTML = matches
       .map(
         (concept) => `
@@ -255,11 +306,9 @@ const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
 
     const params = new URLSearchParams(window.location.search);
     const query = params.get("q");
-    const exact = query
-      ? concepts.find((concept) => concept.label.toLowerCase() === query.toLowerCase())
-      : concepts[0];
-    if (exact) {
-      await selectConcept(exact.concept_id);
+    const selected = query ? searchConcepts(query)[0] : concepts[0];
+    if (selected) {
+      await selectConcept(selected.concept_id);
     }
   };
 
