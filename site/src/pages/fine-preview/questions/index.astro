@@ -1,0 +1,159 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import OpportunityCards from "../../../components/OpportunityCards.astro";
+import { data, formatCompact, type Opportunity } from "../../../lib/site-data-broad";
+
+const fineLinks = [
+  { href: "/fine-preview/questions/", label: "Questions demo" },
+  { href: "/broad/questions/", label: "Current 16.5k page" },
+  { href: "/broad/audit/", label: "Audit" },
+  { href: "/paper/", label: "Paper" },
+];
+
+const fineQuestions = data.questions.ranked_questions as Opportunity[];
+
+function normalizeLabel(label: string): string {
+  return label
+    .toLowerCase()
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/[^a-z0-9 ]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function looksAliasLike(item: Opportunity): boolean {
+  const source = normalizeLabel(item.source_display_label || item.source_label);
+  const target = normalizeLabel(item.target_display_label || item.target_label);
+  if (!source || !target) return false;
+  if (source === target) return true;
+  if (source.includes(target) || target.includes(source)) return true;
+  const sourceTokens = new Set(source.split(" "));
+  const targetTokens = new Set(target.split(" "));
+  const overlap = [...sourceTokens].filter((token) => targetTokens.has(token)).length;
+  const union = new Set([...sourceTokens, ...targetTokens]).size || 1;
+  return overlap / union >= 0.72;
+}
+
+function isClimateHeavy(item: Opportunity): boolean {
+  const label = item.public_pair_label.toLowerCase();
+  return [
+    "co2",
+    "carbon",
+    "energy",
+    "renewable",
+    "environmental",
+    "ecological footprint",
+    "emissions",
+  ].some((token) => label.includes(token));
+}
+
+function curatedFineQuestions(items: Opportunity[], limit = 18): Opportunity[] {
+  const chosen: Opportunity[] = [];
+  const seenFamilies = new Set<string>();
+  const seenPairs = new Set<string>();
+  let climateCount = 0;
+  const climateCap = 4;
+
+  for (const item of items) {
+    if (looksAliasLike(item)) continue;
+    if (seenPairs.has(item.pair_key)) continue;
+    const family = item.question_family || item.pair_key;
+    if (seenFamilies.has(family)) continue;
+
+    const climateHeavy = isClimateHeavy(item);
+    if (climateHeavy && climateCount >= climateCap) continue;
+
+    chosen.push(item);
+    seenPairs.add(item.pair_key);
+    seenFamilies.add(family);
+    if (climateHeavy) climateCount += 1;
+    if (chosen.length >= limit) break;
+  }
+
+  return chosen;
+}
+
+const mockQuestions = curatedFineQuestions(fineQuestions, 18);
+const rawTopWindow = fineQuestions.slice(0, 12);
+const hiddenAliasCount = rawTopWindow.filter(looksAliasLike).length;
+---
+
+<BaseLayout
+  title="Fine-Grained Questions Mock | FrontierGraph"
+  description="A mock first-screen questions page for the finer 16.5k-topic FrontierGraph regime."
+  appUrl={data.app_url}
+  appLabel="Open fine-grained app preview"
+  variantLabel="Fine-grained preview"
+  links={fineLinks}
+>
+  <main>
+    <section class="page-hero">
+      <h1>How a fine-grained questions page could open.</h1>
+      <p class="lede">
+        This is a dummy first screen for the finer 16.5k-topic regime. It uses the same underlying preview data, but opens with a
+        cleaner question list so we can judge the page feel before deciding whether to replace the current release.
+      </p>
+      <div class="button-row">
+        <a class="button-primary" href="/broad/questions/">Open the current 16.5k questions page</a>
+        <a class="button-secondary" href={data.app_url}>Open the fine-grained app preview</a>
+        <a class="button-tertiary" href="/broad/audit/">Open the regime audit</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="metrics-grid">
+        <article class="metric-card">
+          <div class="metric-value">{formatCompact(data.metrics.native_concepts)}</div>
+          <div class="metric-label">topic heads in the fine-grained regime</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-value">{formatCompact(data.metrics.visible_public_questions)}</div>
+          <div class="metric-label">questions in the current preview window</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-value">{hiddenAliasCount}</div>
+          <div class="metric-label">obvious label collisions hidden in this mock top window</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card-grid">
+        <article class="card">
+          <span class="tiny-label">What this mock is doing</span>
+          <h2>Start with a calmer first screen.</h2>
+          <p class="card-copy">
+            The raw fine-grained window currently surfaces many near-duplicates and parenthetical variants. This mock hides the most
+            obvious collisions and opens with a more mixed shortlist, so we can look at the page structure separately from the raw
+            ranking noise.
+          </p>
+        </article>
+        <article class="card">
+          <span class="tiny-label">What to look for</span>
+          <h2>Do these questions feel closer to paper-shaped?</h2>
+          <p class="card-copy">
+            The useful test here is simple: does the first screen give you a sharper sense of what the finer ontology buys us, or do
+            the questions still feel too umbrella-like even after we suppress the obvious repeats?
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <OpportunityCards
+      items={mockQuestions}
+      title="Mock opening shortlist for the fine-grained regime"
+      caption="This version starts with a de-aliased sample from the 16.5k-topic preview, so we can judge whether the first screen feels more specific and more useful."
+      sectionId="fine-preview-mock-shortlist"
+      enableFilters={true}
+      initialVisibleCount={12}
+    />
+
+    <OpportunityCards
+      items={rawTopWindow}
+      title="Raw top window underneath"
+      caption="These are the first questions from the current fine-grained preview without extra cleanup. Keeping them here makes the comparison easy."
+      sectionId="fine-preview-raw-window"
+      initialVisibleCount={12}
+    />
+  </main>
+</BaseLayout>
