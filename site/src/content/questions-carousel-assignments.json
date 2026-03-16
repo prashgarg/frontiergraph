@@ -7,13 +7,34 @@
         { "pair_key": "FG3C000024__FG3C001672" },
         { "pair_key": "FG3C000014__FG3C000024" },
         { "pair_key": "FG3C000003__FG3C000208" },
-        { "pair_key": "FG3C000455__FG3C003050" },
-        { "pair_key": "FG3C000094__FG3C001436" },
-        { "pair_key": "FG3C000071__FG3C002924" },
-        { "pair_key": "FG3C000027__FG3C000279" },
-        { "pair_key": "FG3C001534__FG3C002284" },
-        { "pair_key": "FG3C000003__FG3C001534" },
-        { "pair_key": "FG3C000159__FG3C000423" }
+        {
+          "pair_key": "FG3C000004__FG3C001986",
+          "display_title": "How does central bank communication shape welfare?"
+        },
+        {
+          "pair_key": "FG3C000094__FG3C001436",
+          "display_title": "Does cheaper debt accelerate green technology adoption?"
+        },
+        {
+          "pair_key": "FG3C000071__FG3C002924",
+          "display_title": "When does policy uncertainty squeeze bank net interest margins?"
+        },
+        {
+          "pair_key": "FG3C000027__FG3C000279",
+          "display_title": "How do interest-rate shifts change oil price volatility?"
+        },
+        {
+          "pair_key": "FG3C001534__FG3C002284",
+          "display_title": "Does unconventional monetary policy change firm productivity?"
+        },
+        {
+          "pair_key": "FG3C000003__FG3C001534",
+          "display_title": "How does unconventional monetary policy shape CO2 emissions?"
+        },
+        {
+          "pair_key": "FG3C000159__FG3C000423",
+          "display_title": "Do monetary shocks move natural gas demand?"
+        }
       ]
     },
     {
@@ -23,13 +44,34 @@
         { "pair_key": "FG3C000012__FG3C000110" },
         { "pair_key": "FG3C000012__FG3C001452" },
         { "pair_key": "FG3C000010__FG3C000019" },
-        { "pair_key": "FG3C001452__FG3C002172" },
-        { "pair_key": "FG3C000022__FG3C000753" },
-        { "pair_key": "FG3C000114__FG3C003577" },
-        { "pair_key": "FG3C000236__FG3C001758" },
-        { "pair_key": "FG3C002284__FG3C002513" },
-        { "pair_key": "FG3C000009__FG3C002438" },
-        { "pair_key": "FG3C000025__FG3C002438" }
+        {
+          "pair_key": "FG3C001452__FG3C002172",
+          "display_title": "Can microfinance reduce catastrophic health spending?"
+        },
+        {
+          "pair_key": "FG3C000022__FG3C000753",
+          "display_title": "How does high-speed rail reshape wages?"
+        },
+        {
+          "pair_key": "FG3C000114__FG3C003577",
+          "display_title": "How does market concentration change access to essential medicines?"
+        },
+        {
+          "pair_key": "FG3C000236__FG3C001758",
+          "display_title": "When does inward FDI lift regional growth?"
+        },
+        {
+          "pair_key": "FG3C002284__FG3C002513",
+          "display_title": "When does urbanization raise firm productivity?"
+        },
+        {
+          "pair_key": "FG3C000009__FG3C002438",
+          "display_title": "Do Special economic zones reduce unemployment?"
+        },
+        {
+          "pair_key": "FG3C000194__FG3C002438",
+          "display_title": "How do Special economic zones reshape wage inequality?"
+        }
       ]
     },
     {
@@ -39,29 +81,80 @@
         { "pair_key": "FG3C000083__FG3C001452" },
         { "pair_key": "FG3C000014__FG3C001221" },
         { "pair_key": "FG3C000046__FG3C000203" },
-        { "pair_key": "FG3C001635__FG3C001922" },
-        { "pair_key": "FG3C000167__FG3C004133" },
-        { "pair_key": "FG3C000022__FG3C002487" },
-        { "pair_key": "FG3C000499__FG3C002487" },
-        { "pair_key": "FG3C000078__FG3C000199" },
-        { "pair_key": "FG3C000072__FG3C004338" },
-        { "pair_key": "FG3C000083__FG3C000215" }
+        {
+          "pair_key": "FG3C001635__FG3C001922",
+          "display_title": "Does export upgrading pull firms into high-tech production?"
+        },
+        {
+          "pair_key": "FG3C000167__FG3C004133",
+          "display_title": "How does import penetration change carbon emissions?"
+        },
+        {
+          "pair_key": "FG3C000022__FG3C002487",
+          "display_title": "How do free trade agreements reshape wages?"
+        },
+        {
+          "pair_key": "FG3C000499__FG3C002487",
+          "display_title": "How do free trade agreements change the skill premium?"
+        },
+        {
+          "pair_key": "FG3C000078__FG3C000199",
+          "display_title": "When does trade deepen economic complexity?"
+        },
+        {
+          "pair_key": "FG3C000072__FG3C004338",
+          "display_title": "How do exchange-rate swings reshape trade flows?"
+        },
+        {
+          "pair_key": "FG3C000083__FG3C000215",
+          "display_title": "Does trade liberalization raise green productivity?"
+        }
       ]
     },
     {
       "slug": "climate-energy",
       "title": "Climate and energy",
       "items": [
-        { "pair_key": "FG3C000034__FG3C000167" },
-        { "pair_key": "FG3C000056__FG3C000167" },
-        { "pair_key": "FG3C000081__FG3C003006" },
-        { "pair_key": "FG3C000018__FG3C002978" },
-        { "pair_key": "FG3C000064__FG3C002978" },
-        { "pair_key": "FG3C000152__FG3C001307" },
-        { "pair_key": "FG3C000123__FG3C001307" },
-        { "pair_key": "FG3C000003__FG3C000722" },
-        { "pair_key": "FG3C000167__FG3C003108" },
-        { "pair_key": "FG3C000164__FG3C000167" }
+        {
+          "pair_key": "FG3C000034__FG3C000167",
+          "display_title": "How do oil price shocks feed into CO2 emissions?"
+        },
+        {
+          "pair_key": "FG3C000056__FG3C000167",
+          "display_title": "When do exchange-rate swings raise carbon emissions?"
+        },
+        {
+          "pair_key": "FG3C000081__FG3C003006",
+          "display_title": "Does emissions trading improve environmental quality?"
+        },
+        {
+          "pair_key": "FG3C000018__FG3C002978",
+          "display_title": "Do low-carbon city pilots raise renewable energy use?"
+        },
+        {
+          "pair_key": "FG3C000064__FG3C002978",
+          "display_title": "How do low-carbon city pilots change ecological footprints?"
+        },
+        {
+          "pair_key": "FG3C000152__FG3C001307",
+          "display_title": "How does a carbon tax change ecological carrying capacity?"
+        },
+        {
+          "pair_key": "FG3C000123__FG3C001307",
+          "display_title": "How do oil price shocks affect ecological carrying capacity?"
+        },
+        {
+          "pair_key": "FG3C000003__FG3C000722",
+          "display_title": "Does green credit reduce CO2 emissions?"
+        },
+        {
+          "pair_key": "FG3C000167__FG3C003108",
+          "display_title": "How does green credit policy change carbon emissions?"
+        },
+        {
+          "pair_key": "FG3C000164__FG3C000167",
+          "display_title": "When do government subsidies raise carbon emissions?"
+        }
       ]
     },
     {
@@ -70,14 +163,38 @@
       "items": [
         { "pair_key": "FG3C000061__FG3C001431" },
         { "pair_key": "FG3C000021__FG3C000053" },
-        { "pair_key": "FG3C000053__FG3C005175" },
-        { "pair_key": "FG3C000053__FG3C002799" },
-        { "pair_key": "FG3C001735__FG3C006136" },
-        { "pair_key": "FG3C004911__FG3C006136" },
-        { "pair_key": "FG3C001874__FG3C006136" },
-        { "pair_key": "FG3C000061__FG3C000425" },
-        { "pair_key": "FG3C000215__FG3C000717" },
-        { "pair_key": "FG3C000215__FG3C000335" }
+        {
+          "pair_key": "FG3C000053__FG3C005175",
+          "display_title": "Do small and medium-sized firms adopt green innovation differently?"
+        },
+        {
+          "pair_key": "FG3C000053__FG3C002799",
+          "display_title": "Do renewable portfolio standards accelerate green innovation?"
+        },
+        {
+          "pair_key": "FG3C001735__FG3C006136",
+          "display_title": "How do political connections shape innovation outcomes?"
+        },
+        {
+          "pair_key": "FG3C004911__FG3C006136",
+          "display_title": "Do patent spillovers show up in later innovation outcomes?"
+        },
+        {
+          "pair_key": "FG3C001874__FG3C006136",
+          "display_title": "When does transport infrastructure change innovation outcomes?"
+        },
+        {
+          "pair_key": "FG3C000061__FG3C000425",
+          "display_title": "Does digital inclusive finance raise total factor productivity?"
+        },
+        {
+          "pair_key": "FG3C000215__FG3C000717",
+          "display_title": "Does digital financial inclusion raise green productivity?"
+        },
+        {
+          "pair_key": "FG3C000215__FG3C000335",
+          "display_title": "How does digitalization raise green total factor productivity?"
+        }
       ]
     }
   ],
@@ -86,48 +203,138 @@
       "slug": "strong-nearby-evidence",
       "title": "Questions with stronger nearby evidence",
       "items": [
-        { "pair_key": "FG3C000003__FG3C000159" },
-        { "pair_key": "FG3C000018__FG3C000279" },
-        { "pair_key": "FG3C000018__FG3C000044" },
-        { "pair_key": "FG3C000003__FG3C000494" },
-        { "pair_key": "FG3C000010__FG3C000425" },
-        { "pair_key": "FG3C000063__FG3C001307" },
-        { "pair_key": "FG3C000015__FG3C001954" },
-        { "pair_key": "FG3C000246__FG3C003006" },
-        { "pair_key": "FG3C000003__FG3C002978" },
-        { "pair_key": "FG3C000347__FG3C000753" }
+        {
+          "pair_key": "FG3C000003__FG3C000159",
+          "display_title": "How do monetary shocks feed into CO2 emissions?"
+        },
+        {
+          "pair_key": "FG3C000018__FG3C000279",
+          "display_title": "Does oil price volatility speed up renewable energy use?"
+        },
+        {
+          "pair_key": "FG3C000018__FG3C000044",
+          "display_title": "When does industrial structure raise renewable energy use?"
+        },
+        {
+          "pair_key": "FG3C000003__FG3C000494",
+          "display_title": "Can digital economy growth cut CO2 emissions?"
+        },
+        {
+          "pair_key": "FG3C000010__FG3C000425",
+          "display_title": "Does digital inclusive finance reduce carbon emissions?"
+        },
+        {
+          "pair_key": "FG3C000063__FG3C001307",
+          "display_title": "Can green finance raise ecological carrying capacity?"
+        },
+        {
+          "pair_key": "FG3C000015__FG3C000869",
+          "display_title": "How does foreign direct investment change the urban-rural income gap?"
+        },
+        {
+          "pair_key": "FG3C000246__FG3C003006",
+          "display_title": "Does emissions trading raise green growth?"
+        },
+        {
+          "pair_key": "FG3C000003__FG3C002978",
+          "display_title": "Do low-carbon city pilots cut CO2 emissions?"
+        },
+        {
+          "pair_key": "FG3C000347__FG3C000753",
+          "display_title": "Does high-speed rail cut carbon intensity?"
+        }
       ]
     },
     {
       "slug": "phd-topic",
       "title": "Broader project candidates",
       "items": [
-        { "pair_key": "FG3C000039__FG3C001452" },
-        { "pair_key": "FG3C001814__FG3C002438" },
-        { "pair_key": "FG3C000083__FG3C001721" },
-        { "pair_key": "FG3C000039__FG3C000227" },
-        { "pair_key": "FG3C000199__FG3C001420" },
-        { "pair_key": "FG3C000089__FG3C001307" },
-        { "pair_key": "FG3C000061__FG3C005566" },
-        { "pair_key": "FG3C000071__FG3C000215" },
-        { "pair_key": "FG3C000063__FG3C002284" },
-        { "pair_key": "FG3C000013__FG3C002623" }
+        {
+          "pair_key": "FG3C000015__FG3C001452",
+          "display_title": "How do foreign direct investments change catastrophic health spending?"
+        },
+        {
+          "pair_key": "FG3C001814__FG3C002438",
+          "display_title": "How do Special economic zones change consumption-based carbon emissions?"
+        },
+        {
+          "pair_key": "FG3C000083__FG3C001721",
+          "display_title": "How does trade liberalization reshape the gender pay gap?"
+        },
+        {
+          "pair_key": "FG3C000089__FG3C000215",
+          "display_title": "How does R&D investment raise green total factor productivity?"
+        },
+        {
+          "pair_key": "FG3C000199__FG3C001420",
+          "display_title": "When does economic complexity improve environmental quality?"
+        },
+        {
+          "pair_key": "FG3C000089__FG3C001307",
+          "display_title": "How does R&D investment raise ecological carrying capacity?"
+        },
+        {
+          "pair_key": "FG3C000061__FG3C005566",
+          "display_title": "When does carbon emissions trading raise total factor productivity?"
+        },
+        {
+          "pair_key": "FG3C000071__FG3C000215",
+          "display_title": "How does policy uncertainty slow green productivity growth?"
+        },
+        {
+          "pair_key": "FG3C000063__FG3C002284",
+          "display_title": "Does green finance raise firm productivity?"
+        },
+        {
+          "pair_key": "FG3C000061__FG3C000887",
+          "display_title": "When does digital infrastructure raise total factor productivity?"
+        }
       ]
     },
     {
       "slug": "open-little-direct",
       "title": "Open questions with little direct work",
       "items": [
-        { "pair_key": "FG3C000069__FG3C005515" },
-        { "pair_key": "FG3C001564__FG3C003050" },
-        { "pair_key": "FG3C003008__FG3C004938" },
-        { "pair_key": "FG3C000190__FG3C001821" },
-        { "pair_key": "FG3C001922__FG3C003131" },
-        { "pair_key": "FG3C000215__FG3C001001" },
-        { "pair_key": "FG3C000061__FG3C002438" },
-        { "pair_key": "FG3C000384__FG3C002623" },
-        { "pair_key": "FG3C000811__FG3C003802" },
-        { "pair_key": "FG3C000681__FG3C002623" }
+        {
+          "pair_key": "FG3C000247__FG3C004458",
+          "display_title": "Does high-frequency trading change firms' cost of capital?"
+        },
+        {
+          "pair_key": "FG3C001564__FG3C003050",
+          "display_title": "Do individual forecasts show up in bond returns?"
+        },
+        {
+          "pair_key": "FG3C003008__FG3C004938",
+          "display_title": "How do voluntary export restraints reshape trade patterns?"
+        },
+        {
+          "pair_key": "FG3C000190__FG3C001821",
+          "display_title": "Does enterprise digital transformation narrow bid-ask spreads?"
+        },
+        {
+          "pair_key": "FG3C001922__FG3C003131",
+          "display_title": "Does stronger intellectual property protection raise export quality?"
+        },
+        {
+          "pair_key": "FG3C000215__FG3C001001",
+          "display_title": "Do economic sanctions slow green productivity growth?"
+        },
+        {
+          "pair_key": "FG3C000061__FG3C002438",
+          "display_title": "Do Special economic zones raise total factor productivity?"
+        },
+        {
+          "pair_key": "FG3C000384__FG3C002623",
+          "display_title": "How does U.S. policy uncertainty change ICT investment?"
+        },
+        {
+          "pair_key": "FG3C000811__FG3C003802",
+          "display_title": "Do high-frequency traders change expected stock returns?"
+        },
+        {
+          "pair_key": "FG3C000681__FG3C002623",
+          "display_title": "How does U.S. policy uncertainty change FDI inflows?"
+        }
       ]
     }
   ]

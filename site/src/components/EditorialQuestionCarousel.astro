@@ -79,30 +79,39 @@ const areaPreview = (item: Opportunity) =>
           <p class="card-copy">{item.display_why || item.why_now}</p>
           <div class="editorial-carousel-footer">
             <div class="editorial-carousel-evidence">
-              <span
+              <button
                 class="editorial-evidence-chip"
-                tabindex="0"
+                type="button"
+                data-role="evidence-chip"
+                data-preview-open="false"
+                aria-expanded="false"
                 aria-label={nearbyTopicsPreview(item) || `${item.supporting_path_count} nearby topics`}
               >
                 <span>{item.supporting_path_count} nearby topics</span>
                 {nearbyTopicsPreview(item) && <span class="editorial-evidence-preview">{nearbyTopicsPreview(item)}</span>}
-              </span>
-              <span
+              </button>
+              <button
                 class="editorial-evidence-chip"
-                tabindex="0"
+                type="button"
+                data-role="evidence-chip"
+                data-preview-open="false"
+                aria-expanded="false"
                 aria-label={starterPaperPreview(item) || `${item.representative_papers.length} starter papers`}
               >
                 <span>{item.representative_papers.length} starter papers</span>
                 {starterPaperPreview(item) && <span class="editorial-evidence-preview editorial-evidence-preview-wide">{starterPaperPreview(item)}</span>}
-              </span>
-              <span
+              </button>
+              <button
                 class="editorial-evidence-chip"
-                tabindex="0"
+                type="button"
+                data-role="evidence-chip"
+                data-preview-open="false"
+                aria-expanded="false"
                 aria-label={areaPreview(item)}
               >
                 <span>{item.cross_field ? "Across fields" : "Same nearby field"}</span>
                 <span class="editorial-evidence-preview">{areaPreview(item)}</span>
-              </span>
+              </button>
             </div>
             {item.display_first_step && (
               <p class="mini-copy">
@@ -131,6 +140,7 @@ const areaPreview = (item: Opportunity) =>
   const dotsRoot = root.querySelector('[data-role="carousel-dots"]');
   const prev = root.querySelector('[data-role="carousel-prev"]');
   const next = root.querySelector('[data-role="carousel-next"]');
+  const evidenceChips = Array.from(root.querySelectorAll('[data-role="evidence-chip"]'));
   const sampleSize = Number(root.dataset.sampleSize || "0");
   const initialDelay = Number(root.dataset.initialDelay || "0");
   const seen = (window.__fgEditorialCarouselSeen ||= new Set());
@@ -217,8 +227,26 @@ const areaPreview = (item: Opportunity) =>
     }
   };
 
+  const closeAllEvidencePreviews = () => {
+    for (const chip of evidenceChips) {
+      chip.setAttribute("data-preview-open", "false");
+      chip.setAttribute("aria-expanded", "false");
+    }
+  };
+
+  const toggleEvidencePreview = (chip) => {
+    const shouldOpen = chip.getAttribute("data-preview-open") !== "true";
+    closeAllEvidencePreviews();
+    if (shouldOpen) {
+      chip.setAttribute("data-preview-open", "true");
+      chip.setAttribute("aria-expanded", "true");
+      if (typeof chip.focus === "function") chip.focus();
+    }
+  };
+
   const render = () => {
     const activeSlideIndex = sampledIndices[sampledPosition] ?? sampledIndices[0] ?? 0;
+    closeAllEvidencePreviews();
     allSlides.forEach((slide, index) => {
       const isActive = index === activeSlideIndex;
       const isVisible = sampledIndices.includes(index) && isActive;
@@ -254,6 +282,29 @@ const areaPreview = (item: Opportunity) =>
   prev?.addEventListener("click", () => advance(-1));
   next?.addEventListener("click", () => advance(1));
 
+  for (const chip of evidenceChips) {
+    chip.addEventListener("click", (event) => {
+      event.stopPropagation();
+      toggleEvidencePreview(chip);
+    });
+    chip.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeAllEvidencePreviews();
+        chip.blur();
+      }
+    });
+  }
+
+  document.addEventListener("click", (event) => {
+    if (!(event.target instanceof Node) || !root.contains(event.target)) {
+      closeAllEvidencePreviews();
+      return;
+    }
+    if (!(event.target instanceof Element) || !event.target.closest('[data-role="evidence-chip"]')) {
+      closeAllEvidencePreviews();
+    }
+  });
+
   root.addEventListener("mouseenter", () => {
     paused = true;
   });
@@ -265,6 +316,14 @@ const areaPreview = (item: Opportunity) =>
   });
   root.addEventListener("focusout", () => {
     paused = false;
+  });
+  root.addEventListener("focusout", () => {
+    window.setTimeout(() => {
+      const activeElement = document.activeElement;
+      if (!(activeElement instanceof Node) || !root.contains(activeElement)) {
+        closeAllEvidencePreviews();
+      }
+    }, 0);
   });
 
   if (initialDelay > 0) {

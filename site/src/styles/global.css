@@ -1552,15 +1552,20 @@ h3 {
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: flex-start;
   min-height: 2rem;
   padding: 0 0.72rem;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: var(--surface-muted);
   color: var(--muted);
+  font: inherit;
   font-size: 0.86rem;
-  cursor: default;
+  text-align: left;
+  cursor: pointer;
   outline: none;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .editorial-evidence-chip:focus-visible {
@@ -1597,7 +1602,8 @@ h3 {
 }
 
 .editorial-evidence-chip:hover .editorial-evidence-preview,
-.editorial-evidence-chip:focus-visible .editorial-evidence-preview {
+.editorial-evidence-chip:focus-visible .editorial-evidence-preview,
+.editorial-evidence-chip[data-preview-open="true"] .editorial-evidence-preview {
   opacity: 1;
   transform: translateY(0);
 }

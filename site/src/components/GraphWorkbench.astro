@@ -14,7 +14,7 @@ const {
   neighborhoodsIndexPath,
   opportunitiesIndexPath,
   centralConceptsPath,
-  contextLabel = "current public release",
+  contextLabel = "current map",
 } = Astro.props;
 
 const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
@@ -33,7 +33,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     <div class="graph-toolbar-copy">
       <h2>Choose a topic and start with the questions around it.</h2>
       <p class="card-copy">
-        Choose one topic, then read the strongest nearby questions. Each question is grounded in nearby directed links, intermediate topics, and papers.
+        Choose one topic, then read the strongest nearby questions. Each question is grounded in nearby paths, intermediate topics, and papers.
       </p>
       <label class="search-shell graph-search-shell">
         <span>Search topic</span>
@@ -226,7 +226,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     if (mediatorCount > 0) {
       return `${formatNumber(mediatorCount)} intermediate topics already connect these two sides in the ${contextLabel}.`;
     }
-    return `Nearby directed links and papers already bring these two sides close together in the ${contextLabel}.`;
+    return `Nearby paths and papers already bring these two sides close together in the ${contextLabel}.`;
   };
   const staticGuideText =
     "Choose a question first. Open the graph only when you want local context around it.";
@@ -674,7 +674,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       const fallbackItems = (currentNeighborhood?.top_neighbors || []).slice(0, 3);
       selectedQuestion.innerHTML = fallbackItems.length
         ? `
-          <p class="card-copy">This topic does not currently have a surfaced question in the ${contextLabel}, but nearby directed links still suggest plausible next moves.</p>
+          <p class="card-copy">This topic does not currently have a surfaced question in the ${contextLabel}, but nearby paths still suggest plausible next moves.</p>
           <div class="graph-prompt-stack">
             ${fallbackItems
               .map(
@@ -682,7 +682,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
                   <article class="graph-prompt-card">
                     <span class="tiny-label">Possible question</span>
                     <strong>${escapeHtml(`What links ${conceptTitle(concept)} and ${conceptLabel(item.concept_id, item.label)}?`)}</strong>
-                    <p class="mini-copy">${formatNumber(safeNumber(item.support_count))} local papers already connect these topics through nearby links.</p>
+                    <p class="mini-copy">${formatNumber(safeNumber(item.support_count))} local papers already connect these topics through nearby paths.</p>
                     <button class="list-link list-link-tight" type="button" data-neighbor-id="${escapeAttr(item.concept_id)}">
                       <span>Open neighboring topic</span>
                       <span>${escapeHtml(conceptLabel(item.concept_id, item.label))}</span>

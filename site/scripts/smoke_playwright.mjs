@@ -73,13 +73,14 @@ async function main() {
   assert((await nav.getByRole("link", { name: /How it works/i }).count()) === 0, "How it works should not remain in nav");
   assert((await nav.getByRole("link", { name: /^Method$/ }).count()) === 0, "Method should not remain in nav");
   assert(await page.getByRole("link", { name: /^Browse questions$/ }).first().isVisible(), "Homepage CTA missing");
-  assert(await page.getByRole("link", { name: /^Open app for papers and export$/ }).first().isVisible(), "Homepage app CTA missing");
+  assert(await page.getByRole("link", { name: /^Open app for papers$/ }).first().isVisible(), "Homepage app CTA missing");
   assert(await page.getByRole("link", { name: /^Working paper$/ }).first().isVisible(), "Homepage paper CTA missing");
   assert(await page.getByRole("link", { name: /^Download data$/ }).first().isVisible(), "Homepage data CTA missing");
   assert(await page.getByText(/^What$/).first().isVisible(), "Homepage what card missing");
   assert(await page.getByText(/^Why$/).first().isVisible(), "Homepage why card missing");
   assert(await page.getByText(/How to read the map/i).isVisible(), "Homepage graph explainer section missing");
   assert(await page.getByRole("link", { name: /About the project/i }).isVisible(), "Homepage about link missing");
+  assert(await page.getByRole("link", { name: /The working paper explains the method behind the public browser\./i }).isVisible(), "Homepage paper-method link missing");
   const feedbackTrigger = page.getByRole("button", { name: /^Give feedback$/ });
   assert(await feedbackTrigger.isVisible(), "Site feedback trigger missing");
   await feedbackTrigger.click();
@@ -93,6 +94,7 @@ async function main() {
   await page.waitForSelector("h1");
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
   assert(await page.getByRole("heading", { name: /Browse questions by field\./i }).isVisible(), "Questions hero missing");
+  assert(await page.getByText(/These questions are surfaced because nearby topics and papers already suggest short mechanism routes between the two sides\./i).isVisible(), "Questions helper line missing");
   assert((await page.locator('[data-role^="field-carousel-"]').count()) === 5, "Questions page should show 5 field carousels");
   assert((await page.locator('[data-role^="use-case-carousel-"]').count()) === 3, "Questions page should show 3 use-case carousels");
   assert((await page.getByText(/Start here/i).count()) === 0, "Questions page should not show Start here");
@@ -194,6 +196,7 @@ async function main() {
 
   await page.goto(`${baseUrl}/paper/`, { waitUntil: "networkidle" });
   assert(await page.getByRole("heading", { name: /What Should Economics Ask Next/i }).first().isVisible(), "Paper page missing");
+  assert(await page.getByText(/The working paper explains the method behind the public browser\./i).isVisible(), "Paper deck missing");
   assert(await page.getByRole("button", { name: /^Give feedback$/ }).isVisible(), "Paper page should keep feedback access");
   assert((await page.locator(".paper-hero .button-row a").count()) === 2, "Paper hero should only show paper-specific CTAs");
   assert(await page.locator(".paper-hero .button-row").getByRole("link", { name: /^Download PDF$/ }).isVisible(), "Paper hero PDF CTA missing");

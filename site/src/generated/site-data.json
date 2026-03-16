@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-16T20:32:07.748400+00:00",
+  "generated_at": "2026-03-16T21:04:14.003124+00:00",
   "app_url": "https://frontiergraph-app-1058669339361.us-central1.run.app",
   "repo_url": "https://github.com/prashgarg/frontiergraph",
   "public_label_glossary": {
@@ -5848,104 +5848,106 @@
             "display_category": "Flagship"
           },
           {
-            "pair_key": "FG3C000455__FG3C003050",
-            "source_id": "FG3C003050",
-            "target_id": "FG3C000455",
-            "source_label": "forecasts",
-            "target_label": "long-term interest rate",
-            "source_display_label": "individual forecasts",
-            "target_display_label": "long-term interest rate",
-            "source_display_concept_id": "FG3C013273",
-            "target_display_concept_id": "FG3C000455",
-            "source_display_refined": true,
+            "pair_key": "FG3C000004__FG3C001986",
+            "source_id": "FG3C001986",
+            "target_id": "FG3C000004",
+            "source_label": "central bank communication",
+            "target_label": "welfare",
+            "source_display_label": "central bank communication",
+            "target_display_label": "welfare",
+            "source_display_concept_id": "FG3C001986",
+            "target_display_concept_id": "FG3C000004",
+            "source_display_refined": false,
             "target_display_refined": false,
-            "display_refinement_confidence": 0.3822,
+            "display_refinement_confidence": 0.0,
             "source_alternate_display_labels": [
-              "biased forecasts",
-              "Federal Reserve Greenbook forecasts",
-              "rationality of forecasts"
+              "Bank financial stability"
             ],
             "target_alternate_display_labels": [
-              "long-term bonds",
-              "longer-term yields",
-              "long-term real interest rates"
+              "U.S. welfare",
+              "welfare (aggregate welfare)",
+              "welfare of the poor"
             ],
             "source_bucket": "core",
             "target_bucket": "core",
             "cross_field": false,
-            "score": 0.180878,
-            "base_score": 0.202853,
-            "duplicate_penalty": 0.021975,
-            "path_support_norm": 0.000834,
+            "score": 0.113168,
+            "base_score": 0.205063,
+            "duplicate_penalty": 0.091895,
+            "path_support_norm": 0.00064,
             "gap_bonus": 1.0,
-            "mediator_count": 2,
-            "motif_count": 3,
+            "mediator_count": 10,
+            "motif_count": 10,
             "cooc_count": 0,
             "direct_link_status": "No direct papers yet",
-            "supporting_path_count": 2,
-            "why_now": "individual forecasts and long-term interest rate are already linked by 2 nearby intermediate topics.",
+            "supporting_path_count": 10,
+            "why_now": "central bank communication and welfare are already linked by 10 nearby intermediate topics.",
             "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
             "slice_label": "Missing direct link",
-            "public_pair_label": "individual forecasts and long-term interest rate",
+            "public_pair_label": "central bank communication and welfare",
             "representative_papers": [
               {
-                "paper_id": "W4200357935__gpt5mini_low",
-                "title": "The nonlinear causal relationship between short\u2010 and long\u2010term interest rates: An empirical assessment of the United States, the United Kingdom, and Japan",
-                "year": 2021,
-                "edge_src": "FG3C000404",
-                "edge_dst": "FG3C000455",
-                "edge_src_display_label": "short-term interest rate",
-                "edge_dst_display_label": "long-term interest rate"
+                "paper_id": "W4297457008__gpt5mini_low",
+                "title": "Central bank communication, shadow banking, and bank risk-taking: Theoretical model and PVAR empirical evidence",
+                "year": 2022,
+                "edge_src": "FG3C001986",
+                "edge_dst": "FG3C000387",
+                "edge_src_display_label": "central bank communication",
+                "edge_dst_display_label": "bank risk-taking"
               },
               {
-                "paper_id": "W2552511774__gpt5mini_low",
-                "title": "What keeps long-term U.S. interest rates so low?",
-                "year": 2016,
-                "edge_src": "FG3C000404",
-                "edge_dst": "FG3C000455",
-                "edge_src_display_label": "short-term interest rate",
-                "edge_dst_display_label": "long-term interest rate"
+                "paper_id": "W2054575436__gpt5mini_low",
+                "title": "Inflation, Interest Rates, and Welfare",
+                "year": 1985,
+                "edge_src": "FG3C000027",
+                "edge_dst": "FG3C000004",
+                "edge_src_display_label": "interest rates",
+                "edge_dst_display_label": "welfare"
               },
               {
-                "paper_id": "W2164497914__gpt5mini_low",
-                "title": "Optimal Aggregation of Money Supply Forecasts: Accuracy, Profitability and Market Efficiency",
-                "year": 1983,
-                "edge_src": "FG3C003050",
-                "edge_dst": "FG3C000404",
-                "edge_src_display_label": "individual forecasts",
-                "edge_dst_display_label": "short-term interest rate"
+                "paper_id": "W2142317302__gpt5mini_low",
+                "title": "Macroeconomic Volatility and Welfare in Developing Countries: An Introduction",
+                "year": 2007,
+                "edge_src": "FG3C000670",
+                "edge_dst": "FG3C000004",
+                "edge_src_display_label": "macroeconomic volatility",
+                "edge_dst_display_label": "welfare"
               }
             ],
-            "question_family": "individual-forecasts-long-term-interest-rate",
+            "question_family": "central-bank-communication-welfare",
             "suppress_from_public_ranked_window": false,
             "top_mediator_display_labels": [
-              "short-term interest rate",
-              "expected rate of inflation"
+              "financial markets",
+              "bank risk-taking",
+              "expectations"
             ],
             "top_mediator_labels": [
-              "short-term interest rate",
-              "expected rate of inflation"
+              "financial markets",
+              "bank risk-taking",
+              "expectations"
             ],
             "top_mediator_baseline_labels": [
-              "short-term interest rate",
-              "expected rate of inflation"
+              "financial markets",
+              "bank risk-taking",
+              "expectations"
             ],
             "top_countries_source": [
-              "United States",
-              "United Kingdom"
+              "China",
+              "Sweden",
+              "CZE"
             ],
             "top_countries_target": [
               "United States",
-              "United Kingdom"
+              "China"
             ],
-            "source_context_summary": "United States and United Kingdom",
-            "target_context_summary": "United States and United Kingdom",
-            "common_contexts": "individual forecasts studies are common in United States and United Kingdom; long-term interest rate studies are common in United States and United Kingdom.",
-            "public_specificity_score": 2.8042,
-            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000455__FG3C003050",
-            "display_title": "Individual forecasts and long-term interest rate",
-            "display_why": "Closest route runs through short-term interest rate and expected rate of inflation.",
-            "display_first_step": "Start by testing whether short-term interest rate and expected rate of inflation are the main channels linking individual forecasts to long-term interest rate.",
+            "source_context_summary": "China, Sweden, and related settings",
+            "target_context_summary": "United States and China",
+            "common_contexts": "central bank communication studies are common in China, Sweden, and related settings; welfare studies are common in United States and China.",
+            "public_specificity_score": 0.1032,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000004__FG3C001986",
+            "display_title": "How does central bank communication shape welfare?",
+            "display_why": "Linked nearby through financial markets, bank risk-taking, and expectations.",
+            "display_first_step": "Start by tracing central bank communication to welfare through financial markets, bank risk-taking, and expectations before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -6048,7 +6050,7 @@
             "common_contexts": "green technology innovation studies are common in China and India; cost of debt studies are common in China, United States, and related settings.",
             "public_specificity_score": -1.5982,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000094__FG3C001436",
-            "display_title": "Cost of debt and green technology innovation",
+            "display_title": "Does cheaper debt accelerate green technology adoption?",
             "display_why": "Linked nearby through carbon intensity, ESG ratings, and cost of equity capital.",
             "display_first_step": "Start by tracing green technology innovation to cost of debt through carbon intensity, ESG ratings, and cost of equity capital before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -6152,7 +6154,7 @@
             "common_contexts": "economic policy uncertainty studies are common in China and United States; net interest margin studies are common in China, Pakistan, and related settings.",
             "public_specificity_score": -1.5974,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000071__FG3C002924",
-            "display_title": "Economic policy uncertainty and net interest margin",
+            "display_title": "When does policy uncertainty squeeze bank net interest margins?",
             "display_why": "Linked nearby through inflation, default risk, and market concentration.",
             "display_first_step": "Start by tracing economic policy uncertainty to net interest margin through inflation, default risk, and market concentration before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -6256,7 +6258,7 @@
             "common_contexts": "oil price volatility studies are common in China and United States; interest rates studies are common in United States and China.",
             "public_specificity_score": -0.4941,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000027__FG3C000279",
-            "display_title": "Interest rates and oil price volatility",
+            "display_title": "How do interest-rate shifts change oil price volatility?",
             "display_why": "Linked nearby through inflation, oil prices, and gold prices.",
             "display_first_step": "Start by tracing oil price volatility to interest rates through inflation, oil prices, and gold prices before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -6359,7 +6361,7 @@
             "common_contexts": "unconventional monetary policy studies are common in United States and Japan; firm total factor productivity (TFP) studies are common in China and United States.",
             "public_specificity_score": -0.9986,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001534__FG3C002284",
-            "display_title": "Firm total factor productivity (TFP) and unconventional monetary policy",
+            "display_title": "Does unconventional monetary policy change firm productivity?",
             "display_why": "Linked nearby through exports, firm risk, and imports.",
             "display_first_step": "Start by tracing unconventional monetary policy to firm total factor productivity (TFP) through exports, firm risk, and imports before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -6462,7 +6464,7 @@
             "common_contexts": "unconventional monetary policy studies are common in United States and Japan; CO2 emissions studies are common in China and India.",
             "public_specificity_score": -1.0916,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000003__FG3C001534",
-            "display_title": "Unconventional monetary policy and CO2 emissions",
+            "display_title": "How does unconventional monetary policy shape CO2 emissions?",
             "display_why": "Linked nearby through exports, inflation, and imports.",
             "display_first_step": "Start by tracing unconventional monetary policy to CO2 emissions through exports, inflation, and imports before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -6566,7 +6568,7 @@
             "common_contexts": "monetary policy shocks studies are common in United States and euro area; natural gas consumption studies are common in China, India, and related settings.",
             "public_specificity_score": -0.3969,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000159__FG3C000423",
-            "display_title": "Monetary policy shocks and natural gas consumption",
+            "display_title": "Do monetary shocks move natural gas demand?",
             "display_why": "Linked nearby through inflation, real GDP, and exchange rate.",
             "display_first_step": "Start by tracing monetary policy shocks to natural gas consumption through inflation, real GDP, and exchange rate before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -6988,7 +6990,7 @@
             "common_contexts": "microfinance studies are common in Bangladesh, India, and related settings; catastrophic health expenditures studies are common in China, India, and related settings.",
             "public_specificity_score": 4.6014,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001452__FG3C002172",
-            "display_title": "Microfinance and catastrophic health expenditures",
+            "display_title": "Can microfinance reduce catastrophic health spending?",
             "display_why": "Linked nearby through poor countries, gender (male vs female), and poverty.",
             "display_first_step": "Start by tracing microfinance to catastrophic health expenditures through poor countries, gender (male vs female), and poverty before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -7092,7 +7094,7 @@
             "common_contexts": "high-speed rail studies are common in China and Spain; wages studies are common in United States and China.",
             "public_specificity_score": 2.505,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000022__FG3C000753",
-            "display_title": "Wages and high-speed rail",
+            "display_title": "How does high-speed rail reshape wages?",
             "display_why": "Linked nearby through housing prices, travel time, and accessibility.",
             "display_first_step": "Start by tracing high-speed rail to wages through housing prices, travel time, and accessibility before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -7196,7 +7198,7 @@
             "common_contexts": "market concentration studies are common in China, United States, and related settings; essential medicines studies are common in China, Ethiopia, and related settings.",
             "public_specificity_score": 0.9015,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000114__FG3C003577",
-            "display_title": "Market concentration and essential medicines",
+            "display_title": "How does market concentration change access to essential medicines?",
             "display_why": "Linked nearby through health care utilization, retail prices, and for-profit hospitals.",
             "display_first_step": "Start by tracing market concentration to essential medicines through health care utilization, retail prices, and for-profit hospitals before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -7299,7 +7301,7 @@
             "common_contexts": "inward foreign direct investment (FDI) studies are common in China and European Union; regional economic growth studies are common in China and European Union.",
             "public_specificity_score": -0.3973,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000236__FG3C001758",
-            "display_title": "Inward foreign direct investment (FDI) and regional economic growth",
+            "display_title": "When does inward FDI lift regional growth?",
             "display_why": "Linked nearby through environmental regulations, energy consumption, and technology transfer.",
             "display_first_step": "Start by tracing inward foreign direct investment (FDI) to regional economic growth through environmental regulations, energy consumption, and technology transfer before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -7403,7 +7405,7 @@
             "common_contexts": "level of urbanization studies are common in China and United States; firm total factor productivity (TFP) studies are common in China and United States.",
             "public_specificity_score": -0.9981,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C002284__FG3C002513",
-            "display_title": "Firm total factor productivity (TFP) and level of urbanization",
+            "display_title": "When does urbanization raise firm productivity?",
             "display_why": "Linked nearby through emissions trading system, green innovation, and Energy efficiency (EE).",
             "display_first_step": "Start by tracing level of urbanization to firm total factor productivity (TFP) through emissions trading system, green innovation, and Energy efficiency (EE) before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -7507,21 +7509,21 @@
             "common_contexts": "Special economic zones studies are common in China and India; unemployment studies are common in United States and United Kingdom.",
             "public_specificity_score": 5.8018,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000009__FG3C002438",
-            "display_title": "Unemployment and Special economic zones",
+            "display_title": "Do Special economic zones reduce unemployment?",
             "display_why": "Linked nearby through structural changes, investment, and productivity growth.",
             "display_first_step": "Start by tracing Special economic zones to unemployment through structural changes, investment, and productivity growth before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
-            "pair_key": "FG3C000025__FG3C002438",
+            "pair_key": "FG3C000194__FG3C002438",
             "source_id": "FG3C002438",
-            "target_id": "FG3C000025",
+            "target_id": "FG3C000194",
             "source_label": "special economic zones (SEZs)",
-            "target_label": "income inequality",
+            "target_label": "wage inequality",
             "source_display_label": "Special economic zones",
-            "target_display_label": "income inequality",
+            "target_display_label": "wage inequality",
             "source_display_concept_id": "FG3C002450",
-            "target_display_concept_id": "FG3C000025",
+            "target_display_concept_id": "FG3C000194",
             "source_display_refined": true,
             "target_display_refined": false,
             "display_refinement_confidence": 0.3266,
@@ -7531,27 +7533,27 @@
               "enterprise zones"
             ],
             "target_alternate_display_labels": [
-              "inequality measures",
-              "within-country income inequality",
-              "income disparity"
+              "rising wage inequality",
+              "Overall wage inequality",
+              "within-group wage inequality"
             ],
             "source_bucket": "adjacent",
             "target_bucket": "core",
             "cross_field": true,
-            "score": 0.09453,
-            "base_score": 0.204188,
-            "duplicate_penalty": 0.109657,
-            "path_support_norm": 0.000558,
+            "score": 0.109699,
+            "base_score": 0.202625,
+            "duplicate_penalty": 0.092927,
+            "path_support_norm": 0.000292,
             "gap_bonus": 1.0,
-            "mediator_count": 10,
-            "motif_count": 9,
+            "mediator_count": 6,
+            "motif_count": 6,
             "cooc_count": 0,
             "direct_link_status": "No direct papers yet",
-            "supporting_path_count": 10,
-            "why_now": "Special economic zones and income inequality are already linked by 10 nearby intermediate topics.",
+            "supporting_path_count": 6,
+            "why_now": "Special economic zones and wage inequality are already linked by 6 nearby intermediate topics.",
             "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
             "slice_label": "Missing direct link",
-            "public_pair_label": "income inequality and Special economic zones",
+            "public_pair_label": "wage inequality and Special economic zones",
             "representative_papers": [
               {
                 "paper_id": "W3022707312__gpt5mini_low",
@@ -7563,58 +7565,57 @@
                 "edge_dst_display_label": "employment"
               },
               {
-                "paper_id": "W4285005079__gpt5mini_low",
-                "title": "Does financial liberalization reduce income inequality? Evidence from Africa",
-                "year": 2022,
-                "edge_src": "FG3C000397",
-                "edge_dst": "FG3C000025",
-                "edge_src_display_label": "financial liberalization",
-                "edge_dst_display_label": "income inequality"
+                "paper_id": "W2089265212__gpt5mini_low",
+                "title": "Technological Change, Skill Demand, and Wage Inequality: Evidence from Indonesia",
+                "year": 2014,
+                "edge_src": "FG3C000045",
+                "edge_dst": "FG3C000194",
+                "edge_src_display_label": "technological progress",
+                "edge_dst_display_label": "wage inequality"
               },
               {
-                "paper_id": "W2535587967__gpt5mini_low",
-                "title": "How Firms Shape Income Inequality: A Rejoinder to Zardkoohi and Bierman",
-                "year": 2016,
-                "edge_src": "FG3C000250",
-                "edge_dst": "FG3C000025",
-                "edge_src_display_label": "firms",
-                "edge_dst_display_label": "income inequality"
+                "paper_id": "W2156296048__gpt5mini_low",
+                "title": "Does size of local labour markets affect wage inequality? a rank-size rule of income distribution",
+                "year": 2007,
+                "edge_src": "FG3C000007",
+                "edge_dst": "FG3C000194",
+                "edge_src_display_label": "employment",
+                "edge_dst_display_label": "wage inequality"
               }
             ],
-            "question_family": "special-economic-zones-income-inequality",
+            "question_family": "special-economic-zones-wage-inequality",
             "suppress_from_public_ranked_window": false,
             "top_mediator_display_labels": [
-              "financial liberalization",
               "technological progress",
-              "innovation"
+              "manufacturing employment",
+              "migration"
             ],
             "top_mediator_labels": [
-              "financial liberalization",
               "technological progress",
-              "innovation"
+              "manufacturing employment",
+              "migration"
             ],
             "top_mediator_baseline_labels": [
-              "financial liberalization",
               "technological progress",
-              "innovation"
+              "manufacturing employment",
+              "migration"
             ],
             "top_countries_source": [
               "China",
               "India"
             ],
             "top_countries_target": [
-              "China",
               "United States",
-              "OECD"
+              "India"
             ],
             "source_context_summary": "China and India",
-            "target_context_summary": "China, United States, and related settings",
-            "common_contexts": "Special economic zones studies are common in China and India; income inequality studies are common in China, United States, and related settings.",
-            "public_specificity_score": 7.6028,
-            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000025__FG3C002438",
-            "display_title": "Income inequality and Special economic zones",
-            "display_why": "Linked nearby through financial liberalization, technological progress, and innovation.",
-            "display_first_step": "Start by tracing Special economic zones to income inequality through financial liberalization, technological progress, and innovation before testing the endpoint link directly.",
+            "target_context_summary": "United States and India",
+            "common_contexts": "Special economic zones studies are common in China and India; wage inequality studies are common in United States and India.",
+            "public_specificity_score": 5.2015,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000194__FG3C002438",
+            "display_title": "How do Special economic zones reshape wage inequality?",
+            "display_why": "Linked nearby through technological progress, manufacturing employment, and migration.",
+            "display_first_step": "Start by tracing Special economic zones to wage inequality through technological progress, manufacturing employment, and migration before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           }
         ]
@@ -8034,7 +8035,7 @@
             "common_contexts": "high-tech industry studies are common in China and United States; export product quality studies are common in China and United States.",
             "public_specificity_score": 7.1013,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001635__FG3C001922",
-            "display_title": "Export product quality and high-tech industry",
+            "display_title": "Does export upgrading pull firms into high-tech production?",
             "display_why": "Linked nearby through innovation, firm productivity, and innovation performance.",
             "display_first_step": "Start by tracing high-tech industry to export product quality through innovation, firm productivity, and innovation performance before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -8137,7 +8138,7 @@
             "common_contexts": "import penetration studies are common in China, United Kingdom, and related settings; carbon dioxide (CO2) emission studies are common in China and OECD.",
             "public_specificity_score": 4.002,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000167__FG3C004133",
-            "display_title": "Import penetration and carbon dioxide (CO2) emission",
+            "display_title": "How does import penetration change carbon emissions?",
             "display_why": "Linked nearby through poverty, income, and technology.",
             "display_first_step": "Start by tracing import penetration to carbon dioxide (CO2) emission through poverty, income, and technology before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -8242,7 +8243,7 @@
             "common_contexts": "free trade agreements studies are common in United States, Mexico, and related settings; wages studies are common in United States and China.",
             "public_specificity_score": 5.2042,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000022__FG3C002487",
-            "display_title": "Free trade agreements and wages",
+            "display_title": "How do free trade agreements reshape wages?",
             "display_why": "Linked nearby through productivity, trade liberalization, and international trade (trade flows).",
             "display_first_step": "Start by tracing free trade agreements to wages through productivity, trade liberalization, and international trade (trade flows) before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -8348,7 +8349,7 @@
             "common_contexts": "free trade agreements studies are common in United States, Mexico, and related settings; skill premium studies are common in China, United States, and related settings.",
             "public_specificity_score": 3.4032,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000499__FG3C002487",
-            "display_title": "Free trade agreements and skill premium",
+            "display_title": "How do free trade agreements change the skill premium?",
             "display_why": "Linked nearby through trade liberalization, developing countries, and market access.",
             "display_first_step": "Start by tracing free trade agreements to skill premium through trade liberalization, developing countries, and market access before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -8454,7 +8455,7 @@
             "common_contexts": "economic complexity studies are common in China, G7, and related settings; international trade studies are common in China, developing countries, and related settings.",
             "public_specificity_score": -2.3871,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000078__FG3C000199",
-            "display_title": "International trade and economic complexity",
+            "display_title": "When does trade deepen economic complexity?",
             "display_why": "Linked nearby through economic growth, CO2 emissions, and renewable energy consumption.",
             "display_first_step": "Start by tracing economic complexity to international trade through economic growth, CO2 emissions, and renewable energy consumption before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -8559,7 +8560,7 @@
             "common_contexts": "exchange rates studies are common in China and United States; international trade (trade flows) studies are common in China, United States, and related settings.",
             "public_specificity_score": 1.5015,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000072__FG3C004338",
-            "display_title": "Exchange rates and international trade (trade flows)",
+            "display_title": "How do exchange-rate swings reshape trade flows?",
             "display_why": "Linked nearby through trade, capital flows, and investment level.",
             "display_first_step": "Start by tracing exchange rates to international trade (trade flows) through trade, capital flows, and investment level before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -8663,7 +8664,7 @@
             "common_contexts": "trade liberalization studies are common in China and Brazil; green total factor productivity (GTFP) studies are common in China and OECD.",
             "public_specificity_score": 2.5109,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000083__FG3C000215",
-            "display_title": "Trade liberalization and green total factor productivity (GTFP)",
+            "display_title": "Does trade liberalization raise green productivity?",
             "display_why": "Linked nearby through foreign direct investments, environmental regulation, and inward foreign direct investment (FDI).",
             "display_first_step": "Start by tracing trade liberalization to green total factor productivity (GTFP) through foreign direct investments, environmental regulation, and inward foreign direct investment (FDI) before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -8774,7 +8775,7 @@
             "common_contexts": "oil prices studies are common in United States and China; carbon dioxide (CO2) emission studies are common in China and OECD.",
             "public_specificity_score": 13.7232,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000034__FG3C000167",
-            "display_title": "Carbon dioxide (CO2) emission and oil prices",
+            "display_title": "How do oil price shocks feed into CO2 emissions?",
             "display_why": "Linked nearby through economic growth, renewable energy consumption, and energy consumption.",
             "display_first_step": "Start by tracing oil prices to carbon dioxide (CO2) emission through economic growth, renewable energy consumption, and energy consumption before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -8875,7 +8876,7 @@
             "common_contexts": "exchange rate studies are common in United States, Nigeria, and related settings; carbon dioxide (CO2) emission studies are common in China and OECD.",
             "public_specificity_score": 10.6129,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000056__FG3C000167",
-            "display_title": "Exchange rate and carbon dioxide (CO2) emission",
+            "display_title": "When do exchange-rate swings raise carbon emissions?",
             "display_why": "Linked nearby through fossil fuel consumption, foreign direct investments, and inflation.",
             "display_first_step": "Start by tracing exchange rate to carbon dioxide (CO2) emission through fossil fuel consumption, foreign direct investments, and inflation before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -8979,7 +8980,7 @@
             "common_contexts": "emissions trading system studies are common in China and European Union; environmental quality studies are common in China and India.",
             "public_specificity_score": 13.6415,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000081__FG3C003006",
-            "display_title": "Emissions trading system and environmental quality",
+            "display_title": "Does emissions trading improve environmental quality?",
             "display_why": "Linked nearby through technological innovation, energy consumption, and carbon emissions.",
             "display_first_step": "Start by tracing emissions trading system to environmental quality through technological innovation, energy consumption, and carbon emissions before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -9083,7 +9084,7 @@
             "common_contexts": "low-carbon city pilot policy studies are common in China; renewable energy consumption studies are common in China, India, and related settings.",
             "public_specificity_score": 6.2671,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000018__FG3C002978",
-            "display_title": "Low-carbon city pilot policy and renewable energy consumption",
+            "display_title": "Do low-carbon city pilots raise renewable energy use?",
             "display_why": "Linked nearby through technological innovation, carbon emissions, and financial development.",
             "display_first_step": "Start by tracing low-carbon city pilot policy to renewable energy consumption through technological innovation, carbon emissions, and financial development before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -9187,7 +9188,7 @@
             "common_contexts": "low-carbon city pilot policy studies are common in China; ecological footprint studies are common in China, India, and related settings.",
             "public_specificity_score": 6.198,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000064__FG3C002978",
-            "display_title": "Ecological footprint and low-carbon city pilot policy",
+            "display_title": "How do low-carbon city pilots change ecological footprints?",
             "display_why": "Linked nearby through technological innovation, energy consumption, and financial development.",
             "display_first_step": "Start by tracing low-carbon city pilot policy to ecological footprint through technological innovation, energy consumption, and financial development before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -9291,7 +9292,7 @@
             "common_contexts": "carbon tax studies are common in China, United States, and related settings; ecological carrying capacity studies are common in India, Brazil, and related settings.",
             "public_specificity_score": 8.8065,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000152__FG3C001307",
-            "display_title": "Carbon tax and ecological carrying capacity",
+            "display_title": "How does a carbon tax change ecological carrying capacity?",
             "display_why": "Linked nearby through GDP, technological innovation, and economic growth (GDP).",
             "display_first_step": "Start by tracing carbon tax to ecological carrying capacity through GDP, technological innovation, and economic growth (GDP) before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -9395,7 +9396,7 @@
             "common_contexts": "oil price shocks studies are common in United States and Iran; ecological carrying capacity studies are common in India, Brazil, and related settings.",
             "public_specificity_score": 8.3117,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000123__FG3C001307",
-            "display_title": "Oil price shocks and ecological carrying capacity",
+            "display_title": "How do oil price shocks affect ecological carrying capacity?",
             "display_why": "Linked nearby through economic growth, GDP, and natural resources.",
             "display_first_step": "Start by tracing oil price shocks to ecological carrying capacity through economic growth, GDP, and natural resources before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -9499,7 +9500,7 @@
             "common_contexts": "green credit studies are common in China and VNM; CO2 emissions studies are common in China and India.",
             "public_specificity_score": 3.6785,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000003__FG3C000722",
-            "display_title": "CO2 emissions and green credit",
+            "display_title": "Does green credit reduce CO2 emissions?",
             "display_why": "Linked nearby through green innovation, renewable energy, and green technology innovation.",
             "display_first_step": "Start by tracing green credit to CO2 emissions through green innovation, renewable energy, and green technology innovation before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -9600,7 +9601,7 @@
             "common_contexts": "Green credit policy (GCP) studies are common in China, Mexico, and related settings; carbon dioxide (CO2) emission studies are common in China and OECD.",
             "public_specificity_score": 7.1043,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000167__FG3C003108",
-            "display_title": "Carbon dioxide (CO2) emission and Green credit policy (GCP)",
+            "display_title": "How does green credit policy change carbon emissions?",
             "display_why": "Linked nearby through technological innovation, energy intensity, and green innovation.",
             "display_first_step": "Start by tracing Green credit policy (GCP) to carbon dioxide (CO2) emission through technological innovation, energy intensity, and green innovation before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -9704,7 +9705,7 @@
             "common_contexts": "government subsidies studies are common in China and Taiwan; carbon dioxide (CO2) emission studies are common in China and OECD.",
             "public_specificity_score": 7.0056,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000164__FG3C000167",
-            "display_title": "Carbon dioxide (CO2) emission and government subsidies",
+            "display_title": "When do government subsidies raise carbon emissions?",
             "display_why": "Linked nearby through technological innovation, green innovation, and environmental innovation.",
             "display_first_step": "Start by tracing government subsidies to carbon dioxide (CO2) emission through technological innovation, green innovation, and environmental innovation before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -10021,7 +10022,7 @@
             "common_contexts": "small and medium-sized firms studies are common in China and United States; green innovation studies are common in China and OECD.",
             "public_specificity_score": 3.4021,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000053__FG3C005175",
-            "display_title": "Small and medium-sized firms and green innovation",
+            "display_title": "Do small and medium-sized firms adopt green innovation differently?",
             "display_why": "Linked nearby through R&D investment, competition, and capital investment.",
             "display_first_step": "Start by tracing small and medium-sized firms to green innovation through R&D investment, competition, and capital investment before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -10125,7 +10126,7 @@
             "common_contexts": "renewable portfolio standards studies are common in China, United States, and related settings; green innovation studies are common in China and OECD.",
             "public_specificity_score": 3.4018,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000053__FG3C002799",
-            "display_title": "Green innovation and renewable portfolio standards",
+            "display_title": "Do renewable portfolio standards accelerate green innovation?",
             "display_why": "Linked nearby through carbon emissions, carbon emissions trading, and green bonds.",
             "display_first_step": "Start by tracing renewable portfolio standards to green innovation through carbon emissions, carbon emissions trading, and green bonds before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -10228,7 +10229,7 @@
             "common_contexts": "political connections studies are common in China and India; innovation outcomes studies are common in China and OECD.",
             "public_specificity_score": 2.7032,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001735__FG3C006136",
-            "display_title": "Political connections and innovation outcomes",
+            "display_title": "How do political connections shape innovation outcomes?",
             "display_why": "Linked nearby through government subsidies, government financial support, and environmental regulation intensity.",
             "display_first_step": "Start by tracing political connections to innovation outcomes through government subsidies, government financial support, and environmental regulation intensity before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -10332,7 +10333,7 @@
             "common_contexts": "patent citations studies are common in United States and China; innovation outcomes studies are common in China and OECD.",
             "public_specificity_score": 1.5013,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C004911__FG3C006136",
-            "display_title": "Patent citations and innovation outcomes",
+            "display_title": "Do patent spillovers show up in later innovation outcomes?",
             "display_why": "Linked nearby through knowledge spillovers, absorptive capacity, and firm size.",
             "display_first_step": "Start by tracing patent citations to innovation outcomes through knowledge spillovers, absorptive capacity, and firm size before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -10437,7 +10438,7 @@
             "common_contexts": "transport infrastructure studies are common in China, United States, and related settings; innovation outcomes studies are common in China and OECD.",
             "public_specificity_score": 0.9014,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001874__FG3C006136",
-            "display_title": "Innovation outcomes and transport infrastructure",
+            "display_title": "When does transport infrastructure change innovation outcomes?",
             "display_why": "Linked nearby through regional integration, mobility, and high-speed rail (HSR) network.",
             "display_first_step": "Start by tracing transport infrastructure to innovation outcomes through regional integration, mobility, and high-speed rail (HSR) network before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -10538,7 +10539,7 @@
             "common_contexts": "digital inclusive finance studies are common in China and Gulf countries; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
             "public_specificity_score": 6.8086,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000061__FG3C000425",
-            "display_title": "Total factor productivity (TFP) and digital inclusive finance",
+            "display_title": "Does digital inclusive finance raise total factor productivity?",
             "display_why": "Linked nearby through technological innovation, financing constraints, and technological progress.",
             "display_first_step": "Start by tracing digital inclusive finance to total factor productivity (TFP) through technological innovation, financing constraints, and technological progress before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -10642,7 +10643,7 @@
             "common_contexts": "digital financial inclusion studies are common in China and Asia; green total factor productivity (GTFP) studies are common in China and OECD.",
             "public_specificity_score": 6.8134,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000215__FG3C000717",
-            "display_title": "Digital financial inclusion and green total factor productivity (GTFP)",
+            "display_title": "Does digital financial inclusion raise green productivity?",
             "display_why": "Linked nearby through urban-rural income gap, industrial structure, and green technology innovation.",
             "display_first_step": "Start by tracing digital financial inclusion to green total factor productivity (GTFP) through urban-rural income gap, industrial structure, and green technology innovation before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -10745,7 +10746,7 @@
             "common_contexts": "digitalization studies are common in China and India; green total factor productivity (GTFP) studies are common in China and OECD.",
             "public_specificity_score": 6.1331,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000215__FG3C000335",
-            "display_title": "Digitalization and green total factor productivity (GTFP)",
+            "display_title": "How does digitalization raise green total factor productivity?",
             "display_why": "Linked nearby through technological innovation, environmental regulation, and green innovation.",
             "display_first_step": "Start by tracing digitalization to green total factor productivity (GTFP) through technological innovation, environmental regulation, and green innovation before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -10858,7 +10859,7 @@
             "common_contexts": "monetary policy shocks studies are common in United States and euro area; CO2 emissions studies are common in China and India.",
             "public_specificity_score": 6.1436,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000003__FG3C000159",
-            "display_title": "Monetary policy shocks and CO2 emissions",
+            "display_title": "How do monetary shocks feed into CO2 emissions?",
             "display_why": "Linked nearby through income inequality, GDP, and real GDP.",
             "display_first_step": "Start by tracing monetary policy shocks to CO2 emissions through income inequality, GDP, and real GDP before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -10963,7 +10964,7 @@
             "common_contexts": "oil price volatility studies are common in China and United States; renewable energy consumption studies are common in China, India, and related settings.",
             "public_specificity_score": 8.6339,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000018__FG3C000279",
-            "display_title": "Oil price volatility and renewable energy consumption",
+            "display_title": "Does oil price volatility speed up renewable energy use?",
             "display_why": "Linked nearby through financial development, economic growth (GDP), and inflation.",
             "display_first_step": "Start by tracing oil price volatility to renewable energy consumption through financial development, economic growth (GDP), and inflation before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -11068,7 +11069,7 @@
             "common_contexts": "industrial structure studies are common in China and Brazil; renewable energy consumption studies are common in China, India, and related settings.",
             "public_specificity_score": 6.2879,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000018__FG3C000044",
-            "display_title": "Industrial structure and renewable energy consumption",
+            "display_title": "When does industrial structure raise renewable energy use?",
             "display_why": "Linked nearby through carbon emissions, CO2 emissions, and urbanization.",
             "display_first_step": "Start by tracing industrial structure to renewable energy consumption through carbon emissions, CO2 emissions, and urbanization before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -11171,7 +11172,7 @@
             "common_contexts": "digital economy development studies are common in China and European Union; CO2 emissions studies are common in China and India.",
             "public_specificity_score": 6.3764,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000003__FG3C000494",
-            "display_title": "CO2 emissions and digital economy development",
+            "display_title": "Can digital economy growth cut CO2 emissions?",
             "display_why": "Linked nearby through energy consumption, technological innovation, and energy intensity.",
             "display_first_step": "Start by tracing digital economy development to CO2 emissions through energy consumption, technological innovation, and energy intensity before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -11273,7 +11274,7 @@
             "common_contexts": "digital inclusive finance studies are common in China and Gulf countries; carbon emissions studies are common in China and India.",
             "public_specificity_score": 6.359,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000010__FG3C000425",
-            "display_title": "Carbon emissions and digital inclusive finance",
+            "display_title": "Does digital inclusive finance reduce carbon emissions?",
             "display_why": "Linked nearby through economic growth, technological innovation, and industrial structure.",
             "display_first_step": "Start by tracing digital inclusive finance to carbon emissions through economic growth, technological innovation, and industrial structure before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -11377,21 +11378,21 @@
             "common_contexts": "green finance studies are common in China and OECD; ecological carrying capacity studies are common in India, Brazil, and related settings.",
             "public_specificity_score": 13.6565,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000063__FG3C001307",
-            "display_title": "Ecological carrying capacity and green finance",
+            "display_title": "Can green finance raise ecological carrying capacity?",
             "display_why": "Linked nearby through technological innovation, economic growth, and renewable energy consumption.",
             "display_first_step": "Start by tracing green finance to ecological carrying capacity through technological innovation, economic growth, and renewable energy consumption before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
-            "pair_key": "FG3C000015__FG3C001954",
+            "pair_key": "FG3C000015__FG3C000869",
             "source_id": "FG3C000015",
-            "target_id": "FG3C001954",
+            "target_id": "FG3C000869",
             "source_label": "foreign direct investments",
-            "target_label": "load capacity factor",
+            "target_label": "urban-rural income gap",
             "source_display_label": "foreign direct investments",
-            "target_display_label": "load capacity factor",
+            "target_display_label": "urban-rural income gap",
             "source_display_concept_id": "FG3C000015",
-            "target_display_concept_id": "FG3C001954",
+            "target_display_concept_id": "FG3C000869",
             "source_display_refined": false,
             "target_display_refined": false,
             "display_refinement_confidence": 0.0,
@@ -11401,90 +11402,88 @@
               "export promotion policies"
             ],
             "target_alternate_display_labels": [
-              "load capacity factor (environmental quality)",
-              "environmental sustainability (load capacity factor)",
-              "load capacity factor (environmental sustainability)"
+              "rural incomes",
+              "rural income"
             ],
             "source_bucket": "adjacent",
             "target_bucket": "adjacent",
             "cross_field": false,
-            "score": 0.127883,
-            "base_score": 0.246293,
-            "duplicate_penalty": 0.11841,
-            "path_support_norm": 0.034673,
+            "score": 0.110297,
+            "base_score": 0.207493,
+            "duplicate_penalty": 0.097196,
+            "path_support_norm": 0.002096,
             "gap_bonus": 1.0,
-            "mediator_count": 33,
-            "motif_count": 31,
+            "mediator_count": 9,
+            "motif_count": 9,
             "cooc_count": 0,
             "direct_link_status": "No direct papers yet",
-            "supporting_path_count": 33,
-            "why_now": "foreign direct investments and load capacity factor are already linked by 33 nearby intermediate topics.",
+            "supporting_path_count": 9,
+            "why_now": "foreign direct investments and urban-rural income gap are already linked by 9 nearby intermediate topics.",
             "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
             "slice_label": "Missing direct link",
-            "public_pair_label": "foreign direct investments and load capacity factor",
+            "public_pair_label": "foreign direct investments and urban-rural income gap",
             "representative_papers": [
               {
-                "paper_id": "W4407340915__gpt5mini_low",
-                "title": "How Industrial Output, Economic Growth, Environmental Technology, and Globalization Impact Load Capacity Factor in E7 Nations",
-                "year": 2025,
-                "edge_src": "FG3C000001",
-                "edge_dst": "FG3C001954",
-                "edge_src_display_label": "economic growth",
-                "edge_dst_display_label": "load capacity factor"
+                "paper_id": "W4389833630__gpt5mini_low",
+                "title": "A re-examination of the influence of human capital on urban-rural income gap in China: College enrollment expansion, digital economy and spatial spillover",
+                "year": 2023,
+                "edge_src": "FG3C000016",
+                "edge_dst": "FG3C000869",
+                "edge_src_display_label": "human capital",
+                "edge_dst_display_label": "urban-rural income gap"
               },
               {
-                "paper_id": "W7119574914__gpt5mini_low",
-                "title": "Renewable energy, FDI, and trade openness for environmental sustainability in Bangladesh: insights from load capacity factor and Fourier functions",
-                "year": 2026,
-                "edge_src": "FG3C000018",
-                "edge_dst": "FG3C001954",
-                "edge_src_display_label": "renewable energy consumption",
-                "edge_dst_display_label": "load capacity factor"
+                "paper_id": "W2005322687__gpt5mini_low",
+                "title": "Is urbanization narrowing the urban-rural income gap? A cross-regional study of China",
+                "year": 2015,
+                "edge_src": "FG3C000012",
+                "edge_dst": "FG3C000869",
+                "edge_src_display_label": "urbanization",
+                "edge_dst_display_label": "urban-rural income gap"
               },
               {
-                "paper_id": "W4391681116__gpt5mini_low",
-                "title": "Do renewable energy and human capital facilitate the improvement of environmental quality in the United States? A new perspective on environmental issues with the load capacity factor",
-                "year": 2024,
-                "edge_src": "FG3C000018",
-                "edge_dst": "FG3C001954",
-                "edge_src_display_label": "renewable energy consumption",
-                "edge_dst_display_label": "load capacity factor"
+                "paper_id": "W3112679323__gpt5mini_low",
+                "title": "Fiscal Decentralization, Urban-Rural Income Gap, and Tourism",
+                "year": 2020,
+                "edge_src": "FG3C000012",
+                "edge_dst": "FG3C000869",
+                "edge_src_display_label": "urbanization",
+                "edge_dst_display_label": "urban-rural income gap"
               }
             ],
-            "question_family": "foreign-direct-investments-load-capacity-factor",
+            "question_family": "foreign-direct-investments-urban-rural-income-gap",
             "suppress_from_public_ranked_window": false,
             "top_mediator_display_labels": [
-              "economic growth",
-              "renewable energy consumption",
-              "human capital"
+              "urbanization",
+              "human capital",
+              "green total factor productivity (GTFP)"
             ],
             "top_mediator_labels": [
-              "economic growth",
-              "renewable energy consumption",
-              "human capital"
+              "urbanization",
+              "human capital",
+              "green total factor productivity (GTFP)"
             ],
             "top_mediator_baseline_labels": [
-              "economic growth",
-              "renewable energy consumption",
-              "human capital"
+              "urbanization",
+              "human capital",
+              "green total factor productivity (GTFP)"
             ],
             "top_countries_source": [
               "China",
               "India"
             ],
             "top_countries_target": [
-              "India",
               "China",
-              "United States"
+              "Japan"
             ],
             "source_context_summary": "China and India",
-            "target_context_summary": "India, China, and related settings",
-            "common_contexts": "foreign direct investments studies are common in China and India; load capacity factor studies are common in India, China, and related settings.",
-            "public_specificity_score": 8.7734,
-            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000015__FG3C001954",
-            "display_title": "Foreign direct investments and load capacity factor",
-            "display_why": "Linked nearby through economic growth, renewable energy consumption, and human capital.",
-            "display_first_step": "Start by tracing foreign direct investments to load capacity factor through economic growth, renewable energy consumption, and human capital before testing the endpoint link directly.",
+            "target_context_summary": "China and Japan",
+            "common_contexts": "foreign direct investments studies are common in China and India; urban-rural income gap studies are common in China and Japan.",
+            "public_specificity_score": 2.0105,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000015__FG3C000869",
+            "display_title": "How does foreign direct investment change the urban-rural income gap?",
+            "display_why": "Linked nearby through urbanization, human capital, and green total factor productivity (GTFP).",
+            "display_first_step": "Start by tracing foreign direct investments to urban-rural income gap through urbanization, human capital, and green total factor productivity (GTFP) before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -11586,7 +11585,7 @@
             "common_contexts": "emissions trading system studies are common in China and European Union; green growth studies are common in China and OECD.",
             "public_specificity_score": 10.6247,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000246__FG3C003006",
-            "display_title": "Emissions trading system and green growth",
+            "display_title": "Does emissions trading raise green growth?",
             "display_why": "Linked nearby through technological innovation, carbon emissions, and green innovation.",
             "display_first_step": "Start by tracing emissions trading system to green growth through technological innovation, carbon emissions, and green innovation before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -11689,7 +11688,7 @@
             "common_contexts": "low-carbon city pilot policy studies are common in China; CO2 emissions studies are common in China and India.",
             "public_specificity_score": 6.3437,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000003__FG3C002978",
-            "display_title": "CO2 emissions and low-carbon city pilot policy",
+            "display_title": "Do low-carbon city pilots cut CO2 emissions?",
             "display_why": "Linked nearby through technological innovation, energy consumption, and foreign direct investments.",
             "display_first_step": "Start by tracing low-carbon city pilot policy to CO2 emissions through technological innovation, energy consumption, and foreign direct investments before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -11793,7 +11792,7 @@
             "common_contexts": "high-speed rail studies are common in China and Spain; carbon emission intensity studies are common in China and HKG.",
             "public_specificity_score": 8.619,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000347__FG3C000753",
-            "display_title": "Carbon emission intensity and high-speed rail",
+            "display_title": "Does high-speed rail cut carbon intensity?",
             "display_why": "Linked nearby through technological innovation, industrial structure upgrading, and corporate digital transformation.",
             "display_first_step": "Start by tracing high-speed rail to carbon emission intensity through technological innovation, industrial structure upgrading, and corporate digital transformation before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -11806,21 +11805,22 @@
         "caption": "",
         "items": [
           {
-            "pair_key": "FG3C000039__FG3C001452",
-            "source_id": "FG3C000039",
+            "pair_key": "FG3C000015__FG3C001452",
+            "source_id": "FG3C000015",
             "target_id": "FG3C001452",
-            "source_label": "globalization",
+            "source_label": "foreign direct investments",
             "target_label": "Catastrophic health expenditure (CHE)",
-            "source_display_label": "globalization",
+            "source_display_label": "foreign direct investments",
             "target_display_label": "catastrophic health expenditures",
-            "source_display_concept_id": "FG3C000039",
+            "source_display_concept_id": "FG3C000015",
             "target_display_concept_id": "FG3C001449",
             "source_display_refined": false,
             "target_display_refined": true,
             "display_refinement_confidence": 0.4273,
             "source_alternate_display_labels": [
-              "globalization level",
-              "globalization (overall)"
+              "foreign firm",
+              "FDI (Foreign Direct Investment)",
+              "export promotion policies"
             ],
             "target_alternate_display_labels": [
               "catastrophic health spending"
@@ -11828,84 +11828,80 @@
             "source_bucket": "adjacent",
             "target_bucket": "adjacent",
             "cross_field": false,
-            "score": 0.103568,
-            "base_score": 0.202511,
-            "duplicate_penalty": 0.098943,
-            "path_support_norm": 0.000277,
+            "score": 0.115629,
+            "base_score": 0.201799,
+            "duplicate_penalty": 0.08617,
+            "path_support_norm": 0.000493,
             "gap_bonus": 1.0,
-            "mediator_count": 5,
-            "motif_count": 5,
+            "mediator_count": 2,
+            "motif_count": 2,
             "cooc_count": 0,
             "direct_link_status": "No direct papers yet",
-            "supporting_path_count": 5,
-            "why_now": "globalization and catastrophic health expenditures are already linked by 5 nearby intermediate topics.",
+            "supporting_path_count": 2,
+            "why_now": "foreign direct investments and catastrophic health expenditures are already linked by 2 nearby intermediate topics.",
             "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
             "slice_label": "Missing direct link",
-            "public_pair_label": "catastrophic health expenditures and globalization",
+            "public_pair_label": "catastrophic health expenditures and foreign direct investments",
             "representative_papers": [
               {
-                "paper_id": "W2100111087__gpt5mini_low",
-                "title": "Catastrophic health expenditures and its inequality in elderly households with chronic disease patients in China",
-                "year": 2015,
-                "edge_src": "FG3C000098",
-                "edge_dst": "FG3C001452",
-                "edge_src_display_label": "per capita income",
-                "edge_dst_display_label": "catastrophic health expenditures"
+                "paper_id": "W4320856056__gpt5mini_low",
+                "title": "Impact of foreign direct investment on income inequality: Evidence from selected Asian economies",
+                "year": 2023,
+                "edge_src": "FG3C000015",
+                "edge_dst": "FG3C000025",
+                "edge_src_display_label": "foreign direct investments",
+                "edge_dst_display_label": "income inequality"
               },
               {
-                "paper_id": "W2520731604__gpt5mini_low",
-                "title": "Globalization and risk averse workers: The roles of labor market and trade policies",
-                "year": 2016,
-                "edge_src": "FG3C000039",
-                "edge_dst": "FG3C000009",
-                "edge_src_display_label": "globalization",
-                "edge_dst_display_label": "unemployment"
+                "paper_id": "W2978665000__gpt5mini_low",
+                "title": "Does foreign direct investment and environmental degradation matter for poverty? Evidence from developing countries",
+                "year": 2020,
+                "edge_src": "FG3C000015",
+                "edge_dst": "FG3C000149",
+                "edge_src_display_label": "foreign direct investments",
+                "edge_dst_display_label": "poverty"
               },
               {
-                "paper_id": "W2024838304__gpt5mini_low",
-                "title": "Does globalization affect the insurance markets? Bootstrap panel Granger causality test",
-                "year": 2013,
-                "edge_src": "FG3C000039",
-                "edge_dst": "FG3C001855",
-                "edge_src_display_label": "globalization",
-                "edge_dst_display_label": "insurance status"
+                "paper_id": "W4390238548__gpt5mini_low",
+                "title": "FDI and income inequality in tax-haven countries: The relevance of tax pressure",
+                "year": 2023,
+                "edge_src": "FG3C000015",
+                "edge_dst": "FG3C000025",
+                "edge_src_display_label": "foreign direct investments",
+                "edge_dst_display_label": "income inequality"
               }
             ],
-            "question_family": "globalization-catastrophic-health-expenditures",
+            "question_family": "foreign-direct-investments-catastrophic-health-expenditures",
             "suppress_from_public_ranked_window": false,
             "top_mediator_display_labels": [
               "income inequality",
-              "insurance status",
-              "unemployment"
+              "poverty"
             ],
             "top_mediator_labels": [
               "income inequality",
-              "insurance status",
-              "unemployment"
+              "poverty"
             ],
             "top_mediator_baseline_labels": [
               "income inequality",
-              "insurance status",
-              "unemployment"
+              "poverty"
             ],
             "top_countries_source": [
               "China",
-              "India",
-              "G7"
+              "India"
             ],
             "top_countries_target": [
               "China",
               "India",
               "Kenya"
             ],
-            "source_context_summary": "China, India, and related settings",
+            "source_context_summary": "China and India",
             "target_context_summary": "China, India, and related settings",
-            "common_contexts": "globalization studies are common in China, India, and related settings; catastrophic health expenditures studies are common in China, India, and related settings.",
-            "public_specificity_score": 4.6014,
-            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000039__FG3C001452",
-            "display_title": "Catastrophic health expenditures and globalization",
-            "display_why": "Linked nearby through income inequality, insurance status, and unemployment.",
-            "display_first_step": "Start by tracing globalization to catastrophic health expenditures through income inequality, insurance status, and unemployment before testing the endpoint link directly.",
+            "common_contexts": "foreign direct investments studies are common in China and India; catastrophic health expenditures studies are common in China, India, and related settings.",
+            "public_specificity_score": 5.3025,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000015__FG3C001452",
+            "display_title": "How do foreign direct investments change catastrophic health spending?",
+            "display_why": "Closest route runs through income inequality and poverty.",
+            "display_first_step": "Start by testing whether income inequality and poverty are the main channels linking foreign direct investments to catastrophic health expenditures.",
             "display_category": "Little direct work"
           },
           {
@@ -12007,7 +12003,7 @@
             "common_contexts": "Special economic zones studies are common in China and India; consumption-based carbon emissions studies are common in China, Brazil, and related settings.",
             "public_specificity_score": 6.5022,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001814__FG3C002438",
-            "display_title": "Consumption-based carbon emissions and Special economic zones",
+            "display_title": "How do Special economic zones change consumption-based carbon emissions?",
             "display_why": "Linked nearby through technological innovation, green finance, and economic development.",
             "display_first_step": "Start by tracing Special economic zones to consumption-based carbon emissions through technological innovation, green finance, and economic development before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -12110,113 +12106,113 @@
             "common_contexts": "trade liberalization studies are common in China and Brazil; gender pay gap studies are common in United Kingdom, Germany, and related settings.",
             "public_specificity_score": -2.8981,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000083__FG3C001721",
-            "display_title": "Gender pay gap and trade liberalization",
+            "display_title": "How does trade liberalization reshape the gender pay gap?",
             "display_why": "Linked nearby through product market competition, labour markets, and firm size.",
             "display_first_step": "Start by tracing trade liberalization to gender pay gap through product market competition, labour markets, and firm size before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
-            "pair_key": "FG3C000039__FG3C000227",
-            "source_id": "FG3C000227",
-            "target_id": "FG3C000039",
-            "source_label": "green technological innovation",
-            "target_label": "globalization",
-            "source_display_label": "green technological innovation",
-            "target_display_label": "globalization",
-            "source_display_concept_id": "FG3C000227",
-            "target_display_concept_id": "FG3C000039",
+            "pair_key": "FG3C000089__FG3C000215",
+            "source_id": "FG3C000089",
+            "target_id": "FG3C000215",
+            "source_label": "R&D investment",
+            "target_label": "green total factor productivity (GTFP)",
+            "source_display_label": "R&D investment",
+            "target_display_label": "green total factor productivity (GTFP)",
+            "source_display_concept_id": "FG3C000089",
+            "target_display_concept_id": "FG3C000215",
             "source_display_refined": false,
             "target_display_refined": false,
             "display_refinement_confidence": 0.0,
             "source_alternate_display_labels": [
-              "green industrial policy",
-              "strategic green innovation",
-              "sustainable innovation"
+              "corporate R&D investment",
+              "investment in research and development (R&D)",
+              "firms' R&D investment"
             ],
             "target_alternate_display_labels": [
-              "globalization level",
-              "globalization (overall)"
+              "agricultural green total factor productivity (AGTFP)",
+              "enterprise green total factor productivity (GTFP)",
+              "industrial green total factor productivity (GTFP)"
             ],
             "source_bucket": "adjacent",
             "target_bucket": "adjacent",
             "cross_field": false,
-            "score": 0.184141,
-            "base_score": 0.204947,
-            "duplicate_penalty": 0.020806,
-            "path_support_norm": 0.001181,
+            "score": 0.110851,
+            "base_score": 0.220235,
+            "duplicate_penalty": 0.109384,
+            "path_support_norm": 0.008199,
             "gap_bonus": 1.0,
-            "mediator_count": 4,
-            "motif_count": 5,
+            "mediator_count": 21,
+            "motif_count": 21,
             "cooc_count": 0,
             "direct_link_status": "No direct papers yet",
-            "supporting_path_count": 4,
-            "why_now": "green technological innovation and globalization are already linked by 4 nearby intermediate topics.",
+            "supporting_path_count": 21,
+            "why_now": "R&D investment and green total factor productivity (GTFP) are already linked by 21 nearby intermediate topics.",
             "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
             "slice_label": "Missing direct link",
-            "public_pair_label": "globalization and green technological innovation",
+            "public_pair_label": "green total factor productivity (GTFP) and R&D investment",
             "representative_papers": [
               {
-                "paper_id": "W4394720587__gpt5mini_low",
-                "title": "Digital inclusive finance, green technological innovation, and carbon emissions from a spatial perspective",
+                "paper_id": "W4396903577__gpt5mini_low",
+                "title": "The Impact of Technological Innovation on Agricultural Green Total Factor Productivity: The Mediating Role of Environmental Regulation in China",
                 "year": 2024,
-                "edge_src": "FG3C000227",
-                "edge_dst": "FG3C000010",
-                "edge_src_display_label": "green technological innovation",
-                "edge_dst_display_label": "carbon emissions"
+                "edge_src": "FG3C000013",
+                "edge_dst": "FG3C000215",
+                "edge_src_display_label": "technological innovation",
+                "edge_dst_display_label": "green total factor productivity (GTFP)"
               },
               {
-                "paper_id": "W4293543055__gpt5mini_low",
-                "title": "Green energy as a new determinant of green growth in China: The role of green technological innovation",
-                "year": 2022,
-                "edge_src": "FG3C000227",
-                "edge_dst": "FG3C000246",
-                "edge_src_display_label": "green technological innovation",
-                "edge_dst_display_label": "green growth"
+                "paper_id": "W4323845913__gpt5mini_low",
+                "title": "How Will the Relationship between Technological Innovation and Green Total Factor Productivity Change under the Influence of Service-Oriented Upgrading of Industrial Structure?",
+                "year": 2023,
+                "edge_src": "FG3C000013",
+                "edge_dst": "FG3C000215",
+                "edge_src_display_label": "technological innovation",
+                "edge_dst_display_label": "green total factor productivity (GTFP)"
               },
               {
-                "paper_id": "W3188848537__gpt5mini_low",
-                "title": "Determinants of carbon emissions in Argentina: The roles of renewable energy consumption and globalization",
-                "year": 2021,
-                "edge_src": "FG3C000010",
-                "edge_dst": "FG3C000039",
-                "edge_src_display_label": "carbon emissions",
-                "edge_dst_display_label": "globalization"
+                "paper_id": "W4413922432__gpt5mini_low",
+                "title": "How Does Industrial Intelligence Enhance Green Total Factor Productivity in China? The Substitution Effect of Environmental Regulation",
+                "year": 2025,
+                "edge_src": "FG3C000053",
+                "edge_dst": "FG3C000215",
+                "edge_src_display_label": "green innovation",
+                "edge_dst_display_label": "green total factor productivity (GTFP)"
               }
             ],
-            "question_family": "green-technological-innovation-globalization",
+            "question_family": "r-d-investment-green-total-factor-productivity",
             "suppress_from_public_ranked_window": false,
             "top_mediator_display_labels": [
-              "carbon emissions",
-              "CO2 emissions",
-              "energy consumption"
+              "green innovation",
+              "technological innovation",
+              "green technology innovation"
             ],
             "top_mediator_labels": [
-              "carbon emissions",
-              "CO2 emissions",
-              "energy consumption"
+              "green innovation",
+              "technological innovation",
+              "green technology innovation"
             ],
             "top_mediator_baseline_labels": [
-              "carbon emissions",
-              "CO2 emissions",
-              "energy consumption"
+              "green innovation",
+              "technological innovation",
+              "green technology innovation"
             ],
             "top_countries_source": [
               "China",
-              "Brazil"
+              "Korea"
             ],
             "top_countries_target": [
               "China",
-              "India",
-              "G7"
+              "OECD"
             ],
-            "source_context_summary": "China and Brazil",
-            "target_context_summary": "China, India, and related settings",
-            "common_contexts": "green technological innovation studies are common in China and Brazil; globalization studies are common in China, India, and related settings.",
-            "public_specificity_score": -3.4941,
-            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000039__FG3C000227",
-            "display_title": "Globalization and green technological innovation",
-            "display_why": "Linked nearby through carbon emissions, CO2 emissions, and energy consumption.",
-            "display_first_step": "Start by tracing green technological innovation to globalization through carbon emissions, CO2 emissions, and energy consumption before testing the endpoint link directly.",
+            "source_context_summary": "China and Korea",
+            "target_context_summary": "China and OECD",
+            "common_contexts": "R&D investment studies are common in China and Korea; green total factor productivity (GTFP) studies are common in China and OECD.",
+            "public_specificity_score": 8.641,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000089__FG3C000215",
+            "display_title": "How does R&D investment raise green total factor productivity?",
+            "display_why": "Linked nearby through green innovation, technological innovation, and green technology innovation.",
+            "display_first_step": "Start by tracing R&D investment to green total factor productivity (GTFP) through green innovation, technological innovation, and green technology innovation before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -12320,7 +12316,7 @@
             "common_contexts": "economic complexity studies are common in China, G7, and related settings; environmental quality studies are common in China, United States, and related settings.",
             "public_specificity_score": 3.6749,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000199__FG3C001420",
-            "display_title": "Economic complexity and environmental quality",
+            "display_title": "When does economic complexity improve environmental quality?",
             "display_why": "Linked nearby through economic growth, renewable energy consumption, and financial development.",
             "display_first_step": "Start by tracing economic complexity to environmental quality through economic growth, renewable energy consumption, and financial development before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -12424,7 +12420,7 @@
             "common_contexts": "R&D investment studies are common in China and Korea; ecological carrying capacity studies are common in India, Brazil, and related settings.",
             "public_specificity_score": 8.3076,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000089__FG3C001307",
-            "display_title": "Ecological carrying capacity and R&D investment",
+            "display_title": "How does R&D investment raise ecological carrying capacity?",
             "display_why": "Linked nearby through technological innovation, energy transition, and green technology.",
             "display_first_step": "Start by tracing R&D investment to ecological carrying capacity through technological innovation, energy transition, and green technology before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -12527,7 +12523,7 @@
             "common_contexts": "carbon emissions trading studies are common in China and Thailand; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
             "public_specificity_score": 10.7052,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000061__FG3C005566",
-            "display_title": "Total factor productivity (TFP) and carbon emissions trading",
+            "display_title": "When does carbon emissions trading raise total factor productivity?",
             "display_why": "Linked nearby through technological innovation, firm total factor productivity (TFP), and green technology innovation.",
             "display_first_step": "Start by tracing carbon emissions trading to total factor productivity (TFP) through technological innovation, firm total factor productivity (TFP), and green technology innovation before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -12631,7 +12627,7 @@
             "common_contexts": "economic policy uncertainty studies are common in China and United States; green total factor productivity (GTFP) studies are common in China and OECD.",
             "public_specificity_score": 8.612,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000071__FG3C000215",
-            "display_title": "Economic policy uncertainty and green total factor productivity (GTFP)",
+            "display_title": "How does policy uncertainty slow green productivity growth?",
             "display_why": "Linked nearby through green innovation, technical efficiency, and green technological innovation.",
             "display_first_step": "Start by tracing economic policy uncertainty to green total factor productivity (GTFP) through green innovation, technical efficiency, and green technological innovation before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -12735,107 +12731,110 @@
             "common_contexts": "green finance studies are common in China and OECD; firm total factor productivity (TFP) studies are common in China and United States.",
             "public_specificity_score": 0.1264,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000063__FG3C002284",
-            "display_title": "Firm total factor productivity (TFP) and green finance",
+            "display_title": "Does green finance raise firm productivity?",
             "display_why": "Linked nearby through technological innovation, green innovation, and technological progress.",
             "display_first_step": "Start by tracing green finance to firm total factor productivity (TFP) through technological innovation, green innovation, and technological progress before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           },
           {
-            "pair_key": "FG3C000013__FG3C002623",
-            "source_id": "FG3C000013",
-            "target_id": "FG3C002623",
-            "source_label": "technological innovation",
-            "target_label": "US economic policy uncertainty",
-            "source_display_label": "technological innovation",
-            "target_display_label": "U.S. economic policy uncertainty",
-            "source_display_concept_id": "FG3C000013",
-            "target_display_concept_id": "FG3C014179",
+            "pair_key": "FG3C000061__FG3C000887",
+            "source_id": "FG3C000887",
+            "target_id": "FG3C000061",
+            "source_label": "digital infrastructure",
+            "target_label": "total factor productivity (TFP)",
+            "source_display_label": "digital infrastructure",
+            "target_display_label": "total factor productivity (TFP)",
+            "source_display_concept_id": "FG3C000887",
+            "target_display_concept_id": "FG3C000061",
             "source_display_refined": false,
-            "target_display_refined": true,
-            "display_refinement_confidence": 0.3655,
+            "target_display_refined": false,
+            "display_refinement_confidence": 0.0,
             "source_alternate_display_labels": [
-              "agricultural technological innovation",
-              "technological investment",
-              "corporate technological innovation"
+              "telecommunications infrastructure"
             ],
             "target_alternate_display_labels": [
-              "US economic policy uncertainty (US EPU)",
-              "US policy uncertainty",
-              "US GDP growth"
+              "productivity (TFP)"
             ],
             "source_bucket": "adjacent",
             "target_bucket": "core",
             "cross_field": true,
-            "score": 0.114586,
-            "base_score": 0.203272,
-            "duplicate_penalty": 0.088686,
-            "path_support_norm": 0.000301,
+            "score": 0.110499,
+            "base_score": 0.20401,
+            "duplicate_penalty": 0.093511,
+            "path_support_norm": 0.000819,
             "gap_bonus": 1.0,
-            "mediator_count": 1,
-            "motif_count": 2,
+            "mediator_count": 11,
+            "motif_count": 8,
             "cooc_count": 0,
             "direct_link_status": "No direct papers yet",
-            "supporting_path_count": 1,
-            "why_now": "technological innovation and U.S. economic policy uncertainty are already linked by 1 nearby intermediate topics.",
+            "supporting_path_count": 11,
+            "why_now": "digital infrastructure and total factor productivity (TFP) are already linked by 11 nearby intermediate topics.",
             "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
             "slice_label": "Missing direct link",
-            "public_pair_label": "U.S. economic policy uncertainty and technological innovation",
+            "public_pair_label": "total factor productivity (TFP) and digital infrastructure",
             "representative_papers": [
               {
-                "paper_id": "W3088117561__gpt5mini_low",
-                "title": "Energy consumption, economic policy uncertainty and carbon emissions; causality evidence from resource rich economies",
-                "year": 2020,
-                "edge_src": "FG3C000167",
-                "edge_dst": "FG3C002623",
-                "edge_src_display_label": "carbon dioxide (CO2) emission",
-                "edge_dst_display_label": "U.S. economic policy uncertainty"
-              },
-              {
-                "paper_id": "W4408561684__gpt5mini_low",
-                "title": "Revisiting the determinants of CO2 emissions: The role of higher education under the extended STIRPAT model",
+                "paper_id": "W4412017035__gpt5mini_low",
+                "title": "Green Innovation, Export Synergy, and Total Factor Productivity: Evidence from China\u2019s Marine Enterprises",
                 "year": 2025,
-                "edge_src": "FG3C000013",
-                "edge_dst": "FG3C000167",
-                "edge_src_display_label": "technological innovation",
-                "edge_dst_display_label": "carbon dioxide (CO2) emission"
+                "edge_src": "FG3C000053",
+                "edge_dst": "FG3C000061",
+                "edge_src_display_label": "green innovation",
+                "edge_dst_display_label": "total factor productivity (TFP)"
               },
               {
-                "paper_id": "W4401173522__gpt5mini_low",
-                "title": "Impacts of Fintech and natural resources on environmental quality: The role of renewable energy and carbon taxes: A panel <scp>QARDL</scp> approach",
+                "paper_id": "W4413272288__gpt5mini_low",
+                "title": "Does energy productivity boost total factor productivity?",
+                "year": 2025,
+                "edge_src": "FG3C000742",
+                "edge_dst": "FG3C000061",
+                "edge_src_display_label": "energy productivity",
+                "edge_dst_display_label": "total factor productivity (TFP)"
+              },
+              {
+                "paper_id": "W4404048557__gpt5mini_low",
+                "title": "Regional digital infrastructure and carbon neutrality: A technology\u2013structure\u2013efficiency perspective",
                 "year": 2024,
-                "edge_src": "FG3C000013",
-                "edge_dst": "FG3C000167",
-                "edge_src_display_label": "technological innovation",
-                "edge_dst_display_label": "carbon dioxide (CO2) emission"
+                "edge_src": "FG3C000887",
+                "edge_dst": "FG3C000094",
+                "edge_src_display_label": "digital infrastructure",
+                "edge_dst_display_label": "green technology innovation"
               }
             ],
-            "question_family": "technological-innovation-u-s-economic-policy-uncertainty",
+            "question_family": "digital-infrastructure-total-factor-productivity",
             "suppress_from_public_ranked_window": false,
             "top_mediator_display_labels": [
-              "carbon dioxide (CO2) emission"
+              "green technology innovation",
+              "green innovation",
+              "technological innovation"
             ],
             "top_mediator_labels": [
-              "carbon dioxide (CO2) emission"
+              "green technology innovation",
+              "green innovation",
+              "technological innovation"
             ],
             "top_mediator_baseline_labels": [
-              "carbon dioxide (CO2) emissions"
+              "green technology innovation",
+              "green innovation",
+              "technological innovation"
             ],
             "top_countries_source": [
               "China",
-              "India"
+              "Asian economies"
             ],
             "top_countries_target": [
-              "United States",
-              "China"
+              "China",
+              "Italy",
+              "United States"
             ],
-            "source_context_summary": "China and India",
-            "target_context_summary": "United States and China",
-            "common_contexts": "technological innovation studies are common in China and India; U.S. economic policy uncertainty studies are common in United States and China.",
-            "public_specificity_score": 2.2015,
-            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000013__FG3C002623",
-            "display_title": "U.S. economic policy uncertainty and technological innovation",
-            "display_why": "Closest route runs through carbon dioxide (CO2) emission.",
-            "display_first_step": "Start with carbon dioxide (CO2) emission as the first channel linking technological innovation to U.S. economic policy uncertainty.",
+            "source_context_summary": "China and Asian economies",
+            "target_context_summary": "China, Italy, and related settings",
+            "common_contexts": "digital infrastructure studies are common in China and Asian economies; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
+            "public_specificity_score": 0.7041,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000061__FG3C000887",
+            "display_title": "When does digital infrastructure raise total factor productivity?",
+            "display_why": "Linked nearby through green technology innovation, green innovation, and technological innovation.",
+            "display_first_step": "Start by tracing digital infrastructure to total factor productivity (TFP) through green technology innovation, green innovation, and technological innovation before testing the endpoint link directly.",
             "display_category": "Cross-area question"
           }
         ]
@@ -12846,109 +12845,107 @@
         "caption": "",
         "items": [
           {
-            "pair_key": "FG3C000069__FG3C005515",
-            "source_id": "FG3C000069",
-            "target_id": "FG3C005515",
-            "source_label": "competition",
-            "target_label": "location choice",
-            "source_display_label": "competition",
-            "target_display_label": "choice data",
-            "source_display_concept_id": "FG3C000069",
-            "target_display_concept_id": "FG3C011544",
-            "source_display_refined": false,
-            "target_display_refined": true,
-            "display_refinement_confidence": 0.2289,
+            "pair_key": "FG3C000247__FG3C004458",
+            "source_id": "FG3C004458",
+            "target_id": "FG3C000247",
+            "source_label": "high-frequency trading (HFT)",
+            "target_label": "cost of capital",
+            "source_display_label": "high-frequency trading",
+            "target_display_label": "cost of capital",
+            "source_display_concept_id": "FG3C004460",
+            "target_display_concept_id": "FG3C000247",
+            "source_display_refined": true,
+            "target_display_refined": false,
+            "display_refinement_confidence": 0.3491,
             "source_alternate_display_labels": [
-              "level of competition",
-              "R&D competition",
-              "Competition among firms"
+              "Algorithmic trading (AT)"
             ],
             "target_alternate_display_labels": [
-              "location choices",
-              "household location choice",
-              "Choice experiment data"
+              "capital budgeting",
+              "firms' cost of capital",
+              "external financing costs"
             ],
             "source_bucket": "core",
             "target_bucket": "core",
             "cross_field": false,
-            "score": 0.178917,
-            "base_score": 0.203722,
-            "duplicate_penalty": 0.024805,
-            "path_support_norm": 0.000674,
+            "score": 0.114434,
+            "base_score": 0.20182,
+            "duplicate_penalty": 0.087386,
+            "path_support_norm": 0.000217,
             "gap_bonus": 1.0,
-            "mediator_count": 6,
-            "motif_count": 6,
+            "mediator_count": 4,
+            "motif_count": 4,
             "cooc_count": 0,
             "direct_link_status": "No direct papers yet",
-            "supporting_path_count": 6,
-            "why_now": "competition and choice data are already linked by 6 nearby intermediate topics.",
+            "supporting_path_count": 4,
+            "why_now": "high-frequency trading and cost of capital are already linked by 4 nearby intermediate topics.",
             "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
             "slice_label": "Missing direct link",
-            "public_pair_label": "choice data and competition",
+            "public_pair_label": "cost of capital and high-frequency trading",
             "representative_papers": [
               {
-                "paper_id": "W635135534__gpt5mini_low",
-                "title": "Why Is Productivity Correlated With Competition?",
-                "year": 2020,
-                "edge_src": "FG3C000069",
-                "edge_dst": "FG3C000021",
-                "edge_src_display_label": "competition",
-                "edge_dst_display_label": "productivity"
+                "paper_id": "W2518115580__gpt5mini_low",
+                "title": "A model for unpacking big data analytics in high-frequency trading",
+                "year": 2016,
+                "edge_src": "FG3C004458",
+                "edge_dst": "FG3C003802",
+                "edge_src_display_label": "high-frequency trading",
+                "edge_dst_display_label": "high frequency traders"
               },
               {
-                "paper_id": "W2059129083__gpt5mini_low",
-                "title": "Does competition raise productivity through improving management quality?",
-                "year": 2011,
-                "edge_src": "FG3C000069",
-                "edge_dst": "FG3C000021",
-                "edge_src_display_label": "competition",
-                "edge_dst_display_label": "productivity"
+                "paper_id": "W4280561173__gpt5mini_low",
+                "title": "Machine learning and speed in high-frequency trading",
+                "year": 2022,
+                "edge_src": "FG3C004458",
+                "edge_dst": "FG3C000119",
+                "edge_src_display_label": "high-frequency trading",
+                "edge_dst_display_label": "market liquidity"
               },
               {
-                "paper_id": "W2941858063__gpt5mini_low",
-                "title": "Innovation and competition: The role of the product market",
+                "paper_id": "W2932643517__gpt5mini_low",
+                "title": "High frequency trading and comovement in financial markets",
                 "year": 2019,
-                "edge_src": "FG3C000069",
-                "edge_dst": "FG3C000030",
-                "edge_src_display_label": "competition",
-                "edge_dst_display_label": "innovation"
+                "edge_src": "FG3C003802",
+                "edge_dst": "FG3C000247",
+                "edge_src_display_label": "high frequency traders",
+                "edge_dst_display_label": "cost of capital"
               }
             ],
-            "question_family": "competition-choice-data",
+            "question_family": "high-frequency-trading-cost-of-capital",
             "suppress_from_public_ranked_window": false,
             "top_mediator_display_labels": [
-              "innovation",
-              "productivity",
-              "R&D intensity"
+              "market quality",
+              "high frequency traders",
+              "stock liquidity"
             ],
             "top_mediator_labels": [
-              "innovation",
-              "productivity",
-              "R&D intensity"
+              "market quality",
+              "high frequency traders",
+              "stock liquidity"
             ],
             "top_mediator_baseline_labels": [
-              "innovation",
-              "productivity",
-              "R&D intensity"
+              "market quality",
+              "high-frequency traders (HFTs)",
+              "stock liquidity"
             ],
             "top_countries_source": [
-              "China",
-              "United States",
-              "India"
+              "Turkey",
+              "France",
+              "Brazil"
             ],
             "top_countries_target": [
-              "Sweden",
+              "China",
               "United States",
-              "England"
+              "Japan"
             ],
-            "source_context_summary": "China, United States, and related settings",
-            "target_context_summary": "Sweden, United States, and related settings",
-            "common_contexts": "competition studies are common in China, United States, and related settings; choice data studies are common in Sweden, United States, and related settings.",
-            "public_specificity_score": 2.7034,
-            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000069__FG3C005515",
-            "display_title": "Choice data and competition",
-            "display_why": "Linked nearby through innovation, productivity, and R&D intensity.",
-            "display_first_step": "Start by tracing competition to choice data through innovation, productivity, and R&D intensity before testing the endpoint link directly.",
+            "source_context_summary": "Turkey, France, and related settings",
+            "target_context_summary": "China, United States, and related settings",
+            "common_contexts": "high-frequency trading studies are common in Turkey, France, and related settings; cost of capital studies are common in China, United States, and related settings.",
+            "public_specificity_score": 6.5011,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000247__FG3C004458",
+            "display_title": "Does high-frequency trading change firms' cost of capital?",
+            "display_why": "Linked nearby through market quality, high frequency traders, and stock liquidity.",
+            "display_first_step": "Start by tracing high-frequency trading to cost of capital through market quality, high frequency traders, and stock liquidity before testing the endpoint link directly.",
             "display_category": "Little direct work"
           },
           {
@@ -13050,7 +13047,7 @@
             "common_contexts": "individual forecasts studies are common in United States and United Kingdom; bond returns studies are common in United States and China.",
             "public_specificity_score": 1.5012,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001564__FG3C003050",
-            "display_title": "Bond returns and individual forecasts",
+            "display_title": "Do individual forecasts show up in bond returns?",
             "display_why": "Linked nearby through forecast errors, short-term interest rate, and individual stock returns.",
             "display_first_step": "Start by tracing individual forecasts to bond returns through forecast errors, short-term interest rate, and individual stock returns before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -13150,7 +13147,7 @@
             "common_contexts": "voluntary export restraints (VERs) studies are common in Japan; pattern of trade studies are common in China, United States, and related settings.",
             "public_specificity_score": -0.9989,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C003008__FG3C004938",
-            "display_title": "Pattern of trade and voluntary export restraints (VERs)",
+            "display_title": "How do voluntary export restraints reshape trade patterns?",
             "display_why": "Linked nearby through tariff, firm size (small vs large), and tariffs.",
             "display_first_step": "Start by tracing voluntary export restraints (VERs) to pattern of trade through tariff, firm size (small vs large), and tariffs before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -13252,7 +13249,7 @@
             "common_contexts": "enterprise digital transformation studies are common in China and sub-Saharan Africa; bid-ask spread studies are common in United States and China.",
             "public_specificity_score": -1.5956,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000190__FG3C001821",
-            "display_title": "Bid-ask spread and enterprise digital transformation",
+            "display_title": "Does enterprise digital transformation narrow bid-ask spreads?",
             "display_why": "Linked nearby through information asymmetry, informed trading, and media coverage.",
             "display_first_step": "Start by tracing enterprise digital transformation to bid-ask spread through information asymmetry, informed trading, and media coverage before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -13354,7 +13351,7 @@
             "common_contexts": "intellectual property rights studies are common in MENA, Latin American countries (sample of 18), and related settings; export product quality studies are common in China and United States.",
             "public_specificity_score": -1.598,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001922__FG3C003131",
-            "display_title": "Export product quality and intellectual property rights",
+            "display_title": "Does stronger intellectual property protection raise export quality?",
             "display_why": "Linked nearby through innovation, entrepreneurship, and enterprise performance.",
             "display_first_step": "Start by tracing intellectual property rights to export product quality through innovation, entrepreneurship, and enterprise performance before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -13459,7 +13456,7 @@
             "common_contexts": "economic sanctions studies are common in China, South Africa, and related settings; green total factor productivity (GTFP) studies are common in China and OECD.",
             "public_specificity_score": -2.8977,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000215__FG3C001001",
-            "display_title": "Economic sanctions and green total factor productivity (GTFP)",
+            "display_title": "Do economic sanctions slow green productivity growth?",
             "display_why": "Linked nearby through inward foreign direct investment (FDI), green innovations, and infrastructure.",
             "display_first_step": "Start by tracing economic sanctions to green total factor productivity (GTFP) through inward foreign direct investment (FDI), green innovations, and infrastructure before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -13562,7 +13559,7 @@
             "common_contexts": "Special economic zones studies are common in China and India; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
             "public_specificity_score": 6.5024,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000061__FG3C002438",
-            "display_title": "Total factor productivity (TFP) and Special economic zones",
+            "display_title": "Do Special economic zones raise total factor productivity?",
             "display_why": "Linked nearby through technological progress, technological innovation, and innovation.",
             "display_first_step": "Start by tracing Special economic zones to total factor productivity (TFP) through technological progress, technological innovation, and innovation before testing the endpoint link directly.",
             "display_category": "Cross-area question"
@@ -13664,7 +13661,7 @@
             "common_contexts": "information and communication technology (ICT) studies are common in China, United Kingdom, and related settings; U.S. economic policy uncertainty studies are common in United States and China.",
             "public_specificity_score": 5.3018,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000384__FG3C002623",
-            "display_title": "U.S. economic policy uncertainty and information and communication technology (ICT)",
+            "display_title": "How does U.S. policy uncertainty change ICT investment?",
             "display_why": "Closest route runs through carbon dioxide (CO2) emission and social interactions.",
             "display_first_step": "Start by testing whether carbon dioxide (CO2) emission and social interactions are the main channels linking information and communication technology (ICT) to U.S. economic policy uncertainty.",
             "display_category": "Cross-area question"
@@ -13765,7 +13762,7 @@
             "common_contexts": "high frequency traders studies are common in India, KOR, and related settings; expected stock returns studies are common in China and United States.",
             "public_specificity_score": 7.1018,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000811__FG3C003802",
-            "display_title": "Expected stock returns and high frequency traders",
+            "display_title": "Do high-frequency traders change expected stock returns?",
             "display_why": "Linked nearby through media coverage, liquidity commonality, and volatility.",
             "display_first_step": "Start by tracing high frequency traders to expected stock returns through media coverage, liquidity commonality, and volatility before testing the endpoint link directly.",
             "display_category": "Little direct work"
@@ -13866,7 +13863,7 @@
             "common_contexts": "foreign direct investment (FDI) inflow studies are common in China, India, and related settings; U.S. economic policy uncertainty studies are common in United States and China.",
             "public_specificity_score": 5.3009,
             "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000681__FG3C002623",
-            "display_title": "U.S. economic policy uncertainty and foreign direct investment (FDI) inflow",
+            "display_title": "How does U.S. policy uncertainty change FDI inflows?",
             "display_why": "Closest route runs through carbon dioxide (CO2) emission and international spillovers.",
             "display_first_step": "Start by testing whether carbon dioxide (CO2) emission and international spillovers are the main channels linking foreign direct investment (FDI) inflow to U.S. economic policy uncertainty.",
             "display_category": "Cross-area question"
@@ -13973,206 +13970,6 @@
         "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C003577__FG3C006085"
       },
       {
-        "pair_key": "FG3C000089__FG3C000215",
-        "source_id": "FG3C000089",
-        "target_id": "FG3C000215",
-        "source_label": "R&D investment",
-        "target_label": "green total factor productivity (GTFP)",
-        "source_display_label": "R&D investment",
-        "target_display_label": "green total factor productivity (GTFP)",
-        "source_display_concept_id": "FG3C000089",
-        "target_display_concept_id": "FG3C000215",
-        "source_display_refined": false,
-        "target_display_refined": false,
-        "display_refinement_confidence": 0.0,
-        "source_alternate_display_labels": [
-          "corporate R&D investment",
-          "investment in research and development (R&D)",
-          "firms' R&D investment"
-        ],
-        "target_alternate_display_labels": [
-          "agricultural green total factor productivity (AGTFP)",
-          "enterprise green total factor productivity (GTFP)",
-          "industrial green total factor productivity (GTFP)"
-        ],
-        "source_bucket": "adjacent",
-        "target_bucket": "adjacent",
-        "cross_field": false,
-        "score": 0.110851,
-        "base_score": 0.220235,
-        "duplicate_penalty": 0.109384,
-        "path_support_norm": 0.008199,
-        "gap_bonus": 1.0,
-        "mediator_count": 21,
-        "motif_count": 21,
-        "cooc_count": 0,
-        "direct_link_status": "No direct papers yet",
-        "supporting_path_count": 21,
-        "why_now": "R&D investment and green total factor productivity (GTFP) are already linked by 21 nearby intermediate topics.",
-        "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
-        "slice_label": "Missing direct link",
-        "public_pair_label": "green total factor productivity (GTFP) and R&D investment",
-        "representative_papers": [
-          {
-            "paper_id": "W4396903577__gpt5mini_low",
-            "title": "The Impact of Technological Innovation on Agricultural Green Total Factor Productivity: The Mediating Role of Environmental Regulation in China",
-            "year": 2024,
-            "edge_src": "FG3C000013",
-            "edge_dst": "FG3C000215",
-            "edge_src_display_label": "technological innovation",
-            "edge_dst_display_label": "green total factor productivity (GTFP)"
-          },
-          {
-            "paper_id": "W4323845913__gpt5mini_low",
-            "title": "How Will the Relationship between Technological Innovation and Green Total Factor Productivity Change under the Influence of Service-Oriented Upgrading of Industrial Structure?",
-            "year": 2023,
-            "edge_src": "FG3C000013",
-            "edge_dst": "FG3C000215",
-            "edge_src_display_label": "technological innovation",
-            "edge_dst_display_label": "green total factor productivity (GTFP)"
-          },
-          {
-            "paper_id": "W4413922432__gpt5mini_low",
-            "title": "How Does Industrial Intelligence Enhance Green Total Factor Productivity in China? The Substitution Effect of Environmental Regulation",
-            "year": 2025,
-            "edge_src": "FG3C000053",
-            "edge_dst": "FG3C000215",
-            "edge_src_display_label": "green innovation",
-            "edge_dst_display_label": "green total factor productivity (GTFP)"
-          }
-        ],
-        "question_family": "r-d-investment-green-total-factor-productivity",
-        "suppress_from_public_ranked_window": false,
-        "top_mediator_display_labels": [
-          "green innovation",
-          "technological innovation",
-          "green technology innovation"
-        ],
-        "top_mediator_labels": [
-          "green innovation",
-          "technological innovation",
-          "green technology innovation"
-        ],
-        "top_mediator_baseline_labels": [
-          "green innovation",
-          "technological innovation",
-          "green technology innovation"
-        ],
-        "top_countries_source": [
-          "China",
-          "Korea"
-        ],
-        "top_countries_target": [
-          "China",
-          "OECD"
-        ],
-        "source_context_summary": "China and Korea",
-        "target_context_summary": "China and OECD",
-        "common_contexts": "R&D investment studies are common in China and Korea; green total factor productivity (GTFP) studies are common in China and OECD.",
-        "public_specificity_score": 8.641,
-        "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000089__FG3C000215"
-      },
-      {
-        "pair_key": "FG3C000247__FG3C004458",
-        "source_id": "FG3C004458",
-        "target_id": "FG3C000247",
-        "source_label": "high-frequency trading (HFT)",
-        "target_label": "cost of capital",
-        "source_display_label": "high-frequency trading",
-        "target_display_label": "cost of capital",
-        "source_display_concept_id": "FG3C004460",
-        "target_display_concept_id": "FG3C000247",
-        "source_display_refined": true,
-        "target_display_refined": false,
-        "display_refinement_confidence": 0.3491,
-        "source_alternate_display_labels": [
-          "Algorithmic trading (AT)"
-        ],
-        "target_alternate_display_labels": [
-          "capital budgeting",
-          "firms' cost of capital",
-          "external financing costs"
-        ],
-        "source_bucket": "core",
-        "target_bucket": "core",
-        "cross_field": false,
-        "score": 0.114434,
-        "base_score": 0.20182,
-        "duplicate_penalty": 0.087386,
-        "path_support_norm": 0.000217,
-        "gap_bonus": 1.0,
-        "mediator_count": 4,
-        "motif_count": 4,
-        "cooc_count": 0,
-        "direct_link_status": "No direct papers yet",
-        "supporting_path_count": 4,
-        "why_now": "high-frequency trading and cost of capital are already linked by 4 nearby intermediate topics.",
-        "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
-        "slice_label": "Missing direct link",
-        "public_pair_label": "cost of capital and high-frequency trading",
-        "representative_papers": [
-          {
-            "paper_id": "W2518115580__gpt5mini_low",
-            "title": "A model for unpacking big data analytics in high-frequency trading",
-            "year": 2016,
-            "edge_src": "FG3C004458",
-            "edge_dst": "FG3C003802",
-            "edge_src_display_label": "high-frequency trading",
-            "edge_dst_display_label": "high frequency traders"
-          },
-          {
-            "paper_id": "W4280561173__gpt5mini_low",
-            "title": "Machine learning and speed in high-frequency trading",
-            "year": 2022,
-            "edge_src": "FG3C004458",
-            "edge_dst": "FG3C000119",
-            "edge_src_display_label": "high-frequency trading",
-            "edge_dst_display_label": "market liquidity"
-          },
-          {
-            "paper_id": "W2932643517__gpt5mini_low",
-            "title": "High frequency trading and comovement in financial markets",
-            "year": 2019,
-            "edge_src": "FG3C003802",
-            "edge_dst": "FG3C000247",
-            "edge_src_display_label": "high frequency traders",
-            "edge_dst_display_label": "cost of capital"
-          }
-        ],
-        "question_family": "high-frequency-trading-cost-of-capital",
-        "suppress_from_public_ranked_window": false,
-        "top_mediator_display_labels": [
-          "market quality",
-          "high frequency traders",
-          "stock liquidity"
-        ],
-        "top_mediator_labels": [
-          "market quality",
-          "high frequency traders",
-          "stock liquidity"
-        ],
-        "top_mediator_baseline_labels": [
-          "market quality",
-          "high-frequency traders (HFTs)",
-          "stock liquidity"
-        ],
-        "top_countries_source": [
-          "Turkey",
-          "France",
-          "Brazil"
-        ],
-        "top_countries_target": [
-          "China",
-          "United States",
-          "Japan"
-        ],
-        "source_context_summary": "Turkey, France, and related settings",
-        "target_context_summary": "China, United States, and related settings",
-        "common_contexts": "high-frequency trading studies are common in Turkey, France, and related settings; cost of capital studies are common in China, United States, and related settings.",
-        "public_specificity_score": 6.5011,
-        "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000247__FG3C004458"
-      },
-      {
         "pair_key": "FG3C000215__FG3C005708",
         "source_id": "FG3C005708",
         "target_id": "FG3C000215",
@@ -14268,202 +14065,6 @@
         "common_contexts": "intellectual property rights (IPR) protection studies are common in China, Eastern European transition countries, and related settings; green total factor productivity (GTFP) studies are common in China and OECD.",
         "public_specificity_score": 5.9024,
         "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000215__FG3C005708"
-      },
-      {
-        "pair_key": "FG3C000015__FG3C001452",
-        "source_id": "FG3C000015",
-        "target_id": "FG3C001452",
-        "source_label": "foreign direct investments",
-        "target_label": "Catastrophic health expenditure (CHE)",
-        "source_display_label": "foreign direct investments",
-        "target_display_label": "catastrophic health expenditures",
-        "source_display_concept_id": "FG3C000015",
-        "target_display_concept_id": "FG3C001449",
-        "source_display_refined": false,
-        "target_display_refined": true,
-        "display_refinement_confidence": 0.4273,
-        "source_alternate_display_labels": [
-          "foreign firm",
-          "FDI (Foreign Direct Investment)",
-          "export promotion policies"
-        ],
-        "target_alternate_display_labels": [
-          "catastrophic health spending"
-        ],
-        "source_bucket": "adjacent",
-        "target_bucket": "adjacent",
-        "cross_field": false,
-        "score": 0.115629,
-        "base_score": 0.201799,
-        "duplicate_penalty": 0.08617,
-        "path_support_norm": 0.000493,
-        "gap_bonus": 1.0,
-        "mediator_count": 2,
-        "motif_count": 2,
-        "cooc_count": 0,
-        "direct_link_status": "No direct papers yet",
-        "supporting_path_count": 2,
-        "why_now": "foreign direct investments and catastrophic health expenditures are already linked by 2 nearby intermediate topics.",
-        "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
-        "slice_label": "Missing direct link",
-        "public_pair_label": "catastrophic health expenditures and foreign direct investments",
-        "representative_papers": [
-          {
-            "paper_id": "W4320856056__gpt5mini_low",
-            "title": "Impact of foreign direct investment on income inequality: Evidence from selected Asian economies",
-            "year": 2023,
-            "edge_src": "FG3C000015",
-            "edge_dst": "FG3C000025",
-            "edge_src_display_label": "foreign direct investments",
-            "edge_dst_display_label": "income inequality"
-          },
-          {
-            "paper_id": "W2978665000__gpt5mini_low",
-            "title": "Does foreign direct investment and environmental degradation matter for poverty? Evidence from developing countries",
-            "year": 2020,
-            "edge_src": "FG3C000015",
-            "edge_dst": "FG3C000149",
-            "edge_src_display_label": "foreign direct investments",
-            "edge_dst_display_label": "poverty"
-          },
-          {
-            "paper_id": "W4390238548__gpt5mini_low",
-            "title": "FDI and income inequality in tax-haven countries: The relevance of tax pressure",
-            "year": 2023,
-            "edge_src": "FG3C000015",
-            "edge_dst": "FG3C000025",
-            "edge_src_display_label": "foreign direct investments",
-            "edge_dst_display_label": "income inequality"
-          }
-        ],
-        "question_family": "foreign-direct-investments-catastrophic-health-expenditures",
-        "suppress_from_public_ranked_window": false,
-        "top_mediator_display_labels": [
-          "income inequality",
-          "poverty"
-        ],
-        "top_mediator_labels": [
-          "income inequality",
-          "poverty"
-        ],
-        "top_mediator_baseline_labels": [
-          "income inequality",
-          "poverty"
-        ],
-        "top_countries_source": [
-          "China",
-          "India"
-        ],
-        "top_countries_target": [
-          "China",
-          "India",
-          "Kenya"
-        ],
-        "source_context_summary": "China and India",
-        "target_context_summary": "China, India, and related settings",
-        "common_contexts": "foreign direct investments studies are common in China and India; catastrophic health expenditures studies are common in China, India, and related settings.",
-        "public_specificity_score": 5.3025,
-        "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000015__FG3C001452"
-      },
-      {
-        "pair_key": "FG3C000194__FG3C002438",
-        "source_id": "FG3C002438",
-        "target_id": "FG3C000194",
-        "source_label": "special economic zones (SEZs)",
-        "target_label": "wage inequality",
-        "source_display_label": "Special economic zones",
-        "target_display_label": "wage inequality",
-        "source_display_concept_id": "FG3C002450",
-        "target_display_concept_id": "FG3C000194",
-        "source_display_refined": true,
-        "target_display_refined": false,
-        "display_refinement_confidence": 0.3266,
-        "source_alternate_display_labels": [
-          "Export Processing Zones (EPZs)",
-          "special issue contributions",
-          "enterprise zones"
-        ],
-        "target_alternate_display_labels": [
-          "rising wage inequality",
-          "Overall wage inequality",
-          "within-group wage inequality"
-        ],
-        "source_bucket": "adjacent",
-        "target_bucket": "core",
-        "cross_field": true,
-        "score": 0.109699,
-        "base_score": 0.202625,
-        "duplicate_penalty": 0.092927,
-        "path_support_norm": 0.000292,
-        "gap_bonus": 1.0,
-        "mediator_count": 6,
-        "motif_count": 6,
-        "cooc_count": 0,
-        "direct_link_status": "No direct papers yet",
-        "supporting_path_count": 6,
-        "why_now": "Special economic zones and wage inequality are already linked by 6 nearby intermediate topics.",
-        "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
-        "slice_label": "Missing direct link",
-        "public_pair_label": "wage inequality and Special economic zones",
-        "representative_papers": [
-          {
-            "paper_id": "W3022707312__gpt5mini_low",
-            "title": "The effects of special economic zones on employment and investment: a spatial panel modeling perspective",
-            "year": 2016,
-            "edge_src": "FG3C002438",
-            "edge_dst": "FG3C000007",
-            "edge_src_display_label": "Special economic zones",
-            "edge_dst_display_label": "employment"
-          },
-          {
-            "paper_id": "W2089265212__gpt5mini_low",
-            "title": "Technological Change, Skill Demand, and Wage Inequality: Evidence from Indonesia",
-            "year": 2014,
-            "edge_src": "FG3C000045",
-            "edge_dst": "FG3C000194",
-            "edge_src_display_label": "technological progress",
-            "edge_dst_display_label": "wage inequality"
-          },
-          {
-            "paper_id": "W2156296048__gpt5mini_low",
-            "title": "Does size of local labour markets affect wage inequality? a rank-size rule of income distribution",
-            "year": 2007,
-            "edge_src": "FG3C000007",
-            "edge_dst": "FG3C000194",
-            "edge_src_display_label": "employment",
-            "edge_dst_display_label": "wage inequality"
-          }
-        ],
-        "question_family": "special-economic-zones-wage-inequality",
-        "suppress_from_public_ranked_window": false,
-        "top_mediator_display_labels": [
-          "technological progress",
-          "manufacturing employment",
-          "migration"
-        ],
-        "top_mediator_labels": [
-          "technological progress",
-          "manufacturing employment",
-          "migration"
-        ],
-        "top_mediator_baseline_labels": [
-          "technological progress",
-          "manufacturing employment",
-          "migration"
-        ],
-        "top_countries_source": [
-          "China",
-          "India"
-        ],
-        "top_countries_target": [
-          "United States",
-          "India"
-        ],
-        "source_context_summary": "China and India",
-        "target_context_summary": "United States and India",
-        "common_contexts": "Special economic zones studies are common in China and India; wage inequality studies are common in United States and India.",
-        "public_specificity_score": 5.2015,
-        "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000194__FG3C002438"
       },
       {
         "pair_key": "FG3C000067__FG3C002487",
@@ -14764,6 +14365,106 @@
         "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000028__FG3C004458"
       },
       {
+        "pair_key": "FG3C000013__FG3C002623",
+        "source_id": "FG3C002623",
+        "target_id": "FG3C000013",
+        "source_label": "US economic policy uncertainty",
+        "target_label": "technological innovation",
+        "source_display_label": "U.S. economic policy uncertainty",
+        "target_display_label": "technological innovation",
+        "source_display_concept_id": "FG3C014179",
+        "target_display_concept_id": "FG3C000013",
+        "source_display_refined": true,
+        "target_display_refined": false,
+        "display_refinement_confidence": 0.3655,
+        "source_alternate_display_labels": [
+          "US economic policy uncertainty (US EPU)",
+          "US policy uncertainty",
+          "US GDP growth"
+        ],
+        "target_alternate_display_labels": [
+          "agricultural technological innovation",
+          "technological investment",
+          "corporate technological innovation"
+        ],
+        "source_bucket": "core",
+        "target_bucket": "adjacent",
+        "cross_field": true,
+        "score": 0.11315,
+        "base_score": 0.201836,
+        "duplicate_penalty": 0.088686,
+        "path_support_norm": 0.000277,
+        "gap_bonus": 1.0,
+        "mediator_count": 4,
+        "motif_count": 4,
+        "cooc_count": 0,
+        "direct_link_status": "No direct papers yet",
+        "supporting_path_count": 4,
+        "why_now": "U.S. economic policy uncertainty and technological innovation are already linked by 4 nearby intermediate topics.",
+        "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
+        "slice_label": "Missing direct link",
+        "public_pair_label": "U.S. economic policy uncertainty and technological innovation",
+        "representative_papers": [
+          {
+            "paper_id": "W4389802159__gpt5mini_low",
+            "title": "The interplay between technological innovation, financial development, energy consumption and natural resource rents in the BRICS economies: Evidence from GMM panel VAR",
+            "year": 2024,
+            "edge_src": "FG3C000249",
+            "edge_dst": "FG3C000013",
+            "edge_src_display_label": "natural resource rents",
+            "edge_dst_display_label": "technological innovation"
+          },
+          {
+            "paper_id": "W4366988647__gpt5mini_low",
+            "title": "How Does Trade Policy Uncertainty Affect Supply Chain Efficiency: A Case Study of Listed Companies of Chinese Port Industry",
+            "year": 2023,
+            "edge_src": "FG3C001102",
+            "edge_dst": "FG3C000013",
+            "edge_src_display_label": "trade policy uncertainty",
+            "edge_dst_display_label": "technological innovation"
+          },
+          {
+            "paper_id": "W4406298454__gpt5mini_low",
+            "title": "Are Geopolitical Risk and Economic Uncertainty Matter for Natural Resources Rents?",
+            "year": 2025,
+            "edge_src": "FG3C002623",
+            "edge_dst": "FG3C000249",
+            "edge_src_display_label": "U.S. economic policy uncertainty",
+            "edge_dst_display_label": "natural resource rents"
+          }
+        ],
+        "question_family": "u-s-economic-policy-uncertainty-technological-innovation",
+        "suppress_from_public_ranked_window": false,
+        "top_mediator_display_labels": [
+          "natural resource rents",
+          "trade policy uncertainty",
+          "China stock market"
+        ],
+        "top_mediator_labels": [
+          "natural resource rents",
+          "trade policy uncertainty",
+          "China stock market"
+        ],
+        "top_mediator_baseline_labels": [
+          "natural resource rents",
+          "trade policy uncertainty",
+          "China stock market"
+        ],
+        "top_countries_source": [
+          "United States",
+          "China"
+        ],
+        "top_countries_target": [
+          "China",
+          "India"
+        ],
+        "source_context_summary": "United States and China",
+        "target_context_summary": "China and India",
+        "common_contexts": "U.S. economic policy uncertainty studies are common in United States and China; technological innovation studies are common in China and India.",
+        "public_specificity_score": 4.0014,
+        "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000013__FG3C002623"
+      },
+      {
         "pair_key": "FG3C000100__FG3C004458",
         "source_id": "FG3C004458",
         "target_id": "FG3C000100",
@@ -14955,6 +14656,205 @@
         "common_contexts": "foreign direct investment studies are common in China and India; ESG investments studies are common in China, Europe, and related settings.",
         "public_specificity_score": 2.8058,
         "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000048__FG3C005535"
+      },
+      {
+        "pair_key": "FG3C000455__FG3C003050",
+        "source_id": "FG3C003050",
+        "target_id": "FG3C000455",
+        "source_label": "forecasts",
+        "target_label": "long-term interest rate",
+        "source_display_label": "individual forecasts",
+        "target_display_label": "long-term interest rate",
+        "source_display_concept_id": "FG3C013273",
+        "target_display_concept_id": "FG3C000455",
+        "source_display_refined": true,
+        "target_display_refined": false,
+        "display_refinement_confidence": 0.3822,
+        "source_alternate_display_labels": [
+          "biased forecasts",
+          "Federal Reserve Greenbook forecasts",
+          "rationality of forecasts"
+        ],
+        "target_alternate_display_labels": [
+          "long-term bonds",
+          "longer-term yields",
+          "long-term real interest rates"
+        ],
+        "source_bucket": "core",
+        "target_bucket": "core",
+        "cross_field": false,
+        "score": 0.180878,
+        "base_score": 0.202853,
+        "duplicate_penalty": 0.021975,
+        "path_support_norm": 0.000834,
+        "gap_bonus": 1.0,
+        "mediator_count": 2,
+        "motif_count": 3,
+        "cooc_count": 0,
+        "direct_link_status": "No direct papers yet",
+        "supporting_path_count": 2,
+        "why_now": "individual forecasts and long-term interest rate are already linked by 2 nearby intermediate topics.",
+        "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
+        "slice_label": "Missing direct link",
+        "public_pair_label": "individual forecasts and long-term interest rate",
+        "representative_papers": [
+          {
+            "paper_id": "W4200357935__gpt5mini_low",
+            "title": "The nonlinear causal relationship between short\u2010 and long\u2010term interest rates: An empirical assessment of the United States, the United Kingdom, and Japan",
+            "year": 2021,
+            "edge_src": "FG3C000404",
+            "edge_dst": "FG3C000455",
+            "edge_src_display_label": "short-term interest rate",
+            "edge_dst_display_label": "long-term interest rate"
+          },
+          {
+            "paper_id": "W2552511774__gpt5mini_low",
+            "title": "What keeps long-term U.S. interest rates so low?",
+            "year": 2016,
+            "edge_src": "FG3C000404",
+            "edge_dst": "FG3C000455",
+            "edge_src_display_label": "short-term interest rate",
+            "edge_dst_display_label": "long-term interest rate"
+          },
+          {
+            "paper_id": "W2164497914__gpt5mini_low",
+            "title": "Optimal Aggregation of Money Supply Forecasts: Accuracy, Profitability and Market Efficiency",
+            "year": 1983,
+            "edge_src": "FG3C003050",
+            "edge_dst": "FG3C000404",
+            "edge_src_display_label": "individual forecasts",
+            "edge_dst_display_label": "short-term interest rate"
+          }
+        ],
+        "question_family": "individual-forecasts-long-term-interest-rate",
+        "suppress_from_public_ranked_window": false,
+        "top_mediator_display_labels": [
+          "short-term interest rate",
+          "expected rate of inflation"
+        ],
+        "top_mediator_labels": [
+          "short-term interest rate",
+          "expected rate of inflation"
+        ],
+        "top_mediator_baseline_labels": [
+          "short-term interest rate",
+          "expected rate of inflation"
+        ],
+        "top_countries_source": [
+          "United States",
+          "United Kingdom"
+        ],
+        "top_countries_target": [
+          "United States",
+          "United Kingdom"
+        ],
+        "source_context_summary": "United States and United Kingdom",
+        "target_context_summary": "United States and United Kingdom",
+        "common_contexts": "individual forecasts studies are common in United States and United Kingdom; long-term interest rate studies are common in United States and United Kingdom.",
+        "public_specificity_score": 2.8042,
+        "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000455__FG3C003050"
+      },
+      {
+        "pair_key": "FG3C000069__FG3C005515",
+        "source_id": "FG3C000069",
+        "target_id": "FG3C005515",
+        "source_label": "competition",
+        "target_label": "location choice",
+        "source_display_label": "competition",
+        "target_display_label": "choice data",
+        "source_display_concept_id": "FG3C000069",
+        "target_display_concept_id": "FG3C011544",
+        "source_display_refined": false,
+        "target_display_refined": true,
+        "display_refinement_confidence": 0.2289,
+        "source_alternate_display_labels": [
+          "level of competition",
+          "R&D competition",
+          "Competition among firms"
+        ],
+        "target_alternate_display_labels": [
+          "location choices",
+          "household location choice",
+          "Choice experiment data"
+        ],
+        "source_bucket": "core",
+        "target_bucket": "core",
+        "cross_field": false,
+        "score": 0.178917,
+        "base_score": 0.203722,
+        "duplicate_penalty": 0.024805,
+        "path_support_norm": 0.000674,
+        "gap_bonus": 1.0,
+        "mediator_count": 6,
+        "motif_count": 6,
+        "cooc_count": 0,
+        "direct_link_status": "No direct papers yet",
+        "supporting_path_count": 6,
+        "why_now": "competition and choice data are already linked by 6 nearby intermediate topics.",
+        "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
+        "slice_label": "Missing direct link",
+        "public_pair_label": "choice data and competition",
+        "representative_papers": [
+          {
+            "paper_id": "W635135534__gpt5mini_low",
+            "title": "Why Is Productivity Correlated With Competition?",
+            "year": 2020,
+            "edge_src": "FG3C000069",
+            "edge_dst": "FG3C000021",
+            "edge_src_display_label": "competition",
+            "edge_dst_display_label": "productivity"
+          },
+          {
+            "paper_id": "W2059129083__gpt5mini_low",
+            "title": "Does competition raise productivity through improving management quality?",
+            "year": 2011,
+            "edge_src": "FG3C000069",
+            "edge_dst": "FG3C000021",
+            "edge_src_display_label": "competition",
+            "edge_dst_display_label": "productivity"
+          },
+          {
+            "paper_id": "W2941858063__gpt5mini_low",
+            "title": "Innovation and competition: The role of the product market",
+            "year": 2019,
+            "edge_src": "FG3C000069",
+            "edge_dst": "FG3C000030",
+            "edge_src_display_label": "competition",
+            "edge_dst_display_label": "innovation"
+          }
+        ],
+        "question_family": "competition-choice-data",
+        "suppress_from_public_ranked_window": false,
+        "top_mediator_display_labels": [
+          "innovation",
+          "productivity",
+          "R&D intensity"
+        ],
+        "top_mediator_labels": [
+          "innovation",
+          "productivity",
+          "R&D intensity"
+        ],
+        "top_mediator_baseline_labels": [
+          "innovation",
+          "productivity",
+          "R&D intensity"
+        ],
+        "top_countries_source": [
+          "China",
+          "United States",
+          "India"
+        ],
+        "top_countries_target": [
+          "Sweden",
+          "United States",
+          "England"
+        ],
+        "source_context_summary": "China, United States, and related settings",
+        "target_context_summary": "Sweden, United States, and related settings",
+        "common_contexts": "competition studies are common in China, United States, and related settings; choice data studies are common in Sweden, United States, and related settings.",
+        "public_specificity_score": 2.7034,
+        "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000069__FG3C005515"
       },
       {
         "pair_key": "FG3C000425__FG3C002284",
@@ -16254,105 +16154,6 @@
         "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000141__FG3C004338"
       },
       {
-        "pair_key": "FG3C000015__FG3C000869",
-        "source_id": "FG3C000015",
-        "target_id": "FG3C000869",
-        "source_label": "foreign direct investments",
-        "target_label": "urban-rural income gap",
-        "source_display_label": "foreign direct investments",
-        "target_display_label": "urban-rural income gap",
-        "source_display_concept_id": "FG3C000015",
-        "target_display_concept_id": "FG3C000869",
-        "source_display_refined": false,
-        "target_display_refined": false,
-        "display_refinement_confidence": 0.0,
-        "source_alternate_display_labels": [
-          "foreign firm",
-          "FDI (Foreign Direct Investment)",
-          "export promotion policies"
-        ],
-        "target_alternate_display_labels": [
-          "rural incomes",
-          "rural income"
-        ],
-        "source_bucket": "adjacent",
-        "target_bucket": "adjacent",
-        "cross_field": false,
-        "score": 0.110297,
-        "base_score": 0.207493,
-        "duplicate_penalty": 0.097196,
-        "path_support_norm": 0.002096,
-        "gap_bonus": 1.0,
-        "mediator_count": 9,
-        "motif_count": 9,
-        "cooc_count": 0,
-        "direct_link_status": "No direct papers yet",
-        "supporting_path_count": 9,
-        "why_now": "foreign direct investments and urban-rural income gap are already linked by 9 nearby intermediate topics.",
-        "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
-        "slice_label": "Missing direct link",
-        "public_pair_label": "foreign direct investments and urban-rural income gap",
-        "representative_papers": [
-          {
-            "paper_id": "W4389833630__gpt5mini_low",
-            "title": "A re-examination of the influence of human capital on urban-rural income gap in China: College enrollment expansion, digital economy and spatial spillover",
-            "year": 2023,
-            "edge_src": "FG3C000016",
-            "edge_dst": "FG3C000869",
-            "edge_src_display_label": "human capital",
-            "edge_dst_display_label": "urban-rural income gap"
-          },
-          {
-            "paper_id": "W2005322687__gpt5mini_low",
-            "title": "Is urbanization narrowing the urban-rural income gap? A cross-regional study of China",
-            "year": 2015,
-            "edge_src": "FG3C000012",
-            "edge_dst": "FG3C000869",
-            "edge_src_display_label": "urbanization",
-            "edge_dst_display_label": "urban-rural income gap"
-          },
-          {
-            "paper_id": "W3112679323__gpt5mini_low",
-            "title": "Fiscal Decentralization, Urban-Rural Income Gap, and Tourism",
-            "year": 2020,
-            "edge_src": "FG3C000012",
-            "edge_dst": "FG3C000869",
-            "edge_src_display_label": "urbanization",
-            "edge_dst_display_label": "urban-rural income gap"
-          }
-        ],
-        "question_family": "foreign-direct-investments-urban-rural-income-gap",
-        "suppress_from_public_ranked_window": false,
-        "top_mediator_display_labels": [
-          "urbanization",
-          "human capital",
-          "green total factor productivity (GTFP)"
-        ],
-        "top_mediator_labels": [
-          "urbanization",
-          "human capital",
-          "green total factor productivity (GTFP)"
-        ],
-        "top_mediator_baseline_labels": [
-          "urbanization",
-          "human capital",
-          "green total factor productivity (GTFP)"
-        ],
-        "top_countries_source": [
-          "China",
-          "India"
-        ],
-        "top_countries_target": [
-          "China",
-          "Japan"
-        ],
-        "source_context_summary": "China and India",
-        "target_context_summary": "China and Japan",
-        "common_contexts": "foreign direct investments studies are common in China and India; urban-rural income gap studies are common in China and Japan.",
-        "public_specificity_score": 2.0105,
-        "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000015__FG3C000869"
-      },
-      {
         "pair_key": "FG3C000011__FG3C000013",
         "source_id": "FG3C000013",
         "target_id": "FG3C000011",
@@ -17154,103 +16955,6 @@
         "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000005__FG3C000462"
       },
       {
-        "pair_key": "FG3C000061__FG3C000887",
-        "source_id": "FG3C000887",
-        "target_id": "FG3C000061",
-        "source_label": "digital infrastructure",
-        "target_label": "total factor productivity (TFP)",
-        "source_display_label": "digital infrastructure",
-        "target_display_label": "total factor productivity (TFP)",
-        "source_display_concept_id": "FG3C000887",
-        "target_display_concept_id": "FG3C000061",
-        "source_display_refined": false,
-        "target_display_refined": false,
-        "display_refinement_confidence": 0.0,
-        "source_alternate_display_labels": [
-          "telecommunications infrastructure"
-        ],
-        "target_alternate_display_labels": [
-          "productivity (TFP)"
-        ],
-        "source_bucket": "adjacent",
-        "target_bucket": "core",
-        "cross_field": true,
-        "score": 0.110499,
-        "base_score": 0.20401,
-        "duplicate_penalty": 0.093511,
-        "path_support_norm": 0.000819,
-        "gap_bonus": 1.0,
-        "mediator_count": 11,
-        "motif_count": 8,
-        "cooc_count": 0,
-        "direct_link_status": "No direct papers yet",
-        "supporting_path_count": 11,
-        "why_now": "digital infrastructure and total factor productivity (TFP) are already linked by 11 nearby intermediate topics.",
-        "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
-        "slice_label": "Missing direct link",
-        "public_pair_label": "total factor productivity (TFP) and digital infrastructure",
-        "representative_papers": [
-          {
-            "paper_id": "W4412017035__gpt5mini_low",
-            "title": "Green Innovation, Export Synergy, and Total Factor Productivity: Evidence from China\u2019s Marine Enterprises",
-            "year": 2025,
-            "edge_src": "FG3C000053",
-            "edge_dst": "FG3C000061",
-            "edge_src_display_label": "green innovation",
-            "edge_dst_display_label": "total factor productivity (TFP)"
-          },
-          {
-            "paper_id": "W4413272288__gpt5mini_low",
-            "title": "Does energy productivity boost total factor productivity?",
-            "year": 2025,
-            "edge_src": "FG3C000742",
-            "edge_dst": "FG3C000061",
-            "edge_src_display_label": "energy productivity",
-            "edge_dst_display_label": "total factor productivity (TFP)"
-          },
-          {
-            "paper_id": "W4404048557__gpt5mini_low",
-            "title": "Regional digital infrastructure and carbon neutrality: A technology\u2013structure\u2013efficiency perspective",
-            "year": 2024,
-            "edge_src": "FG3C000887",
-            "edge_dst": "FG3C000094",
-            "edge_src_display_label": "digital infrastructure",
-            "edge_dst_display_label": "green technology innovation"
-          }
-        ],
-        "question_family": "digital-infrastructure-total-factor-productivity",
-        "suppress_from_public_ranked_window": false,
-        "top_mediator_display_labels": [
-          "green technology innovation",
-          "green innovation",
-          "technological innovation"
-        ],
-        "top_mediator_labels": [
-          "green technology innovation",
-          "green innovation",
-          "technological innovation"
-        ],
-        "top_mediator_baseline_labels": [
-          "green technology innovation",
-          "green innovation",
-          "technological innovation"
-        ],
-        "top_countries_source": [
-          "China",
-          "Asian economies"
-        ],
-        "top_countries_target": [
-          "China",
-          "Italy",
-          "United States"
-        ],
-        "source_context_summary": "China and Asian economies",
-        "target_context_summary": "China, Italy, and related settings",
-        "common_contexts": "digital infrastructure studies are common in China and Asian economies; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
-        "public_specificity_score": 0.7041,
-        "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000061__FG3C000887"
-      },
-      {
         "pair_key": "FG3C004134__FG3C005136",
         "source_id": "FG3C005136",
         "target_id": "FG3C004134",
@@ -17342,6 +17046,100 @@
         "common_contexts": "logistic regression studies are common in China, United States, and related settings; willingness to accept (WTA) studies are common in China and Spain.",
         "public_specificity_score": 2.2021,
         "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C004134__FG3C005136"
+      },
+      {
+        "pair_key": "FG3C000013__FG3C002623",
+        "source_id": "FG3C000013",
+        "target_id": "FG3C002623",
+        "source_label": "technological innovation",
+        "target_label": "US economic policy uncertainty",
+        "source_display_label": "technological innovation",
+        "target_display_label": "U.S. economic policy uncertainty",
+        "source_display_concept_id": "FG3C000013",
+        "target_display_concept_id": "FG3C014179",
+        "source_display_refined": false,
+        "target_display_refined": true,
+        "display_refinement_confidence": 0.3655,
+        "source_alternate_display_labels": [
+          "agricultural technological innovation",
+          "technological investment",
+          "corporate technological innovation"
+        ],
+        "target_alternate_display_labels": [
+          "US economic policy uncertainty (US EPU)",
+          "US policy uncertainty",
+          "US GDP growth"
+        ],
+        "source_bucket": "adjacent",
+        "target_bucket": "core",
+        "cross_field": true,
+        "score": 0.114586,
+        "base_score": 0.203272,
+        "duplicate_penalty": 0.088686,
+        "path_support_norm": 0.000301,
+        "gap_bonus": 1.0,
+        "mediator_count": 1,
+        "motif_count": 2,
+        "cooc_count": 0,
+        "direct_link_status": "No direct papers yet",
+        "supporting_path_count": 1,
+        "why_now": "technological innovation and U.S. economic policy uncertainty are already linked by 1 nearby intermediate topics.",
+        "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
+        "slice_label": "Missing direct link",
+        "public_pair_label": "U.S. economic policy uncertainty and technological innovation",
+        "representative_papers": [
+          {
+            "paper_id": "W3088117561__gpt5mini_low",
+            "title": "Energy consumption, economic policy uncertainty and carbon emissions; causality evidence from resource rich economies",
+            "year": 2020,
+            "edge_src": "FG3C000167",
+            "edge_dst": "FG3C002623",
+            "edge_src_display_label": "carbon dioxide (CO2) emission",
+            "edge_dst_display_label": "U.S. economic policy uncertainty"
+          },
+          {
+            "paper_id": "W4408561684__gpt5mini_low",
+            "title": "Revisiting the determinants of CO2 emissions: The role of higher education under the extended STIRPAT model",
+            "year": 2025,
+            "edge_src": "FG3C000013",
+            "edge_dst": "FG3C000167",
+            "edge_src_display_label": "technological innovation",
+            "edge_dst_display_label": "carbon dioxide (CO2) emission"
+          },
+          {
+            "paper_id": "W4401173522__gpt5mini_low",
+            "title": "Impacts of Fintech and natural resources on environmental quality: The role of renewable energy and carbon taxes: A panel <scp>QARDL</scp> approach",
+            "year": 2024,
+            "edge_src": "FG3C000013",
+            "edge_dst": "FG3C000167",
+            "edge_src_display_label": "technological innovation",
+            "edge_dst_display_label": "carbon dioxide (CO2) emission"
+          }
+        ],
+        "question_family": "technological-innovation-u-s-economic-policy-uncertainty",
+        "suppress_from_public_ranked_window": false,
+        "top_mediator_display_labels": [
+          "carbon dioxide (CO2) emission"
+        ],
+        "top_mediator_labels": [
+          "carbon dioxide (CO2) emission"
+        ],
+        "top_mediator_baseline_labels": [
+          "carbon dioxide (CO2) emissions"
+        ],
+        "top_countries_source": [
+          "China",
+          "India"
+        ],
+        "top_countries_target": [
+          "United States",
+          "China"
+        ],
+        "source_context_summary": "China and India",
+        "target_context_summary": "United States and China",
+        "common_contexts": "technological innovation studies are common in China and India; U.S. economic policy uncertainty studies are common in United States and China.",
+        "public_specificity_score": 2.2015,
+        "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000013__FG3C002623"
       },
       {
         "pair_key": "FG3C000015__FG3C003298",
@@ -18236,105 +18034,6 @@
         "common_contexts": "policy studies are common in China, United States, and related settings; firm total factor productivity (TFP) studies are common in China and United States.",
         "public_specificity_score": 0.1037,
         "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C001408__FG3C002284"
-      },
-      {
-        "pair_key": "FG3C000004__FG3C001986",
-        "source_id": "FG3C001986",
-        "target_id": "FG3C000004",
-        "source_label": "central bank communication",
-        "target_label": "welfare",
-        "source_display_label": "central bank communication",
-        "target_display_label": "welfare",
-        "source_display_concept_id": "FG3C001986",
-        "target_display_concept_id": "FG3C000004",
-        "source_display_refined": false,
-        "target_display_refined": false,
-        "display_refinement_confidence": 0.0,
-        "source_alternate_display_labels": [
-          "Bank financial stability"
-        ],
-        "target_alternate_display_labels": [
-          "U.S. welfare",
-          "welfare (aggregate welfare)",
-          "welfare of the poor"
-        ],
-        "source_bucket": "core",
-        "target_bucket": "core",
-        "cross_field": false,
-        "score": 0.113168,
-        "base_score": 0.205063,
-        "duplicate_penalty": 0.091895,
-        "path_support_norm": 0.00064,
-        "gap_bonus": 1.0,
-        "mediator_count": 10,
-        "motif_count": 10,
-        "cooc_count": 0,
-        "direct_link_status": "No direct papers yet",
-        "supporting_path_count": 10,
-        "why_now": "central bank communication and welfare are already linked by 10 nearby intermediate topics.",
-        "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
-        "slice_label": "Missing direct link",
-        "public_pair_label": "central bank communication and welfare",
-        "representative_papers": [
-          {
-            "paper_id": "W4297457008__gpt5mini_low",
-            "title": "Central bank communication, shadow banking, and bank risk-taking: Theoretical model and PVAR empirical evidence",
-            "year": 2022,
-            "edge_src": "FG3C001986",
-            "edge_dst": "FG3C000387",
-            "edge_src_display_label": "central bank communication",
-            "edge_dst_display_label": "bank risk-taking"
-          },
-          {
-            "paper_id": "W2054575436__gpt5mini_low",
-            "title": "Inflation, Interest Rates, and Welfare",
-            "year": 1985,
-            "edge_src": "FG3C000027",
-            "edge_dst": "FG3C000004",
-            "edge_src_display_label": "interest rates",
-            "edge_dst_display_label": "welfare"
-          },
-          {
-            "paper_id": "W2142317302__gpt5mini_low",
-            "title": "Macroeconomic Volatility and Welfare in Developing Countries: An Introduction",
-            "year": 2007,
-            "edge_src": "FG3C000670",
-            "edge_dst": "FG3C000004",
-            "edge_src_display_label": "macroeconomic volatility",
-            "edge_dst_display_label": "welfare"
-          }
-        ],
-        "question_family": "central-bank-communication-welfare",
-        "suppress_from_public_ranked_window": false,
-        "top_mediator_display_labels": [
-          "financial markets",
-          "bank risk-taking",
-          "expectations"
-        ],
-        "top_mediator_labels": [
-          "financial markets",
-          "bank risk-taking",
-          "expectations"
-        ],
-        "top_mediator_baseline_labels": [
-          "financial markets",
-          "bank risk-taking",
-          "expectations"
-        ],
-        "top_countries_source": [
-          "China",
-          "Sweden",
-          "CZE"
-        ],
-        "top_countries_target": [
-          "United States",
-          "China"
-        ],
-        "source_context_summary": "China, Sweden, and related settings",
-        "target_context_summary": "United States and China",
-        "common_contexts": "central bank communication studies are common in China, Sweden, and related settings; welfare studies are common in United States and China.",
-        "public_specificity_score": 0.1032,
-        "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000004__FG3C001986"
       },
       {
         "pair_key": "FG3C000538__FG3C001821",
@@ -25774,6 +25473,300 @@
         "common_contexts": "enterprise digital transformation studies are common in China and sub-Saharan Africa; cost of capital studies are common in China, United States, and related settings.",
         "public_specificity_score": -1.5972,
         "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000247__FG3C001821"
+      },
+      {
+        "pair_key": "FG3C000074__FG3C003556",
+        "source_id": "FG3C000074",
+        "target_id": "FG3C003556",
+        "source_label": "economic policy uncertainty (EPU)",
+        "target_label": "green innovation efficiency (GIE)",
+        "source_display_label": "economic policy uncertainty (EPU)",
+        "target_display_label": "green innovation efficiency (GIE)",
+        "source_display_concept_id": "FG3C000074",
+        "target_display_concept_id": "FG3C003556",
+        "source_display_refined": false,
+        "target_display_refined": false,
+        "display_refinement_confidence": 0.0,
+        "source_alternate_display_labels": [
+          "US economic policy uncertainty (US EPU)"
+        ],
+        "target_alternate_display_labels": [
+          "regional innovation efficiency"
+        ],
+        "source_bucket": "core",
+        "target_bucket": "adjacent",
+        "cross_field": true,
+        "score": 0.111626,
+        "base_score": 0.202321,
+        "duplicate_penalty": 0.090695,
+        "path_support_norm": 0.000524,
+        "gap_bonus": 1.0,
+        "mediator_count": 3,
+        "motif_count": 3,
+        "cooc_count": 0,
+        "direct_link_status": "No direct papers yet",
+        "supporting_path_count": 3,
+        "why_now": "economic policy uncertainty (EPU) and green innovation efficiency (GIE) are already linked by 3 nearby intermediate topics.",
+        "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
+        "slice_label": "Missing direct link",
+        "public_pair_label": "economic policy uncertainty (EPU) and green innovation efficiency (GIE)",
+        "representative_papers": [
+          {
+            "paper_id": "W4293570098__gpt5mini_low",
+            "title": "Impact of environmental regulation intensity on green innovation efficiency in the Yellow River Basin, China",
+            "year": 2022,
+            "edge_src": "FG3C000529",
+            "edge_dst": "FG3C003556",
+            "edge_src_display_label": "environmental regulation intensity",
+            "edge_dst_display_label": "green innovation efficiency (GIE)"
+          },
+          {
+            "paper_id": "W4390543400__gpt5mini_low",
+            "title": "Impact of Heterogeneous Environmental Regulations on Green Innovation Efficiency in China\u2019s Industry",
+            "year": 2024,
+            "edge_src": "FG3C000040",
+            "edge_dst": "FG3C003556",
+            "edge_src_display_label": "environmental regulation",
+            "edge_dst_display_label": "green innovation efficiency (GIE)"
+          },
+          {
+            "paper_id": "W4401526890__gpt5mini_low",
+            "title": "Assessment of Green Innovation Efficiency in Chinese Industrial Enterprises Based on an Improved Relational Two-Stage DEA Approach: Regional Disparities and Convergence Analysis",
+            "year": 2024,
+            "edge_src": "FG3C000044",
+            "edge_dst": "FG3C003556",
+            "edge_src_display_label": "industrial structure",
+            "edge_dst_display_label": "green innovation efficiency (GIE)"
+          }
+        ],
+        "question_family": "economic-policy-uncertainty-green-innovation-efficiency",
+        "suppress_from_public_ranked_window": false,
+        "top_mediator_display_labels": [
+          "industrial structure",
+          "environmental regulation",
+          "environmental regulation intensity"
+        ],
+        "top_mediator_labels": [
+          "industrial structure",
+          "environmental regulation",
+          "environmental regulation intensity"
+        ],
+        "top_mediator_baseline_labels": [
+          "industrial structure",
+          "environmental regulation",
+          "environmental regulation intensity"
+        ],
+        "top_countries_source": [
+          "China",
+          "United States"
+        ],
+        "top_countries_target": [
+          "China",
+          "European Union (27 countries)"
+        ],
+        "source_context_summary": "China and United States",
+        "target_context_summary": "China and European Union (27 countries)",
+        "common_contexts": "economic policy uncertainty (EPU) studies are common in China and United States; green innovation efficiency (GIE) studies are common in China and European Union (27 countries).",
+        "public_specificity_score": -1.5974,
+        "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000074__FG3C003556"
+      },
+      {
+        "pair_key": "FG3C000094__FG3C002144",
+        "source_id": "FG3C002144",
+        "target_id": "FG3C000094",
+        "source_label": "Analytic Hierarchy Process (AHP)",
+        "target_label": "green technology innovation",
+        "source_display_label": "Analytic Hierarchy Process (AHP)",
+        "target_display_label": "green technology innovation",
+        "source_display_concept_id": "FG3C002144",
+        "target_display_concept_id": "FG3C000094",
+        "source_display_refined": false,
+        "target_display_refined": false,
+        "display_refinement_confidence": 0.0,
+        "source_alternate_display_labels": [
+          "routine tasks",
+          "hierarchies",
+          "medical technology"
+        ],
+        "target_alternate_display_labels": [
+          "urban green technology innovation",
+          "digital technology innovation",
+          "green technology adoption"
+        ],
+        "source_bucket": "adjacent",
+        "target_bucket": "adjacent",
+        "cross_field": false,
+        "score": 0.110048,
+        "base_score": 0.202487,
+        "duplicate_penalty": 0.092439,
+        "path_support_norm": 0.000517,
+        "gap_bonus": 1.0,
+        "mediator_count": 3,
+        "motif_count": 3,
+        "cooc_count": 0,
+        "direct_link_status": "No direct papers yet",
+        "supporting_path_count": 3,
+        "why_now": "Analytic Hierarchy Process (AHP) and green technology innovation are already linked by 3 nearby intermediate topics.",
+        "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
+        "slice_label": "Missing direct link",
+        "public_pair_label": "Analytic Hierarchy Process (AHP) and green technology innovation",
+        "representative_papers": [
+          {
+            "paper_id": "W7117993861__gpt5mini_low",
+            "title": "Green finance and carbon intensity in OECD economies\u2013Mediating roles of industrial structure upgrading and green technology innovation",
+            "year": 2026,
+            "edge_src": "FG3C000063",
+            "edge_dst": "FG3C000094",
+            "edge_src_display_label": "green finance",
+            "edge_dst_display_label": "green technology innovation"
+          },
+          {
+            "paper_id": "W4409137062__gpt5mini_low",
+            "title": "Green finance, green technology innovation, and carbon emission reduction",
+            "year": 2025,
+            "edge_src": "FG3C000063",
+            "edge_dst": "FG3C000094",
+            "edge_src_display_label": "green finance",
+            "edge_dst_display_label": "green technology innovation"
+          },
+          {
+            "paper_id": "W4317618867__gpt5mini_low",
+            "title": "Environmental Regulation and Green Technology Innovation under the Carbon Neutrality Goal: Dual Regulation of Human Capital and Industrial Structure",
+            "year": 2023,
+            "edge_src": "FG3C000465",
+            "edge_dst": "FG3C000094",
+            "edge_src_display_label": "industrial structure optimization",
+            "edge_dst_display_label": "green technology innovation"
+          }
+        ],
+        "question_family": "analytic-hierarchy-process-green-technology-innovation",
+        "suppress_from_public_ranked_window": false,
+        "top_mediator_display_labels": [
+          "green finance",
+          "new technologies",
+          "industrial structure optimization"
+        ],
+        "top_mediator_labels": [
+          "green finance",
+          "new technologies",
+          "industrial structure optimization"
+        ],
+        "top_mediator_baseline_labels": [
+          "green finance",
+          "new technologies",
+          "industrial structure optimization"
+        ],
+        "top_countries_source": [
+          "China",
+          "Israel",
+          "United States"
+        ],
+        "top_countries_target": [
+          "China",
+          "India"
+        ],
+        "source_context_summary": "China, Israel, and related settings",
+        "target_context_summary": "China and India",
+        "common_contexts": "Analytic Hierarchy Process (AHP) studies are common in China, Israel, and related settings; green technology innovation studies are common in China and India.",
+        "public_specificity_score": -1.5974,
+        "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000094__FG3C002144"
+      },
+      {
+        "pair_key": "FG3C000005__FG3C002899",
+        "source_id": "FG3C000005",
+        "target_id": "FG3C002899",
+        "source_label": "COVID-19 pandemic",
+        "target_label": "domestic interest rate",
+        "source_display_label": "COVID-19 pandemic",
+        "target_display_label": "domestic interest rate",
+        "source_display_concept_id": "FG3C000005",
+        "target_display_concept_id": "FG3C002899",
+        "source_display_refined": false,
+        "target_display_refined": false,
+        "display_refinement_confidence": 0.0,
+        "source_alternate_display_labels": [
+          "coronavirus pandemic",
+          "pandemics",
+          "COVID-19 pandemic onset"
+        ],
+        "target_alternate_display_labels": [],
+        "source_bucket": "adjacent",
+        "target_bucket": "core",
+        "cross_field": true,
+        "score": 0.109729,
+        "base_score": 0.201925,
+        "duplicate_penalty": 0.092196,
+        "path_support_norm": 0.000515,
+        "gap_bonus": 1.0,
+        "mediator_count": 3,
+        "motif_count": 2,
+        "cooc_count": 0,
+        "direct_link_status": "No direct papers yet",
+        "supporting_path_count": 3,
+        "why_now": "COVID-19 pandemic and domestic interest rate are already linked by 3 nearby intermediate topics.",
+        "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
+        "slice_label": "Missing direct link",
+        "public_pair_label": "domestic interest rate and COVID-19 pandemic",
+        "representative_papers": [
+          {
+            "paper_id": "W4388588291__gpt5mini_low",
+            "title": "Crude oil volatility spillover and stock market returns across the COVID-19 pandemic and post-pandemic periods: An empirical study of China, US, and India",
+            "year": 2023,
+            "edge_src": "FG3C000005",
+            "edge_dst": "FG3C000034",
+            "edge_src_display_label": "COVID-19 pandemic",
+            "edge_dst_display_label": "oil prices"
+          },
+          {
+            "paper_id": "W3125947674__gpt5mini_low",
+            "title": "COVID-19 pandemic and prospects for recovery of the global aviation industry",
+            "year": 2021,
+            "edge_src": "FG3C000005",
+            "edge_dst": "FG3C003124",
+            "edge_src_display_label": "COVID-19 pandemic",
+            "edge_dst_display_label": "industry sector"
+          },
+          {
+            "paper_id": "W3118361364__gpt5mini_low",
+            "title": "Impact of oil prices, the U.S interest rates on Turkey\u2019s real estate market. New evidence from combined co-integration and bootstrap ARDL tests",
+            "year": 2021,
+            "edge_src": "FG3C000034",
+            "edge_dst": "FG3C002899",
+            "edge_src_display_label": "oil prices",
+            "edge_dst_display_label": "domestic interest rate"
+          }
+        ],
+        "question_family": "covid-19-pandemic-domestic-interest-rate",
+        "suppress_from_public_ranked_window": false,
+        "top_mediator_display_labels": [
+          "oil prices",
+          "industry sector",
+          "inflation"
+        ],
+        "top_mediator_labels": [
+          "oil prices",
+          "industry sector",
+          "inflation"
+        ],
+        "top_mediator_baseline_labels": [
+          "oil prices",
+          "industry sector",
+          "inflation"
+        ],
+        "top_countries_source": [
+          "China",
+          "United States"
+        ],
+        "top_countries_target": [
+          "China",
+          "euro area",
+          "Turkey"
+        ],
+        "source_context_summary": "China and United States",
+        "target_context_summary": "China, euro area, and related settings",
+        "common_contexts": "COVID-19 pandemic studies are common in China and United States; domestic interest rate studies are common in China, euro area, and related settings.",
+        "public_specificity_score": -1.5974,
+        "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000005__FG3C002899"
       }
     ],
     "top_slices": {
@@ -30748,7 +30741,7 @@
       "tier2": {
         "path": "/downloads/frontiergraph-tier2-structured-assets.zip",
         "filename": "frontiergraph-tier2-structured-assets.zip",
-        "size_bytes": 19508211
+        "size_bytes": 19508263
       }
     },
     "artifacts": {

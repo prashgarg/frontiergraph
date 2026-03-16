@@ -17,7 +17,7 @@ const scaleItems = [
     value: formatNumber(data.metrics.edges),
   },
   {
-    label: "question candidates in the public release",
+    label: "question candidates surfaced",
     value: formatNumber(data.metrics.visible_public_questions),
   },
 ];
@@ -32,23 +32,26 @@ const scaleItems = [
       <div class="hero-panel hero-copy-panel hero-copy-panel-plain hero-copy-panel-home">
         <h1>Organizing open questions in economics.</h1>
         <p class="lede">
-          Browse question candidates that emerge when nearby topics and papers start pointing toward the same gap in a large economics corpus.
+          Browse question candidates suggested by short routes through nearby topics and papers.
         </p>
         <div class="hero-actions hero-actions-home">
           <a class="button-primary" href="/questions/">Browse questions</a>
           <a class="button-secondary" href="/paper/">Working paper</a>
           <a class="button-tertiary" href="/downloads/">Download data</a>
-          <a class="button-tertiary" href={data.app_url}>Open app for papers and export</a>
+          <a class="button-tertiary" href={data.app_url}>Open app for papers</a>
         </div>
+        <p class="mini-copy">
+          <a href="/paper/">The working paper explains the method behind the public browser.</a>
+        </p>
       </div>
       <div class="hero-visual-panel home-hero-side hero-visual-panel-home">
         <div class="home-intro-grid home-intro-grid-hero">
         <article class="card home-intro-card">
           <span class="tiny-label">What</span>
           <ul class="home-intro-list">
-            <li>Question candidates surfaced from nearby topics and papers.</li>
-            <li>Each question stays tied to intermediate topics and papers to start with.</li>
-            <li>The map helps you inspect one short route before you read more widely.</li>
+            <li>The browser surfaces question candidates from nearby topics and papers.</li>
+            <li>Each question stays tied to intermediate topics and starter papers.</li>
+            <li>One short route helps explain why a question is worth inspecting.</li>
           </ul>
         </article>
         <article class="card home-intro-card">
@@ -82,13 +85,13 @@ const scaleItems = [
       <div class="card graph-explainer-card">
         <div class="graph-explainer-copy">
           <span class="tiny-label">How to read the map</span>
-          <h2>Start with one short directed path.</h2>
+          <h2>Start with one short path.</h2>
           <p class="card-copy">
             Start with one nearby chain of topics. It shows how one topic already leads into another in the surrounding literature and gives you a concrete way to read the map.
           </p>
           <ul class="home-intro-list graph-explainer-list">
             <li>Circles are topics.</li>
-            <li>Arrows are directed relations already stated or studied in papers.</li>
+            <li>Arrows show one topic leading into another in nearby papers.</li>
             <li>One short path is often enough to see the mechanism linking two sides of a question.</li>
           </ul>
         </div>
