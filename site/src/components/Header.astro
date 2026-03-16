@@ -8,12 +8,13 @@ interface Props {
   brandHref?: string;
   variantLabel?: string;
   links?: { href: string; label: string }[];
+  currentPath?: string;
 }
 
 const {
   navPrefix = "",
   appUrl = data.app_url,
-  appLabel = "Open app for papers",
+  appLabel = "App",
   brandHref = navPrefix ? `${navPrefix}/` : "/",
   variantLabel = "",
   links = [
@@ -23,7 +24,21 @@ const {
     { href: `${navPrefix}/paper/`, label: "Paper" },
     { href: `${navPrefix}/downloads/`, label: "Downloads" },
   ],
+  currentPath = "/",
 } = Astro.props;
+
+const normalizePath = (value: string) => {
+  if (!value) return "/";
+  const trimmed = value.endsWith("/") ? value : `${value}/`;
+  return trimmed === "//" ? "/" : trimmed;
+};
+
+const normalizedCurrentPath = normalizePath(currentPath);
+const isActiveLink = (href: string) => {
+  const normalizedHref = normalizePath(href);
+  if (normalizedHref === "/") return normalizedCurrentPath === "/";
+  return normalizedCurrentPath === normalizedHref || normalizedCurrentPath.startsWith(normalizedHref);
+};
 ---
 
 <header class="site-header">
@@ -37,7 +52,7 @@ const {
   <div class="site-nav-shell">
     <nav class="site-nav">
       {links.map((link) => (
-        <a href={link.href}>{link.label}</a>
+        <a href={link.href} aria-current={isActiveLink(link.href) ? "page" : undefined}>{link.label}</a>
       ))}
     </nav>
     <div class="site-nav-actions">

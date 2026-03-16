@@ -7,18 +7,22 @@ const scaleItems = [
   {
     label: "papers screened",
     value: formatNumber(data.metrics.papers),
+    help: "Papers screened from the journal corpus before building the public release.",
   },
   {
-    label: "Top 150 core economics + Top 150 adjacent journals",
+    label: "journals covered",
     value: "300 journals",
+    help: "Top 150 core economics journals plus Top 150 adjacent journals used to build the release.",
   },
   {
-    label: "extracted relationships",
+    label: "topic links",
     value: formatNumber(data.metrics.edges),
+    help: "Directed topic-to-topic links extracted from papers and used to build the map.",
   },
   {
-    label: "question candidates surfaced",
+    label: "suggested questions",
     value: formatNumber(data.metrics.visible_public_questions),
+    help: "Question suggestions currently exposed in the public browser after release filters.",
   },
 ];
 ---
@@ -30,7 +34,7 @@ const scaleItems = [
   <main>
     <section class="hero hero-home">
       <div class="hero-panel hero-copy-panel hero-copy-panel-plain hero-copy-panel-home">
-        <h1>Organizing open questions in economics.</h1>
+        <h1 class="hero-title-home">Organizing open questions in economics.</h1>
         <p class="lede">
           Browse question candidates suggested by short routes through nearby topics and papers.
         </p>
@@ -74,7 +78,13 @@ const scaleItems = [
           {scaleItems.map((item) => (
             <div class="hero-scale-card">
               <strong>{item.value}</strong>
-              <span>{item.label}</span>
+              <div class="hero-scale-label-row">
+                <span>{item.label}</span>
+                <span class="info-tip">
+                  <button class="info-tip-trigger" type="button" aria-label={`Explain ${item.label}`}>i</button>
+                  <span class="info-tip-panel">{item.help}</span>
+                </span>
+              </div>
             </div>
           ))}
         </div>

@@ -8,9 +8,25 @@ interface Props {
   title: string;
   description: string;
   shellClass?: string;
+  navPrefix?: string;
+  appUrl?: string;
+  appLabel?: string;
+  variantLabel?: string;
+  links?: { href: string; label: string }[];
+  currentPath?: string;
 }
 
-const { title, description, shellClass = "site-shell" } = Astro.props;
+const {
+  title,
+  description,
+  shellClass = "site-shell",
+  navPrefix = "",
+  appUrl,
+  appLabel,
+  variantLabel = "",
+  links,
+  currentPath = Astro.url.pathname,
+} = Astro.props;
 const posthogKey = import.meta.env.PUBLIC_POSTHOG_KEY || "";
 const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || "https://eu.i.posthog.com";
 ---
@@ -48,10 +64,10 @@ const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || "https://eu.i.posthog
     <div class="site-bg"></div>
     <div class="site-grid"></div>
     <div class={shellClass}>
-      <Header />
+      <Header navPrefix={navPrefix} appUrl={appUrl} appLabel={appLabel} variantLabel={variantLabel} links={links} currentPath={currentPath} />
       <slot />
       <FeedbackWidget surfaceLabel={title} />
-      <Footer />
+      <Footer navPrefix={navPrefix} />
     </div>
   </body>
 </html>
