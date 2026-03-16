@@ -197,6 +197,11 @@ def inject_css() -> None:
         [data-testid="stExpanderSummary"] * {
             color: var(--ink) !important;
         }
+        [data-testid="stExpander"] details > summary,
+        [data-testid="stExpander"] summary {
+            background: var(--surface-strong) !important;
+            border-radius: 14px;
+        }
         .stApp [data-baseweb="input"],
         .stApp [data-baseweb="base-input"],
         .stApp [data-baseweb="select"],
@@ -223,6 +228,27 @@ def inject_css() -> None:
         .stApp [data-testid="stRadio"] *,
         .stApp [data-testid="stSlider"] * {
             color: var(--ink) !important;
+        }
+        .stApp [data-baseweb="input"] > div,
+        .stApp [data-baseweb="base-input"] > div,
+        .stApp [data-baseweb="select"] > div,
+        .stApp [data-baseweb="textarea"] > div,
+        .stApp [data-baseweb="select"] [role="combobox"],
+        .stApp [data-baseweb="select"] [data-testid="stSelectbox"],
+        .stApp [data-baseweb="textarea"] textarea,
+        .stApp [data-baseweb="base-input"] input {
+            background: var(--surface-strong) !important;
+            border-radius: 0.95rem !important;
+        }
+        .stApp [data-baseweb="input"] > div,
+        .stApp [data-baseweb="base-input"] > div,
+        .stApp [data-baseweb="select"] > div,
+        .stApp [data-baseweb="textarea"] > div {
+            border: 1px solid var(--line-strong) !important;
+            box-shadow: none !important;
+        }
+        .stApp [data-baseweb="select"] svg {
+            fill: var(--muted) !important;
         }
         .stApp input,
         .stApp textarea,
@@ -348,15 +374,16 @@ def posthog_capture(event: str, properties: dict[str, Any]) -> bool:
         return False
     payload = {
         "api_key": POSTHOG_KEY,
+        "distinct_id": app_distinct_id(),
         "event": event,
         "properties": {
-            "distinct_id": app_distinct_id(),
             "source": "frontiergraph_app",
+            "$process_person_profile": False,
             **properties,
         },
     }
     request = urllib.request.Request(
-        f"{POSTHOG_HOST}/capture/",
+        f"{POSTHOG_HOST}/i/v0/e/",
         data=json.dumps(payload).encode("utf-8"),
         headers={"Content-Type": "application/json"},
     )
