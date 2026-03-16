@@ -54,7 +54,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         </div>
         <div data-role="selected-concept">
           <p class="card-copy">
-            Pick a topic to see the strongest released questions touching it. Nearby topics and the local graph update around that choice.
+            Pick a topic to see the strongest released questions touching it. Read those cards first, then use nearby topics and the graph only as local context.
           </p>
         </div>
       </section>
@@ -84,7 +84,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       <section class="sidebar-card inspector-card graph-question-focus">
         <div class="inspector-head">
           <h3>Selected question and paths</h3>
-          <p class="card-copy">Choose a question card on the left to see the strongest nearby path structure behind it.</p>
+          <p class="card-copy">Choose a question card on the left to see why it surfaced, which path links are strongest, and which papers are the best place to begin.</p>
         </div>
         <div data-role="selected-question">
           <p class="card-copy">Choose a topic, then choose a question card to see a path-based reading here.</p>
@@ -102,19 +102,13 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
           <button class="button-secondary" type="button" data-role="toggle-map-mode">Show full map</button>
           <button class="button-tertiary" type="button" data-role="reset-view">Reset view</button>
         </div>
-        <div class="graph-legend" aria-hidden="true">
-          <span><i class="graph-legend-dot is-selected"></i>Selected topic</span>
-          <span><i class="graph-legend-dot is-question"></i>Question counterpart</span>
-          <span><i class="graph-legend-dot is-neighbor"></i>Nearby topic</span>
-          <span><i class="graph-legend-dot is-context"></i>Context topic</span>
-        </div>
       </div>
       <div class="graph-canvas-shell">
         <svg class="graph-canvas" data-role="graph-canvas" viewBox="0 0 1120 860" aria-label="Literature map"></svg>
         <div class="graph-tooltip" data-role="graph-tooltip" hidden></div>
       </div>
       <div class="graph-help-row">
-        <span class="mini-copy">The graph shows the selected topic, the other side of the selected question, and a few nearby context topics. Click any node to switch topic.</span>
+        <span class="mini-copy">Use the graph only when you want to see the local neighborhood around the selected question. Click any node to switch topic.</span>
       </div>
     </div>
     </div>
@@ -131,6 +125,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const MAX_SCALE = 4;
   const FOCUSED_NEIGHBOR_LIMIT = 8;
   const FOCUSED_LABEL_LIMIT = 4;
+  const TOP_QUESTION_LIMIT = 4;
   const LAYOUT_MIN_X = -0.24;
   const LAYOUT_MAX_X = 1.24;
   const LAYOUT_MIN_Y = -0.2;
@@ -254,6 +249,14 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const target = item?.target_label || conceptLabel(item?.target_id, "");
     if (source && target) return `How do ${source} and ${target} connect?`;
     return item?.public_pair_label || "Candidate question";
+  };
+  const questionProjectShapeLabel = (item) => {
+    const moveText = String(item?.recommended_move || "").toLowerCase();
+    if (/\b(bridge|review|synthesis|seminar|pilot)\b/.test(moveText)) return "Broader project";
+    if (safeNumber(item?.mediator_count) >= 6 || safeNumber(item?.supporting_path_count) >= 8 || safeNumber(item?.motif_count) >= 5) {
+      return "Broader project";
+    }
+    return "Focused question";
   };
   const questionCounterpartId = (item, selectedConceptId) => {
     if (!item || !selectedConceptId) return null;
@@ -712,11 +715,11 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
               <article class="path-strip-card">
                 <span class="tiny-label">Path ${index + 1}</span>
                 <div class="path-strip">
-                  <span>${escapeHtml(question.source_label)}</span>
+                  <span class="path-node-chip is-anchor">${escapeHtml(question.source_label)}</span>
                   <span class="path-strip-arrow" aria-hidden="true">→</span>
-                  <span>${escapeHtml(label)}</span>
+                  <span class="path-node-chip is-mediator">${escapeHtml(label)}</span>
                   <span class="path-strip-arrow" aria-hidden="true">→</span>
-                  <span>${escapeHtml(question.target_label)}</span>
+                  <span class="path-node-chip is-anchor">${escapeHtml(question.target_label)}</span>
                 </div>
                 ${control}
               </article>
@@ -734,7 +737,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         <div class="graph-question-meta">
           <span>${formatNumber(safeNumber(question.supporting_path_count))} supporting paths</span>
           <span>${formatNumber(safeNumber(question.mediator_count))} nearby topics</span>
-          <span>${formatNumber(safeNumber(question.cooc_count))} exact released papers</span>
+          <span>${escapeHtml(questionProjectShapeLabel(question))}</span>
         </div>
         <p class="mini-copy focus-step"><strong>What to inspect first:</strong> ${escapeHtml(question.recommended_move || "Start with the nearby literature and pin down the concrete empirical setting.")}</p>
         <div class="graph-question-actions button-row">
@@ -744,13 +747,13 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       </article>
       <div class="graph-question-subgrid">
         <section class="question-detail-panel">
-          <h4>Paths nearby</h4>
-          <p class="mini-copy">These mediator topics are the clearest nearby routes already connecting the two sides in the released map.</p>
+          <h4>Supporting paths</h4>
+          <p class="mini-copy">These are the clearest nearby routes already linking the two sides in the released map.</p>
           <div class="path-strip-stack">${pathStrips}</div>
         </section>
         <section class="question-detail-panel">
           <h4>Starter papers</h4>
-          <p class="mini-copy">Representative papers already sitting near this question in the released sample.</p>
+          <p class="mini-copy">Use these papers first when you want a concrete place to begin reading around this question.</p>
           ${
             papers.length
               ? `<ul class="question-paper-list">
@@ -895,7 +898,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         const edge = graph.edgeMap.get(edgeElement.dataset.edgeId);
         showTooltip(event, `
           <strong>${escapeHtml(conceptLabel(edge.source, graph.nodeMap.get(edge.source).label))} to ${escapeHtml(conceptLabel(edge.target, graph.nodeMap.get(edge.target).label))}</strong><br />
-          ${formatNumber(safeNumber(edge.support_count))} papers support this local relation in the released map.
+          ${formatNumber(safeNumber(edge.support_count))} released papers support this local relation.
         `);
       });
       edgeElement.addEventListener("mousemove", moveTooltip);
@@ -914,7 +917,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       ${conceptSubtitle(concept) ? `<p class="mini-copy opportunity-label-note">${escapeHtml(conceptSubtitle(concept))}</p>` : ""}
       <p class="card-copy">${formatNumber(safeNumber(concept.distinct_paper_support))} papers mention this topic in the released map, and ${formatNumber(questionCount)} released questions currently touch it.</p>
       <p class="mini-copy"><strong>Common settings:</strong> ${escapeHtml(listText((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public sample"))}</p>
-      <p class="mini-copy"><strong>Best next click:</strong> start with one of the question cards below. They are ordered to favor more specific, path-rich questions over broader generic pairings.</p>
+      <p class="mini-copy"><strong>Best next click:</strong> start with one of the released question cards below. They are ordered to favor more specific, path-rich questions over broader generic pairings.</p>
       <div class="button-row">
         <a class="button-secondary" href="${escapeHtml(concept.app_link)}">Explore in app</a>
       </div>
@@ -1004,12 +1007,19 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
 
     const paintOpportunities = () => {
       selectedOpportunities.innerHTML = opportunities
-        .slice(0, 5)
+        .slice(0, TOP_QUESTION_LIMIT)
         .map(
-          (item) => `
+          (item) => {
+            const counterpartLabel = conceptLabel(questionCounterpartId(item, conceptId), "Other topic");
+            return `
             <article class="graph-opportunity-card${item.pair_key === activeQuestionPairKey ? " is-active" : ""}" data-pair-key="${escapeAttr(item.pair_key)}">
               <span class="tiny-label">${escapeHtml(item.slice_label || "Released question")}</span>
               <strong>${escapeHtml(questionTitle(item))}</strong>
+              <div class="graph-question-meta graph-question-meta-tight">
+                <span>Other side: ${escapeHtml(counterpartLabel)}</span>
+                <span>${formatNumber(safeNumber(item.supporting_path_count))} supporting paths</span>
+                <span>${escapeHtml(questionProjectShapeLabel(item))}</span>
+              </div>
               ${conceptLabelNote(item.source_id) || conceptLabelNote(item.target_id) ? `<div class="mini-copy opportunity-label-note">${escapeHtml([conceptLabelNote(item.source_id), conceptLabelNote(item.target_id)].filter(Boolean).join(" "))}</div>` : ""}
               <p class="mini-copy opportunity-why"><strong>Why this surfaced:</strong> ${escapeHtml(conciseQuestionReason(item))}</p>
               <p class="mini-copy opportunity-step"><strong>What to inspect first:</strong> ${escapeHtml(item.recommended_move || "Start with the nearby literature and pin down the concrete empirical setting.")}</p>
@@ -1018,7 +1028,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
                 <a class="button-tertiary" href="${escapeHtml(item.app_link)}">Explore in app</a>
               </div>
             </article>
-          `,
+          `;
+          },
         )
         .join("");
       for (const button of selectedOpportunities.querySelectorAll("[data-select-pair]")) {

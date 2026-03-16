@@ -42,11 +42,14 @@ async function main() {
   await page.goto(`${baseUrl}/`, { waitUntil: "domcontentloaded" });
   await page.waitForSelector("h1", { timeout: 30000 });
   await page.getByText(/Search questions/i).first().waitFor({ timeout: 30000 });
-  await textDoesNotContain(page, ["Traceback", "sqlite3.OperationalError", "ModuleNotFoundError"]);
+  await textDoesNotContain(page, ["Traceback", "sqlite3.OperationalError", "ModuleNotFoundError", "Direct literature"]);
   assert(await page.getByRole("heading", { name: /Read one question or topic at a time/i }).isVisible(), "App hero missing");
   assert(await page.getByText(/Start with/i).first().isVisible(), "Primary view switch missing");
   assert(await page.getByText(/Search questions/i).first().isVisible(), "Question search missing");
   assert(await page.getByText(/Choose a question/i).first().isVisible(), "Question picker missing");
+  await page.getByText(/Supporting paths/i).first().waitFor({ timeout: 30000 });
+  assert(await page.getByText(/Supporting paths/i).first().isVisible(), "Question path preview missing");
+  assert(await page.getByRole("button", { name: /Open compare workspace/i }).first().isVisible(), "Question compare action missing");
   await assertReadableText(page, "label", "App form labels");
   await assertReadableText(page, '[data-testid="stMetric"] label', "Metric labels");
   await assertReadableText(page, '[data-testid="stTextInput"] input', "Search input text");
@@ -61,9 +64,11 @@ async function main() {
   assert(await page.getByText(/economic growth/i).first().isVisible(), "Concept deep link did not resolve");
   await page.getByText(/Local map/i).first().waitFor({ timeout: 30000 });
   await page.getByText(/Questions touching this topic/i).first().waitFor({ timeout: 30000 });
+  await page.getByRole("button", { name: /Open compare workspace/i }).first().waitFor({ timeout: 30000 });
   assert(await page.getByText(/Local map/i).first().isVisible(), "Concept local map missing");
   assert(await page.getByText(/Questions touching this topic/i).first().isVisible(), "Concept opportunity table missing");
   assert((await page.getByRole("button", { name: /Open question/i }).count()) >= 1, "Concept view should surface question actions");
+  assert(await page.getByRole("button", { name: /Open compare workspace/i }).first().isVisible(), "Concept compare action missing");
 
   await page.goto(`${baseUrl}/?view=compare&pairs=FG3C000010__FG3C003971,FG3C000003__FG3C000208`, { waitUntil: "domcontentloaded" });
   await page.waitForSelector("h1", { timeout: 30000 });

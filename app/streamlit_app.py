@@ -586,6 +586,20 @@ def question_surface_summary(row: pd.Series | dict[str, Any]) -> str:
     return " ".join(pieces[:3]) or "This question sits close to nearby work in the current public release."
 
 
+def question_is_broader_project(row: pd.Series | dict[str, Any]) -> bool:
+    recommended_move = str(row.get("recommended_move") or "").lower()
+    if any(term in recommended_move for term in ("bridge", "review", "synthesis", "seminar", "pilot")):
+        return True
+    mediator_count = int(row.get("mediator_count") or 0)
+    supporting_path_count = int(row.get("supporting_path_count") or 0)
+    motif_count = int(row.get("motif_count") or 0)
+    return mediator_count >= 6 or supporting_path_count >= 8 or motif_count >= 5
+
+
+def question_project_shape(row: pd.Series | dict[str, Any]) -> str:
+    return "Broader project" if question_is_broader_project(row) else "Focused question"
+
+
 QUESTION_SUGGESTION_TERMS = (
     "public debt",
     "urbanization",
@@ -719,7 +733,13 @@ def top_value_labels(value: Any, *, limit: int = 4) -> list[str]:
     return labels
 
 
-def question_filter_frame(questions: pd.DataFrame, search: str, direct_filters: list[str], only_cross_field: bool) -> pd.DataFrame:
+def question_filter_frame(
+    questions: pd.DataFrame,
+    search: str,
+    direct_filters: list[str],
+    only_cross_field: bool,
+    broader_project_only: bool,
+) -> pd.DataFrame:
     filtered = questions.copy()
     if search.strip():
         needle = search.strip().lower()
@@ -733,6 +753,8 @@ def question_filter_frame(questions: pd.DataFrame, search: str, direct_filters: 
         filtered = filtered[filtered["direct_link_status"].isin(direct_filters)]
     if only_cross_field:
         filtered = filtered[filtered["cross_field"] == 1]
+    if broader_project_only:
+        filtered = filtered[filtered.apply(question_is_broader_project, axis=1)]
     return filtered.reset_index(drop=True)
 
 
@@ -823,31 +845,60 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
     metrics_cols = st.columns(3)
     metrics_cols[0].metric("Nearby topics", f"{int(question['mediator_count'])}")
     metrics_cols[1].metric("Supporting paths", f"{int(question['supporting_path_count'])}")
-    metrics_cols[2].metric("Across areas", "Yes" if int(question.get("cross_field", 0) or 0) else "No")
+    metrics_cols[2].metric("Project shape", question_project_shape(question))
     if str(question.get("common_contexts") or "").strip():
         st.caption(str(question.get("common_contexts")))
     else:
         st.caption("All counts refer to the current public release, not the full economics literature.")
 
-    papers_preview = (
-        papers.drop_duplicates(subset=["paper_id"], keep="first")
-        .loc[:, ["title", "year", "edge_src_label", "edge_dst_label"]]
-        .rename(columns={"title": "Paper", "year": "Year", "edge_src_label": "Edge source", "edge_dst_label": "Edge target"})
-        .head(8)
-    )
-    st.markdown("### Papers to begin with")
-    if papers_preview.empty:
-        st.caption("No paper list was exported for this question in the current public release.")
-    else:
-        st.dataframe(papers_preview, use_container_width=True, hide_index=True)
+    detail_cols = st.columns(2)
+    with detail_cols[0]:
+        st.markdown("### Supporting paths")
+        path_rows = paths.head(3)
+        if path_rows.empty:
+            st.caption("No supporting paths were exported for this question in the current public release.")
+        else:
+            for row in path_rows.itertuples(index=False):
+                labels = parse_json(row.path_labels_json)
+                path_text = " -> ".join(labels) if labels else str(row.path_text or "")
+                with st.container(border=True):
+                    st.caption(f"Path {int(row.rank)}")
+                    st.markdown(f"**{path_text}**")
+                    st.caption(f"Path score {float(row.path_score):.1f}")
+
+    papers_preview = papers.drop_duplicates(subset=["paper_id"], keep="first").head(3)
+    with detail_cols[1]:
+        st.markdown("### Papers to begin with")
+        if papers_preview.empty:
+            st.caption("No paper list was exported for this question in the current public release.")
+        else:
+            for row in papers_preview.itertuples(index=False):
+                with st.container(border=True):
+                    st.markdown(f"**{row.title}**")
+                    edge_text = f"{row.edge_src_label} -> {row.edge_dst_label}".strip(" ->")
+                    st.caption(f"{int(row.year)} · {edge_text}" if row.year else edge_text)
+
+    action_cols = st.columns(3)
+    with action_cols[0]:
+        if st.button("Open compare workspace", key=f"question-open-compare-{pair_key}", use_container_width=True):
+            st.session_state["compare_mode"] = "Questions"
+            st.session_state["question_compare_pairs"] = [pair_key]
+            set_query_params(view="compare", pairs=pair_key)
+            st.rerun()
+    with action_cols[1]:
+        if st.button("Open raw tables", key=f"question-open-advanced-{pair_key}", use_container_width=True):
+            set_query_params(view="advanced", pair=pair_key)
+            st.rerun()
 
     brief = question_brief_markdown(question, mediators, papers, paths)
-    st.download_button(
-        "Export question brief",
-        data=brief,
-        file_name=f"frontiergraph_{pair_key}.md",
-        mime="text/markdown",
-    )
+    with action_cols[2]:
+        st.download_button(
+            "Export question brief",
+            data=brief,
+            file_name=f"frontiergraph_{pair_key}.md",
+            mime="text/markdown",
+            use_container_width=True,
+        )
 
     with st.expander("Technical tables", expanded=False):
         st.markdown("**Top mediators**")
@@ -901,18 +952,21 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
 def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_lookup: dict[str, str]) -> None:
     search_default = query_param("search")
     pair_default = query_param("pair")
+    broader_default = query_param("shape") == "broader"
     status_options = sorted(questions["direct_link_status"].dropna().unique().tolist())
     sync_from_query("question_search", search_default, "_sync_question_search")
     sync_from_query("question_cross_only", query_param("cross") == "1", "_sync_question_cross_only")
+    sync_from_query("question_broader_project_only", broader_default, "_sync_question_broader_project_only")
     ensure_widget_state("question_exact_filters", status_options)
     ensure_widget_state("question_shortlist_size", 24)
     with st.sidebar:
         st.markdown("### Narrow the shortlist")
         st.markdown(
-            '<p class="sidebar-caption">Keep the main panel focused on one question. Use these controls only when you want to narrow the list.</p>',
+            '<p class="sidebar-caption">Keep the main panel focused on one question. Narrow by exact papers, cross-area questions, or broader project-shaped questions only when you need to.</p>',
             unsafe_allow_html=True,
         )
         only_cross = st.checkbox("Cross-area only", key="question_cross_only")
+        broader_project_only = st.checkbox("Broader project", key="question_broader_project_only")
         with st.expander("Filters", expanded=False):
             direct_filters = st.multiselect(
                 "Exact papers",
@@ -926,7 +980,7 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
         key="question_search",
         placeholder="Search by topic, outcome, or question wording",
     )
-    filtered = question_filter_frame(questions, search, direct_filters, only_cross)
+    filtered = question_filter_frame(questions, search, direct_filters, only_cross, broader_project_only)
 
     if filtered.empty:
         st.warning("No released questions match the current filters.")
@@ -946,7 +1000,13 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
             with column:
                 if st.button(label_for_question(row), key=f"suggest-question-{row['pair_key']}", use_container_width=True):
                     st.session_state["question_selection"] = str(row["pair_key"])
-                    set_query_params(view="question", pair=str(row["pair_key"]), search=search, cross="1" if only_cross else "")
+                    set_query_params(
+                        view="question",
+                        pair=str(row["pair_key"]),
+                        search=search,
+                        cross="1" if only_cross else "",
+                        shape="broader" if broader_project_only else "",
+                    )
                     st.rerun()
     selection = st.selectbox(
         "Question",
@@ -954,24 +1014,28 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
         key="question_selection",
         format_func=lambda value: question_option_label(pd.Series(candidate_map[value]._asdict())),
     )
-    if selection != pair_default or search != search_default or only_cross != (query_param("cross") == "1"):
-        set_query_params(view="question", pair=selection, search=search, cross="1" if only_cross else "")
-    compare_default = [value for value in query_param("pairs").split(",") if value in candidate_map][:4]
-    sync_from_query("question_compare_pairs", compare_default, "_sync_question_compare_pairs")
+    if (
+        selection != pair_default
+        or search != search_default
+        or only_cross != (query_param("cross") == "1")
+        or broader_project_only != broader_default
+    ):
+        set_query_params(
+            view="question",
+            pair=selection,
+            search=search,
+            cross="1" if only_cross else "",
+            shape="broader" if broader_project_only else "",
+        )
     with st.sidebar:
         with st.expander("Secondary workspaces", expanded=False):
-            if st.button("Open raw tables for this question", use_container_width=True):
-                set_query_params(view="advanced", pair=selection)
+            if st.button("Open compare workspace", key="sidebar-open-question-compare", use_container_width=True):
+                st.session_state["compare_mode"] = "Questions"
+                st.session_state["question_compare_pairs"] = [selection]
+                set_query_params(view="compare", pairs=selection)
                 st.rerun()
-        with st.expander("Compare questions", expanded=False):
-            compare_pairs = st.multiselect(
-                "Pin questions to compare",
-                options=list(candidate_map.keys()),
-                key="question_compare_pairs",
-                format_func=lambda value: question_option_label(pd.Series(candidate_map[value]._asdict())),
-            )
-            if len(compare_pairs) >= 2 and st.button("Open compare workspace"):
-                set_query_params(view="compare", pairs=",".join(compare_pairs))
+            if st.button("Open raw tables for this question", key="sidebar-open-question-advanced", use_container_width=True):
+                set_query_params(view="advanced", pair=selection)
                 st.rerun()
 
     render_question_detail(db_path, selection, concept_lookup)
@@ -1078,6 +1142,18 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
     metrics_cols[2].metric("Nearby topics", f"{int(concept['neighbor_count']):,}")
     st.caption("These counts refer to the current public FrontierGraph release. They describe where the topic sits in the released graph; they are not a claim about overall importance.")
 
+    summary_cols = st.columns(2)
+    with summary_cols[0]:
+        render_summary_card(
+            "What this topic is",
+            str(concept.get("subtitle") or f"This topic appears in {int(concept['distinct_paper_support']):,} released papers."),
+        )
+    with summary_cols[1]:
+        render_summary_card(
+            "What to inspect first",
+            "Start with the released questions below, then move through nearby topics if you want a broader local reading.",
+        )
+
     countries = ", ".join(top_value_labels(concept.get("top_countries_json")))
     units = ", ".join(top_value_labels(concept.get("top_units_json")))
     if countries or units:
@@ -1120,10 +1196,23 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
                     st.rerun()
 
     st.markdown("### Local map")
+    st.caption("Use the local map after you have read the topic summary and question cards. It is there to give local context, not to replace them.")
     try:
         st.graphviz_chart(concept_graphviz(concept, neighbors), use_container_width=True)
     except Exception:
         st.code(concept_graphviz(concept, neighbors))
+
+    action_cols = st.columns(2)
+    with action_cols[0]:
+        if st.button("Open compare workspace", key=f"topic-open-compare-{choice}", use_container_width=True):
+            st.session_state["compare_mode"] = "Topics"
+            st.session_state["compare_concept_ids"] = [choice]
+            set_query_params(view="compare")
+            st.rerun()
+    with action_cols[1]:
+        if st.button("Open raw tables", key=f"topic-open-advanced-{choice}", use_container_width=True):
+            set_query_params(view="advanced", concept=choice)
+            st.rerun()
 
     with st.expander("Technical tables", expanded=False):
         n_left, n_right = st.columns(2)
@@ -1135,8 +1224,13 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
             st.dataframe(neighbors[neighbors["direction"] == "outgoing"].head(10), use_container_width=True, hide_index=True)
     with st.sidebar:
         with st.expander("Secondary workspaces", expanded=False):
-            if st.button("Open raw tables for this topic", use_container_width=True):
-                set_query_params(view="advanced")
+            if st.button("Open compare workspace", key="sidebar-open-topic-compare", use_container_width=True):
+                st.session_state["compare_mode"] = "Topics"
+                st.session_state["compare_concept_ids"] = [choice]
+                set_query_params(view="compare")
+                st.rerun()
+            if st.button("Open raw tables for this topic", key="sidebar-open-topic-advanced", use_container_width=True):
+                set_query_params(view="advanced", concept=choice)
                 st.rerun()
 
 
@@ -1212,6 +1306,7 @@ def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd
 
 def render_advanced_evidence(db_path: str, questions: pd.DataFrame, concepts: pd.DataFrame) -> None:
     pair_default = query_param("pair")
+    concept_default = query_param("concept")
     question_map = {str(row.pair_key): row for row in questions.head(150).itertuples(index=False)}
     selected_pair = pair_default if pair_default in question_map else next(iter(question_map))
     sync_from_query("advanced_pair", selected_pair, "_sync_advanced_pair")
@@ -1221,8 +1316,17 @@ def render_advanced_evidence(db_path: str, questions: pd.DataFrame, concepts: pd
         key="advanced_pair",
         format_func=lambda value: question_option_label(pd.Series(question_map[value]._asdict())),
     )
-    if choice != pair_default:
-        set_query_params(view="advanced", pair=choice)
+    concept_map = {str(row.concept_id): row for row in concepts.head(150).itertuples(index=False)}
+    selected_concept = concept_default if concept_default in concept_map else next(iter(concept_map))
+    sync_from_query("advanced_concept", selected_concept, "_sync_advanced_concept")
+    concept_choice = st.selectbox(
+        "Inspect one concept row",
+        options=list(concept_map.keys()),
+        key="advanced_concept",
+        format_func=lambda value: concept_option_label(pd.Series(concept_map[value]._asdict())),
+    )
+    if choice != pair_default or concept_choice != concept_default:
+        set_query_params(view="advanced", pair=choice, concept=concept_choice)
     bundle = load_question_bundle(db_path, choice)
     question = bundle["question"]
     st.markdown(f"### Advanced evidence for {label_for_question(question)}")
@@ -1244,14 +1348,6 @@ def render_advanced_evidence(db_path: str, questions: pd.DataFrame, concepts: pd
         st.json(load_release_metrics(db_path))
 
     st.markdown("### Concept lookup")
-    concept_map = {str(row.concept_id): row for row in concepts.head(150).itertuples(index=False)}
-    ensure_widget_state("advanced_concept", next(iter(concept_map)))
-    concept_choice = st.selectbox(
-        "Inspect one concept row",
-        options=list(concept_map.keys()),
-        key="advanced_concept",
-        format_func=lambda value: concept_option_label(pd.Series(concept_map[value]._asdict())),
-    )
     concept_bundle = load_concept_bundle(db_path, concept_choice)
     if concept_bundle["concept"] is not None:
         st.json({key: (value.item() if hasattr(value, "item") else value) for key, value in concept_bundle["concept"].to_dict().items()})
@@ -1316,6 +1412,7 @@ def main() -> None:
         "_sync_primary_view",
     )
     active_view = view_default if view_default in {"compare", "advanced"} else st.session_state.get("primary_view", "question")
+    previous_primary_view = st.session_state.get("_last_primary_view", st.session_state.get("primary_view", "question"))
     primary_view = st.radio(
         "Start with",
         options=primary_view_keys,
@@ -1323,11 +1420,18 @@ def main() -> None:
         format_func=lambda value: {"question": "Questions", "concept": "Topics"}[value],
         horizontal=True,
     )
-    if active_view not in {"compare", "advanced"} and primary_view != view_default:
+    if active_view in {"compare", "advanced"}:
+        if primary_view != previous_primary_view:
+            st.session_state["_last_primary_view"] = primary_view
+            set_query_params(view=primary_view)
+            st.rerun()
+        st.caption("You are in a secondary workspace. Use the main picker above to return to questions or topics.")
+    elif primary_view != view_default:
+        st.session_state["_last_primary_view"] = primary_view
         set_query_params(view=primary_view)
         st.rerun()
-    if active_view in {"compare", "advanced"}:
-        st.caption("You are in a secondary workspace. Use the main picker above to return to questions or topics.")
+    else:
+        st.session_state["_last_primary_view"] = primary_view
 
     if active_view == "question":
         render_question_explorer(db_path, questions, concept_lookup)
