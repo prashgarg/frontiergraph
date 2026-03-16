@@ -1,0 +1,129 @@
+---
+interface Props {
+  surfaceLabel?: string;
+}
+
+const { surfaceLabel = "FrontierGraph" } = Astro.props;
+const feedbackEmail = import.meta.env.PUBLIC_FEEDBACK_EMAIL || "prashant.garg@imperial.ac.uk";
+const rootId = `feedback-widget-${Math.random().toString(36).slice(2, 10)}`;
+---
+
+<div id={rootId} class="feedback-widget" data-surface-label={surfaceLabel} data-feedback-email={feedbackEmail}>
+  <button class="feedback-trigger" type="button" data-role="feedback-open">Give feedback</button>
+  <dialog class="feedback-dialog" data-role="feedback-dialog">
+    <form class="feedback-form" data-role="feedback-form" method="dialog">
+      <div class="feedback-head">
+        <div>
+          <span class="tiny-label">Feedback</span>
+          <h2>Help improve FrontierGraph</h2>
+        </div>
+        <button class="feedback-close" type="button" data-role="feedback-close" aria-label="Close feedback form">×</button>
+      </div>
+      <label>
+        <span>What kind of feedback is this?</span>
+        <select name="feedback_type">
+          <option>Something was unclear</option>
+          <option>Bug or broken flow</option>
+          <option>Idea or request</option>
+        </select>
+      </label>
+      <label>
+        <span>Your feedback</span>
+        <textarea
+          name="message"
+          rows="5"
+          placeholder="What were you trying to do, and what would make this page more useful?"
+          required
+        ></textarea>
+      </label>
+      <label>
+        <span>Optional email</span>
+        <input type="email" name="reply_email" placeholder="If you'd like a reply" />
+      </label>
+      <p class="mini-copy" data-role="feedback-status">
+        If analytics is configured, this goes into the anonymous feedback stream. Otherwise it opens an email draft.
+      </p>
+      <div class="button-row feedback-actions">
+        <button class="button-tertiary" type="button" data-role="feedback-cancel">Cancel</button>
+        <button class="button-primary" type="submit">Send feedback</button>
+      </div>
+    </form>
+  </dialog>
+</div>
+
+<script is:inline define:vars={{ rootId }} type="module">
+  const root = document.getElementById(rootId);
+  if (!(root instanceof HTMLElement)) throw new Error("Feedback widget root missing");
+
+  const dialog = root.querySelector('[data-role="feedback-dialog"]');
+  const form = root.querySelector('[data-role="feedback-form"]');
+  const openButton = root.querySelector('[data-role="feedback-open"]');
+  const closeButton = root.querySelector('[data-role="feedback-close"]');
+  const cancelButton = root.querySelector('[data-role="feedback-cancel"]');
+  const status = root.querySelector('[data-role="feedback-status"]');
+
+  const surfaceLabel = root.dataset.surfaceLabel || "FrontierGraph";
+  const feedbackEmail = root.dataset.feedbackEmail || "prashant.garg@imperial.ac.uk";
+
+  const openDialog = () => {
+    if (!(dialog instanceof HTMLDialogElement)) return;
+    if (window.posthog?.capture) {
+      window.posthog.capture("feedback_opened", {
+        surface: surfaceLabel,
+        path: window.location.pathname,
+        url: window.location.href,
+      });
+    }
+    dialog.showModal();
+  };
+
+  const closeDialog = () => {
+    if (dialog instanceof HTMLDialogElement && dialog.open) dialog.close();
+  };
+
+  openButton?.addEventListener("click", openDialog);
+  closeButton?.addEventListener("click", closeDialog);
+  cancelButton?.addEventListener("click", closeDialog);
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!(form instanceof HTMLFormElement)) return;
+    const data = new FormData(form);
+    const feedbackType = String(data.get("feedback_type") || "");
+    const message = String(data.get("message") || "").trim();
+    const replyEmail = String(data.get("reply_email") || "").trim();
+    if (!message) {
+      if (status instanceof HTMLElement) status.textContent = "Please add a short message before sending.";
+      return;
+    }
+
+    const payload = {
+      surface: surfaceLabel,
+      path: window.location.pathname,
+      url: window.location.href,
+      feedback_type: feedbackType,
+      message,
+      reply_email: replyEmail,
+    };
+
+    if (window.posthog?.capture) {
+      window.posthog.capture("feedback_submitted", payload);
+      if (status instanceof HTMLElement) status.textContent = "Thanks. Your feedback was recorded.";
+      form.reset();
+      setTimeout(closeDialog, 800);
+      return;
+    }
+
+    const body = [
+      `Surface: ${surfaceLabel}`,
+      `Path: ${window.location.pathname}`,
+      `Type: ${feedbackType}`,
+      "",
+      message,
+      ...(replyEmail ? ["", `Reply email: ${replyEmail}`] : []),
+    ].join("\n");
+    const href = `mailto:${encodeURIComponent(feedbackEmail)}?subject=${encodeURIComponent(`FrontierGraph feedback: ${surfaceLabel}`)}&body=${encodeURIComponent(body)}`;
+    window.location.href = href;
+    closeDialog();
+  });
+</script>

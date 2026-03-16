@@ -66,6 +66,12 @@ env_vars=(
   "ECON_RANKER_HEADLESS=true"
 )
 
+optional_env_vars=(
+  FRONTIERGRAPH_POSTHOG_KEY
+  FRONTIERGRAPH_POSTHOG_HOST
+  FRONTIERGRAPH_FEEDBACK_EMAIL
+)
+
 deploy_args=(
   gcloud run deploy "$SERVICE_NAME"
   --project "$PROJECT_ID"
@@ -99,6 +105,12 @@ else
   echo "DATA_BUCKET is not set. Deploying the tiny packaged demo DB instead of the economics corpus."
   env_vars+=("ECON_OPPORTUNITY_DB=/app/data/processed/app.db")
 fi
+
+for var_name in "${optional_env_vars[@]}"; do
+  if [[ -n "${!var_name:-}" ]]; then
+    env_vars+=("${var_name}=${!var_name}")
+  fi
+done
 
 SET_ENV_VARS="$(IFS=,; echo "${env_vars[*]}")"
 deploy_args+=(--set-env-vars "$SET_ENV_VARS")

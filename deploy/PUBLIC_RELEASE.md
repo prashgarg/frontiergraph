@@ -52,6 +52,30 @@ The repository now ships:
 
 The public DB itself should be hosted as a public GCS object or another public blob store. The site export script reads `FRONTIERGRAPH_PUBLIC_DB_URL` to wire the download link. The site export also reads `FRONTIERGRAPH_PUBLIC_APP_URL` to wire the deeper-app links.
 
+## Analytics and feedback
+
+For launch, the cleanest stack is:
+
+- `Cloudflare Web Analytics` for aggregate traffic and performance on the Astro site
+- `PostHog Cloud EU` for product events and anonymous feedback
+- `Give feedback` surfaces on both the site and app
+
+Cloudflare Web Analytics is enabled in the Cloudflare Pages dashboard. It does not need repo changes.
+
+For the site on Cloudflare Pages, set:
+
+- `PUBLIC_POSTHOG_KEY`
+- `PUBLIC_POSTHOG_HOST=https://eu.i.posthog.com`
+- `PUBLIC_FEEDBACK_EMAIL=prashant.garg@imperial.ac.uk`
+
+For the Cloud Run app, set these in `deploy/public_release.env` before deploy:
+
+- `FRONTIERGRAPH_POSTHOG_KEY`
+- `FRONTIERGRAPH_POSTHOG_HOST=https://eu.i.posthog.com`
+- `FRONTIERGRAPH_FEEDBACK_EMAIL=prashant.garg@imperial.ac.uk`
+
+The current implementation is anonymous by default and does not depend on session replay.
+
 ## Refresh workflow
 
 The repository includes a GitHub Actions workflow:

@@ -112,6 +112,12 @@ Cloudflare Pages should use:
 - Build command: `npm install && npm run build`
 - Build output directory: `dist`
 
+If you want launch analytics and built-in feedback on the static site, set these in the Cloudflare Pages project settings:
+
+- `PUBLIC_POSTHOG_KEY`
+- `PUBLIC_POSTHOG_HOST=https://eu.i.posthog.com`
+- `PUBLIC_FEEDBACK_EMAIL=prashant.garg@imperial.ac.uk`
+
 ## Deployment architecture
 
 - `frontiergraph.com`: Astro site on Cloudflare Pages
@@ -120,6 +126,22 @@ Cloudflare Pages should use:
 - public static pages: generated into the Astro site from the same release source of truth
 
 See [deploy/PUBLIC_RELEASE.md](deploy/PUBLIC_RELEASE.md) for deployment notes.
+
+## Optional launch analytics and feedback
+
+The recommended launch stack is:
+
+- `Cloudflare Web Analytics` for aggregate traffic and performance
+- `PostHog Cloud EU` for anonymous event analytics
+- `Give feedback` entry points on the site and app
+
+For the Cloud Run app, add these to `deploy/public_release.env` before running `scripts/deploy_cloud_run.sh`:
+
+- `FRONTIERGRAPH_POSTHOG_KEY`
+- `FRONTIERGRAPH_POSTHOG_HOST=https://eu.i.posthog.com`
+- `FRONTIERGRAPH_FEEDBACK_EMAIL=prashant.garg@imperial.ac.uk`
+
+Keep session replay off unless you intentionally want it later.
 
 ## Optional larger economics build
 

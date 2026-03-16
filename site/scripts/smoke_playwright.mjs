@@ -79,6 +79,12 @@ async function main() {
   assert(await page.getByText(/^What$/).first().isVisible(), "Homepage what card missing");
   assert(await page.getByText(/^Why$/).first().isVisible(), "Homepage why card missing");
   assert(await page.getByRole("link", { name: /About the project/i }).isVisible(), "Homepage about link missing");
+  const feedbackTrigger = page.getByRole("button", { name: /^Give feedback$/ });
+  assert(await feedbackTrigger.isVisible(), "Site feedback trigger missing");
+  await feedbackTrigger.click();
+  await page.locator(".feedback-dialog[open]").waitFor({ timeout: 5000 });
+  assert(await page.locator(".feedback-dialog[open]").isVisible(), "Feedback dialog should open");
+  await page.getByRole("button", { name: /Cancel/i }).click();
   assert((await page.locator('[data-role="home-editorial-carousel"]').count()) === 0, "Homepage should not show the old editorial carousel");
   assert(await page.locator('[data-role="homepage-scale-strip"]').isVisible(), "Homepage release strip missing");
 
@@ -139,6 +145,7 @@ async function main() {
 
   await page.goto(`${baseUrl}/paper/`, { waitUntil: "networkidle" });
   assert(await page.getByRole("heading", { name: /What Should Economics Ask Next/i }).first().isVisible(), "Paper page missing");
+  assert(await page.getByRole("button", { name: /^Give feedback$/ }).isVisible(), "Paper page should keep feedback access");
   assert((await page.locator(".paper-hero .button-row a").count()) === 2, "Paper hero should only show paper-specific CTAs");
   assert(await page.locator(".paper-hero .button-row").getByRole("link", { name: /^Download PDF$/ }).isVisible(), "Paper hero PDF CTA missing");
   assert(await page.locator(".paper-hero .button-row").getByRole("link", { name: /^Open downloads$/ }).isVisible(), "Paper hero downloads CTA missing");

@@ -48,8 +48,10 @@ async function main() {
   assert(await page.getByText(/Search questions/i).first().isVisible(), "Question search missing");
   assert(await page.getByText(/Choose a question/i).first().isVisible(), "Question picker missing");
   await page.getByText(/Supporting paths/i).first().waitFor({ timeout: 30000 });
+  await page.getByText(/Give feedback/i).first().waitFor({ timeout: 30000 });
   assert(await page.getByText(/Supporting paths/i).first().isVisible(), "Question path preview missing");
   assert(await page.getByRole("button", { name: /Open compare workspace/i }).first().isVisible(), "Question compare action missing");
+  assert((await page.getByText(/Give feedback/i).count()) >= 1, "Question feedback missing");
   await assertReadableText(page, "label", "App form labels");
   await assertReadableText(page, '[data-testid="stMetric"] label', "Metric labels");
   await assertReadableText(page, '[data-testid="stTextInput"] input', "Search input text");
@@ -58,6 +60,7 @@ async function main() {
   await page.waitForSelector("h1", { timeout: 30000 });
   await page.getByText(/Search topics/i).first().waitFor({ timeout: 30000 });
   await page.getByText(/economic growth/i).first().waitFor({ timeout: 30000 });
+  await page.getByText(/Give feedback/i).first().waitFor({ timeout: 30000 });
   await textDoesNotContain(page, ["Traceback", "sqlite3.OperationalError"]);
   assert(await page.getByText(/Search topics/i).first().isVisible(), "Concept view input missing");
   assert(await page.getByText(/Choose a topic/i).first().isVisible(), "Concept picker missing");
@@ -69,12 +72,15 @@ async function main() {
   assert(await page.getByText(/Questions touching this topic/i).first().isVisible(), "Concept opportunity table missing");
   assert((await page.getByRole("button", { name: /Open question/i }).count()) >= 1, "Concept view should surface question actions");
   assert(await page.getByRole("button", { name: /Open compare workspace/i }).first().isVisible(), "Concept compare action missing");
+  assert((await page.getByText(/Give feedback/i).count()) >= 1, "Topic feedback missing");
 
   await page.goto(`${baseUrl}/?view=compare&pairs=FG3C000010__FG3C003971,FG3C000003__FG3C000208`, { waitUntil: "domcontentloaded" });
   await page.waitForSelector("h1", { timeout: 30000 });
   await page.getByText(/Choose 2 to 4 questions/i).first().waitFor({ timeout: 30000 });
+  await page.getByText(/Give feedback/i).first().waitFor({ timeout: 30000 });
   await textDoesNotContain(page, ["Traceback", "sqlite3.OperationalError"]);
   assert(await page.getByText(/Choose 2 to 4 questions/i).first().isVisible(), "Compare multiselect missing");
+  assert((await page.getByText(/Give feedback/i).count()) >= 1, "Compare feedback missing");
 
   assert(errors.length === 0, `Browser errors found:\n${errors.join("\n")}`);
   await browser.close();

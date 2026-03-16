@@ -4,6 +4,10 @@ import json
 import os
 import sqlite3
 import sys
+import urllib.error
+import urllib.parse
+import urllib.request
+import uuid
 from pathlib import Path
 from typing import Any
 
@@ -26,6 +30,9 @@ DEFAULT_DB = Path("data/production/frontiergraph_public_release/frontiergraph-ec
 FALLBACK_DB = Path(
     "data/production/frontiergraph_concept_compare_v1/baseline/suppression/concept_exploratory_suppressed_top100k_app.sqlite"
 )
+POSTHOG_KEY = os.environ.get("FRONTIERGRAPH_POSTHOG_KEY", "").strip()
+POSTHOG_HOST = os.environ.get("FRONTIERGRAPH_POSTHOG_HOST", "https://eu.i.posthog.com").strip().rstrip("/")
+FEEDBACK_EMAIL = os.environ.get("FRONTIERGRAPH_FEEDBACK_EMAIL", "prashant.garg@imperial.ac.uk").strip()
 
 
 def inject_css() -> None:
@@ -325,6 +332,47 @@ def sync_from_query(key: str, value: Any, marker: str) -> None:
 def ensure_widget_state(key: str, value: Any) -> None:
     if key not in st.session_state:
         st.session_state[key] = value
+
+
+def analytics_enabled() -> bool:
+    return bool(POSTHOG_KEY)
+
+
+def app_distinct_id() -> str:
+    ensure_widget_state("_analytics_distinct_id", str(uuid.uuid4()))
+    return str(st.session_state["_analytics_distinct_id"])
+
+
+def posthog_capture(event: str, properties: dict[str, Any]) -> bool:
+    if not analytics_enabled():
+        return False
+    payload = {
+        "api_key": POSTHOG_KEY,
+        "event": event,
+        "properties": {
+            "distinct_id": app_distinct_id(),
+            "source": "frontiergraph_app",
+            **properties,
+        },
+    }
+    request = urllib.request.Request(
+        f"{POSTHOG_HOST}/capture/",
+        data=json.dumps(payload).encode("utf-8"),
+        headers={"Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=4):
+            return True
+    except (urllib.error.URLError, TimeoutError, ValueError):
+        return False
+
+
+def track_once(state_key: str, event: str, properties: dict[str, Any]) -> None:
+    signature = json.dumps(properties, sort_keys=True, default=str)
+    if st.session_state.get(state_key) == signature:
+        return
+    posthog_capture(event, properties)
+    st.session_state[state_key] = signature
 
 
 def choose_db_path() -> str:
@@ -733,6 +781,61 @@ def top_value_labels(value: Any, *, limit: int = 4) -> list[str]:
     return labels
 
 
+def feedback_mailto_link(surface: str, feedback_type: str, message: str, email: str, context: dict[str, Any]) -> str:
+    subject = urllib.parse.quote(f"FrontierGraph feedback: {surface}")
+    context_lines = [f"{key}: {value}" for key, value in context.items() if value]
+    body_parts = [
+        f"Surface: {surface}",
+        f"Type: {feedback_type}",
+        *(context_lines or []),
+        "",
+        message or "(No message entered)",
+    ]
+    if email.strip():
+        body_parts.extend(["", f"Reply email: {email.strip()}"])
+    body = urllib.parse.quote("\n".join(body_parts))
+    return f"mailto:{FEEDBACK_EMAIL}?subject={subject}&body={body}"
+
+
+def render_feedback_box(surface: str, context: dict[str, Any]) -> None:
+    with st.expander("Give feedback", expanded=False):
+        st.caption("Tell me what was confusing, what worked, or what would make this more useful.")
+        feedback_type = st.selectbox(
+            "Feedback type",
+            options=["Something was unclear", "Bug or broken flow", "Idea or request"],
+            key=f"feedback-type-{surface}",
+        )
+        message = st.text_area(
+            "Your feedback",
+            key=f"feedback-message-{surface}",
+            placeholder="What were you trying to do, and what got in the way?",
+            height=120,
+        )
+        email = st.text_input(
+            "Optional email",
+            key=f"feedback-email-{surface}",
+            placeholder="If you'd like a reply",
+        )
+        if st.button("Submit feedback", key=f"feedback-submit-{surface}", use_container_width=True):
+            if not message.strip():
+                st.warning("Add a short note before submitting feedback.")
+                return
+            payload = {
+                "surface": surface,
+                "feedback_type": feedback_type,
+                "message": message.strip(),
+                "reply_email": email.strip(),
+                **context,
+            }
+            if analytics_enabled():
+                posthog_capture("feedback_submitted", payload)
+                st.success("Thanks. Your feedback was recorded.")
+            else:
+                st.info("Analytics feedback capture is not configured yet. You can still send this by email below.")
+        mailto_link = feedback_mailto_link(surface, feedback_type, message.strip(), email.strip(), context)
+        st.markdown(f"[Send by email instead]({mailto_link})")
+
+
 def question_filter_frame(
     questions: pd.DataFrame,
     search: str,
@@ -1030,15 +1133,37 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
     with st.sidebar:
         with st.expander("Secondary workspaces", expanded=False):
             if st.button("Open compare workspace", key="sidebar-open-question-compare", use_container_width=True):
+                posthog_capture("app_secondary_workspace_opened", {"workspace": "compare", "surface": "question", "pair_key": selection})
                 st.session_state["compare_mode"] = "Questions"
                 st.session_state["question_compare_pairs"] = [selection]
                 set_query_params(view="compare", pairs=selection)
                 st.rerun()
             if st.button("Open raw tables for this question", key="sidebar-open-question-advanced", use_container_width=True):
+                posthog_capture("app_secondary_workspace_opened", {"workspace": "advanced", "surface": "question", "pair_key": selection})
                 set_query_params(view="advanced", pair=selection)
                 st.rerun()
 
+    selection_row = pd.Series(candidate_map[selection]._asdict())
+    track_once(
+        "_analytics_question_selection",
+        "app_question_viewed",
+        {
+            "view": "question",
+            "pair_key": selection,
+            "question_label": str(selection_row.get("public_pair_label") or ""),
+            "cross_field": int(selection_row.get("cross_field") or 0),
+            "project_shape": question_project_shape(selection_row),
+        },
+    )
     render_question_detail(db_path, selection, concept_lookup)
+    render_feedback_box(
+        "app_question",
+        {
+            "pair_key": selection,
+            "question_label": str(selection_row.get("public_pair_label") or ""),
+            "view": "question",
+        },
+    )
 
     with st.expander("More questions in this shortlist", expanded=False):
         preview_table = preview.loc[:, ["public_pair_label", "supporting_path_count", "mediator_count", "recommended_move"]].copy()
@@ -1133,6 +1258,16 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
         st.warning("That concept was not found in the public bundle.")
         return
 
+    track_once(
+        "_analytics_topic_selection",
+        "app_topic_viewed",
+        {
+            "view": "concept",
+            "concept_id": choice,
+            "concept_label": str(concept["plain_label"]),
+        },
+    )
+
     st.markdown(f"## {concept['plain_label']}")
     if str(concept.get("subtitle", "")).strip():
         st.caption(str(concept["subtitle"]))
@@ -1205,12 +1340,14 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
     action_cols = st.columns(2)
     with action_cols[0]:
         if st.button("Open compare workspace", key=f"topic-open-compare-{choice}", use_container_width=True):
+            posthog_capture("app_secondary_workspace_opened", {"workspace": "compare", "surface": "topic", "concept_id": choice})
             st.session_state["compare_mode"] = "Topics"
             st.session_state["compare_concept_ids"] = [choice]
             set_query_params(view="compare")
             st.rerun()
     with action_cols[1]:
         if st.button("Open raw tables", key=f"topic-open-advanced-{choice}", use_container_width=True):
+            posthog_capture("app_secondary_workspace_opened", {"workspace": "advanced", "surface": "topic", "concept_id": choice})
             set_query_params(view="advanced", concept=choice)
             st.rerun()
 
@@ -1225,19 +1362,31 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
     with st.sidebar:
         with st.expander("Secondary workspaces", expanded=False):
             if st.button("Open compare workspace", key="sidebar-open-topic-compare", use_container_width=True):
+                posthog_capture("app_secondary_workspace_opened", {"workspace": "compare", "surface": "topic", "concept_id": choice})
                 st.session_state["compare_mode"] = "Topics"
                 st.session_state["compare_concept_ids"] = [choice]
                 set_query_params(view="compare")
                 st.rerun()
             if st.button("Open raw tables for this topic", key="sidebar-open-topic-advanced", use_container_width=True):
+                posthog_capture("app_secondary_workspace_opened", {"workspace": "advanced", "surface": "topic", "concept_id": choice})
                 set_query_params(view="advanced", concept=choice)
                 st.rerun()
+    render_feedback_box(
+        "app_topic",
+        {
+            "concept_id": choice,
+            "concept_label": str(concept["plain_label"]),
+            "view": "concept",
+        },
+    )
 
 
 def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd.DataFrame) -> None:
+    track_once("_analytics_compare_workspace", "app_secondary_workspace_viewed", {"workspace": "compare"})
     pair_defaults = [value for value in query_param("pairs").split(",") if value]
     sync_from_query("compare_mode", "Questions" if pair_defaults else st.session_state.get("compare_mode", "Questions"), "_sync_compare_mode")
     compare_mode = st.radio("Compare questions or topics", options=["Questions", "Topics"], horizontal=True, key="compare_mode")
+    feedback_context = {"workspace": "compare", "mode": compare_mode.lower()}
     if compare_mode == "Questions":
         candidate_map = {str(row.pair_key): row for row in questions.head(150).itertuples(index=False)}
         sync_from_query(
@@ -1255,6 +1404,7 @@ def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd
             set_query_params(view="compare", pairs=",".join(selected[:4]))
         if len(selected) < 2:
             st.info("Select at least two questions to compare them side by side.")
+            render_feedback_box("app_compare", feedback_context)
             return
         cols = st.columns(len(selected[:4]))
         for col, pair_key in zip(cols, selected[:4]):
@@ -1283,6 +1433,7 @@ def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd
         )
         if len(selected) < 2:
             st.info("Select at least two topics to compare them side by side.")
+            render_feedback_box("app_compare", feedback_context)
             return
         cols = st.columns(len(selected[:4]))
         for col, concept_id in zip(cols, selected[:4]):
@@ -1302,9 +1453,11 @@ def render_compare_workspace(db_path: str, questions: pd.DataFrame, concepts: pd
                     st.markdown("**Nearest neighbors**")
                     for row in neighbors.head(4).itertuples(index=False):
                         st.markdown(f"- {row.label}")
+    render_feedback_box("app_compare", feedback_context)
 
 
 def render_advanced_evidence(db_path: str, questions: pd.DataFrame, concepts: pd.DataFrame) -> None:
+    track_once("_analytics_advanced_workspace", "app_secondary_workspace_viewed", {"workspace": "advanced"})
     pair_default = query_param("pair")
     concept_default = query_param("concept")
     question_map = {str(row.pair_key): row for row in questions.head(150).itertuples(index=False)}
@@ -1351,6 +1504,7 @@ def render_advanced_evidence(db_path: str, questions: pd.DataFrame, concepts: pd
     concept_bundle = load_concept_bundle(db_path, concept_choice)
     if concept_bundle["concept"] is not None:
         st.json({key: (value.item() if hasattr(value, "item") else value) for key, value in concept_bundle["concept"].to_dict().items()})
+    render_feedback_box("app_advanced", {"workspace": "advanced", "pair_key": choice, "concept_id": concept_choice})
 
 
 def main() -> None:
