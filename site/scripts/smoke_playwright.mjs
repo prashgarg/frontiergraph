@@ -77,8 +77,8 @@ async function main() {
   assert(await page.getByRole("link", { name: /^Read paper$/ }).first().isVisible(), "Homepage paper CTA missing");
   assert(await page.getByRole("link", { name: /^Download data$/ }).first().isVisible(), "Homepage data CTA missing");
   assert(await page.getByText(/^What$/).first().isVisible(), "Homepage what card missing");
-  assert(await page.getByText(/^What is a graph\?$/).first().isVisible(), "Homepage graph explainer missing");
   assert(await page.getByText(/^Why$/).first().isVisible(), "Homepage why card missing");
+  assert(await page.getByText(/How to read the map/i).isVisible(), "Homepage graph explainer section missing");
   assert(await page.getByRole("link", { name: /About the project/i }).isVisible(), "Homepage about link missing");
   const feedbackTrigger = page.getByRole("button", { name: /^Give feedback$/ });
   assert(await feedbackTrigger.isVisible(), "Site feedback trigger missing");

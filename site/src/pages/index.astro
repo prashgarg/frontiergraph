@@ -9,12 +9,16 @@ const scaleItems = [
     value: formatNumber(data.metrics.papers),
   },
   {
-    label: "papers in the normalized graph",
-    value: formatNumber(data.metrics.normalized_graph_papers),
+    label: "Top 150 core economics + Top 150 adjacent journals",
+    value: "300 journals",
   },
   {
-    label: "native concepts",
-    value: formatNumber(data.metrics.native_concepts),
+    label: "extracted relationships",
+    value: formatNumber(data.metrics.edges),
+  },
+  {
+    label: "question candidates in the public release",
+    value: formatNumber(data.metrics.visible_public_questions),
   },
 ];
 ---
@@ -41,25 +45,11 @@ const scaleItems = [
         <div class="home-intro-grid home-intro-grid-hero">
         <article class="card home-intro-card">
           <span class="tiny-label">What</span>
-          <p class="card-copy">
-            A question set built from a published-journal economics corpus.
-          </p>
-        </article>
-        <article class="card home-intro-card">
-          <span class="tiny-label">What is a graph?</span>
-          <div class="graph-mini-diagram" aria-hidden="true">
-            <svg viewBox="0 0 140 72" role="presentation">
-              <line x1="28" y1="42" x2="70" y2="22"></line>
-              <line x1="70" y1="22" x2="112" y2="40"></line>
-              <line x1="28" y1="42" x2="112" y2="40"></line>
-              <circle cx="28" cy="42" r="8"></circle>
-              <circle cx="70" cy="22" r="8"></circle>
-              <circle cx="112" cy="40" r="8"></circle>
-            </svg>
-          </div>
-          <p class="card-copy">
-            A simple map: topics are nodes, nearby links are edges, and questions can be read in local context.
-          </p>
+          <ul class="home-intro-list">
+            <li>Built from a published-journal economics corpus.</li>
+            <li>Organized as a public set of browsable question candidates.</li>
+            <li>Each question stays tied to nearby topics, paths, and papers.</li>
+          </ul>
         </article>
         <article class="card home-intro-card">
           <span class="tiny-label">Why</span>
@@ -84,6 +74,49 @@ const scaleItems = [
               <span>{item.label}</span>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card graph-explainer-card">
+        <div class="graph-explainer-copy">
+          <span class="tiny-label">How to read the map</span>
+          <h2>Each arrow is a directed relation already present in papers.</h2>
+          <p class="card-copy">
+            FrontierGraph is easier to read when you start with one short path. The point is not abstract graph theory. It is seeing how one topic already leads into another through the literature around it.
+          </p>
+          <ul class="home-intro-list graph-explainer-list">
+            <li>Circles are topics.</li>
+            <li>Arrows are directed relations already stated or studied in papers.</li>
+            <li>Short paths help explain why nearby questions are plausible enough to inspect.</li>
+          </ul>
+        </div>
+        <div class="graph-explainer-visual" aria-hidden="true">
+          <span class="tiny-label">Example path in the map</span>
+          <svg class="graph-explainer-diagram" viewBox="0 0 420 150" role="presentation">
+            <defs>
+              <marker id="home-arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z"></path>
+              </marker>
+            </defs>
+            <line x1="98" y1="82" x2="208" y2="82" marker-end="url(#home-arrowhead)"></line>
+            <line x1="278" y1="82" x2="388" y2="82" marker-end="url(#home-arrowhead)"></line>
+            <text x="153" y="62">raises</text>
+            <text x="333" y="62">feeds into</text>
+            <circle cx="64" cy="82" r="22"></circle>
+            <circle cx="244" cy="82" r="22"></circle>
+            <circle cx="404" cy="82" r="22"></circle>
+            <text x="64" y="114">
+              <tspan x="64" dy="0">trade</tspan>
+              <tspan x="64" dy="15">liberalisation</tspan>
+            </text>
+            <text x="244" y="114">
+              <tspan x="244" dy="0">productivity</tspan>
+              <tspan x="244" dy="15">growth</tspan>
+            </text>
+            <text x="404" y="122">real wages</text>
+          </svg>
         </div>
       </div>
     </section>
