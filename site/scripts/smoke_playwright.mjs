@@ -171,6 +171,30 @@ async function main() {
   await expectRedirect(page, "/advanced/", "/downloads/");
   await expectRedirect(page, "/opportunities/", "/questions/");
 
+  await page.goto(`${baseUrl}/broad/`, { waitUntil: "networkidle" });
+  await page.waitForSelector("h1");
+  assert(await page.getByRole("heading", { name: /Broad preview: finer topic vocabulary\./i }).isVisible(), "Broad home hero missing");
+  assert(await page.getByText(/16\.5k-topic regime/i).isVisible(), "Broad home should explain the broader regime");
+  assert(await page.getByRole("link", { name: /Broad app preview/i }).first().isVisible(), "Broad home app CTA missing");
+
+  await page.goto(`${baseUrl}/broad/questions/`, { waitUntil: "networkidle" });
+  await page.waitForSelector("h1");
+  assert(await page.getByRole("heading", { name: /Browse questions from the broad preview\./i }).isVisible(), "Broad questions hero missing");
+  assert(await page.getByText(/broader 16\.5k-topic regime directly/i).isVisible(), "Broad questions should explain the regime swap");
+  assert(await page.getByRole("link", { name: /Open in app for papers and export/i }).first().isVisible(), "Broad questions should expose app links");
+
+  await page.goto(`${baseUrl}/broad/graph/`, { waitUntil: "networkidle" });
+  await page.waitForSelector('[data-role="search-input"]');
+  assert(await page.getByRole("heading", { name: /Choose a topic and start with the questions around it/i }).first().isVisible(), "Broad graph hero missing");
+  await page.locator('[data-role="central-list"] .list-link').first().click();
+  await page.waitForSelector('[data-role="graph-active"]:not([hidden])');
+  assert(await page.getByText(/papers in the broad preview/i).first().isVisible(), "Broad graph should use preview-specific copy");
+
+  await page.goto(`${baseUrl}/broad/audit/`, { waitUntil: "networkidle" });
+  await page.waitForSelector("h1");
+  assert(await page.getByRole("heading", { name: /Side-by-side regime audit\./i }).isVisible(), "Broad audit hero missing");
+  assert(await page.getByText(/current public site is the filtered baseline release/i).isVisible(), "Broad audit note missing");
+
   await captureSet(browser, [
     { name: "home", path: "/" },
     { name: "questions", path: "/questions/" },
@@ -179,6 +203,10 @@ async function main() {
     { name: "downloads", path: "/downloads/" },
     { name: "paper", path: "/paper/" },
     { name: "paper_full", path: "/paper/full/" },
+    { name: "broad_home", path: "/broad/" },
+    { name: "broad_questions", path: "/broad/questions/" },
+    { name: "broad_graph", path: "/broad/graph/" },
+    { name: "broad_audit", path: "/broad/audit/" },
   ]);
 
   assert(errors.length === 0, `Browser errors found:\n${errors.join("\n")}`);

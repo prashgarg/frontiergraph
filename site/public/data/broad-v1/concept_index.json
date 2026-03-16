@@ -1,0 +1,5206 @@
+[
+  {
+    "concept_id": "FG3C000001",
+    "label": "economic growth",
+    "plain_label": "economic growth",
+    "subtitle": "",
+    "display_concept_id": "FG3C000001",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Chinese growth",
+      "Economic Growth",
+      "Financial growth"
+    ],
+    "aliases": [
+      "Chinese growth",
+      "Economic Growth",
+      "Financial growth",
+      "growth of the economy"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 3910,
+    "distinct_paper_support": 3910,
+    "weighted_degree": 3065.0,
+    "pagerank": 0.13532275,
+    "in_degree": 79,
+    "out_degree": 65,
+    "neighbor_count": 84,
+    "top_countries": [
+      "China",
+      "India",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "economic growth",
+      "Chinese growth",
+      "Financial growth",
+      "growth of the economy"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000001"
+  },
+  {
+    "concept_id": "FG3C000003",
+    "label": "CO2 emissions",
+    "plain_label": "CO2 emissions",
+    "subtitle": "",
+    "display_concept_id": "FG3C000003",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "CO2 emissions",
+      "CO2 emissions from electricity consumption",
+      "CO₂ emissions"
+    ],
+    "aliases": [
+      "CO2 emissions",
+      "CO2 emissions from electricity consumption",
+      "CO₂ emissions",
+      "India emissions trajectory",
+      "aggregate carbon emissions"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 1541,
+    "distinct_paper_support": 1541,
+    "weighted_degree": 2412.0,
+    "pagerank": 0.11376604,
+    "in_degree": 69,
+    "out_degree": 50,
+    "neighbor_count": 75,
+    "top_countries": [
+      "China",
+      "India",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "CO2 emissions",
+      "CO2 emissions from electricity consumption",
+      "CO₂ emissions",
+      "India emissions trajectory",
+      "aggregate carbon emissions"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000003"
+  },
+  {
+    "concept_id": "FG3C000010",
+    "label": "carbon emissions",
+    "plain_label": "carbon emissions",
+    "subtitle": "",
+    "display_concept_id": "FG3C000010",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "CO2 emissions (CO2)",
+      "CO2 emissions from fossil fuels",
+      "Carbon Dioxide emissions"
+    ],
+    "aliases": [
+      "CO2 emissions (CO2)",
+      "CO2 emissions from fossil fuels",
+      "Carbon Dioxide emissions",
+      "Carbon dioxide (CO2)",
+      "Carbon dioxide emissions (CO2)",
+      "Carbon dioxide emissions (CO2E)",
+      "Carbon efficiency (CE)",
+      "Carbon emission (CE)",
+      "Carbon emission intensity (CO2)",
+      "Carbon emission performance (CEP)",
+      "Carbon emissions",
+      "Carbon emissions (CE)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 1268,
+    "distinct_paper_support": 1268,
+    "weighted_degree": 1487.0,
+    "pagerank": 0.07032535,
+    "in_degree": 64,
+    "out_degree": 43,
+    "neighbor_count": 68,
+    "top_countries": [
+      "China",
+      "CHN",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "carbon emissions",
+      "CO2 emissions (CO2)",
+      "CO2 emissions from fossil fuels",
+      "Carbon Dioxide emissions",
+      "Carbon dioxide (CO2)",
+      "Carbon dioxide emissions (CO2)",
+      "Carbon dioxide emissions (CO2E)",
+      "Carbon efficiency (CE)",
+      "Carbon emission (CE)",
+      "Carbon emission intensity (CO2)",
+      "Carbon emission performance (CEP)",
+      "Carbon emissions (CE)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000010"
+  },
+  {
+    "concept_id": "FG3C000018",
+    "label": "renewable energy consumption",
+    "plain_label": "renewable energy consumption",
+    "subtitle": "",
+    "display_concept_id": "FG3C000018",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Renewable Energy Consumption",
+      "Renewable consumption",
+      "Renewable energy consumption (REN)"
+    ],
+    "aliases": [
+      "Renewable Energy Consumption",
+      "Renewable consumption",
+      "Renewable energy consumption (REN)",
+      "Renewable energy consumption (aggregate)",
+      "renewable power consumption"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 1042,
+    "distinct_paper_support": 1042,
+    "weighted_degree": 1346.0,
+    "pagerank": 0.05728579,
+    "in_degree": 67,
+    "out_degree": 61,
+    "neighbor_count": 78,
+    "top_countries": [
+      "China",
+      "India",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "other"
+    ],
+    "search_terms": [
+      "renewable energy consumption",
+      "Renewable consumption",
+      "Renewable energy consumption (REN)",
+      "Renewable energy consumption (aggregate)",
+      "renewable power consumption"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000018"
+  },
+  {
+    "concept_id": "FG3C000014",
+    "label": "energy consumption",
+    "plain_label": "energy consumption",
+    "subtitle": "",
+    "display_concept_id": "FG3C000014",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Absolute energy consumption",
+      "Commercial energy consumption",
+      "Conventional energy consumption"
+    ],
+    "aliases": [
+      "Absolute energy consumption",
+      "Commercial energy consumption",
+      "Conventional energy consumption",
+      "Energy Consumption",
+      "Energy consumption (agriculture)",
+      "Energy consumption (energy demand)",
+      "Energy consumption (input)",
+      "Energy consumption level",
+      "Energy consumption transition",
+      "Heat consumption",
+      "Overall energy consumption",
+      "Reducing energy consumption"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 1059,
+    "distinct_paper_support": 1057,
+    "weighted_degree": 1344.0,
+    "pagerank": 0.05368281,
+    "in_degree": 53,
+    "out_degree": 55,
+    "neighbor_count": 66,
+    "top_countries": [
+      "China",
+      "India",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "energy consumption",
+      "Absolute energy consumption",
+      "Commercial energy consumption",
+      "Conventional energy consumption",
+      "Energy consumption (agriculture)",
+      "Energy consumption (energy demand)",
+      "Energy consumption (input)",
+      "Energy consumption level",
+      "Energy consumption transition",
+      "Heat consumption",
+      "Overall energy consumption",
+      "Reducing energy consumption"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000014"
+  },
+  {
+    "concept_id": "FG3C000006",
+    "label": "financial development",
+    "plain_label": "financial development",
+    "subtitle": "",
+    "display_concept_id": "FG3C000006",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Development finance",
+      "Financial Development",
+      "Financial Development (FDT)"
+    ],
+    "aliases": [
+      "Development finance",
+      "Financial Development",
+      "Financial Development (FDT)",
+      "Financial activities",
+      "Financial development (FIN)",
+      "Financial development (IMF index)",
+      "Financial development (overall)",
+      "Financial developments",
+      "Financial intermediary development",
+      "Financial sector / financial development",
+      "Overall financial development",
+      "financial advancement"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 1187,
+    "distinct_paper_support": 1186,
+    "weighted_degree": 1104.0,
+    "pagerank": 0.02789008,
+    "in_degree": 54,
+    "out_degree": 69,
+    "neighbor_count": 80,
+    "top_countries": [
+      "China",
+      "India",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "financial development",
+      "Development finance",
+      "Financial Development (FDT)",
+      "Financial activities",
+      "Financial development (FIN)",
+      "Financial development (IMF index)",
+      "Financial development (overall)",
+      "Financial developments",
+      "Financial intermediary development",
+      "Financial sector / financial development",
+      "Overall financial development",
+      "financial advancement"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000006"
+  },
+  {
+    "concept_id": "FG3C000064",
+    "label": "ecological footprint",
+    "plain_label": "ecological footprint",
+    "subtitle": "",
+    "display_concept_id": "FG3C000064",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Carbon ecological footprint",
+      "Cropland ecological footprint",
+      "Ecological Footprint"
+    ],
+    "aliases": [
+      "Carbon ecological footprint",
+      "Cropland ecological footprint",
+      "Ecological Footprint",
+      "Ecological Footprint index",
+      "Ecological footprint (environmental pollution)",
+      "Ecological footprint of production",
+      "Fishing grounds ecological footprint",
+      "Total Ecological Footprint",
+      "ecological footprint (environmental damage)",
+      "ecological footprint (environmental deterioration)",
+      "ecological footprint consumption",
+      "ecological footprint level"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 388,
+    "distinct_paper_support": 385,
+    "weighted_degree": 822.0,
+    "pagerank": 0.03808772,
+    "in_degree": 48,
+    "out_degree": 28,
+    "neighbor_count": 53,
+    "top_countries": [
+      "China",
+      "India",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "ecological footprint",
+      "Carbon ecological footprint",
+      "Cropland ecological footprint",
+      "Ecological Footprint index",
+      "Ecological footprint (environmental pollution)",
+      "Ecological footprint of production",
+      "Fishing grounds ecological footprint",
+      "Total Ecological Footprint",
+      "ecological footprint (environmental damage)",
+      "ecological footprint (environmental deterioration)",
+      "ecological footprint consumption",
+      "ecological footprint level"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000064"
+  },
+  {
+    "concept_id": "FG3C000017",
+    "label": "trade openness",
+    "plain_label": "trade openness",
+    "subtitle": "",
+    "display_concept_id": "FG3C000017",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Agricultural trade openness",
+      "High trade openness",
+      "Low trade openness"
+    ],
+    "aliases": [
+      "Agricultural trade openness",
+      "High trade openness",
+      "Low trade openness",
+      "Trade (trade openness)",
+      "Trade Openness",
+      "Trade openness (TOP)",
+      "Trade openness (globalization)",
+      "Trade openness (trade GDP ratio)",
+      "Trade openness / international trade",
+      "country trade openness",
+      "foreign trade / trade openness",
+      "foreign trade openness"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 890,
+    "distinct_paper_support": 888,
+    "weighted_degree": 693.0,
+    "pagerank": 0.01750819,
+    "in_degree": 34,
+    "out_degree": 62,
+    "neighbor_count": 70,
+    "top_countries": [
+      "China",
+      "India",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "industry"
+    ],
+    "search_terms": [
+      "trade openness",
+      "Agricultural trade openness",
+      "High trade openness",
+      "Low trade openness",
+      "Trade (trade openness)",
+      "Trade openness (TOP)",
+      "Trade openness (globalization)",
+      "Trade openness (trade GDP ratio)",
+      "Trade openness / international trade",
+      "country trade openness",
+      "foreign trade / trade openness",
+      "foreign trade openness"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000017"
+  },
+  {
+    "concept_id": "FG3C000012",
+    "label": "urbanization",
+    "plain_label": "urbanization",
+    "subtitle": "",
+    "display_concept_id": "FG3C000012",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "China urbanization",
+      "Cities / urbanization",
+      "Urbanization"
+    ],
+    "aliases": [
+      "China urbanization",
+      "Cities / urbanization",
+      "Urbanization",
+      "Urbanization (rapid urbanization)",
+      "Urbanization (urbanization rate)",
+      "Urbanization / urban development",
+      "Urbanization development",
+      "Urbanization effect",
+      "Urbanization rate / urbanization process",
+      "ecological urbanization",
+      "industrial urbanization",
+      "national urbanization"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 982,
+    "distinct_paper_support": 979,
+    "weighted_degree": 670.0,
+    "pagerank": 0.01828774,
+    "in_degree": 31,
+    "out_degree": 55,
+    "neighbor_count": 61,
+    "top_countries": [
+      "China",
+      "India",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "urbanization",
+      "China urbanization",
+      "Cities / urbanization",
+      "Urbanization (rapid urbanization)",
+      "Urbanization (urbanization rate)",
+      "Urbanization / urban development",
+      "Urbanization development",
+      "Urbanization effect",
+      "Urbanization rate / urbanization process",
+      "ecological urbanization",
+      "industrial urbanization",
+      "national urbanization"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000012"
+  },
+  {
+    "concept_id": "FG3C000015",
+    "label": "foreign direct investments",
+    "plain_label": "foreign direct investments",
+    "subtitle": "",
+    "display_concept_id": "FG3C000015",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Agricultural Foreign Direct Investment (FDI)",
+      "Agricultural outward foreign direct investment (OFDI)",
+      "Attraction of foreign direct investment (FDI)"
+    ],
+    "aliases": [
+      "Agricultural Foreign Direct Investment (FDI)",
+      "Agricultural outward foreign direct investment (OFDI)",
+      "Attraction of foreign direct investment (FDI)",
+      "BEA returns on foreign direct investment (FDI)",
+      "Capital flows to higher labor cost countries (FDI)",
+      "Capital flows to lower labor cost countries (FDI)",
+      "Capital-based foreign direct investment (FDI)",
+      "China's Inward Foreign Direct Investment (IFDI)",
+      "China's OFDI",
+      "China's Outward Foreign Direct Investment (OFDI)",
+      "China's green outward foreign direct investment (OFDI)",
+      "China's outward FDI (OFDI)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 1069,
+    "distinct_paper_support": 1051,
+    "weighted_degree": 529.0,
+    "pagerank": 0.01239824,
+    "in_degree": 37,
+    "out_degree": 59,
+    "neighbor_count": 69,
+    "top_countries": [
+      "China",
+      "India",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "foreign direct investments",
+      "Agricultural Foreign Direct Investment (FDI)",
+      "Agricultural outward foreign direct investment (OFDI)",
+      "Attraction of foreign direct investment (FDI)",
+      "BEA returns on foreign direct investment (FDI)",
+      "Capital flows to higher labor cost countries (FDI)",
+      "Capital flows to lower labor cost countries (FDI)",
+      "Capital-based foreign direct investment (FDI)",
+      "China's Inward Foreign Direct Investment (IFDI)",
+      "China's OFDI",
+      "China's Outward Foreign Direct Investment (OFDI)",
+      "China's green outward foreign direct investment (OFDI)",
+      "China's outward FDI (OFDI)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000015"
+  },
+  {
+    "concept_id": "FG3C000090",
+    "label": "economic growth (GDP)",
+    "plain_label": "economic growth (GDP)",
+    "subtitle": "",
+    "display_concept_id": "FG3C000090",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "China's economic growth (GDP growth)",
+      "Economic Growth (GDP)",
+      "Economic growth (GDP growth rate)"
+    ],
+    "aliases": [
+      "China's economic growth (GDP growth)",
+      "Economic Growth (GDP)",
+      "Economic growth (GDP growth rate)",
+      "economic growth (GDP growth rates)",
+      "growth in GDP",
+      "sustainable economic growth (GDP)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 306,
+    "distinct_paper_support": 306,
+    "weighted_degree": 458.0,
+    "pagerank": 0.02576999,
+    "in_degree": 40,
+    "out_degree": 40,
+    "neighbor_count": 49,
+    "top_countries": [
+      "China",
+      "India",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "industry"
+    ],
+    "search_terms": [
+      "economic growth (GDP)",
+      "China's economic growth (GDP growth)",
+      "Economic growth (GDP growth rate)",
+      "economic growth (GDP growth rates)",
+      "growth in GDP",
+      "sustainable economic growth (GDP)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000090"
+  },
+  {
+    "concept_id": "FG3C000013",
+    "label": "technological innovation",
+    "plain_label": "technological innovation",
+    "subtitle": "",
+    "display_concept_id": "FG3C000013",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Technological Innovation"
+    ],
+    "aliases": [
+      "Technological Innovation"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 849,
+    "distinct_paper_support": 849,
+    "weighted_degree": 441.0,
+    "pagerank": 0.01421362,
+    "in_degree": 38,
+    "out_degree": 41,
+    "neighbor_count": 55,
+    "top_countries": [
+      "China",
+      "CHN",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "technological innovation"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000013"
+  },
+  {
+    "concept_id": "FG3C000057",
+    "label": "renewable energy",
+    "plain_label": "renewable energy",
+    "subtitle": "",
+    "display_concept_id": "FG3C000057",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Cost of renewable energy",
+      "Rare earths",
+      "Renewable energy"
+    ],
+    "aliases": [
+      "Cost of renewable energy",
+      "Rare earths",
+      "Renewable energy",
+      "Renewable energy (overall)",
+      "Renewable energy (renewables)",
+      "Renewable energy / energy transition",
+      "Renewable energy expansion",
+      "Renewable energy firms",
+      "Renewable energy green innovation",
+      "Renewable energy infrastructure",
+      "Renewable energy prices",
+      "US renewable energy policies"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 512,
+    "distinct_paper_support": 510,
+    "weighted_degree": 398.0,
+    "pagerank": 0.00997921,
+    "in_degree": 26,
+    "out_degree": 41,
+    "neighbor_count": 53,
+    "top_countries": [
+      "China",
+      "India",
+      "Brazil"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "firm"
+    ],
+    "search_terms": [
+      "renewable energy",
+      "Cost of renewable energy",
+      "Rare earths",
+      "Renewable energy (overall)",
+      "Renewable energy (renewables)",
+      "Renewable energy / energy transition",
+      "Renewable energy expansion",
+      "Renewable energy firms",
+      "Renewable energy green innovation",
+      "Renewable energy infrastructure",
+      "Renewable energy prices",
+      "US renewable energy policies"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000057"
+  },
+  {
+    "concept_id": "FG3C000158",
+    "label": "electricity consumption",
+    "plain_label": "electricity consumption",
+    "subtitle": "",
+    "display_concept_id": "FG3C000158",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Bitcoin electricity consumption",
+      "China's electricity sector",
+      "Electrical energy consumption"
+    ],
+    "aliases": [
+      "Bitcoin electricity consumption",
+      "China's electricity sector",
+      "Electrical energy consumption",
+      "Electricity consumption",
+      "Total electricity consumption",
+      "electricity consumption share",
+      "electricity energy consumption"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 213,
+    "distinct_paper_support": 213,
+    "weighted_degree": 307.0,
+    "pagerank": 0.01042555,
+    "in_degree": 25,
+    "out_degree": 29,
+    "neighbor_count": 35,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Algeria"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "household"
+    ],
+    "search_terms": [
+      "electricity consumption",
+      "Bitcoin electricity consumption",
+      "China's electricity sector",
+      "Electrical energy consumption",
+      "Total electricity consumption",
+      "electricity consumption share",
+      "electricity energy consumption"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000158"
+  },
+  {
+    "concept_id": "FG3C000041",
+    "label": "energy intensity",
+    "plain_label": "energy intensity",
+    "subtitle": "",
+    "display_concept_id": "FG3C000041",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Aggregate energy intensity",
+      "Energy Intensity",
+      "total energy intensity"
+    ],
+    "aliases": [
+      "Aggregate energy intensity",
+      "Energy Intensity",
+      "total energy intensity"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 481,
+    "distinct_paper_support": 481,
+    "weighted_degree": 276.0,
+    "pagerank": 0.00966836,
+    "in_degree": 37,
+    "out_degree": 32,
+    "neighbor_count": 56,
+    "top_countries": [
+      "China",
+      "CHN",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "energy intensity",
+      "Aggregate energy intensity",
+      "total energy intensity"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000041"
+  },
+  {
+    "concept_id": "FG3C000130",
+    "label": "environmental degradation",
+    "plain_label": "environmental degradation",
+    "subtitle": "",
+    "display_concept_id": "FG3C000130",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Environmental Degradation",
+      "Environmental degradation / pollution",
+      "Forest degradation"
+    ],
+    "aliases": [
+      "Environmental Degradation",
+      "Environmental degradation / pollution",
+      "Forest degradation",
+      "environmental degradation / environmental sustainability",
+      "environmental degradation indicators",
+      "land degradation",
+      "soil degradation",
+      "watershed degradation"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 209,
+    "distinct_paper_support": 209,
+    "weighted_degree": 251.0,
+    "pagerank": 0.01614082,
+    "in_degree": 37,
+    "out_degree": 11,
+    "neighbor_count": 38,
+    "top_countries": [
+      "China",
+      "India",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "environmental degradation",
+      "Environmental degradation / pollution",
+      "Forest degradation",
+      "environmental degradation / environmental sustainability",
+      "environmental degradation indicators",
+      "land degradation",
+      "soil degradation",
+      "watershed degradation"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000130"
+  },
+  {
+    "concept_id": "FG3C000167",
+    "label": "carbon dioxide (CO2) emission",
+    "plain_label": "carbon dioxide (CO2) emission",
+    "subtitle": "",
+    "display_concept_id": "FG3C000167",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "CO2 emissions growth",
+      "Carbon Dioxide",
+      "Carbon Dioxide (CO2) emissions"
+    ],
+    "aliases": [
+      "CO2 emissions growth",
+      "Carbon Dioxide",
+      "Carbon Dioxide (CO2) emissions",
+      "Carbon dioxide (CO2) emission",
+      "carbon dioxide emissions per unit of GDP"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 172,
+    "distinct_paper_support": 172,
+    "weighted_degree": 247.0,
+    "pagerank": 0.01344558,
+    "in_degree": 41,
+    "out_degree": 11,
+    "neighbor_count": 43,
+    "top_countries": [
+      "China",
+      "OECD",
+      "Brazil"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "carbon dioxide (CO2) emission",
+      "CO2 emissions growth",
+      "Carbon Dioxide",
+      "Carbon Dioxide (CO2) emissions",
+      "carbon dioxide emissions per unit of GDP"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000167"
+  },
+  {
+    "concept_id": "FG3C000036",
+    "label": "institutional quality",
+    "plain_label": "institutional quality",
+    "subtitle": "",
+    "display_concept_id": "FG3C000036",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Domestic institutional quality",
+      "Formal institutional quality",
+      "Host country institutional quality"
+    ],
+    "aliases": [
+      "Domestic institutional quality",
+      "Formal institutional quality",
+      "Host country institutional quality",
+      "Institutional improvement",
+      "Institutional quality",
+      "Institutional quality (INSQ)",
+      "Institutional quality (aggregate)",
+      "Institutional quality (corruption)",
+      "Institutional quality / institutions",
+      "Institutional quality index",
+      "Institutional quality level",
+      "Institutional quality of host country"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 490,
+    "distinct_paper_support": 490,
+    "weighted_degree": 240.0,
+    "pagerank": 0.00339251,
+    "in_degree": 11,
+    "out_degree": 46,
+    "neighbor_count": 47,
+    "top_countries": [
+      "China",
+      "India",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "firm"
+    ],
+    "search_terms": [
+      "institutional quality",
+      "Domestic institutional quality",
+      "Formal institutional quality",
+      "Host country institutional quality",
+      "Institutional improvement",
+      "Institutional quality (INSQ)",
+      "Institutional quality (aggregate)",
+      "Institutional quality (corruption)",
+      "Institutional quality / institutions",
+      "Institutional quality index",
+      "Institutional quality level",
+      "Institutional quality of host country"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000036"
+  },
+  {
+    "concept_id": "FG3C000122",
+    "label": "natural resources",
+    "plain_label": "natural resources",
+    "subtitle": "",
+    "display_concept_id": "FG3C000122",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Discovery of natural resources",
+      "Land resources",
+      "Natural Resources"
+    ],
+    "aliases": [
+      "Discovery of natural resources",
+      "Land resources",
+      "Natural Resources",
+      "Natural Resources (NTR)",
+      "Natural resource",
+      "Natural resource development",
+      "Natural resource economics",
+      "Natural resource industries",
+      "Natural resource investment",
+      "Natural resource markets",
+      "Natural resource policy field",
+      "Natural resources (NR)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 308,
+    "distinct_paper_support": 308,
+    "weighted_degree": 239.0,
+    "pagerank": 0.00485058,
+    "in_degree": 14,
+    "out_degree": 37,
+    "neighbor_count": 41,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "natural resources",
+      "Discovery of natural resources",
+      "Land resources",
+      "Natural Resources (NTR)",
+      "Natural resource",
+      "Natural resource development",
+      "Natural resource economics",
+      "Natural resource industries",
+      "Natural resource investment",
+      "Natural resource markets",
+      "Natural resource policy field",
+      "Natural resources (NR)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000122"
+  },
+  {
+    "concept_id": "FG3C000173",
+    "label": "energy use",
+    "plain_label": "energy use",
+    "subtitle": "",
+    "display_concept_id": "FG3C000173",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Conventional energy use",
+      "Energy use",
+      "Face mask use"
+    ],
+    "aliases": [
+      "Conventional energy use",
+      "Energy use",
+      "Face mask use",
+      "ICU use",
+      "Total energy use",
+      "coal energy use",
+      "end users",
+      "manufacturing energy use",
+      "traditional energy use"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 198,
+    "distinct_paper_support": 198,
+    "weighted_degree": 223.0,
+    "pagerank": 0.00997295,
+    "in_degree": 26,
+    "out_degree": 33,
+    "neighbor_count": 42,
+    "top_countries": [
+      "China",
+      "India",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "individual",
+      "region"
+    ],
+    "search_terms": [
+      "energy use",
+      "Conventional energy use",
+      "Face mask use",
+      "ICU use",
+      "Total energy use",
+      "coal energy use",
+      "end users",
+      "manufacturing energy use",
+      "traditional energy use"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000173"
+  },
+  {
+    "concept_id": "FG3C000134",
+    "label": "environmental sustainability",
+    "plain_label": "environmental sustainability",
+    "subtitle": "",
+    "display_concept_id": "FG3C000134",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Airport sustainability",
+      "Economic and environmental sustainability",
+      "Enterprise sustainability"
+    ],
+    "aliases": [
+      "Airport sustainability",
+      "Economic and environmental sustainability",
+      "Enterprise sustainability",
+      "Environmental friendliness",
+      "Environmental social responsibility",
+      "Environmental sustainability",
+      "Environmental sustainability (EVS)",
+      "Environmental sustainability (composite index)",
+      "External sustainability",
+      "Firm sustainability",
+      "MFI sustainability",
+      "Sustainable environmental practices"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 255,
+    "distinct_paper_support": 255,
+    "weighted_degree": 198.0,
+    "pagerank": 0.01461184,
+    "in_degree": 38,
+    "out_degree": 8,
+    "neighbor_count": 39,
+    "top_countries": [
+      "China",
+      "India",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "region"
+    ],
+    "search_terms": [
+      "environmental sustainability",
+      "Airport sustainability",
+      "Economic and environmental sustainability",
+      "Enterprise sustainability",
+      "Environmental friendliness",
+      "Environmental social responsibility",
+      "Environmental sustainability (EVS)",
+      "Environmental sustainability (composite index)",
+      "External sustainability",
+      "Firm sustainability",
+      "MFI sustainability",
+      "Sustainable environmental practices"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000134"
+  },
+  {
+    "concept_id": "FG3C000063",
+    "label": "green finance",
+    "plain_label": "green finance",
+    "subtitle": "",
+    "display_concept_id": "FG3C000063",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Green Finance",
+      "green digital finance"
+    ],
+    "aliases": [
+      "Green Finance",
+      "green digital finance"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 371,
+    "distinct_paper_support": 371,
+    "weighted_degree": 196.0,
+    "pagerank": 0.00683472,
+    "in_degree": 21,
+    "out_degree": 32,
+    "neighbor_count": 38,
+    "top_countries": [
+      "China",
+      "CHN",
+      "OECD"
+    ],
+    "top_units": [
+      "region",
+      "country",
+      "location"
+    ],
+    "search_terms": [
+      "green finance",
+      "green digital finance"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000063"
+  },
+  {
+    "concept_id": "FG3C000025",
+    "label": "income inequality",
+    "plain_label": "income inequality",
+    "subtitle": "",
+    "display_concept_id": "FG3C000025",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Income inequality",
+      "Top income inequality",
+      "Wealth inequality in China"
+    ],
+    "aliases": [
+      "Income inequality",
+      "Top income inequality",
+      "Wealth inequality in China",
+      "capital income inequality",
+      "growing economic inequality",
+      "growing income inequality",
+      "income inequality (overall)",
+      "increasing income inequality",
+      "inequality in China",
+      "inequality in the United States",
+      "net income inequality",
+      "overall income inequality"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 524,
+    "distinct_paper_support": 524,
+    "weighted_degree": 191.0,
+    "pagerank": 0.0068168,
+    "in_degree": 24,
+    "out_degree": 16,
+    "neighbor_count": 33,
+    "top_countries": [
+      "China",
+      "United States",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "household"
+    ],
+    "search_terms": [
+      "income inequality",
+      "Top income inequality",
+      "Wealth inequality in China",
+      "capital income inequality",
+      "growing economic inequality",
+      "growing income inequality",
+      "income inequality (overall)",
+      "increasing income inequality",
+      "inequality in China",
+      "inequality in the United States",
+      "net income inequality",
+      "overall income inequality"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000025"
+  },
+  {
+    "concept_id": "FG3C000053",
+    "label": "green innovation",
+    "plain_label": "green innovation",
+    "subtitle": "",
+    "display_concept_id": "FG3C000053",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Corporate green innovation performance",
+      "Firms' green technology innovation",
+      "Green Financial Reform and Innovation Pilot Zones"
+    ],
+    "aliases": [
+      "Corporate green innovation performance",
+      "Firms' green technology innovation",
+      "Green Financial Reform and Innovation Pilot Zones",
+      "Green ICT innovation",
+      "Green Industry",
+      "Green Innovation",
+      "Green Innovation (GIN)",
+      "Green industry development",
+      "Green innovation (green technology innovation)",
+      "Green innovation ability",
+      "Green innovation development",
+      "Green innovation effect"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 483,
+    "distinct_paper_support": 471,
+    "weighted_degree": 173.0,
+    "pagerank": 0.00650714,
+    "in_degree": 26,
+    "out_degree": 23,
+    "neighbor_count": 40,
+    "top_countries": [
+      "China",
+      "CHN",
+      "BRICS"
+    ],
+    "top_units": [
+      "firm",
+      "country",
+      "location"
+    ],
+    "search_terms": [
+      "green innovation",
+      "Corporate green innovation performance",
+      "Firms' green technology innovation",
+      "Green Financial Reform and Innovation Pilot Zones",
+      "Green ICT innovation",
+      "Green Industry",
+      "Green Innovation (GIN)",
+      "Green industry development",
+      "Green innovation (green technology innovation)",
+      "Green innovation ability",
+      "Green innovation development",
+      "Green innovation effect"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000053"
+  },
+  {
+    "concept_id": "FG3C000081",
+    "label": "environmental quality",
+    "plain_label": "environmental quality",
+    "subtitle": "",
+    "display_concept_id": "FG3C000081",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Elasticity of utility with respect to environmental quality",
+      "Environment / environmental quality",
+      "Environmental Quality"
+    ],
+    "aliases": [
+      "Elasticity of utility with respect to environmental quality",
+      "Environment / environmental quality",
+      "Environmental Quality",
+      "Environmental Quality (EQ)",
+      "Environmental Quality Incentives Program (EQIP)",
+      "Environmental quality / environmental performance",
+      "Environmental quality / environmental protection",
+      "Game quality",
+      "Overall environmental quality",
+      "Quality growth",
+      "Quality of Economic Development (QED)",
+      "Quality of the environment"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 316,
+    "distinct_paper_support": 316,
+    "weighted_degree": 172.0,
+    "pagerank": 0.01156208,
+    "in_degree": 40,
+    "out_degree": 8,
+    "neighbor_count": 42,
+    "top_countries": [
+      "China",
+      "CHN",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "environmental quality",
+      "Elasticity of utility with respect to environmental quality",
+      "Environment / environmental quality",
+      "Environmental Quality (EQ)",
+      "Environmental Quality Incentives Program (EQIP)",
+      "Environmental quality / environmental performance",
+      "Environmental quality / environmental protection",
+      "Game quality",
+      "Overall environmental quality",
+      "Quality growth",
+      "Quality of Economic Development (QED)",
+      "Quality of the environment"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000081"
+  },
+  {
+    "concept_id": "FG3C004596",
+    "label": "carbon emissions (CO2 emissions)",
+    "plain_label": "carbon emissions (CO2 emissions)",
+    "subtitle": "",
+    "display_concept_id": "FG3C004596",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "\"double carbon\" target",
+      "'dual carbon' strategy",
+      "Air pollution and carbon emissions"
+    ],
+    "aliases": [
+      "\"double carbon\" target",
+      "'dual carbon' strategy",
+      "Air pollution and carbon emissions",
+      "Anthropogenic CO2 emissions",
+      "Anthropogenic emissions",
+      "Aviation carbon emissions",
+      "Black carbon (BC)",
+      "Building sector CO2 emissions",
+      "Building sector carbon emissions",
+      "CO2 / carbon emissions",
+      "CO2 and SO2 emissions",
+      "CO2 emission coefficient"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 353,
+    "distinct_paper_support": 342,
+    "weighted_degree": 170.0,
+    "pagerank": 0.00949481,
+    "in_degree": 37,
+    "out_degree": 13,
+    "neighbor_count": 38,
+    "top_countries": [
+      "China",
+      "CHN",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "carbon emissions (CO2 emissions)",
+      "\"double carbon\" target",
+      "'dual carbon' strategy",
+      "Air pollution and carbon emissions",
+      "Anthropogenic CO2 emissions",
+      "Anthropogenic emissions",
+      "Aviation carbon emissions",
+      "Black carbon (BC)",
+      "Building sector CO2 emissions",
+      "Building sector carbon emissions",
+      "CO2 / carbon emissions",
+      "CO2 and SO2 emissions",
+      "CO2 emission coefficient"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C004596"
+  },
+  {
+    "concept_id": "FG3C000026",
+    "label": "economic development",
+    "plain_label": "economic development",
+    "subtitle": "",
+    "display_concept_id": "FG3C000026",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Economic Development",
+      "Economic Development (ED)"
+    ],
+    "aliases": [
+      "Economic Development",
+      "Economic Development (ED)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 519,
+    "distinct_paper_support": 519,
+    "weighted_degree": 167.0,
+    "pagerank": 0.00769032,
+    "in_degree": 32,
+    "out_degree": 31,
+    "neighbor_count": 48,
+    "top_countries": [
+      "China",
+      "CHN",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "economic development",
+      "Economic Development (ED)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000026"
+  },
+  {
+    "concept_id": "FG3C000037",
+    "label": "GDP",
+    "plain_label": "GDP",
+    "subtitle": "",
+    "display_concept_id": "FG3C000037",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "GDP",
+      "GDP (income)",
+      "GDP and employment"
+    ],
+    "aliases": [
+      "GDP",
+      "GDP (income)",
+      "GDP and employment",
+      "GDP cycle",
+      "GDP data",
+      "GDP gains",
+      "GDP levels",
+      "GDP responses",
+      "PPP-based GDP conversion",
+      "State GDP",
+      "green GDP",
+      "local GDP"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 451,
+    "distinct_paper_support": 451,
+    "weighted_degree": 167.0,
+    "pagerank": 0.00750042,
+    "in_degree": 21,
+    "out_degree": 27,
+    "neighbor_count": 35,
+    "top_countries": [
+      "China",
+      "India",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "GDP",
+      "GDP (income)",
+      "GDP and employment",
+      "GDP cycle",
+      "GDP data",
+      "GDP gains",
+      "GDP levels",
+      "GDP responses",
+      "PPP-based GDP conversion",
+      "State GDP",
+      "green GDP",
+      "local GDP"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000037"
+  },
+  {
+    "concept_id": "FG3C000002",
+    "label": "inflation",
+    "plain_label": "inflation",
+    "subtitle": "",
+    "display_concept_id": "FG3C000002",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Great Inflation in the United States",
+      "Great Inflation of the 1970s",
+      "Inflation"
+    ],
+    "aliases": [
+      "Great Inflation in the United States",
+      "Great Inflation of the 1970s",
+      "Inflation",
+      "Inflation–unemployment trade-off",
+      "Relationship between inflation and unemployment",
+      "Trade-off between inflation and unemployment",
+      "cross-country model of inflation and monetary growth",
+      "inflation (general)",
+      "inflation / price stability",
+      "inflation increase",
+      "monetary policy / inflation",
+      "upper bound on inflation"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 1577,
+    "distinct_paper_support": 1574,
+    "weighted_degree": 160.0,
+    "pagerank": 0.00384431,
+    "in_degree": 16,
+    "out_degree": 30,
+    "neighbor_count": 35,
+    "top_countries": [
+      "United States",
+      "China",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "other",
+      "region"
+    ],
+    "search_terms": [
+      "inflation",
+      "Great Inflation in the United States",
+      "Great Inflation of the 1970s",
+      "Inflation–unemployment trade-off",
+      "Relationship between inflation and unemployment",
+      "Trade-off between inflation and unemployment",
+      "cross-country model of inflation and monetary growth",
+      "inflation (general)",
+      "inflation / price stability",
+      "inflation increase",
+      "monetary policy / inflation",
+      "upper bound on inflation"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000002"
+  },
+  {
+    "concept_id": "FG3C000118",
+    "label": "industrialization",
+    "plain_label": "industrialization",
+    "subtitle": "",
+    "display_concept_id": "FG3C000118",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Industrialization",
+      "industrialization / industrial revolution",
+      "industrialization and urbanization"
+    ],
+    "aliases": [
+      "Industrialization",
+      "industrialization / industrial revolution",
+      "industrialization and urbanization",
+      "industrialization and urbanization processes"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 235,
+    "distinct_paper_support": 235,
+    "weighted_degree": 160.0,
+    "pagerank": 0.00521312,
+    "in_degree": 17,
+    "out_degree": 31,
+    "neighbor_count": 39,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "location",
+      "region"
+    ],
+    "search_terms": [
+      "industrialization",
+      "industrialization / industrial revolution",
+      "industrialization and urbanization",
+      "industrialization and urbanization processes"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000118"
+  },
+  {
+    "concept_id": "FG3C000068",
+    "label": "digital economy",
+    "plain_label": "digital economy",
+    "subtitle": "",
+    "display_concept_id": "FG3C000068",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Digital Economy",
+      "Digital economy (Dig)",
+      "Digital economy (digital economy index)"
+    ],
+    "aliases": [
+      "Digital Economy",
+      "Digital economy (Dig)",
+      "Digital economy (digital economy index)",
+      "Digital economy / digitalization",
+      "digital economy (DIEC)",
+      "digital economy agglomeration",
+      "digital economy policies",
+      "digital economy research",
+      "rural digital economy",
+      "urban digital economy"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 325,
+    "distinct_paper_support": 325,
+    "weighted_degree": 159.0,
+    "pagerank": 0.0021267,
+    "in_degree": 11,
+    "out_degree": 21,
+    "neighbor_count": 25,
+    "top_countries": [
+      "China",
+      "CHN",
+      "G7"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "country"
+    ],
+    "search_terms": [
+      "digital economy",
+      "Digital economy (Dig)",
+      "Digital economy (digital economy index)",
+      "Digital economy / digitalization",
+      "digital economy (DIEC)",
+      "digital economy agglomeration",
+      "digital economy policies",
+      "digital economy research",
+      "rural digital economy",
+      "urban digital economy"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000068"
+  },
+  {
+    "concept_id": "FG3C000046",
+    "label": "exports",
+    "plain_label": "exports",
+    "subtitle": "",
+    "display_concept_id": "FG3C000046",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Exports",
+      "Exports (Pakistan)",
+      "Exports / export growth"
+    ],
+    "aliases": [
+      "Exports",
+      "Exports (Pakistan)",
+      "Exports / export growth",
+      "Exports to India",
+      "Import content of exports",
+      "Intermediate exports",
+      "Japanese exports",
+      "exportables",
+      "exports (bilateral)",
+      "exports (overall)",
+      "exports (trade)",
+      "exports of machinery and transport equipment"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 391,
+    "distinct_paper_support": 390,
+    "weighted_degree": 157.0,
+    "pagerank": 0.00799564,
+    "in_degree": 23,
+    "out_degree": 30,
+    "neighbor_count": 36,
+    "top_countries": [
+      "China",
+      "India",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "industry"
+    ],
+    "search_terms": [
+      "exports",
+      "Exports (Pakistan)",
+      "Exports / export growth",
+      "Exports to India",
+      "Import content of exports",
+      "Intermediate exports",
+      "Japanese exports",
+      "exportables",
+      "exports (bilateral)",
+      "exports (overall)",
+      "exports (trade)",
+      "exports of machinery and transport equipment"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000046"
+  },
+  {
+    "concept_id": "FG3C000008",
+    "label": "income",
+    "plain_label": "income",
+    "subtitle": "",
+    "display_concept_id": "FG3C000008",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Income",
+      "Income (economic activity)",
+      "Income generated"
+    ],
+    "aliases": [
+      "Income",
+      "Income (economic activity)",
+      "Income generated",
+      "Money income",
+      "Reported income",
+      "Sources of income",
+      "Visitor income",
+      "gross income"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 817,
+    "distinct_paper_support": 817,
+    "weighted_degree": 146.0,
+    "pagerank": 0.00459042,
+    "in_degree": 13,
+    "out_degree": 31,
+    "neighbor_count": 37,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "individual",
+      "country",
+      "household"
+    ],
+    "search_terms": [
+      "income",
+      "Income (economic activity)",
+      "Income generated",
+      "Money income",
+      "Reported income",
+      "Sources of income",
+      "Visitor income",
+      "gross income"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000008"
+  },
+  {
+    "concept_id": "FG3C000085",
+    "label": "gross domestic product (GDP)",
+    "plain_label": "gross domestic product (GDP)",
+    "subtitle": "",
+    "display_concept_id": "FG3C000085",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Gross Domestic Product (GDP)",
+      "Gross Domestic Production (GDP)",
+      "Regional Gross Domestic Product (GDP)"
+    ],
+    "aliases": [
+      "Gross Domestic Product (GDP)",
+      "Gross Domestic Production (GDP)",
+      "Regional Gross Domestic Product (GDP)",
+      "changes in gross domestic product",
+      "gross domestic product (GDP) / income",
+      "regional Gross Domestic Product",
+      "regional gross domestic product (regional GDP)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 283,
+    "distinct_paper_support": 283,
+    "weighted_degree": 143.0,
+    "pagerank": 0.00526107,
+    "in_degree": 17,
+    "out_degree": 29,
+    "neighbor_count": 36,
+    "top_countries": [
+      "China",
+      "United States",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "gross domestic product (GDP)",
+      "Gross Domestic Production (GDP)",
+      "Regional Gross Domestic Product (GDP)",
+      "changes in gross domestic product",
+      "gross domestic product (GDP) / income",
+      "regional Gross Domestic Product",
+      "regional gross domestic product (regional GDP)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000085"
+  },
+  {
+    "concept_id": "FG3C001421",
+    "label": "environmental quality (CO2 emissions)",
+    "plain_label": "environmental quality (CO2 emissions)",
+    "subtitle": "",
+    "display_concept_id": "FG3C001421",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Air quality (ozone)",
+      "Average quality",
+      "CO2 emissions (environmental performance)"
+    ],
+    "aliases": [
+      "Air quality (ozone)",
+      "Average quality",
+      "CO2 emissions (environmental performance)",
+      "CO2 emissions (sustainable environment)",
+      "CO2 emissions / environmental outcomes",
+      "CO2 emissions / environmental pollution",
+      "Carbon emissions (environmental quality)",
+      "Carbon information disclosure quality",
+      "Diet quality",
+      "Environment quality",
+      "Environmental Pollution (CO2)",
+      "Environmental performance (CO2 emissions)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 159,
+    "distinct_paper_support": 159,
+    "weighted_degree": 142.0,
+    "pagerank": 0.00832711,
+    "in_degree": 30,
+    "out_degree": 10,
+    "neighbor_count": 31,
+    "top_countries": [
+      "China",
+      "United States",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "environmental quality (CO2 emissions)",
+      "Air quality (ozone)",
+      "Average quality",
+      "CO2 emissions (environmental performance)",
+      "CO2 emissions (sustainable environment)",
+      "CO2 emissions / environmental outcomes",
+      "CO2 emissions / environmental pollution",
+      "Carbon emissions (environmental quality)",
+      "Carbon information disclosure quality",
+      "Diet quality",
+      "Environment quality",
+      "Environmental Pollution (CO2)",
+      "Environmental performance (CO2 emissions)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001421"
+  },
+  {
+    "concept_id": "FG3C000056",
+    "label": "trade",
+    "plain_label": "trade",
+    "subtitle": "",
+    "display_concept_id": "FG3C000056",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "International trade (trade)",
+      "Net trade",
+      "Trade"
+    ],
+    "aliases": [
+      "International trade (trade)",
+      "Net trade",
+      "Trade",
+      "Trade activities",
+      "merchandise trade"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 338,
+    "distinct_paper_support": 338,
+    "weighted_degree": 141.0,
+    "pagerank": 0.00416299,
+    "in_degree": 17,
+    "out_degree": 32,
+    "neighbor_count": 40,
+    "top_countries": [
+      "China",
+      "India",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "country_pair",
+      "firm"
+    ],
+    "search_terms": [
+      "trade",
+      "International trade (trade)",
+      "Net trade",
+      "Trade activities",
+      "merchandise trade"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000056"
+  },
+  {
+    "concept_id": "FG3C000422",
+    "label": "natural gas consumption",
+    "plain_label": "natural gas consumption",
+    "subtitle": "",
+    "display_concept_id": "FG3C000422",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Natural gas consumption",
+      "Natural gas use",
+      "Natural gas utilization"
+    ],
+    "aliases": [
+      "Natural gas consumption",
+      "Natural gas use",
+      "Natural gas utilization",
+      "Per capita natural gas consumption",
+      "natural gas consumption (NGC)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 102,
+    "distinct_paper_support": 102,
+    "weighted_degree": 132.0,
+    "pagerank": 0.00458546,
+    "in_degree": 20,
+    "out_degree": 18,
+    "neighbor_count": 29,
+    "top_countries": [
+      "China",
+      "India",
+      "Iran"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "other"
+    ],
+    "search_terms": [
+      "natural gas consumption",
+      "Natural gas use",
+      "Natural gas utilization",
+      "Per capita natural gas consumption",
+      "natural gas consumption (NGC)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000422"
+  },
+  {
+    "concept_id": "FG3C000198",
+    "label": "economic complexity",
+    "plain_label": "economic complexity",
+    "subtitle": "",
+    "display_concept_id": "FG3C000198",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Complexity Economics",
+      "Economic Complexity",
+      "Economic Fitness and Complexity algorithm"
+    ],
+    "aliases": [
+      "Complexity Economics",
+      "Economic Complexity",
+      "Economic Fitness and Complexity algorithm",
+      "Export technical complexity",
+      "complexity of the economy",
+      "economic complexity (Economic Complexity Index)",
+      "industrial complexity",
+      "invention complexity",
+      "policy implications of economic complexity",
+      "scientific complexity",
+      "square of economic complexity"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 171,
+    "distinct_paper_support": 168,
+    "weighted_degree": 123.0,
+    "pagerank": 0.00322874,
+    "in_degree": 10,
+    "out_degree": 24,
+    "neighbor_count": 29,
+    "top_countries": [
+      "China",
+      "G7",
+      "South Africa"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "industry"
+    ],
+    "search_terms": [
+      "economic complexity",
+      "Complexity Economics",
+      "Economic Fitness and Complexity algorithm",
+      "Export technical complexity",
+      "complexity of the economy",
+      "economic complexity (Economic Complexity Index)",
+      "industrial complexity",
+      "invention complexity",
+      "policy implications of economic complexity",
+      "scientific complexity",
+      "square of economic complexity"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000198"
+  },
+  {
+    "concept_id": "FG3C000060",
+    "label": "GDP per capita",
+    "plain_label": "GDP per capita",
+    "subtitle": "",
+    "display_concept_id": "FG3C000060",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "GDP (per capita)",
+      "GDP / GDP per capita",
+      "GDP Per Capita (GDPPC)"
+    ],
+    "aliases": [
+      "GDP (per capita)",
+      "GDP / GDP per capita",
+      "GDP Per Capita (GDPPC)",
+      "GDP per capita (A)",
+      "GDP per capita (Environmental Kuznets Curve)",
+      "GDP per capita (GDP)",
+      "GDP per capita (GDPC)",
+      "GDP per capita (GPC)",
+      "GDP per capita (Java)",
+      "GDP per capita (Netherlands)",
+      "GDP per capita (affluence)",
+      "GDP per capita (country-level)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 389,
+    "distinct_paper_support": 385,
+    "weighted_degree": 122.0,
+    "pagerank": 0.00817427,
+    "in_degree": 13,
+    "out_degree": 20,
+    "neighbor_count": 26,
+    "top_countries": [
+      "China",
+      "BRICS",
+      "EU27"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "GDP per capita",
+      "GDP / GDP per capita",
+      "GDP Per Capita (GDPPC)",
+      "GDP per capita (A)",
+      "GDP per capita (Environmental Kuznets Curve)",
+      "GDP per capita (GDP)",
+      "GDP per capita (GDPC)",
+      "GDP per capita (GPC)",
+      "GDP per capita (Java)",
+      "GDP per capita (Netherlands)",
+      "GDP per capita (affluence)",
+      "GDP per capita (country-level)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000060"
+  },
+  {
+    "concept_id": "FG3C001029",
+    "label": "environmental degradation (CO2 emissions)",
+    "plain_label": "environmental degradation (CO2 emissions)",
+    "subtitle": "",
+    "display_concept_id": "FG3C001029",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Carbon dioxide emissions / environmental degradation",
+      "Carbon emissions / environmental degradation",
+      "Carbon footprint (environmental degradation)"
+    ],
+    "aliases": [
+      "Carbon dioxide emissions / environmental degradation",
+      "Carbon emissions / environmental degradation",
+      "Carbon footprint (environmental degradation)",
+      "Environmental degradation (CO2 emission)",
+      "Environmental degradation (CO2 emissions)",
+      "Environmental deterioration (CO2 emissions)",
+      "climate change and environmental degradation",
+      "environmental degradation (CO2)",
+      "environmental degradation (carbon dioxide emissions)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 61,
+    "distinct_paper_support": 61,
+    "weighted_degree": 121.0,
+    "pagerank": 0.00725884,
+    "in_degree": 25,
+    "out_degree": 10,
+    "neighbor_count": 25,
+    "top_countries": [
+      "China",
+      "Pakistan",
+      "CHN"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "environmental degradation (CO2 emissions)",
+      "Carbon dioxide emissions / environmental degradation",
+      "Carbon emissions / environmental degradation",
+      "Carbon footprint (environmental degradation)",
+      "Environmental degradation (CO2 emission)",
+      "Environmental deterioration (CO2 emissions)",
+      "climate change and environmental degradation",
+      "environmental degradation (CO2)",
+      "environmental degradation (carbon dioxide emissions)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001029"
+  },
+  {
+    "concept_id": "FG3C000040",
+    "label": "environmental regulation",
+    "plain_label": "environmental regulation",
+    "subtitle": "",
+    "display_concept_id": "FG3C000040",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Administrative regulation",
+      "Environmental Regulation",
+      "legal environmental regulation"
+    ],
+    "aliases": [
+      "Administrative regulation",
+      "Environmental Regulation",
+      "legal environmental regulation"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 455,
+    "distinct_paper_support": 455,
+    "weighted_degree": 120.0,
+    "pagerank": 0.00205149,
+    "in_degree": 8,
+    "out_degree": 25,
+    "neighbor_count": 27,
+    "top_countries": [
+      "China",
+      "CHN",
+      "NA"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "industry"
+    ],
+    "search_terms": [
+      "environmental regulation",
+      "Administrative regulation",
+      "legal environmental regulation"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000040"
+  },
+  {
+    "concept_id": "FG3C000126",
+    "label": "imports",
+    "plain_label": "imports",
+    "subtitle": "",
+    "display_concept_id": "FG3C000126",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Capital imports",
+      "Composition of imports",
+      "Import"
+    ],
+    "aliases": [
+      "Capital imports",
+      "Composition of imports",
+      "Import",
+      "Imports",
+      "Imports of environmental goods",
+      "Intermediate imports",
+      "LNG imports",
+      "Level of imports",
+      "capital goods imports",
+      "carbon emissions embodied in imports",
+      "consumer imports",
+      "consumption expenditure elasticity of imports"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 251,
+    "distinct_paper_support": 247,
+    "weighted_degree": 119.0,
+    "pagerank": 0.00606056,
+    "in_degree": 18,
+    "out_degree": 22,
+    "neighbor_count": 25,
+    "top_countries": [
+      "China",
+      "United States",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "industry",
+      "region"
+    ],
+    "search_terms": [
+      "imports",
+      "Capital imports",
+      "Composition of imports",
+      "Import",
+      "Imports of environmental goods",
+      "Intermediate imports",
+      "LNG imports",
+      "Level of imports",
+      "capital goods imports",
+      "carbon emissions embodied in imports",
+      "consumer imports",
+      "consumption expenditure elasticity of imports"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000126"
+  },
+  {
+    "concept_id": "FG3C000104",
+    "label": "capital",
+    "plain_label": "capital",
+    "subtitle": "",
+    "display_concept_id": "FG3C000104",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Capital",
+      "Capital (K)",
+      "Capital (increase)"
+    ],
+    "aliases": [
+      "Capital",
+      "Capital (K)",
+      "Capital (increase)",
+      "Capital demand",
+      "Capital distortion",
+      "Real capital",
+      "capital (contribution to growth)",
+      "capital abundance",
+      "capital import",
+      "capital strength",
+      "capital use",
+      "government capital"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 277,
+    "distinct_paper_support": 277,
+    "weighted_degree": 118.0,
+    "pagerank": 0.00356784,
+    "in_degree": 13,
+    "out_degree": 21,
+    "neighbor_count": 23,
+    "top_countries": [
+      "China",
+      "United States",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "industry"
+    ],
+    "search_terms": [
+      "capital",
+      "Capital (K)",
+      "Capital (increase)",
+      "Capital demand",
+      "Capital distortion",
+      "Real capital",
+      "capital (contribution to growth)",
+      "capital abundance",
+      "capital import",
+      "capital strength",
+      "capital use",
+      "government capital"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000104"
+  },
+  {
+    "concept_id": "FG3C000043",
+    "label": "industrial structure",
+    "plain_label": "industrial structure",
+    "subtitle": "",
+    "display_concept_id": "FG3C000043",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Industrial Structure",
+      "Industrial structures",
+      "Marine industry structure"
+    ],
+    "aliases": [
+      "Industrial Structure",
+      "Industrial structures",
+      "Marine industry structure",
+      "industrial structure differences",
+      "industrial structure distortion",
+      "industrial structure sophistication",
+      "marine industrial structure",
+      "sophisticated industrial structure"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 473,
+    "distinct_paper_support": 473,
+    "weighted_degree": 116.0,
+    "pagerank": 0.00283668,
+    "in_degree": 16,
+    "out_degree": 20,
+    "neighbor_count": 29,
+    "top_countries": [
+      "China",
+      "CHN",
+      "G20"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "country"
+    ],
+    "search_terms": [
+      "industrial structure",
+      "Industrial structures",
+      "Marine industry structure",
+      "industrial structure differences",
+      "industrial structure distortion",
+      "industrial structure sophistication",
+      "marine industrial structure",
+      "sophisticated industrial structure"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000043"
+  },
+  {
+    "concept_id": "FG3C001813",
+    "label": "consumption-based carbon emissions",
+    "plain_label": "consumption-based carbon emissions",
+    "subtitle": "",
+    "display_concept_id": "FG3C001813",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Consumption-based carbon emission",
+      "Consumption-based carbon emissions",
+      "consumption-based carbon emissions (CCO2)"
+    ],
+    "aliases": [
+      "Consumption-based carbon emission",
+      "Consumption-based carbon emissions",
+      "consumption-based carbon emissions (CCO2)",
+      "consumption-based emissions accounting"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 38,
+    "distinct_paper_support": 38,
+    "weighted_degree": 111.0,
+    "pagerank": 0.00734144,
+    "in_degree": 21,
+    "out_degree": 4,
+    "neighbor_count": 21,
+    "top_countries": [
+      "China",
+      "Turkey",
+      "Brazil"
+    ],
+    "top_units": [
+      "country"
+    ],
+    "search_terms": [
+      "consumption-based carbon emissions",
+      "Consumption-based carbon emission",
+      "consumption-based carbon emissions (CCO2)",
+      "consumption-based emissions accounting"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001813"
+  },
+  {
+    "concept_id": "FG3C000629",
+    "label": "CO2 emission",
+    "plain_label": "CO2 emission",
+    "subtitle": "",
+    "display_concept_id": "FG3C000629",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "CO2 Emission",
+      "Emission coefficients"
+    ],
+    "aliases": [
+      "CO2 Emission",
+      "Emission coefficients"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 61,
+    "distinct_paper_support": 61,
+    "weighted_degree": 107.0,
+    "pagerank": 0.00551301,
+    "in_degree": 23,
+    "out_degree": 12,
+    "neighbor_count": 26,
+    "top_countries": [
+      "China",
+      "Pakistan",
+      "Egypt"
+    ],
+    "top_units": [
+      "country",
+      "region"
+    ],
+    "search_terms": [
+      "CO2 emission",
+      "Emission coefficients"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000629"
+  },
+  {
+    "concept_id": "FG3C000361",
+    "label": "renewable energy use",
+    "plain_label": "renewable energy use",
+    "subtitle": "",
+    "display_concept_id": "FG3C000361",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Renewable energy use"
+    ],
+    "aliases": [
+      "Renewable energy use"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 108,
+    "distinct_paper_support": 108,
+    "weighted_degree": 97.0,
+    "pagerank": 0.00529081,
+    "in_degree": 13,
+    "out_degree": 17,
+    "neighbor_count": 21,
+    "top_countries": [
+      "China",
+      "Brazil",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "other",
+      "region"
+    ],
+    "search_terms": [
+      "renewable energy use"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000361"
+  },
+  {
+    "concept_id": "FG3C001018",
+    "label": "nuclear energy consumption",
+    "plain_label": "nuclear energy consumption",
+    "subtitle": "",
+    "display_concept_id": "FG3C001018",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Nuclear energy consumption",
+      "Nuclear energy use",
+      "nuclear consumption"
+    ],
+    "aliases": [
+      "Nuclear energy consumption",
+      "Nuclear energy use",
+      "nuclear consumption"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 55,
+    "distinct_paper_support": 55,
+    "weighted_degree": 96.0,
+    "pagerank": 0.00396205,
+    "in_degree": 5,
+    "out_degree": 11,
+    "neighbor_count": 12,
+    "top_countries": [
+      "USA",
+      "France",
+      "Japan"
+    ],
+    "top_units": [
+      "country",
+      "other",
+      "region"
+    ],
+    "search_terms": [
+      "nuclear energy consumption",
+      "Nuclear energy use",
+      "nuclear consumption"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001018"
+  },
+  {
+    "concept_id": "FG3C001879",
+    "label": "CO2 emissions (environmental degradation)",
+    "plain_label": "CO2 emissions (environmental degradation)",
+    "subtitle": "",
+    "display_concept_id": "FG3C001879",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "CO2 emission (environmental degradation)",
+      "CO2 emissions (environmental degradation)",
+      "carbon emissions (environmental degradation)"
+    ],
+    "aliases": [
+      "CO2 emission (environmental degradation)",
+      "CO2 emissions (environmental degradation)",
+      "carbon emissions (environmental degradation)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 37,
+    "distinct_paper_support": 37,
+    "weighted_degree": 95.0,
+    "pagerank": 0.00552636,
+    "in_degree": 24,
+    "out_degree": 8,
+    "neighbor_count": 24,
+    "top_countries": [
+      "China",
+      "United Arab Emirates",
+      "Oman"
+    ],
+    "top_units": [
+      "country",
+      "region"
+    ],
+    "search_terms": [
+      "CO2 emissions (environmental degradation)",
+      "CO2 emission (environmental degradation)",
+      "carbon emissions (environmental degradation)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001879"
+  },
+  {
+    "concept_id": "FG3C000619",
+    "label": "renewable energy consumption (REC)",
+    "plain_label": "renewable energy consumption (REC)",
+    "subtitle": "",
+    "display_concept_id": "FG3C000619",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "CO2 emissions from urban residential electricity consumption (REC)",
+      "Modern renewable energy consumption (MREC)",
+      "Renewable Energy Certificates (RECs)"
+    ],
+    "aliases": [
+      "CO2 emissions from urban residential electricity consumption (REC)",
+      "Modern renewable energy consumption (MREC)",
+      "Renewable Energy Certificates (RECs)",
+      "Renewable Energy Consumption (REC)",
+      "Renewable energy / green electricity (REC)",
+      "Renewable energy consumption (RENC)",
+      "Renewable energy consumption (share)",
+      "markets for renewable energy credits (REC)",
+      "regional economic coordination (REC)",
+      "renewable energy (REC)",
+      "renewable energy consumption growth (RECG)",
+      "urban residential electricity consumption (REC)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 88,
+    "distinct_paper_support": 88,
+    "weighted_degree": 91.0,
+    "pagerank": 0.00407362,
+    "in_degree": 17,
+    "out_degree": 14,
+    "neighbor_count": 24,
+    "top_countries": [
+      "China",
+      "BRICS",
+      "IND"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "industry"
+    ],
+    "search_terms": [
+      "renewable energy consumption (REC)",
+      "CO2 emissions from urban residential electricity consumption (REC)",
+      "Modern renewable energy consumption (MREC)",
+      "Renewable Energy Certificates (RECs)",
+      "Renewable energy / green electricity (REC)",
+      "Renewable energy consumption (RENC)",
+      "Renewable energy consumption (share)",
+      "markets for renewable energy credits (REC)",
+      "regional economic coordination (REC)",
+      "renewable energy (REC)",
+      "renewable energy consumption growth (RECG)",
+      "urban residential electricity consumption (REC)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000619"
+  },
+  {
+    "concept_id": "FG3C001489",
+    "label": "economic growth (real GDP)",
+    "plain_label": "economic growth (real GDP)",
+    "subtitle": "",
+    "display_concept_id": "FG3C001489",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Economic growth (real GDP)"
+    ],
+    "aliases": [
+      "Economic growth (real GDP)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 37,
+    "distinct_paper_support": 37,
+    "weighted_degree": 89.0,
+    "pagerank": 0.00420907,
+    "in_degree": 11,
+    "out_degree": 9,
+    "neighbor_count": 13,
+    "top_countries": [
+      "Algeria",
+      "China",
+      "South Africa"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "economic growth (real GDP)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001489"
+  },
+  {
+    "concept_id": "FG3C000011",
+    "label": "output",
+    "plain_label": "output",
+    "subtitle": "",
+    "display_concept_id": "FG3C000011",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Output",
+      "Output contraction",
+      "Output cost of disinflation"
+    ],
+    "aliases": [
+      "Output",
+      "Output contraction",
+      "Output cost of disinflation",
+      "Output costs of disinflation",
+      "USA output",
+      "output (economic output)",
+      "output and inflation",
+      "overall output"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 812,
+    "distinct_paper_support": 812,
+    "weighted_degree": 81.0,
+    "pagerank": 0.00581246,
+    "in_degree": 21,
+    "out_degree": 11,
+    "neighbor_count": 24,
+    "top_countries": [
+      "United States",
+      "USA",
+      "China"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "region"
+    ],
+    "search_terms": [
+      "output",
+      "Output contraction",
+      "Output cost of disinflation",
+      "Output costs of disinflation",
+      "USA output",
+      "output (economic output)",
+      "output and inflation",
+      "overall output"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000011"
+  },
+  {
+    "concept_id": "FG3C001306",
+    "label": "load capacity factor (LF)",
+    "plain_label": "load capacity factor (LF)",
+    "subtitle": "",
+    "display_concept_id": "FG3C001306",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Electric grid load capacity factor (LCF)",
+      "Levy Control Framework (LCF)",
+      "Load Capacity Factor (LCF)"
+    ],
+    "aliases": [
+      "Electric grid load capacity factor (LCF)",
+      "Levy Control Framework (LCF)",
+      "Load Capacity Factor (LCF)",
+      "Load Capacity Factor (LF)",
+      "ecological load capacity factor (LCF)",
+      "land conveyance fee (LCF)",
+      "power spectral band: low frequency (LF)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 46,
+    "distinct_paper_support": 46,
+    "weighted_degree": 72.0,
+    "pagerank": 0.00510427,
+    "in_degree": 23,
+    "out_degree": 5,
+    "neighbor_count": 25,
+    "top_countries": [
+      "India",
+      "Brazil",
+      "China"
+    ],
+    "top_units": [
+      "country",
+      "region"
+    ],
+    "search_terms": [
+      "load capacity factor (LF)",
+      "Electric grid load capacity factor (LCF)",
+      "Levy Control Framework (LCF)",
+      "Load Capacity Factor (LCF)",
+      "ecological load capacity factor (LCF)",
+      "land conveyance fee (LCF)",
+      "power spectral band: low frequency (LF)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001306"
+  },
+  {
+    "concept_id": "FG3C000318",
+    "label": "greenhouse gas (GHG) emissions",
+    "plain_label": "greenhouse gas (GHG) emissions",
+    "subtitle": "",
+    "display_concept_id": "FG3C000318",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Greenhouse Gas (GHG) emissions",
+      "greenhouse gas (GHG) emission"
+    ],
+    "aliases": [
+      "Greenhouse Gas (GHG) emissions",
+      "greenhouse gas (GHG) emission"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 94,
+    "distinct_paper_support": 94,
+    "weighted_degree": 70.0,
+    "pagerank": 0.00602898,
+    "in_degree": 24,
+    "out_degree": 4,
+    "neighbor_count": 25,
+    "top_countries": [
+      "China",
+      "Denmark",
+      "Finland"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "organization"
+    ],
+    "search_terms": [
+      "greenhouse gas (GHG) emissions",
+      "greenhouse gas (GHG) emission"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000318"
+  },
+  {
+    "concept_id": "FG3C000117",
+    "label": "oil price",
+    "plain_label": "oil price",
+    "subtitle": "",
+    "display_concept_id": "FG3C000117",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Exposure to oil price changes",
+      "Nominal oil prices",
+      "OPEC oil price"
+    ],
+    "aliases": [
+      "Exposure to oil price changes",
+      "Nominal oil prices",
+      "OPEC oil price",
+      "Oil price",
+      "Oil price expectations",
+      "Oil price rise",
+      "Oil price variations",
+      "Oil stock prices",
+      "energy price (oil price)",
+      "oil price bubbles",
+      "oil price factor",
+      "oil price innovations"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 240,
+    "distinct_paper_support": 240,
+    "weighted_degree": 69.0,
+    "pagerank": 0.00192003,
+    "in_degree": 5,
+    "out_degree": 19,
+    "neighbor_count": 20,
+    "top_countries": [
+      "USA",
+      "China",
+      "Malaysia"
+    ],
+    "top_units": [
+      "country",
+      "market",
+      "firm"
+    ],
+    "search_terms": [
+      "oil price",
+      "Exposure to oil price changes",
+      "Nominal oil prices",
+      "OPEC oil price",
+      "Oil price expectations",
+      "Oil price rise",
+      "Oil price variations",
+      "Oil stock prices",
+      "energy price (oil price)",
+      "oil price bubbles",
+      "oil price factor",
+      "oil price innovations"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000117"
+  },
+  {
+    "concept_id": "FG3C000094",
+    "label": "GDP growth",
+    "plain_label": "GDP growth",
+    "subtitle": "",
+    "display_concept_id": "FG3C000094",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "GDP / growth"
+    ],
+    "aliases": [
+      "GDP / growth"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 222,
+    "distinct_paper_support": 222,
+    "weighted_degree": 69.0,
+    "pagerank": 0.0043173,
+    "in_degree": 23,
+    "out_degree": 21,
+    "neighbor_count": 35,
+    "top_countries": [
+      "China",
+      "USA",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "GDP growth"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000094"
+  },
+  {
+    "concept_id": "FG3C000604",
+    "label": "natural resource abundance",
+    "plain_label": "natural resource abundance",
+    "subtitle": "",
+    "display_concept_id": "FG3C000604",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Natural resource abundance"
+    ],
+    "aliases": [
+      "Natural resource abundance"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 70,
+    "distinct_paper_support": 70,
+    "weighted_degree": 67.0,
+    "pagerank": 0.00171776,
+    "in_degree": 3,
+    "out_degree": 22,
+    "neighbor_count": 23,
+    "top_countries": [
+      "China",
+      "Russia",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "natural resource abundance"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000604"
+  },
+  {
+    "concept_id": "FG3C001447",
+    "label": "ecological footprint (environmental degradation)",
+    "plain_label": "ecological footprint (environmental degradation)",
+    "subtitle": "",
+    "display_concept_id": "FG3C001447",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Ecological footprint (environmental degradation)"
+    ],
+    "aliases": [
+      "Ecological footprint (environmental degradation)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 29,
+    "distinct_paper_support": 29,
+    "weighted_degree": 67.0,
+    "pagerank": 0.00463528,
+    "in_degree": 21,
+    "out_degree": 5,
+    "neighbor_count": 21,
+    "top_countries": [
+      "China",
+      "Canada",
+      "South Korea"
+    ],
+    "top_units": [
+      "country"
+    ],
+    "search_terms": [
+      "ecological footprint (environmental degradation)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001447"
+  },
+  {
+    "concept_id": "FG3C000493",
+    "label": "environmental efficiency",
+    "plain_label": "environmental efficiency",
+    "subtitle": "",
+    "display_concept_id": "FG3C000493",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Eco-efficiency index",
+      "Environmental efficiency",
+      "Environmental efficiency of electric power industry"
+    ],
+    "aliases": [
+      "Eco-efficiency index",
+      "Environmental efficiency",
+      "Environmental efficiency of electric power industry",
+      "Environmental efficiency scores",
+      "Environmental regulation efficiency",
+      "Industrial environmental efficiency",
+      "Regional environmental efficiency",
+      "atmospheric environmental efficiency",
+      "biodiversity efficiency",
+      "coal efficiency",
+      "economic-environmental efficiency",
+      "efficiency of environmental regulation"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 106,
+    "distinct_paper_support": 103,
+    "weighted_degree": 64.0,
+    "pagerank": 0.00519146,
+    "in_degree": 20,
+    "out_degree": 2,
+    "neighbor_count": 21,
+    "top_countries": [
+      "China",
+      "CHN",
+      "United States"
+    ],
+    "top_units": [
+      "region",
+      "country",
+      "location"
+    ],
+    "search_terms": [
+      "environmental efficiency",
+      "Eco-efficiency index",
+      "Environmental efficiency of electric power industry",
+      "Environmental efficiency scores",
+      "Environmental regulation efficiency",
+      "Industrial environmental efficiency",
+      "Regional environmental efficiency",
+      "atmospheric environmental efficiency",
+      "biodiversity efficiency",
+      "coal efficiency",
+      "economic-environmental efficiency",
+      "efficiency of environmental regulation"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000493"
+  },
+  {
+    "concept_id": "FG3C000019",
+    "label": "investment",
+    "plain_label": "investment",
+    "subtitle": "",
+    "display_concept_id": "FG3C000019",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Attracting investment",
+      "Capital formation / investment",
+      "Company investment"
+    ],
+    "aliases": [
+      "Attracting investment",
+      "Capital formation / investment",
+      "Company investment",
+      "Excessive investment",
+      "Federal investment",
+      "Industry investment",
+      "Investment",
+      "Investment (general)",
+      "Investment (level of investment)",
+      "Investment (mechanism)",
+      "Investment data",
+      "Investment demand"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 762,
+    "distinct_paper_support": 760,
+    "weighted_degree": 63.0,
+    "pagerank": 0.00300004,
+    "in_degree": 15,
+    "out_degree": 15,
+    "neighbor_count": 23,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "industry"
+    ],
+    "search_terms": [
+      "investment",
+      "Attracting investment",
+      "Capital formation / investment",
+      "Company investment",
+      "Excessive investment",
+      "Federal investment",
+      "Industry investment",
+      "Investment (general)",
+      "Investment (level of investment)",
+      "Investment (mechanism)",
+      "Investment data",
+      "Investment demand"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000019"
+  },
+  {
+    "concept_id": "FG3C000149",
+    "label": "energy prices",
+    "plain_label": "energy prices",
+    "subtitle": "",
+    "display_concept_id": "FG3C000149",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Energy prices",
+      "Other energy prices"
+    ],
+    "aliases": [
+      "Energy prices",
+      "Other energy prices"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 187,
+    "distinct_paper_support": 187,
+    "weighted_degree": 61.0,
+    "pagerank": 0.00243794,
+    "in_degree": 10,
+    "out_degree": 19,
+    "neighbor_count": 21,
+    "top_countries": [
+      "China",
+      "OECD",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "market"
+    ],
+    "search_terms": [
+      "energy prices",
+      "Other energy prices"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000149"
+  },
+  {
+    "concept_id": "FG3C000209",
+    "label": "public debt",
+    "plain_label": "public debt",
+    "subtitle": "",
+    "display_concept_id": "FG3C000209",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Public debt",
+      "development of public debt markets",
+      "fast rise in US$-denominated public debt (tesebonos)"
+    ],
+    "aliases": [
+      "Public debt",
+      "development of public debt markets",
+      "fast rise in US$-denominated public debt (tesebonos)",
+      "high public debt",
+      "local public debt",
+      "low public debt",
+      "public (government) debt",
+      "public debt financing",
+      "public debt issuance",
+      "public debts",
+      "public indebtedness",
+      "stock of public debt"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 145,
+    "distinct_paper_support": 144,
+    "weighted_degree": 58.0,
+    "pagerank": 0.00201124,
+    "in_degree": 9,
+    "out_degree": 12,
+    "neighbor_count": 15,
+    "top_countries": [
+      "United States",
+      "Africa",
+      "Germany"
+    ],
+    "top_units": [
+      "country",
+      "other",
+      "firm"
+    ],
+    "search_terms": [
+      "public debt",
+      "development of public debt markets",
+      "fast rise in US$-denominated public debt (tesebonos)",
+      "high public debt",
+      "local public debt",
+      "low public debt",
+      "public (government) debt",
+      "public debt financing",
+      "public debt issuance",
+      "public debts",
+      "public indebtedness",
+      "stock of public debt"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000209"
+  },
+  {
+    "concept_id": "FG3C000204",
+    "label": "real GDP",
+    "plain_label": "real GDP",
+    "subtitle": "",
+    "display_concept_id": "FG3C000204",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "China real GDP",
+      "Real GDP",
+      "Real GDP (RGDP)"
+    ],
+    "aliases": [
+      "China real GDP",
+      "Real GDP",
+      "Real GDP (RGDP)",
+      "Real GDP (output)"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 141,
+    "distinct_paper_support": 141,
+    "weighted_degree": 57.0,
+    "pagerank": 0.00282534,
+    "in_degree": 10,
+    "out_degree": 14,
+    "neighbor_count": 17,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "global"
+    ],
+    "search_terms": [
+      "real GDP",
+      "China real GDP",
+      "Real GDP (RGDP)",
+      "Real GDP (output)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000204"
+  },
+  {
+    "concept_id": "FG3C000641",
+    "label": "renewable energy production",
+    "plain_label": "renewable energy production",
+    "subtitle": "",
+    "display_concept_id": "FG3C000641",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Renewable energy production",
+      "Renewable energy production (REP)",
+      "Renewable energy production amount"
+    ],
+    "aliases": [
+      "Renewable energy production",
+      "Renewable energy production (REP)",
+      "Renewable energy production amount",
+      "hydrogen production",
+      "natural resource production",
+      "renewable energy production capacity"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 72,
+    "distinct_paper_support": 72,
+    "weighted_degree": 57.0,
+    "pagerank": 0.0048444,
+    "in_degree": 21,
+    "out_degree": 9,
+    "neighbor_count": 27,
+    "top_countries": [
+      "China",
+      "USA",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "renewable energy production",
+      "Renewable energy production (REP)",
+      "Renewable energy production amount",
+      "hydrogen production",
+      "natural resource production",
+      "renewable energy production capacity"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000641"
+  },
+  {
+    "concept_id": "FG3C001906",
+    "label": "biomass energy consumption",
+    "plain_label": "biomass energy consumption",
+    "subtitle": "",
+    "display_concept_id": "FG3C001906",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Biomass energy consumption",
+      "Biomass energy use",
+      "biomass energy usage"
+    ],
+    "aliases": [
+      "Biomass energy consumption",
+      "Biomass energy use",
+      "biomass energy usage"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 33,
+    "distinct_paper_support": 33,
+    "weighted_degree": 57.0,
+    "pagerank": 0.00292993,
+    "in_degree": 9,
+    "out_degree": 11,
+    "neighbor_count": 16,
+    "top_countries": [
+      "United States",
+      "CHN",
+      "China"
+    ],
+    "top_units": [
+      "country"
+    ],
+    "search_terms": [
+      "biomass energy consumption",
+      "Biomass energy use",
+      "biomass energy usage"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001906"
+  },
+  {
+    "concept_id": "FG3C002002",
+    "label": "CO2 emissions (environmental quality)",
+    "plain_label": "CO2 emissions (environmental quality)",
+    "subtitle": "",
+    "display_concept_id": "FG3C002002",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "CO2 emission / environmental quality",
+      "CO2 emissions (environmental quality)"
+    ],
+    "aliases": [
+      "CO2 emission / environmental quality",
+      "CO2 emissions (environmental quality)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 24,
+    "distinct_paper_support": 24,
+    "weighted_degree": 57.0,
+    "pagerank": 0.00432033,
+    "in_degree": 19,
+    "out_degree": 2,
+    "neighbor_count": 19,
+    "top_countries": [
+      "OECD",
+      "Brazil",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "region"
+    ],
+    "search_terms": [
+      "CO2 emissions (environmental quality)",
+      "CO2 emission / environmental quality"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C002002"
+  },
+  {
+    "concept_id": "FG3C000074",
+    "label": "economic policy uncertainty (EPU)",
+    "plain_label": "economic policy uncertainty (EPU)",
+    "subtitle": "",
+    "display_concept_id": "FG3C000074",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "China EPU index",
+      "China economic policy uncertainty (EPU)",
+      "China economic policy uncertainty (EPU) Index"
+    ],
+    "aliases": [
+      "China EPU index",
+      "China economic policy uncertainty (EPU)",
+      "China economic policy uncertainty (EPU) Index",
+      "China economic policy uncertainty index (EPU)",
+      "China trade policy uncertainty",
+      "China's Economic Policy Uncertainty (EPU)",
+      "China's economic policy uncertainty (CNEPU)",
+      "Chinese Economic Policy Uncertainty (Chinese EPU)",
+      "Chinese economic policy uncertainty (CEPU)",
+      "Chinese economic policy uncertainty (EPU)",
+      "Economic Policy Uncertainty (China)",
+      "Economic Policy Uncertainty (EPU)"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 396,
+    "distinct_paper_support": 378,
+    "weighted_degree": 56.0,
+    "pagerank": 0.00212993,
+    "in_degree": 4,
+    "out_degree": 19,
+    "neighbor_count": 22,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "organization"
+    ],
+    "search_terms": [
+      "economic policy uncertainty (EPU)",
+      "China EPU index",
+      "China economic policy uncertainty (EPU)",
+      "China economic policy uncertainty (EPU) Index",
+      "China economic policy uncertainty index (EPU)",
+      "China trade policy uncertainty",
+      "China's Economic Policy Uncertainty (EPU)",
+      "China's economic policy uncertainty (CNEPU)",
+      "Chinese Economic Policy Uncertainty (Chinese EPU)",
+      "Chinese economic policy uncertainty (CEPU)",
+      "Chinese economic policy uncertainty (EPU)",
+      "Economic Policy Uncertainty (China)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000074"
+  },
+  {
+    "concept_id": "FG3C001947",
+    "label": "environmental pollution (CO2 emissions)",
+    "plain_label": "environmental pollution (CO2 emissions)",
+    "subtitle": "",
+    "display_concept_id": "FG3C001947",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Environmental pollution (CO2 emissions)",
+      "environmental pollution (CO2 emission)"
+    ],
+    "aliases": [
+      "Environmental pollution (CO2 emissions)",
+      "environmental pollution (CO2 emission)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 27,
+    "distinct_paper_support": 27,
+    "weighted_degree": 54.0,
+    "pagerank": 0.00371382,
+    "in_degree": 21,
+    "out_degree": 4,
+    "neighbor_count": 22,
+    "top_countries": [
+      "China",
+      "India",
+      "Bangladesh"
+    ],
+    "top_units": [
+      "country",
+      "industry",
+      "region"
+    ],
+    "search_terms": [
+      "environmental pollution (CO2 emissions)",
+      "environmental pollution (CO2 emission)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001947"
+  },
+  {
+    "concept_id": "FG3C000828",
+    "label": "oil rents",
+    "plain_label": "oil rents",
+    "subtitle": "",
+    "display_concept_id": "FG3C000828",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Oil and gas rents",
+      "Oil rents",
+      "forced industrialization using oil rents"
+    ],
+    "aliases": [
+      "Oil and gas rents",
+      "Oil rents",
+      "forced industrialization using oil rents",
+      "fossil fuel rents"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 80,
+    "distinct_paper_support": 78,
+    "weighted_degree": 53.0,
+    "pagerank": 0.00322148,
+    "in_degree": 6,
+    "out_degree": 17,
+    "neighbor_count": 17,
+    "top_countries": [
+      "China",
+      "BRICS",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "region"
+    ],
+    "search_terms": [
+      "oil rents",
+      "Oil and gas rents",
+      "forced industrialization using oil rents",
+      "fossil fuel rents"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000828"
+  },
+  {
+    "concept_id": "FG3C000611",
+    "label": "green economic growth",
+    "plain_label": "green economic growth",
+    "subtitle": "",
+    "display_concept_id": "FG3C000611",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Green economic growth"
+    ],
+    "aliases": [
+      "Green economic growth"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 59,
+    "distinct_paper_support": 59,
+    "weighted_degree": 53.0,
+    "pagerank": 0.0038148,
+    "in_degree": 19,
+    "out_degree": 4,
+    "neighbor_count": 20,
+    "top_countries": [
+      "China",
+      "CHN",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "location",
+      "region"
+    ],
+    "search_terms": [
+      "green economic growth"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000611"
+  },
+  {
+    "concept_id": "FG3C002421",
+    "label": "ecological footprint (environmental quality)",
+    "plain_label": "ecological footprint (environmental quality)",
+    "subtitle": "",
+    "display_concept_id": "FG3C002421",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Ecological Footprint (environmental quality)",
+      "material footprint"
+    ],
+    "aliases": [
+      "Ecological Footprint (environmental quality)",
+      "material footprint"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 24,
+    "distinct_paper_support": 24,
+    "weighted_degree": 51.0,
+    "pagerank": 0.00381462,
+    "in_degree": 14,
+    "out_degree": 2,
+    "neighbor_count": 14,
+    "top_countries": [
+      "China",
+      "Brazil",
+      "India"
+    ],
+    "top_units": [
+      "country"
+    ],
+    "search_terms": [
+      "ecological footprint (environmental quality)",
+      "material footprint"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C002421"
+  },
+  {
+    "concept_id": "FG3C000144",
+    "label": "economic performance",
+    "plain_label": "economic performance",
+    "subtitle": "",
+    "display_concept_id": "FG3C000144",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Country economic performance",
+      "Economic Performance",
+      "national economic performance"
+    ],
+    "aliases": [
+      "Country economic performance",
+      "Economic Performance",
+      "national economic performance"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 166,
+    "distinct_paper_support": 166,
+    "weighted_degree": 50.0,
+    "pagerank": 0.00599568,
+    "in_degree": 14,
+    "out_degree": 7,
+    "neighbor_count": 16,
+    "top_countries": [
+      "China",
+      "India",
+      "OECD"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "region"
+    ],
+    "search_terms": [
+      "economic performance",
+      "Country economic performance",
+      "national economic performance"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000144"
+  },
+  {
+    "concept_id": "FG3C000187",
+    "label": "labor",
+    "plain_label": "labor",
+    "subtitle": "",
+    "display_concept_id": "FG3C000187",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Child labor",
+      "Labor",
+      "Labor (production factor)"
+    ],
+    "aliases": [
+      "Child labor",
+      "Labor",
+      "Labor (production factor)",
+      "Labor availability",
+      "Labor contribution",
+      "Labor emigration",
+      "Labor relations",
+      "Output elasticity of labor",
+      "Returns to labor",
+      "Unionized labor",
+      "labor (L)",
+      "labor (contribution to growth)"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 194,
+    "distinct_paper_support": 194,
+    "weighted_degree": 49.0,
+    "pagerank": 0.0021042,
+    "in_degree": 6,
+    "out_degree": 15,
+    "neighbor_count": 18,
+    "top_countries": [
+      "China",
+      "United States",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "industry",
+      "firm"
+    ],
+    "search_terms": [
+      "labor",
+      "Child labor",
+      "Labor (production factor)",
+      "Labor availability",
+      "Labor contribution",
+      "Labor emigration",
+      "Labor relations",
+      "Output elasticity of labor",
+      "Returns to labor",
+      "Unionized labor",
+      "labor (L)",
+      "labor (contribution to growth)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000187"
+  },
+  {
+    "concept_id": "FG3C000971",
+    "label": "gross fixed capital formation",
+    "plain_label": "gross fixed capital formation",
+    "subtitle": "",
+    "display_concept_id": "FG3C000971",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Gross Fixed Capital Formation",
+      "Gross domestic fixed investment",
+      "Gross fixed capital"
+    ],
+    "aliases": [
+      "Gross Fixed Capital Formation",
+      "Gross domestic fixed investment",
+      "Gross fixed capital",
+      "Gross fixed capital formation (capital formation)",
+      "Gross fixed capital formation (investment)",
+      "gross fixed capital formation per capita"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 61,
+    "distinct_paper_support": 61,
+    "weighted_degree": 48.0,
+    "pagerank": 0.00267267,
+    "in_degree": 10,
+    "out_degree": 18,
+    "neighbor_count": 21,
+    "top_countries": [
+      "China",
+      "South Africa",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "region"
+    ],
+    "search_terms": [
+      "gross fixed capital formation",
+      "Gross domestic fixed investment",
+      "Gross fixed capital",
+      "Gross fixed capital formation (capital formation)",
+      "Gross fixed capital formation (investment)",
+      "gross fixed capital formation per capita"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000971"
+  },
+  {
+    "concept_id": "FG3C000664",
+    "label": "real GDP per capita",
+    "plain_label": "real GDP per capita",
+    "subtitle": "",
+    "display_concept_id": "FG3C000664",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "'real' GDP per capita"
+    ],
+    "aliases": [
+      "'real' GDP per capita"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 59,
+    "distinct_paper_support": 59,
+    "weighted_degree": 47.0,
+    "pagerank": 0.00396701,
+    "in_degree": 14,
+    "out_degree": 17,
+    "neighbor_count": 22,
+    "top_countries": [
+      "China",
+      "Romania",
+      "Iran"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "other"
+    ],
+    "search_terms": [
+      "real GDP per capita"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000664"
+  },
+  {
+    "concept_id": "FG3C006816",
+    "label": "environmental quality (carbon emissions)",
+    "plain_label": "environmental quality (carbon emissions)",
+    "subtitle": "",
+    "display_concept_id": "FG3C006816",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "CO2 emissions / environmental quality",
+      "Environmental quality (carbon emissions)"
+    ],
+    "aliases": [
+      "CO2 emissions / environmental quality",
+      "Environmental quality (carbon emissions)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 19,
+    "distinct_paper_support": 19,
+    "weighted_degree": 47.0,
+    "pagerank": 0.00343048,
+    "in_degree": 19,
+    "out_degree": 5,
+    "neighbor_count": 20,
+    "top_countries": [
+      "Italy",
+      "United Kingdom",
+      "France"
+    ],
+    "top_units": [
+      "country"
+    ],
+    "search_terms": [
+      "environmental quality (carbon emissions)",
+      "CO2 emissions / environmental quality"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C006816"
+  },
+  {
+    "concept_id": "FG3C001156",
+    "label": "GDP (economic growth)",
+    "plain_label": "GDP (economic growth)",
+    "subtitle": "",
+    "display_concept_id": "FG3C001156",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Aggregate GDP",
+      "GDP (economic growth)"
+    ],
+    "aliases": [
+      "Aggregate GDP",
+      "GDP (economic growth)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 43,
+    "distinct_paper_support": 43,
+    "weighted_degree": 46.0,
+    "pagerank": 0.00267858,
+    "in_degree": 12,
+    "out_degree": 9,
+    "neighbor_count": 17,
+    "top_countries": [
+      "China",
+      "OECD",
+      "Pakistan"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "other"
+    ],
+    "search_terms": [
+      "GDP (economic growth)",
+      "Aggregate GDP"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001156"
+  },
+  {
+    "concept_id": "FG3C003518",
+    "label": "environmental degradation (ecological footprint)",
+    "plain_label": "environmental degradation (ecological footprint)",
+    "subtitle": "",
+    "display_concept_id": "FG3C003518",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Ecological degradation",
+      "Ecological footprint / environmental degradation",
+      "Environmental degradation (Ecological Footprint)"
+    ],
+    "aliases": [
+      "Ecological degradation",
+      "Ecological footprint / environmental degradation",
+      "Environmental degradation (Ecological Footprint)",
+      "ecological deficit",
+      "environmental degradation (ecological footprint pressure index)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 23,
+    "distinct_paper_support": 23,
+    "weighted_degree": 45.0,
+    "pagerank": 0.00375397,
+    "in_degree": 16,
+    "out_degree": 2,
+    "neighbor_count": 16,
+    "top_countries": [
+      "United States",
+      "Turkey",
+      "BRICS"
+    ],
+    "top_units": [
+      "country"
+    ],
+    "search_terms": [
+      "environmental degradation (ecological footprint)",
+      "Ecological degradation",
+      "Ecological footprint / environmental degradation",
+      "ecological deficit",
+      "environmental degradation (ecological footprint pressure index)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C003518"
+  },
+  {
+    "concept_id": "FG3C000110",
+    "label": "output growth",
+    "plain_label": "output growth",
+    "subtitle": "",
+    "display_concept_id": "FG3C000110",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Aggregate output growth",
+      "Economic growth (annual growth rate)",
+      "Economic growth (growth rate in output)"
+    ],
+    "aliases": [
+      "Aggregate output growth",
+      "Economic growth (annual growth rate)",
+      "Economic growth (growth rate in output)",
+      "Economic output / GDP growth",
+      "Economic performance (inflation and output growth)",
+      "Expected earnings growth",
+      "Forecasts of output growth",
+      "Future GDP growth",
+      "GDP growth (output growth)",
+      "GDP growth nowcasts",
+      "Obstetricians–gynecologists",
+      "Output (output growth)"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 339,
+    "distinct_paper_support": 336,
+    "weighted_degree": 43.0,
+    "pagerank": 0.00359141,
+    "in_degree": 14,
+    "out_degree": 6,
+    "neighbor_count": 16,
+    "top_countries": [
+      "United States",
+      "China",
+      "United Kingdom"
+    ],
+    "top_units": [
+      "country",
+      "industry",
+      "region"
+    ],
+    "search_terms": [
+      "output growth",
+      "Aggregate output growth",
+      "Economic growth (annual growth rate)",
+      "Economic growth (growth rate in output)",
+      "Economic output / GDP growth",
+      "Economic performance (inflation and output growth)",
+      "Expected earnings growth",
+      "Forecasts of output growth",
+      "Future GDP growth",
+      "GDP growth (output growth)",
+      "GDP growth nowcasts",
+      "Obstetricians–gynecologists",
+      "Output (output growth)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000110"
+  },
+  {
+    "concept_id": "FG3C000492",
+    "label": "digital economy development",
+    "plain_label": "digital economy development",
+    "subtitle": "",
+    "display_concept_id": "FG3C000492",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Digital economy development",
+      "digital economy expansion",
+      "digital economy growth"
+    ],
+    "aliases": [
+      "Digital economy development",
+      "digital economy expansion",
+      "digital economy growth",
+      "regional digital economy development"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 78,
+    "distinct_paper_support": 78,
+    "weighted_degree": 39.0,
+    "pagerank": 0.00169517,
+    "in_degree": 7,
+    "out_degree": 15,
+    "neighbor_count": 18,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Africa"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "other"
+    ],
+    "search_terms": [
+      "digital economy development",
+      "digital economy expansion",
+      "digital economy growth",
+      "regional digital economy development"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000492"
+  },
+  {
+    "concept_id": "FG3C002483",
+    "label": "environmental sustainability (CO2 emissions)",
+    "plain_label": "environmental sustainability (CO2 emissions)",
+    "subtitle": "",
+    "display_concept_id": "FG3C002483",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Environmental sustainability (CO2 emissions)"
+    ],
+    "aliases": [
+      "Environmental sustainability (CO2 emissions)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 18,
+    "distinct_paper_support": 18,
+    "weighted_degree": 39.0,
+    "pagerank": 0.0035437,
+    "in_degree": 18,
+    "out_degree": 1,
+    "neighbor_count": 18,
+    "top_countries": [
+      "China",
+      "India",
+      "MENA"
+    ],
+    "top_units": [
+      "country",
+      "region"
+    ],
+    "search_terms": [
+      "environmental sustainability (CO2 emissions)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C002483"
+  },
+  {
+    "concept_id": "FG3C000084",
+    "label": "capital accumulation",
+    "plain_label": "capital accumulation",
+    "subtitle": "",
+    "display_concept_id": "FG3C000084",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Capital accumulation",
+      "Capital accumulation effects",
+      "Real capital accumulation"
+    ],
+    "aliases": [
+      "Capital accumulation",
+      "Capital accumulation effects",
+      "Real capital accumulation",
+      "capital accumulation (investment)",
+      "capital accumulation and growth",
+      "capital accumulation process",
+      "investment / capital accumulation"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 282,
+    "distinct_paper_support": 282,
+    "weighted_degree": 37.0,
+    "pagerank": 0.00208582,
+    "in_degree": 8,
+    "out_degree": 12,
+    "neighbor_count": 15,
+    "top_countries": [
+      "United States",
+      "China",
+      "Sub-Saharan Africa"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "firm"
+    ],
+    "search_terms": [
+      "capital accumulation",
+      "Capital accumulation effects",
+      "Real capital accumulation",
+      "capital accumulation (investment)",
+      "capital accumulation and growth",
+      "capital accumulation process",
+      "investment / capital accumulation"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000084"
+  },
+  {
+    "concept_id": "FG3C001290",
+    "label": "mineral rents",
+    "plain_label": "mineral rents",
+    "subtitle": "",
+    "display_concept_id": "FG3C001290",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Mineral prices",
+      "Mineral rents",
+      "mineral royalty"
+    ],
+    "aliases": [
+      "Mineral prices",
+      "Mineral rents",
+      "mineral royalty",
+      "ministerial resignation"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 61,
+    "distinct_paper_support": 61,
+    "weighted_degree": 36.0,
+    "pagerank": 0.00152719,
+    "in_degree": 2,
+    "out_degree": 13,
+    "neighbor_count": 15,
+    "top_countries": [
+      "China",
+      "Russia",
+      "Brazil"
+    ],
+    "top_units": [
+      "country"
+    ],
+    "search_terms": [
+      "mineral rents",
+      "Mineral prices",
+      "mineral royalty",
+      "ministerial resignation"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001290"
+  },
+  {
+    "concept_id": "FG3C001874",
+    "label": "real GDP (economic growth)",
+    "plain_label": "real GDP (economic growth)",
+    "subtitle": "",
+    "display_concept_id": "FG3C001874",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Real GDP (economic growth)"
+    ],
+    "aliases": [
+      "Real GDP (economic growth)"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 26,
+    "distinct_paper_support": 26,
+    "weighted_degree": 35.0,
+    "pagerank": 0.00292077,
+    "in_degree": 5,
+    "out_degree": 4,
+    "neighbor_count": 5,
+    "top_countries": [
+      "China",
+      "NA",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "region"
+    ],
+    "search_terms": [
+      "real GDP (economic growth)"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001874"
+  },
+  {
+    "concept_id": "FG3C002821",
+    "label": "economic growth (income)",
+    "plain_label": "economic growth (income)",
+    "subtitle": "",
+    "display_concept_id": "FG3C002821",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Economic growth (income levels)",
+      "Economic growth (income)",
+      "Economic growth (national income)"
+    ],
+    "aliases": [
+      "Economic growth (income levels)",
+      "Economic growth (income)",
+      "Economic growth (national income)",
+      "Economic growth in India",
+      "National income / economic growth"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 29,
+    "distinct_paper_support": 29,
+    "weighted_degree": 33.0,
+    "pagerank": 0.00264232,
+    "in_degree": 9,
+    "out_degree": 12,
+    "neighbor_count": 18,
+    "top_countries": [
+      "India",
+      "China",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "region"
+    ],
+    "search_terms": [
+      "economic growth (income)",
+      "Economic growth (income levels)",
+      "Economic growth (national income)",
+      "Economic growth in India",
+      "National income / economic growth"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C002821"
+  },
+  {
+    "concept_id": "FG3C001079",
+    "label": "industrial output",
+    "plain_label": "industrial output",
+    "subtitle": "",
+    "display_concept_id": "FG3C001079",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "China output",
+      "China's industrial sector",
+      "Industrial output"
+    ],
+    "aliases": [
+      "China output",
+      "China's industrial sector",
+      "Industrial output",
+      "Regional industrial output",
+      "domestic industrial output",
+      "industrial output value",
+      "industrial outputs",
+      "industrial sector output",
+      "steel output"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 55,
+    "distinct_paper_support": 55,
+    "weighted_degree": 32.0,
+    "pagerank": 0.0021914,
+    "in_degree": 13,
+    "out_degree": 9,
+    "neighbor_count": 18,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Malaysia"
+    ],
+    "top_units": [
+      "industry",
+      "country",
+      "region"
+    ],
+    "search_terms": [
+      "industrial output",
+      "China output",
+      "China's industrial sector",
+      "Regional industrial output",
+      "domestic industrial output",
+      "industrial output value",
+      "industrial outputs",
+      "industrial sector output",
+      "steel output"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001079"
+  },
+  {
+    "concept_id": "FG3C000112",
+    "label": "inflation rate",
+    "plain_label": "inflation rate",
+    "subtitle": "",
+    "display_concept_id": "FG3C000112",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Changes in the inflation rate",
+      "Core inflation rate",
+      "Country inflation rates"
+    ],
+    "aliases": [
+      "Changes in the inflation rate",
+      "Core inflation rate",
+      "Country inflation rates",
+      "Inflation (annual rate)",
+      "Inflation (rate of inflation)",
+      "Inflation rate",
+      "Inflow rate",
+      "Regional inflation rates",
+      "U.S. inflation rate",
+      "US inflation rates",
+      "annual inflation rate",
+      "credit rating inflation"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 239,
+    "distinct_paper_support": 238,
+    "weighted_degree": 31.0,
+    "pagerank": 0.00159812,
+    "in_degree": 3,
+    "out_degree": 13,
+    "neighbor_count": 14,
+    "top_countries": [
+      "United States",
+      "China",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "region"
+    ],
+    "search_terms": [
+      "inflation rate",
+      "Changes in the inflation rate",
+      "Core inflation rate",
+      "Country inflation rates",
+      "Inflation (annual rate)",
+      "Inflation (rate of inflation)",
+      "Inflow rate",
+      "Regional inflation rates",
+      "U.S. inflation rate",
+      "US inflation rates",
+      "annual inflation rate",
+      "credit rating inflation"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000112"
+  },
+  {
+    "concept_id": "FG3C001019",
+    "label": "energy",
+    "plain_label": "energy",
+    "subtitle": "",
+    "display_concept_id": "FG3C001019",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "China energy industry",
+      "Energy",
+      "Energy Economics (journal)"
+    ],
+    "aliases": [
+      "China energy industry",
+      "Energy",
+      "Energy Economics (journal)",
+      "Energy enterprises",
+      "Energy management",
+      "Energy performance",
+      "Energy sector (China)",
+      "Energy sector activities",
+      "Energy-related firms",
+      "energy companies",
+      "energy finance",
+      "energy of host country"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 87,
+    "distinct_paper_support": 87,
+    "weighted_degree": 30.0,
+    "pagerank": 0.00204846,
+    "in_degree": 6,
+    "out_degree": 8,
+    "neighbor_count": 12,
+    "top_countries": [
+      "China",
+      "CHN",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "industry",
+      "firm"
+    ],
+    "search_terms": [
+      "energy",
+      "China energy industry",
+      "Energy Economics (journal)",
+      "Energy enterprises",
+      "Energy management",
+      "Energy performance",
+      "Energy sector (China)",
+      "Energy sector activities",
+      "Energy-related firms",
+      "energy companies",
+      "energy finance",
+      "energy of host country"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001019"
+  },
+  {
+    "concept_id": "FG3C000401",
+    "label": "capital formation",
+    "plain_label": "capital formation",
+    "subtitle": "",
+    "display_concept_id": "FG3C000401",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Capital formation",
+      "business capital formation"
+    ],
+    "aliases": [
+      "Capital formation",
+      "business capital formation"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 85,
+    "distinct_paper_support": 85,
+    "weighted_degree": 30.0,
+    "pagerank": 0.00159973,
+    "in_degree": 4,
+    "out_degree": 13,
+    "neighbor_count": 15,
+    "top_countries": [
+      "China",
+      "United States",
+      "BRICS"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "establishment"
+    ],
+    "search_terms": [
+      "capital formation",
+      "business capital formation"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000401"
+  },
+  {
+    "concept_id": "FG3C000005",
+    "label": "COVID-19 pandemic",
+    "plain_label": "COVID-19 pandemic",
+    "subtitle": "",
+    "display_concept_id": "FG3C000005",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "COVID-19 / pandemic",
+      "COVID-19 pandemic (economic shock)",
+      "COVID-19 pandemic (shock)"
+    ],
+    "aliases": [
+      "COVID-19 / pandemic",
+      "COVID-19 pandemic (economic shock)",
+      "COVID-19 pandemic (shock)",
+      "Government responses to the pandemic",
+      "pandemic shock"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 1014,
+    "distinct_paper_support": 1014,
+    "weighted_degree": 29.0,
+    "pagerank": 0.00146845,
+    "in_degree": 1,
+    "out_degree": 15,
+    "neighbor_count": 15,
+    "top_countries": [
+      "China",
+      "United States",
+      "USA"
+    ],
+    "top_units": [
+      "country",
+      "individual",
+      "other"
+    ],
+    "search_terms": [
+      "COVID-19 pandemic",
+      "COVID-19 pandemic (economic shock)",
+      "COVID-19 pandemic (shock)",
+      "Government responses to the pandemic",
+      "pandemic shock"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000005"
+  },
+  {
+    "concept_id": "FG3C000427",
+    "label": "real output",
+    "plain_label": "real output",
+    "subtitle": "",
+    "display_concept_id": "FG3C000427",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Real Output",
+      "Real economy outcomes",
+      "real net incentives for seizures (after local offsets)"
+    ],
+    "aliases": [
+      "Real Output",
+      "Real economy outcomes",
+      "real net incentives for seizures (after local offsets)",
+      "real output (real income)",
+      "real outputs",
+      "repeat offenders"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 88,
+    "distinct_paper_support": 88,
+    "weighted_degree": 29.0,
+    "pagerank": 0.00310377,
+    "in_degree": 9,
+    "out_degree": 6,
+    "neighbor_count": 11,
+    "top_countries": [
+      "China",
+      "United States",
+      "India"
+    ],
+    "top_units": [
+      "country",
+      "industry",
+      "individual"
+    ],
+    "search_terms": [
+      "real output",
+      "Real economy outcomes",
+      "real net incentives for seizures (after local offsets)",
+      "real output (real income)",
+      "real outputs",
+      "repeat offenders"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000427"
+  },
+  {
+    "concept_id": "FG3C000609",
+    "label": "financial risk",
+    "plain_label": "financial risk",
+    "subtitle": "",
+    "display_concept_id": "FG3C000609",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Financial risk",
+      "financial sector risk"
+    ],
+    "aliases": [
+      "Financial risk",
+      "financial sector risk"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 63,
+    "distinct_paper_support": 63,
+    "weighted_degree": 29.0,
+    "pagerank": 0.00174481,
+    "in_degree": 4,
+    "out_degree": 12,
+    "neighbor_count": 12,
+    "top_countries": [
+      "China",
+      "India",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "market"
+    ],
+    "search_terms": [
+      "financial risk",
+      "financial sector risk"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000609"
+  },
+  {
+    "concept_id": "FG3C016235",
+    "label": "GDP (economic expansion)",
+    "plain_label": "GDP (economic expansion)",
+    "subtitle": "",
+    "display_concept_id": "FG3C016235",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Economic development / GDP",
+      "Economic expansion (GDP)",
+      "GDP (economic development)"
+    ],
+    "aliases": [
+      "Economic development / GDP",
+      "Economic expansion (GDP)",
+      "GDP (economic development)",
+      "GDP (economic expansion)",
+      "GDP (growth)",
+      "GDP data of 17 leading capitalist economies (1870–1994)",
+      "Gross Domestic Product (GDP) / economic expansion",
+      "Higher GDP",
+      "Japanese GDP",
+      "Size of GDP"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 29,
+    "distinct_paper_support": 29,
+    "weighted_degree": 29.0,
+    "pagerank": 0.00222106,
+    "in_degree": 5,
+    "out_degree": 8,
+    "neighbor_count": 11,
+    "top_countries": [
+      "China",
+      "Japan",
+      "Australia"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "other"
+    ],
+    "search_terms": [
+      "GDP (economic expansion)",
+      "Economic development / GDP",
+      "Economic expansion (GDP)",
+      "GDP (economic development)",
+      "GDP (growth)",
+      "GDP data of 17 leading capitalist economies (1870–1994)",
+      "Gross Domestic Product (GDP) / economic expansion",
+      "Higher GDP",
+      "Japanese GDP",
+      "Size of GDP"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C016235"
+  },
+  {
+    "concept_id": "FG3C001868",
+    "label": "transport infrastructure",
+    "plain_label": "transport infrastructure",
+    "subtitle": "",
+    "display_concept_id": "FG3C001868",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Communication infrastructure",
+      "Freight transport capacity",
+      "Infrastructure connectivity"
+    ],
+    "aliases": [
+      "Communication infrastructure",
+      "Freight transport capacity",
+      "Infrastructure connectivity",
+      "Infrastructure costs",
+      "Infrastructure expansion",
+      "Infrastructure services",
+      "Infrastructure support",
+      "Proximity to transportation infrastructure",
+      "Regional Infrastructure",
+      "Resilient infrastructure",
+      "Supporting infrastructure",
+      "Transport and communications infrastructure"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 139,
+    "distinct_paper_support": 134,
+    "weighted_degree": 28.0,
+    "pagerank": 0.00166356,
+    "in_degree": 2,
+    "out_degree": 8,
+    "neighbor_count": 8,
+    "top_countries": [
+      "China",
+      "OECD",
+      "United States"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "location"
+    ],
+    "search_terms": [
+      "transport infrastructure",
+      "Communication infrastructure",
+      "Freight transport capacity",
+      "Infrastructure connectivity",
+      "Infrastructure costs",
+      "Infrastructure expansion",
+      "Infrastructure services",
+      "Infrastructure support",
+      "Proximity to transportation infrastructure",
+      "Regional Infrastructure",
+      "Resilient infrastructure",
+      "Supporting infrastructure",
+      "Transport and communications infrastructure"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001868"
+  },
+  {
+    "concept_id": "FG3C000180",
+    "label": "human capital accumulation",
+    "plain_label": "human capital accumulation",
+    "subtitle": "",
+    "display_concept_id": "FG3C000180",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Human capital accumulation"
+    ],
+    "aliases": [
+      "Human capital accumulation"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 141,
+    "distinct_paper_support": 141,
+    "weighted_degree": 25.0,
+    "pagerank": 0.00169493,
+    "in_degree": 6,
+    "out_degree": 7,
+    "neighbor_count": 13,
+    "top_countries": [
+      "China",
+      "CHN",
+      "ESP"
+    ],
+    "top_units": [
+      "individual",
+      "location",
+      "region"
+    ],
+    "search_terms": [
+      "human capital accumulation"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000180"
+  },
+  {
+    "concept_id": "FG3C000712",
+    "label": "government size",
+    "plain_label": "government size",
+    "subtitle": "",
+    "display_concept_id": "FG3C000712",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "George Stigler",
+      "Government size",
+      "Nigerian government"
+    ],
+    "aliases": [
+      "George Stigler",
+      "Government size",
+      "Nigerian government",
+      "concerned ministries of the Indian government"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 62,
+    "distinct_paper_support": 62,
+    "weighted_degree": 20.0,
+    "pagerank": 0.00162285,
+    "in_degree": 1,
+    "out_degree": 4,
+    "neighbor_count": 5,
+    "top_countries": [
+      "India",
+      "China",
+      "Nigeria"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "organization"
+    ],
+    "search_terms": [
+      "government size",
+      "George Stigler",
+      "Nigerian government",
+      "concerned ministries of the Indian government"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000712"
+  },
+  {
+    "concept_id": "FG3C000424",
+    "label": "digital inclusive finance",
+    "plain_label": "digital inclusive finance",
+    "subtitle": "",
+    "display_concept_id": "FG3C000424",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Digital Inclusive Finance"
+    ],
+    "aliases": [
+      "Digital Inclusive Finance"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 77,
+    "distinct_paper_support": 77,
+    "weighted_degree": 19.0,
+    "pagerank": 0.00155482,
+    "in_degree": 2,
+    "out_degree": 7,
+    "neighbor_count": 9,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Ghana"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "other"
+    ],
+    "search_terms": [
+      "digital inclusive finance"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000424"
+  },
+  {
+    "concept_id": "FG3C000192",
+    "label": "structural change",
+    "plain_label": "structural change",
+    "subtitle": "",
+    "display_concept_id": "FG3C000192",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Ecological Structural Change (ESC)",
+      "Structural Change (SC)",
+      "Structural change"
+    ],
+    "aliases": [
+      "Ecological Structural Change (ESC)",
+      "Structural Change (SC)",
+      "Structural change",
+      "Structural change in China",
+      "Structural change tests",
+      "Tests for structural change",
+      "speed of structural change"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 146,
+    "distinct_paper_support": 146,
+    "weighted_degree": 18.0,
+    "pagerank": 0.0017518,
+    "in_degree": 4,
+    "out_degree": 8,
+    "neighbor_count": 11,
+    "top_countries": [
+      "China",
+      "Mexico",
+      "G7"
+    ],
+    "top_units": [
+      "country",
+      "industry",
+      "region"
+    ],
+    "search_terms": [
+      "structural change",
+      "Ecological Structural Change (ESC)",
+      "Structural Change (SC)",
+      "Structural change in China",
+      "Structural change tests",
+      "Tests for structural change",
+      "speed of structural change"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000192"
+  },
+  {
+    "concept_id": "FG3C000399",
+    "label": "financial liberalization",
+    "plain_label": "financial liberalization",
+    "subtitle": "",
+    "display_concept_id": "FG3C000399",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Financial liberalization",
+      "Trade and financial liberalization",
+      "access to international financial markets"
+    ],
+    "aliases": [
+      "Financial liberalization",
+      "Trade and financial liberalization",
+      "access to international financial markets",
+      "credit market liberalization",
+      "degree of financial liberalization",
+      "financial liberalisation of mortgage markets",
+      "financial liberalisation policies",
+      "financial liberalizations",
+      "liberalization of capital flows",
+      "liberalization of financial markets",
+      "liberalized financial markets"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 99,
+    "distinct_paper_support": 99,
+    "weighted_degree": 18.0,
+    "pagerank": 0.00151992,
+    "in_degree": 1,
+    "out_degree": 8,
+    "neighbor_count": 8,
+    "top_countries": [
+      "NA",
+      "30 selected OECD countries",
+      "developing countries"
+    ],
+    "top_units": [
+      "country",
+      "other",
+      "firm"
+    ],
+    "search_terms": [
+      "financial liberalization",
+      "Trade and financial liberalization",
+      "access to international financial markets",
+      "credit market liberalization",
+      "degree of financial liberalization",
+      "financial liberalisation of mortgage markets",
+      "financial liberalisation policies",
+      "financial liberalizations",
+      "liberalization of capital flows",
+      "liberalization of financial markets",
+      "liberalized financial markets"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000399"
+  },
+  {
+    "concept_id": "FG3C000874",
+    "label": "labour",
+    "plain_label": "labour",
+    "subtitle": "",
+    "display_concept_id": "FG3C000874",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Labour",
+      "Labour (input)",
+      "Labour surplus"
+    ],
+    "aliases": [
+      "Labour",
+      "Labour (input)",
+      "Labour surplus"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 55,
+    "distinct_paper_support": 55,
+    "weighted_degree": 18.0,
+    "pagerank": 0.0016305,
+    "in_degree": 2,
+    "out_degree": 5,
+    "neighbor_count": 6,
+    "top_countries": [
+      "United States",
+      "Pakistan",
+      "South Africa"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "industry"
+    ],
+    "search_terms": [
+      "labour",
+      "Labour (input)",
+      "Labour surplus"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000874"
+  },
+  {
+    "concept_id": "FG3C000477",
+    "label": "public investment",
+    "plain_label": "public investment",
+    "subtitle": "",
+    "display_concept_id": "FG3C000477",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Public investment"
+    ],
+    "aliases": [
+      "Public investment"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 73,
+    "distinct_paper_support": 73,
+    "weighted_degree": 17.0,
+    "pagerank": 0.00153358,
+    "in_degree": 1,
+    "out_degree": 6,
+    "neighbor_count": 6,
+    "top_countries": [
+      "euro area",
+      "United States",
+      "developing countries"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "other"
+    ],
+    "search_terms": [
+      "public investment"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000477"
+  },
+  {
+    "concept_id": "FG3C001490",
+    "label": "Internet development",
+    "plain_label": "Internet development",
+    "subtitle": "",
+    "display_concept_id": "FG3C001490",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Internet development",
+      "Internet development level"
+    ],
+    "aliases": [
+      "Internet development",
+      "Internet development level"
+    ],
+    "bucket_hint": "adjacent",
+    "instance_support": 31,
+    "distinct_paper_support": 31,
+    "weighted_degree": 17.0,
+    "pagerank": 0.00149462,
+    "in_degree": 2,
+    "out_degree": 8,
+    "neighbor_count": 9,
+    "top_countries": [
+      "China",
+      "CHN"
+    ],
+    "top_units": [
+      "region",
+      "location",
+      "other"
+    ],
+    "search_terms": [
+      "Internet development",
+      "Internet development level"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001490"
+  },
+  {
+    "concept_id": "FG3C001174",
+    "label": "financial structure",
+    "plain_label": "financial structure",
+    "subtitle": "",
+    "display_concept_id": "FG3C001174",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Financial market structure",
+      "Financial structure",
+      "Firms' financial structure"
+    ],
+    "aliases": [
+      "Financial market structure",
+      "Financial structure",
+      "Firms' financial structure",
+      "financial structure (bank-based vs market-based)",
+      "financial structure of finance companies",
+      "financial structures",
+      "financing structure"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 52,
+    "distinct_paper_support": 52,
+    "weighted_degree": 16.0,
+    "pagerank": 0.00157979,
+    "in_degree": 3,
+    "out_degree": 3,
+    "neighbor_count": 4,
+    "top_countries": [
+      "China",
+      "CHN",
+      "Italy"
+    ],
+    "top_units": [
+      "country",
+      "firm",
+      "region"
+    ],
+    "search_terms": [
+      "financial structure",
+      "Financial market structure",
+      "Firms' financial structure",
+      "financial structure (bank-based vs market-based)",
+      "financial structure of finance companies",
+      "financial structures",
+      "financing structure"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C001174"
+  },
+  {
+    "concept_id": "FG3C000503",
+    "label": "agricultural productivity",
+    "plain_label": "agricultural productivity",
+    "subtitle": "",
+    "display_concept_id": "FG3C000503",
+    "display_refined": false,
+    "display_refinement_confidence": 0.0,
+    "alternate_display_labels": [
+      "Agricultural labour productivity",
+      "Agricultural productivity",
+      "Rural productivity"
+    ],
+    "aliases": [
+      "Agricultural labour productivity",
+      "Agricultural productivity",
+      "Rural productivity",
+      "U.S. agricultural productivity",
+      "agricultural labor productivity",
+      "agricultural production and productivity",
+      "crop productivity",
+      "farm productivity",
+      "labor productivity in English agriculture",
+      "labor productivity in agriculture",
+      "low agricultural productivity",
+      "nonagricultural productivity"
+    ],
+    "bucket_hint": "core",
+    "instance_support": 92,
+    "distinct_paper_support": 91,
+    "weighted_degree": 14.0,
+    "pagerank": 0.00294386,
+    "in_degree": 7,
+    "out_degree": 2,
+    "neighbor_count": 8,
+    "top_countries": [
+      "United States",
+      "USA",
+      "China"
+    ],
+    "top_units": [
+      "country",
+      "region",
+      "other"
+    ],
+    "search_terms": [
+      "agricultural productivity",
+      "Agricultural labour productivity",
+      "Rural productivity",
+      "U.S. agricultural productivity",
+      "agricultural labor productivity",
+      "agricultural production and productivity",
+      "crop productivity",
+      "farm productivity",
+      "labor productivity in English agriculture",
+      "labor productivity in agriculture",
+      "low agricultural productivity",
+      "nonagricultural productivity"
+    ],
+    "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?variant=broad&view=concept&concept=FG3C000503"
+  }
+]

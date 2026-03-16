@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { data, formatBytes, formatCompact } from "../../../lib/site-data-broad";
+
+const publicDb = data.downloads.public_db;
+const broadLinks = [
+  { href: "/broad/", label: "Home" },
+  { href: "/broad/questions/", label: "Questions" },
+  { href: "/broad/graph/", label: "Graph" },
+  { href: "/broad/audit/", label: "Audit" },
+  { href: "/paper/", label: "Paper" },
+];
+---
+
+<BaseLayout
+  title="Broad Preview Downloads | FrontierGraph"
+  description="Download the broad preview SQLite bundle and supporting files."
+  navPrefix="/broad"
+  appUrl={data.app_url}
+  appLabel="Broad app preview"
+  variantLabel="Broad preview"
+  links={broadLinks}
+>
+  <main>
+    <section class="page-hero">
+      <h1>Download the broad preview files.</h1>
+      <p class="lede">
+        These files mirror the broad preview only. Use them when you want to inspect the 16.5k-topic regime locally before we decide whether it should replace the current release.
+      </p>
+    </section>
+
+    <section class="section download-stack">
+      <div class="metrics-grid">
+        <article class="metric-card">
+          <div class="metric-value">{formatCompact(data.metrics.native_concepts)}</div>
+          <div class="metric-label">topics in the broad preview</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-value">{formatCompact(data.metrics.visible_public_questions)}</div>
+          <div class="metric-label">question candidates in the broad preview</div>
+        </article>
+      </div>
+
+      <article class="download-panel">
+        <span class="eyebrow">SQLite bundle</span>
+        <h2>{publicDb.filename}</h2>
+        <p class="download-copy">Use this when you want the broad preview app-equivalent evidence tables locally.</p>
+        <div class="download-tier-meta">
+          <span>{formatBytes(publicDb.db_size_bytes)}</span>
+          <span>{publicDb.public_url || "Upload path pending"}</span>
+        </div>
+        {publicDb.public_url ? (
+          <div class="button-row">
+            <a class="button-primary" href={publicDb.public_url}>Download broad preview bundle</a>
+          </div>
+        ) : (
+          <p class="card-copy">The broad preview bundle has been built locally; the public download URL will appear here after upload.</p>
+        )}
+      </article>
+    </section>
+  </main>
+</BaseLayout>

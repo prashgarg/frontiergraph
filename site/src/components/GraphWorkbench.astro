@@ -5,6 +5,7 @@ interface Props {
   neighborhoodsIndexPath: string;
   opportunitiesIndexPath: string;
   centralConceptsPath: string;
+  contextLabel?: string;
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   neighborhoodsIndexPath,
   opportunitiesIndexPath,
   centralConceptsPath,
+  contextLabel = "current public release",
 } = Astro.props;
 
 const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
@@ -114,7 +116,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   </div>
 </section>
 
-<script is:inline define:vars={{ rootId }} type="module">
+<script is:inline define:vars={{ rootId, contextLabel }} type="module">
   const root = document.getElementById(rootId);
   if (!(root instanceof HTMLElement)) throw new Error("Graph workbench root missing");
 
@@ -216,15 +218,15 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const pathCount = safeNumber(item.supporting_path_count);
     const mediatorCount = safeNumber(item.mediator_count);
     if (pathCount > 0 && mediatorCount > 0) {
-      return `${formatNumber(pathCount)} nearby paths and ${formatNumber(mediatorCount)} intermediate topics already connect these two sides in the public release.`;
+      return `${formatNumber(pathCount)} nearby paths and ${formatNumber(mediatorCount)} intermediate topics already connect these two sides in the ${contextLabel}.`;
     }
     if (pathCount > 0) {
-      return `${formatNumber(pathCount)} nearby paths already connect these two sides in the public release.`;
+      return `${formatNumber(pathCount)} nearby paths already connect these two sides in the ${contextLabel}.`;
     }
     if (mediatorCount > 0) {
-      return `${formatNumber(mediatorCount)} intermediate topics already connect these two sides in the public release.`;
+      return `${formatNumber(mediatorCount)} intermediate topics already connect these two sides in the ${contextLabel}.`;
     }
-    return "Nearby directed links and papers already bring these two sides close together in the public release.";
+    return `Nearby directed links and papers already bring these two sides close together in the ${contextLabel}.`;
   };
   const staticGuideText =
     "Choose a question first. Open the graph only when you want local context around it.";
@@ -672,7 +674,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       const fallbackItems = (currentNeighborhood?.top_neighbors || []).slice(0, 3);
       selectedQuestion.innerHTML = fallbackItems.length
         ? `
-          <p class="card-copy">This topic does not currently have a released question in the public set, but nearby directed links still suggest plausible next moves.</p>
+          <p class="card-copy">This topic does not currently have a surfaced question in the ${contextLabel}, but nearby directed links still suggest plausible next moves.</p>
           <div class="graph-prompt-stack">
             ${fallbackItems
               .map(
@@ -727,7 +729,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
             `;
           })
           .join("")
-      : `<p class="mini-copy">No named intermediate topics were exported for this question in the current public release.</p>`;
+      : `<p class="mini-copy">No named intermediate topics were exported for this question in the ${contextLabel}.</p>`;
 
     const papers = Array.isArray(question.representative_papers) ? question.representative_papers.slice(0, 3) : [];
     selectedQuestion.innerHTML = `
@@ -767,7 +769,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
                     )
                     .join("")}
                 </ul>`
-              : `<p class="mini-copy">No starter-paper preview was exported for this question in the current public release.</p>`
+              : `<p class="mini-copy">No starter-paper preview was exported for this question in the ${contextLabel}.</p>`
           }
         </details>
       </div>
@@ -917,7 +919,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         ${conceptSubtitle(concept) ? `<p class="mini-copy opportunity-label-note">${escapeHtml(conceptSubtitle(concept))}</p>` : ""}
       </div>
       <div class="graph-topic-strip-meta">
-        <span class="graph-topic-stat">${formatNumber(safeNumber(concept.distinct_paper_support))} papers in the public release</span>
+        <span class="graph-topic-stat">${formatNumber(safeNumber(concept.distinct_paper_support))} papers in the ${contextLabel}</span>
         <span class="graph-topic-stat">${formatNumber(questionCount)} question candidates touch this topic</span>
       </div>
       <div class="button-row graph-topic-strip-actions">
@@ -937,7 +939,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     currentNeighborhood = null;
     const shardPath = neighborhoodIndex[conceptId];
     if (!shardPath) {
-      selectedNeighborhood.innerHTML = `<p class="card-copy">No nearby topics were exported for this topic in the current public release.</p>`;
+      selectedNeighborhood.innerHTML = `<p class="card-copy">No nearby topics were exported for this topic in the ${contextLabel}.</p>`;
       renderQuestionDetail();
       return;
     }
@@ -945,7 +947,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const neighborhood = shard[conceptId];
     currentNeighborhood = neighborhood || null;
     if (!neighborhood) {
-      selectedNeighborhood.innerHTML = `<p class="card-copy">No nearby-topic entry was found for this topic in the current public release.</p>`;
+      selectedNeighborhood.innerHTML = `<p class="card-copy">No nearby-topic entry was found for this topic in the ${contextLabel}.</p>`;
       renderQuestionDetail();
       return;
     }
@@ -975,7 +977,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
             .join("")}
         </div>
       `
-      : `<p class="card-copy">No nearby topics were exported for this topic in the current public release.</p>`;
+      : `<p class="card-copy">No nearby topics were exported for this topic in the ${contextLabel}.</p>`;
     for (const button of selectedNeighborhood.querySelectorAll("[data-neighbor-id]")) {
       button.addEventListener("click", () => selectConcept(button.dataset.neighborId));
     }
@@ -986,7 +988,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     currentOpportunities = [];
     const shardPath = opportunitiesIndex[conceptId];
     if (!shardPath) {
-      selectedOpportunities.innerHTML = `<p class="card-copy">No public question candidate touching this topic is available in the current public release.</p>`;
+      selectedOpportunities.innerHTML = `<p class="card-copy">No public question candidate touching this topic is available in the ${contextLabel}.</p>`;
       renderQuestionDetail();
       return;
     }
@@ -999,7 +1001,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     currentOpportunities = opportunities;
     if (!currentOpportunities.length) {
       activeQuestionPairKey = null;
-      selectedOpportunities.innerHTML = `<p class="card-copy">No public question candidate touching this topic is available in the current public release.</p>`;
+      selectedOpportunities.innerHTML = `<p class="card-copy">No public question candidate touching this topic is available in the ${contextLabel}.</p>`;
       renderQuestionDetail();
       return;
     }
@@ -1015,7 +1017,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
             const counterpartLabel = conceptLabel(questionCounterpartId(item, conceptId), "Other topic");
             return `
             <button class="graph-question-row${item.pair_key === activeQuestionPairKey ? " is-active" : ""}" type="button" data-select-pair="${escapeAttr(item.pair_key)}">
-              <span class="tiny-label">${escapeHtml(item.slice_label || "Released question")}</span>
+              <span class="tiny-label">${escapeHtml(item.slice_label || "Question candidate")}</span>
               <strong>${escapeHtml(questionTitle(item))}</strong>
               <div class="graph-question-meta graph-question-meta-tight">
                 <span>Other side: ${escapeHtml(counterpartLabel)}</span>

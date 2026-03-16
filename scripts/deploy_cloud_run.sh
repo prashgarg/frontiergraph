@@ -90,10 +90,14 @@ deploy_args=(
 
 if [[ -n "${DATA_BUCKET:-}" ]]; then
   DB_FILENAME="${DB_FILENAME:-frontiergraph-economics-public.db}"
+  DB_FILENAME_BROAD="${DB_FILENAME_BROAD:-}"
   CONCEPT_DB_FILENAME="${CONCEPT_DB_FILENAME:-}"
   MOUNT_PATH="${MOUNT_PATH:-/mnt/ranker-data}"
   VOLUME_NAME="${VOLUME_NAME:-ranker-data}"
   env_vars+=("ECON_OPPORTUNITY_DB=${MOUNT_PATH}/${DB_FILENAME}")
+  if [[ -n "$DB_FILENAME_BROAD" ]]; then
+    env_vars+=("ECON_OPPORTUNITY_DB_BROAD=${MOUNT_PATH}/${DB_FILENAME_BROAD}")
+  fi
   if [[ -n "$CONCEPT_DB_FILENAME" ]]; then
     env_vars+=("ECON_CONCEPT_DB=${MOUNT_PATH}/${CONCEPT_DB_FILENAME}")
   fi

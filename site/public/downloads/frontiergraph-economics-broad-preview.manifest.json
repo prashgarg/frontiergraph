@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-03-16T17:17:55.042244+00:00",
+  "variant": "broad",
+  "variant_label": "Broad preview",
+  "db_filename": "frontiergraph-economics-broad-preview.db",
+  "db_size_bytes": 3837952,
+  "sha256": "588217daec04673b5ab816128be2670c97bee1baee696913982e414936a6c4a7",
+  "public_url": "",
+  "counts": {
+    "top_questions": 100,
+    "questions": 100,
+    "concepts": 104,
+    "question_mediators": 791,
+    "question_paths": 600,
+    "question_papers": 600,
+    "concept_neighbors": 2014,
+    "concept_opportunities": 188
+  },
+  "preview_note": "This preview uses the broad exploratory regime directly and shows a preview-sized top window rather than a full public release."
+}

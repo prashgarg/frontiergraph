@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import OpportunityCards from "../../components/OpportunityCards.astro";
+import { data, formatCompact } from "../../lib/site-data-broad";
+
+const broadLinks = [
+  { href: "/broad/", label: "Home" },
+  { href: "/broad/questions/", label: "Questions" },
+  { href: "/broad/graph/", label: "Graph" },
+  { href: "/broad/audit/", label: "Audit" },
+  { href: "/paper/", label: "Paper" },
+];
+---
+
+<BaseLayout
+  title="Broad Preview | FrontierGraph"
+  description="Inspect a broader 16.5k-topic FrontierGraph preview next to the current public release."
+  navPrefix="/broad"
+  appUrl={data.app_url}
+  appLabel="Broad app preview"
+  variantLabel="Broad preview"
+  links={broadLinks}
+>
+  <main>
+    <section class="page-hero">
+      <h1>Broad preview: finer topic vocabulary.</h1>
+      <p class="lede">
+        This preview swaps the current public vocabulary for the existing broader 16.5k-topic regime so we can inspect how the surfaced questions change before replacing the main release.
+      </p>
+      <div class="button-row">
+        <a class="button-primary" href="/broad/questions/">Browse broad questions</a>
+        <a class="button-secondary" href="/broad/graph/">Browse broad graph</a>
+        <a class="button-tertiary" href="/broad/audit/">Open side-by-side audit</a>
+        <a class="button-tertiary" href={data.app_url}>Open broad app preview</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="metrics-grid">
+        <article class="metric-card">
+          <div class="metric-value">{formatCompact(data.metrics.native_concepts)}</div>
+          <div class="metric-label">topics in the broad preview</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-value">{formatCompact(data.metrics.visible_public_questions)}</div>
+          <div class="metric-label">question candidates in the broad preview</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-value">{formatCompact(data.metrics.edges)}</div>
+          <div class="metric-label">directed topic links carried into this preview</div>
+        </article>
+      </div>
+    </section>
+
+    <OpportunityCards
+      items={data.questions.ranked_questions.slice(0, 12)}
+      title="First look at the broad preview"
+      caption="Use this to see how the finer topic vocabulary changes the top public question surface."
+      sectionId="broad-preview-questions"
+    />
+  </main>
+</BaseLayout>

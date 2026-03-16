@@ -28,7 +28,9 @@ GRAPH_URL = f"{SITE_URL}/graph/"
 PAPER_URL = f"{SITE_URL}/paper/"
 DOWNLOADS_URL = f"{SITE_URL}/downloads/"
 DEFAULT_DB = Path(os.environ.get("FRONTIERGRAPH_PUBLIC_RELEASE_DB", "/tmp/frontiergraph-economics-public.db"))
+DEFAULT_DB_BROAD = Path(os.environ.get("FRONTIERGRAPH_PUBLIC_RELEASE_DB_BROAD", "/tmp/frontiergraph-economics-broad-preview.db"))
 LEGACY_DEFAULT_DB = Path("data/production/frontiergraph_public_release/frontiergraph-economics-public.db")
+LEGACY_DEFAULT_DB_BROAD = Path("data/production/frontiergraph_public_release/frontiergraph-economics-broad-preview.db")
 FALLBACK_DB = Path(
     "data/production/frontiergraph_concept_compare_v1/baseline/suppression/concept_exploratory_suppressed_top100k_app.sqlite"
 )
@@ -344,8 +346,16 @@ def query_param(name: str) -> str:
     return str(value)
 
 
+def current_release_variant() -> str:
+    requested = query_param("variant").strip().lower()
+    return "broad" if requested == "broad" else "baseline"
+
+
 def set_query_params(**kwargs: str) -> None:
     clean = {key: value for key, value in kwargs.items() if value}
+    variant = clean.get("variant") or current_release_variant()
+    if variant in {"baseline", "broad"}:
+        clean["variant"] = variant
     st.query_params.clear()
     for key, value in clean.items():
         st.query_params[key] = value
@@ -381,6 +391,7 @@ def posthog_capture(event: str, properties: dict[str, Any]) -> bool:
         "properties": {
             "source": "frontiergraph_app",
             "$process_person_profile": False,
+            "release_variant": current_release_variant(),
             **properties,
         },
     }
@@ -404,7 +415,19 @@ def track_once(state_key: str, event: str, properties: dict[str, Any]) -> None:
     st.session_state[state_key] = signature
 
 
-def choose_db_path() -> str:
+def choose_db_path(variant: str) -> str:
+    if variant == "broad":
+        candidates = [
+            os.environ.get("ECON_OPPORTUNITY_DB_BROAD", "").strip(),
+            os.environ.get("FRONTIERGRAPH_PUBLIC_RELEASE_DB_BROAD", "").strip(),
+            str(DEFAULT_DB_BROAD),
+            str(LEGACY_DEFAULT_DB_BROAD),
+        ]
+        for candidate in candidates:
+            if candidate and bundle_is_usable(Path(candidate)):
+                return candidate
+        return str(DEFAULT_DB_BROAD)
+
     env_db = os.environ.get("ECON_OPPORTUNITY_DB", "").strip()
     if env_db and bundle_is_usable(Path(env_db)):
         return env_db
@@ -1646,7 +1669,20 @@ def main() -> None:
     st.set_page_config(page_title="FrontierGraph | App", layout="wide", initial_sidebar_state="expanded")
     inject_css()
 
-    db_path = choose_db_path()
+    release_variant_default = current_release_variant()
+    sync_from_query("release_variant", release_variant_default, "_sync_release_variant")
+    release_variant = st.radio(
+        "Release variant",
+        options=["baseline", "broad"],
+        key="release_variant",
+        format_func=lambda value: {"baseline": "Current release", "broad": "Broad preview"}[value],
+        horizontal=True,
+    )
+    if release_variant != release_variant_default:
+        set_query_params(variant=release_variant, view=query_param("view") or st.session_state.get("primary_view", "question"))
+        st.rerun()
+
+    db_path = choose_db_path(release_variant)
     if not Path(db_path).exists():
         st.error(f"Database not found: {db_path}")
         st.stop()
@@ -1664,9 +1700,9 @@ def main() -> None:
         unsafe_allow_html=True,
     )
     st.markdown(
-        """
+        f"""
         <div class="hero-shell">
-            <div class="eyebrow">FrontierGraph app</div>
+            <div class="eyebrow">FrontierGraph app · {"Broad preview" if release_variant == "broad" else "Current release"}</div>
             <h1 class="hero-title">Read one question or topic at a time.</h1>
             <p class="hero-copy">
                 Start with a question or a topic below. Search and pick one object first; filters and technical tables stay out of the way until you need them.
