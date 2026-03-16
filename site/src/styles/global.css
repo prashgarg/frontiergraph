@@ -545,8 +545,9 @@ h3 {
 }
 
 .home-intro-grid-hero {
-  grid-template-columns: repeat(2, minmax(0, 19rem));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   justify-content: center;
+  width: min(60rem, 100%);
 }
 
 .home-hero-side {
@@ -588,8 +589,8 @@ h3 {
 
 .graph-explainer-copy h2 {
   margin: 0;
-  font-size: clamp(1.45rem, 2vw, 2rem);
-  line-height: 1.12;
+  font-size: clamp(1.2rem, 1.55vw, 1.55rem);
+  line-height: 1.2;
 }
 
 .graph-explainer-list {
@@ -624,7 +625,7 @@ h3 {
 
 .graph-explainer-diagram text {
   fill: var(--text);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   text-anchor: middle;
 }
@@ -1319,7 +1320,7 @@ h3 {
 }
 
 .hero-visual-panel-home {
-  width: min(48rem, 100%);
+  width: min(60rem, 100%);
   align-items: center;
 }
 
