@@ -209,8 +209,8 @@ a {
 h1,
 h2,
 h3 {
-  font-family: "Newsreader", serif;
-  font-weight: 600;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
 }
 
 .brand-name {
@@ -720,8 +720,9 @@ h3 {
 }
 
 .metric-value {
-  font-family: "Newsreader", serif;
+  font-family: "Source Sans 3", sans-serif;
   font-size: 2.1rem;
+  font-weight: 700;
 }
 
 .metric-label {
@@ -786,8 +787,9 @@ h3 {
 }
 
 .big-number {
-  font-family: "Newsreader", serif;
+  font-family: "Source Sans 3", sans-serif;
   font-size: 1.8rem;
+  font-weight: 700;
 }
 
 .opportunity-table {
@@ -1409,9 +1411,10 @@ h3 {
 }
 
 .hero-scale-card strong {
-  font-family: "Newsreader", serif;
+  font-family: "Source Sans 3", sans-serif;
   font-size: 1.5rem;
   line-height: 1;
+  font-weight: 700;
 }
 
 .hero-scale-card span {
@@ -1893,8 +1896,9 @@ h3 {
 .hero-stat-strip strong {
   display: block;
   margin-top: 0.25rem;
-  font-family: "Newsreader", serif;
+  font-family: "Source Sans 3", sans-serif;
   font-size: 1.35rem;
+  font-weight: 700;
 }
 
 .metrics-grid-seven {
