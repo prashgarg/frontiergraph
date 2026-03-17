@@ -50,6 +50,7 @@ def inject_css() -> None:
             --paper-strong: #fffdf8;
             --surface: rgba(255, 253, 248, 0.98);
             --surface-muted: rgba(246, 240, 230, 0.95);
+            --surface-strong: #fffdf8;
             --line: rgba(37, 48, 66, 0.12);
             --line-strong: rgba(37, 48, 66, 0.2);
             --ink: #18263a;
@@ -206,6 +207,9 @@ def inject_css() -> None:
             background: var(--surface-strong) !important;
             border-radius: 14px;
         }
+        .stApp [data-testid="stExpanderDetails"] {
+            background: var(--surface) !important;
+        }
         .stApp [data-baseweb="input"],
         .stApp [data-baseweb="base-input"],
         .stApp [data-baseweb="select"],
@@ -303,6 +307,41 @@ def inject_css() -> None:
         .stApp [data-testid="stDataFrame"] *,
         .stApp [data-testid="stTable"] * {
             color: var(--ink) !important;
+        }
+        .stApp [data-testid="stDataFrame"] [role="columnheader"],
+        .stApp [data-testid="stDataFrame"] [role="gridcell"],
+        .stApp [data-testid="stDataFrame"] [role="rowheader"],
+        .stApp [data-testid="stTable"] table th,
+        .stApp [data-testid="stTable"] table td {
+            background: var(--surface-strong) !important;
+            color: var(--ink) !important;
+            border-color: var(--line) !important;
+        }
+        .stApp [data-testid="stAlert"] {
+            background: var(--surface) !important;
+            border: 1px solid var(--line) !important;
+            color: var(--ink) !important;
+            border-radius: 16px !important;
+        }
+        .stApp [data-testid="stAlert"] * {
+            color: var(--ink) !important;
+        }
+        .stApp [data-testid="stCodeBlock"],
+        .stApp [data-testid="stCodeBlock"] *,
+        .stApp pre,
+        .stApp pre *,
+        .stApp code,
+        .stApp code * {
+            background: var(--surface-strong) !important;
+            color: var(--ink) !important;
+        }
+        .stApp [data-baseweb="popover"],
+        .stApp [role="tooltip"],
+        .stApp [role="listbox"] {
+            background: var(--surface-strong) !important;
+            color: var(--ink) !important;
+            border: 1px solid var(--line) !important;
+            box-shadow: var(--shadow) !important;
         }
         @media (max-width: 820px) {
             .hero-shell {
@@ -749,6 +788,134 @@ def question_project_shape(row: pd.Series | dict[str, Any]) -> str:
     return "Broader project" if question_is_broader_project(row) else "Focused question"
 
 
+def ordered_frame(frame: pd.DataFrame, preferred: list[str]) -> pd.DataFrame:
+    if frame.empty:
+        return frame
+    columns = [column for column in preferred if column in frame.columns]
+    columns.extend(column for column in frame.columns if column not in columns)
+    return frame.loc[:, columns]
+
+
+def series_display_frame(row: pd.Series | None, preferred: list[str]) -> pd.DataFrame:
+    if row is None:
+        return pd.DataFrame()
+    payload = {
+        key: (value.item() if hasattr(value, "item") else value)
+        for key, value in row.to_dict().items()
+    }
+    return ordered_frame(pd.DataFrame([payload]), preferred)
+
+
+def key_value_frame(payload: dict[str, Any]) -> pd.DataFrame:
+    rows = [
+        {
+            "field": key,
+            "value": value.item() if hasattr(value, "item") else value,
+        }
+        for key, value in payload.items()
+    ]
+    return pd.DataFrame(rows)
+
+
+def mediator_display_frame(frame: pd.DataFrame) -> pd.DataFrame:
+    return ordered_frame(
+        frame,
+        ["rank", "mediator_label", "score", "mediator_baseline_label", "mediator_concept_id", "pair_key"],
+    )
+
+
+def path_display_frame(frame: pd.DataFrame) -> pd.DataFrame:
+    if frame.empty:
+        return frame
+    display = frame.copy()
+    display["path_labels"] = display["path_labels_json"].map(
+        lambda value: " -> ".join(parse_json(value)) if parse_json(value) else ""
+    )
+    display["baseline_path_labels"] = display["path_baseline_labels_json"].map(
+        lambda value: " -> ".join(parse_json(value)) if parse_json(value) else ""
+    )
+    return ordered_frame(
+        display,
+        [
+            "rank",
+            "path_len",
+            "path_score",
+            "path_text",
+            "path_labels",
+            "baseline_path_labels",
+            "path_nodes_json",
+            "path_labels_json",
+            "path_baseline_labels_json",
+            "pair_key",
+        ],
+    )
+
+
+def paper_display_frame(frame: pd.DataFrame) -> pd.DataFrame:
+    return ordered_frame(
+        frame,
+        [
+            "path_rank",
+            "paper_rank",
+            "title",
+            "year",
+            "edge_src_label",
+            "edge_dst_label",
+            "edge_src_baseline_label",
+            "edge_dst_baseline_label",
+            "paper_id",
+            "pair_key",
+        ],
+    )
+
+
+def question_row_display_frame(row: pd.Series | None) -> pd.DataFrame:
+    return series_display_frame(
+        row,
+        [
+            "public_pair_label",
+            "source_display_label",
+            "target_display_label",
+            "why_now",
+            "recommended_move",
+            "direct_link_status",
+            "question_family",
+            "score",
+            "base_score",
+            "public_specificity_score",
+            "supporting_path_count",
+            "mediator_count",
+            "cooc_count",
+            "motif_count",
+            "cross_field",
+            "common_contexts",
+            "source_label",
+            "target_label",
+            "source_concept_id",
+            "target_concept_id",
+            "pair_key",
+        ],
+    )
+
+
+def concept_row_display_frame(row: pd.Series | None) -> pd.DataFrame:
+    return series_display_frame(
+        row,
+        [
+            "plain_label",
+            "subtitle",
+            "distinct_paper_support",
+            "instance_support",
+            "neighbor_count",
+            "weighted_degree",
+            "pagerank",
+            "in_degree",
+            "out_degree",
+            "concept_id",
+        ],
+    )
+
+
 def compact_author_text(value: Any) -> str:
     raw = str(value or "").strip()
     if not raw:
@@ -1112,6 +1279,8 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
         if path_rows.empty:
             st.caption("No supporting paths were exported for this question in the current public release.")
         else:
+            st.caption("These are the clearest local routes already tying the two sides together in the release graph.")
+            st.caption("Higher path scores mean stronger local support for this question. Compare the scores within this question rather than across unrelated questions.")
             for row in path_rows.itertuples(index=False):
                 labels = parse_json(row.path_labels_json)
                 path_text = " -> ".join(labels) if labels else str(row.path_text or "")
@@ -1158,26 +1327,24 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
         )
 
     with st.expander("Technical tables", expanded=False):
+        st.caption("These raw tables show the exported evidence behind the selected question, with readable labels shown before internal identifiers.")
         st.markdown("**Top intermediate topics**")
-        st.dataframe(mediators, use_container_width=True, hide_index=True)
+        st.caption("These are the intermediate topics that most clearly connect the two sides in the local graph.")
+        st.dataframe(mediator_display_frame(mediators), use_container_width=True, hide_index=True)
 
-        path_frame = paths.copy()
+        path_frame = path_display_frame(paths)
         if not path_frame.empty:
-            path_frame["path_labels"] = path_frame["path_labels_json"].map(
-                lambda value: " -> ".join(parse_json(value)) if parse_json(value) else ""
-            )
-            path_frame["baseline_path_labels"] = path_frame["path_baseline_labels_json"].map(
-                lambda value: " -> ".join(parse_json(value)) if parse_json(value) else ""
-            )
             st.markdown("**Supporting paths**")
+            st.caption("These rows show the exported path objects, including the label sequence and the path score used to order them locally.")
             st.dataframe(
-                path_frame.loc[:, ["rank", "path_len", "path_score", "path_labels", "baseline_path_labels"]],
+                path_frame,
                 use_container_width=True,
                 hide_index=True,
             )
 
         st.markdown("**Supporting papers**")
-        st.dataframe(papers, use_container_width=True, hide_index=True)
+        st.caption("These papers attach to nearby edges and paths and give you a concrete place to start reading.")
+        st.dataframe(paper_display_frame(papers), use_container_width=True, hide_index=True)
 
         if neighborhoods is not None:
             out_neighbors = []
@@ -1643,25 +1810,33 @@ def render_advanced_evidence(db_path: str, questions: pd.DataFrame, concepts: pd
     st.markdown(f"### Advanced evidence for {label_for_question(question)}")
 
     with st.expander("Raw question row", expanded=True):
-        st.json({key: (value.item() if hasattr(value, "item") else value) for key, value in question.to_dict().items()})
+        st.caption("This is the exported question row behind the selected card, with public labels and evidence counts shown before internal keys.")
+        st.dataframe(question_row_display_frame(question), use_container_width=True, hide_index=True)
 
     with st.expander("Mediator table", expanded=False):
-        st.dataframe(bundle["mediators"], use_container_width=True, hide_index=True)
+        st.caption("These intermediate topics are the main connectors between the two sides of the question in the local graph.")
+        st.dataframe(mediator_display_frame(bundle["mediators"]), use_container_width=True, hide_index=True)
 
     with st.expander("Path table", expanded=False):
-        st.dataframe(bundle["paths"], use_container_width=True, hide_index=True)
+        st.caption("These are the exported supporting paths. Path scores tell you how strongly each local route is supported for this question.")
+        st.dataframe(path_display_frame(bundle["paths"]), use_container_width=True, hide_index=True)
 
     with st.expander("Paper table", expanded=False):
-        st.dataframe(bundle["papers"], use_container_width=True, hide_index=True)
+        st.caption("These starter papers sit on nearby edges and paths around the selected question.")
+        st.dataframe(paper_display_frame(bundle["papers"]), use_container_width=True, hide_index=True)
 
     with st.expander("Release metadata", expanded=False):
-        st.json(load_release_meta(db_path))
-        st.json(load_release_metrics(db_path))
+        st.caption("This section shows the release-level metadata and headline counts for the bundle loaded into the app.")
+        st.markdown("**Release metadata**")
+        st.dataframe(key_value_frame(load_release_meta(db_path)), use_container_width=True, hide_index=True)
+        st.markdown("**Release metrics**")
+        st.dataframe(key_value_frame(load_release_metrics(db_path)), use_container_width=True, hide_index=True)
 
     st.markdown("### Concept lookup")
     concept_bundle = load_concept_bundle(db_path, concept_choice)
     if concept_bundle["concept"] is not None:
-        st.json({key: (value.item() if hasattr(value, "item") else value) for key, value in concept_bundle["concept"].to_dict().items()})
+        st.caption("This is the exported concept row for the selected topic, again with readable fields shown before internal identifiers.")
+        st.dataframe(concept_row_display_frame(concept_bundle["concept"]), use_container_width=True, hide_index=True)
     render_feedback_box("app_advanced", {"workspace": "advanced", "pair_key": choice, "concept_id": concept_choice})
 
 
