@@ -1,9 +1,9 @@
-# FrontierGraph public release deployment
+# Frontier Graph public release deployment
 
 ## Surfaces
 
 - `frontiergraph.com`: Astro site on Cloudflare Pages
-- `https://frontiergraph-app-1058669339361.us-central1.run.app`: Streamlit app on Google Cloud Run
+- `https://frontiergraph.com/explorer/`: branded public Explorer route backed by Streamlit on Cloud Run
 - public database mirror: SQLite hosted from Google Cloud Storage
 
 ## Site deployment
@@ -50,7 +50,7 @@ The repository now ships:
 - checksum file at `site/public/downloads/frontiergraph-economics-public.sha256.txt`
 - manifest file at `site/public/downloads/frontiergraph-economics-public.manifest.json`
 
-The public DB itself should be hosted as a public GCS object or another public blob store. The site export script reads `FRONTIERGRAPH_PUBLIC_DB_URL` to wire the download link. The site export also reads `FRONTIERGRAPH_PUBLIC_APP_URL` to wire the deeper-app links.
+The public DB itself should be hosted as a public GCS object or another public blob store. The site export script reads `FRONTIERGRAPH_PUBLIC_DB_URL` to wire the download link. The site export also reads `FRONTIERGRAPH_PUBLIC_APP_URL` to wire the Explorer links. For the public website, this should normally be set to `https://frontiergraph.com/explorer/`.
 
 ## Analytics and feedback
 
@@ -78,14 +78,10 @@ The current implementation is anonymous by default and does not depend on sessio
 
 ## Refresh workflow
 
-The repository includes a GitHub Actions workflow:
+The public release can be refreshed locally by:
 
-- `.github/workflows/refresh-site-data.yml`
+1. pointing `FRONTIERGRAPH_PUBLIC_DB_URL` at the current mirrored public database,
+2. regenerating the site JSON and CSV artifacts,
+3. rebuilding the site.
 
-It is designed to:
-
-1. download the public database from `FRONTIERGRAPH_PUBLIC_DB_URL`,
-2. regenerate site JSON/CSV artifacts,
-3. commit the updated generated files.
-
-Configure `FRONTIERGRAPH_PUBLIC_DB_URL` as a GitHub Actions secret before using the workflow.
+If you later automate this in GitHub Actions or another CI system, use the same release inputs and generated paths described above.

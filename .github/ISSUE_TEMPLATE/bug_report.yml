@@ -1,0 +1,36 @@
+name: Bug report
+description: Report a bug in the website, Explorer, release pipeline, or repository.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe the bug and what you expected instead.
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where did you see it?
+      options:
+        - Website
+        - Explorer
+        - Downloads
+        - Paper page
+        - Repository / docs
+        - Script / local run
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Include pages, commands, or inputs if relevant.
+  - type: textarea
+    id: context
+    attributes:
+      label: Extra context
+      description: Screenshots, logs, browser details, or environment notes.

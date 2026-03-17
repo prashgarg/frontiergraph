@@ -2,6 +2,7 @@
 .pytest_cache/
 .ranker_runtime/
 .venv/
+.venv_test/
 .vscode/
 __pycache__/
 *.egg-info/
@@ -19,6 +20,9 @@ site/public/data/v2/concept_neighborhoods.json
 data/processed/
 data/external/
 outputs/
+codex_run/
+old_v1/
+missing_claims.egg-info/
 paper/*
 !paper/research_allocation_paper.tex
 !paper/research_allocation_paper.md

@@ -1,25 +1,25 @@
-# FrontierGraph data provenance
+# Frontier Graph data provenance
 
 ## Demo data
 
 The demo dataset in `data/demo/` is a lightweight packaged example for local runs and tests.
 
-## Full economics beta database
+## Full public economics database
 
-The full public beta SQLite database is built from the repository pipeline over the economics claim graph build used for the current public beta.
+The public SQLite database is built from the repository pipeline over the economics claim-graph build used for the current public release.
 
 The repository publishes:
 
-- a versioned manifest,
-- a SHA-256 checksum,
-- the static site discovery exports generated from the same SQLite build.
+- a versioned manifest
+- a SHA-256 checksum
+- the static discovery exports generated from the same SQLite build
 
 ## Packaging notes
 
-- the SQLite artifact is intentionally kept out of Git because of size
-- the public website and static discovery pages are generated from the SQLite beta build
-- the public app reads the same SQLite build through a mounted cloud object
+- the SQLite artifact stays out of Git because of size
+- the public website and discovery pages are generated from the same release bundle
+- the Explorer reads that same bundle through a mounted or mirrored public object
 
 ## Current release posture
 
-This is a beta research artifact intended to support transparency and reproducibility for the public FrontierGraph beta. It should not be treated as a final archival release.
+This is a public beta research artifact intended to support transparency and partial reproducibility for the current Frontier Graph release. It should not be treated as a final archival dataset.

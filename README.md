@@ -1,76 +1,62 @@
-# FrontierGraph
+# Frontier Graph
 
-FrontierGraph is a deterministic metascience tool for ranking what economics should work on next.
+Frontier Graph is an open-source research tool for browsing suggested questions in economics from a literature graph.
 
-- Public site: `https://frontiergraph.com`
-- Public app: `https://frontiergraph-app-1058669339361.us-central1.run.app`
-- HTML manuscript: `https://frontiergraph.com/paper/`
-- Working paper PDF: `https://frontiergraph.com/downloads/frontiergraph-working-paper.pdf`
-- Repository: `https://github.com/prashgarg/frontiergraph`
+- Website: [frontiergraph.com](https://frontiergraph.com)
+- Explorer: [frontiergraph.com/explorer/](https://frontiergraph.com/explorer/)
+- Working paper: [frontiergraph.com/paper/](https://frontiergraph.com/paper/)
+- Downloads: [frontiergraph.com/downloads/](https://frontiergraph.com/downloads/)
+- Repository: [github.com/prashgarg/frontiergraph](https://github.com/prashgarg/frontiergraph)
 
-The project has three public layers:
+> Public beta. This repository powers the public website, the Explorer, the release bundle, and the working paper. The maintained public surfaces are `site/`, `app/`, and the release/export pipeline. Some analysis scripts remain exploratory research code rather than stable public APIs.
 
-1. an Astro-based public website for browsing questions and skimming the literature map,
-2. a Streamlit app for deeper interactive inspection,
-3. a paper-and-data layer with HTML paper pages, PDFs, and tiered downloads.
+## What Frontier Graph does
 
-AI is used only to convert text into graph structure. Everything after graph extraction is deterministic and inspectable.
+Frontier Graph surfaces plausible next questions from missing links in an economics-facing literature graph, then lets you inspect the nearby topics, supporting paths, and starter papers behind each suggestion.
 
-## Public release contents
+This repository contains:
 
-- `site/`: Astro marketing site and static discovery pages
-- `app/`: Streamlit public app
-- `scripts/export_site_data_v2.py`: exports site-ready JSON/CSV from the canonical public release source
-- `scripts/build_frontiergraph_public_release_bundle.py`: builds the canonical public SQLite bundle
-- `scripts/sync_paper_site_assets.py`: syncs the paper markdown and figure assets into the site
-- `data/demo/`: small demo dataset kept in the repo
-- `site/public/downloads/`: PDFs, checksum, and manifest for the public graph bundle
-
-See [DATA_README.md](DATA_README.md) and [DATA_PROVENANCE.md](DATA_PROVENANCE.md) for data packaging details.
+- the public Astro website in `site/`
+- the Streamlit Explorer in `app/`
+- the ranking and data logic in `src/`
+- release and export scripts in `scripts/`
+- the paper sources in `paper/`
+- a small demo dataset in `data/demo/`
 
 ## Quickstart
 
-Install the package:
+### Install the Python package
 
 ```bash
 python -m pip install -e '.[dev]'
 ```
 
-Run the app locally:
+This installs the `frontiergraph` CLI. The legacy `economics-ranker` alias still works.
+
+### Run the website locally
 
 ```bash
-frontiergraph
+npm --prefix site install
+npm --prefix site run dev
 ```
 
-The legacy alias still works:
+### Run the Explorer locally
+
+If you already have the public SQLite bundle in `data/production/frontiergraph_public_release/frontiergraph-economics-public.db`, this is enough:
 
 ```bash
-economics-ranker
-```
-
-Useful flags:
-
-```bash
-frontiergraph --db data/production/frontiergraph_public_release/frontiergraph-economics-public.db
-frontiergraph --port 8502
 frontiergraph --headless
 ```
 
-## Run the demo pipeline
+Or point the app at an explicit database path:
 
 ```bash
-python -m src.build_corpus --adapter demo --out data/processed/corpus.parquet --config config/config.yaml
-python -m src.features_pairs --in data/processed/corpus.parquet --out data/processed/pairs.parquet --tau 2
-python -m src.features_paths --in data/processed/corpus.parquet --out data/processed/missing_edges.parquet --max_len 2
-python -m src.features_motifs --in data/processed/corpus.parquet --out data/processed/motif_gaps.parquet
-python -m src.scoring --pairs data/processed/pairs.parquet --paths data/processed/missing_edges.parquet --motifs data/processed/motif_gaps.parquet --out data/processed/candidates.parquet
-python -m src.store_sqlite --corpus data/processed/corpus.parquet --candidates data/processed/candidates.parquet --out data/processed/app.db
-frontiergraph --db data/processed/app.db
+frontiergraph --db /path/to/frontiergraph-economics-public.db --headless
 ```
 
-## Build the site data, paper assets, and public bundle
+## Public release workflow
 
-The public site and deeper app share one canonical public release bundle. A typical refresh sequence is:
+The public website and the Explorer share one canonical public release bundle. A typical refresh sequence is:
 
 ```bash
 PYTHONPATH=. python scripts/export_site_data_v2.py
@@ -78,106 +64,42 @@ python scripts/build_frontiergraph_public_release_bundle.py
 PYTHONPATH=. python scripts/export_site_data_v2.py
 ```
 
-This writes:
+This updates the generated site data, paper assets, and public download metadata.
 
-- `site/src/generated/site-data.json`
-- `site/src/generated/paper/*`
-- `site/public/data/v2/*`
-- `data/production/frontiergraph_public_release/frontiergraph-economics-public.db`
-- `site/public/downloads/frontiergraph-economics-public.manifest.json`
-- `site/public/downloads/frontiergraph-economics-public.sha256.txt`
-
-If you have a live public DB mirror and app host, set:
+If you want the website to point at a live public database mirror and branded Explorer handoff, set:
 
 ```bash
 export FRONTIERGRAPH_PUBLIC_DB_URL="https://..."
-export FRONTIERGRAPH_PUBLIC_APP_URL="https://frontiergraph-app-1058669339361.us-central1.run.app"
+export FRONTIERGRAPH_PUBLIC_APP_URL="https://frontiergraph.com/explorer/"
 ```
 
-before running the export so the site points at the live public artifacts.
+before running the export.
 
-## Build the Astro site
+## Reproducibility and scope
 
-Node is required locally for the Astro build.
+Frontier Graph is a research codebase, not a polished library package. The public repository is intended to make the method, release pipeline, website, Explorer, and paper inspectable.
 
-```bash
-cd site
-npm install
-npm run build
-```
+- The public site and Explorer can be reproduced from this repo plus the public release bundle.
+- The demo path is reproducible from the repo alone.
+- Full economics rebuilds depend on external corpora, API access, and deployment infrastructure that are not all bundled into Git.
 
-Cloudflare Pages should use:
+See [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) for the full breakdown and [docs/REPO_MAP.md](docs/REPO_MAP.md) for a guide to the repo layout.
 
-- Root directory: `site`
-- Build command: `npm install && npm run build`
-- Build output directory: `dist`
+## Contribution model
 
-If you want launch analytics and built-in feedback on the static site, set these in the Cloudflare Pages project settings:
+Issues are welcome. Small pull requests are welcome too, especially for bugs, docs, or usability fixes. For larger changes, please open an issue first so we can agree on the shape before code is written.
 
-- `PUBLIC_POSTHOG_KEY`
-- `PUBLIC_POSTHOG_HOST=https://eu.i.posthog.com`
-- `PUBLIC_FEEDBACK_EMAIL=prashant.garg@imperial.ac.uk`
+See:
 
-## Deployment architecture
+- [CONTRIBUTING.md](CONTRIBUTING.md)
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+- [SECURITY.md](SECURITY.md)
+- [SUPPORT.md](SUPPORT.md)
 
-- `frontiergraph.com`: Astro site on Cloudflare Pages
-- `https://frontiergraph-app-1058669339361.us-central1.run.app`: Streamlit app on Google Cloud Run
-- public SQLite bundle: hosted from Google Cloud Storage
-- public static pages: generated into the Astro site from the same release source of truth
+## Data, paper, and citation
 
-See [deploy/PUBLIC_RELEASE.md](deploy/PUBLIC_RELEASE.md) for deployment notes.
-
-## Optional launch analytics and feedback
-
-The recommended launch stack is:
-
-- `Cloudflare Web Analytics` for aggregate traffic and performance
-- `PostHog Cloud EU` for anonymous event analytics
-- `Give feedback` entry points on the site and app
-
-For the Cloud Run app, add these to `deploy/public_release.env` before running `scripts/deploy_cloud_run.sh`:
-
-- `FRONTIERGRAPH_POSTHOG_KEY`
-- `FRONTIERGRAPH_POSTHOG_HOST=https://eu.i.posthog.com`
-- `FRONTIERGRAPH_FEEDBACK_EMAIL=prashant.garg@imperial.ac.uk`
-
-Keep session replay off unless you intentionally want it later.
-
-## Optional larger economics build
-
-```bash
-python -m src.build_corpus --adapter causalclaims --out data/processed/corpus_causalclaims.parquet --config config/config_causalclaims.yaml
-python -m src.features_pairs --in data/processed/corpus_causalclaims.parquet --out data/processed/pairs_causalclaims.parquet --tau 2
-python -m src.features_paths --in data/processed/corpus_causalclaims.parquet --out data/processed/missing_edges_causalclaims.parquet --max_len 2 --max_neighbors_per_mediator 120
-python -m src.features_motifs --in data/processed/corpus_causalclaims.parquet --out data/processed/motif_gaps_causalclaims.parquet --max_neighbors_per_mediator 120
-python -m src.scoring --pairs data/processed/pairs_causalclaims.parquet --paths data/processed/missing_edges_causalclaims.parquet --motifs data/processed/motif_gaps_causalclaims.parquet --out data/processed/candidates_causalclaims.parquet --config config/config_causalclaims.yaml
-python -m src.store_sqlite --corpus data/processed/corpus_causalclaims.parquet --candidates data/processed/candidates_causalclaims.parquet --out data/processed/app_causalclaims.db --config config/config_causalclaims.yaml
-```
-
-## Optional LLM extractor
-
-Estimate-only mode:
-
-```bash
-python -m src.adapters.llm_extractor_adapter --in data/raw/custom_docs.jsonl --out data/processed/corpus_llm.parquet --estimate_cost
-```
-
-Execution mode:
-
-```bash
-python -m src.adapters.llm_extractor_adapter --in data/raw/custom_docs.jsonl --out data/processed/corpus_llm.parquet --estimate_cost --execute
-```
-
-The extractor uses `OPENAI_API_KEY` if present, otherwise it reads the configured key-path file.
-
-## Tests
-
-```bash
-python -m pytest -q
-PYTHONPYCACHEPREFIX=/tmp/pycache python3 -m py_compile app/streamlit_app.py src/run_ranker.py src/opportunity_data.py scripts/export_site_data_v2.py scripts/build_frontiergraph_public_release_bundle.py
-```
-
-## Citation and license
-
+- Data packaging: [DATA_README.md](DATA_README.md)
+- Data provenance: [DATA_PROVENANCE.md](DATA_PROVENANCE.md)
+- Deployment notes: [deploy/PUBLIC_RELEASE.md](deploy/PUBLIC_RELEASE.md)
 - Citation: [CITATION.cff](CITATION.cff)
-- Code license: Apache-2.0 in [LICENSE](LICENSE)
+- License: [LICENSE](LICENSE)

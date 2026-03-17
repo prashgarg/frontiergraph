@@ -1,34 +1,34 @@
-# FrontierGraph data packages
+# Frontier Graph data packages
 
-FrontierGraph exposes two data layers:
+Frontier Graph exposes two public data layers.
 
 ## 1. Demo data
 
-The demo data is kept in-repo under `data/demo/`.
+The demo data lives in-repo under `data/demo/`.
 
-It is intended for:
+Use it for:
 
-- local quickstarts,
-- smoke tests,
-- understanding the end-to-end pipeline without the full economics build.
+- local quickstarts
+- smoke tests
+- understanding the end-to-end pipeline without the full economics build
 
-## 2. Full beta economics database
+## 2. Public economics release bundle
 
-The public beta database is distributed as a versioned SQLite artifact outside the Git repository.
+The full public economics database is distributed as a versioned SQLite artifact outside Git.
 
 Repository companion files:
 
-- `site/public/downloads/frontiergraph-economics-beta.manifest.json`
-- `site/public/downloads/frontiergraph-economics-beta.sha256.txt`
+- `site/public/downloads/frontiergraph-economics-public.manifest.json`
+- `site/public/downloads/frontiergraph-economics-public.sha256.txt`
 
-The downloads page reads a configured public mirror URL via `FRONTIERGRAPH_PUBLIC_DB_URL`.
+The public downloads page reads a configured mirror URL via `FRONTIERGRAPH_PUBLIC_DB_URL`.
 
 ## Intended use
 
-The beta database is intended for:
+The public release bundle is intended for:
 
-- reproducing the public beta website and app views,
-- offline exploration of ranked opportunities,
-- methodological inspection of the public economics beta.
+- reproducing the public website and Explorer views
+- offline exploration of surfaced questions and local evidence tables
+- methodological inspection of the current public release
 
-It is not presented as a final canonical research dataset. Treat it as a versioned public beta artifact.
+It is a versioned public research artifact, not a final archival dataset.

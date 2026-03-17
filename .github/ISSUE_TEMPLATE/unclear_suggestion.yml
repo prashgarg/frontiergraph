@@ -1,0 +1,36 @@
+name: Unclear suggestion or missing literature
+description: Report a suggestion that seems unclear, weak, repetitive, or missing an important literature.
+title: "[Suggestion quality]: "
+labels:
+  - question-quality
+body:
+  - type: textarea
+    id: issue
+    attributes:
+      label: What suggestion or topic are you reporting?
+      description: Link the page or quote the suggestion if possible.
+    validations:
+      required: true
+  - type: dropdown
+    id: problem
+    attributes:
+      label: What seems wrong?
+      options:
+        - Unclear wording
+        - Too broad
+        - Likely already well studied
+        - Missing nearby literature
+        - Missing topic entirely
+        - Wrong or weak evidence
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why does it seem off?
+      description: Add the literature, context, or interpretation that would help.
+  - type: textarea
+    id: sources
+    attributes:
+      label: Helpful references
+      description: Papers, topics, or links that would improve the surface.

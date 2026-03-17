@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Support and reporting guide
+    url: https://github.com/prashgarg/frontiergraph/blob/main/SUPPORT.md
+    about: Read where to send bugs, suggestion-quality reports, and security issues.

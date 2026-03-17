@@ -1,0 +1,22 @@
+name: Docs or repo improvement
+description: Suggest an improvement to the README, docs, contribution flow, or repo structure.
+title: "[Docs]: "
+labels:
+  - documentation
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What should be improved?
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why would this help?
+      description: Explain what felt unclear, missing, or hard to follow.
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed improvement
+      description: If you already have a concrete wording or structure idea, add it here.

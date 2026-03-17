@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-title: FrontierGraph
-message: "If you use FrontierGraph, please cite the repository and public beta release."
+title: Frontier Graph
+message: "If you use Frontier Graph, please cite the repository and public release."
 type: software
 authors:
   - family-names: Garg
@@ -9,4 +9,4 @@ repository-code: "https://github.com/prashgarg/frontiergraph"
 url: "https://frontiergraph.com"
 license: Apache-2.0
 version: 0.1.0
-abstract: "Deterministic research-priority ranking for economics from claim graphs."
+abstract: "Open-source research tool for browsing suggested questions in economics from a literature graph."

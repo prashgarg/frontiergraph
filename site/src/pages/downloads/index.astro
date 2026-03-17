@@ -16,6 +16,10 @@ const docs = [
     path: artifacts.extended_abstract_pdf,
     size: artifactDetails.extended_abstract_pdf.size_bytes,
   },
+  {
+    title: "Repository / source code",
+    path: data.repo_url,
+  },
 ];
 
 const releaseMetrics = [
@@ -73,8 +77,8 @@ const tier3Files = [
 ---
 
 <BaseLayout
-  title="Downloads | FrontierGraph"
-  description="Download FrontierGraph tables, graph assets, release guides, and the SQLite bundle."
+  title="Downloads | Frontier Graph"
+  description="Download Frontier Graph tables, graph assets, release guides, and the SQLite bundle."
 >
   <main>
     <section class="page-hero">
@@ -87,7 +91,9 @@ const tier3Files = [
     <section class="section download-stack">
       <div class="button-row download-doc-row">
         {docs.map((doc) => (
-          <a class="button-secondary" href={doc.path}>{doc.title} ({formatBytes(doc.size)})</a>
+          <a class="button-secondary" href={doc.path}>
+            {doc.title}{doc.size ? ` (${formatBytes(doc.size)})` : ""}
+          </a>
         ))}
       </div>
 
