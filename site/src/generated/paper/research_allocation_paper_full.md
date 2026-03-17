@@ -290,32 +290,13 @@ The recommendation layer already hints at what path-rich questions look like. In
 
 Taken together, Sections 5.1 to 5.5 imply a cumulative reading of the evidence. The strict top-100 benchmark is harsh and popularity-dominated. Broader attention frontiers soften that headline. Value-weighting changes the scale of the comparison without reversing it. Heterogeneity shows where structural screening is actually more useful. The path audit then explains why even that richer reading still does not exhaust the graph's value: a good share of scientific development takes the form of mechanism-deepening around existing direct claims, not only direct-link closure itself. In that sense, the most useful questions to ask next are often better understood as path-rich research programs than as single isolated missing edges.
 
-## 6. Frontier Graph as Public Companion
-
-[Frontier Graph](https://frontiergraph.com/) is the public companion layer built on top of this empirical framework. The site is not part of the paper's identification strategy or backtest. Its role is different: it lowers the cost of inspecting why a suggested question surfaced, what local structure supports it, and how that object maps back to the benchmark.
-
-![Annotated Frontier Graph Questions surface](/paper-assets/outputs/paper/figures/frontier_graph_questions_companion_annotated.png)
-
-**Notes.** The screenshot shows the public Questions surface. A single card combines the candidate question, nearby topics, supporting paths, starter papers, and an editorial scoping prompt.
-
-| Interface element | Empirical object |
-|---|---|
-| Suggested question | Candidate missing directed link |
-| Nearby topics | High-support mediators on local supporting paths |
-| Supporting paths | Short directed routes contributing to path support |
-| Starter papers | Representative papers from the local neighborhood |
-| First step | Editorial handoff or scoping prompt rather than a benchmark variable |
-| Explorer | Handoff into the full local evidence tables |
-
-In website language, a suggested question is a candidate missing link, nearby topics are mediators, starter papers are representative local support, and First step is a handoff prompt for scoping. The public release also mixes three layers that readers should keep separate: the underlying score-driven ranking, a curated presentation layer on the homepage and Questions surface, and an interpretability layer that exposes mediators, supporting paths, representative papers, and raw evidence tables. Appendix G spells out that translation more explicitly.
-
-## 7. Discussion and Conclusion
+## 6. Discussion and Conclusion
 
 Several limits matter for interpretation. A future realized link is not the same thing as truth, importance, or policy value. The benchmark is about future appearance in the literature, not about a complete normative theory of which questions economists should pursue. If cumulative advantage dominates the future, preferential attachment can outperform even when the graph score is surfacing more genuinely underexplored questions.
 
 Direction in the graph records ordered claim relations rather than final causal adjudication. The main score still treats the existence of an edge more seriously than the strength or credibility of the underlying evidence. The published-journal corpus is a further deliberate restriction rather than a universal map of all economics research.
 
-These limits do not make the exercise empty. They define its scope. The paper's answer to its own title is narrower than a welfare theorem but still substantive: economics should not decide what to ask next only through cumulative advantage. The most useful surfaced questions are neglected enough to remain open, supported enough to be credible, concrete enough to become papers, and best read at realistic attention frontiers rather than at winner-take-all top ranks. Empirically, that means the strict top-100 shortlist still favors preferential attachment, but broader attention frontiers, value-weighted outcomes, heterogeneity, and path development all make more room for structural screening than the pooled headline alone suggests. Practically, the paper pairs that screening object with a public interface that makes surfaced questions inspectable rather than opaque. A next iteration should add stronger credibility weighting and richer path-based objects, and could also compare explanation or reranking layers across LLMs as a bounded appendix-style extension without changing the current paper's observational core.
+These limits do not make the exercise empty. They define its scope. The paper's answer to its own title is narrower than a welfare theorem but still substantive: economics should not decide what to ask next only through cumulative advantage. The most useful surfaced questions are neglected enough to remain open, supported enough to be credible, concrete enough to become papers, and best read at realistic attention frontiers rather than at winner-take-all top ranks. Empirically, that means the strict top-100 shortlist still favors preferential attachment, but broader attention frontiers, value-weighted outcomes, heterogeneity, and path development all make more room for structural screening than the pooled headline alone suggests. A next iteration should add stronger credibility weighting and richer path-based objects, and could also compare explanation or reranking layers across LLMs as a bounded appendix-style extension without changing the current paper's observational core.
 
 ## Appendix A. Paper-local graph extraction
 
@@ -627,28 +608,6 @@ The main score does not yet fully weight evidence quality, but the benchmark obj
 | Monetary policy -> energy consumption | 23 | income; output; income inequality |
 | Trade liberalisation -> energy consumption | 5 | economic growth; foreign direct investment; trade liberalization |
 | Urbanization -> output growth | 17 | CO2 emissions; energy consumption; energy use |
-
-## Appendix G. Tool and interpretation notes
-
-The website layer is designed to expose the ranked objects rather than to replace the benchmark. Readers should distinguish three layers.
-
-1. **Raw ranking layer.** The underlying candidate object is a score-driven missing directed link in the released graph.
-2. **Curated presentation layer.** The homepage and top Questions carousels rewrite some titles, add short explanations, and select a smaller subset for legibility.
-3. **Interpretability layer.** The wider Questions list, Explorer, and download bundle expose nearby mediators, supporting paths, representative papers, and raw evidence tables.
-
-The public vocabulary is therefore intentionally plainer than the paper vocabulary:
-
-| Website language | Paper language |
-|---|---|
-| Suggested question | Candidate missing directed link |
-| Nearby topics | Mediators on local supporting paths |
-| Starter papers | Representative local support |
-| First step | Editorial scoping or handoff prompt |
-| Explorer | Full evidence and interpretation layer |
-
-That translation matters for interpretation. A visitor who sees a clean question title on the site is not seeing a different empirical object. They are seeing a public-facing label applied to the same missing-link candidate ranked in the benchmark. The curation layer changes wording and selection on some surfaces, but it does not replace the underlying object.
-
-Two final diagnostic facts are useful when reading the paper. First, grant metadata are present but incomplete, with coverage much stronger in recent years than in older decades. Second, the graph already contains method and stability metadata that can support richer credibility-weighted benchmarks later. In the current paper, those signals are audited and reported, but not yet fully folded into the main score.
 
 ## References
 

@@ -95,13 +95,8 @@
       },
       {
         "level": 2,
-        "text": "6. Frontier Graph as Public Companion",
-        "id": "6-frontier-graph-as-public-companion"
-      },
-      {
-        "level": 2,
-        "text": "7. Discussion and Conclusion",
-        "id": "7-discussion-and-conclusion"
+        "text": "6. Discussion and Conclusion",
+        "id": "6-discussion-and-conclusion"
       },
       {
         "level": 2,
@@ -172,11 +167,6 @@
         "level": 2,
         "text": "Appendix F. Path-evolution extensions",
         "id": "appendix-f-path-evolution-extensions"
-      },
-      {
-        "level": 2,
-        "text": "Appendix G. Tool and interpretation notes",
-        "id": "appendix-g-tool-and-interpretation-notes"
       },
       {
         "level": 2,

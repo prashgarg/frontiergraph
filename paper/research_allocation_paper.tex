@@ -531,49 +531,15 @@ The recommendation layer already hints at what path-rich questions look like. In
 
 Taken together, Sections 5.1 to 5.5 imply a cumulative reading of the evidence. The strict top-100 benchmark is harsh and popularity-dominated. Broader attention frontiers soften that headline. Value-weighting changes the scale of the comparison without reversing it. Heterogeneity shows where structural screening is actually more useful. The path audit then explains why even that richer reading still does not exhaust the graph's value: a good share of scientific development takes the form of mechanism-deepening around existing direct claims, not only direct-link closure itself. In that sense, the most useful questions to ask next are often better understood as path-rich research programs than as single isolated missing edges.
 
-\section{Frontier Graph as Public Companion}
-
-\href{https://frontiergraph.com/}{Frontier Graph} is the public companion layer built on top of this empirical framework. The site is not part of the paper's identification strategy or backtest, and it should not be read as a substitute for the benchmark tables. Its role is different: it lowers the cost of inspecting why a suggested question surfaced, what local structure supports it, and how that object maps back to the benchmark.
-
-\begin{figure}[t]
-  \caption{Annotated view of the public Questions surface}
-  \label{fig:tool-screenshot}
-  \centering
-  \includegraphics[width=0.98\linewidth]{frontier_graph_questions_companion_annotated.png}
-  \fignotes{The screenshot shows the public Questions surface. A single card combines the candidate question, nearby topics, supporting paths, starter papers, and an editorial scoping prompt.}
-\end{figure}
-
-\begin{table}[t]
-  \caption{How the public interface maps back to the empirical object}
-  \label{tab:tool-mapping}
-  \centering
-  \begin{tabular}{L{0.24\linewidth}L{0.66\linewidth}}
-    \toprule
-    Interface element & Empirical object \\
-    \midrule
-    Suggested question & Candidate missing directed link \\
-    Nearby topics & High-support mediators on local supporting paths \\
-    Supporting paths & Short directed routes contributing to path support \\
-    Starter papers & Representative papers from the local neighborhood \\
-    First step & Editorial handoff or scoping prompt rather than a benchmark variable \\
-    Explorer & Handoff into the full local evidence tables \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-In website language, a suggested question is a candidate missing link, nearby topics are mediators, starter papers are representative local support, and First step is a handoff prompt for scoping. The public release also mixes three layers that readers should keep separate: the underlying score-driven ranking, a curated presentation layer on the homepage and Questions surface, and an interpretability layer that exposes mediators, supporting paths, representative papers, and raw evidence tables.
-
-That distinction matters because the research problem and the product problem are not the same. The paper is about whether a graph-based ranking can prospectively surface plausible next questions. The site is about how to make that ranking legible enough to be useful. That product layer also disciplines the paper. A score that cannot be explained question by question is unlikely to be useful even if it performs well in aggregate. Appendix~\ref{app:tool-notes} expands the translation between the website vocabulary and the paper vocabulary, and separates raw ranking from curated presentation more explicitly.
-
 \section{Discussion and Conclusion}
 
 Several limits matter for interpretation. A future realized link is not the same thing as truth, importance, or policy value. The benchmark is about future appearance in the literature, not about a complete normative theory of which questions economists should pursue. If cumulative advantage dominates the future, preferential attachment can outperform even when the graph score is surfacing more genuinely underexplored questions. That is why I treat the prospective benchmark as informative but not exhaustive.
 
 Direction in the graph records ordered claim relations rather than final causal adjudication. The main score still treats the existence of an edge more seriously than the strength or credibility of the underlying evidence, even though method and stability metadata now exist in the pipeline. That is one reason the next methodological step should probably incorporate stronger credibility weighting and perhaps separate tasks for directed causal emergence, undirected contextual emergence, and path emergence.
 
-The published-journal corpus is a further deliberate restriction rather than a universal map of all economics research. It gives the project a cleaner realized literature, but it underweights working-paper traffic, seminar diffusion, and some forms of genuinely new frontier language. The public product layer adds broader exploratory coverage, but the empirical validation exercise remains tied to the evaluation corpus.
+The published-journal corpus is a further deliberate restriction rather than a universal map of all economics research. It gives the project a cleaner realized literature, but it underweights working-paper traffic, seminar diffusion, and some forms of genuinely new frontier language.
 
-These limits do not make the exercise empty. They define its scope. The paper's answer to its own title is narrower than a welfare theorem but still substantive: economics should not decide what to ask next only through cumulative advantage. The most useful surfaced questions are neglected enough to remain open, supported enough to be credible, concrete enough to become papers, and best read at realistic attention frontiers rather than at winner-take-all top ranks. Empirically, that means the strict top-100 shortlist still favors preferential attachment, but broader attention frontiers, value-weighted outcomes, heterogeneity, and path development all make more room for structural screening than the pooled headline alone suggests. Practically, the paper pairs that screening object with a public interface that makes surfaced questions inspectable rather than opaque. A next iteration should add stronger credibility weighting and richer path-based objects, and could also compare explanation or reranking layers across LLMs as a bounded appendix-style extension without changing the current paper's observational core.
+These limits do not make the exercise empty. They define its scope. The paper's answer to its own title is narrower than a welfare theorem but still substantive: economics should not decide what to ask next only through cumulative advantage. The most useful surfaced questions are neglected enough to remain open, supported enough to be credible, concrete enough to become papers, and best read at realistic attention frontiers rather than at winner-take-all top ranks. Empirically, that means the strict top-100 shortlist still favors preferential attachment, but broader attention frontiers, value-weighted outcomes, heterogeneity, and path development all make more room for structural screening than the pooled headline alone suggests. A next iteration should add stronger credibility weighting and richer path-based objects, and could also compare explanation or reranking layers across LLMs as a bounded appendix-style extension without changing the current paper's observational core.
 
 \appendix
 \clearpage
@@ -850,40 +816,6 @@ The main score does not yet fully weight evidence quality, but the benchmark obj
 \label{app:path-extensions}
 
 The main text focuses on the aggregate transition comparison, the journal split, the broad economics-versus-finance contrast, and a short table of path-rich examples. The appendix therefore only keeps the supplementary interpretation notes.
-
-\section{Tool and interpretation notes}
-\label{app:tool-notes}
-
-The website layer is designed to expose the objects the paper ranks rather than to replace the benchmark. Readers should distinguish three layers.
-
-\begin{enumerate}[leftmargin=1.4em]
-  \item \textbf{Raw ranking layer.} The underlying candidate object is a score-driven missing directed link in the released graph.
-  \item \textbf{Curated presentation layer.} The homepage and top Questions carousels rewrite some titles, add short explanations, and select a smaller subset for legibility.
-  \item \textbf{Interpretability layer.} The wider Questions list, Explorer, and download bundle expose nearby mediators, supporting paths, representative papers, and raw evidence tables.
-\end{enumerate}
-
-The public vocabulary is therefore intentionally plainer than the paper vocabulary.
-
-\begin{table}[h]
-  \caption{Website vocabulary and paper vocabulary}
-  \label{tab:tool-translation}
-  \centering
-  \begin{tabular}{L{0.28\linewidth}L{0.58\linewidth}}
-    \toprule
-    Website language & Paper language \\
-    \midrule
-    Suggested question & Candidate missing directed link \\
-    Nearby topics & Mediators on local supporting paths \\
-    Starter papers & Representative local support \\
-    First step & Editorial scoping or handoff prompt \\
-    Explorer & Full evidence and interpretation layer \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-That translation matters for interpretation. A visitor who sees a clean question title on the site is not seeing a different empirical object. They are seeing a public-facing label applied to the same missing-link candidate ranked in the benchmark. The curation layer changes wording and selection on some surfaces, but it does not replace the underlying object.
-
-Two final diagnostic facts are useful when reading the paper. First, grant metadata are present but incomplete, with coverage much stronger in recent years than in older decades. That is why the funding results remain appendix material. Second, the graph already contains method and stability metadata that can support richer credibility-weighted benchmarks later. The paper uses those fields mainly for task definition and audit, not yet for a fully credibility-weighted main score.
 
 \bibliographystyle{plainnat}
 \bibliography{research_allocation_paper}
