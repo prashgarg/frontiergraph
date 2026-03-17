@@ -1356,22 +1356,19 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
 def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_lookup: dict[str, str]) -> None:
     search_default = query_param("search")
     pair_default = query_param("pair")
-    broader_default = query_param("shape") == "broader"
     status_options = sorted(questions["direct_link_status"].dropna().unique().tolist())
     sync_from_query("question_search", search_default, "_sync_question_search")
     sync_from_query("question_cross_only", query_param("cross") == "1", "_sync_question_cross_only")
-    sync_from_query("question_broader_project_only", broader_default, "_sync_question_broader_project_only")
     ensure_widget_state("question_exact_filters", status_options)
     ensure_widget_state("question_shortlist_size", 24)
     with st.sidebar:
         st.markdown("### Narrow the shortlist")
         st.markdown(
-            '<p class="sidebar-caption">Keep the main panel focused on one question. Narrow by exact papers, cross-area questions, or broader project-shaped questions only when you need to.</p>',
+            '<p class="sidebar-caption">Keep the main panel focused on one question. Use filters only when you want to narrow the shortlist.</p>',
             unsafe_allow_html=True,
         )
-        only_cross = st.checkbox("Cross-area only", key="question_cross_only")
-        broader_project_only = st.checkbox("Broader project", key="question_broader_project_only")
         with st.expander("Filters", expanded=False):
+            only_cross = st.checkbox("Cross-area only", key="question_cross_only")
             direct_filters = st.multiselect(
                 "Exact papers",
                 options=status_options,
@@ -1384,7 +1381,7 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
         key="question_search",
         placeholder="Search by topic, outcome, or question wording",
     )
-    filtered = question_filter_frame(questions, search, direct_filters, only_cross, broader_project_only)
+    filtered = question_filter_frame(questions, search, direct_filters, only_cross, False)
 
     if filtered.empty:
         st.warning("No question candidates match the current filters.")
@@ -1414,7 +1411,6 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
                         pair=str(row["pair_key"]),
                         search=search,
                         cross="1" if only_cross else "",
-                        shape="broader" if broader_project_only else "",
                     )
                     st.rerun()
     selection = st.selectbox(
@@ -1427,14 +1423,12 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
         selection != pair_default
         or search != search_default
         or only_cross != (query_param("cross") == "1")
-        or broader_project_only != broader_default
     ):
         set_query_params(
             view="question",
             pair=selection,
             search=search,
             cross="1" if only_cross else "",
-            shape="broader" if broader_project_only else "",
         )
     with st.sidebar:
         with st.expander("Secondary workspaces", expanded=False):
