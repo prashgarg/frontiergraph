@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-17T12:14:31.158873+00:00",
+  "generated_at": "2026-03-17T12:26:36.677457+00:00",
   "app_url": "https://frontiergraph.com/explorer/",
   "repo_url": "https://github.com/prashgarg/frontiergraph",
   "public_label_glossary": {
@@ -32527,7 +32527,7 @@
       "working_paper_pdf": {
         "path": "/downloads/frontiergraph-working-paper.pdf",
         "filename": "frontiergraph-working-paper.pdf",
-        "size_bytes": 1941296
+        "size_bytes": 1941343
       },
       "extended_abstract_pdf": {
         "path": "/downloads/frontiergraph-extended-abstract.pdf",
