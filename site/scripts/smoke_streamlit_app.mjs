@@ -83,15 +83,6 @@ async function main() {
   assert(await page.getByText(/Choose 2 to 4 questions/i).first().isVisible(), "Compare multiselect missing");
   assert((await page.getByText(/Give feedback/i).count()) >= 1, "Compare feedback missing");
 
-  await page.goto(`${baseUrl}/?variant=broad&view=question&pair=FG3C000003__FG3C000010`, { waitUntil: "domcontentloaded" });
-  await page.waitForSelector("h1", { timeout: 30000 });
-  await page.getByText(/Broad preview/i).first().waitFor({ timeout: 30000 });
-  await page.getByText(/CO2 emissions/i).first().waitFor({ timeout: 30000 });
-  await page.getByText(/Supporting paths/i).first().waitFor({ timeout: 30000 });
-  await textDoesNotContain(page, ["Traceback", "sqlite3.OperationalError"]);
-  assert(await page.getByText(/Broad preview/i).first().isVisible(), "Broad preview variant label missing");
-  assert(await page.getByText(/Supporting paths/i).first().isVisible(), "Broad preview question paths missing");
-
   assert(errors.length === 0, `Browser errors found:\n${errors.join("\n")}`);
   await browser.close();
   console.log("streamlit smoke passed");

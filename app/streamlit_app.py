@@ -28,9 +28,7 @@ GRAPH_URL = f"{SITE_URL}/graph/"
 PAPER_URL = f"{SITE_URL}/paper/"
 DOWNLOADS_URL = f"{SITE_URL}/downloads/"
 DEFAULT_DB = Path(os.environ.get("FRONTIERGRAPH_PUBLIC_RELEASE_DB", "/tmp/frontiergraph-economics-public.db"))
-DEFAULT_DB_BROAD = Path(os.environ.get("FRONTIERGRAPH_PUBLIC_RELEASE_DB_BROAD", "/tmp/frontiergraph-economics-broad-preview.db"))
 LEGACY_DEFAULT_DB = Path("data/production/frontiergraph_public_release/frontiergraph-economics-public.db")
-LEGACY_DEFAULT_DB_BROAD = Path("data/production/frontiergraph_public_release/frontiergraph-economics-broad-preview.db")
 FALLBACK_DB = Path(
     "data/production/frontiergraph_concept_compare_v1/baseline/suppression/concept_exploratory_suppressed_top100k_app.sqlite"
 )
@@ -385,16 +383,8 @@ def query_param(name: str) -> str:
     return str(value)
 
 
-def current_release_variant() -> str:
-    requested = query_param("variant").strip().lower()
-    return "broad" if requested == "broad" else "baseline"
-
-
 def set_query_params(**kwargs: str) -> None:
     clean = {key: value for key, value in kwargs.items() if value}
-    variant = clean.get("variant") or current_release_variant()
-    if variant in {"baseline", "broad"}:
-        clean["variant"] = variant
     st.query_params.clear()
     for key, value in clean.items():
         st.query_params[key] = value
@@ -430,7 +420,6 @@ def posthog_capture(event: str, properties: dict[str, Any]) -> bool:
         "properties": {
             "source": "frontiergraph_app",
             "$process_person_profile": False,
-            "release_variant": current_release_variant(),
             **properties,
         },
     }
@@ -454,19 +443,7 @@ def track_once(state_key: str, event: str, properties: dict[str, Any]) -> None:
     st.session_state[state_key] = signature
 
 
-def choose_db_path(variant: str) -> str:
-    if variant == "broad":
-        candidates = [
-            os.environ.get("ECON_OPPORTUNITY_DB_BROAD", "").strip(),
-            os.environ.get("FRONTIERGRAPH_PUBLIC_RELEASE_DB_BROAD", "").strip(),
-            str(DEFAULT_DB_BROAD),
-            str(LEGACY_DEFAULT_DB_BROAD),
-        ]
-        for candidate in candidates:
-            if candidate and bundle_is_usable(Path(candidate)):
-                return candidate
-        return str(DEFAULT_DB_BROAD)
-
+def choose_db_path() -> str:
     env_db = os.environ.get("ECON_OPPORTUNITY_DB", "").strip()
     if env_db and bundle_is_usable(Path(env_db)):
         return env_db
@@ -771,7 +748,7 @@ def question_surface_summary(row: pd.Series | dict[str, Any]) -> str:
         pieces.append("It bridges areas that are often read separately.")
     if common_contexts:
         pieces.append(common_contexts[0].upper() + common_contexts[1:])
-    return " ".join(pieces[:3]) or "This question already sits near directed links and papers in the current public release."
+    return " ".join(pieces[:3]) or "This question already sits near directed links and papers in the public release."
 
 
 def question_is_broader_project(row: pd.Series | dict[str, Any]) -> bool:
@@ -1065,7 +1042,7 @@ def question_brief_markdown(question: pd.Series, mediators: pd.DataFrame, papers
         question_surface_summary(question),
         "",
         "## Intermediate topics already nearby",
-        *(mediator_lines or ["- No stable intermediate-topic preview in the current public release."]),
+        *(mediator_lines or ["- No stable intermediate-topic preview in the public release."]),
         "",
         "## Papers to begin with",
         *(paper_lines or ["- No paper list was exported for this question in the public release."]),
@@ -1270,14 +1247,14 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
     if str(question.get("common_contexts") or "").strip():
         st.caption(str(question.get("common_contexts")))
     else:
-        st.caption("All counts refer to the current public release, not the full economics literature.")
+        st.caption("All counts refer to the public release, not the full economics literature.")
 
     detail_cols = st.columns(2)
     with detail_cols[0]:
         st.markdown("### Supporting paths")
         path_rows = paths.head(3)
         if path_rows.empty:
-            st.caption("No supporting paths were exported for this question in the current public release.")
+            st.caption("No supporting paths were exported for this question in the public release.")
         else:
             st.caption("These are the clearest local routes already tying the two sides together in the release graph.")
             st.caption("Higher path scores mean stronger local support for this question. Compare the scores within this question rather than across unrelated questions.")
@@ -1293,7 +1270,7 @@ def render_question_detail(db_path: str, pair_key: str, concept_lookup: dict[str
     with detail_cols[1]:
         st.markdown("### Papers to begin with")
         if papers_preview.empty:
-            st.caption("No paper list was exported for this question in the current public release.")
+            st.caption("No paper list was exported for this question in the public release.")
         else:
             for row in papers_preview.itertuples(index=False):
                 top_line, edge_line = paper_preview_metadata(row._asdict())
@@ -1599,7 +1576,7 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
     metrics_cols[0].metric("Topic mentions", f"{int(concept['instance_support']):,}")
     metrics_cols[1].metric("Papers in release", f"{int(concept['distinct_paper_support']):,}")
     metrics_cols[2].metric("Nearby topics", f"{int(concept['neighbor_count']):,}")
-    st.caption("These counts refer to the current public FrontierGraph release. They describe how this topic sits in the released topic map, not overall importance.")
+    st.caption("These counts refer to the public Frontier Graph release. They describe how this topic sits in the released topic map, not overall importance.")
 
     summary_cols = st.columns(2)
     with summary_cols[0]:
@@ -1619,7 +1596,7 @@ def render_topic_explorer(db_path: str, concepts: pd.DataFrame) -> None:
         render_summary_card("Common contexts", f"Countries: {countries or 'not surfaced'}<br/>Units: {units or 'not surfaced'}")
     st.markdown("### Questions touching this topic")
     if opportunities.empty:
-        st.caption("No public question candidates touching this topic are available in the current public release.")
+        st.caption("No public question candidates touching this topic are available in the public release.")
     else:
         for row in opportunities.head(5).itertuples(index=False):
             payload = parse_json(row.row_json)
@@ -1841,23 +1818,10 @@ def render_advanced_evidence(db_path: str, questions: pd.DataFrame, concepts: pd
 
 
 def main() -> None:
-    st.set_page_config(page_title="FrontierGraph | App", layout="wide", initial_sidebar_state="expanded")
+    st.set_page_config(page_title="Frontier Graph | Explorer", layout="wide", initial_sidebar_state="expanded")
     inject_css()
 
-    release_variant_default = current_release_variant()
-    sync_from_query("release_variant", release_variant_default, "_sync_release_variant")
-    release_variant = st.radio(
-        "Release variant",
-        options=["baseline", "broad"],
-        key="release_variant",
-        format_func=lambda value: {"baseline": "Current release", "broad": "Broad preview"}[value],
-        horizontal=True,
-    )
-    if release_variant != release_variant_default:
-        set_query_params(variant=release_variant, view=query_param("view") or st.session_state.get("primary_view", "question"))
-        st.rerun()
-
-    db_path = choose_db_path(release_variant)
+    db_path = choose_db_path()
     if not Path(db_path).exists():
         st.error(f"Database not found: {db_path}")
         st.stop()
@@ -1877,7 +1841,7 @@ def main() -> None:
     st.markdown(
         f"""
         <div class="hero-shell">
-            <div class="eyebrow">FrontierGraph app · {"Broad preview" if release_variant == "broad" else "Current release"}</div>
+            <div class="eyebrow">Frontier Graph Explorer</div>
             <h1 class="hero-title">Read one question or topic at a time.</h1>
             <p class="hero-copy">
                 Start with a question or a topic below. Search and pick one object first; filters and technical tables stay out of the way until you need them.
