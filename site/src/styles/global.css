@@ -593,7 +593,7 @@ h3 {
 .home-intro-grid-hero {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   justify-content: center;
-  width: min(60rem, 100%);
+  width: min(76rem, 100%);
 }
 
 .home-hero-side {
@@ -1392,7 +1392,7 @@ h3 {
 }
 
 .hero-visual-panel-home {
-  width: min(60rem, 100%);
+  width: min(76rem, 100%);
   align-items: center;
 }
 
