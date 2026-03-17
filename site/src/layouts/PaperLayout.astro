@@ -9,6 +9,7 @@ interface TocEntry {
 
 interface Props {
   title: string;
+  subtitle?: string;
   description: string;
   eyebrow: string;
   deck?: string;
@@ -23,6 +24,7 @@ interface Props {
 
 const {
   title,
+  subtitle = "",
   description,
   eyebrow,
   deck = "",
@@ -37,11 +39,12 @@ const {
 const showToc = toc.length > 0;
 ---
 
-<BaseLayout title={`${title} | FrontierGraph`} description={description} shellClass="site-shell site-shell-wide">
+<BaseLayout title={`${title} | Frontier Graph`} description={description} shellClass="site-shell site-shell-wide">
   <main>
     <section class="page-hero paper-hero">
       <span class="eyebrow">{eyebrow}</span>
       <h1>{title}</h1>
+      {subtitle && <p class="paper-subtitle">{subtitle}</p>}
       {(author || affiliation) && (
         <div class="paper-author-block">
           {author && (

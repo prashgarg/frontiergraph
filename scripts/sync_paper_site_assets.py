@@ -103,7 +103,7 @@ def transform_full_markdown() -> str:
     return add_frontmatter(
         markdown,
         title="What Should Economics Ask Next?",
-        description="Full HTML manuscript for the FrontierGraph working paper.",
+        description="Full HTML manuscript for the Frontier Graph working paper.",
         eyebrow="Working paper",
         author="Prashant Garg",
         date="15 March 2026",
@@ -115,8 +115,8 @@ def transform_overview_markdown() -> str:
     markdown = rewrite_images(markdown, OVERVIEW_SOURCE)
     return add_frontmatter(
         markdown,
-        title="What FrontierGraph Finds",
-        description="A web-first overview of the FrontierGraph paper and public release.",
+        title="What Frontier Graph Finds",
+        description="A web-first overview of the Frontier Graph paper and public release.",
         eyebrow="Web overview",
         author="Prashant Garg",
         date="15 March 2026",
@@ -140,7 +140,7 @@ def main() -> None:
                     "headings": extract_headings(full_markdown),
                 },
                 "overview": {
-                    "title": "What FrontierGraph Finds",
+                    "title": "What Frontier Graph Finds",
                     "eyebrow": "Web overview",
                     "headings": extract_headings(overview_markdown),
                 },

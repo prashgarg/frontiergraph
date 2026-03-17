@@ -1,4 +1,4 @@
-# FrontierGraph data dictionary
+# Frontier Graph data dictionary
 
 This guide summarizes the main fields in the public download files. If you want one row per suggested question, start with `top_questions.csv`. If you want the full local evidence tables, use the SQLite bundle.
 
@@ -34,6 +34,7 @@ This guide summarizes the main fields in the public download files. If you want 
 | `recommended_move` | Suggested first research move or reading strategy. |
 | `slice_label` | Slice or family label used on the public site. |
 | `public_pair_label` | Plain-language pair label. |
+| `display_question_title` | Question-style title used on the ranked public questions page. |
 | `question_family` | Family label used to avoid repetitive windows. |
 | `suppress_from_public_ranked_window` | Whether the question is kept out of the default ranked window. |
 | `top_mediator_labels` | JSON list of the most important intermediate topics in public display form. |

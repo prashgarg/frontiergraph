@@ -104,7 +104,24 @@ NEIGHBOR_LIMIT = 15
 CONCEPT_OPPORTUNITY_LIMIT = 12
 FEATURED_OPPORTUNITY_LIMIT = 12
 PUBLIC_RANKED_WINDOW_LIMIT = 120
-PUBLIC_SLICE_EXPORT_LIMIT = 220
+PUBLIC_RANKED_SOURCE_LIMIT = 2500
+RANKED_EDITORIAL_WINDOW_LIMIT = 48
+RANKED_DIVERSE_HEAD_LIMIT = 24
+CURATED_ENDPOINT_FAMILY_CAP = 2
+RANKED_ENDPOINT_FAMILY_CAP = 2
+RANKED_DIVERSE_ENDPOINT_REPEAT_CAP = 2
+RANKED_READY_SPECIFICITY_MIN = 0.2
+RANKED_EDITORIAL_FALLBACK_PAIR_KEYS = (
+    "FG3C000309__FG3C004045",
+    "FG3C000843__FG3C002591",
+    "FG3C000074__FG3C003563",
+    "FG3C000008__FG3C005909",
+    "FG3C000013__FG3C005708",
+    "FG3C000264__FG3C004045",
+    "FG3C004045__FG3C005027",
+    "FG3C000100__FG3C003563",
+)
+PUBLIC_SLICE_EXPORT_LIMIT = 400
 CAROUSEL_GROUP_SIZE = 10
 FIELD_CAROUSEL_COUNT = 6
 USE_CASE_CAROUSEL_COUNT = 3
@@ -233,6 +250,77 @@ PUBLIC_WINDOW_BLOCKLIST_PHRASES = (
     "relative prices",
     "distance",
 )
+RANKED_WINDOW_BLOCKLIST_PHRASES = (
+    "high frequency trading",
+    "individual forecasts",
+    "wage setting",
+    "volatility spillovers",
+    "observed data",
+    "choice data",
+    "spot prices",
+    "no treatment",
+    "non fungible tokens",
+    "nfts",
+    "china stock market",
+    "u s stock market",
+    "s p 500",
+    "stock returns",
+    "equity premium",
+    "bid ask spread",
+    "logistic regression",
+    "spatial durbin model",
+    "price cost margin",
+    "price to rent ratio",
+    "optimal investment strategy",
+    "separability",
+    "numerical simulation",
+    "coupling coordination degree",
+    "negative news sentiment",
+    "economic fundamentals",
+    "marital status",
+    "russia ukraine conflict",
+    "esg investments",
+    "resource allocation efficiency",
+    "level of debt",
+    "special economic zones",
+    "catastrophic health expenditures",
+    "u s economic policy uncertainty",
+    "covid 19 pandemic",
+    "subjective well being",
+    "sustainable development",
+    "green innovation",
+    "green technology innovation",
+    "innovation outcomes",
+    "renewable portfolio standards",
+    "financial performance",
+    "tvp sv var model",
+    "cyclical component",
+    "innovation rate",
+    "welfare level",
+    "central and western cities",
+    "airport efficiency",
+    "green economic efficiency",
+    "regional economic resilience",
+    "high quality economic development",
+    "inclusive green growth",
+    "green economic growth",
+    "sustainable economic growth",
+    "industrial wastewater discharge",
+    "real gdp per capita",
+    "brics stock markets",
+    "gcc stock market returns",
+    "high tech industry",
+    "export product quality",
+)
+RANKED_WINDOW_GENERIC_TARGETS = {
+    "costs",
+    "performance",
+    "prices",
+    "returns",
+    "spot prices",
+    "technology",
+    "volatility",
+}
 PUBLIC_METHOD_TOPIC_PHRASES = (
     "model performance metrics",
     "method of moments quantile regression",
@@ -1052,6 +1140,48 @@ def public_window_penalty(row: dict[str, Any]) -> tuple[int, int]:
     return penalty, to_int(row.get("cooc_count", 0))
 
 
+def ranked_window_title_is_weak(row: dict[str, Any]) -> bool:
+    source_label = normalized_label_key(row.get("source_display_label") or row.get("source_label"))
+    target_label = normalized_label_key(row.get("target_display_label") or row.get("target_label"))
+    label_blob = " ".join(
+        value
+        for value in (
+            source_label,
+            target_label,
+            normalized_label_key(row.get("public_pair_label")),
+            normalized_label_key(" ".join(row.get("top_mediator_labels", []))),
+        )
+        if value
+    )
+    if any(phrase in label_blob for phrase in PUBLIC_METHOD_TOPIC_PHRASES):
+        return True
+    if any(phrase in label_blob for phrase in RANKED_WINDOW_BLOCKLIST_PHRASES):
+        return True
+    if target_label in RANKED_WINDOW_GENERIC_TARGETS and token_count(row.get("source_display_label") or row.get("source_label")) <= 2:
+        return True
+    if source_label in RANKED_WINDOW_GENERIC_TARGETS and token_count(row.get("target_display_label") or row.get("target_label")) <= 2:
+        return True
+    return False
+
+
+def ranked_window_ready(row: dict[str, Any]) -> bool:
+    if row.get("suppress_from_public_ranked_window"):
+        return False
+    if ranked_window_title_is_weak(row):
+        return False
+    if row_endpoint_families(row):
+        return False
+    if len(row.get("representative_papers", [])) < 2:
+        return False
+    if len(row.get("top_mediator_labels", [])) < 2:
+        return False
+    if not clean_public_text(row.get("display_question_title")):
+        return False
+    if to_float(row.get("public_specificity_score", 0.0)) < RANKED_READY_SPECIFICITY_MIN:
+        return False
+    return True
+
+
 def opportunity_record(
     row: sqlite3.Row | tuple[Any, ...],
     columns: list[str],
@@ -1134,6 +1264,7 @@ def opportunity_record(
             values.get("u_bucket_hint"),
             values.get("v_bucket_hint"),
         ),
+        "display_question_title": "",
         "representative_papers": representative_papers,
         "question_family": clean_public_text(editorial_entry.get("question_family"))
         or infer_question_family(source_public["plain_label"], target_public["plain_label"]),
@@ -1169,13 +1300,14 @@ def opportunity_record(
         ),
         "public_specificity_score": specificity_score,
         "app_link": build_app_question_link(values["pair_key"]),
+        "editorial_question_title": clean_public_text(editorial_entry.get("question_title")),
     }
 
 
 def export_rows_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, extrasaction="ignore")
         writer.writeheader()
         for row in rows:
             writer.writerow(row)
@@ -1249,6 +1381,66 @@ def build_slices(
         "fast_follow": top_records(df["fast_follow_flag"]),
         "underexplored": top_records(df["underexplored_flag"]),
     }
+
+
+def build_ranked_source_rows(
+    df: pd.DataFrame,
+    concept_label_lookup: dict[str, str],
+    glossary: dict[str, dict[str, Any]],
+    display_refinement: dict[str, dict[str, Any]],
+    representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
+    editorial: dict[str, dict[str, Any]],
+    limit: int = PUBLIC_RANKED_SOURCE_LIMIT,
+) -> list[dict[str, Any]]:
+    raw_limit = max(limit * 10, 6000)
+    subset = df.head(raw_limit)
+    columns = list(df.columns)
+    subset_rows = [tuple(row) for row in subset.itertuples(index=False, name=None)]
+    records = [
+        opportunity_record(row, columns, concept_label_lookup, glossary, display_refinement, representative_papers_lookup, editorial)
+        for row in subset_rows
+    ]
+    records.sort(
+        key=lambda row: (
+            is_climate_heavy(row),
+            public_window_penalty(row),
+            -to_float(row.get("public_specificity_score", 0.0)),
+            -to_float(row.get("score", 0.0)),
+            str(row.get("pair_key", "")),
+        )
+    )
+    return records[:limit]
+
+
+def build_specific_opportunity_rows(
+    pair_keys: list[str] | tuple[str, ...],
+    candidates_df: pd.DataFrame,
+    concept_label_lookup: dict[str, str],
+    glossary: dict[str, dict[str, Any]],
+    display_refinement: dict[str, dict[str, Any]],
+    representative_papers_lookup: dict[tuple[str, str], list[dict[str, Any]]],
+    editorial: dict[str, dict[str, Any]],
+) -> list[dict[str, Any]]:
+    requested = [clean_public_text(pair_key) for pair_key in pair_keys if clean_public_text(pair_key)]
+    if not requested:
+        return []
+    subset_df = candidates_df[candidates_df["pair_key"].isin(requested)].copy()
+    columns = list(subset_df.columns)
+    records_by_pair: dict[str, dict[str, Any]] = {}
+    for row in subset_df.itertuples(index=False, name=None):
+        record = opportunity_record(
+            tuple(row),
+            columns,
+            concept_label_lookup,
+            glossary,
+            display_refinement,
+            representative_papers_lookup,
+            editorial,
+        )
+        existing = records_by_pair.get(record["pair_key"])
+        if existing is None or safe_number_for_sort(record["score"]) > safe_number_for_sort(existing["score"]):
+            records_by_pair[record["pair_key"]] = record
+    return [records_by_pair[pair_key] for pair_key in requested if pair_key in records_by_pair]
 
 
 def compute_centrality(nodes_df: pd.DataFrame, edges_df: pd.DataFrame) -> tuple[pd.DataFrame, nx.DiGraph]:
@@ -1884,6 +2076,63 @@ def auto_question_title(public_pair_label: Any) -> str:
     return label[:1].upper() + label[1:]
 
 
+def normalized_endpoint_family(label: Any) -> str:
+    normalized = normalized_label_key(label)
+    if not normalized:
+        return ""
+    if any(token in normalized for token in ("co2 emissions", "carbon emissions", "carbon dioxide")):
+        return "family:carbon-emissions"
+    if any(
+        token in normalized
+        for token in (
+            "green total factor productivity",
+            "total factor productivity",
+            "firm total factor productivity",
+        )
+    ):
+        return "family:tfp"
+    if any(token in normalized for token in ("green credit", "green finance", "digital inclusive finance")):
+        return "family:green-finance-channel"
+    if "low carbon city" in normalized:
+        return "family:low-carbon-city"
+    if any(token in normalized for token in ("ecological carrying capacity", "load capacity factor")):
+        return "family:ecology-capacity"
+    return ""
+
+
+def row_endpoint_families(row: dict[str, Any]) -> list[str]:
+    return uniq_keep_order(
+        [
+            normalized_endpoint_family(row.get("source_display_label") or row.get("source_label")),
+            normalized_endpoint_family(row.get("target_display_label") or row.get("target_label")),
+        ]
+    )
+
+
+def ranked_endpoint_key(label: Any) -> str:
+    family = normalized_endpoint_family(label)
+    if family:
+        return family
+    return normalized_label_key(label)
+
+
+def row_ranked_endpoint_keys(row: dict[str, Any]) -> list[str]:
+    return uniq_keep_order(
+        [
+            ranked_endpoint_key(row.get("source_display_label") or row.get("source_label")),
+            ranked_endpoint_key(row.get("target_display_label") or row.get("target_label")),
+        ]
+    )
+
+
+def generated_ranked_question_title(row: dict[str, Any]) -> str:
+    source = clean_public_text(row.get("source_display_label") or row.get("source_label"))
+    target = clean_public_text(row.get("target_display_label") or row.get("target_label"))
+    if not source or not target:
+        return ""
+    return f"How might {source} change {target}?"
+
+
 def display_category(row: dict[str, Any]) -> str:
     if bool(row.get("cross_field")) and to_int(row.get("cooc_count", 0)) == 0:
         return "Cross-area question"
@@ -2293,53 +2542,153 @@ def build_curated_questions_carousels(
             )
         return rendered
 
-    return render_groups(assignments["field_carousels"]), render_groups(assignments["use_case_carousels"])
+    field_groups = render_groups(assignments["field_carousels"])
+    use_case_groups = render_groups(assignments["use_case_carousels"])
+
+    endpoint_family_counts: dict[str, int] = defaultdict(int)
+    for group in field_groups + use_case_groups:
+        for item in group["items"]:
+            for family in row_endpoint_families(item):
+                endpoint_family_counts[family] += 1
+
+    repeated_families = {
+        family: count
+        for family, count in endpoint_family_counts.items()
+        if family and count > CURATED_ENDPOINT_FAMILY_CAP
+    }
+    if repeated_families:
+        repeated_text = ", ".join(f"{family}={count}" for family, count in sorted(repeated_families.items()))
+        raise ValueError(
+            "questions-carousel-assignments.json exceeds the curated endpoint-family cap: " + repeated_text
+        )
+
+    return field_groups, use_case_groups
 
 
 def build_public_ranked_window(
     overall_rows: list[dict[str, Any]],
     excluded_pair_keys: set[str],
+    editorial_fallback_rows: list[dict[str, Any]] | None = None,
     limit: int = 12,
 ) -> list[dict[str, Any]]:
     visible: list[dict[str, Any]] = []
-    deferred: list[dict[str, Any]] = []
+    exploratory_tail: list[dict[str, Any]] = []
     family_counts: dict[str, int] = defaultdict(int)
-    climate_cap = max(6, limit // 6)
+    endpoint_family_counts: dict[str, int] = defaultdict(int)
+    climate_cap = max(6, RANKED_EDITORIAL_WINDOW_LIMIT // 6)
     climate_count = 0
+    editorial_window_limit = min(limit, RANKED_EDITORIAL_WINDOW_LIMIT)
+    diverse_head_limit = min(editorial_window_limit, RANKED_DIVERSE_HEAD_LIMIT)
     ranked_rows = sorted(
         [row for row in overall_rows if row["pair_key"] not in excluded_pair_keys],
         key=lambda row: (is_climate_heavy(row), public_window_penalty(row)),
     )
 
+    prepared_rows: list[dict[str, Any]] = []
     for row in ranked_rows:
+        prepared_rows.append(
+            {
+                **row,
+                "display_question_title": clean_public_text(row.get("editorial_question_title"))
+                or generated_ranked_question_title(row),
+            }
+        )
+
+    ready_rows = [row for row in prepared_rows if ranked_window_ready(row)]
+    selected_pair_keys: set[str] = set()
+    source_counts: dict[str, int] = defaultdict(int)
+    target_counts: dict[str, int] = defaultdict(int)
+
+    for row in ready_rows:
+        if len(visible) >= diverse_head_limit:
+            break
         family = clean_public_text(row.get("question_family")) or row["pair_key"]
-        if row.get("suppress_from_public_ranked_window"):
-            deferred.append(row)
+        endpoint_families = row_endpoint_families(row)
+        source_key = ranked_endpoint_key(row.get("source_display_label") or row.get("source_label"))
+        target_key = ranked_endpoint_key(row.get("target_display_label") or row.get("target_label"))
+        if family_counts[family] >= 1:
             continue
-        if len(visible) < limit and family_counts[family] >= 1:
-            deferred.append(row)
+        if any(endpoint_family_counts[endpoint_family] >= RANKED_ENDPOINT_FAMILY_CAP for endpoint_family in endpoint_families):
+            continue
+        if source_key and source_counts[source_key] >= RANKED_DIVERSE_ENDPOINT_REPEAT_CAP:
+            continue
+        if target_key and target_counts[target_key] >= RANKED_DIVERSE_ENDPOINT_REPEAT_CAP:
             continue
         if is_climate_heavy(row) and climate_count >= climate_cap:
-            deferred.append(row)
             continue
         visible.append(row)
+        selected_pair_keys.add(row["pair_key"])
         family_counts[family] += 1
+        for endpoint_family in endpoint_families:
+            endpoint_family_counts[endpoint_family] += 1
+        if source_key:
+            source_counts[source_key] += 1
+        if target_key:
+            target_counts[target_key] += 1
         if is_climate_heavy(row):
             climate_count += 1
+
+    for row in editorial_fallback_rows or []:
+        if len(visible) >= editorial_window_limit:
+            break
+        if row["pair_key"] in excluded_pair_keys or row["pair_key"] in selected_pair_keys:
+            continue
+        candidate = {
+            **row,
+            "display_question_title": clean_public_text(row.get("editorial_question_title"))
+            or generated_ranked_question_title(row),
+        }
+        if ranked_window_title_is_weak(candidate):
+            continue
+        family = clean_public_text(candidate.get("question_family")) or candidate["pair_key"]
+        endpoint_families = row_endpoint_families(candidate)
+        if family_counts[family] >= 1:
+            continue
+        if any(endpoint_family_counts[endpoint_family] >= RANKED_ENDPOINT_FAMILY_CAP for endpoint_family in endpoint_families):
+            continue
+        if is_climate_heavy(candidate) and climate_count >= climate_cap:
+            continue
+        visible.append(candidate)
+        selected_pair_keys.add(candidate["pair_key"])
+        family_counts[family] += 1
+        for endpoint_family in endpoint_families:
+            endpoint_family_counts[endpoint_family] += 1
+        if is_climate_heavy(candidate):
+            climate_count += 1
+
+    for row in ready_rows:
+        if len(visible) >= editorial_window_limit:
+            break
+        if row["pair_key"] in selected_pair_keys:
+            continue
+        family = clean_public_text(row.get("question_family")) or row["pair_key"]
+        endpoint_families = row_endpoint_families(row)
+        if family_counts[family] >= 1:
+            continue
+        if any(endpoint_family_counts[endpoint_family] >= RANKED_ENDPOINT_FAMILY_CAP for endpoint_family in endpoint_families):
+            continue
+        if is_climate_heavy(row) and climate_count >= climate_cap:
+            continue
+        visible.append(row)
+        selected_pair_keys.add(row["pair_key"])
+        family_counts[family] += 1
+        for endpoint_family in endpoint_families:
+            endpoint_family_counts[endpoint_family] += 1
+        if is_climate_heavy(row):
+            climate_count += 1
+
+    exploratory_tail.extend([row for row in ready_rows if row["pair_key"] not in selected_pair_keys])
+    exploratory_tail.extend(
+        [row for row in prepared_rows if row["pair_key"] not in selected_pair_keys and not ranked_window_ready(row)]
+    )
+
+    for row in exploratory_tail:
+        if row["pair_key"] in selected_pair_keys:
+            continue
+        visible.append(row)
+        selected_pair_keys.add(row["pair_key"])
         if len(visible) >= limit:
             break
-
-    if len(visible) < limit:
-        for row in deferred:
-            if row["pair_key"] in {item["pair_key"] for item in visible}:
-                continue
-            if is_climate_heavy(row) and climate_count >= climate_cap:
-                continue
-            visible.append(row)
-            if is_climate_heavy(row):
-                climate_count += 1
-            if len(visible) >= limit:
-                break
     return visible[:limit]
 
 
@@ -2447,9 +2796,9 @@ def write_public_db_release_assets(db_path: Path) -> dict[str, Any]:
 
 
 def build_release_readme_markdown(metrics: dict[str, Any], app_url: str) -> str:
-    return f"""# FrontierGraph public release README
+    return f"""# Frontier Graph public release README
 
-FrontierGraph is a public browser for suggested research questions in economics. This release starts from {metrics["papers"]:,} papers screened from 1976 to 2026 and packages the public question tables, graph assets, and SQLite bundle that sit behind the site.
+Frontier Graph is a public browser for suggested research questions in economics. This release starts from {metrics["papers"]:,} papers screened from 1976 to 2026 and packages the public question tables, graph assets, and SQLite bundle that sit behind the site.
 
 ## Start here
 
@@ -2499,7 +2848,7 @@ FrontierGraph is a public browser for suggested research questions in economics.
 
 
 def build_data_dictionary_markdown() -> str:
-    return """# FrontierGraph data dictionary
+    return """# Frontier Graph data dictionary
 
 This guide summarizes the main fields in the public download files. If you want one row per suggested question, start with `top_questions.csv`. If you want the full local evidence tables, use the SQLite bundle.
 
@@ -2535,6 +2884,7 @@ This guide summarizes the main fields in the public download files. If you want 
 | `recommended_move` | Suggested first research move or reading strategy. |
 | `slice_label` | Slice or family label used on the public site. |
 | `public_pair_label` | Plain-language pair label. |
+| `display_question_title` | Question-style title used on the ranked public questions page. |
 | `question_family` | Family label used to avoid repetitive windows. |
 | `suppress_from_public_ranked_window` | Whether the question is kept out of the default ranked window. |
 | `top_mediator_labels` | JSON list of the most important intermediate topics in public display form. |
@@ -2704,6 +3054,24 @@ def main() -> None:
         representative_papers_lookup,
         editorial_opportunities,
     )
+    ranked_source_rows = build_ranked_source_rows(
+        candidates_df,
+        concept_label_lookup,
+        public_label_glossary,
+        display_refinement,
+        representative_papers_lookup,
+        editorial_opportunities,
+        limit=PUBLIC_RANKED_SOURCE_LIMIT,
+    )
+    ranked_editorial_fallback_rows = build_specific_opportunity_rows(
+        RANKED_EDITORIAL_FALLBACK_PAIR_KEYS,
+        candidates_df,
+        concept_label_lookup,
+        public_label_glossary,
+        display_refinement,
+        representative_papers_lookup,
+        editorial_opportunities,
+    )
     featured_opportunities = diversify_featured_opportunities(slices, limit=FEATURED_OPPORTUNITY_LIMIT)
     editorial_records = build_editorial_records(
         editorial_opportunities,
@@ -2743,8 +3111,9 @@ def main() -> None:
         for item in group["items"]
     }
     ranked_questions = build_public_ranked_window(
-        slices["overall"],
+        ranked_source_rows,
         {row["pair_key"] for row in editorial_records} | top_carousel_pair_keys,
+        editorial_fallback_rows=ranked_editorial_fallback_rows,
         limit=PUBLIC_RANKED_WINDOW_LIMIT,
     )
 
@@ -2818,6 +3187,7 @@ def main() -> None:
             "recommended_move",
             "slice_label",
             "public_pair_label",
+            "display_question_title",
             "question_family",
             "suppress_from_public_ranked_window",
             "top_mediator_labels",

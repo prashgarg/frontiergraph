@@ -132,6 +132,16 @@ async function main() {
     .locator('[data-role="structured-opportunity-card"]:not([hidden])')
     .count();
   assert(visibleCountAfter === 48, "Questions ranked list should add 24 cards after one load-more click");
+  const rankedSectionText = await rankedSection.innerText();
+  for (const forbidden of [
+    "high-frequency trading and prices",
+    "individual forecasts and long-term interest rate",
+    "wage setting and costs",
+    "US stock market and volatility spillovers",
+    "observed data and spot prices",
+  ]) {
+    assert(!rankedSectionText.includes(forbidden), `Questions ranked window should not show weak raw pair: ${forbidden}`);
+  }
   await rankedSection.getByRole("button", { name: /Stronger nearby evidence/i }).click();
   await page.waitForTimeout(200);
   assert(
@@ -194,7 +204,8 @@ async function main() {
 
   await page.goto(`${baseUrl}/paper/`, { waitUntil: "networkidle" });
   assert(await page.getByRole("heading", { name: /What Should Economics Ask Next/i }).first().isVisible(), "Paper page missing");
-  assert(await page.getByText(/The working paper sets out the method and benchmark results behind FrontierGraph\./i).isVisible(), "Paper deck missing");
+  assert(await page.getByText(/A graph-based screening benchmark and public browser for candidate economics questions/i).isVisible(), "Paper subtitle missing");
+  assert(await page.getByText(/A narrower claim than the title suggests: whether a transparent graph screen can surface plausible next questions under realistic reading budgets\./i).isVisible(), "Paper deck missing");
   assert(await page.getByRole("button", { name: /^Give feedback$/ }).isVisible(), "Paper page should keep feedback access");
   assert((await page.locator(".paper-hero .button-row a").count()) === 2, "Paper hero should only show paper-specific CTAs");
   assert(await page.locator(".paper-hero .button-row").getByRole("link", { name: /^Download PDF$/ }).isVisible(), "Paper hero PDF CTA missing");

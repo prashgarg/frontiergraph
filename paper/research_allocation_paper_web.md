@@ -1,6 +1,6 @@
-# What FrontierGraph Finds
+# What Frontier Graph Finds
 
-FrontierGraph is a research-allocation project about a simple question: how should economists decide what to work on next?
+Frontier Graph is a research-allocation project about a simple question: how should economists decide what to work on next?
 
 The paper starts from a large published-journal corpus, extracts paper-local research graphs from titles and abstracts, normalizes repeated concept labels into a shared concept space, and then treats missing links as candidate next papers. The point is not to automate taste or replace reading. It is to make one difficult part of academic work a bit more inspectable: deciding which questions are open enough to matter, grounded enough to investigate, and concrete enough to become a paper.
 

@@ -90,13 +90,13 @@
       },
       {
         "level": 3,
-        "text": "5.5 Path evolution beyond direct-link closure",
-        "id": "5-5-path-evolution-beyond-direct-link-closure"
+        "text": "5.5 Path development beyond direct-link closure",
+        "id": "5-5-path-development-beyond-direct-link-closure"
       },
       {
         "level": 2,
-        "text": "6. FrontierGraph as Research Tool",
-        "id": "6-frontiergraph-as-research-tool"
+        "text": "6. Frontier Graph as Public Companion",
+        "id": "6-frontier-graph-as-public-companion"
       },
       {
         "level": 2,
@@ -186,7 +186,7 @@
     ]
   },
   "overview": {
-    "title": "What FrontierGraph Finds",
+    "title": "What Frontier Graph Finds",
     "eyebrow": "Web overview",
     "headings": [
       {

@@ -1,6 +1,6 @@
-# FrontierGraph public release README
+# Frontier Graph public release README
 
-FrontierGraph is a public browser for suggested research questions in economics. This release starts from 242,595 papers screened from 1976 to 2026 and packages the public question tables, graph assets, and SQLite bundle that sit behind the site.
+Frontier Graph is a public browser for suggested research questions in economics. This release starts from 242,595 papers screened from 1976 to 2026 and packages the public question tables, graph assets, and SQLite bundle that sit behind the site.
 
 ## Start here
 

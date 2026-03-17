@@ -1,6 +1,6 @@
 ---
 title: "What Should Economics Ask Next?"
-description: "Full HTML manuscript for the FrontierGraph working paper."
+description: "Full HTML manuscript for the Frontier Graph working paper."
 eyebrow: "Working paper"
 author: "Prashant Garg"
 date: "15 March 2026"
@@ -8,7 +8,7 @@ date: "15 March 2026"
 
 ## Abstract
 
-As AI makes drafting, coding, and review cheaper, one hard part of research remains difficult to automate: asking the right question. This paper studies that problem in economics by treating missing directed links in a literature graph as candidate next questions. I build the graph from 242,595 papers in core economics and adjacent journals, rank missing links using local graph structure, and evaluate the ranking prospectively against preferential attachment in vintage backtests over 3-, 5-, 10-, and 15-year horizons. Preferential attachment remains stronger at the very top of shortlists, but the graph-based rule becomes much more competitive once the reading budget widens, especially in adjacent journals, design-based causal slices, and path-rich parts of the literature. A complementary path-evolution audit suggests that research often deepens mediating structure around existing direct claims more often than it closes a missing direct link. The paper's claim is practical rather than universal: local graph structure can help surface plausible next questions and make their support inspectable.
+As AI makes drafting, coding, and review cheaper, choosing the right question becomes a more binding research bottleneck. This paper studies that margin in economics by treating missing directed links in a literature graph as candidate questions. I build the graph from 242,595 papers in core economics and adjacent journals, rank missing links using transparent local graph structure, and evaluate the ranking prospectively against preferential attachment over 3-, 5-, 10-, and 15-year horizons. Preferential attachment remains stronger at the very top of shortlists, but the graph-based score becomes more competitive once the reading budget widens, especially in adjacent journals, design-based causal slices, and path-rich parts of the literature. The contribution is practical rather than universal: a transparent graph screen can help surface plausible next questions and make their local support inspectable.
 
 **Keywords.** research allocation; economics of science; knowledge graphs; preferential attachment; AI-assisted discovery
 
@@ -16,15 +16,17 @@ As AI makes drafting, coding, and review cheaper, one hard part of research rema
 
 Choosing what to work on is one of the least formalized decisions in economics. We have disciplined frameworks for identification, estimation, and inference, but much less for the upstream choice of which question deserves scarce attention in the first place. Bloom et al. (2020) argue that ideas are getting harder to find, while Jones (2009) emphasizes the growing knowledge burden faced by new researchers. Those arguments point in the same direction: the frontier becomes harder to navigate even as the stock of published work keeps growing.
 
-That problem becomes sharper, not weaker, when AI lowers the cost of adjacent research tasks. Systems such as Project APE are explicitly testing whether parts of the paper-production cycle can be automated. Tools such as Refine, venue-level reviewer guidance such as the ICLR 2026 Reviewer Guide, and agentic review prototypes such as Stanford Agentic Reviewer all point toward the same institutional change: drafting, review assistance, and iterative revision are becoming cheaper. If production and review become less scarce, the bottleneck shifts toward a different margin. The question is no longer only how to write or review a paper more cheaply. It is how to decide which question deserves attention next.
+That problem becomes sharper, not weaker, when AI lowers the cost of adjacent research tasks such as drafting, review assistance, and iterative revision. If downstream paper-production tasks become cheaper, the bottleneck shifts upstream toward question choice. The question is no longer only how to write or review a paper more cheaply. It is how to decide which question deserves attention next.
 
-This paper studies that margin. The core idea is to treat candidate next questions as missing links in a graph of claim-like relations already present in the literature. Suppose the literature already contains links such as public debt -> public investment and public investment -> CO2 emissions, but the direct relation public debt -> CO2 emissions has not yet appeared. That missing direct link is a concrete candidate question. More generally, the object is not generic semantic similarity and not a free-form brainstorming system. It is a structured search for missing relations that look plausible given nearby literature and underworked given the current graph. In this paper, `should` is therefore used in a narrower operational sense than a welfare theorem: a question deserves attention next when it is neglected enough to remain open, supported enough to be credible, concrete enough to become a paper, and better read at realistic fixed attention budgets than at a winner-take-all top rank. This paper studies that margin and offers a tool to inspect it in practice at [frontiergraph.com](https://frontiergraph.com/).
+This paper studies that narrower empirical problem. It does not answer the welfare question of what economics ought to study in the abstract. It asks whether a transparent graph-based screen can surface plausible next questions under realistic reading budgets, and whether those candidates can be made inspectable enough to use. The core idea is to treat candidate next questions as missing links in a graph of claim-like relations already present in the literature. Suppose the literature already contains links such as public debt -> public investment and public investment -> CO2 emissions, but the direct relation public debt -> CO2 emissions has not yet appeared. That missing direct link is a concrete candidate question. The closest computational analogy is link prediction, but the object here is narrower and more interpretable: candidate missing relations in an economics-facing literature graph. In this paper, `should` is therefore used in that narrower operational sense. A question deserves attention next when it is neglected enough to remain open, supported enough to be credible, concrete enough to become a paper, and worth reading under fixed attention budgets rather than only at a winner-take-all top rank. The paper studies that margin and pairs it with a public companion at [frontiergraph.com](https://frontiergraph.com/).
 
 That graphical view is useful because it preserves more of the local logic of scientific development than keyword overlap or raw citation counts alone. It lets us see whether a putative question is supported by short paths, repeated motifs, and nearby mediating concepts, and whether the direct link itself still looks thin relative to its neighborhood. The framework is intentionally modest. It is a discovery aid, not proof of importance; a prospective ranking exercise, not a welfare theorem; and a graph of extracted claim relations, not a full adjudication of causal truth from complete papers.
 
-The empirical design starts from a field-weighted citation impact selected corpus of top core and adjacent journals. The selected sample contains 242,595 papers from 1976-2026, of which 230,929 contain at least one extracted edge and 230,479 survive into the normalized graph used in evaluation. I build that graph from the paper-level extraction framework in Garg and Fetzer (2025), then distinguish between directed causal links and undirected contextual support inside a single graph object. Missing directed links are ranked by a graph-based score built from path support, underexploration gaps, motif support, and hub penalties. I then freeze the graph at year `t-1`, rank candidates, and test whether those links first appear over 3-, 5-, 10-, and 15-year horizons.
+The empirical design starts from a field-weighted citation impact selected corpus of top core and adjacent journals. The selected sample contains 242,595 papers spanning 1976 through papers indexed by 15 March 2026, of which 230,929 contain at least one extracted edge and 230,479 survive into the normalized graph used in evaluation. I build that graph from the paper-level extraction framework in Garg and Fetzer (2025), then distinguish between directed causal links and undirected contextual support inside a single graph object. Missing directed links are ranked by a graph-based score built from path support, underexploration gaps, motif support, and hub penalties. I then freeze the graph at year `t-1`, rank candidates, and test whether those links first appear over 3-, 5-, 10-, and 15-year horizons.
 
-The headline result is mixed and therefore informative. Preferential attachment remains a serious benchmark and still wins in the pooled rolling benchmark at very tight shortlists. In concrete terms, a 100-paper shortlist built from preferential attachment retrieves roughly 2.6, 3.3, 7.0, and 10.0 more realized directed links than the graph score at `h=3,5,10,15`. But that is not the end of the story. Once the reading budget is allowed to expand beyond the strict top 100, the graph-based score becomes more competitive. The newer heterogeneity results also suggest that pooled averages hide meaningful variation across journals, methods, and parts of the literature. A separate path-evolution exercise points to a second pattern: research often builds mediating structure around existing direct claims more often than it closes a direct link already implied by local paths.
+The headline result is mixed and therefore informative. Preferential attachment remains a serious benchmark and still wins in the pooled rolling benchmark at very tight shortlists. In concrete terms, a 100-question shortlist built from preferential attachment retrieves roughly 2.6, 3.3, 7.0, and 10.0 more realized directed links than the graph score at `h=3,5,10,15`. But that is not the end of the story. Once the reading budget is allowed to expand beyond the strict top 100, the graph-based score becomes more competitive. The newer heterogeneity results also suggest that pooled averages hide meaningful variation across journals, methods, and parts of the literature. A separate path-development exercise points to a second pattern: research often builds mediating structure around existing direct claims more often than it closes a direct link already implied by local paths.
+
+The paper makes three contributions. First, it turns candidate next questions into a benchmarked screening object in a directed literature graph. Second, it shows where local structure helps more, and how research often develops by adding mediator paths around existing direct claims rather than only closing missing direct links. Third, it pairs that empirical object with a public browser that makes suggested questions, nearby topics, supporting paths, and starter papers inspectable.
 
 ## 2. Related Literature and Positioning
 
@@ -40,7 +42,7 @@ Fourth, the paper enters a fast-moving literature and policy discussion around A
 
 ## 3. Corpus, Paper-Local Extraction, and Node Normalization
 
-The paper starts from a published-journal corpus rather than a broad scrape of all economics-adjacent writing. The selected journal corpus contains 242,595 papers drawn from the top 150 core economics journals and the top 150 adjacent journals under the field-weighted citation impact selection rule. The sample spans 1976-2026. Of those papers, 230,929 contain at least one extracted edge, yielding 1,443,407 raw extracted edges. After normalization and graph construction, the evaluation graph retains 230,479 papers, 6,752 concept codes, and 1,271,014 normalized links.
+The paper starts from a published-journal corpus rather than a broad scrape of all economics-adjacent writing. The selected journal corpus contains 242,595 papers drawn from the top 150 core economics journals and the top 150 adjacent journals under the field-weighted citation impact selection rule. The sample spans 1976 through papers indexed by 15 March 2026. Of those papers, 230,929 contain at least one extracted edge, yielding 1,443,407 raw extracted edges. After normalization and graph construction, the evaluation graph retains 230,479 papers, 6,752 concept codes, and 1,271,014 normalized links.
 
 ### 3.1 Corpus definition
 
@@ -72,7 +74,7 @@ flowchart LR
 
 ### 3.2 Paper-local research graphs
 
-The extraction layer builds on Garg and Fetzer (2025). Each title and abstract is converted into a paper-local graph in which nodes correspond to extracted concepts and edges summarize the relations the paper itself states, studies, or reports. The present paper inherits that idea but extends it in three ways that matter downstream. First, the schema is broader than explicit causal claims, because the evaluation also needs undirected contextual support. Second, the schema separates the paper's causal presentation from the evidence method used to support a claim. Third, the local graph stores contextual qualifiers in dedicated fields rather than forcing them into the node label. Exact prompts, the full schema, and the design logic are reported in Appendix A. **The code and prompt files used in this paper will be released at `github.com/[repository-to-be-inserted-at-release]`.**
+The extraction layer builds on Garg and Fetzer (2025). Each title and abstract is converted into a paper-local graph in which nodes correspond to extracted concepts and edges summarize the relations the paper itself states, studies, or reports. The present paper inherits that idea but extends it in three ways that matter downstream. First, the schema is broader than explicit causal claims, because the evaluation also needs undirected contextual support. Second, the schema separates the paper's causal presentation from the evidence method used to support a claim. Third, the local graph stores contextual qualifiers in dedicated fields rather than forcing them into the node label. Exact prompts, the full schema, and the design logic are reported in Appendix A. **Code, prompt files, and release materials are available in the public repository at `https://github.com/prashgarg/frontiergraph`.**
 
 ### 3.3 Concept identity and node normalization
 
@@ -172,6 +174,8 @@ In the implementation used for this paper,
 
 `s(u,v)=alpha * P_tilde(u,v) + beta * G(u,v) + gamma * M_tilde(u,v) - delta * H_tilde(u,v)`.
 
+The released weights are fixed as a transparent design choice rather than tuned to maximize forecasting performance. They match the public implementation so that a surfaced question can be decomposed back into the same path, gap, motif, and hub components shown in the companion interface. The graph also already stores stability, causal-presentation, evidence-type, and edge-role metadata, but the main score does not yet fully weight those signals. That is a deliberate simplification in this version, not an unnoticed limitation.
+
 ### 4.4 Prospective evaluation
 
 The prospective design freezes the graph at year `t-1`, ranks candidates using only information available at that date, and then checks whether those links first appear over the evaluation horizon. In other words, the score at `t-1` is not allowed to borrow future edges, future degrees, or later realized papers. A cutoff is eligible for horizon `h` only if `t+h <= 2026`.
@@ -182,11 +186,15 @@ The prospective design freezes the graph at year `t-1`, ranks candidates using o
 
 **Horizon choice.** The main horizons are 3, 5, 10, and 15 years because they correspond to distinct practical windows. Twenty years remains an appendix extension.
 
+Preferential attachment is the main benchmark because cumulative advantage is the main economic null in this setting. If future links mostly go where attention is already concentrated, a rich-get-richer rule should be hard to beat. Standard graph baselines such as common-neighbors, Katz-style scores, or embedding methods are useful future appendix comparisons, but they are not the primary benchmark here because the paper is not asking a generic network-completion question.
+
 ## 5. What the Benchmark Shows
+
+> **How to read the benchmark.** The most intuitive body metric is `future links per 100 suggested questions`: among 100 surfaced questions, how many later appear as realized directed links in the literature. Recall@100 asks what share of all future realized links are captured in a 100-question shortlist. MRR rewards placing those realized links nearer the top of the same shortlist.
 
 ### 5.1 Popularity at the strict shortlist
 
-Preferential attachment remains stronger than the graph-based score at the strict top-100 margin across all four main horizons. The easiest way to read the magnitude is in future links captured inside a 100-paper shortlist: preferential attachment places about `8.3`, `12.0`, `23.3`, and `36.3` future directed links inside the top 100 at `h=3,5,10,15`, while the graph-based score places about `5.7`, `8.7`, `16.3`, and `26.3`. So the popularity benchmark buys roughly `2.6`, `3.3`, `7.0`, and `10.0` extra realized directed links inside the same 100-paper reading list. Put differently, preferential attachment retrieves roughly 40 percent more realized directed links than the graph score, depending on the horizon. The normalized Recall@100 and MRR statistics tell the same story.
+Preferential attachment remains stronger than the graph-based score at the strict top-100 margin across all four main horizons. The easiest way to read the magnitude is in future links captured inside a 100-question shortlist: preferential attachment places about `8.3`, `12.0`, `23.3`, and `36.3` future directed links inside the top 100 at `h=3,5,10,15`, while the graph-based score places about `5.7`, `8.7`, `16.3`, and `26.3`. So the popularity benchmark buys roughly `2.6`, `3.3`, `7.0`, and `10.0` extra realized directed links inside the same 100-candidate shortlist. Put differently, preferential attachment retrieves roughly 40 percent more realized directed links than the graph score, depending on the horizon. The normalized Recall@100 and MRR statistics tell the same story.
 
 ![Figure 5](/paper-assets/outputs/paper/slides_figures/mainline_full_rolling_vs_pref.png)
 
@@ -196,7 +204,7 @@ The small values are real, but they are not trivial. On average, the future cont
 
 ### 5.2 The attention-allocation frontier
 
-The first way to move from prediction toward allocation is to relax the top-100 bottleneck. Economists rarely consume one candidate suggestion and stop. They browse shortlists. The attention-allocation outputs therefore ask what happens when the screening budget expands from `K=50` to `K=1000`. I summarize that margin using `future links per 100 suggestions`, which is just the shortlist precision rescaled into a more readable unit.
+The first way to move from prediction toward allocation is to relax the top-100 bottleneck. Economists rarely consume one candidate suggestion and stop. They browse shortlists. The attention-allocation outputs therefore ask what happens when the screening budget expands from `K=50` to `K=1000`. I summarize that margin using `future links per 100 suggested questions`, which is just the shortlist precision rescaled into a more readable unit.
 
 The result is again mixed but informative. At `h=3`, preferential attachment places about `11.0` future links per 100 suggestions at `K=100`, compared with `5.75` for the graph score. By `K=1000`, the two rules are essentially tied in practical terms: preferential attachment yields about `4.25` future links per 100 while the graph score yields about `4.70`. The same pattern appears at `h=5`: the gap is `14.75` versus `8.25` at `K=100`, but `6.83` versus `7.10` by `K=1000`. At `h=10`, the tight-budget gap remains larger, yet even there the frontier narrows substantially, from `27.5` versus `17.75` at `K=100` to `13.6` versus `13.5` by `K=1000`.
 
@@ -242,7 +250,7 @@ Funding adds nuance rather than a single clean pattern. In the coarse funded-ver
 
 The robust main-text message is therefore restrained but substantive. Broader frontier shortlists soften the pooled headline. Adjacent journals look better than the core. Design-based slices look better than panel or time series. Several concrete economics topics look better than the pooled average. Funding seems to matter, but mostly as a secondary institutional layer on top of the more basic popularity-versus-structure comparison. If the title is read as a question about where a structural screen is most useful, this subsection gives the clearest answer: not everywhere equally, but especially in adjacent, design-based, and several concrete economics-facing topic clusters.
 
-### 5.5 Path evolution beyond direct-link closure
+### 5.5 Path development beyond direct-link closure
 
 #### 5.3.1 Aggregate transition patterns
 
@@ -282,9 +290,24 @@ The recommendation layer already hints at what path-rich questions look like. In
 
 Taken together, Sections 5.1 to 5.5 imply a cumulative reading of the evidence. The strict top-100 benchmark is harsh and popularity-dominated. Broader attention frontiers soften that headline. Value-weighting changes the scale of the comparison without reversing it. Heterogeneity shows where structural screening is actually more useful. The path audit then explains why even that richer reading still does not exhaust the graph's value: a good share of scientific development takes the form of mechanism-deepening around existing direct claims, not only direct-link closure itself. In that sense, the most useful questions to ask next are often better understood as path-rich research programs than as single isolated missing edges.
 
-## 6. FrontierGraph as Research Tool
+## 6. Frontier Graph as Public Companion
 
-[FrontierGraph](https://frontiergraph.com/) is the public interface built on top of this empirical framework. The site is not the evidence for the paper's main claims. Its role is different: it makes the ranked objects inspectable. A user can browse candidate questions, inspect supporting paths and mediators, move from a surfaced pair to nearby literature, and decide whether the object is a gap question, a boundary question, or a path-rich mechanism question that still needs substantive vetting.
+[Frontier Graph](https://frontiergraph.com/) is the public companion layer built on top of this empirical framework. The site is not part of the paper's identification strategy or backtest. Its role is different: it lowers the cost of inspecting why a suggested question surfaced, what local structure supports it, and how that object maps back to the benchmark.
+
+![Annotated Frontier Graph Questions surface](/paper-assets/outputs/paper/figures/frontier_graph_questions_companion_annotated.png)
+
+**Notes.** The screenshot shows the public Questions surface. A single card combines the candidate question, nearby topics, supporting paths, starter papers, and an editorial scoping prompt.
+
+| Interface element | Empirical object |
+|---|---|
+| Suggested question | Candidate missing directed link |
+| Nearby topics | High-support mediators on local supporting paths |
+| Supporting paths | Short directed routes contributing to path support |
+| Starter papers | Representative papers from the local neighborhood |
+| First step | Editorial handoff or scoping prompt rather than a benchmark variable |
+| Explorer | Handoff into the full local evidence tables |
+
+In website language, a suggested question is a candidate missing link, nearby topics are mediators, starter papers are representative local support, and First step is a handoff prompt for scoping. The public release also mixes three layers that readers should keep separate: the underlying score-driven ranking, a curated presentation layer on the homepage and Questions surface, and an interpretability layer that exposes mediators, supporting paths, representative papers, and raw evidence tables. Appendix G spells out that translation more explicitly.
 
 ## 7. Discussion and Conclusion
 
@@ -532,17 +555,17 @@ The fuller force-mapped corpus is now the canonical benchmark because the altern
 
 | Metric | h=3 | h=5 | h=10 | h=15 |
 |---|---:|---:|---:|---:|
-| Recall@100, graph-based main model | 0.003239 | 0.002518 | 0.001956 | 0.001494 |
+| Recall@100, graph-based score | 0.003239 | 0.002518 | 0.001956 | 0.001494 |
 | Recall@100, preferential attachment | 0.003826 | 0.003105 | 0.002784 | 0.002138 |
-| MRR, graph-based main model | 0.000811 | 0.000524 | 0.000334 | 0.000227 |
+| MRR, graph-based score | 0.000811 | 0.000524 | 0.000334 | 0.000227 |
 | MRR, preferential attachment | 0.000901 | 0.000637 | 0.000420 | 0.000281 |
 
 | Quantity | h=3 | h=5 | h=10 | h=15 |
 |---|---:|---:|---:|---:|
 | Delta Recall@100 | -0.000587 | -0.000588 | -0.000828 | -0.000644 |
-| p-value for Delta Recall@100 | 0.740 | 0.064 | 0.000 | 0.000 |
+| p-value for Delta Recall@100 | 0.740 | 0.064 | <0.001 | <0.001 |
 | Delta MRR | -0.000090 | -0.000113 | -0.000086 | -0.000054 |
-| p-value for Delta MRR | 0.000 | 0.000 | 0.000 | 0.000 |
+| p-value for Delta MRR | <0.001 | <0.001 | <0.001 | <0.001 |
 
 ## Appendix D. Heterogeneity atlas extensions
 
@@ -607,9 +630,25 @@ The main score does not yet fully weight evidence quality, but the benchmark obj
 
 ## Appendix G. Tool and interpretation notes
 
-The website layer is designed to expose the ranked objects rather than to replace the benchmark. In particular, the public interface helps with three tasks that the evaluation tables alone cannot solve: inspecting why a candidate surfaced, seeing which mediators or neighboring concepts support it, and distinguishing a local gap question from a thinner boundary question.
+The website layer is designed to expose the ranked objects rather than to replace the benchmark. Readers should distinguish three layers.
 
-Two final diagnostic facts are useful when reading the paper. First, grant metadata are present but incomplete, with coverage much stronger in recent years than in older decades. Second, the graph already contains method and stability metadata that can support richer credibility-weighted benchmarks later.
+1. **Raw ranking layer.** The underlying candidate object is a score-driven missing directed link in the released graph.
+2. **Curated presentation layer.** The homepage and top Questions carousels rewrite some titles, add short explanations, and select a smaller subset for legibility.
+3. **Interpretability layer.** The wider Questions list, Explorer, and download bundle expose nearby mediators, supporting paths, representative papers, and raw evidence tables.
+
+The public vocabulary is therefore intentionally plainer than the paper vocabulary:
+
+| Website language | Paper language |
+|---|---|
+| Suggested question | Candidate missing directed link |
+| Nearby topics | Mediators on local supporting paths |
+| Starter papers | Representative local support |
+| First step | Editorial scoping or handoff prompt |
+| Explorer | Full evidence and interpretation layer |
+
+That translation matters for interpretation. A visitor who sees a clean question title on the site is not seeing a different empirical object. They are seeing a public-facing label applied to the same missing-link candidate ranked in the benchmark. The curation layer changes wording and selection on some surfaces, but it does not replace the underlying object.
+
+Two final diagnostic facts are useful when reading the paper. First, grant metadata are present but incomplete, with coverage much stronger in recent years than in older decades. Second, the graph already contains method and stability metadata that can support richer credibility-weighted benchmarks later. In the current paper, those signals are audited and reported, but not yet fully folded into the main score.
 
 ## References
 

@@ -58,6 +58,7 @@ export type Opportunity = {
   recommended_move: string;
   slice_label: string;
   public_pair_label: string;
+  display_question_title?: string;
   question_family: string;
   suppress_from_public_ranked_window?: boolean;
   top_mediator_labels: string[];

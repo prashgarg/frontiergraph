@@ -75,7 +75,7 @@ const filters = [
           <span>Suggested question</span>
           {item.cross_field && <span>Cross-area</span>}
         </div>
-        <h3>{item.public_pair_label}</h3>
+        <h3>{item.display_question_title ?? item.display_title ?? item.public_pair_label}</h3>
         <p class="mini-copy">
           <strong>Nearby linking concepts:</strong> {item.supporting_path_count}
         </p>

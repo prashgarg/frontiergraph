@@ -23,7 +23,7 @@
 
 \title{\textbf{What Should Economics Ask Next?}}
 \author{Prashant Garg}
-\date{15 March 2026\\[0.3em]\normalsize Work-in-Progress Draft (Preliminary and Incomplete) --- Do not cite or circulate}
+\date{15 March 2026\\[0.3em]\normalsize Draft for comments. Please do not cite without permission.}
 
 \begin{document}
 \maketitle
@@ -36,7 +36,7 @@ Choosing what to work on is one of the least formalized decisions in economics. 
 The object is a claim graph. At year \(t-1\), let \(G_{t-1}=(V,E_{t-1})\), where nodes are extracted concepts and edges summarize claim-like relations already observed in papers. For a concrete example, suppose the literature already contains links such as public debt \(\rightarrow\) public investment and public investment \(\rightarrow\) CO\(_2\) emissions, but the direct relation public debt \(\rightarrow\) CO\(_2\) emissions has not yet appeared. That missing direct link becomes a candidate question. More generally, a missing edge \(u \rightarrow v \notin E_{t-1}\) becomes a candidate research question when nearby structure already points toward it.
 
 \paragraph{Construction and scale.}
-Operationally, I start from a field-weighted citation impact (FWCI)-selected published-journal corpus of 242{,}595 papers from the top 150 core economics and top 150 adjacent journals, spanning 1976--2026. Of those, 230{,}929 contain at least one extracted edge, yielding 1{,}443{,}407 raw extracted edges. The rebuilt normalized benchmark graph now retains 230{,}479 papers with mapped structure, 6{,}752 concept codes, and 1{,}271{,}014 normalized hybrid links, including 89{,}737 directed causal rows and 1{,}181{,}277 undirected noncausal support rows. The extraction layer builds on \textit{Causal Claims in Economics} (Garg and Fetzer, 2025).
+Operationally, I start from a field-weighted citation impact (FWCI)-selected published-journal corpus of 242{,}595 papers from the top 150 core economics and top 150 adjacent journals, spanning 1976 through papers indexed by 15 March 2026. Of those, 230{,}929 contain at least one extracted edge, yielding 1{,}443{,}407 raw extracted edges. The rebuilt normalized benchmark graph now retains 230{,}479 papers with mapped structure, 6{,}752 concept codes, and 1{,}271{,}014 normalized hybrid links, including 89{,}737 directed causal rows and 1{,}181{,}277 undirected noncausal support rows. The extraction layer builds on \textit{Causal Claims in Economics} (Garg and Fetzer, 2025).
 
 \paragraph{Ranking rule.}
 I use one hybrid graph. Directed causal edges are kept for experiments, difference-in-differences, instrumental variables, regression discontinuity, event studies, and panel fixed-effects/TWFE designs. All other methods contribute undirected support. A directed causal candidate \(u \rightarrow v\) is missing only if that directed causal link has not previously appeared; existing undirected literature on \(\{u,v\}\) can support the candidate but does not suppress it. I then rank candidates with a transparent score built from path support, underexploration gap, motif support, and hub penalty. Each ranked question can therefore be decomposed back into interpretable structural signals.
@@ -51,7 +51,7 @@ I use one hybrid graph. Directed causal edges are kept for experiments, differen
 Evaluation is prospective. For each cutoff year \(t\), I freeze the graph using only papers observed through \(t-1\), rank missing links, and test whether those links first appear over horizons \(h \in \{3,5,10,15\}\). Those horizons are chosen to span short-run topic scouting, ordinary publication lags, and slower diffusion within economics. I report Recall@100 and mean reciprocal rank. Recall@100 asks what share of future realized links appear inside a shortlist of only 100 candidates; the top-100 threshold is deliberate because the paper is about screening under scarce reading time, not full-universe classification. MRR rewards placing realized links near the top of that shortlist rather than barely inside it. The main benchmark is preferential attachment, defined here as source out-degree times target in-degree. In plain terms, it is a rich-get-richer rule: already central concepts attract more future links even without deeper structural signal.
 
 \paragraph{Results.}
-In the pooled rolling benchmark, preferential attachment still outperforms the transparent main model at the strict top-100 shortlist margin. In concrete terms, a 100-paper reading list built from preferential attachment retrieves roughly 2.6, 3.3, 7.0, and 10.0 more realized directed links than the graph score at \(h=3,5,10,15\). That strict-shortlist result is not the whole story. Once the reading budget widens beyond the top 100, the graph-based rule becomes more competitive, and the newer heterogeneity results suggest that pooled averages hide meaningful variation: adjacent journals and design-based causal slices are more favorable terrain for the structural score than the most central core and panel- or time-series-heavy slices.
+In the pooled rolling benchmark, preferential attachment still outperforms the graph-based score at the strict top-100 shortlist margin. In concrete terms, a 100-question shortlist built from preferential attachment retrieves roughly 2.6, 3.3, 7.0, and 10.0 more realized directed links than the graph score at \(h=3,5,10,15\). That strict-shortlist result is not the whole story. Once the reading budget widens beyond the top 100, the graph-based rule becomes more competitive, and the newer heterogeneity results suggest that pooled averages hide meaningful variation: adjacent journals and design-based causal slices are more favorable terrain for the structural score than the most central core and panel- or time-series-heavy slices.
 
 \begin{figure}[h]
   \centering
@@ -68,7 +68,7 @@ That is still an informative result for research allocation. The transparent mod
   \caption{Gap and boundary questions are the two substantive types the paper aims to separate within the hybrid claim graph.}
 \end{figure}
 
-\paragraph{Path evolution.}
+\paragraph{Path development.}
 A second result changes how to read the missing-link object itself. A path-evolution audit suggests that the literature often deepens existing direct claims by adding mediator structure more often than it closes a missing direct link already implied by local paths. So the graph is useful not only for surfacing local gaps, but also for showing when a topic may be more likely to evolve through mechanism-building than through direct closure.
 
 \paragraph{Illustrative current questions.}
