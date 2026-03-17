@@ -25,6 +25,10 @@ const {
 } = Astro.props;
 
 const rootId = `opportunity-cards-${Math.random().toString(36).slice(2, 10)}`;
+const hasIncrementalLoad = enableFilters && initialVisibleCount > 0;
+const initialRemainingCount = Math.max(items.length - initialVisibleCount, 0);
+const initialLoadMoreLabel =
+  initialRemainingCount > 24 ? "Show 24 more questions" : `Show ${initialRemainingCount} more questions`;
 
 const filters = [
   { id: "cross-area", label: "Cross-area" },
@@ -70,6 +74,7 @@ const filters = [
         data-cross-area={String(item.cross_field)}
         data-strong-nearby={String(item.supporting_path_count >= 5)}
         data-broader-project={String(item.mediator_count >= 6 || item.supporting_path_count >= 8)}
+        hidden={hasIncrementalLoad && index >= initialVisibleCount}
       >
         <div class="opportunity-kicker">
           <span>Suggested question</span>
@@ -103,9 +108,13 @@ const filters = [
     ))}
   </div>
   {enableFilters && initialVisibleCount > 0 && (
-    <div class="opportunity-load-more" data-role="opportunity-load-more-shell" hidden>
+    <div
+      class="opportunity-load-more"
+      data-role="opportunity-load-more-shell"
+      hidden={items.length <= initialVisibleCount}
+    >
       <button class="button-secondary" type="button" data-role="opportunity-load-more">
-        Show more questions
+        {initialLoadMoreLabel}
       </button>
     </div>
   )}
