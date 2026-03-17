@@ -94,7 +94,7 @@ async function main() {
   await textDoesNotContain(page, ["NaN", "undefined", "sqlite3.OperationalError"]);
   assert(await page.getByRole("heading", { name: /Browse suggested questions by field\./i }).isVisible(), "Questions hero missing");
   assert(await page.getByText(/These questions are surfaced because nearby topics and papers already suggest short mechanism routes between the two sides\./i).isVisible(), "Questions helper line missing");
-  assert((await page.locator('[data-role^="field-carousel-"]').count()) === 5, "Questions page should show 5 field carousels");
+  assert((await page.locator('[data-role^="field-carousel-"]').count()) === 6, "Questions page should show 6 field carousels");
   assert((await page.locator('[data-role^="use-case-carousel-"]').count()) === 3, "Questions page should show 3 use-case carousels");
   assert((await page.getByText(/Start here/i).count()) === 0, "Questions page should not show Start here");
   assert((await page.getByText(/Hand-curated question/i).count()) === 0, "Questions page should not show hand-curated tags");
@@ -107,8 +107,8 @@ async function main() {
   const carouselPairs = await page
     .locator('[data-role^="field-carousel-"] [data-role="editorial-carousel-slide"], [data-role^="use-case-carousel-"] [data-role="editorial-carousel-slide"]')
     .evaluateAll((nodes) => nodes.map((node) => node.getAttribute("data-pair-key")).filter(Boolean));
-  assert(carouselPairs.length === 80, "Questions page should expose 80 curated carousel slots");
-  assert(new Set(carouselPairs).size === 80, "Questions page carousel slots should stay globally unique");
+  assert(carouselPairs.length === 90, "Questions page should expose 90 curated carousel slots");
+  assert(new Set(carouselPairs).size === 90, "Questions page carousel slots should stay globally unique");
   const evidenceChipsWithTitle = await page
     .locator('[data-role^="field-carousel-"] .editorial-evidence-chip[title], [data-role^="use-case-carousel-"] .editorial-evidence-chip[title]')
     .count();

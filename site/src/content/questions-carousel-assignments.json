@@ -196,6 +196,82 @@
           "display_title": "How does digitalization raise green total factor productivity?"
         }
       ]
+    },
+    {
+      "slug": "labor-household-outcomes",
+      "title": "Labor and household outcomes",
+      "items": [
+        {
+          "pair_key": "FG3C000033__FG3C004508",
+          "display_title": "How do labor market reforms reshape household consumption?",
+          "display_why": "The clearest nearby routes run through employment, unemployment, and productivity shocks.",
+          "display_first_step": "Start with reform episodes that changed job turnover sharply, then trace whether household spending moved with them.",
+          "display_category": "Field"
+        },
+        {
+          "pair_key": "FG3C000176__FG3C000195",
+          "display_title": "When does product innovation translate into real wage gains?",
+          "display_why": "Nearby papers connect innovation to pay through employment, productivity, and labor productivity.",
+          "display_first_step": "Start with sectors where product upgrading can be matched to wage records and compare gains across worker groups.",
+          "display_category": "Field"
+        },
+        {
+          "pair_key": "FG3C000393__FG3C000449",
+          "display_title": "How might AI widen or narrow the gender wage gap?",
+          "display_why": "The closest local routes run through wage distribution, productivity, and uneven AI adoption across jobs.",
+          "display_first_step": "Compare occupations with uneven AI exposure and track whether pay gaps move where adoption arrives first.",
+          "display_category": "Field"
+        },
+        {
+          "pair_key": "FG3C000157__FG3C005641",
+          "display_title": "When does national health insurance change earnings?",
+          "display_why": "Nearby papers connect insurance to earnings through place of residence, hours worked, and education.",
+          "display_first_step": "Start with coverage expansions that changed enrollment quickly and follow labor supply and earnings after take-up.",
+          "display_category": "Field"
+        },
+        {
+          "pair_key": "FG3C000007__FG3C000993",
+          "display_title": "When do fiscal rules start to bite in employment?",
+          "display_why": "The strongest nearby routes run through fiscal policy, fiscal consolidation, and government spending.",
+          "display_first_step": "Use rule changes or enforcement shocks to compare labor-market adjustment before and after tighter budget constraints.",
+          "display_category": "Field"
+        },
+        {
+          "pair_key": "FG3C000207__FG3C003456",
+          "display_title": "How do tariffs change demand for labor?",
+          "display_why": "Nearby papers already connect tariffs to labor demand through domestic prices and adjustment costs.",
+          "display_first_step": "Start with tariff shifts that moved input prices and test which firms or workers adjusted first.",
+          "display_category": "Field"
+        },
+        {
+          "pair_key": "FG3C000025__FG3C002071",
+          "display_title": "When do firing costs widen income inequality?",
+          "display_why": "The local routes run through wage inequality, unemployment, and employment churn.",
+          "display_first_step": "Compare reforms that changed dismissal costs and trace whether losses concentrated at the bottom of the distribution.",
+          "display_category": "Field"
+        },
+        {
+          "pair_key": "FG3C000087__FG3C000548",
+          "display_title": "How does fiscal policy show up in health-related quality of life?",
+          "display_why": "Nearby papers connect fiscal policy to quality of life through unemployment, economic activity, and income.",
+          "display_first_step": "Start with large fiscal contractions or expansions and test whether health-related quality-of-life measures move after them.",
+          "display_category": "Field"
+        },
+        {
+          "pair_key": "FG3C000002__FG3C001355",
+          "display_title": "How does inflation reshape wage dispersion?",
+          "display_why": "The clearest nearby routes run through unemployment, labor productivity, and tax incidence.",
+          "display_first_step": "Look for inflation episodes with strong price pass-through and test whether wage gaps widen unevenly across firms or sectors.",
+          "display_category": "Field"
+        },
+        {
+          "pair_key": "FG3C000251__FG3C001258",
+          "display_title": "When do R&D efforts translate into labor productivity?",
+          "display_why": "Nearby papers link R&D to labor productivity through product innovation, technical change, and firm-level efficiency.",
+          "display_first_step": "Start with settings where R&D spending and worker-level output can be tracked together over time.",
+          "display_category": "Field"
+        }
+      ]
     }
   ],
   "use_case_carousels": [

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-16T21:04:14.003124+00:00",
+  "generated_at": "2026-03-17T09:02:22.146296+00:00",
   "app_url": "https://frontiergraph-app-1058669339361.us-central1.run.app",
   "repo_url": "https://github.com/prashgarg/frontiergraph",
   "public_label_glossary": {
@@ -10750,6 +10750,1064 @@
             "display_why": "Linked nearby through technological innovation, environmental regulation, and green innovation.",
             "display_first_step": "Start by tracing digitalization to green total factor productivity (GTFP) through technological innovation, environmental regulation, and green innovation before testing the endpoint link directly.",
             "display_category": "Little direct work"
+          }
+        ]
+      },
+      {
+        "slug": "labor-household-outcomes",
+        "title": "Labor and household outcomes",
+        "caption": "",
+        "items": [
+          {
+            "pair_key": "FG3C000033__FG3C004508",
+            "source_id": "FG3C004508",
+            "target_id": "FG3C000033",
+            "source_label": "labour market reforms",
+            "target_label": "consumption",
+            "source_display_label": "labour market reforms",
+            "target_display_label": "consumption",
+            "source_display_concept_id": "FG3C004508",
+            "target_display_concept_id": "FG3C000033",
+            "source_display_refined": false,
+            "target_display_refined": false,
+            "display_refinement_confidence": 0.0,
+            "source_alternate_display_labels": [
+              "product market reforms",
+              "labor market deregulation",
+              "labor market regulation"
+            ],
+            "target_alternate_display_labels": [
+              "consumption (aggregate)",
+              "nondurable consumption",
+              "consumption goods"
+            ],
+            "source_bucket": "core",
+            "target_bucket": "core",
+            "cross_field": false,
+            "score": 0.189742,
+            "base_score": 0.203659,
+            "duplicate_penalty": 0.013917,
+            "path_support_norm": 0.000558,
+            "gap_bonus": 1.0,
+            "mediator_count": 8,
+            "motif_count": 7,
+            "cooc_count": 0,
+            "direct_link_status": "No direct papers yet",
+            "supporting_path_count": 8,
+            "why_now": "labour market reforms and consumption are already linked by 8 nearby intermediate topics.",
+            "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
+            "slice_label": "Missing direct link",
+            "public_pair_label": "consumption and labour market reforms",
+            "representative_papers": [
+              {
+                "paper_id": "W1830563144__gpt5mini_low",
+                "title": "Employment Effects of Product and Labour Market Reforms: Are there Synergies?",
+                "year": 2012,
+                "edge_src": "FG3C004508",
+                "edge_dst": "FG3C000007",
+                "edge_src_display_label": "labour market reforms",
+                "edge_dst_display_label": "employment"
+              },
+              {
+                "paper_id": "W2126726532__gpt5mini_low",
+                "title": "The Effect of Unemployment on Consumption: An Experimental Analysis",
+                "year": 2004,
+                "edge_src": "FG3C000009",
+                "edge_dst": "FG3C000033",
+                "edge_src_display_label": "unemployment",
+                "edge_dst_display_label": "consumption"
+              },
+              {
+                "paper_id": "W1991771386__gpt5mini_low",
+                "title": "Banking crises, labour reforms, and unemployment: a comment",
+                "year": 2015,
+                "edge_src": "FG3C004508",
+                "edge_dst": "FG3C000009",
+                "edge_src_display_label": "labour market reforms",
+                "edge_dst_display_label": "unemployment"
+              }
+            ],
+            "question_family": "labour-market-reforms-consumption",
+            "suppress_from_public_ranked_window": false,
+            "top_mediator_display_labels": [
+              "employment",
+              "unemployment",
+              "productivity shocks"
+            ],
+            "top_mediator_labels": [
+              "employment",
+              "unemployment",
+              "productivity shocks"
+            ],
+            "top_mediator_baseline_labels": [
+              "employment",
+              "unemployment",
+              "productivity shocks"
+            ],
+            "top_countries_source": [
+              "25 OECD countries",
+              "Chile",
+              "22 European countries"
+            ],
+            "top_countries_target": [
+              "United States",
+              "China"
+            ],
+            "source_context_summary": "25 OECD countries, Chile, and related settings",
+            "target_context_summary": "United States and China",
+            "common_contexts": "labour market reforms studies are common in 25 OECD countries, Chile, and related settings; consumption studies are common in United States and China.",
+            "public_specificity_score": -11.0972,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000033__FG3C004508",
+            "display_title": "How do labor market reforms reshape household consumption?",
+            "display_why": "The clearest nearby routes run through employment, unemployment, and productivity shocks.",
+            "display_first_step": "Start with reform episodes that changed job turnover sharply, then trace whether household spending moved with them.",
+            "display_category": "Field"
+          },
+          {
+            "pair_key": "FG3C000176__FG3C000195",
+            "source_id": "FG3C000195",
+            "target_id": "FG3C000176",
+            "source_label": "product innovation",
+            "target_label": "real wages",
+            "source_display_label": "product innovation",
+            "target_display_label": "real wages",
+            "source_display_concept_id": "FG3C000195",
+            "target_display_concept_id": "FG3C000176",
+            "source_display_refined": false,
+            "target_display_refined": false,
+            "display_refinement_confidence": 0.0,
+            "source_alternate_display_labels": [
+              "innovation persistence",
+              "propensity to innovate",
+              "new product introductions"
+            ],
+            "target_alternate_display_labels": [
+              "wage setting",
+              "North\u2013South wage gap",
+              "wage differential"
+            ],
+            "source_bucket": "core",
+            "target_bucket": "core",
+            "cross_field": false,
+            "score": 0.189763,
+            "base_score": 0.204748,
+            "duplicate_penalty": 0.014985,
+            "path_support_norm": 0.001084,
+            "gap_bonus": 1.0,
+            "mediator_count": 5,
+            "motif_count": 5,
+            "cooc_count": 0,
+            "direct_link_status": "No direct papers yet",
+            "supporting_path_count": 5,
+            "why_now": "product innovation and real wages are already linked by 5 nearby intermediate topics.",
+            "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
+            "slice_label": "Missing direct link",
+            "public_pair_label": "product innovation and real wages",
+            "representative_papers": [
+              {
+                "paper_id": "W4377234320__gpt5mini_low",
+                "title": "Labor Productivity, Real Wages, and Employment in OECD Economies",
+                "year": 2023,
+                "edge_src": "FG3C000086",
+                "edge_dst": "FG3C000176",
+                "edge_src_display_label": "labor productivity",
+                "edge_dst_display_label": "real wages"
+              },
+              {
+                "paper_id": "W2015262425__gpt5mini_low",
+                "title": "A Time-Series Analysis of the Real Wages-Employment Relationship",
+                "year": 1978,
+                "edge_src": "FG3C000007",
+                "edge_dst": "FG3C000176",
+                "edge_src_display_label": "employment",
+                "edge_dst_display_label": "real wages"
+              },
+              {
+                "paper_id": "W4367052915__gpt5mini_low",
+                "title": "Impact of Innovation and Exports on Productivity: Are There Complementary Effects?",
+                "year": 2023,
+                "edge_src": "FG3C000195",
+                "edge_dst": "FG3C000021",
+                "edge_src_display_label": "product innovation",
+                "edge_dst_display_label": "productivity"
+              }
+            ],
+            "question_family": "product-innovation-real-wages",
+            "suppress_from_public_ranked_window": false,
+            "top_mediator_display_labels": [
+              "employment",
+              "productivity",
+              "labor productivity"
+            ],
+            "top_mediator_labels": [
+              "employment",
+              "productivity",
+              "labor productivity"
+            ],
+            "top_mediator_baseline_labels": [
+              "employment",
+              "productivity",
+              "labor productivity"
+            ],
+            "top_countries_source": [
+              "Italy",
+              "Spain",
+              "Germany"
+            ],
+            "top_countries_target": [
+              "United States",
+              "United Kingdom",
+              "Mexico"
+            ],
+            "source_context_summary": "Italy, Spain, and related settings",
+            "target_context_summary": "United States, United Kingdom, and related settings",
+            "common_contexts": "product innovation studies are common in Italy, Spain, and related settings; real wages studies are common in United States, United Kingdom, and related settings.",
+            "public_specificity_score": -15.3946,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000176__FG3C000195",
+            "display_title": "When does product innovation translate into real wage gains?",
+            "display_why": "Nearby papers connect innovation to pay through employment, productivity, and labor productivity.",
+            "display_first_step": "Start with sectors where product upgrading can be matched to wage records and compare gains across worker groups.",
+            "display_category": "Field"
+          },
+          {
+            "pair_key": "FG3C000393__FG3C000449",
+            "source_id": "FG3C000449",
+            "target_id": "FG3C000393",
+            "source_label": "artificial intelligence (AI)",
+            "target_label": "gender wage gap",
+            "source_display_label": "artificial intelligence (AI)",
+            "target_display_label": "gender wage gap",
+            "source_display_concept_id": "FG3C000449",
+            "target_display_concept_id": "FG3C000393",
+            "source_display_refined": false,
+            "target_display_refined": false,
+            "display_refinement_confidence": 0.0,
+            "source_alternate_display_labels": [
+              "artificial intelligence development",
+              "artificial intelligence (AI) adoption",
+              "observed data"
+            ],
+            "target_alternate_display_labels": [
+              "male-female wage differential",
+              "North\u2013South wage gap",
+              "male-female wage gap"
+            ],
+            "source_bucket": "adjacent",
+            "target_bucket": "core",
+            "cross_field": true,
+            "score": 0.094911,
+            "base_score": 0.203063,
+            "duplicate_penalty": 0.108152,
+            "path_support_norm": 0.000399,
+            "gap_bonus": 1.0,
+            "mediator_count": 6,
+            "motif_count": 6,
+            "cooc_count": 0,
+            "direct_link_status": "No direct papers yet",
+            "supporting_path_count": 6,
+            "why_now": "artificial intelligence (AI) and gender wage gap are already linked by 6 nearby intermediate topics.",
+            "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
+            "slice_label": "Missing direct link",
+            "public_pair_label": "gender wage gap and artificial intelligence (AI)",
+            "representative_papers": [
+              {
+                "paper_id": "W2736183755__gpt5mini_low",
+                "title": "The gender wage gap in the financial industry: Evidence from the interindustry ranking",
+                "year": 2017,
+                "edge_src": "FG3C006546",
+                "edge_dst": "FG3C000393",
+                "edge_src_display_label": "financial industry",
+                "edge_dst_display_label": "gender wage gap"
+              },
+              {
+                "paper_id": "W4409644270__gpt5mini_low",
+                "title": "Artificial intelligence and the skill premium",
+                "year": 2025,
+                "edge_src": "FG3C000449",
+                "edge_dst": "FG3C000499",
+                "edge_src_display_label": "artificial intelligence (AI)",
+                "edge_dst_display_label": "skill premium"
+              },
+              {
+                "paper_id": "W3195700465__gpt5mini_low",
+                "title": "Artificial intelligence and productivity: an intangible assets approach",
+                "year": 2021,
+                "edge_src": "FG3C000449",
+                "edge_dst": "FG3C000021",
+                "edge_src_display_label": "artificial intelligence (AI)",
+                "edge_dst_display_label": "productivity"
+              }
+            ],
+            "question_family": "artificial-intelligence-gender-wage-gap",
+            "suppress_from_public_ranked_window": false,
+            "top_mediator_display_labels": [
+              "wage distribution",
+              "productivity",
+              "financial industry"
+            ],
+            "top_mediator_labels": [
+              "wage distribution",
+              "productivity",
+              "financial industry"
+            ],
+            "top_mediator_baseline_labels": [
+              "wage distribution",
+              "productivity",
+              "financial industry"
+            ],
+            "top_countries_source": [
+              "China",
+              "United States"
+            ],
+            "top_countries_target": [
+              "United States",
+              "Italy",
+              "China"
+            ],
+            "source_context_summary": "China and United States",
+            "target_context_summary": "United States, Italy, and related settings",
+            "common_contexts": "artificial intelligence (AI) studies are common in China and United States; gender wage gap studies are common in United States, Italy, and related settings.",
+            "public_specificity_score": -2.298,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000393__FG3C000449",
+            "display_title": "How might AI widen or narrow the gender wage gap?",
+            "display_why": "The closest local routes run through wage distribution, productivity, and uneven AI adoption across jobs.",
+            "display_first_step": "Compare occupations with uneven AI exposure and track whether pay gaps move where adoption arrives first.",
+            "display_category": "Field"
+          },
+          {
+            "pair_key": "FG3C000157__FG3C005641",
+            "source_id": "FG3C005641",
+            "target_id": "FG3C000157",
+            "source_label": "national health insurance",
+            "target_label": "earnings",
+            "source_display_label": "national health insurance",
+            "target_display_label": "earnings",
+            "source_display_concept_id": "FG3C005641",
+            "target_display_concept_id": "FG3C000157",
+            "source_display_refined": false,
+            "target_display_refined": false,
+            "display_refinement_confidence": 0.0,
+            "source_alternate_display_labels": [
+              "Employer-sponsored health insurance",
+              "national health spending",
+              "value of care"
+            ],
+            "target_alternate_display_labels": [
+              "retained earnings",
+              "bank earnings",
+              "future earnings"
+            ],
+            "source_bucket": "adjacent",
+            "target_bucket": "core",
+            "cross_field": true,
+            "score": 0.131279,
+            "base_score": 0.201805,
+            "duplicate_penalty": 0.070526,
+            "path_support_norm": 0.000195,
+            "gap_bonus": 1.0,
+            "mediator_count": 4,
+            "motif_count": 4,
+            "cooc_count": 0,
+            "direct_link_status": "No direct papers yet",
+            "supporting_path_count": 4,
+            "why_now": "national health insurance and earnings are already linked by 4 nearby intermediate topics.",
+            "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
+            "slice_label": "Missing direct link",
+            "public_pair_label": "earnings and national health insurance",
+            "representative_papers": [
+              {
+                "paper_id": "W1935535868__gpt5mini_low",
+                "title": "THE STRUCTURE OF HOURS AND EARNINGS IN BRITISH MANUFACTURING INDUSTRY 1",
+                "year": 1976,
+                "edge_src": "FG3C001627",
+                "edge_dst": "FG3C000157",
+                "edge_src_display_label": "hours",
+                "edge_dst_display_label": "earnings"
+              },
+              {
+                "paper_id": "W2905566357__gpt5mini_low",
+                "title": "Effects of National Health Insurance on household out-of-pocket expenditure structure",
+                "year": 2018,
+                "edge_src": "FG3C005641",
+                "edge_dst": "FG3C001523",
+                "edge_src_display_label": "national health insurance",
+                "edge_dst_display_label": "level of education"
+              },
+              {
+                "paper_id": "W1982409908__gpt5mini_low",
+                "title": "The Labor-Market Effects of Introducing National Health Insurance: Evidence from Canada",
+                "year": 1995,
+                "edge_src": "FG3C005641",
+                "edge_dst": "FG3C000022",
+                "edge_src_display_label": "national health insurance",
+                "edge_dst_display_label": "wages"
+              }
+            ],
+            "question_family": "national-health-insurance-earnings",
+            "suppress_from_public_ranked_window": false,
+            "top_mediator_display_labels": [
+              "place of residence",
+              "hours",
+              "level of education"
+            ],
+            "top_mediator_labels": [
+              "place of residence",
+              "hours",
+              "level of education"
+            ],
+            "top_mediator_baseline_labels": [
+              "place of residence",
+              "hours",
+              "level of education"
+            ],
+            "top_countries_source": [
+              "United States",
+              "Taiwan",
+              "Israel"
+            ],
+            "top_countries_target": [
+              "United States",
+              "Sweden"
+            ],
+            "source_context_summary": "United States, Taiwan, and related settings",
+            "target_context_summary": "United States and Sweden",
+            "common_contexts": "national health insurance studies are common in United States, Taiwan, and related settings; earnings studies are common in United States and Sweden.",
+            "public_specificity_score": -3.499,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000157__FG3C005641",
+            "display_title": "When does national health insurance change earnings?",
+            "display_why": "Nearby papers connect insurance to earnings through place of residence, hours worked, and education.",
+            "display_first_step": "Start with coverage expansions that changed enrollment quickly and follow labor supply and earnings after take-up.",
+            "display_category": "Field"
+          },
+          {
+            "pair_key": "FG3C000007__FG3C000993",
+            "source_id": "FG3C000993",
+            "target_id": "FG3C000007",
+            "source_label": "fiscal rules",
+            "target_label": "employment",
+            "source_display_label": "fiscal rules",
+            "target_display_label": "employment",
+            "source_display_concept_id": "FG3C000993",
+            "target_display_concept_id": "FG3C000007",
+            "source_display_refined": false,
+            "target_display_refined": false,
+            "display_refinement_confidence": 0.0,
+            "source_alternate_display_labels": [
+              "Balanced budget rules",
+              "policy rules",
+              "passive monetary policy"
+            ],
+            "target_alternate_display_labels": [
+              "firm-level employment",
+              "service employment",
+              "industry employment"
+            ],
+            "source_bucket": "core",
+            "target_bucket": "core",
+            "cross_field": false,
+            "score": 0.123093,
+            "base_score": 0.204617,
+            "duplicate_penalty": 0.081523,
+            "path_support_norm": 0.000633,
+            "gap_bonus": 1.0,
+            "mediator_count": 10,
+            "motif_count": 10,
+            "cooc_count": 0,
+            "direct_link_status": "No direct papers yet",
+            "supporting_path_count": 10,
+            "why_now": "fiscal rules and employment are already linked by 10 nearby intermediate topics.",
+            "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
+            "slice_label": "Missing direct link",
+            "public_pair_label": "employment and fiscal rules",
+            "representative_papers": [
+              {
+                "paper_id": "W4396608952__gpt5mini_low",
+                "title": "Are fiscal rules efficient on public debt restraint in the presence of shadow economy?",
+                "year": 2024,
+                "edge_src": "FG3C000993",
+                "edge_dst": "FG3C000208",
+                "edge_src_display_label": "fiscal rules",
+                "edge_dst_display_label": "public debt"
+              },
+              {
+                "paper_id": "W2626819806__gpt5mini_low",
+                "title": "Is fiscal policy always counter- (pro-) cyclical? The role of public debt and fiscal rules",
+                "year": 2017,
+                "edge_src": "FG3C000993",
+                "edge_dst": "FG3C000087",
+                "edge_src_display_label": "fiscal rules",
+                "edge_dst_display_label": "fiscal policy"
+              },
+              {
+                "paper_id": "W4417408624__gpt5mini_low",
+                "title": "Do fiscal rules undermine public investments? A review of empirical evidence",
+                "year": 2025,
+                "edge_src": "FG3C000993",
+                "edge_dst": "FG3C000476",
+                "edge_src_display_label": "fiscal rules",
+                "edge_dst_display_label": "public investment"
+              }
+            ],
+            "question_family": "fiscal-rules-employment",
+            "suppress_from_public_ranked_window": false,
+            "top_mediator_display_labels": [
+              "fiscal policy",
+              "fiscal consolidation",
+              "government spending"
+            ],
+            "top_mediator_labels": [
+              "fiscal policy",
+              "fiscal consolidation",
+              "government spending"
+            ],
+            "top_mediator_baseline_labels": [
+              "fiscal policy",
+              "fiscal consolidation",
+              "government spending"
+            ],
+            "top_countries_source": [
+              "Italy",
+              "Switzerland"
+            ],
+            "top_countries_target": [
+              "United States",
+              "China"
+            ],
+            "source_context_summary": "Italy and Switzerland",
+            "target_context_summary": "United States and China",
+            "common_contexts": "fiscal rules studies are common in Italy and Switzerland; employment studies are common in United States and China.",
+            "public_specificity_score": -12.3968,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000007__FG3C000993",
+            "display_title": "When do fiscal rules start to bite in employment?",
+            "display_why": "The strongest nearby routes run through fiscal policy, fiscal consolidation, and government spending.",
+            "display_first_step": "Use rule changes or enforcement shocks to compare labor-market adjustment before and after tighter budget constraints.",
+            "display_category": "Field"
+          },
+          {
+            "pair_key": "FG3C000207__FG3C003456",
+            "source_id": "FG3C000207",
+            "target_id": "FG3C003456",
+            "source_label": "tariffs",
+            "target_label": "demand for labor",
+            "source_display_label": "tariffs",
+            "target_display_label": "demand for labor",
+            "source_display_concept_id": "FG3C000207",
+            "target_display_concept_id": "FG3C003456",
+            "source_display_refined": false,
+            "target_display_refined": false,
+            "display_refinement_confidence": 0.0,
+            "source_alternate_display_labels": [
+              "Specific tariffs",
+              "ad valorem tariffs",
+              "agricultural subsidies"
+            ],
+            "target_alternate_display_labels": [
+              "demand for labour",
+              "factor demand",
+              "supply shifts"
+            ],
+            "source_bucket": "core",
+            "target_bucket": "core",
+            "cross_field": false,
+            "score": 0.081985,
+            "base_score": 0.203055,
+            "duplicate_penalty": 0.121071,
+            "path_support_norm": 0.000387,
+            "gap_bonus": 1.0,
+            "mediator_count": 6,
+            "motif_count": 6,
+            "cooc_count": 0,
+            "direct_link_status": "No direct papers yet",
+            "supporting_path_count": 6,
+            "why_now": "tariffs and demand for labor are already linked by 6 nearby intermediate topics.",
+            "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
+            "slice_label": "Missing direct link",
+            "public_pair_label": "demand for labor and tariffs",
+            "representative_papers": [
+              {
+                "paper_id": "W2027181024__gpt5mini_low",
+                "title": "Tariffs, The Terms of Trade and Domestic Prices in a Monetary Economy: A Further Analysis",
+                "year": 1981,
+                "edge_src": "FG3C000207",
+                "edge_dst": "FG3C001038",
+                "edge_src_display_label": "tariffs",
+                "edge_dst_display_label": "domestic prices"
+              },
+              {
+                "paper_id": "W2059121701__gpt5mini_low",
+                "title": "Terms of Trade, Tariffs, and Labor Market Adjustment in Developing Countries",
+                "year": 1988,
+                "edge_src": "FG3C000207",
+                "edge_dst": "FG3C005005",
+                "edge_src_display_label": "tariffs",
+                "edge_dst_display_label": "labor adjustment costs"
+              },
+              {
+                "paper_id": "W2071925159__gpt5mini_low",
+                "title": "The Growth and Welfare Consequences of Differential Tariffs",
+                "year": 1993,
+                "edge_src": "FG3C000207",
+                "edge_dst": "FG3C001414",
+                "edge_src_display_label": "tariffs",
+                "edge_dst_display_label": "tariff"
+              }
+            ],
+            "question_family": "tariffs-demand-for-labor",
+            "suppress_from_public_ranked_window": false,
+            "top_mediator_display_labels": [
+              "domestic prices",
+              "prices",
+              "labor adjustment costs"
+            ],
+            "top_mediator_labels": [
+              "domestic prices",
+              "prices",
+              "labor adjustment costs"
+            ],
+            "top_mediator_baseline_labels": [
+              "domestic prices",
+              "prices",
+              "labor adjustment costs"
+            ],
+            "top_countries_source": [
+              "United States",
+              "China",
+              "Mexico"
+            ],
+            "top_countries_target": [
+              "United States",
+              "Spain",
+              "United Kingdom"
+            ],
+            "source_context_summary": "United States, China, and related settings",
+            "target_context_summary": "United States, Spain, and related settings",
+            "common_contexts": "tariffs studies are common in United States, China, and related settings; demand for labor studies are common in United States, Spain, and related settings.",
+            "public_specificity_score": -2.2981,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000207__FG3C003456",
+            "display_title": "How do tariffs change demand for labor?",
+            "display_why": "Nearby papers already connect tariffs to labor demand through domestic prices and adjustment costs.",
+            "display_first_step": "Start with tariff shifts that moved input prices and test which firms or workers adjusted first.",
+            "display_category": "Field"
+          },
+          {
+            "pair_key": "FG3C000025__FG3C002071",
+            "source_id": "FG3C002071",
+            "target_id": "FG3C000025",
+            "source_label": "firing costs",
+            "target_label": "income inequality",
+            "source_display_label": "firing costs",
+            "target_display_label": "income inequality",
+            "source_display_concept_id": "FG3C002071",
+            "target_display_concept_id": "FG3C000025",
+            "source_display_refined": false,
+            "target_display_refined": false,
+            "display_refinement_confidence": 0.0,
+            "source_alternate_display_labels": [
+              "firing restrictions"
+            ],
+            "target_alternate_display_labels": [
+              "inequality measures",
+              "within-country income inequality",
+              "income disparity"
+            ],
+            "source_bucket": "core",
+            "target_bucket": "core",
+            "cross_field": false,
+            "score": 0.122594,
+            "base_score": 0.201979,
+            "duplicate_penalty": 0.079384,
+            "path_support_norm": 0.000231,
+            "gap_bonus": 1.0,
+            "mediator_count": 4,
+            "motif_count": 4,
+            "cooc_count": 0,
+            "direct_link_status": "No direct papers yet",
+            "supporting_path_count": 4,
+            "why_now": "firing costs and income inequality are already linked by 4 nearby intermediate topics.",
+            "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
+            "slice_label": "Missing direct link",
+            "public_pair_label": "firing costs and income inequality",
+            "representative_papers": [
+              {
+                "paper_id": "W2036569575__gpt5mini_low",
+                "title": "The Geography of Inequality: Difference and Determinants of Wage and Income Inequality across US Metros",
+                "year": 2014,
+                "edge_src": "FG3C000194",
+                "edge_dst": "FG3C000025",
+                "edge_src_display_label": "wage inequality",
+                "edge_dst_display_label": "income inequality"
+              },
+              {
+                "paper_id": "W2942884285__gpt5mini_low",
+                "title": "Does Monetary Policy Affect Income Inequality in the Euro Area?",
+                "year": 2023,
+                "edge_src": "FG3C000007",
+                "edge_dst": "FG3C000025",
+                "edge_src_display_label": "employment",
+                "edge_dst_display_label": "income inequality"
+              },
+              {
+                "paper_id": "W2153055391__gpt5mini_low",
+                "title": "Labour market institutions and income inequality",
+                "year": 2008,
+                "edge_src": "FG3C000052",
+                "edge_dst": "FG3C000025",
+                "edge_src_display_label": "unemployment rate",
+                "edge_dst_display_label": "income inequality"
+              }
+            ],
+            "question_family": "firing-costs-income-inequality",
+            "suppress_from_public_ranked_window": false,
+            "top_mediator_display_labels": [
+              "wage inequality",
+              "unemployment rate",
+              "employment"
+            ],
+            "top_mediator_labels": [
+              "wage inequality",
+              "unemployment rate",
+              "employment"
+            ],
+            "top_mediator_baseline_labels": [
+              "wage inequality",
+              "unemployment rate",
+              "employment"
+            ],
+            "top_countries_source": [
+              "high-income countries",
+              "Chile",
+              "Italy"
+            ],
+            "top_countries_target": [
+              "China",
+              "United States",
+              "OECD"
+            ],
+            "source_context_summary": "high-income countries, Chile, and related settings",
+            "target_context_summary": "China, United States, and related settings",
+            "common_contexts": "firing costs studies are common in high-income countries, Chile, and related settings; income inequality studies are common in China, United States, and related settings.",
+            "public_specificity_score": -5.9988,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000025__FG3C002071",
+            "display_title": "When do firing costs widen income inequality?",
+            "display_why": "The local routes run through wage inequality, unemployment, and employment churn.",
+            "display_first_step": "Compare reforms that changed dismissal costs and trace whether losses concentrated at the bottom of the distribution.",
+            "display_category": "Field"
+          },
+          {
+            "pair_key": "FG3C000087__FG3C000548",
+            "source_id": "FG3C000087",
+            "target_id": "FG3C000548",
+            "source_label": "fiscal policy",
+            "target_label": "health-related quality of life",
+            "source_display_label": "fiscal policy",
+            "target_display_label": "health-related quality of life",
+            "source_display_concept_id": "FG3C000087",
+            "target_display_concept_id": "FG3C000548",
+            "source_display_refined": false,
+            "target_display_refined": false,
+            "display_refinement_confidence": 0.0,
+            "source_alternate_display_labels": [
+              "discretionary fiscal policy",
+              "countercyclical fiscal policy",
+              "fiscal policy cyclicality"
+            ],
+            "target_alternate_display_labels": [
+              "quality of life assessment",
+              "health state utility values",
+              "living alone"
+            ],
+            "source_bucket": "core",
+            "target_bucket": "adjacent",
+            "cross_field": true,
+            "score": 0.120462,
+            "base_score": 0.202392,
+            "duplicate_penalty": 0.08193,
+            "path_support_norm": 0.000306,
+            "gap_bonus": 1.0,
+            "mediator_count": 4,
+            "motif_count": 4,
+            "cooc_count": 0,
+            "direct_link_status": "No direct papers yet",
+            "supporting_path_count": 4,
+            "why_now": "fiscal policy and health-related quality of life are already linked by 4 nearby intermediate topics.",
+            "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
+            "slice_label": "Missing direct link",
+            "public_pair_label": "fiscal policy and health-related quality of life",
+            "representative_papers": [
+              {
+                "paper_id": "W3205826885__gpt5mini_low",
+                "title": "Inequality and heterogeneity in health-related quality of life: findings based on a large sample of cross-sectional EQ-5D-5L data from the Swedish general population",
+                "year": 2021,
+                "edge_src": "FG3C000008",
+                "edge_dst": "FG3C000548",
+                "edge_src_display_label": "income",
+                "edge_dst_display_label": "health-related quality of life"
+              },
+              {
+                "paper_id": "W4412806029__gpt5mini_low",
+                "title": "Factors associated with health-related quality of life and financial toxicity among gynecological cancer patients in Southern Nigeria",
+                "year": 2025,
+                "edge_src": "FG3C000009",
+                "edge_dst": "FG3C000548",
+                "edge_src_display_label": "unemployment",
+                "edge_dst_display_label": "health-related quality of life"
+              },
+              {
+                "paper_id": "W2123388134__gpt5mini_low",
+                "title": "A cross sectional assessment of health related quality of life among patients with Hepatitis-B in Pakistan",
+                "year": 2012,
+                "edge_src": "FG3C000008",
+                "edge_dst": "FG3C000548",
+                "edge_src_display_label": "income",
+                "edge_dst_display_label": "health-related quality of life"
+              }
+            ],
+            "question_family": "fiscal-policy-health-related-quality-of-life",
+            "suppress_from_public_ranked_window": false,
+            "top_mediator_display_labels": [
+              "unemployment",
+              "economic activity",
+              "income"
+            ],
+            "top_mediator_labels": [
+              "unemployment",
+              "economic activity",
+              "income"
+            ],
+            "top_mediator_baseline_labels": [
+              "unemployment",
+              "economic activity",
+              "income"
+            ],
+            "top_countries_source": [
+              "United States",
+              "China",
+              "Japan"
+            ],
+            "top_countries_target": [
+              "United States",
+              "China",
+              "Ethiopia"
+            ],
+            "source_context_summary": "United States, China, and related settings",
+            "target_context_summary": "United States, China, and related settings",
+            "common_contexts": "fiscal policy studies are common in United States, China, and related settings; health-related quality of life studies are common in United States, China, and related settings.",
+            "public_specificity_score": -17.4985,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000087__FG3C000548",
+            "display_title": "How does fiscal policy show up in health-related quality of life?",
+            "display_why": "Nearby papers connect fiscal policy to quality of life through unemployment, economic activity, and income.",
+            "display_first_step": "Start with large fiscal contractions or expansions and test whether health-related quality-of-life measures move after them.",
+            "display_category": "Field"
+          },
+          {
+            "pair_key": "FG3C000002__FG3C001355",
+            "source_id": "FG3C000002",
+            "target_id": "FG3C001355",
+            "source_label": "inflation",
+            "target_label": "wage dispersion",
+            "source_display_label": "inflation",
+            "target_display_label": "wage dispersion",
+            "source_display_concept_id": "FG3C000002",
+            "target_display_concept_id": "FG3C001355",
+            "source_display_refined": false,
+            "target_display_refined": false,
+            "display_refinement_confidence": 0.0,
+            "source_alternate_display_labels": [
+              "foreign inflation",
+              "past inflation",
+              "aggregate inflation"
+            ],
+            "target_alternate_display_labels": [
+              "productivity dispersion",
+              "within-firm wage inequality",
+              "inter-industry wage differentials"
+            ],
+            "source_bucket": "core",
+            "target_bucket": "core",
+            "cross_field": false,
+            "score": 0.087994,
+            "base_score": 0.204081,
+            "duplicate_penalty": 0.116087,
+            "path_support_norm": 0.000444,
+            "gap_bonus": 1.0,
+            "mediator_count": 8,
+            "motif_count": 8,
+            "cooc_count": 0,
+            "direct_link_status": "No direct papers yet",
+            "supporting_path_count": 8,
+            "why_now": "inflation and wage dispersion are already linked by 8 nearby intermediate topics.",
+            "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
+            "slice_label": "Missing direct link",
+            "public_pair_label": "inflation and wage dispersion",
+            "representative_papers": [
+              {
+                "paper_id": "W1984048491__gpt5mini_low",
+                "title": "The Effects of Inflation on the Number of Firms and Firm Size",
+                "year": 2001,
+                "edge_src": "FG3C000002",
+                "edge_dst": "FG3C000020",
+                "edge_src_display_label": "inflation",
+                "edge_dst_display_label": "firm size"
+              },
+              {
+                "paper_id": "W2001497781__gpt5mini_low",
+                "title": "Inflation, Output and Labour Productivity When Prices are Changed Infrequently",
+                "year": 1990,
+                "edge_src": "FG3C000002",
+                "edge_dst": "FG3C000251",
+                "edge_src_display_label": "inflation",
+                "edge_dst_display_label": "labour productivity"
+              },
+              {
+                "paper_id": "W4405905335__gpt5mini_low",
+                "title": "Unemployment rate and its relationship with government size, trade, inflation, urbanization, and economic growth in Romania",
+                "year": 2024,
+                "edge_src": "FG3C000002",
+                "edge_dst": "FG3C003605",
+                "edge_src_display_label": "inflation",
+                "edge_dst_display_label": "unemployment level"
+              }
+            ],
+            "question_family": "inflation-wage-dispersion",
+            "suppress_from_public_ranked_window": false,
+            "top_mediator_display_labels": [
+              "unemployment rate",
+              "labour productivity",
+              "capital income taxes"
+            ],
+            "top_mediator_labels": [
+              "unemployment rate",
+              "labour productivity",
+              "capital income taxes"
+            ],
+            "top_mediator_baseline_labels": [
+              "unemployment rate",
+              "labour productivity",
+              "capital income taxes"
+            ],
+            "top_countries_source": [
+              "United States",
+              "China"
+            ],
+            "top_countries_target": [
+              "Italy",
+              "Mexico",
+              "Germany"
+            ],
+            "source_context_summary": "United States and China",
+            "target_context_summary": "Italy, Mexico, and related settings",
+            "common_contexts": "inflation studies are common in United States and China; wage dispersion studies are common in Italy, Mexico, and related settings.",
+            "public_specificity_score": -13.5978,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000002__FG3C001355",
+            "display_title": "How does inflation reshape wage dispersion?",
+            "display_why": "The clearest nearby routes run through unemployment, labor productivity, and tax incidence.",
+            "display_first_step": "Look for inflation episodes with strong price pass-through and test whether wage gaps widen unevenly across firms or sectors.",
+            "display_category": "Field"
+          },
+          {
+            "pair_key": "FG3C000251__FG3C001258",
+            "source_id": "FG3C001258",
+            "target_id": "FG3C000251",
+            "source_label": "R&D activities",
+            "target_label": "labour productivity",
+            "source_display_label": "R&D activities",
+            "target_display_label": "labour productivity",
+            "source_display_concept_id": "FG3C001258",
+            "target_display_concept_id": "FG3C000251",
+            "source_display_refined": false,
+            "target_display_refined": false,
+            "display_refinement_confidence": 0.0,
+            "source_alternate_display_labels": [
+              "research activities",
+              "R&D personnel",
+              "R&D collaboration"
+            ],
+            "target_alternate_display_labels": [
+              "long-run productivity growth",
+              "airport productivity",
+              "urban productivity"
+            ],
+            "source_bucket": "adjacent",
+            "target_bucket": "core",
+            "cross_field": true,
+            "score": 0.061422,
+            "base_score": 0.202451,
+            "duplicate_penalty": 0.141029,
+            "path_support_norm": 0.000457,
+            "gap_bonus": 1.0,
+            "mediator_count": 6,
+            "motif_count": 4,
+            "cooc_count": 0,
+            "direct_link_status": "No direct papers yet",
+            "supporting_path_count": 6,
+            "why_now": "R&D activities and labour productivity are already linked by 6 nearby intermediate topics.",
+            "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
+            "slice_label": "Missing direct link",
+            "public_pair_label": "labour productivity and R&D activities",
+            "representative_papers": [
+              {
+                "paper_id": "W4239656252__gpt5mini_low",
+                "title": "Towards an understanding of technical change in semi-industrialized countries",
+                "year": 1981,
+                "edge_src": "FG3C001258",
+                "edge_dst": "FG3C000189",
+                "edge_src_display_label": "R&D activities",
+                "edge_dst_display_label": "technical change"
+              },
+              {
+                "paper_id": "W4321015787__gpt5mini_low",
+                "title": "Innovation dynamics in the natural resource curse hypothesis: A new perspective from BRICS countries",
+                "year": 2023,
+                "edge_src": "FG3C000030",
+                "edge_dst": "FG3C000251",
+                "edge_src_display_label": "innovation",
+                "edge_dst_display_label": "labour productivity"
+              },
+              {
+                "paper_id": "W2534466090__gpt5mini_low",
+                "title": "The UK productivity puzzle, 2008\u20132012: evidence using plant-level estimates of total factor productivity",
+                "year": 2016,
+                "edge_src": "FG3C002284",
+                "edge_dst": "FG3C000251",
+                "edge_src_display_label": "firm total factor productivity (TFP)",
+                "edge_dst_display_label": "labour productivity"
+              }
+            ],
+            "question_family": "r-d-activities-labour-productivity",
+            "suppress_from_public_ranked_window": false,
+            "top_mediator_display_labels": [
+              "firm total factor productivity (TFP)",
+              "product innovation",
+              "technical change"
+            ],
+            "top_mediator_labels": [
+              "firm total factor productivity (TFP)",
+              "product innovation",
+              "technical change"
+            ],
+            "top_mediator_baseline_labels": [
+              "firm total factor productivity (TFP)",
+              "product innovation",
+              "technical change"
+            ],
+            "top_countries_source": [
+              "China",
+              "United States"
+            ],
+            "top_countries_target": [
+              "China",
+              "Italy",
+              "United States"
+            ],
+            "source_context_summary": "China and United States",
+            "target_context_summary": "China, Italy, and related settings",
+            "common_contexts": "R&D activities studies are common in China and United States; labour productivity studies are common in China, Italy, and related settings.",
+            "public_specificity_score": -2.2977,
+            "app_link": "https://frontiergraph-app-1058669339361.us-central1.run.app?view=question&pair=FG3C000251__FG3C001258",
+            "display_title": "When do R&D efforts translate into labor productivity?",
+            "display_why": "Nearby papers link R&D to labor productivity through product innovation, technical change, and firm-level efficiency.",
+            "display_first_step": "Start with settings where R&D spending and worker-level output can be tracked together over time.",
+            "display_category": "Field"
           }
         ]
       }
@@ -30724,24 +31782,24 @@
       "readme": {
         "path": "/downloads/frontiergraph-release-readme.md",
         "filename": "frontiergraph-release-readme.md",
-        "size_bytes": 2605
+        "size_bytes": 3172
       },
       "data_dictionary": {
         "path": "/downloads/frontiergraph-data-dictionary.md",
         "filename": "frontiergraph-data-dictionary.md",
-        "size_bytes": 6285
+        "size_bytes": 6563
       }
     },
     "tier_bundles": {
       "tier1": {
         "path": "/downloads/frontiergraph-tier1-lightweight-exports.zip",
         "filename": "frontiergraph-tier1-lightweight-exports.zip",
-        "size_bytes": 106248
+        "size_bytes": 106545
       },
       "tier2": {
         "path": "/downloads/frontiergraph-tier2-structured-assets.zip",
         "filename": "frontiergraph-tier2-structured-assets.zip",
-        "size_bytes": 19508263
+        "size_bytes": 19508559
       }
     },
     "artifacts": {
