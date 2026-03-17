@@ -1,6 +1,6 @@
 # What Should Economics Ask Next?
 
-## A graph-based screening benchmark and public browser for candidate economics questions
+## A graph-based screening benchmark for candidate questions in economics
 
 Prashant Garg
 

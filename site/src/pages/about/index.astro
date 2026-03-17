@@ -10,17 +10,23 @@ const authorLinks = [
   { label: "GitHub", href: "https://github.com/prashgarg", badge: "GH" },
   { label: "Bluesky", href: "https://bsky.app/profile/prashantgarg.bsky.social", badge: "B" },
 ];
+
+const lastUpdatedLabel = new Date(data.generated_at).toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
 ---
 
 <BaseLayout
   title="About | FrontierGraph"
-  description="Why FrontierGraph exists, what it is for, and who made it."
+  description="Why Frontier Graph exists, what it is for, and who made it."
 >
   <main>
     <section class="page-hero">
       <h1>About</h1>
       <p class="lede">
-        Prashant Garg is an economist at Imperial College London. FrontierGraph grew out of a simple question: how do we choose open questions worth sustained attention?
+        Frontier Graph is a discovery tool for economics. It helps surface plausible next questions and makes the nearby topics, supporting paths, and starter papers behind them inspectable.
       </p>
     </section>
 
@@ -30,13 +36,13 @@ const authorLinks = [
           <div class="about-profile-copy">
             <h2>Prashant Garg</h2>
             <p class="card-copy">
-              I have always found it hard to start from one narrow question. Since PhD application season, I have cared less about choosing the first thing I could supply quickly than about finding the question where an hour of attention might matter most.
+              I am an economist at Imperial College London. Frontier Graph grew out of a simple question: how do we choose open questions worth sustained attention when the surrounding literature is already too large to hold in one head?
             </p>
             <p class="card-copy">
-              Early in my PhD that made focus difficult. Later, working across papers and teams, I developed a specialization in measurement with machine-learning tools and network ideas while keeping fairly eclectic topic interests. FrontierGraph came out of that tension. As AI makes it easier to produce more work, the direction problem matters more, not less.
+              My own work sits around research allocation, measurement, machine-learning tools, and network structure in economics. Frontier Graph came out of that tension: wanting something more disciplined than vague brainstorming, but more usable than a black-box ranking.
             </p>
             <p class="card-copy about-brief-note">
-              FrontierGraph maps open economics questions that sit near existing work. It helps narrow what to read next, but it is not a substitute for judgment.
+              Use Frontier Graph to narrow what to read next, inspect adjacent literatures, and turn a vague area of interest into a more concrete starting question. It is a discovery aid, not a substitute for judgment.
             </p>
           </div>
           <aside class="about-profile-meta" aria-label="Author details">
@@ -58,6 +64,69 @@ const authorLinks = [
           </aside>
         </div>
       </article>
+    </section>
+
+    <section class="section">
+      <div class="about-sections-grid">
+        <article class="card about-section-card">
+          <span class="tiny-label">What it is</span>
+          <h2>What Frontier Graph is</h2>
+          <p class="card-copy">
+            Frontier Graph surfaces suggested research questions from missing links in an economics-facing literature graph. Each surfaced question stays tied to nearby topics, supporting paths, and starter papers so you can inspect why it appeared.
+          </p>
+        </article>
+
+        <article class="card about-section-card">
+          <span class="tiny-label">How to use it</span>
+          <h2>How to use it</h2>
+          <ul class="home-intro-list about-bullet-list">
+            <li>Start on Questions if you want a curated entry point.</li>
+            <li>Use the graph to inspect one topic, its nearby questions, and the local routes already linking them.</li>
+            <li>Open Explorer when you want the fuller evidence tables and export-friendly view.</li>
+          </ul>
+        </article>
+
+        <article class="card about-section-card">
+          <span class="tiny-label">Current scope</span>
+          <h2>Current public release scope</h2>
+          <p class="card-copy">
+            The current release is built from a journal corpus spanning 1976 through papers indexed by 15 March 2026. It focuses on the public browsing layer: suggested questions, nearby topics, starter papers, and downloadable release assets rather than every internal research table.
+          </p>
+        </article>
+
+        <article class="card about-section-card">
+          <span class="tiny-label">Limitations</span>
+          <h2>What this is not</h2>
+          <p class="card-copy">
+            Frontier Graph is a discovery aid, not a judge of what is most important or most publishable. Suggestions come from extracted topic relations and local graph structure, so they can miss truly novel questions, underrepresent some literatures, or reflect imperfect topic normalization.
+          </p>
+        </article>
+
+        <article class="card about-section-card">
+          <span class="tiny-label">Public beta</span>
+          <h2>Public beta and feedback</h2>
+          <p class="card-copy">
+            This is an early public release. Expect uneven coverage, evolving rankings, and rough edges in the browser. The most useful feedback is on unclear suggestions, missing literatures, broken flows, and parts of the site that make the evidence harder to interpret than it should be.
+          </p>
+        </article>
+
+        <article class="card about-section-card">
+          <span class="tiny-label">Project status</span>
+          <h2>Open project</h2>
+          <p class="card-copy">
+            Frontier Graph is being built as an open research project. The working paper, release files, and repository are public so the ranking object and companion browser can be inspected rather than taken on trust.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card about-update-strip">
+        <span class="tiny-label">Last updated</span>
+        <p class="card-copy">
+          {lastUpdatedLabel}. The public site and downloadable release files are synced together as the browsing surface and paper evolve.
+        </p>
+      </div>
     </section>
   </main>
 </BaseLayout>

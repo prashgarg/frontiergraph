@@ -30,6 +30,12 @@ const {
 const posthogKey = import.meta.env.PUBLIC_POSTHOG_KEY || "";
 const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || "https://eu.i.posthog.com";
 const pageTitle = title.replaceAll("FrontierGraph", "Frontier Graph");
+const siteOrigin = "https://frontiergraph.com";
+const canonicalUrl = new URL(currentPath || "/", siteOrigin).toString();
+const socialImageUrl = new URL(
+  "/paper-assets/outputs/paper/figures/frontier_graph_questions_companion_annotated.png",
+  siteOrigin,
+).toString();
 ---
 
 <!doctype html>
@@ -39,7 +45,18 @@ const pageTitle = title.replaceAll("FrontierGraph", "Frontier Graph");
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f6f1e8" />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:site_name" content="Frontier Graph" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

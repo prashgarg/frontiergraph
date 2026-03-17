@@ -86,7 +86,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
             </div>
           </section>
 
-          <details class="graph-context-disclosure">
+          <details class="graph-context-disclosure" open>
             <summary>Show local graph</summary>
             <p class="mini-copy graph-context-note">Open this when you want the local neighborhood around the selected question.</p>
             <section class="graph-panel graph-panel-secondary graph-context-panel">
@@ -97,6 +97,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
                   </div>
                 </div>
                 <div class="graph-control-row">
+                  <button class="button-tertiary" type="button" data-role="zoom-out">Zoom out</button>
+                  <button class="button-tertiary" type="button" data-role="zoom-in">Zoom in</button>
                   <button class="button-secondary" type="button" data-role="toggle-map-mode">Show full map</button>
                   <button class="button-tertiary" type="button" data-role="reset-view">Reset view</button>
                 </div>
@@ -124,6 +126,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const GRAPH_HEIGHT = 860;
   const MIN_SCALE = 0.55;
   const MAX_SCALE = 4;
+  const DEFAULT_GLOBAL_SCALE = 0.9;
+  const DEFAULT_TOPIC_LABEL = "trade openness";
   const FOCUSED_NEIGHBOR_LIMIT = 8;
   const FOCUSED_LABEL_LIMIT = 4;
   const TOP_QUESTION_LIMIT = 4;
@@ -161,6 +165,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const centralList = root.querySelector('[data-role="central-list"]');
   const resetView = root.querySelector('[data-role="reset-view"]');
   const toggleMapMode = root.querySelector('[data-role="toggle-map-mode"]');
+  const zoomOutButton = root.querySelector('[data-role="zoom-out"]');
+  const zoomInButton = root.querySelector('[data-role="zoom-in"]');
 
   const shardCache = new Map();
   let selectedId = null;
@@ -286,6 +292,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const staticGuideText =
     "Choose a question first. Open the graph only when you want local context around it.";
   const questionTitle = (item) => {
+    if (item?.display_question_title) return item.display_question_title;
+    if (item?.display_title) return item.display_title;
     const source = questionSideLabel(item, "source");
     const target = questionSideLabel(item, "target");
     if (source && target) return `How do ${source} and ${target} connect?`;
@@ -490,8 +498,17 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     setViewportTransform();
   };
 
+  const zoomAroundCanvasCenter = (factor) => {
+    const rect = canvas.getBoundingClientRect();
+    zoomAtPoint(factor, rect.left + rect.width / 2, rect.top + rect.height / 2);
+  };
+
   const resetViewport = () => {
-    viewState = { scale: 1, translateX: 0, translateY: 0 };
+    viewState = {
+      scale: DEFAULT_GLOBAL_SCALE,
+      translateX: (GRAPH_WIDTH * (1 - DEFAULT_GLOBAL_SCALE)) / 2,
+      translateY: (GRAPH_HEIGHT * (1 - DEFAULT_GLOBAL_SCALE)) / 2,
+    };
     setViewportTransform();
   };
 
@@ -575,7 +592,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     };
   };
 
-  const fitViewToNodeIds = (nodeIds) => {
+  const fitViewToNodeIds = (nodeIds, padding = 145, zoomOutFactor = 0.9) => {
     if (!graph || !nodeIds.length) {
       resetViewport();
       return;
@@ -593,11 +610,10 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const maxX = Math.max(...xs);
     const minY = Math.min(...ys);
     const maxY = Math.max(...ys);
-    const padding = 120;
     const spanX = Math.max(maxX - minX, 150);
     const spanY = Math.max(maxY - minY, 150);
     const nextScale = clamp(
-      Math.min((GRAPH_WIDTH - padding * 2) / spanX, (GRAPH_HEIGHT - padding * 2) / spanY),
+      Math.min((GRAPH_WIDTH - padding * 2) / spanX, (GRAPH_HEIGHT - padding * 2) / spanY) * zoomOutFactor,
       MIN_SCALE,
       MAX_SCALE,
     );
@@ -667,7 +683,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
   const setDefaultViewport = () => {
     if (!graph) return;
     if (mapMode === "focused" && selectedId && isInBackbone(selectedId)) {
-      resetViewport();
+      const visibleNodeIds = getVisibleGraphState().nodes.map((node) => node.id);
+      fitViewToNodeIds(visibleNodeIds, 165, 0.9);
       return;
     }
     resetViewport();
@@ -675,6 +692,11 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
 
   const restoreStatus = () => {
     if (!hoverCard) return;
+    const activeQuestion = currentQuestion();
+    if (activeQuestion) {
+      hoverCard.textContent = `Selected question: ${questionTitle(activeQuestion)} Hover nodes or edges for local support, or click a topic to pivot.`;
+      return;
+    }
     hoverCard.textContent = staticGuideText;
   };
 
@@ -928,6 +950,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         showTooltip(event, `
           <strong>${escapeHtml(node.plain_label || node.label)}</strong><br />
           ${node.subtitle ? `${escapeHtml(node.subtitle)}<br />` : ""}
+          <span>${formatNumber(safeNumber(node.distinct_paper_support))} papers in the ${contextLabel}.</span><br />
+          <span>${formatNumber(safeNumber(node.weighted_degree))} weighted links in the local map.</span><br />
           <span class="tooltip-action">Click to move to this topic.</span>
         `);
       });
@@ -953,7 +977,8 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         const edge = graph.edgeMap.get(edgeElement.dataset.edgeId);
         showTooltip(event, `
           <strong>${escapeHtml(conceptLabel(edge.source, graph.nodeMap.get(edge.source).label))} to ${escapeHtml(conceptLabel(edge.target, graph.nodeMap.get(edge.target).label))}</strong><br />
-          ${formatNumber(safeNumber(edge.support_count))} papers mention this nearby directed relation.
+          <span>${formatNumber(safeNumber(edge.support_count))} papers mention this nearby directed relation.</span><br />
+          <span>Local edge strength: ${safeNumber(edge.strength).toFixed(2)} on the current map.</span>
         `);
       });
       edgeElement.addEventListener("mousemove", moveTooltip);
@@ -1194,8 +1219,13 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
     const params = new URLSearchParams(window.location.search);
     const query = params.get("q");
     const selected = query ? searchConcepts(query)[0] : null;
-    if (selected) {
-      await selectConcept(selected.concept_id);
+    const defaultTopic = concepts.find(
+      (concept) => String(concept.plain_label || concept.label || "").trim().toLowerCase() === DEFAULT_TOPIC_LABEL,
+    );
+    const initialConcept = selected || defaultTopic || centralConcepts[0] || null;
+    if (initialConcept?.concept_id) {
+      await selectConcept(initialConcept.concept_id);
+      setDefaultViewport();
     } else {
       restoreStatus();
     }
@@ -1215,6 +1245,12 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
       setDefaultViewport();
       restoreStatus();
     });
+  }
+  if (zoomOutButton instanceof HTMLButtonElement) {
+    zoomOutButton.addEventListener("click", () => zoomAroundCanvasCenter(1 / 1.15));
+  }
+  if (zoomInButton instanceof HTMLButtonElement) {
+    zoomInButton.addEventListener("click", () => zoomAroundCanvasCenter(1.15));
   }
 
   canvas.addEventListener("wheel", (event) => {

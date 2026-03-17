@@ -44,5 +44,5 @@ Frontier Graph is a public browser for suggested research questions in economics
 ## Public surfaces
 
 - Site: https://frontiergraph.com
-- Explorer: https://frontiergraph-app-1058669339361.us-central1.run.app
+- Explorer: https://frontiergraph.com/explorer/
 - Repository: https://github.com/prashgarg/frontiergraph

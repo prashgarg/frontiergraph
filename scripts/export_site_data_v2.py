@@ -40,7 +40,7 @@ DB_FILENAME = "frontiergraph-economics-public.db"
 SITE_GRAPH_URL = os.environ.get("FRONTIERGRAPH_SITE_GRAPH_URL", "/graph/")
 PUBLIC_APP_URL = os.environ.get(
     "FRONTIERGRAPH_PUBLIC_APP_URL",
-    "https://frontiergraph-app-1058669339361.us-central1.run.app",
+    "https://frontiergraph.com/explorer/",
 )
 QUESTION_URL = os.environ.get("FRONTIERGRAPH_QUESTION_URL", "/questions/")
 PUBLIC_DB_URL = os.environ.get(

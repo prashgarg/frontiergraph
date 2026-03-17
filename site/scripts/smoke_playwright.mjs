@@ -164,18 +164,17 @@ async function main() {
   assert(await page.getByPlaceholder("Search topics or close variants").isVisible(), "Graph search missing");
   assert((await page.getByRole("heading", { name: /Start with a topic/i }).count()) === 0, "Graph page should not show the old idle card");
   assert((await page.getByRole("button", { name: /Rearrange/i }).count()) === 0, "Map should not show rearrange button");
-  assert((await page.getByRole("button", { name: /Zoom in/i }).count()) === 0, "Map should not show zoom-in button");
   assert((await page.getByRole("button", { name: /Reset topic/i }).count()) === 0, "Map should not show reset-topic button");
-  await page.locator('[data-role="central-list"] .list-link').first().click();
   await page.waitForSelector('[data-role="graph-active"]:not([hidden])');
+  assert(await page.getByRole("button", { name: /^Zoom in$/i }).isVisible(), "Graph page should expose zoom-in control");
+  assert(await page.getByRole("button", { name: /^Zoom out$/i }).isVisible(), "Graph page should expose zoom-out control");
   assert(await page.getByRole("heading", { name: /Questions touching this topic/i }).isVisible(), "Graph page should prioritize questions");
   assert(await page.getByRole("heading", { name: /Selected question/i }).isVisible(), "Graph page should show question detail");
   assert(await page.getByText(/Selected topic/i).isVisible(), "Graph page should show selected topic context");
   assert(await page.getByText(/Show local graph/i).isVisible(), "Graph page should keep graph context available");
-  await page.getByText(/Show local graph/i).click();
-  await page.waitForTimeout(300);
+  assert(await page.getByRole("heading", { name: /trade openness/i }).first().isVisible(), "Graph page should preload a topic");
+  assert((await page.locator("[data-node-id]").count()) > 0, "Preloaded local graph rendered no nodes");
   const focusedNodeCount = await page.locator("[data-node-id]").count();
-  assert(focusedNodeCount > 0, "Focused map rendered no nodes");
   await page.getByRole("button", { name: /Show full map/i }).click();
   await page.waitForTimeout(300);
   const globalNodeCount = await page.locator("[data-node-id]").count();
@@ -188,6 +187,10 @@ async function main() {
   assert(await page.getByRole("heading", { name: /^About$/ }).isVisible(), "About hero missing");
   assert(await page.getByRole("heading", { name: /^Prashant Garg$/ }).isVisible(), "About profile missing");
   assert(await page.getByText(/Imperial College London/i).first().isVisible(), "About affiliation missing");
+  assert(await page.getByRole("heading", { name: /What Frontier Graph is/i }).isVisible(), "About page should explain what the project is");
+  assert(await page.getByRole("heading", { name: /How to use it/i }).isVisible(), "About page should explain how to use the project");
+  assert(await page.getByRole("heading", { name: /What this is not/i }).isVisible(), "About page should include limitations");
+  assert(await page.getByRole("heading", { name: /Public beta and feedback/i }).isVisible(), "About page should calibrate beta expectations");
 
   await page.goto(`${baseUrl}/downloads/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
@@ -204,8 +207,8 @@ async function main() {
 
   await page.goto(`${baseUrl}/paper/`, { waitUntil: "networkidle" });
   assert(await page.getByRole("heading", { name: /What Should Economics Ask Next/i }).first().isVisible(), "Paper page missing");
-  assert(await page.getByText(/A graph-based screening benchmark and public browser for candidate economics questions/i).isVisible(), "Paper subtitle missing");
-  assert(await page.getByText(/A narrower claim than the title suggests: whether a transparent graph screen can surface plausible next questions under realistic reading budgets\./i).isVisible(), "Paper deck missing");
+  assert(await page.getByText(/A graph-based screening benchmark for candidate questions in economics/i).isVisible(), "Paper subtitle missing");
+  assert(await page.getByText(/A working paper on whether local graph structure can help surface plausible next questions in economics under realistic reading budgets\./i).isVisible(), "Paper deck missing");
   assert(await page.getByRole("button", { name: /^Give feedback$/ }).isVisible(), "Paper page should keep feedback access");
   assert((await page.locator(".paper-hero .button-row a").count()) === 2, "Paper hero should only show paper-specific CTAs");
   assert(await page.locator(".paper-hero .button-row").getByRole("link", { name: /^Download PDF$/ }).isVisible(), "Paper hero PDF CTA missing");
@@ -213,6 +216,12 @@ async function main() {
   assert((await page.locator(".paper-mermaid").count()) >= 1, "Paper page should render Mermaid diagrams");
   const paperText = await page.locator("main").innerText();
   assert(!/flowchart LR/i.test(paperText), "Paper page should not expose raw Mermaid source");
+
+  await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
+  assert(await page.locator('link[rel="canonical"]').getAttribute("href"), "Homepage should include canonical metadata");
+  assert(await page.locator('meta[property="og:image"]').getAttribute("content"), "Homepage should include OG image metadata");
+  assert(await page.getByRole("link", { name: /^About$/ }).first().isVisible(), "Header should expose About");
+  assert(await page.getByText(/How do free trade agreements reshape wages\?/i).isVisible(), "Homepage should show a worked example question");
 
   await expectRedirect(page, "/paper/full/", "/paper/");
 
@@ -239,7 +248,6 @@ async function main() {
   await page.goto(`${baseUrl}/broad/graph/`, { waitUntil: "networkidle" });
   await page.waitForSelector('[data-role="search-input"]');
   assert(await page.getByRole("heading", { name: /Choose a topic and start with the questions around it/i }).first().isVisible(), "Broad graph hero missing");
-  await page.locator('[data-role="central-list"] .list-link').first().click();
   await page.waitForSelector('[data-role="graph-active"]:not([hidden])');
   assert(await page.getByText(/papers in the broad preview/i).first().isVisible(), "Broad graph should use preview-specific copy");
 

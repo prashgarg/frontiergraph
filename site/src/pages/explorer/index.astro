@@ -1,0 +1,21 @@
+---
+const target = "https://frontiergraph-app-1058669339361.us-central1.run.app";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting to Explorer…</title>
+  </head>
+  <body>
+    <script is:inline define:vars={{ target }}>
+      const search = window.location.search || "";
+      const hash = window.location.hash || "";
+      window.location.replace(`${target}${search}${hash}`);
+    </script>
+    <p>Redirecting to <a href={target}>Explorer</a>.</p>
+  </body>
+</html>
