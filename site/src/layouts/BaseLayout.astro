@@ -32,10 +32,7 @@ const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || "https://eu.i.posthog
 const pageTitle = title.replaceAll("FrontierGraph", "Frontier Graph");
 const siteOrigin = "https://frontiergraph.com";
 const canonicalUrl = new URL(currentPath || "/", siteOrigin).toString();
-const socialImageUrl = new URL(
-  "/paper-assets/outputs/paper/figures/frontier_graph_questions_companion_annotated.png",
-  siteOrigin,
-).toString();
+const socialImageUrl = new URL("/og-card.png", siteOrigin).toString();
 ---
 
 <!doctype html>
