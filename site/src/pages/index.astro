@@ -7,7 +7,7 @@ const scaleItems = [
   {
     label: "papers screened",
     value: formatNumber(data.metrics.papers),
-    help: "242,595 papers from 1976 to 2026 screened from the journal corpus before building the public release.",
+    help: "242,595 papers from the last 50 years (1976 to early 2026) screened from the journal corpus before building the public release.",
   },
   {
     label: "journals covered",
@@ -102,7 +102,6 @@ const scaleItems = [
             <li>One short path is often enough to see the mechanism linking two sides of a question.</li>
           </ul>
           <div class="graph-explainer-example">
-            <span class="tiny-label">Example suggested question</span>
             <strong>How do free trade agreements reshape wages?</strong>
             <p class="mini-copy">
               Here the path runs from trade liberalisation through productivity growth into real wages, giving you a concrete question and a concrete place to start reading.
@@ -121,9 +120,9 @@ const scaleItems = [
             <line x1="274" y1="82" x2="364" y2="82" marker-end="url(#home-arrowhead)"></line>
             <text x="151" y="60">raises</text>
             <text x="319" y="60">feeds into</text>
-            <circle cx="66" cy="82" r="22"></circle>
-            <circle cx="238" cy="82" r="22"></circle>
-            <circle cx="390" cy="82" r="22"></circle>
+            <circle class="graph-node graph-node-left" cx="66" cy="82" r="22"></circle>
+            <circle class="graph-node graph-node-mid" cx="238" cy="82" r="22"></circle>
+            <circle class="graph-node graph-node-right" cx="390" cy="82" r="22"></circle>
             <text x="66" y="116">
               <tspan x="66" dy="0">trade</tspan>
               <tspan x="66" dy="15">liberalisation</tspan>

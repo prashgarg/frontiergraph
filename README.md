@@ -12,7 +12,7 @@ Frontier Graph is an open-source research tool for browsing suggested questions 
 
 ## What Frontier Graph does
 
-Frontier Graph surfaces plausible next questions from missing links in an economics-facing literature graph, then lets you inspect the nearby topics, supporting paths, and starter papers behind each suggestion.
+Frontier Graph surfaces plausible next questions from missing links in the literature, then lets you inspect the nearby topics, supporting paths, and starter papers behind each suggestion.
 
 This repository contains:
 

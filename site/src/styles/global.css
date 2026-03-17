@@ -699,15 +699,26 @@ h3 {
 }
 
 .graph-explainer-diagram line {
-  stroke: rgba(99, 119, 145, 0.75);
-  stroke-width: 3;
+  stroke: rgb(91, 108, 131);
+  stroke-width: 3.5;
   marker-end: url(#home-arrowhead);
 }
 
 .graph-explainer-diagram circle {
-  fill: rgba(45, 119, 109, 0.9);
   stroke: rgba(255, 253, 248, 0.98);
   stroke-width: 3;
+}
+
+.graph-explainer-diagram .graph-node-left {
+  fill: rgb(74, 133, 122);
+}
+
+.graph-explainer-diagram .graph-node-mid {
+  fill: rgb(104, 133, 187);
+}
+
+.graph-explainer-diagram .graph-node-right {
+  fill: rgb(195, 136, 90);
 }
 
 .graph-explainer-diagram text {
@@ -718,7 +729,7 @@ h3 {
 }
 
 .graph-explainer-diagram defs path {
-  fill: rgba(99, 119, 145, 0.75);
+  fill: rgb(91, 108, 131);
 }
 
 .hero-visual::before,
