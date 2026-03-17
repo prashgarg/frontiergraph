@@ -1380,10 +1380,11 @@ h3 {
 }
 
 .hero-title-home {
-  max-width: none;
-  width: fit-content;
+  max-width: 16ch;
+  width: 100%;
   margin-inline: auto;
   text-align: center;
+  text-wrap: balance;
 }
 
 .hero-actions-home {
@@ -3494,7 +3495,6 @@ h3 {
 
 @media (min-width: 960px) {
   .hero-title-home {
-    white-space: nowrap;
     font-size: clamp(3rem, 4.9vw, 4.35rem);
   }
 }
