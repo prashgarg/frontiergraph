@@ -1392,6 +1392,11 @@ def render_question_explorer(db_path: str, questions: pd.DataFrame, concept_look
 
     preview = diversified_question_preview(filtered, shortlist_size)
     candidate_frame = diversified_question_preview(filtered, max(shortlist_size, 60))
+    if pair_default and pair_default not in set(candidate_frame["pair_key"].astype(str).tolist()):
+        exact_match = questions[questions["pair_key"].astype(str) == str(pair_default)].head(1)
+        if not exact_match.empty:
+            candidate_frame = pd.concat([exact_match, candidate_frame], ignore_index=True)
+            candidate_frame = candidate_frame.drop_duplicates(subset=["pair_key"], keep="first")
     candidate_map = {str(row.pair_key): row for row in candidate_frame.itertuples(index=False)}
     default_pair = pair_default if pair_default in candidate_map else preferred_question_pair(candidate_frame)
     sync_from_query("question_selection", default_pair, "_sync_question_selection")
