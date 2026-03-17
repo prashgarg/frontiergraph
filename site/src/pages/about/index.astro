@@ -10,12 +10,6 @@ const authorLinks = [
   { label: "GitHub", href: "https://github.com/prashgarg", badge: "GH" },
   { label: "Bluesky", href: "https://bsky.app/profile/prashantgarg.bsky.social", badge: "B" },
 ];
-
-const lastUpdatedLabel = new Date(data.generated_at).toLocaleDateString("en-GB", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
 ---
 
 <BaseLayout
@@ -24,111 +18,69 @@ const lastUpdatedLabel = new Date(data.generated_at).toLocaleDateString("en-GB",
 >
   <main>
     <section class="page-hero">
-      <h1>About</h1>
+      <h1>Why Frontier Graph exists.</h1>
       <p class="lede">
-        Frontier Graph is a discovery tool for economics. It helps surface plausible next questions and makes the nearby topics, supporting paths, and starter papers behind them inspectable.
+        Frontier Graph came out of a simple personal problem: how to choose a research question when your interests are wider than any one field, paper, or method.
       </p>
     </section>
 
     <section class="section">
-      <article class="card about-profile-card">
-        <div class="about-profile-grid">
-          <div class="about-profile-copy">
-            <h2>Prashant Garg</h2>
-            <p class="card-copy">
-              I am an economist at Imperial College London. Frontier Graph grew out of a simple question: how do we choose open questions worth sustained attention when the surrounding literature is already too large to hold in one head?
-            </p>
-            <p class="card-copy">
-              My own work sits around research allocation, measurement, machine-learning tools, and network structure in economics. Frontier Graph came out of that tension: wanting something more disciplined than vague brainstorming, but more usable than a black-box ranking.
-            </p>
-            <p class="card-copy about-brief-note">
-              Use Frontier Graph to narrow what to read next, inspect adjacent literatures, and turn a vague area of interest into a more concrete starting question. It is a discovery aid, not a substitute for judgment.
-            </p>
+      <div class="card-grid">
+        <article class="card">
+          <h2>Why I built it</h2>
+          <p class="card-copy">
+            Since PhD application season, I have found it hard to start from one narrow question. My interests have always ranged widely, and I cared less about picking something I could supply quickly than about finding the question where an hour of attention might matter most.
+          </p>
+          <p class="card-copy">
+            In the early years of my PhD, that was difficult. Later, once I was writing papers and working in teams, I could spread across multiple projects. Over time I developed a specialization in measurement using machine-learning tools and network ideas, but my topic interests stayed eclectic. Frontier Graph comes out of that tension.
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>Why it matters now</h2>
+          <p class="card-copy">
+            Frontier Graph is meant to help researchers explore questions that still look open but already sit close to enough related work to investigate seriously.
+          </p>
+          <p class="card-copy">
+            That matters even more as AI increases how much work we can do. If the supply of analysis rises, direction matters more, not less. The scarce input becomes attention and judgment.
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>What you can do here</h2>
+          <p class="card-copy">
+            Start on <a href="/questions/">Questions</a> if you want possible paper ideas. Open <a href="/explorer/">Explorer</a> when you want the nearby topics, paths, and papers behind one question. Use the <a href="/paper/">paper</a> or <a href="/downloads/">downloads</a> if you want the method and release files.
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>Limitations</h2>
+          <p class="card-copy">
+            Frontier Graph is a discovery aid, not a substitute for judgment. It can miss genuinely novel questions, unevenly represent some literatures, or reflect imperfect topic normalization.
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>About the author</h2>
+          <p class="card-copy">
+            <strong>Prashant Garg</strong><br />
+            Imperial College London
+          </p>
+          <p class="card-copy">
+            Research interests: research allocation, measurement, machine-learning methods, and network structure in economics.
+          </p>
+          <div class="about-link-grid" aria-label="Author links">
+            {authorLinks.map((link) => (
+              <a class="about-link-chip" href={link.href} target="_blank" rel="noreferrer">
+                <span class="about-link-badge" aria-hidden="true">{link.badge}</span>
+                <span>{link.label}</span>
+              </a>
+            ))}
           </div>
-          <aside class="about-profile-meta" aria-label="Author details">
-            <p class="about-meta-label">Affiliation</p>
-            <p class="card-copy">Imperial College London</p>
-            <p class="about-meta-label">Research interests</p>
-            <p class="card-copy">Research allocation, measurement, machine-learning methods, and network structure in economics.</p>
-            <div class="about-link-grid" aria-label="Author links">
-              {authorLinks.map((link) => (
-                <a class="about-link-chip" href={link.href} target="_blank" rel="noreferrer">
-                  <span class="about-link-badge" aria-hidden="true">{link.badge}</span>
-                  <span>{link.label}</span>
-                </a>
-              ))}
-            </div>
-            <p class="card-copy about-meta-links">
-              <a href="/paper/">Read the paper</a> · <a href={data.repo_url}>Project repository</a> · <a href="/downloads/">Download the release files</a>
-            </p>
-          </aside>
-        </div>
-      </article>
-    </section>
-
-    <section class="section">
-      <div class="about-sections-grid">
-        <article class="card about-section-card">
-          <span class="tiny-label">What it is</span>
-          <h2>What Frontier Graph is</h2>
           <p class="card-copy">
-            Frontier Graph surfaces suggested research questions from missing links in the literature. Each surfaced question stays tied to nearby topics, supporting paths, and starter papers so you can inspect why it appeared.
+            <a href="/paper/">Read the paper</a> · <a href={data.repo_url}>Project repository</a> · <a href="/downloads/">Download the release files</a>
           </p>
         </article>
-
-        <article class="card about-section-card">
-          <span class="tiny-label">How to use it</span>
-          <h2>How to use it</h2>
-          <ul class="home-intro-list about-bullet-list">
-            <li>Start on Questions if you want a curated entry point.</li>
-            <li>Use the graph to inspect one topic, its nearby questions, and the local routes already linking them.</li>
-            <li>Open Explorer when you want the fuller evidence tables and export-friendly view.</li>
-          </ul>
-        </article>
-
-        <article class="card about-section-card">
-          <span class="tiny-label">Current scope</span>
-          <h2>Current public release scope</h2>
-          <p class="card-copy">
-            The current release is built from a journal corpus spanning the last 50 years, from 1976 to early 2026. It focuses on the public browsing layer: suggested questions, nearby topics, starter papers, and downloadable release assets rather than every internal research table.
-          </p>
-        </article>
-
-        <article class="card about-section-card">
-          <span class="tiny-label">Limitations</span>
-          <h2>What this is not</h2>
-          <p class="card-copy">
-            Frontier Graph is a discovery aid, not a judge of what is most important or most publishable. Suggestions come from extracted topic relations and local graph structure, so they can miss truly novel questions, underrepresent some literatures, or reflect imperfect topic normalization.
-          </p>
-        </article>
-
-        <article class="card about-section-card">
-          <span class="tiny-label">Public beta</span>
-          <h2>Public beta and feedback</h2>
-          <p class="card-copy">
-            This is an early public release. Expect uneven coverage, evolving rankings, and rough edges in the browser. The most useful feedback is on unclear suggestions, missing literatures, broken flows, and parts of the site that make the evidence harder to interpret than it should be.
-          </p>
-        </article>
-
-        <article class="card about-section-card">
-          <span class="tiny-label">Project status</span>
-          <h2>Open project</h2>
-          <p class="card-copy">
-            Frontier Graph is an open-source research project. The source code, working paper, and release files are public so the ranking object and browsing surfaces can be inspected rather than taken on trust.
-          </p>
-          <p class="card-copy">
-            GitHub issues are welcome for bugs, unclear suggestions, missing literatures, and documentation improvements. Small pull requests are welcome too; for larger architectural changes, please open an issue first.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="card about-update-strip">
-        <span class="tiny-label">Last updated</span>
-        <p class="card-copy">
-          {lastUpdatedLabel}. The public site and downloadable release files are synced together as the browsing surface and paper evolve.
-        </p>
       </div>
     </section>
   </main>
