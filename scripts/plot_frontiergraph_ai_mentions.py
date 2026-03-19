@@ -616,9 +616,9 @@ def plot_field_small_multiples(
     ymax = max(float(df["rolling_12m_pct"].max()) for df in plot_frames.values()) * 1.2
     ymax = max(ymax, 0.8)
 
-    fig, axes = plt.subplots(4, 2, figsize=(12.2, 10.0), dpi=220)
+    fig, axes = plt.subplots(4, 2, figsize=(12.2, 11.2), dpi=220)
     fig.patch.set_facecolor(BACKGROUND)
-    plt.subplots_adjust(left=0.08, right=0.96, top=0.74, bottom=0.14, wspace=0.18, hspace=0.34)
+    plt.subplots_adjust(left=0.08, right=0.96, top=0.74, bottom=0.19, wspace=0.18, hspace=0.52)
 
     for ax, spec in zip(axes.flat, FIELD_SPECS):
         df = plot_frames[spec.slug]
@@ -626,21 +626,31 @@ def plot_field_small_multiples(
         ax.axvline(CHATGPT_RELEASE, color=MUTED, linestyle=(0, (2, 2)), linewidth=1.2, zorder=1)
         style_small_multiple_axis(ax, ymax=ymax)
         ax.set_xlim(df["month"].min(), df["month"].max())
-        ax.set_title(spec.label, loc="left", fontsize=12.3, color=TEXT, pad=8)
         ax.text(
             0.0,
-            1.02,
+            1.12,
+            spec.label,
+            transform=ax.transAxes,
+            fontsize=12.7,
+            color=TEXT,
+            va="bottom",
+            ha="left",
+        )
+        ax.text(
+            0.0,
+            1.045,
             f"{int(field_metadata[spec.slug]['rows_seen']):,} papers",
             transform=ax.transAxes,
             fontsize=9.2,
             color=SUBTEXT,
             va="bottom",
+            ha="left",
         )
 
     add_branding(fig)
     fig.text(0.08, 0.93, title, fontsize=21.5, color=TEXT, linespacing=1.06)
     fig.text(0.08, 0.875, subtitle, fontsize=13.6, color=SUBTEXT, linespacing=1.3)
-    fig.text(0.08, 0.095, footnote, fontsize=10.5, color=SUBTEXT, linespacing=1.38)
+    fig.text(0.08, 0.08, footnote, fontsize=10.5, color=SUBTEXT, linespacing=1.38)
     save_figure(fig, png_path, svg_path)
 
 
