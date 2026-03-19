@@ -1,0 +1,81 @@
+{
+  "source_extraction_db": "data/production/frontiergraph_extraction_v2/fwci_core150_adj150/merged/fwci_core150_adj150_extractions.sqlite",
+  "source_openalex_db": "data/processed/openalex/published_enriched/openalex_published_enriched.sqlite",
+  "corpus_filter": {
+    "corpus": "Frontier Graph screened published-paper corpus",
+    "screened_work_count_target": 242595,
+    "exclude_retracted": true,
+    "exclude_paratext": true,
+    "require_publication_date": true
+  },
+  "term_labels": [
+    "artificial intelligence",
+    "large language model",
+    "generative ai",
+    "generative artificial intelligence",
+    "chatgpt",
+    "deep learning",
+    "neural network",
+    "bert",
+    "transformer",
+    "gpt model family"
+  ],
+  "term_patterns": [
+    "\\bartificial intelligence\\b",
+    "\\blarge language models?\\b",
+    "\\bgenerative ai\\b",
+    "\\bgenerative artificial intelligence\\b",
+    "\\bchatgpt\\b",
+    "\\bdeep learning\\b",
+    "\\bneural networks?\\b",
+    "\\bbert\\b",
+    "\\btransformers?\\b",
+    "\\bgpt(?:[- ]?(?:2|3|4|4o|4\\.5|5))\\b"
+  ],
+  "variants": {
+    "all": {
+      "description": "Full Frontier Graph screened corpus",
+      "rows_seen": 242482,
+      "rows_matched": 1072,
+      "date_min": "1976-01-01",
+      "date_max": "2026-03-01",
+      "last_month_share_pct": 1.282051282051282,
+      "last_rolling_12m_pct": 3.055671570207126,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "core": {
+      "description": "Core economics journals in the screened corpus",
+      "rows_seen": 143105,
+      "rows_matched": 373,
+      "date_min": "1976-01-01",
+      "date_max": "2026-03-01",
+      "last_month_share_pct": 0.0,
+      "last_rolling_12m_pct": 1.5368567113717606,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "adjacent": {
+      "description": "Adjacent journals in the screened corpus",
+      "rows_seen": 99377,
+      "rows_matched": 699,
+      "date_min": "1976-01-01",
+      "date_max": "2026-03-01",
+      "last_month_share_pct": 2.272727272727273,
+      "last_rolling_12m_pct": 4.105633392422276,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "top5": {
+      "description": "Top five general-interest economics journals in the screened corpus",
+      "rows_seen": 9773,
+      "rows_matched": 13,
+      "date_min": "1976-01-01",
+      "date_max": "2026-02-01",
+      "last_month_share_pct": 0.0,
+      "last_rolling_12m_pct": 0.0,
+      "plot_trimmed_partial_last_month": false,
+      "plot_end_month": "2026-02-01"
+    }
+  }
+}
