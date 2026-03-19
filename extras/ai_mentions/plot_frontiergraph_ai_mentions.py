@@ -42,15 +42,6 @@ ADJACENT = "#138B8F"
 ACCENT = "#295D5F"
 SUBTEXT = "#5D5A56"
 
-TOP5_JOURNALS = {
-    "American Economic Review",
-    "Econometrica",
-    "Journal of Political Economy",
-    "The Quarterly Journal of Economics",
-    "The Review of Economic Studies",
-}
-
-
 @dataclass(frozen=True)
 class TermSpec:
     label: str
@@ -75,7 +66,6 @@ VARIANT_DESCRIPTIONS = {
     "all": "Full Frontier Graph screened corpus",
     "core": "Core economics journals in the screened corpus",
     "adjacent": "Adjacent journals in the screened corpus",
-    "top5": "Top five general-interest economics journals in the screened corpus",
 }
 
 
@@ -153,7 +143,6 @@ def load_variant_series(
         "all": Counter(),
         "core": Counter(),
         "adjacent": Counter(),
-        "top5": Counter(),
     }
 
     for publication_date, bucket, source_display_name, title, abstract_text in cursor:
@@ -166,8 +155,6 @@ def load_variant_series(
         variants = ["all"]
         if bucket in ("core", "adjacent"):
             variants.append(bucket)
-        if source_display_name in TOP5_JOURNALS:
-            variants.append("top5")
 
         for variant in variants:
             totals[variant][month] += 1
@@ -180,7 +167,7 @@ def load_variant_series(
 
     frames: dict[str, pd.DataFrame] = {}
     metadata: dict[str, dict[str, int | bool]] = {}
-    for variant in ["all", "core", "adjacent", "top5"]:
+    for variant in ["all", "core", "adjacent"]:
         df = build_series_frame(totals[variant], mentions[variant])
         trimmed_df, trimmed = trim_partial_last_month(df)
         frames[variant] = df
@@ -422,7 +409,6 @@ def main() -> None:
         "all": args.analysis_dir / "frontiergraph_ai_mentions_monthly.csv",
         "core": args.analysis_dir / "frontiergraph_ai_mentions_monthly_core.csv",
         "adjacent": args.analysis_dir / "frontiergraph_ai_mentions_monthly_adjacent.csv",
-        "top5": args.analysis_dir / "frontiergraph_ai_mentions_monthly_top5.csv",
     }
     for variant, path in csv_paths.items():
         write_series_csv(path, frames[variant])
@@ -438,20 +424,6 @@ def main() -> None:
         ),
         png_path=args.figures_dir / "frontiergraph_ai_mentions_share.png",
         svg_path=args.figures_dir / "frontiergraph_ai_mentions_share.svg",
-        plot_start=args.plot_start,
-        plot_end=args.plot_end,
-    )
-
-    plot_single_series(
-        frames["top5"],
-        title="AI-related terms in five general-interest\neconomics journals",
-        subtitle="Monthly share of papers in AER, Econometrica, JPE, QJE and ReStud\nmentioning selected AI-related terms in their title or abstract",
-        footnote=(
-            "Source: Frontier Graph screened corpus, five general-interest economics journals\n"
-            "* Same AI-term list as the main chart. Lines show monthly share and 12-month rolling average."
-        ),
-        png_path=args.figures_dir / "frontiergraph_ai_mentions_share_top5.png",
-        svg_path=args.figures_dir / "frontiergraph_ai_mentions_share_top5.svg",
         plot_start=args.plot_start,
         plot_end=args.plot_end,
     )
@@ -488,12 +460,11 @@ def main() -> None:
                         "rows_matched": metadata[variant]["rows_matched"],
                         "last_rolling_12m_pct": round(float(frames[variant].iloc[-1]["rolling_12m_pct"]), 3),
                     }
-                    for variant in ["all", "core", "adjacent", "top5"]
+                    for variant in ["all", "core", "adjacent"]
                 },
                 "csv_outputs": {key: str(path) for key, path in csv_paths.items()},
                 "figure_outputs": {
                     "main": str(args.figures_dir / "frontiergraph_ai_mentions_share.png"),
-                    "top5": str(args.figures_dir / "frontiergraph_ai_mentions_share_top5.png"),
                     "core_vs_adjacent": str(args.figures_dir / "frontiergraph_ai_mentions_core_vs_adjacent.png"),
                 },
             },

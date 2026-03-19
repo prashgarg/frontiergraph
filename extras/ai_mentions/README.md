@@ -3,7 +3,7 @@
 This folder is a small, self-contained replication bundle for one descriptive exercise:
 
 - track the share of published papers in the screened Frontier Graph corpus that mention AI-related terms in their title or abstract
-- compare the full corpus, the `core` vs `adjacent` split, and the top five general-interest economics journals
+- compare the full corpus and the `core` vs `adjacent` split
 
 The bundle is meant to be easy to open from GitHub. The figures are embedded below, and the plotting script plus the monthly data series are included in the same folder.
 
@@ -26,10 +26,6 @@ If you just want the main chart immediately, open:
 ## Core vs adjacent
 
 ![Core vs adjacent AI mentions figure](figures/frontiergraph_ai_mentions_core_vs_adjacent.png)
-
-## Top five journals
-
-![Top five journals AI mentions figure](figures/frontiergraph_ai_mentions_share_top5.png)
 
 ## What this uses
 
@@ -55,7 +51,6 @@ The main corpus run in this snapshot contains `242,482` screened papers with usa
 - `all`: full screened Frontier Graph published-paper corpus
 - `core`: core economics journals in the screened corpus
 - `adjacent`: adjacent journals in the screened corpus
-- `top5`: `American Economic Review`, `Econometrica`, `Journal of Political Economy`, `The Quarterly Journal of Economics`, `The Review of Economic Studies`
 
 Current term list:
 
@@ -87,11 +82,6 @@ Deliberate choice:
 - both lines are 12-month rolling averages
 - one line corresponds to `core` and one to `adjacent`
 
-### Top five journals
-
-- same monthly-share / 12-month-average construction as the main figure
-- restricted to `American Economic Review`, `Econometrica`, `Journal of Political Economy`, `The Quarterly Journal of Economics`, and `The Review of Economic Studies`
-
 ## Outputs in this folder
 
 - `plot_frontiergraph_ai_mentions.py`: plotting/reproduction script snapshot
@@ -99,7 +89,6 @@ Deliberate choice:
 - `data/frontiergraph_ai_mentions_monthly.csv`: full corpus monthly series
 - `data/frontiergraph_ai_mentions_monthly_core.csv`: core-only monthly series
 - `data/frontiergraph_ai_mentions_monthly_adjacent.csv`: adjacent-only monthly series
-- `data/frontiergraph_ai_mentions_monthly_top5.csv`: top-five-journals monthly series
 - `data/frontiergraph_ai_mentions_metadata.json`: source paths, counts, and term metadata
 
 ## How to rerun

@@ -65,17 +65,6 @@
       "last_rolling_12m_pct": 4.105633392422276,
       "plot_trimmed_partial_last_month": true,
       "plot_end_month": "2026-02-01"
-    },
-    "top5": {
-      "description": "Top five general-interest economics journals in the screened corpus",
-      "rows_seen": 9773,
-      "rows_matched": 13,
-      "date_min": "1976-01-01",
-      "date_max": "2026-02-01",
-      "last_month_share_pct": 0.0,
-      "last_rolling_12m_pct": 0.0,
-      "plot_trimmed_partial_last_month": false,
-      "plot_end_month": "2026-02-01"
     }
   }
 }
