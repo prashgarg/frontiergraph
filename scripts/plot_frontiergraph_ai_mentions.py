@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
-"""Build Frontier Graph AI-mentions time-series and branded charts."""
+"""Build AI-mentions time-series and charts for the published Frontier Graph corpus."""
 
 from __future__ import annotations
 
 import argparse
-import csv
 import json
 import re
 import sqlite3
-from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -26,6 +24,7 @@ DEFAULT_EXTRACTION_DB = Path(
     "data/production/frontiergraph_extraction_v2/fwci_core150_adj150/merged/fwci_core150_adj150_extractions.sqlite"
 )
 DEFAULT_OPENALEX_DB = Path("data/processed/openalex/published_enriched/openalex_published_enriched.sqlite")
+DEFAULT_SOURCE_LIST_DIR = Path("data/production/frontiergraph_extraction_v2/fwci_core150_adj150/source_lists")
 DEFAULT_ANALYSIS_DIR = Path("outputs/analysis")
 DEFAULT_FIGURES_DIR = Path("outputs/figures")
 
@@ -41,11 +40,22 @@ CORE = "#24539A"
 ADJACENT = "#138B8F"
 ACCENT = "#295D5F"
 SUBTEXT = "#5D5A56"
+CORE_CUTOFF_COLORS = {50: "#0F2E67", 100: "#3D69B5", 150: "#A7BFE6"}
+ADJ_CUTOFF_COLORS = {50: "#0E6568", 100: "#1DA0A4", 150: "#92DDDF"}
+FIELD_LINE = "#24539A"
+
 
 @dataclass(frozen=True)
 class TermSpec:
     label: str
     pattern: str
+
+
+@dataclass(frozen=True)
+class FieldSpec:
+    slug: str
+    label: str
+    patterns: tuple[str, ...]
 
 
 TERM_SPECS = [
@@ -61,9 +71,116 @@ TERM_SPECS = [
     TermSpec("gpt model family", r"\bgpt(?:[- ]?(?:2|3|4|4o|4\.5|5))\b"),
 ]
 
+FIELD_SPECS = [
+    FieldSpec(
+        "labour",
+        "Labour",
+        (
+            r"\blabo[u]?r market\b",
+            r"\bwage inequality\b",
+            r"\bunemployment\b",
+            r"\boccupational licensing\b",
+            r"\bemployment\b",
+        ),
+    ),
+    FieldSpec(
+        "macro",
+        "Macro",
+        (
+            r"\bmacroeconomic\b",
+            r"\bmonetary\b",
+            r"\binflation\b",
+            r"\bbusiness cycle\b",
+            r"\boil price shocks?\b",
+            r"\bglobal economy\b",
+            r"\bokun'?s law\b",
+            r"\bmacroeconomics?\b",
+        ),
+    ),
+    FieldSpec(
+        "public_finance",
+        "Public finance",
+        (
+            r"\btax(?:ation)?\b",
+            r"\btax evasion\b",
+            r"\bfiscal\b",
+            r"\bpublic finance\b",
+            r"\bgovernment spending\b",
+            r"\bsubsid(?:y|ies)\b",
+        ),
+    ),
+    FieldSpec(
+        "trade",
+        "Trade",
+        (
+            r"\btrade\b",
+            r"\btariff",
+            r"\bexport",
+            r"\bimport",
+            r"\beconomic sanctions?\b",
+        ),
+    ),
+    FieldSpec(
+        "development",
+        "Development",
+        (
+            r"\bdevelopment\b",
+            r"\bpoverty\b",
+            r"\bmicrofinance\b",
+            r"\bfinancial inclusion\b",
+            r"\bspecial economic zones?\b",
+            r"\bresource curse\b",
+        ),
+    ),
+    FieldSpec(
+        "finance",
+        "Finance",
+        (
+            r"\basset pricing\b",
+            r"\bbanking\b",
+            r"\bmortgage\b",
+            r"\bcapital flows?\b",
+            r"\bvolatility\b",
+            r"\boption pricing\b",
+            r"\bcredit risk\b",
+            r"\bfinancialization\b",
+            r"\bfinancial markets?\b",
+            r"\binvestment\b",
+        ),
+    ),
+    FieldSpec(
+        "health",
+        "Health",
+        (
+            r"\bhealth care\b",
+            r"\bhealthcare\b",
+            r"\bhealth economics?\b",
+            r"\bhealth systems?\b",
+            r"\bpharmaceutical\b",
+            r"\bcancer treatment\b",
+            r"\bquality of life\b",
+        ),
+    ),
+    FieldSpec(
+        "environment_energy",
+        "Environment and energy",
+        (
+            r"\benvironment",
+            r"\bclimate\b",
+            r"\benergy\b",
+            r"\brenewable\b",
+            r"\bgreen bonds?\b",
+            r"\bresources?\b",
+        ),
+    ),
+]
+
+FIELD_REGEX = {
+    spec.slug: [re.compile(pattern, re.I) for pattern in spec.patterns] for spec in FIELD_SPECS
+}
 
 VARIANT_DESCRIPTIONS = {
-    "all": "Full Frontier Graph screened corpus",
+    "all": "Full screened published-paper corpus",
     "core": "Core economics journals in the screened corpus",
     "adjacent": "Adjacent journals in the screened corpus",
 }
@@ -73,6 +190,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--extraction-db", type=Path, default=DEFAULT_EXTRACTION_DB)
     parser.add_argument("--openalex-db", type=Path, default=DEFAULT_OPENALEX_DB)
+    parser.add_argument("--source-list-dir", type=Path, default=DEFAULT_SOURCE_LIST_DIR)
     parser.add_argument("--analysis-dir", type=Path, default=DEFAULT_ANALYSIS_DIR)
     parser.add_argument("--figures-dir", type=Path, default=DEFAULT_FIGURES_DIR)
     parser.add_argument("--plot-start", default="2015-01-01")
@@ -80,20 +198,76 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def build_regex() -> re.Pattern[str]:
-    return re.compile("|".join(spec.pattern for spec in TERM_SPECS), re.I)
+def build_regex() -> str:
+    return "|".join(spec.pattern for spec in TERM_SPECS)
 
 
-def month_range(counter: Counter[str]) -> pd.DatetimeIndex:
-    return pd.date_range(min(counter), max(counter), freq="MS")
+def assign_major_field(topic: str | None) -> str | None:
+    if not topic:
+        return None
+    haystack = str(topic).strip().lower()
+    if not haystack:
+        return None
+    for spec in FIELD_SPECS:
+        if any(pattern.search(haystack) for pattern in FIELD_REGEX[spec.slug]):
+            return spec.slug
+    return None
 
 
-def build_series_frame(totals: Counter[str], mentions: Counter[str]) -> pd.DataFrame:
-    months = month_range(totals)
-    df = pd.DataFrame({"month": months})
-    df["month_str"] = df["month"].dt.strftime("%Y-%m")
-    df["paper_count"] = df["month_str"].map(totals).fillna(0).astype(int)
-    df["mention_count"] = df["month_str"].map(mentions).fillna(0).astype(int)
+def load_paper_frame(extraction_db_path: Path, openalex_db_path: Path, pattern: str) -> pd.DataFrame:
+    conn = sqlite3.connect(extraction_db_path)
+    conn.execute("ATTACH DATABASE ? AS oa", (str(openalex_db_path),))
+    query = """
+        SELECT
+            oa.publication_date,
+            fg.publication_year,
+            fg.bucket,
+            fg.source_id,
+            fg.source_display_name,
+            oa.primary_topic_display_name,
+            fg.title,
+            fg.abstract
+        FROM works AS fg
+        LEFT JOIN oa.works_base AS oa
+          ON fg.openalex_work_id = oa.work_id
+        WHERE oa.publication_date IS NOT NULL
+          AND oa.publication_date != ''
+          AND COALESCE(oa.is_retracted, 0) = 0
+          AND COALESCE(oa.is_paratext, 0) = 0
+          AND fg.bucket IN ('core', 'adjacent')
+        ORDER BY oa.publication_date
+    """
+    frame = pd.read_sql_query(query, conn)
+    conn.close()
+
+    frame["publication_date"] = pd.to_datetime(frame["publication_date"], errors="coerce")
+    frame = frame[frame["publication_date"].notna()].copy()
+    frame["month"] = frame["publication_date"].dt.to_period("M").dt.to_timestamp()
+    frame["text"] = frame["title"].fillna("") + " " + frame["abstract"].fillna("")
+    frame["is_match"] = frame["text"].str.contains(pattern, case=False, regex=True, na=False)
+    frame["major_field"] = frame["primary_topic_display_name"].map(assign_major_field)
+    frame.drop(columns=["text"], inplace=True)
+    return frame
+
+
+def build_series_frame_from_subset(subset: pd.DataFrame, month_index: pd.DatetimeIndex) -> pd.DataFrame:
+    if subset.empty:
+        df = pd.DataFrame({"month": month_index})
+        df["paper_count"] = 0
+        df["mention_count"] = 0
+        df["share_pct"] = 0.0
+        df["rolling_12m_pct"] = 0.0
+        return df
+
+    grouped = (
+        subset.groupby("month", as_index=False)
+        .agg(paper_count=("month", "size"), mention_count=("is_match", "sum"))
+        .sort_values("month")
+    )
+    df = pd.DataFrame({"month": month_index})
+    df = df.merge(grouped, on="month", how="left")
+    df["paper_count"] = df["paper_count"].fillna(0).astype(int)
+    df["mention_count"] = df["mention_count"].fillna(0).astype(int)
     df["share_pct"] = 0.0
     nonzero = df["paper_count"] > 0
     df.loc[nonzero, "share_pct"] = (
@@ -113,91 +287,91 @@ def trim_partial_last_month(df: pd.DataFrame) -> tuple[pd.DataFrame, bool]:
     return df, False
 
 
-def load_variant_series(
-    extraction_db_path: Path, openalex_db_path: Path, pattern: re.Pattern[str]
-) -> tuple[dict[str, pd.DataFrame], dict[str, dict[str, int | bool]]]:
-    conn = sqlite3.connect(extraction_db_path)
-    conn.execute("ATTACH DATABASE ? AS oa", (str(openalex_db_path),))
-    cursor = conn.execute(
-        """
-        SELECT
-            oa.publication_date,
-            fg.bucket,
-            fg.source_display_name,
-            fg.title,
-            fg.abstract
-        FROM works AS fg
-        LEFT JOIN oa.works_base AS oa
-          ON fg.openalex_work_id = oa.work_id
-        WHERE oa.publication_date IS NOT NULL
-          AND oa.publication_date != ''
-          AND COALESCE(oa.is_retracted, 0) = 0
-          AND COALESCE(oa.is_paratext, 0) = 0
-        ORDER BY oa.publication_date
-        """
-    )
+def filtered_plot_df(df: pd.DataFrame, plot_start: str, plot_end: str | None) -> tuple[pd.DataFrame, bool]:
+    trimmed_df, trimmed = trim_partial_last_month(df)
+    filtered = trimmed_df[trimmed_df["month"] >= pd.Timestamp(plot_start)].copy()
+    if plot_end:
+        filtered = filtered[filtered["month"] <= pd.Timestamp(plot_end)]
+    return filtered, trimmed
 
-    totals = defaultdict(Counter)
-    mentions = defaultdict(Counter)
-    stats = {
-        "all": Counter(),
-        "core": Counter(),
-        "adjacent": Counter(),
+
+def build_variant_series(frame: pd.DataFrame) -> tuple[dict[str, pd.DataFrame], dict[str, dict[str, int | bool | str]]]:
+    month_index = pd.date_range(frame["month"].min(), frame["month"].max(), freq="MS")
+    subsets = {
+        "all": frame,
+        "core": frame[frame["bucket"] == "core"].copy(),
+        "adjacent": frame[frame["bucket"] == "adjacent"].copy(),
     }
-
-    for publication_date, bucket, source_display_name, title, abstract_text in cursor:
-        month = str(publication_date)[:7]
-        if len(month) != 7:
-            continue
-        text = f"{title or ''} {abstract_text or ''}"
-        is_match = bool(pattern.search(text))
-
-        variants = ["all"]
-        if bucket in ("core", "adjacent"):
-            variants.append(bucket)
-
-        for variant in variants:
-            totals[variant][month] += 1
-            stats[variant]["rows_seen"] += 1
-            if is_match:
-                mentions[variant][month] += 1
-                stats[variant]["rows_matched"] += 1
-
-    conn.close()
-
     frames: dict[str, pd.DataFrame] = {}
-    metadata: dict[str, dict[str, int | bool]] = {}
-    for variant in ["all", "core", "adjacent"]:
-        df = build_series_frame(totals[variant], mentions[variant])
+    metadata: dict[str, dict[str, int | bool | str]] = {}
+    for name, subset in subsets.items():
+        df = build_series_frame_from_subset(subset, month_index)
         trimmed_df, trimmed = trim_partial_last_month(df)
-        frames[variant] = df
-        metadata[variant] = {
-            "rows_seen": int(stats[variant]["rows_seen"]),
-            "rows_matched": int(stats[variant]["rows_matched"]),
+        frames[name] = df
+        metadata[name] = {
+            "rows_seen": int(len(subset)),
+            "rows_matched": int(subset["is_match"].sum()),
             "plot_trimmed_partial_last_month": trimmed,
             "plot_end_month": trimmed_df.iloc[-1]["month"].strftime("%Y-%m-%d"),
         }
     return frames, metadata
 
 
-def write_series_csv(path: Path, df: pd.DataFrame) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.writer(handle)
-        writer.writerow(["month", "paper_count", "mention_count", "share_pct", "rolling_12m_pct"])
-        for row in df.itertuples(index=False):
-            writer.writerow(
-                [
-                    row.month.strftime("%Y-%m-%d"),
-                    int(row.paper_count),
-                    int(row.mention_count),
-                    float(row.share_pct),
-                    float(row.rolling_12m_pct),
-                ]
-            )
+def load_cutoff_source_sets(source_list_dir: Path) -> tuple[dict[str, set[str]], dict[str, str]]:
+    sets: dict[str, set[str]] = {}
+    labels: dict[str, str] = {}
+    for bucket in ("core", "adjacent"):
+        path = source_list_dir / f"{bucket}_mean_fwci_top150.csv"
+        ranked = pd.read_csv(path)
+        for cutoff in (50, 100, 150):
+            key = f"{bucket}_top_{cutoff}"
+            sets[key] = set(ranked.loc[ranked["rank"] <= cutoff, "source_id"].astype(str))
+            labels[key] = f"{bucket} {cutoff}"
+    return sets, labels
 
 
-def style_axis(ax: plt.Axes, *, ymax: float) -> None:
+def build_cutoff_series(
+    frame: pd.DataFrame, cutoff_sets: dict[str, set[str]]
+) -> tuple[dict[str, pd.DataFrame], dict[str, dict[str, int | bool | str]]]:
+    month_index = pd.date_range(frame["month"].min(), frame["month"].max(), freq="MS")
+    frames: dict[str, pd.DataFrame] = {}
+    metadata: dict[str, dict[str, int | bool | str]] = {}
+    for key, source_ids in cutoff_sets.items():
+        bucket = "core" if key.startswith("core_") else "adjacent"
+        subset = frame[(frame["bucket"] == bucket) & (frame["source_id"].isin(source_ids))].copy()
+        df = build_series_frame_from_subset(subset, month_index)
+        trimmed_df, trimmed = trim_partial_last_month(df)
+        frames[key] = df
+        metadata[key] = {
+            "rows_seen": int(len(subset)),
+            "rows_matched": int(subset["is_match"].sum()),
+            "plot_trimmed_partial_last_month": trimmed,
+            "plot_end_month": trimmed_df.iloc[-1]["month"].strftime("%Y-%m-%d"),
+        }
+    return frames, metadata
+
+
+def build_field_series(
+    frame: pd.DataFrame,
+) -> tuple[dict[str, pd.DataFrame], dict[str, dict[str, int | bool | str]]]:
+    month_index = pd.date_range(frame["month"].min(), frame["month"].max(), freq="MS")
+    frames: dict[str, pd.DataFrame] = {}
+    metadata: dict[str, dict[str, int | bool | str]] = {}
+    for spec in FIELD_SPECS:
+        subset = frame[frame["major_field"] == spec.slug].copy()
+        df = build_series_frame_from_subset(subset, month_index)
+        trimmed_df, trimmed = trim_partial_last_month(df)
+        frames[spec.slug] = df
+        metadata[spec.slug] = {
+            "rows_seen": int(len(subset)),
+            "rows_matched": int(subset["is_match"].sum()),
+            "plot_trimmed_partial_last_month": trimmed,
+            "plot_end_month": trimmed_df.iloc[-1]["month"].strftime("%Y-%m-%d"),
+        }
+    return frames, metadata
+
+
+def style_axis(ax: plt.Axes, *, ymax: float, year_step: int = 2) -> None:
     ax.set_facecolor(BACKGROUND)
     ax.grid(axis="y", color=GRID, linewidth=1.0)
     ax.grid(axis="x", visible=False)
@@ -207,17 +381,24 @@ def style_axis(ax: plt.Axes, *, ymax: float) -> None:
     ax.spines["bottom"].set_linewidth(1.1)
     ax.tick_params(axis="both", colors="#6A625C", labelsize=12, length=0)
     ax.yaxis.set_major_formatter(FuncFormatter(lambda value, _pos: f"{value:.0f}"))
-    ax.xaxis.set_major_locator(mdates.YearLocator(2))
+    ax.xaxis.set_major_locator(mdates.YearLocator(year_step))
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
     ax.set_ylim(0, ymax)
 
 
-def filtered_plot_df(df: pd.DataFrame, plot_start: str, plot_end: str | None) -> tuple[pd.DataFrame, bool]:
-    trimmed_df, trimmed = trim_partial_last_month(df)
-    filtered = trimmed_df[trimmed_df["month"] >= pd.Timestamp(plot_start)].copy()
-    if plot_end:
-        filtered = filtered[filtered["month"] <= pd.Timestamp(plot_end)]
-    return filtered, trimmed
+def style_small_multiple_axis(ax: plt.Axes, *, ymax: float) -> None:
+    ax.set_facecolor(BACKGROUND)
+    ax.grid(axis="y", color=GRID, linewidth=0.85)
+    ax.grid(axis="x", visible=False)
+    for spine in ["top", "right", "left"]:
+        ax.spines[spine].set_visible(False)
+    ax.spines["bottom"].set_color(AXIS)
+    ax.spines["bottom"].set_linewidth(1.0)
+    ax.tick_params(axis="both", colors="#6A625C", labelsize=9.5, length=0)
+    ax.yaxis.set_major_formatter(FuncFormatter(lambda value, _pos: f"{value:.0f}"))
+    ax.xaxis.set_major_locator(mdates.YearLocator(4))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
+    ax.set_ylim(0, ymax)
 
 
 def add_branding(fig: plt.Figure) -> None:
@@ -363,16 +544,154 @@ def plot_comparison_series(
     save_figure(fig, png_path, svg_path)
 
 
+def plot_cutoff_series(
+    series_map: dict[str, pd.DataFrame],
+    labels: dict[str, str],
+    *,
+    title: str,
+    subtitle: str,
+    footnote: str,
+    png_path: Path,
+    svg_path: Path,
+    plot_start: str,
+    plot_end: str | None,
+) -> None:
+    order = [
+        "core_top_50",
+        "core_top_100",
+        "core_top_150",
+        "adjacent_top_50",
+        "adjacent_top_100",
+        "adjacent_top_150",
+    ]
+    plot_frames = {key: filtered_plot_df(series_map[key], plot_start, plot_end)[0] for key in order}
+    ymax = max(float(df["rolling_12m_pct"].max()) for df in plot_frames.values()) * 1.22
+
+    fig = plt.figure(figsize=(8.2, 10.8), dpi=220)
+    fig.patch.set_facecolor(BACKGROUND)
+    ax = fig.add_axes([0.12, 0.22, 0.75, 0.47])
+
+    handles: list[Line2D] = []
+    for key in order:
+        bucket = "core" if key.startswith("core_") else "adjacent"
+        cutoff = int(key.rsplit("_", 1)[-1])
+        color = CORE_CUTOFF_COLORS[cutoff] if bucket == "core" else ADJ_CUTOFF_COLORS[cutoff]
+        df = plot_frames[key]
+        ax.plot(df["month"], df["rolling_12m_pct"], color=color, linewidth=3.0, zorder=3)
+        handles.append(Line2D([0], [0], color=color, linewidth=3.6, label=labels[key]))
+
+    style_axis(ax, ymax=ymax)
+    ax.set_xlim(next(iter(plot_frames.values()))["month"].min(), next(iter(plot_frames.values()))["month"].max() + pd.DateOffset(months=10))
+
+    ax.axvline(CHATGPT_RELEASE, color=TEXT, linestyle=":", linewidth=2.0, zorder=1)
+    ax.text(
+        CHATGPT_RELEASE - pd.Timedelta(days=26),
+        ymax * 0.88,
+        "ChatGPT\nreleased",
+        ha="right",
+        va="top",
+        color=TEXT,
+        fontsize=12.0,
+    )
+
+    add_branding(fig)
+    fig.text(0.065, 0.885, title, fontsize=22.5, color=TEXT, linespacing=1.08)
+    fig.text(0.065, 0.825, subtitle, fontsize=15.2, color=SUBTEXT, linespacing=1.28)
+    fig.legend(
+        handles=handles,
+        loc="upper left",
+        bbox_to_anchor=(0.065, 0.775),
+        ncol=2,
+        frameon=False,
+        fontsize=12.0,
+        handlelength=2.5,
+        labelcolor=TEXT,
+    )
+
+    fig.text(0.065, 0.082, footnote, fontsize=11.3, color=SUBTEXT, linespacing=1.42)
+    save_figure(fig, png_path, svg_path)
+
+
+def plot_field_small_multiples(
+    field_frames: dict[str, pd.DataFrame],
+    field_metadata: dict[str, dict[str, int | bool | str]],
+    *,
+    title: str,
+    subtitle: str,
+    footnote: str,
+    png_path: Path,
+    svg_path: Path,
+    plot_start: str,
+    plot_end: str | None,
+) -> None:
+    order = [spec.slug for spec in FIELD_SPECS]
+    plot_frames = {slug: filtered_plot_df(field_frames[slug], plot_start, plot_end)[0] for slug in order}
+    ymax = max(float(df["rolling_12m_pct"].max()) for df in plot_frames.values()) * 1.2
+    ymax = max(ymax, 0.8)
+
+    fig, axes = plt.subplots(4, 2, figsize=(11.0, 12.2), dpi=220)
+    fig.patch.set_facecolor(BACKGROUND)
+    plt.subplots_adjust(left=0.08, right=0.96, top=0.69, bottom=0.14, wspace=0.18, hspace=0.34)
+
+    for ax, spec in zip(axes.flat, FIELD_SPECS):
+        df = plot_frames[spec.slug]
+        ax.plot(df["month"], df["rolling_12m_pct"], color=FIELD_LINE, linewidth=2.6, zorder=3)
+        ax.axvline(CHATGPT_RELEASE, color=TEXT, linestyle=":", linewidth=1.4, zorder=1)
+        style_small_multiple_axis(ax, ymax=ymax)
+        ax.set_xlim(df["month"].min(), df["month"].max())
+        ax.set_title(spec.label, loc="left", fontsize=12.3, color=TEXT, pad=8)
+        ax.text(
+            0.0,
+            1.02,
+            f"{int(field_metadata[spec.slug]['rows_seen']):,} papers",
+            transform=ax.transAxes,
+            fontsize=9.2,
+            color=SUBTEXT,
+            va="bottom",
+        )
+
+    add_branding(fig)
+    fig.text(0.065, 0.91, title, fontsize=22.5, color=TEXT, linespacing=1.08)
+    fig.text(0.065, 0.85, subtitle, fontsize=15.2, color=SUBTEXT, linespacing=1.28)
+    fig.text(0.065, 0.082, footnote, fontsize=11.1, color=SUBTEXT, linespacing=1.42)
+    save_figure(fig, png_path, svg_path)
+
+
+def write_series_csv(path: Path, df: pd.DataFrame) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    out = df.copy()
+    out["month"] = out["month"].dt.strftime("%Y-%m-%d")
+    out.to_csv(path, index=False)
+
+
+def write_long_series_csv(path: Path, frames: dict[str, pd.DataFrame], label_map: dict[str, str], kind: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    rows = []
+    for key, df in frames.items():
+        tmp = df.copy()
+        tmp["series_key"] = key
+        tmp["series_label"] = label_map[key]
+        tmp["series_kind"] = kind
+        rows.append(tmp)
+    out = pd.concat(rows, ignore_index=True)
+    out["month"] = out["month"].dt.strftime("%Y-%m-%d")
+    out.to_csv(path, index=False)
+
+
 def write_metadata(
     path: Path,
-    frames: dict[str, pd.DataFrame],
-    metadata: dict[str, dict[str, int | bool]],
+    *,
+    variant_metadata: dict[str, dict[str, int | bool | str]],
+    cutoff_metadata: dict[str, dict[str, int | bool | str]],
+    field_metadata: dict[str, dict[str, int | bool | str]],
     extraction_db_path: Path,
     openalex_db_path: Path,
+    source_list_dir: Path,
 ) -> None:
     payload = {
         "source_extraction_db": str(extraction_db_path),
         "source_openalex_db": str(openalex_db_path),
+        "source_rank_dir": str(source_list_dir),
         "corpus_filter": {
             "corpus": "Frontier Graph screened published-paper corpus",
             "screened_work_count_target": 242595,
@@ -382,20 +701,11 @@ def write_metadata(
         },
         "term_labels": [spec.label for spec in TERM_SPECS],
         "term_patterns": [spec.pattern for spec in TERM_SPECS],
-        "variants": {},
+        "field_keyword_map": {spec.label: list(spec.patterns) for spec in FIELD_SPECS},
+        "variants": variant_metadata,
+        "cutoff_variants": cutoff_metadata,
+        "field_variants": field_metadata,
     }
-    for variant, df in frames.items():
-        payload["variants"][variant] = {
-            "description": VARIANT_DESCRIPTIONS[variant],
-            "rows_seen": int(metadata[variant]["rows_seen"]),
-            "rows_matched": int(metadata[variant]["rows_matched"]),
-            "date_min": df["month"].min().strftime("%Y-%m-%d"),
-            "date_max": df["month"].max().strftime("%Y-%m-%d"),
-            "last_month_share_pct": float(df.iloc[-1]["share_pct"]),
-            "last_rolling_12m_pct": float(df.iloc[-1]["rolling_12m_pct"]),
-            "plot_trimmed_partial_last_month": bool(metadata[variant]["plot_trimmed_partial_last_month"]),
-            "plot_end_month": str(metadata[variant]["plot_end_month"]),
-        }
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
@@ -403,7 +713,14 @@ def write_metadata(
 def main() -> None:
     args = parse_args()
     pattern = build_regex()
-    frames, metadata = load_variant_series(args.extraction_db, args.openalex_db, pattern)
+    papers = load_paper_frame(args.extraction_db, args.openalex_db, pattern)
+
+    variant_frames, variant_metadata = build_variant_series(papers)
+    cutoff_sets, cutoff_labels = load_cutoff_source_sets(args.source_list_dir)
+    cutoff_frames, cutoff_metadata = build_cutoff_series(papers, cutoff_sets)
+    field_frames, field_metadata = build_field_series(papers)
+
+    effective_plot_end = args.plot_end or str(variant_metadata["all"]["plot_end_month"])
 
     csv_paths = {
         "all": args.analysis_dir / "frontiergraph_ai_mentions_monthly.csv",
@@ -411,10 +728,23 @@ def main() -> None:
         "adjacent": args.analysis_dir / "frontiergraph_ai_mentions_monthly_adjacent.csv",
     }
     for variant, path in csv_paths.items():
-        write_series_csv(path, frames[variant])
+        write_series_csv(path, variant_frames[variant])
+
+    write_long_series_csv(
+        args.analysis_dir / "frontiergraph_ai_mentions_monthly_cutoffs.csv",
+        cutoff_frames,
+        cutoff_labels,
+        kind="journal_cutoff",
+    )
+    write_long_series_csv(
+        args.analysis_dir / "frontiergraph_ai_mentions_monthly_fields.csv",
+        field_frames,
+        {spec.slug: spec.label for spec in FIELD_SPECS},
+        kind="field",
+    )
 
     plot_single_series(
-        frames["all"],
+        variant_frames["all"],
         title="AI-related terms in published economics papers",
         subtitle="Monthly share of papers mentioning selected AI-related\nterms in their title or abstract",
         footnote=(
@@ -425,12 +755,12 @@ def main() -> None:
         png_path=args.figures_dir / "frontiergraph_ai_mentions_share.png",
         svg_path=args.figures_dir / "frontiergraph_ai_mentions_share.svg",
         plot_start=args.plot_start,
-        plot_end=args.plot_end,
+        plot_end=effective_plot_end,
     )
 
     plot_comparison_series(
-        frames["core"],
-        frames["adjacent"],
+        variant_frames["core"],
+        variant_frames["adjacent"],
         title="AI-related terms in core and adjacent journals",
         subtitle="12-month rolling share of published papers mentioning selected\nAI-related terms",
         footnote=(
@@ -440,15 +770,47 @@ def main() -> None:
         png_path=args.figures_dir / "frontiergraph_ai_mentions_core_vs_adjacent.png",
         svg_path=args.figures_dir / "frontiergraph_ai_mentions_core_vs_adjacent.svg",
         plot_start=args.plot_start,
-        plot_end=args.plot_end,
+        plot_end=effective_plot_end,
+    )
+
+    plot_cutoff_series(
+        cutoff_frames,
+        cutoff_labels,
+        title="AI-related terms by journal cutoff",
+        subtitle="12-month rolling share in the top 50, 100, and 150 core and adjacent journal sets",
+        footnote=(
+            "Source: Frontier Graph screened corpus\n"
+            "* Cutoffs are nested subsets of the mean-FWCI ranked source lists used to build the current corpus."
+        ),
+        png_path=args.figures_dir / "frontiergraph_ai_mentions_cutoff_splits.png",
+        svg_path=args.figures_dir / "frontiergraph_ai_mentions_cutoff_splits.svg",
+        plot_start=args.plot_start,
+        plot_end=effective_plot_end,
+    )
+
+    plot_field_small_multiples(
+        field_frames,
+        field_metadata,
+        title="AI-related terms by major economics field",
+        subtitle="12-month rolling share in field slices derived from paper-level primary-topic labels",
+        footnote=(
+            "Source: Frontier Graph screened corpus\n"
+            "* Fields are assigned with a transparent keyword map over each paper's OpenAlex primary topic label."
+        ),
+        png_path=args.figures_dir / "frontiergraph_ai_mentions_major_fields.png",
+        svg_path=args.figures_dir / "frontiergraph_ai_mentions_major_fields.svg",
+        plot_start=args.plot_start,
+        plot_end=effective_plot_end,
     )
 
     write_metadata(
         args.analysis_dir / "frontiergraph_ai_mentions_metadata.json",
-        frames,
-        metadata,
-        args.extraction_db,
-        args.openalex_db,
+        variant_metadata=variant_metadata,
+        cutoff_metadata=cutoff_metadata,
+        field_metadata=field_metadata,
+        extraction_db_path=args.extraction_db,
+        openalex_db_path=args.openalex_db,
+        source_list_dir=args.source_list_dir,
     )
 
     print(
@@ -456,16 +818,38 @@ def main() -> None:
             {
                 "variants": {
                     variant: {
-                        "rows_seen": metadata[variant]["rows_seen"],
-                        "rows_matched": metadata[variant]["rows_matched"],
-                        "last_rolling_12m_pct": round(float(frames[variant].iloc[-1]["rolling_12m_pct"]), 3),
+                        "rows_seen": int(variant_metadata[variant]["rows_seen"]),
+                        "rows_matched": int(variant_metadata[variant]["rows_matched"]),
+                        "last_rolling_12m_pct": round(float(variant_frames[variant].iloc[-1]["rolling_12m_pct"]), 3),
                     }
                     for variant in ["all", "core", "adjacent"]
                 },
-                "csv_outputs": {key: str(path) for key, path in csv_paths.items()},
+                "cutoffs": {
+                    key: {
+                        "rows_seen": int(cutoff_metadata[key]["rows_seen"]),
+                        "rows_matched": int(cutoff_metadata[key]["rows_matched"]),
+                    }
+                    for key in [
+                        "core_top_50",
+                        "core_top_100",
+                        "core_top_150",
+                        "adjacent_top_50",
+                        "adjacent_top_100",
+                        "adjacent_top_150",
+                    ]
+                },
+                "fields": {
+                    spec.slug: {
+                        "rows_seen": int(field_metadata[spec.slug]["rows_seen"]),
+                        "rows_matched": int(field_metadata[spec.slug]["rows_matched"]),
+                    }
+                    for spec in FIELD_SPECS
+                },
                 "figure_outputs": {
                     "main": str(args.figures_dir / "frontiergraph_ai_mentions_share.png"),
                     "core_vs_adjacent": str(args.figures_dir / "frontiergraph_ai_mentions_core_vs_adjacent.png"),
+                    "journal_cutoffs": str(args.figures_dir / "frontiergraph_ai_mentions_cutoff_splits.png"),
+                    "major_fields": str(args.figures_dir / "frontiergraph_ai_mentions_major_fields.png"),
                 },
             },
             indent=2,

@@ -1,6 +1,7 @@
 {
   "source_extraction_db": "data/production/frontiergraph_extraction_v2/fwci_core150_adj150/merged/fwci_core150_adj150_extractions.sqlite",
   "source_openalex_db": "data/processed/openalex/published_enriched/openalex_published_enriched.sqlite",
+  "source_rank_dir": "data/production/frontiergraph_extraction_v2/fwci_core150_adj150/source_lists",
   "corpus_filter": {
     "corpus": "Frontier Graph screened published-paper corpus",
     "screened_work_count_target": 242595,
@@ -32,37 +33,181 @@
     "\\btransformers?\\b",
     "\\bgpt(?:[- ]?(?:2|3|4|4o|4\\.5|5))\\b"
   ],
+  "field_keyword_map": {
+    "Labour": [
+      "\\blabo[u]?r market\\b",
+      "\\bwage inequality\\b",
+      "\\bunemployment\\b",
+      "\\boccupational licensing\\b",
+      "\\bemployment\\b"
+    ],
+    "Macro": [
+      "\\bmacroeconomic\\b",
+      "\\bmonetary\\b",
+      "\\binflation\\b",
+      "\\bbusiness cycle\\b",
+      "\\boil price shocks?\\b",
+      "\\bglobal economy\\b",
+      "\\bokun'?s law\\b",
+      "\\bmacroeconomics?\\b"
+    ],
+    "Public finance": [
+      "\\btax(?:ation)?\\b",
+      "\\btax evasion\\b",
+      "\\bfiscal\\b",
+      "\\bpublic finance\\b",
+      "\\bgovernment spending\\b",
+      "\\bsubsid(?:y|ies)\\b"
+    ],
+    "Trade": [
+      "\\btrade\\b",
+      "\\btariff",
+      "\\bexport",
+      "\\bimport",
+      "\\beconomic sanctions?\\b"
+    ],
+    "Development": [
+      "\\bdevelopment\\b",
+      "\\bpoverty\\b",
+      "\\bmicrofinance\\b",
+      "\\bfinancial inclusion\\b",
+      "\\bspecial economic zones?\\b",
+      "\\bresource curse\\b"
+    ],
+    "Finance": [
+      "\\basset pricing\\b",
+      "\\bbanking\\b",
+      "\\bmortgage\\b",
+      "\\bcapital flows?\\b",
+      "\\bvolatility\\b",
+      "\\boption pricing\\b",
+      "\\bcredit risk\\b",
+      "\\bfinancialization\\b",
+      "\\bfinancial markets?\\b",
+      "\\binvestment\\b"
+    ],
+    "Health": [
+      "\\bhealth care\\b",
+      "\\bhealthcare\\b",
+      "\\bhealth economics?\\b",
+      "\\bhealth systems?\\b",
+      "\\bpharmaceutical\\b",
+      "\\bcancer treatment\\b",
+      "\\bquality of life\\b"
+    ],
+    "Environment and energy": [
+      "\\benvironment",
+      "\\bclimate\\b",
+      "\\benergy\\b",
+      "\\brenewable\\b",
+      "\\bgreen bonds?\\b",
+      "\\bresources?\\b"
+    ]
+  },
   "variants": {
     "all": {
-      "description": "Full Frontier Graph screened corpus",
       "rows_seen": 242482,
       "rows_matched": 1072,
-      "date_min": "1976-01-01",
-      "date_max": "2026-03-01",
-      "last_month_share_pct": 1.282051282051282,
-      "last_rolling_12m_pct": 3.055671570207126,
       "plot_trimmed_partial_last_month": true,
       "plot_end_month": "2026-02-01"
     },
     "core": {
-      "description": "Core economics journals in the screened corpus",
       "rows_seen": 143105,
       "rows_matched": 373,
-      "date_min": "1976-01-01",
-      "date_max": "2026-03-01",
-      "last_month_share_pct": 0.0,
-      "last_rolling_12m_pct": 1.5368567113717606,
       "plot_trimmed_partial_last_month": true,
       "plot_end_month": "2026-02-01"
     },
     "adjacent": {
-      "description": "Adjacent journals in the screened corpus",
       "rows_seen": 99377,
       "rows_matched": 699,
-      "date_min": "1976-01-01",
-      "date_max": "2026-03-01",
-      "last_month_share_pct": 2.272727272727273,
-      "last_rolling_12m_pct": 4.105633392422276,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    }
+  },
+  "cutoff_variants": {
+    "core_top_50": {
+      "rows_seen": 59515,
+      "rows_matched": 167,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "core_top_100": {
+      "rows_seen": 111535,
+      "rows_matched": 291,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "core_top_150": {
+      "rows_seen": 143105,
+      "rows_matched": 373,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "adjacent_top_50": {
+      "rows_seen": 33677,
+      "rows_matched": 262,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "adjacent_top_100": {
+      "rows_seen": 58994,
+      "rows_matched": 348,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "adjacent_top_150": {
+      "rows_seen": 99371,
+      "rows_matched": 699,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    }
+  },
+  "field_variants": {
+    "labour": {
+      "rows_seen": 5697,
+      "rows_matched": 26,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "macro": {
+      "rows_seen": 41535,
+      "rows_matched": 202,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "public_finance": {
+      "rows_seen": 15779,
+      "rows_matched": 18,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "trade": {
+      "rows_seen": 8646,
+      "rows_matched": 15,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "development": {
+      "rows_seen": 12767,
+      "rows_matched": 45,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "finance": {
+      "rows_seen": 54089,
+      "rows_matched": 210,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "health": {
+      "rows_seen": 38115,
+      "rows_matched": 32,
+      "plot_trimmed_partial_last_month": true,
+      "plot_end_month": "2026-02-01"
+    },
+    "environment_energy": {
+      "rows_seen": 28018,
+      "rows_matched": 302,
       "plot_trimmed_partial_last_month": true,
       "plot_end_month": "2026-02-01"
     }
