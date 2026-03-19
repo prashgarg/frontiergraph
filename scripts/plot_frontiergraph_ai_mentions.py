@@ -637,14 +637,14 @@ def plot_field_small_multiples(
             ha="left",
         )
         ax.text(
-            0.0,
-            1.045,
+            1.0,
+            1.12,
             f"{int(field_metadata[spec.slug]['rows_seen']):,} papers",
             transform=ax.transAxes,
-            fontsize=9.2,
+            fontsize=9.0,
             color=SUBTEXT,
             va="bottom",
-            ha="left",
+            ha="right",
         )
 
     add_branding(fig)
