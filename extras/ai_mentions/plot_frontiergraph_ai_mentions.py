@@ -30,18 +30,20 @@ DEFAULT_FIGURES_DIR = Path("outputs/figures")
 
 CHATGPT_RELEASE = pd.Timestamp("2022-11-30")
 
-BACKGROUND = "#FAF7F2"
-TEXT = "#152238"
-GRID = "#DED8CF"
-AXIS = "#9A8F84"
-MONTHLY = "#79D3E1"
-ROLLING = "#24539A"
+BACKGROUND = "#F4F8FB"
+PANEL = "#FFFFFF"
+TEXT = "#18324A"
+SUBTEXT = "#627588"
+GRID = "#D8E3EC"
+AXIS = "#93A6B8"
+MONTHLY = "#8FD7E8"
+ROLLING = "#137C82"
 CORE = "#24539A"
-ADJACENT = "#138B8F"
-ACCENT = "#295D5F"
-SUBTEXT = "#5D5A56"
-CORE_CUTOFF_COLORS = {50: "#0F2E67", 100: "#3D69B5", 150: "#A7BFE6"}
-ADJ_CUTOFF_COLORS = {50: "#0E6568", 100: "#1DA0A4", 150: "#92DDDF"}
+ADJACENT = "#1A9A8C"
+ACCENT = "#2F7E86"
+MUTED = "#8396A8"
+CORE_CUTOFF_COLORS = {50: "#163B7A", 100: "#3F6CB7", 150: "#9FB9E3"}
+ADJ_CUTOFF_COLORS = {50: "#116A6C", 100: "#24A09A", 150: "#A4E0DB"}
 FIELD_LINE = "#24539A"
 
 
@@ -372,14 +374,14 @@ def build_field_series(
 
 
 def style_axis(ax: plt.Axes, *, ymax: float, year_step: int = 2) -> None:
-    ax.set_facecolor(BACKGROUND)
+    ax.set_facecolor(PANEL)
     ax.grid(axis="y", color=GRID, linewidth=1.0)
     ax.grid(axis="x", visible=False)
     for spine in ["top", "right", "left"]:
         ax.spines[spine].set_visible(False)
     ax.spines["bottom"].set_color(AXIS)
     ax.spines["bottom"].set_linewidth(1.1)
-    ax.tick_params(axis="both", colors="#6A625C", labelsize=12, length=0)
+    ax.tick_params(axis="both", colors=SUBTEXT, labelsize=11.5, length=0)
     ax.yaxis.set_major_formatter(FuncFormatter(lambda value, _pos: f"{value:.0f}"))
     ax.xaxis.set_major_locator(mdates.YearLocator(year_step))
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
@@ -387,14 +389,14 @@ def style_axis(ax: plt.Axes, *, ymax: float, year_step: int = 2) -> None:
 
 
 def style_small_multiple_axis(ax: plt.Axes, *, ymax: float) -> None:
-    ax.set_facecolor(BACKGROUND)
+    ax.set_facecolor(PANEL)
     ax.grid(axis="y", color=GRID, linewidth=0.85)
     ax.grid(axis="x", visible=False)
     for spine in ["top", "right", "left"]:
         ax.spines[spine].set_visible(False)
     ax.spines["bottom"].set_color(AXIS)
     ax.spines["bottom"].set_linewidth(1.0)
-    ax.tick_params(axis="both", colors="#6A625C", labelsize=9.5, length=0)
+    ax.tick_params(axis="both", colors=SUBTEXT, labelsize=9.0, length=0)
     ax.yaxis.set_major_formatter(FuncFormatter(lambda value, _pos: f"{value:.0f}"))
     ax.xaxis.set_major_locator(mdates.YearLocator(4))
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
@@ -402,16 +404,7 @@ def style_small_multiple_axis(ax: plt.Axes, *, ymax: float) -> None:
 
 
 def add_branding(fig: plt.Figure) -> None:
-    fig.lines.append(
-        Line2D(
-            [0.065, 0.14],
-            [0.95, 0.95],
-            transform=fig.transFigure,
-            color=ACCENT,
-            linewidth=4.5,
-            solid_capstyle="round",
-        )
-    )
+    return None
 
 
 def save_figure(fig: plt.Figure, png_path: Path, svg_path: Path) -> None:
@@ -435,55 +428,47 @@ def plot_single_series(
 ) -> None:
     plot_df, _trimmed = filtered_plot_df(df, plot_start, plot_end)
 
-    fig = plt.figure(figsize=(8.2, 10.6), dpi=220)
+    fig = plt.figure(figsize=(11.2, 7.3), dpi=220)
     fig.patch.set_facecolor(BACKGROUND)
-    ax = fig.add_axes([0.12, 0.235, 0.72, 0.525])
+    ax = fig.add_axes([0.08, 0.23, 0.84, 0.52])
 
-    ax.plot(plot_df["month"], plot_df["share_pct"], color=MONTHLY, linewidth=3.3, zorder=2)
-    ax.plot(plot_df["month"], plot_df["rolling_12m_pct"], color=ROLLING, linewidth=3.6, zorder=3)
+    ax.plot(plot_df["month"], plot_df["share_pct"], color=MONTHLY, linewidth=2.5, alpha=0.9, zorder=2)
+    ax.plot(plot_df["month"], plot_df["rolling_12m_pct"], color=ROLLING, linewidth=3.2, zorder=3)
 
     ymax = max(plot_df["share_pct"].max(), plot_df["rolling_12m_pct"].max()) * 1.18
     style_axis(ax, ymax=ymax)
-    ax.set_xlim(plot_df["month"].min(), plot_df["month"].max() + pd.DateOffset(months=10))
+    ax.set_xlim(plot_df["month"].min(), plot_df["month"].max())
 
-    ax.axvline(CHATGPT_RELEASE, color=TEXT, linestyle=":", linewidth=2.0, zorder=1)
+    ax.axvline(CHATGPT_RELEASE, color=MUTED, linestyle=(0, (2, 2)), linewidth=1.8, zorder=1)
     ax.text(
-        CHATGPT_RELEASE - pd.Timedelta(days=32),
-        ymax * 0.89,
-        "ChatGPT\nreleased",
-        ha="right",
-        va="top",
-        color=TEXT,
-        fontsize=12.5,
+        CHATGPT_RELEASE + pd.Timedelta(days=20),
+        ymax * 0.92,
+        "Nov 2022",
+        ha="left",
+        va="center",
+        color=SUBTEXT,
+        fontsize=10.8,
     )
 
     add_branding(fig)
-    fig.text(0.065, 0.885, title, fontsize=23, color=TEXT, linespacing=1.08)
-    fig.text(0.065, 0.825, subtitle, fontsize=15.5, color=SUBTEXT, linespacing=1.28)
-
-    last_row = plot_df.iloc[-1]
-    monthly_y = min(float(last_row["share_pct"]) + 0.18, ymax * 0.92)
-    rolling_y = max(float(last_row["rolling_12m_pct"]) - 0.1, 0.15)
-    if monthly_y - rolling_y < 0.5:
-        monthly_y = min(monthly_y + 0.25, ymax * 0.94)
-        rolling_y = max(rolling_y - 0.2, 0.1)
-    if monthly_y < 0.45 and rolling_y < 0.45:
-        rolling_y = 0.22
-        monthly_y = 0.58
-    label_x = plot_df["month"].max() + pd.DateOffset(days=34)
-
-    ax.text(label_x, monthly_y, "monthly\nshare", color=TEXT, fontsize=14.5, weight="bold", va="center")
-    ax.text(
-        label_x,
-        rolling_y,
-        "12-month\nrolling\naverage",
-        color=TEXT,
-        fontsize=14.5,
-        weight="bold",
-        va="center",
+    fig.text(0.08, 0.92, title, fontsize=21.5, color=TEXT, linespacing=1.06)
+    fig.text(0.08, 0.865, subtitle, fontsize=13.6, color=SUBTEXT, linespacing=1.3)
+    fig.legend(
+        handles=[
+            Line2D([0], [0], color=MONTHLY, linewidth=3.0, label="Monthly share"),
+            Line2D([0], [0], color=ROLLING, linewidth=3.4, label="12-month rolling average"),
+            Line2D([0], [0], color=MUTED, linewidth=1.8, linestyle=(0, (2, 2)), label="ChatGPT release"),
+        ],
+        loc="upper left",
+        bbox_to_anchor=(0.08, 0.82),
+        frameon=False,
+        ncol=3,
+        fontsize=11.2,
+        handlelength=2.6,
+        labelcolor=TEXT,
     )
 
-    fig.text(0.065, 0.082, footnote, fontsize=11.3, color=SUBTEXT, linespacing=1.42)
+    fig.text(0.08, 0.095, footnote, fontsize=10.5, color=SUBTEXT, linespacing=1.38)
     save_figure(fig, png_path, svg_path)
 
 
@@ -502,45 +487,47 @@ def plot_comparison_series(
     core_plot, _ = filtered_plot_df(core_df, plot_start, plot_end)
     adjacent_plot, _ = filtered_plot_df(adjacent_df, plot_start, plot_end)
 
-    fig = plt.figure(figsize=(8.2, 10.6), dpi=220)
+    fig = plt.figure(figsize=(11.2, 7.3), dpi=220)
     fig.patch.set_facecolor(BACKGROUND)
-    ax = fig.add_axes([0.12, 0.235, 0.72, 0.525])
+    ax = fig.add_axes([0.08, 0.23, 0.84, 0.52])
 
-    ax.plot(adjacent_plot["month"], adjacent_plot["rolling_12m_pct"], color=ADJACENT, linewidth=3.6, zorder=2)
-    ax.plot(core_plot["month"], core_plot["rolling_12m_pct"], color=CORE, linewidth=3.6, zorder=3)
+    ax.plot(adjacent_plot["month"], adjacent_plot["rolling_12m_pct"], color=ADJACENT, linewidth=3.2, zorder=2)
+    ax.plot(core_plot["month"], core_plot["rolling_12m_pct"], color=CORE, linewidth=3.2, zorder=3)
 
     ymax = max(adjacent_plot["rolling_12m_pct"].max(), core_plot["rolling_12m_pct"].max()) * 1.22
     style_axis(ax, ymax=ymax)
-    ax.set_xlim(core_plot["month"].min(), core_plot["month"].max() + pd.DateOffset(months=11))
+    ax.set_xlim(core_plot["month"].min(), core_plot["month"].max())
 
-    ax.axvline(CHATGPT_RELEASE, color=TEXT, linestyle=":", linewidth=2.0, zorder=1)
+    ax.axvline(CHATGPT_RELEASE, color=MUTED, linestyle=(0, (2, 2)), linewidth=1.8, zorder=1)
     ax.text(
-        CHATGPT_RELEASE - pd.Timedelta(days=32),
-        ymax * 0.89,
-        "ChatGPT\nreleased",
-        ha="right",
-        va="top",
-        color=TEXT,
-        fontsize=12.5,
+        CHATGPT_RELEASE + pd.Timedelta(days=20),
+        ymax * 0.92,
+        "Nov 2022",
+        ha="left",
+        va="center",
+        color=SUBTEXT,
+        fontsize=10.8,
     )
 
     add_branding(fig)
-    fig.text(0.065, 0.885, title, fontsize=23, color=TEXT, linespacing=1.08)
-    fig.text(0.065, 0.825, subtitle, fontsize=15.5, color=SUBTEXT, linespacing=1.28)
+    fig.text(0.08, 0.92, title, fontsize=21.5, color=TEXT, linespacing=1.06)
+    fig.text(0.08, 0.865, subtitle, fontsize=13.6, color=SUBTEXT, linespacing=1.3)
+    fig.legend(
+        handles=[
+            Line2D([0], [0], color=CORE, linewidth=3.4, label="Core journals"),
+            Line2D([0], [0], color=ADJACENT, linewidth=3.4, label="Adjacent journals"),
+            Line2D([0], [0], color=MUTED, linewidth=1.8, linestyle=(0, (2, 2)), label="ChatGPT release"),
+        ],
+        loc="upper left",
+        bbox_to_anchor=(0.08, 0.82),
+        frameon=False,
+        ncol=3,
+        fontsize=11.2,
+        handlelength=2.6,
+        labelcolor=TEXT,
+    )
 
-    core_last = core_plot.iloc[-1]
-    adjacent_last = adjacent_plot.iloc[-1]
-    label_x = core_plot["month"].max() + pd.DateOffset(days=38)
-    core_y = float(core_last["rolling_12m_pct"]) + 0.08
-    adjacent_y = float(adjacent_last["rolling_12m_pct"]) - 0.08
-    if abs(core_y - adjacent_y) < 0.38:
-        core_y += 0.22
-        adjacent_y -= 0.22
-
-    ax.text(label_x, core_y, "core", color=CORE, fontsize=14.5, weight="bold", va="center")
-    ax.text(label_x, adjacent_y, "adjacent", color=ADJACENT, fontsize=14.5, weight="bold", va="center")
-
-    fig.text(0.065, 0.082, footnote, fontsize=11.3, color=SUBTEXT, linespacing=1.42)
+    fig.text(0.08, 0.095, footnote, fontsize=10.5, color=SUBTEXT, linespacing=1.38)
     save_figure(fig, png_path, svg_path)
 
 
@@ -567,9 +554,9 @@ def plot_cutoff_series(
     plot_frames = {key: filtered_plot_df(series_map[key], plot_start, plot_end)[0] for key in order}
     ymax = max(float(df["rolling_12m_pct"].max()) for df in plot_frames.values()) * 1.22
 
-    fig = plt.figure(figsize=(8.2, 10.8), dpi=220)
+    fig = plt.figure(figsize=(11.2, 7.8), dpi=220)
     fig.patch.set_facecolor(BACKGROUND)
-    ax = fig.add_axes([0.12, 0.22, 0.75, 0.47])
+    ax = fig.add_axes([0.08, 0.22, 0.84, 0.48])
 
     handles: list[Line2D] = []
     for key in order:
@@ -581,34 +568,34 @@ def plot_cutoff_series(
         handles.append(Line2D([0], [0], color=color, linewidth=3.6, label=labels[key]))
 
     style_axis(ax, ymax=ymax)
-    ax.set_xlim(next(iter(plot_frames.values()))["month"].min(), next(iter(plot_frames.values()))["month"].max() + pd.DateOffset(months=10))
+    ax.set_xlim(next(iter(plot_frames.values()))["month"].min(), next(iter(plot_frames.values()))["month"].max())
 
-    ax.axvline(CHATGPT_RELEASE, color=TEXT, linestyle=":", linewidth=2.0, zorder=1)
+    ax.axvline(CHATGPT_RELEASE, color=MUTED, linestyle=(0, (2, 2)), linewidth=1.8, zorder=1)
     ax.text(
-        CHATGPT_RELEASE - pd.Timedelta(days=26),
-        ymax * 0.88,
-        "ChatGPT\nreleased",
-        ha="right",
-        va="top",
-        color=TEXT,
-        fontsize=12.0,
+        CHATGPT_RELEASE + pd.Timedelta(days=20),
+        ymax * 0.92,
+        "Nov 2022",
+        ha="left",
+        va="center",
+        color=SUBTEXT,
+        fontsize=10.8,
     )
 
     add_branding(fig)
-    fig.text(0.065, 0.885, title, fontsize=22.5, color=TEXT, linespacing=1.08)
-    fig.text(0.065, 0.825, subtitle, fontsize=15.2, color=SUBTEXT, linespacing=1.28)
+    fig.text(0.08, 0.92, title, fontsize=21.5, color=TEXT, linespacing=1.06)
+    fig.text(0.08, 0.865, subtitle, fontsize=13.6, color=SUBTEXT, linespacing=1.3)
     fig.legend(
         handles=handles,
         loc="upper left",
-        bbox_to_anchor=(0.065, 0.775),
+        bbox_to_anchor=(0.08, 0.81),
         ncol=2,
         frameon=False,
-        fontsize=12.0,
+        fontsize=11.0,
         handlelength=2.5,
         labelcolor=TEXT,
     )
 
-    fig.text(0.065, 0.082, footnote, fontsize=11.3, color=SUBTEXT, linespacing=1.42)
+    fig.text(0.08, 0.095, footnote, fontsize=10.5, color=SUBTEXT, linespacing=1.38)
     save_figure(fig, png_path, svg_path)
 
 
@@ -629,14 +616,14 @@ def plot_field_small_multiples(
     ymax = max(float(df["rolling_12m_pct"].max()) for df in plot_frames.values()) * 1.2
     ymax = max(ymax, 0.8)
 
-    fig, axes = plt.subplots(4, 2, figsize=(11.0, 12.2), dpi=220)
+    fig, axes = plt.subplots(4, 2, figsize=(12.2, 10.0), dpi=220)
     fig.patch.set_facecolor(BACKGROUND)
-    plt.subplots_adjust(left=0.08, right=0.96, top=0.69, bottom=0.14, wspace=0.18, hspace=0.34)
+    plt.subplots_adjust(left=0.08, right=0.96, top=0.74, bottom=0.14, wspace=0.18, hspace=0.34)
 
     for ax, spec in zip(axes.flat, FIELD_SPECS):
         df = plot_frames[spec.slug]
         ax.plot(df["month"], df["rolling_12m_pct"], color=FIELD_LINE, linewidth=2.6, zorder=3)
-        ax.axvline(CHATGPT_RELEASE, color=TEXT, linestyle=":", linewidth=1.4, zorder=1)
+        ax.axvline(CHATGPT_RELEASE, color=MUTED, linestyle=(0, (2, 2)), linewidth=1.2, zorder=1)
         style_small_multiple_axis(ax, ymax=ymax)
         ax.set_xlim(df["month"].min(), df["month"].max())
         ax.set_title(spec.label, loc="left", fontsize=12.3, color=TEXT, pad=8)
@@ -651,9 +638,9 @@ def plot_field_small_multiples(
         )
 
     add_branding(fig)
-    fig.text(0.065, 0.91, title, fontsize=22.5, color=TEXT, linespacing=1.08)
-    fig.text(0.065, 0.85, subtitle, fontsize=15.2, color=SUBTEXT, linespacing=1.28)
-    fig.text(0.065, 0.082, footnote, fontsize=11.1, color=SUBTEXT, linespacing=1.42)
+    fig.text(0.08, 0.93, title, fontsize=21.5, color=TEXT, linespacing=1.06)
+    fig.text(0.08, 0.875, subtitle, fontsize=13.6, color=SUBTEXT, linespacing=1.3)
+    fig.text(0.08, 0.095, footnote, fontsize=10.5, color=SUBTEXT, linespacing=1.38)
     save_figure(fig, png_path, svg_path)
 
 
@@ -745,12 +732,12 @@ def main() -> None:
 
     plot_single_series(
         variant_frames["all"],
-        title="AI-related terms in published economics papers",
-        subtitle="Monthly share of papers mentioning selected AI-related\nterms in their title or abstract",
+        title="Share of published papers mentioning AI terms",
+        subtitle="Title or abstract matches in the screened economics-paper corpus",
         footnote=(
-            "Source: Frontier Graph published-journal corpus\n"
-            "* Terms include artificial intelligence, large language model, generative AI,\n"
-            "ChatGPT, deep learning, neural network, BERT, transformer, and GPT model-family mentions."
+            "Source: published-journal corpus assembled for Frontier Graph\n"
+            "AI terms include artificial intelligence, large language model, generative AI, ChatGPT,\n"
+            "deep learning, neural network, BERT, transformer, and explicit GPT model-family mentions."
         ),
         png_path=args.figures_dir / "frontiergraph_ai_mentions_share.png",
         svg_path=args.figures_dir / "frontiergraph_ai_mentions_share.svg",
@@ -761,11 +748,11 @@ def main() -> None:
     plot_comparison_series(
         variant_frames["core"],
         variant_frames["adjacent"],
-        title="AI-related terms in core and adjacent journals",
-        subtitle="12-month rolling share of published papers mentioning selected\nAI-related terms",
+        title="AI-term mentions in core and adjacent journal sets",
+        subtitle="12-month rolling averages for title or abstract matches",
         footnote=(
-            "Source: Frontier Graph screened corpus\n"
-            "* Core and adjacent follow the project's published-journal bucket definitions."
+            "Source: published-journal corpus assembled for Frontier Graph\n"
+            "Core and adjacent follow the project's published-journal bucket definitions."
         ),
         png_path=args.figures_dir / "frontiergraph_ai_mentions_core_vs_adjacent.png",
         svg_path=args.figures_dir / "frontiergraph_ai_mentions_core_vs_adjacent.svg",
@@ -776,11 +763,11 @@ def main() -> None:
     plot_cutoff_series(
         cutoff_frames,
         cutoff_labels,
-        title="AI-related terms by journal cutoff",
-        subtitle="12-month rolling share in the top 50, 100, and 150 core and adjacent journal sets",
+        title="AI-term mentions by journal-set cutoff",
+        subtitle="12-month rolling averages for the top 50, 100, and 150 core and adjacent sets",
         footnote=(
-            "Source: Frontier Graph screened corpus\n"
-            "* Cutoffs are nested subsets of the mean-FWCI ranked source lists used to build the current corpus."
+            "Source: published-journal corpus assembled for Frontier Graph\n"
+            "Cutoffs are nested subsets of the mean-FWCI ranked source lists used to build the current corpus."
         ),
         png_path=args.figures_dir / "frontiergraph_ai_mentions_cutoff_splits.png",
         svg_path=args.figures_dir / "frontiergraph_ai_mentions_cutoff_splits.svg",
@@ -791,11 +778,11 @@ def main() -> None:
     plot_field_small_multiples(
         field_frames,
         field_metadata,
-        title="AI-related terms by major economics field",
-        subtitle="12-month rolling share in field slices derived from paper-level primary-topic labels",
+        title="AI-term mentions across major field slices",
+        subtitle="12-month rolling averages from paper-level primary-topic assignments",
         footnote=(
-            "Source: Frontier Graph screened corpus\n"
-            "* Fields are assigned with a transparent keyword map over each paper's OpenAlex primary topic label."
+            "Source: published-journal corpus assembled for Frontier Graph\n"
+            "Fields are assigned with a transparent keyword map over each paper's OpenAlex primary topic label."
         ),
         png_path=args.figures_dir / "frontiergraph_ai_mentions_major_fields.png",
         svg_path=args.figures_dir / "frontiergraph_ai_mentions_major_fields.svg",

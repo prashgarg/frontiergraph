@@ -2,7 +2,7 @@
 
 This folder is a small, self-contained replication bundle for one descriptive exercise:
 
-- track the share of published papers in the screened Frontier Graph corpus that mention AI-related terms in their title or abstract
+- track the share of published papers in the screened corpus that mention AI-related terms in their title or abstract
 - compare the full corpus and the `core` vs `adjacent` split
 - break the same series down by journal cutoffs and by broad economics fields
 
@@ -38,7 +38,7 @@ If you just want the main chart immediately, open:
 
 ## What this uses
 
-- Screened paper universe: the Frontier Graph extraction corpus in `data/production/frontiergraph_extraction_v2/.../fwci_core150_adj150_extractions.sqlite`
+- Screened paper universe: the published-paper extraction corpus in `data/production/frontiergraph_extraction_v2/.../fwci_core150_adj150_extractions.sqlite`
 - Publication dates: the enriched OpenAlex database in `data/processed/openalex/published_enriched/openalex_published_enriched.sqlite`
 - Journal cutoffs: the ranked source lists in `data/production/frontiergraph_extraction_v2/fwci_core150_adj150/source_lists/`
 - Term search: title plus abstract
@@ -47,7 +47,7 @@ If you just want the main chart immediately, open:
 
 At a high level, the exercise does four things:
 
-1. Start from the screened Frontier Graph published-paper corpus rather than the wider upstream OpenAlex universe.
+1. Start from the screened published-paper corpus rather than the wider upstream OpenAlex universe.
 2. For each paper, combine title and abstract text and search for a fixed list of AI-related terms.
 3. Aggregate those matches to the month level and compute:
    - monthly share = matched papers / all dated papers that month
@@ -58,7 +58,7 @@ The main corpus run in this snapshot contains `242,482` screened papers with usa
 
 ### Corpus splits used here
 
-- `all`: full screened Frontier Graph published-paper corpus
+- `all`: full screened published-paper corpus
 - `core`: core economics journals in the screened corpus
 - `adjacent`: adjacent journals in the screened corpus
 - `core top 50 / 100 / 150`: nested subsets of the ranked core source list used to build the current corpus
