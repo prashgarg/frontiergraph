@@ -178,6 +178,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   let opportunitiesIndex = {};
   let centralConcepts = [];
   let adjacency = new Map();
+  let rootNeighborhood = null;
   let currentNeighborhood = null;
   let currentOpportunities = [];
   let activeQuestionPairKey = null;
@@ -218,6 +219,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   const normalizeForSearch = (value) => tokenize(value).join(" ");
   const estimateChipWidth = (label) => clamp(78 + String(label || "").length * 6.4, 86, 248);
   const isInBackbone = (conceptId) => Boolean(graph?.nodeMap?.has(conceptId));
+  const rootIsInBackbone = () => Boolean(rootConceptId && isInBackbone(rootConceptId));
   const conceptTitle = (concept) => concept?.plain_label || concept?.label || "";
   const conceptSubtitle = (concept) => {
     const value = String(concept?.subtitle ?? "").trim();
@@ -233,6 +235,21 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   const conceptLabel = (conceptId, fallback = "") => {
     const concept = conceptMap.get(conceptId);
     return concept ? conceptTitle(concept) : fallback;
+  };
+  const buildSyntheticNode = (conceptId) => {
+    const concept = conceptMap.get(conceptId);
+    if (!concept) return null;
+    return {
+      id: conceptId,
+      label: conceptTitle(concept),
+      plain_label: conceptTitle(concept),
+      subtitle: conceptSubtitle(concept),
+      weighted_degree: safeNumber(concept.weighted_degree),
+      distinct_paper_support: safeNumber(concept.distinct_paper_support),
+      x: 0.5,
+      y: 0.5,
+      show_label: true,
+    };
   };
   const scoreTextMatch = (text, query, queryTokens, baseWeight) => {
     if (!text) return 0;
@@ -381,6 +398,30 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     return secondRingIds.slice(0, SECOND_RING_LIMIT);
   };
 
+  const getNeighborhoodItems = (neighborhood) =>
+    Array.from(
+      new Map(
+        [...(neighborhood?.top_neighbors || []), ...(neighborhood?.incoming || []), ...(neighborhood?.outgoing || [])]
+          .filter((item) => item?.concept_id && item.concept_id !== rootConceptId)
+          .map((item) => [item.concept_id, item]),
+      ).values(),
+    );
+
+  const getProxyRootNeighbors = (limit) => {
+    const neighborhood = rootNeighborhood || currentNeighborhood;
+    if (!neighborhood) return { neighborIds: [], supportByNeighbor: new Map() };
+    const supportByNeighbor = new Map();
+    const neighborIds = getNeighborhoodItems(neighborhood)
+      .filter((item) => isInBackbone(item.concept_id))
+      .sort((left, right) => safeNumber(right.support_count) - safeNumber(left.support_count))
+      .slice(0, limit)
+      .map((item) => {
+        supportByNeighbor.set(item.concept_id, safeNumber(item.support_count));
+        return item.concept_id;
+      });
+    return { neighborIds, supportByNeighbor };
+  };
+
   const buildLocalPositionMap = (firstRingIds, secondRingIds) => {
     const positionMap = new Map();
     const centerX = GRAPH_WIDTH * 0.5;
@@ -429,7 +470,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   };
 
   const getVisibleGraphState = () => {
-    const selectedActive = Boolean(rootConceptId) && isInBackbone(rootConceptId);
+    const selectedActive = Boolean(rootConceptId);
+    const rootBackbone = rootIsInBackbone();
     const activeQuestion = currentQuestion();
     const counterpartId = activeQuestion
       ? activeQuestion.source_id === selectedId
@@ -447,7 +489,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           .slice(0, 3)
       : [];
 
-    if (mapMode === "global" || !selectedActive) {
+    if ((mapMode === "global" && rootBackbone) || !selectedActive) {
       return {
         focusedActive: false,
         nodes: graph.nodes,
@@ -460,7 +502,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       };
     }
 
-    const firstRingIds = getRankedNeighbors(rootConceptId, FIRST_RING_LIMIT, new Set([rootConceptId]));
+    const proxy = rootBackbone ? null : getProxyRootNeighbors(FIRST_RING_LIMIT);
+    const firstRingIds = rootBackbone
+      ? getRankedNeighbors(rootConceptId, FIRST_RING_LIMIT, new Set([rootConceptId]))
+      : proxy.neighborIds;
     const secondRingIds = hopDepth > 1 ? buildSecondRing(firstRingIds) : [];
     const visibleIds = new Set([rootConceptId, ...firstRingIds, ...secondRingIds]);
     if (counterpartId) visibleIds.add(counterpartId);
@@ -469,11 +514,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const firstRingSet = new Set(firstRingIds);
     const highlightSet = new Set([counterpartId, ...mediatorIds].filter(Boolean));
 
-    const visibleEdges = graph.edges.filter((edge) => {
+    const visibleBackboneEdges = graph.edges.filter((edge) => {
       if (!visibleIds.has(edge.source) || !visibleIds.has(edge.target)) return false;
       return (
-        edge.source === rootConceptId ||
-        edge.target === rootConceptId ||
+        (rootBackbone && (edge.source === rootConceptId || edge.target === rootConceptId)) ||
         firstRingSet.has(edge.source) ||
         firstRingSet.has(edge.target) ||
         highlightSet.has(edge.source) ||
@@ -481,10 +525,31 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       );
     });
 
+    const proxyEdges = !rootBackbone
+      ? firstRingIds.map((neighborId) => {
+          const supportCount = proxy.supportByNeighbor.get(neighborId) || 0;
+          return {
+            id: `proxy-root-${rootConceptId}-${neighborId}`,
+            source: rootConceptId,
+            target: neighborId,
+            support_count: supportCount,
+            strength: clamp(0.22 + Math.log10(supportCount + 1) * 0.28, 0.22, 0.95),
+            synthetic: true,
+          };
+        })
+      : [];
+
+    const visibleNodes = rootBackbone
+      ? graph.nodes.filter((node) => visibleIds.has(node.id))
+      : [
+          buildSyntheticNode(rootConceptId),
+          ...graph.nodes.filter((node) => visibleIds.has(node.id) && node.id !== rootConceptId),
+        ].filter(Boolean);
+
     return {
       focusedActive: true,
-      nodes: graph.nodes.filter((node) => visibleIds.has(node.id)),
-      edges: visibleEdges,
+      nodes: visibleNodes,
+      edges: [...proxyEdges, ...visibleBackboneEdges],
       firstRing: firstRingSet,
       secondRing: new Set(secondRingIds),
       counterpartId,
@@ -544,7 +609,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       resetViewportTransform();
       return;
     }
-    const nodes = nodeIds.map((nodeId) => graph.nodeMap.get(nodeId)).filter(Boolean);
+    const visibleState = getVisibleGraphState();
+    const visibleNodeMap = new Map(visibleState.nodes.map((node) => [node.id, node]));
+    const nodes = nodeIds
+      .map((nodeId) => visibleNodeMap.get(nodeId) || graph.nodeMap.get(nodeId) || (nodeId === rootConceptId ? buildSyntheticNode(nodeId) : null))
+      .filter(Boolean);
     if (!nodes.length) {
       resetViewportTransform();
       return;
@@ -574,7 +643,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
   const setDefaultViewport = () => {
     if (!graph) return;
-    if (mapMode === "local" && rootConceptId && isInBackbone(rootConceptId)) {
+    if (mapMode === "local" && rootConceptId) {
       fitViewToNodeIds(getVisibleGraphState().nodes.map((node) => node.id), 150, 0.92);
       return;
     }
@@ -613,9 +682,16 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
   const updateMapModeButton = () => {
     if (!(toggleMapMode instanceof HTMLButtonElement)) return;
+    if (rootConceptId && !rootIsInBackbone()) {
+      toggleMapMode.textContent = "Backbone unavailable";
+      toggleMapMode.classList.remove("is-active");
+      toggleMapMode.disabled = true;
+      return;
+    }
     const showGlobal = mapMode === "global";
     toggleMapMode.textContent = showGlobal ? "Return to local map" : "Show backbone";
     toggleMapMode.classList.toggle("is-active", showGlobal);
+    toggleMapMode.disabled = false;
   };
 
   const setPanelTab = (nextTab) => {
@@ -640,6 +716,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       return;
     }
     if (concept) {
+      if (!rootIsInBackbone()) {
+        hoverCard.textContent = `${conceptTitle(concept)} is searchable but not stable enough for the released backbone view yet. Showing nearby supported topics up to ${hopDepth} hops away.`;
+        return;
+      }
       if (inspectedConcept && inspectedConcept.concept_id !== rootConceptId) {
         hoverCard.textContent = `Inspecting ${conceptTitle(inspectedConcept)} inside a ${hopDepth}-hop map rooted in ${conceptTitle(concept)}. Use the panel when you want to rebuild the map around it.`;
         return;
@@ -688,6 +768,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     if (!(selectedConcept instanceof HTMLElement)) return;
     const rootConcept = rootConceptId ? conceptMap.get(rootConceptId) : null;
     const isMapRoot = concept.concept_id === rootConceptId;
+    const rootNotBackbone = Boolean(rootConceptId) && !rootIsInBackbone();
     selectedConcept.innerHTML = `
       <div class="literature-summary">
         <div class="literature-summary-copy">
@@ -697,6 +778,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           ${
             rootConcept && !isMapRoot
               ? `<p class="mini-copy literature-root-note">Rooted in <strong>${escapeHtml(conceptTitle(rootConcept))}</strong>.</p>`
+              : ""
+          }
+          ${
+            rootNotBackbone
+              ? `<p class="mini-copy literature-root-note">This topic is searchable but not stable enough for a local graph view yet. Showing nearby supported topics up to ${hopDepth} hops away.</p>`
               : ""
           }
         </div>
@@ -959,7 +1045,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const nodeMarkup = [];
     const edgeMarkup = [];
     const visibleState = getVisibleGraphState();
-    const selectedActive = Boolean(rootConceptId) && isInBackbone(rootConceptId);
+    const selectedActive = Boolean(rootConceptId);
     const {
       focusedActive,
       nodes: visibleNodes,
@@ -970,10 +1056,13 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       mediatorIds,
       renderPositionMap,
     } = visibleState;
+    const visibleNodeMap = new Map(visibleNodes.map((node) => [node.id, node]));
+    const edgeLookup = new Map(visibleEdges.map((edge) => [edge.id, edge]));
 
     for (const edge of visibleEdges) {
-      const source = graph.nodeMap.get(edge.source);
-      const target = graph.nodeMap.get(edge.target);
+      const source = visibleNodeMap.get(edge.source) || graph.nodeMap.get(edge.source) || buildSyntheticNode(edge.source);
+      const target = visibleNodeMap.get(edge.target) || graph.nodeMap.get(edge.target) || buildSyntheticNode(edge.target);
+      if (!source || !target) continue;
       const sourceRender = nodeRenderState(source, renderPositionMap);
       const targetRender = nodeRenderState(target, renderPositionMap);
       const isSelectedEdge = selectedActive && (edge.source === rootConceptId || edge.target === rootConceptId);
@@ -1049,12 +1138,16 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     for (const nodeElement of canvas.querySelectorAll("[data-node-id]")) {
       const dragHandle = nodeElement.querySelector("circle");
       nodeElement.addEventListener("mouseenter", (event) => {
-        const node = graph.nodeMap.get(nodeElement.dataset.nodeId);
+        const node = visibleNodeMap.get(nodeElement.dataset.nodeId) || graph.nodeMap.get(nodeElement.dataset.nodeId) || buildSyntheticNode(nodeElement.dataset.nodeId);
+        if (!node) return;
+        const backboneDetail = isInBackbone(node.id)
+          ? `${formatNumber(safeNumber(node.weighted_degree))} weighted links in the backbone.`
+          : "Searchable topic outside the released backbone.";
         showTooltip(event, `
           <strong>${escapeHtml(node.plain_label || node.label)}</strong><br />
           ${node.subtitle ? `${escapeHtml(node.subtitle)}<br />` : ""}
           <span>${formatNumber(safeNumber(node.distinct_paper_support))} papers in the ${contextLabel}.</span><br />
-          <span>${formatNumber(safeNumber(node.weighted_degree))} weighted links in the backbone.</span><br />
+          <span>${escapeHtml(backboneDetail)}</span><br />
           <span class="tooltip-action">Click to inspect this topic. Use the panel to rebuild the map here.</span>
         `);
       });
@@ -1072,11 +1165,14 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
     for (const edgeElement of canvas.querySelectorAll("[data-edge-id]")) {
       edgeElement.addEventListener("mouseenter", (event) => {
-        const edge = graph.edgeMap.get(edgeElement.dataset.edgeId);
+        const edge = edgeLookup.get(edgeElement.dataset.edgeId);
+        if (!edge) return;
+        const sourceNode = visibleNodeMap.get(edge.source) || graph.nodeMap.get(edge.source) || buildSyntheticNode(edge.source);
+        const targetNode = visibleNodeMap.get(edge.target) || graph.nodeMap.get(edge.target) || buildSyntheticNode(edge.target);
         showTooltip(event, `
-          <strong>${escapeHtml(conceptLabel(edge.source, graph.nodeMap.get(edge.source).label))} to ${escapeHtml(conceptLabel(edge.target, graph.nodeMap.get(edge.target).label))}</strong><br />
+          <strong>${escapeHtml(conceptLabel(edge.source, sourceNode?.label || ""))} to ${escapeHtml(conceptLabel(edge.target, targetNode?.label || ""))}</strong><br />
           <span>${formatNumber(safeNumber(edge.support_count))} papers mention this nearby directed relation.</span><br />
-          <span>Local edge strength: ${safeNumber(edge.strength).toFixed(2)} on the current map.</span>
+          <span>${edge.synthetic ? "This is a proxy link from the searched topic into the released backbone." : `Local edge strength: ${safeNumber(edge.strength).toFixed(2)} on the current map.`}</span>
         `);
       });
       edgeElement.addEventListener("mousemove", moveTooltip);
@@ -1099,11 +1195,13 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     currentNeighborhood = null;
     const shardPath = neighborhoodIndex[conceptId];
     if (!shardPath) {
+      if (conceptId === rootConceptId) rootNeighborhood = null;
       renderAllPanels();
       return;
     }
     const shard = await fetchJson(shardPath);
     currentNeighborhood = shard[conceptId] || null;
+    if (conceptId === rootConceptId) rootNeighborhood = currentNeighborhood;
     renderAllPanels();
   };
 
@@ -1131,6 +1229,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     if (!concept) return;
     if (rebuildMap || !rootConceptId) {
       rootConceptId = conceptId;
+      rootNeighborhood = null;
+      if (!isInBackbone(conceptId)) mapMode = "local";
     }
     selectedId = conceptId;
     currentNeighborhood = null;
@@ -1154,6 +1254,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     if (selectedPapers instanceof HTMLElement) {
       selectedPapers.innerHTML = `<p class="card-copy">Loading anchor papers...</p>`;
     }
+    updateMapModeButton();
     renderGraph();
     restoreStatus();
 
@@ -1164,6 +1265,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
 
     await Promise.all([renderNeighborhood(conceptId), renderOpportunities(conceptId)]);
+    updateMapModeButton();
     renderGraph();
     if (rebuildMap) {
       setDefaultViewport();
