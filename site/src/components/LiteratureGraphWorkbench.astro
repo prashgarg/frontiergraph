@@ -1,0 +1,1321 @@
+---
+interface Props {
+  graphPath: string;
+  conceptIndexPath: string;
+  neighborhoodsIndexPath: string;
+  opportunitiesIndexPath: string;
+  centralConceptsPath: string;
+  contextLabel?: string;
+}
+
+const {
+  graphPath,
+  conceptIndexPath,
+  neighborhoodsIndexPath,
+  opportunitiesIndexPath,
+  centralConceptsPath,
+  contextLabel = "published economics graph",
+} = Astro.props;
+
+const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
+---
+
+<section
+  id={rootId}
+  class="literature-workbench"
+  data-graph-path={graphPath}
+  data-concept-index-path={conceptIndexPath}
+  data-neighborhoods-index-path={neighborhoodsIndexPath}
+  data-opportunities-index-path={opportunitiesIndexPath}
+  data-central-concepts-path={centralConceptsPath}
+>
+  <div class="literature-toolbar">
+    <div class="literature-toolbar-copy">
+      <span class="tiny-label literature-kicker">Experimental</span>
+      <h1>Literature Graph</h1>
+      <p class="card-copy">
+        Start from one topic and open the surrounding literature as a calm local map. Keep the graph visible, then inspect nearby bridges, short paths, and anchor papers without leaving the page.
+      </p>
+    </div>
+
+    <div class="sidebar-card inspector-card literature-search-panel">
+      <label class="search-shell literature-search-shell">
+        <span>Search topic</span>
+        <input type="search" placeholder="Search topics or close variants" data-role="search-input" />
+        <div class="search-results" data-role="search-results"></div>
+      </label>
+
+      <div class="literature-jumpbar">
+        <span class="tiny-label">Try one of these</span>
+        <div class="central-list central-list-inline" data-role="central-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="literature-stage">
+    <section class="graph-panel literature-map-card">
+      <div class="literature-map-toolbar">
+        <div class="literature-toggle-group" role="group" aria-label="Map depth">
+          <button class="button-tertiary literature-toggle" type="button" data-role="depth-1">1 hop</button>
+          <button class="button-secondary literature-toggle is-active" type="button" data-role="depth-2">2 hops</button>
+          <button class="button-tertiary literature-toggle" type="button" data-role="toggle-map-mode">Show backbone</button>
+        </div>
+
+        <div class="graph-control-row literature-map-actions">
+          <button class="button-tertiary" type="button" data-role="zoom-out">Zoom out</button>
+          <button class="button-tertiary" type="button" data-role="zoom-in">Zoom in</button>
+          <button class="button-tertiary" type="button" data-role="reset-view">Reset view</button>
+        </div>
+      </div>
+
+      <div class="graph-status literature-status" data-role="hover-card" aria-live="polite">
+        Choose a topic to open its local literature map.
+      </div>
+
+      <div class="graph-canvas-shell literature-canvas-shell">
+        <svg class="graph-canvas literature-canvas" data-role="graph-canvas" viewBox="0 0 1120 860" aria-label="Literature graph"></svg>
+        <div class="graph-tooltip" data-role="graph-tooltip" hidden></div>
+      </div>
+
+      <div class="graph-help-row literature-help-row">
+        <span class="mini-copy">
+          Click any topic to recenter the graph. The right-hand panel explains why the topic is here, which paths are strongest nearby, and which anchor papers to inspect first.
+        </span>
+      </div>
+    </section>
+
+    <aside class="graph-panel literature-panel">
+      <div class="literature-panel-header" data-role="selected-concept">
+        <p class="card-copy">Choose a topic to see its local neighborhood.</p>
+      </div>
+
+      <div class="literature-panel-tabs" role="tablist" aria-label="Literature graph panel">
+        <button class="literature-tab-button is-active" type="button" data-role="panel-tab" data-tab="overview" aria-selected="true">Overview</button>
+        <button class="literature-tab-button" type="button" data-role="panel-tab" data-tab="paths" aria-selected="false">Paths</button>
+        <button class="literature-tab-button" type="button" data-role="panel-tab" data-tab="papers" aria-selected="false">Papers</button>
+      </div>
+
+      <section class="literature-panel-section" data-role="panel-section" data-panel="overview">
+        <div data-role="selected-neighborhood">
+          <p class="card-copy">Nearby topics and local map context will appear here.</p>
+        </div>
+      </section>
+
+      <section class="literature-panel-section" data-role="panel-section" data-panel="paths" hidden>
+        <div data-role="selected-question">
+          <p class="card-copy">Once you choose a topic, this panel will show the strongest nearby question-shaped paths and bridges.</p>
+        </div>
+        <div data-role="selected-opportunities">
+          <p class="card-copy">Candidate paths will appear here.</p>
+        </div>
+      </section>
+
+      <section class="literature-panel-section" data-role="panel-section" data-panel="papers" hidden>
+        <div data-role="selected-papers">
+          <p class="card-copy">Anchor papers will appear here once a topic is selected.</p>
+        </div>
+      </section>
+    </aside>
+  </div>
+</section>
+
+<script is:inline define:vars={{ rootId, contextLabel }} type="module">
+  const root = document.getElementById(rootId);
+  if (!(root instanceof HTMLElement)) throw new Error("Literature graph root missing");
+
+  const GRAPH_WIDTH = 1120;
+  const GRAPH_HEIGHT = 860;
+  const MIN_SCALE = 0.55;
+  const MAX_SCALE = 4;
+  const DEFAULT_GLOBAL_SCALE = 0.9;
+  const DEFAULT_TOPIC_LABEL = "trade openness";
+  const FIRST_RING_LIMIT = 10;
+  const SECOND_RING_LIMIT = 18;
+  const TOP_PATH_LIMIT = 6;
+  const DEFAULT_HOP_DEPTH = 2;
+
+  const graphPath = root.dataset.graphPath;
+  const conceptIndexPath = root.dataset.conceptIndexPath;
+  const neighborhoodsIndexPath = root.dataset.neighborhoodsIndexPath;
+  const opportunitiesIndexPath = root.dataset.opportunitiesIndexPath;
+  const centralConceptsPath = root.dataset.centralConceptsPath;
+
+  const STARTING_TOPIC_LABELS = [
+    "trade openness",
+    "public debt",
+    "inflation",
+    "education",
+    "financial development",
+    "urbanization",
+    "economic growth",
+    "monetary policy",
+  ];
+
+  const searchInput = root.querySelector('[data-role="search-input"]');
+  const searchResults = root.querySelector('[data-role="search-results"]');
+  const centralList = root.querySelector('[data-role="central-list"]');
+  const hoverCard = root.querySelector('[data-role="hover-card"]');
+  const canvas = root.querySelector('[data-role="graph-canvas"]');
+  const graphTooltip = root.querySelector('[data-role="graph-tooltip"]');
+  const selectedConcept = root.querySelector('[data-role="selected-concept"]');
+  const selectedNeighborhood = root.querySelector('[data-role="selected-neighborhood"]');
+  const selectedQuestion = root.querySelector('[data-role="selected-question"]');
+  const selectedOpportunities = root.querySelector('[data-role="selected-opportunities"]');
+  const selectedPapers = root.querySelector('[data-role="selected-papers"]');
+  const panelTabButtons = Array.from(root.querySelectorAll('[data-role="panel-tab"]'));
+  const panelSections = Array.from(root.querySelectorAll('[data-role="panel-section"]'));
+  const depthOneButton = root.querySelector('[data-role="depth-1"]');
+  const depthTwoButton = root.querySelector('[data-role="depth-2"]');
+  const toggleMapMode = root.querySelector('[data-role="toggle-map-mode"]');
+  const resetView = root.querySelector('[data-role="reset-view"]');
+  const zoomOutButton = root.querySelector('[data-role="zoom-out"]');
+  const zoomInButton = root.querySelector('[data-role="zoom-in"]');
+
+  const shardCache = new Map();
+  let selectedId = null;
+  let graph = null;
+  let concepts = [];
+  let conceptMap = new Map();
+  let neighborhoodIndex = {};
+  let opportunitiesIndex = {};
+  let centralConcepts = [];
+  let adjacency = new Map();
+  let currentNeighborhood = null;
+  let currentOpportunities = [];
+  let activeQuestionPairKey = null;
+  let mapMode = "local";
+  let hopDepth = DEFAULT_HOP_DEPTH;
+  let panelTab = "overview";
+  let interaction = null;
+  let viewState = { scale: 1, translateX: 0, translateY: 0 };
+
+  const escapeHtml = (value) =>
+    String(value ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
+
+  const escapeAttr = (value) => escapeHtml(value ?? "");
+  const formatNumber = (value) => new Intl.NumberFormat("en-US").format(value);
+  const safeNumber = (value) => {
+    const numeric = Number(value);
+    return Number.isFinite(numeric) ? numeric : 0;
+  };
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+  const normalizeText = (value) =>
+    String(value ?? "")
+      .toLowerCase()
+      .normalize("NFKD")
+      .replace(/[^\p{L}\p{N}]+/gu, " ")
+      .trim()
+      .replace(/\s+/g, " ");
+  const singularizeToken = (token) => {
+    if (token.endsWith("ies") && token.length > 4) return `${token.slice(0, -3)}y`;
+    if (token.endsWith("es") && token.length > 4 && /(ses|xes|zes|ches|shes)$/.test(token)) return token.slice(0, -2);
+    if (token.endsWith("s") && token.length > 3 && !token.endsWith("ss")) return token.slice(0, -1);
+    return token;
+  };
+  const tokenize = (value) => Array.from(new Set(normalizeText(value).split(" ").filter(Boolean).map(singularizeToken)));
+  const normalizeForSearch = (value) => tokenize(value).join(" ");
+  const estimateChipWidth = (label) => clamp(78 + String(label || "").length * 6.4, 86, 248);
+  const isInBackbone = (conceptId) => Boolean(graph?.nodeMap?.has(conceptId));
+  const conceptTitle = (concept) => concept?.plain_label || concept?.label || "";
+  const conceptSubtitle = (concept) => {
+    const value = String(concept?.subtitle ?? "").trim();
+    return value && !["na", "n/a", "nan", "null", "undefined", "none"].includes(value.toLowerCase()) ? value : "";
+  };
+  const questionSideLabel = (item, side) => {
+    if (!item) return "";
+    if (side === "source") {
+      return item?.source_display_label || item?.source_label || conceptLabel(item?.source_id, "");
+    }
+    return item?.target_display_label || item?.target_label || conceptLabel(item?.target_id, "");
+  };
+  const conceptLabel = (conceptId, fallback = "") => {
+    const concept = conceptMap.get(conceptId);
+    return concept ? conceptTitle(concept) : fallback;
+  };
+  const scoreTextMatch = (text, query, queryTokens, baseWeight) => {
+    if (!text) return 0;
+    let score = 0;
+    if (text === query) score += 120 * baseWeight;
+    else if (text.startsWith(query)) score += (90 - Math.min(text.length - query.length, 18)) * baseWeight;
+    else if (text.includes(query)) score += 52 * baseWeight;
+    const normalizedText = normalizeForSearch(text);
+    const normalizedQuery = normalizeForSearch(query);
+    if (normalizedText === normalizedQuery) score += 190 * baseWeight;
+    else if (normalizedText.startsWith(normalizedQuery)) score += (96 - Math.min(normalizedText.length - normalizedQuery.length, 18)) * baseWeight;
+    else if (normalizedText.includes(normalizedQuery)) score += 58 * baseWeight;
+    const textTokens = tokenize(text);
+    const coveredTokens = queryTokens.filter((token) => textTokens.includes(token)).length;
+    if (coveredTokens > 0) {
+      score += coveredTokens * 18 * baseWeight;
+      if (coveredTokens === queryTokens.length) score += 26 * baseWeight;
+    }
+    return score;
+  };
+  const searchConcepts = (query) => {
+    const normalized = normalizeText(query);
+    if (!normalized) return [];
+    const queryTokens = tokenize(normalized);
+    return concepts
+      .map((concept) => {
+        const plainLabel = normalizeText(concept.plain_label || concept.label);
+        const aliases = (concept.aliases || []).map((alias) => normalizeText(alias)).filter(Boolean);
+        const searchTerms = (concept.search_terms || []).map((term) => normalizeText(term)).filter(Boolean);
+        let score = 0;
+        score += scoreTextMatch(plainLabel, normalized, queryTokens, 3.4);
+        for (const alias of aliases) score = Math.max(score, scoreTextMatch(alias, normalized, queryTokens, 2.6));
+        for (const term of searchTerms) score = Math.max(score, scoreTextMatch(term, normalized, queryTokens, 1.15));
+        if (!score) return null;
+        return { concept, score };
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score || safeNumber(b.concept.weighted_degree) - safeNumber(a.concept.weighted_degree))
+      .slice(0, 8)
+      .map((entry) => entry.concept);
+  };
+  const questionPriorityScore = (item, selectedConceptId) => {
+    const baseScore = safeNumber(item.score);
+    const specificityBonus = safeNumber(item.public_specificity_score) * 0.65;
+    const pathScore = Math.min(safeNumber(item.supporting_path_count), 12) * 2.8;
+    const mediatorScore = Math.min(safeNumber(item.mediator_count), 8) * 1.45;
+    const motifScore = Math.min(safeNumber(item.motif_count), 8) * 0.8;
+    const crossBonus = safeNumber(item.cross_field) ? 1.2 : 0;
+    const exactPenalty = Math.min(safeNumber(item.cooc_count), 3) * 1.35;
+    return baseScore + specificityBonus + pathScore + mediatorScore + motifScore + crossBonus - exactPenalty;
+  };
+  const currentQuestion = () =>
+    activeQuestionPairKey ? currentOpportunities.find((item) => item.pair_key === activeQuestionPairKey) || null : null;
+  const questionTitle = (item) => {
+    if (item?.display_question_title) return item.display_question_title;
+    if (item?.display_title) return item.display_title;
+    const source = questionSideLabel(item, "source");
+    const target = questionSideLabel(item, "target");
+    if (source && target) return `How do ${source} and ${target} connect?`;
+    return item?.public_pair_label || "Candidate question";
+  };
+  const conciseQuestionReason = (item) => {
+    const pathCount = safeNumber(item.supporting_path_count);
+    const mediatorCount = safeNumber(item.mediator_count);
+    if (pathCount > 0 && mediatorCount > 0) {
+      return `${formatNumber(pathCount)} nearby paths and ${formatNumber(mediatorCount)} intermediate topics already connect these two sides in the ${contextLabel}.`;
+    }
+    if (pathCount > 0) return `${formatNumber(pathCount)} nearby paths already connect these two sides in the ${contextLabel}.`;
+    if (mediatorCount > 0) return `${formatNumber(mediatorCount)} intermediate topics already connect these two sides in the ${contextLabel}.`;
+    return `Nearby paths and papers already bring these two sides close together in the ${contextLabel}.`;
+  };
+  const questionProjectShapeLabel = (item) => {
+    if (safeNumber(item?.mediator_count) >= 6 || safeNumber(item?.supporting_path_count) >= 8 || safeNumber(item?.motif_count) >= 5) {
+      return "Broader project";
+    }
+    return "Focused question";
+  };
+  const resolveMediatorConceptId = (label) => {
+    const needle = normalizeText(label);
+    if (!needle) return null;
+    const exact = concepts.find((concept) => normalizeText(concept.plain_label || concept.label) === needle);
+    return exact?.concept_id || null;
+  };
+
+  const fetchJson = async (path) => {
+    if (shardCache.has(path)) return shardCache.get(path);
+    const response = await fetch(path);
+    const payload = await response.json();
+    shardCache.set(path, payload);
+    return payload;
+  };
+
+  const buildAdjacency = () => {
+    adjacency = new Map();
+    for (const edge of graph.edges) {
+      const score = safeNumber(edge.support_count) * 4 + safeNumber(edge.strength) * 120;
+      const forward = adjacency.get(edge.source) || [];
+      forward.push({ neighborId: edge.target, edge, score });
+      adjacency.set(edge.source, forward);
+
+      const backward = adjacency.get(edge.target) || [];
+      backward.push({ neighborId: edge.source, edge, score });
+      adjacency.set(edge.target, backward);
+    }
+
+    for (const [conceptId, items] of adjacency.entries()) {
+      const bestByNeighbor = new Map();
+      for (const item of items) {
+        const current = bestByNeighbor.get(item.neighborId);
+        if (!current || item.score > current.score) bestByNeighbor.set(item.neighborId, item);
+      }
+      adjacency.set(
+        conceptId,
+        Array.from(bestByNeighbor.values()).sort((left, right) => right.score - left.score || safeNumber(graph.nodeMap.get(right.neighborId)?.weighted_degree) - safeNumber(graph.nodeMap.get(left.neighborId)?.weighted_degree)),
+      );
+    }
+  };
+
+  const getRankedNeighbors = (conceptId, limit, exclude = new Set()) => {
+    const ranked = adjacency.get(conceptId) || [];
+    const results = [];
+    for (const item of ranked) {
+      if (!item?.neighborId || exclude.has(item.neighborId) || !isInBackbone(item.neighborId)) continue;
+      results.push(item.neighborId);
+      exclude.add(item.neighborId);
+      if (results.length >= limit) break;
+    }
+    return results;
+  };
+
+  const buildSecondRing = (firstRingIds) => {
+    const exclude = new Set([selectedId, ...firstRingIds]);
+    const secondRingIds = [];
+    for (const neighborId of firstRingIds) {
+      const localAdds = getRankedNeighbors(neighborId, 2, exclude);
+      secondRingIds.push(...localAdds);
+      if (secondRingIds.length >= SECOND_RING_LIMIT) break;
+    }
+    if (secondRingIds.length < SECOND_RING_LIMIT) {
+      for (const neighborId of firstRingIds) {
+        const localAdds = getRankedNeighbors(neighborId, SECOND_RING_LIMIT - secondRingIds.length, exclude);
+        secondRingIds.push(...localAdds);
+        if (secondRingIds.length >= SECOND_RING_LIMIT) break;
+      }
+    }
+    return secondRingIds.slice(0, SECOND_RING_LIMIT);
+  };
+
+  const buildLocalPositionMap = (firstRingIds, secondRingIds) => {
+    const positionMap = new Map();
+    const centerX = GRAPH_WIDTH * 0.5;
+    const centerY = GRAPH_HEIGHT * 0.5;
+    positionMap.set(selectedId, { x: centerX, y: centerY, angle: -Math.PI / 2 });
+
+    if (firstRingIds.length) {
+      const radiusX = firstRingIds.length <= 6 ? 245 : 295;
+      const radiusY = firstRingIds.length <= 6 ? 168 : 210;
+      const step = (Math.PI * 2) / firstRingIds.length;
+      firstRingIds.forEach((neighborId, index) => {
+        const angle = -Math.PI / 2 + step * index;
+        positionMap.set(neighborId, {
+          x: centerX + Math.cos(angle) * radiusX,
+          y: centerY + Math.sin(angle) * radiusY,
+          angle,
+        });
+      });
+    }
+
+    if (secondRingIds.length) {
+      const radiusX = 392;
+      const radiusY = 270;
+      const step = (Math.PI * 2) / secondRingIds.length;
+      secondRingIds.forEach((neighborId, index) => {
+        const angle = -Math.PI / 2 + step * index + Math.PI / Math.max(secondRingIds.length, 8);
+        positionMap.set(neighborId, {
+          x: centerX + Math.cos(angle) * radiusX,
+          y: centerY + Math.sin(angle) * radiusY,
+          angle,
+        });
+      });
+    }
+
+    return positionMap;
+  };
+
+  const nodeRenderState = (node, renderPositionMap) => {
+    const focusedPosition = renderPositionMap?.get(node.id);
+    if (focusedPosition) return focusedPosition;
+    return {
+      x: node.x * GRAPH_WIDTH,
+      y: node.y * GRAPH_HEIGHT,
+      angle: -Math.PI / 2,
+    };
+  };
+
+  const getVisibleGraphState = () => {
+    const selectedActive = Boolean(selectedId) && isInBackbone(selectedId);
+    const activeQuestion = currentQuestion();
+    const counterpartId = activeQuestion
+      ? activeQuestion.source_id === selectedId
+        ? activeQuestion.target_id
+        : activeQuestion.target_id === selectedId
+          ? activeQuestion.source_id
+          : null
+      : null;
+    const mediatorIds = activeQuestion
+      ? ((activeQuestion.top_mediator_display_labels && activeQuestion.top_mediator_display_labels.length
+          ? activeQuestion.top_mediator_display_labels
+          : activeQuestion.top_mediator_labels) || [])
+          .map((label) => resolveMediatorConceptId(label))
+          .filter((conceptId) => conceptId && isInBackbone(conceptId))
+          .slice(0, 3)
+      : [];
+
+    if (mapMode === "global" || !selectedActive) {
+      return {
+        focusedActive: false,
+        nodes: graph.nodes,
+        edges: graph.edges,
+        firstRing: new Set(),
+        secondRing: new Set(),
+        counterpartId,
+        mediatorIds: new Set(mediatorIds),
+        renderPositionMap: null,
+      };
+    }
+
+    const firstRingIds = getRankedNeighbors(selectedId, FIRST_RING_LIMIT, new Set([selectedId]));
+    const secondRingIds = hopDepth > 1 ? buildSecondRing(firstRingIds) : [];
+    const visibleIds = new Set([selectedId, ...firstRingIds, ...secondRingIds]);
+    if (counterpartId) visibleIds.add(counterpartId);
+    mediatorIds.forEach((conceptId) => visibleIds.add(conceptId));
+
+    const firstRingSet = new Set(firstRingIds);
+    const highlightSet = new Set([counterpartId, ...mediatorIds].filter(Boolean));
+
+    const visibleEdges = graph.edges.filter((edge) => {
+      if (!visibleIds.has(edge.source) || !visibleIds.has(edge.target)) return false;
+      return (
+        edge.source === selectedId ||
+        edge.target === selectedId ||
+        firstRingSet.has(edge.source) ||
+        firstRingSet.has(edge.target) ||
+        highlightSet.has(edge.source) ||
+        highlightSet.has(edge.target)
+      );
+    });
+
+    return {
+      focusedActive: true,
+      nodes: graph.nodes.filter((node) => visibleIds.has(node.id)),
+      edges: visibleEdges,
+      firstRing: firstRingSet,
+      secondRing: new Set(secondRingIds),
+      counterpartId,
+      mediatorIds: new Set(mediatorIds),
+      renderPositionMap: buildLocalPositionMap(firstRingIds, secondRingIds),
+    };
+  };
+
+  const setViewportTransform = () => {
+    const viewport = canvas?.querySelector('[data-role="graph-viewport"]');
+    if (!(viewport instanceof SVGGElement)) return;
+    viewport.setAttribute(
+      "transform",
+      `translate(${viewState.translateX} ${viewState.translateY}) scale(${viewState.scale})`,
+    );
+  };
+
+  const screenToCanvasPoint = (clientX, clientY) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = ((clientX - rect.left) / rect.width) * GRAPH_WIDTH;
+    const y = ((clientY - rect.top) / rect.height) * GRAPH_HEIGHT;
+    return {
+      x,
+      y,
+      graphX: (x - viewState.translateX) / viewState.scale,
+      graphY: (y - viewState.translateY) / viewState.scale,
+    };
+  };
+
+  const zoomAtPoint = (factor, clientX, clientY) => {
+    const { x, y, graphX, graphY } = screenToCanvasPoint(clientX, clientY);
+    const nextScale = clamp(viewState.scale * factor, MIN_SCALE, MAX_SCALE);
+    viewState = {
+      scale: nextScale,
+      translateX: x - graphX * nextScale,
+      translateY: y - graphY * nextScale,
+    };
+    setViewportTransform();
+  };
+
+  const zoomAroundCanvasCenter = (factor) => {
+    const rect = canvas.getBoundingClientRect();
+    zoomAtPoint(factor, rect.left + rect.width / 2, rect.top + rect.height / 2);
+  };
+
+  const resetViewportTransform = () => {
+    viewState = {
+      scale: DEFAULT_GLOBAL_SCALE,
+      translateX: (GRAPH_WIDTH * (1 - DEFAULT_GLOBAL_SCALE)) / 2,
+      translateY: (GRAPH_HEIGHT * (1 - DEFAULT_GLOBAL_SCALE)) / 2,
+    };
+    setViewportTransform();
+  };
+
+  const fitViewToNodeIds = (nodeIds, padding = 145, zoomOutFactor = 0.9) => {
+    if (!graph || !nodeIds.length) {
+      resetViewportTransform();
+      return;
+    }
+    const nodes = nodeIds.map((nodeId) => graph.nodeMap.get(nodeId)).filter(Boolean);
+    if (!nodes.length) {
+      resetViewportTransform();
+      return;
+    }
+    const xs = nodes.map((node) => nodeRenderState(node, getVisibleGraphState().renderPositionMap).x);
+    const ys = nodes.map((node) => nodeRenderState(node, getVisibleGraphState().renderPositionMap).y);
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    const minY = Math.min(...ys);
+    const maxY = Math.max(...ys);
+    const spanX = Math.max(maxX - minX, 150);
+    const spanY = Math.max(maxY - minY, 150);
+    const nextScale = clamp(
+      Math.min((GRAPH_WIDTH - padding * 2) / spanX, (GRAPH_HEIGHT - padding * 2) / spanY) * zoomOutFactor,
+      MIN_SCALE,
+      MAX_SCALE,
+    );
+    const centerX = (minX + maxX) / 2;
+    const centerY = (minY + maxY) / 2;
+    viewState = {
+      scale: nextScale,
+      translateX: GRAPH_WIDTH / 2 - centerX * nextScale,
+      translateY: GRAPH_HEIGHT / 2 - centerY * nextScale,
+    };
+    setViewportTransform();
+  };
+
+  const setDefaultViewport = () => {
+    if (!graph) return;
+    if (mapMode === "local" && selectedId && isInBackbone(selectedId)) {
+      fitViewToNodeIds(getVisibleGraphState().nodes.map((node) => node.id), 150, 0.92);
+      return;
+    }
+    resetViewportTransform();
+  };
+
+  const moveTooltip = (event) => {
+    if (!(graphTooltip instanceof HTMLElement) || graphTooltip.hidden) return;
+    const shell = graphTooltip.parentElement;
+    if (!(shell instanceof HTMLElement)) return;
+    const shellRect = shell.getBoundingClientRect();
+    const maxLeft = shell.clientWidth - graphTooltip.offsetWidth - 12;
+    const maxTop = shell.clientHeight - graphTooltip.offsetHeight - 12;
+    const left = clamp(event.clientX - shellRect.left + 14, 12, Math.max(12, maxLeft));
+    const top = clamp(event.clientY - shellRect.top + 14, 12, Math.max(12, maxTop));
+    graphTooltip.style.left = `${left}px`;
+    graphTooltip.style.top = `${top}px`;
+  };
+
+  const showTooltip = (event, html) => {
+    if (!(graphTooltip instanceof HTMLElement)) return;
+    graphTooltip.innerHTML = html;
+    graphTooltip.hidden = false;
+    moveTooltip(event);
+  };
+
+  const hideTooltip = () => {
+    if (!(graphTooltip instanceof HTMLElement)) return;
+    graphTooltip.hidden = true;
+  };
+
+  const updateDepthButtons = () => {
+    if (depthOneButton instanceof HTMLButtonElement) depthOneButton.classList.toggle("is-active", hopDepth === 1);
+    if (depthTwoButton instanceof HTMLButtonElement) depthTwoButton.classList.toggle("is-active", hopDepth === 2);
+  };
+
+  const updateMapModeButton = () => {
+    if (!(toggleMapMode instanceof HTMLButtonElement)) return;
+    const showGlobal = mapMode === "global";
+    toggleMapMode.textContent = showGlobal ? "Return to local map" : "Show backbone";
+    toggleMapMode.classList.toggle("is-active", showGlobal);
+  };
+
+  const setPanelTab = (nextTab) => {
+    panelTab = nextTab;
+    for (const button of panelTabButtons) {
+      const isActive = button.dataset.tab === nextTab;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-selected", isActive ? "true" : "false");
+    }
+    for (const section of panelSections) {
+      section.hidden = section.dataset.panel !== nextTab;
+    }
+  };
+
+  const restoreStatus = () => {
+    if (!(hoverCard instanceof HTMLElement)) return;
+    const concept = selectedId ? conceptMap.get(selectedId) : null;
+    const activeQuestion = currentQuestion();
+    if (activeQuestion) {
+      hoverCard.textContent = `Path focus: ${questionTitle(activeQuestion)} Click another topic to pivot the map, or stay here and inspect the supporting route.`;
+      return;
+    }
+    if (concept) {
+      hoverCard.textContent = `Showing a ${hopDepth}-hop local map around ${conceptTitle(concept)}. Click any topic to recenter, or switch to the backbone when you want the wider graph.`;
+      return;
+    }
+    hoverCard.textContent = "Choose a topic to open its local literature map.";
+  };
+
+  const renderCentralList = () => {
+    if (!(centralList instanceof HTMLElement)) return;
+    const chosen = new Set();
+    const visibleConcepts = [];
+    const manualStartingConcepts = STARTING_TOPIC_LABELS.map((label) =>
+      concepts.find((concept) => String(concept.plain_label || concept.label || "").trim().toLowerCase() === label),
+    ).filter(Boolean);
+    for (const concept of manualStartingConcepts) {
+      if (chosen.has(concept.concept_id)) continue;
+      chosen.add(concept.concept_id);
+      visibleConcepts.push(concept);
+      if (visibleConcepts.length >= 8) break;
+    }
+    for (const concept of centralConcepts) {
+      if (chosen.has(concept.concept_id)) continue;
+      chosen.add(concept.concept_id);
+      visibleConcepts.push(concept);
+      if (visibleConcepts.length >= 8) break;
+    }
+    centralList.innerHTML = visibleConcepts
+      .map(
+        (concept) => `
+          <button class="list-link" data-concept-id="${escapeHtml(concept.concept_id)}">
+            <span>${escapeHtml(conceptTitle(concept))}</span>
+            <span>${formatNumber(safeNumber(concept.distinct_paper_support))} papers</span>
+          </button>
+        `,
+      )
+      .join("");
+    for (const button of centralList.querySelectorAll("[data-concept-id]")) {
+      button.addEventListener("click", () => selectConcept(button.dataset.conceptId));
+    }
+  };
+
+  const renderSelectedConcept = (concept) => {
+    if (!(selectedConcept instanceof HTMLElement)) return;
+    selectedConcept.innerHTML = `
+      <div class="literature-summary">
+        <div class="literature-summary-copy">
+          <span class="tiny-label">Selected topic</span>
+          <h2>${escapeHtml(conceptTitle(concept))}</h2>
+          ${conceptSubtitle(concept) ? `<p class="mini-copy">${escapeHtml(conceptSubtitle(concept))}</p>` : ""}
+        </div>
+        <div class="literature-summary-stats">
+          <span class="graph-topic-stat">${formatNumber(safeNumber(concept.distinct_paper_support))} papers</span>
+          <span class="graph-topic-stat">${formatNumber(currentOpportunities.length)} path candidates</span>
+          <span class="graph-topic-stat">${hopDepth}-hop local map</span>
+        </div>
+        <div class="button-row literature-summary-actions">
+          <button class="button-tertiary" type="button" data-role="change-topic">Change topic</button>
+        </div>
+      </div>
+    `;
+    const button = selectedConcept.querySelector('[data-role="change-topic"]');
+    if (button instanceof HTMLButtonElement && searchInput instanceof HTMLInputElement) {
+      button.addEventListener("click", () => {
+        searchInput.focus();
+        searchInput.select();
+      });
+    }
+  };
+
+  const renderOverview = () => {
+    if (!(selectedNeighborhood instanceof HTMLElement)) return;
+    const concept = selectedId ? conceptMap.get(selectedId) : null;
+    if (!concept) {
+      selectedNeighborhood.innerHTML = `<p class="card-copy">Choose a topic to inspect its local neighborhood.</p>`;
+      return;
+    }
+
+    const nearbyTopics = Array.from(
+      new Map(
+        [...(currentNeighborhood?.top_neighbors || []), ...(currentNeighborhood?.incoming || []), ...(currentNeighborhood?.outgoing || [])]
+          .filter((item) => item?.concept_id && item.concept_id !== selectedId)
+          .map((item) => [item.concept_id, item]),
+      ).values(),
+    ).slice(0, 8);
+
+    selectedNeighborhood.innerHTML = `
+      <div class="literature-panel-stack">
+        <section class="question-detail-panel">
+          <h3>Local neighborhood</h3>
+          <p class="mini-copy">
+            The graph starts from ${escapeHtml(conceptTitle(concept))}, keeps the strongest direct neighbors close, and adds a second ring of bridge topics farther out.
+          </p>
+          ${
+            nearbyTopics.length
+              ? `
+                <div class="graph-topic-chip-list">
+                  ${nearbyTopics
+                    .map((item) => {
+                      const neighbor = conceptMap.get(item.concept_id);
+                      const label = neighbor ? conceptTitle(neighbor) : item.label;
+                      return `
+                        <button class="topic-chip-button" type="button" data-neighbor-id="${escapeAttr(item.concept_id)}">
+                          <span>${escapeHtml(label)}</span>
+                          <small>${formatNumber(safeNumber(item.support_count))} papers</small>
+                        </button>
+                      `;
+                    })
+                    .join("")}
+                </div>
+              `
+              : `<p class="mini-copy">No nearby-topic summary was exported for this topic in the ${contextLabel}.</p>`
+          }
+        </section>
+
+        <section class="question-detail-panel">
+          <h3>What sits behind this view</h3>
+          <div class="graph-question-meta">
+            <span>${formatNumber(safeNumber(concept.weighted_degree))} weighted links in the backbone</span>
+            <span>${formatNumber(currentOpportunities.length)} nearby question-shaped routes</span>
+            <span>${mapMode === "global" ? "Backbone view" : "Local view"}</span>
+          </div>
+          <p class="mini-copy">
+            Use this panel to orient yourself first, then switch to Paths when you want the strongest question-like bridges, or Papers when you want a reading list.
+          </p>
+        </section>
+      </div>
+    `;
+
+    for (const button of selectedNeighborhood.querySelectorAll("[data-neighbor-id]")) {
+      button.addEventListener("click", () => selectConcept(button.dataset.neighborId));
+    }
+  };
+
+  const renderPaths = () => {
+    if (!(selectedQuestion instanceof HTMLElement) || !(selectedOpportunities instanceof HTMLElement)) return;
+    const concept = selectedId ? conceptMap.get(selectedId) : null;
+    if (!concept) {
+      selectedQuestion.innerHTML = `<p class="card-copy">Choose a topic to see the strongest nearby paths.</p>`;
+      selectedOpportunities.innerHTML = "";
+      return;
+    }
+
+    if (!currentOpportunities.length) {
+      selectedQuestion.innerHTML = `<p class="card-copy">No path-style question candidate touching this topic is available in the ${contextLabel}.</p>`;
+      selectedOpportunities.innerHTML = "";
+      return;
+    }
+
+    const activeQuestion = currentQuestion() || currentOpportunities[0];
+    activeQuestionPairKey = activeQuestion?.pair_key || null;
+    const mediatorLabels = Array.isArray(activeQuestion.top_mediator_display_labels) && activeQuestion.top_mediator_display_labels.length
+      ? activeQuestion.top_mediator_display_labels.filter(Boolean).slice(0, 3)
+      : Array.isArray(activeQuestion.top_mediator_labels)
+        ? activeQuestion.top_mediator_labels.filter(Boolean).slice(0, 3)
+        : [];
+
+    selectedQuestion.innerHTML = `
+      <article class="graph-question-focus-card literature-path-focus-card">
+        <h3>${escapeHtml(questionTitle(activeQuestion))}</h3>
+        <p class="card-copy focus-summary"><strong>Why this surfaced:</strong> ${escapeHtml(conciseQuestionReason(activeQuestion))}</p>
+        <div class="graph-question-meta">
+          <span>${formatNumber(safeNumber(activeQuestion.supporting_path_count))} supporting paths</span>
+          <span>${formatNumber(safeNumber(activeQuestion.mediator_count))} intermediate topics</span>
+          <span>${escapeHtml(questionProjectShapeLabel(activeQuestion))}</span>
+        </div>
+        ${
+          mediatorLabels.length
+            ? `
+              <div class="graph-topic-chip-list">
+                ${mediatorLabels
+                  .map((label) => {
+                    const mediatorId = resolveMediatorConceptId(label);
+                    return mediatorId
+                      ? `
+                        <button class="topic-chip-button" type="button" data-mediator-id="${escapeAttr(mediatorId)}">
+                          <span>${escapeHtml(label)}</span>
+                          <small>Open topic</small>
+                        </button>
+                      `
+                      : `
+                        <span class="graph-topic-stat">${escapeHtml(label)}</span>
+                      `;
+                  })
+                  .join("")}
+              </div>
+            `
+            : ""
+        }
+        <p class="mini-copy focus-step"><strong>What to inspect first:</strong> ${escapeHtml(activeQuestion.recommended_move || "Start with the nearby literature and pin down the empirical setting.")}</p>
+        <div class="graph-question-actions">
+          <a class="button-secondary" href="${escapeAttr(activeQuestion.app_link)}" target="_blank" rel="noopener noreferrer">Open Explorer</a>
+        </div>
+      </article>
+    `;
+
+    for (const button of selectedQuestion.querySelectorAll("[data-mediator-id]")) {
+      button.addEventListener("click", () => selectConcept(button.dataset.mediatorId));
+    }
+
+    selectedOpportunities.innerHTML = `
+      <div class="literature-panel-stack">
+        <div class="inspector-head">
+          <h3>Candidate paths around this topic</h3>
+          <p class="mini-copy">Choose one to highlight a counterpart and the nearby bridge topics already holding the route together.</p>
+        </div>
+        ${currentOpportunities
+          .slice(0, TOP_PATH_LIMIT)
+          .map((item) => {
+            const counterpartId =
+              item.source_id === selectedId ? item.target_id : item.target_id === selectedId ? item.source_id : null;
+            return `
+              <button class="graph-question-row${item.pair_key === activeQuestionPairKey ? " is-active" : ""}" type="button" data-select-pair="${escapeAttr(item.pair_key)}">
+                <span class="tiny-label">${escapeHtml(item.slice_label || "Path candidate")}</span>
+                <strong>${escapeHtml(questionTitle(item))}</strong>
+                <div class="graph-question-meta graph-question-meta-tight">
+                  <span>Other side: ${escapeHtml(conceptLabel(counterpartId, "Other topic"))}</span>
+                  <span>${formatNumber(safeNumber(item.supporting_path_count))} supporting paths</span>
+                  <span>${escapeHtml(questionProjectShapeLabel(item))}</span>
+                </div>
+              </button>
+            `;
+          })
+          .join("")}
+      </div>
+    `;
+
+    for (const button of selectedOpportunities.querySelectorAll("[data-select-pair]")) {
+      button.addEventListener("click", () => {
+        activeQuestionPairKey = button.dataset.selectPair;
+        setPanelTab("paths");
+        renderPaths();
+        renderPapers();
+        renderGraph();
+        restoreStatus();
+      });
+    }
+  };
+
+  const renderPapers = () => {
+    if (!(selectedPapers instanceof HTMLElement)) return;
+    const concept = selectedId ? conceptMap.get(selectedId) : null;
+    if (!concept) {
+      selectedPapers.innerHTML = `<p class="card-copy">Choose a topic to see the anchor papers around it.</p>`;
+      return;
+    }
+
+    const seedQuestions = currentQuestion() ? [currentQuestion()] : currentOpportunities.slice(0, 3);
+    const dedupedPapers = [];
+    const seen = new Set();
+    for (const item of seedQuestions) {
+      const sourceQuestion = questionTitle(item);
+      for (const paper of Array.isArray(item.representative_papers) ? item.representative_papers : []) {
+        const key = `${paper.title || ""}::${paper.year || ""}`;
+        if (!paper?.title || seen.has(key)) continue;
+        seen.add(key);
+        dedupedPapers.push({ ...paper, sourceQuestion });
+        if (dedupedPapers.length >= 8) break;
+      }
+      if (dedupedPapers.length >= 8) break;
+    }
+
+    selectedPapers.innerHTML = dedupedPapers.length
+      ? `
+        <div class="literature-panel-stack">
+          <div class="inspector-head">
+            <h3>Anchor papers</h3>
+            <p class="mini-copy">These paper previews come from the strongest question-shaped routes touching ${escapeHtml(conceptTitle(concept))}.</p>
+          </div>
+          <div class="literature-paper-stack">
+            ${dedupedPapers
+              .map(
+                (paper) => `
+                  <article class="literature-paper-card">
+                    <span class="tiny-label">${escapeHtml(paper.sourceQuestion)}</span>
+                    <strong>${escapeHtml(paper.title)}</strong>
+                    <div class="graph-question-meta graph-question-meta-tight">
+                      <span>${paper.year ? escapeHtml(String(paper.year)) : "Year unknown"}</span>
+                      <span>${escapeHtml(contextLabel)}</span>
+                    </div>
+                  </article>
+                `,
+              )
+              .join("")}
+          </div>
+        </div>
+      `
+      : `<p class="card-copy">No paper previews were exported for this topic in the ${contextLabel}.</p>`;
+  };
+
+  const renderGraph = () => {
+    if (!(canvas instanceof SVGSVGElement)) return;
+    const nodeMarkup = [];
+    const edgeMarkup = [];
+    const visibleState = getVisibleGraphState();
+    const selectedActive = Boolean(selectedId) && isInBackbone(selectedId);
+    const {
+      focusedActive,
+      nodes: visibleNodes,
+      edges: visibleEdges,
+      firstRing,
+      secondRing,
+      counterpartId,
+      mediatorIds,
+      renderPositionMap,
+    } = visibleState;
+
+    for (const edge of visibleEdges) {
+      const source = graph.nodeMap.get(edge.source);
+      const target = graph.nodeMap.get(edge.target);
+      const sourceRender = nodeRenderState(source, renderPositionMap);
+      const targetRender = nodeRenderState(target, renderPositionMap);
+      const isSelectedEdge = selectedActive && (edge.source === selectedId || edge.target === selectedId);
+      const isPathEdge =
+        mediatorIds.has(edge.source) ||
+        mediatorIds.has(edge.target) ||
+        edge.source === counterpartId ||
+        edge.target === counterpartId;
+      const isDimmed = mapMode === "global" && selectedActive && !isSelectedEdge && !isPathEdge;
+      edgeMarkup.push(
+        `<line class="graph-edge${isSelectedEdge ? " is-selected" : ""}${isPathEdge ? " is-focused" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edge.strength || 0.3};" data-edge-id="${escapeHtml(edge.id)}" x1="${sourceRender.x}" y1="${sourceRender.y}" x2="${targetRender.x}" y2="${targetRender.y}"></line>`,
+      );
+    }
+
+    for (const node of visibleNodes) {
+      const isSelected = node.id === selectedId;
+      const isQuestionTarget = Boolean(counterpartId) && node.id === counterpartId;
+      const isMediator = mediatorIds.has(node.id);
+      const isFirstRing = firstRing.has(node.id);
+      const isSecondRing = secondRing.has(node.id);
+      const isDimmed = mapMode === "global" && selectedActive && !isSelected && !isQuestionTarget && !isMediator;
+      const renderState = nodeRenderState(node, renderPositionMap);
+      const radius = focusedActive
+        ? isSelected
+          ? 26
+          : isQuestionTarget
+            ? 21
+            : isMediator
+              ? 17
+              : isFirstRing
+                ? Math.max(13, Math.min(19, 11.5 + Math.log10(safeNumber(node.weighted_degree) + 1) * 2.2))
+                : Math.max(9.5, Math.min(14.5, 9 + Math.log10(safeNumber(node.weighted_degree) + 1) * 1.4))
+        : Math.max(2.8, Math.min(24, 2.8 + Math.log10(safeNumber(node.weighted_degree) + 1) * 4.4));
+      const showLabel = focusedActive
+        ? isSelected || isQuestionTarget || isMediator || isFirstRing || (isSecondRing && safeNumber(node.weighted_degree) >= 60)
+        : node.show_label || isSelected || isQuestionTarget;
+      const label = node.plain_label || node.label;
+      const labelWidth = estimateChipWidth(label);
+      const labelAbove = focusedActive ? Math.sin(renderState.angle) <= 0 : true;
+      const labelY = focusedActive
+        ? renderState.y + (labelAbove ? -(radius + 18) : radius + 28)
+        : renderState.y - (radius + (isSelected ? 16 : 8));
+      const chipY = labelAbove ? labelY - 20 : labelY - 18;
+      nodeMarkup.push(
+        `<g class="graph-node-group${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeAttr(node.id)}">
+          ${focusedActive ? `<circle class="graph-node-halo${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}" cx="${renderState.x}" cy="${renderState.y}" r="${radius + (isSelected ? 10 : isQuestionTarget ? 8 : isMediator ? 7 : 6)}"></circle>` : ""}
+          <circle class="graph-node" cx="${renderState.x}" cy="${renderState.y}" r="${radius}"></circle>
+          ${
+            showLabel
+              ? focusedActive
+                ? `<g class="graph-label-chip${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}">
+                    <rect x="${renderState.x - labelWidth / 2}" y="${chipY}" width="${labelWidth}" height="28" rx="14" ry="14"></rect>
+                    <text class="graph-label graph-label-chip-text${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>
+                  </g>`
+                : `<text class="graph-label${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>`
+              : ""
+          }
+        </g>`,
+      );
+    }
+
+    canvas.innerHTML = `
+      <g data-role="graph-viewport">
+        <rect class="graph-pan-target" x="-900" y="-900" width="3200" height="2800"></rect>
+        <g class="graph-edge-layer">${edgeMarkup.join("")}</g>
+        <g class="graph-node-layer">${nodeMarkup.join("")}</g>
+      </g>
+    `;
+
+    for (const nodeElement of canvas.querySelectorAll("[data-node-id]")) {
+      const dragHandle = nodeElement.querySelector("circle");
+      nodeElement.addEventListener("mouseenter", (event) => {
+        const node = graph.nodeMap.get(nodeElement.dataset.nodeId);
+        showTooltip(event, `
+          <strong>${escapeHtml(node.plain_label || node.label)}</strong><br />
+          ${node.subtitle ? `${escapeHtml(node.subtitle)}<br />` : ""}
+          <span>${formatNumber(safeNumber(node.distinct_paper_support))} papers in the ${contextLabel}.</span><br />
+          <span>${formatNumber(safeNumber(node.weighted_degree))} weighted links in the backbone.</span><br />
+          <span class="tooltip-action">Click to recenter the map here.</span>
+        `);
+      });
+      nodeElement.addEventListener("mousemove", moveTooltip);
+      nodeElement.addEventListener("mouseleave", hideTooltip);
+      dragHandle?.addEventListener("pointerdown", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+      });
+      nodeElement.addEventListener("click", (event) => {
+        event.stopPropagation();
+        selectConcept(nodeElement.dataset.nodeId);
+      });
+    }
+
+    for (const edgeElement of canvas.querySelectorAll("[data-edge-id]")) {
+      edgeElement.addEventListener("mouseenter", (event) => {
+        const edge = graph.edgeMap.get(edgeElement.dataset.edgeId);
+        showTooltip(event, `
+          <strong>${escapeHtml(conceptLabel(edge.source, graph.nodeMap.get(edge.source).label))} to ${escapeHtml(conceptLabel(edge.target, graph.nodeMap.get(edge.target).label))}</strong><br />
+          <span>${formatNumber(safeNumber(edge.support_count))} papers mention this nearby directed relation.</span><br />
+          <span>Local edge strength: ${safeNumber(edge.strength).toFixed(2)} on the current map.</span>
+        `);
+      });
+      edgeElement.addEventListener("mousemove", moveTooltip);
+      edgeElement.addEventListener("mouseleave", hideTooltip);
+    }
+
+    setViewportTransform();
+  };
+
+  const renderAllPanels = () => {
+    const concept = selectedId ? conceptMap.get(selectedId) : null;
+    if (!concept) return;
+    renderSelectedConcept(concept);
+    renderOverview();
+    renderPaths();
+    renderPapers();
+  };
+
+  const renderNeighborhood = async (conceptId) => {
+    currentNeighborhood = null;
+    const shardPath = neighborhoodIndex[conceptId];
+    if (!shardPath) {
+      renderAllPanels();
+      return;
+    }
+    const shard = await fetchJson(shardPath);
+    currentNeighborhood = shard[conceptId] || null;
+    renderAllPanels();
+  };
+
+  const renderOpportunities = async (conceptId) => {
+    currentOpportunities = [];
+    const shardPath = opportunitiesIndex[conceptId];
+    if (!shardPath) {
+      renderAllPanels();
+      return;
+    }
+    const shard = await fetchJson(shardPath);
+    const opportunities = (shard[conceptId] || []).slice().sort((left, right) => {
+      const delta = questionPriorityScore(right, conceptId) - questionPriorityScore(left, conceptId);
+      if (Math.abs(delta) > 1e-9) return delta;
+      return safeNumber(right.score) - safeNumber(left.score);
+    });
+    currentOpportunities = opportunities;
+    activeQuestionPairKey = opportunities[0]?.pair_key || null;
+    renderAllPanels();
+  };
+
+  const selectConcept = async (conceptId) => {
+    if (!conceptId) return;
+    const concept = conceptMap.get(conceptId);
+    if (!concept) return;
+    selectedId = conceptId;
+    currentNeighborhood = null;
+    currentOpportunities = [];
+    activeQuestionPairKey = null;
+    setPanelTab("overview");
+    if (selectedConcept instanceof HTMLElement) {
+      selectedConcept.innerHTML = `<p class="card-copy">Loading topic context...</p>`;
+    }
+    if (selectedNeighborhood instanceof HTMLElement) {
+      selectedNeighborhood.innerHTML = `<p class="card-copy">Loading nearby topics...</p>`;
+    }
+    if (selectedQuestion instanceof HTMLElement) {
+      selectedQuestion.innerHTML = `<p class="card-copy">Loading nearby paths...</p>`;
+    }
+    if (selectedOpportunities instanceof HTMLElement) {
+      selectedOpportunities.innerHTML = `<p class="card-copy">Loading path candidates...</p>`;
+    }
+    if (selectedPapers instanceof HTMLElement) {
+      selectedPapers.innerHTML = `<p class="card-copy">Loading anchor papers...</p>`;
+    }
+    renderGraph();
+    restoreStatus();
+
+    const nextUrl = new URL(window.location.href);
+    nextUrl.searchParams.set("q", conceptTitle(concept));
+    window.history.replaceState({}, "", nextUrl);
+
+    await Promise.all([renderNeighborhood(conceptId), renderOpportunities(conceptId)]);
+    renderGraph();
+    setDefaultViewport();
+    restoreStatus();
+    hideTooltip();
+  };
+
+  const runSearch = (query) => {
+    if (!(searchResults instanceof HTMLElement)) return [];
+    const trimmed = query.trim();
+    if (!trimmed) {
+      searchResults.innerHTML = "";
+      return [];
+    }
+    const matches = searchConcepts(trimmed);
+    searchResults.innerHTML = matches
+      .map(
+        (concept) => `
+          <button class="search-hit" data-concept-id="${escapeHtml(concept.concept_id)}">
+            <strong>${escapeHtml(conceptTitle(concept))}</strong>
+            <span>${formatNumber(safeNumber(concept.distinct_paper_support))} papers</span>
+          </button>
+        `,
+      )
+      .join("");
+    for (const button of searchResults.querySelectorAll("[data-concept-id]")) {
+      button.addEventListener("click", () => {
+        searchResults.innerHTML = "";
+        if (searchInput instanceof HTMLInputElement) searchInput.value = "";
+        selectConcept(button.dataset.conceptId);
+      });
+    }
+    return matches;
+  };
+
+  const startPan = (eventTarget, clientX, clientY) => {
+    if (eventTarget instanceof Element && eventTarget.closest("[data-node-id]")) return;
+    hideTooltip();
+    interaction = {
+      type: "pan",
+      startX: clientX,
+      startY: clientY,
+      translateX: viewState.translateX,
+      translateY: viewState.translateY,
+    };
+  };
+
+  const moveInteraction = (clientX, clientY) => {
+    if (!interaction) return;
+    if (interaction.type === "pan") {
+      viewState = {
+        ...viewState,
+        translateX: interaction.translateX + (clientX - interaction.startX),
+        translateY: interaction.translateY + (clientY - interaction.startY),
+      };
+      setViewportTransform();
+    }
+  };
+
+  const bootstrap = async () => {
+    const [graphPayload, conceptPayload, neighborhoodsPayload, opportunitiesPayload, centralPayload] = await Promise.all([
+      fetchJson(graphPath),
+      fetchJson(conceptIndexPath),
+      fetchJson(neighborhoodsIndexPath),
+      fetchJson(opportunitiesIndexPath),
+      fetchJson(centralConceptsPath),
+    ]);
+    graph = {
+      nodes: graphPayload.nodes.map((node) => ({ ...node })),
+      edges: graphPayload.edges,
+      nodeMap: new Map(graphPayload.nodes.map((node) => [node.id, { ...node }])),
+      edgeMap: new Map(graphPayload.edges.map((edge) => [edge.id, edge])),
+    };
+    graph.nodes = Array.from(graph.nodeMap.values());
+    concepts = conceptPayload;
+    conceptMap = new Map(concepts.map((concept) => [concept.concept_id, concept]));
+    neighborhoodIndex = neighborhoodsPayload;
+    opportunitiesIndex = opportunitiesPayload;
+    centralConcepts = centralPayload;
+    buildAdjacency();
+    renderCentralList();
+    updateDepthButtons();
+    updateMapModeButton();
+
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("q");
+    const selected = query ? searchConcepts(query)[0] : null;
+    const defaultTopic = concepts.find(
+      (concept) => String(concept.plain_label || concept.label || "").trim().toLowerCase() === DEFAULT_TOPIC_LABEL,
+    );
+    const initialConcept = selected || defaultTopic || centralConcepts[0] || null;
+    if (initialConcept?.concept_id) {
+      await selectConcept(initialConcept.concept_id);
+    } else {
+      restoreStatus();
+    }
+  };
+
+  panelTabButtons.forEach((button) => {
+    button.addEventListener("click", () => setPanelTab(button.dataset.tab || "overview"));
+  });
+
+  if (searchInput instanceof HTMLInputElement) {
+    searchInput.addEventListener("input", (event) => runSearch(event.target.value));
+    searchInput.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter") return;
+      const matches = runSearch(searchInput.value);
+      if (matches[0]?.concept_id) {
+        searchResults.innerHTML = "";
+        searchInput.value = "";
+        selectConcept(matches[0].concept_id);
+      }
+    });
+  }
+
+  if (depthOneButton instanceof HTMLButtonElement) {
+    depthOneButton.addEventListener("click", () => {
+      hopDepth = 1;
+      updateDepthButtons();
+      renderGraph();
+      setDefaultViewport();
+      renderAllPanels();
+      restoreStatus();
+    });
+  }
+
+  if (depthTwoButton instanceof HTMLButtonElement) {
+    depthTwoButton.addEventListener("click", () => {
+      hopDepth = 2;
+      updateDepthButtons();
+      renderGraph();
+      setDefaultViewport();
+      renderAllPanels();
+      restoreStatus();
+    });
+  }
+
+  if (toggleMapMode instanceof HTMLButtonElement) {
+    toggleMapMode.addEventListener("click", () => {
+      mapMode = mapMode === "local" ? "global" : "local";
+      updateMapModeButton();
+      renderGraph();
+      setDefaultViewport();
+      restoreStatus();
+    });
+  }
+
+  if (resetView instanceof HTMLButtonElement) {
+    resetView.addEventListener("click", setDefaultViewport);
+  }
+
+  if (zoomOutButton instanceof HTMLButtonElement) {
+    zoomOutButton.addEventListener("click", () => zoomAroundCanvasCenter(1 / 1.15));
+  }
+
+  if (zoomInButton instanceof HTMLButtonElement) {
+    zoomInButton.addEventListener("click", () => zoomAroundCanvasCenter(1.15));
+  }
+
+  canvas.addEventListener("wheel", (event) => {
+    event.preventDefault();
+    const factor = event.deltaY > 0 ? 1 / 1.08 : 1.08;
+    zoomAtPoint(factor, event.clientX, event.clientY);
+  }, { passive: false });
+
+  canvas.addEventListener("pointerdown", (event) => {
+    startPan(event.target, event.clientX, event.clientY);
+  });
+  canvas.addEventListener("mousedown", (event) => {
+    startPan(event.target, event.clientX, event.clientY);
+  });
+
+  window.addEventListener("pointermove", (event) => {
+    moveInteraction(event.clientX, event.clientY);
+  });
+  window.addEventListener("mousemove", (event) => {
+    moveInteraction(event.clientX, event.clientY);
+  });
+
+  window.addEventListener("pointerup", () => {
+    interaction = null;
+  });
+  window.addEventListener("mouseup", () => {
+    interaction = null;
+  });
+
+  bootstrap().catch((error) => {
+    if (hoverCard instanceof HTMLElement) hoverCard.textContent = "Literature graph data failed to load.";
+    console.error(error);
+  });
+</script>

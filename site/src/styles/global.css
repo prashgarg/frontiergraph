@@ -169,13 +169,23 @@ a {
 
 .brand-lockup {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.9rem;
+}
+
+.brand-copy {
+  display: grid;
+  gap: 0.08rem;
+}
+
+.brand-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
 }
 
 .site-variant-pill {
   display: inline-flex;
-  margin-left: 0.7rem;
   padding: 0.2rem 0.55rem;
   border: 1px solid rgba(41, 69, 97, 0.16);
   border-radius: 999px;
@@ -220,12 +230,33 @@ h3 {
   letter-spacing: -0.01em;
 }
 
+.brand-beta {
+  display: block;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, #cb7a1b 86%, var(--muted));
+}
+
 .site-nav,
 .footer-links {
   display: flex;
   align-items: center;
   gap: 1rem;
   color: var(--muted);
+}
+
+.site-nav-link.is-emphasized {
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, rgba(205, 126, 27, 0.16) 100%, transparent);
+  color: color-mix(in srgb, #7c4d10 82%, var(--text));
+}
+
+.site-nav-link.is-emphasized[aria-current="page"] {
+  background: color-mix(in srgb, rgba(205, 126, 27, 0.26) 100%, transparent);
+  color: #6d430e;
 }
 
 .site-nav {
@@ -2230,6 +2261,178 @@ h3 {
   gap: 1.15rem;
 }
 
+.literature-workbench {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.literature-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 420px);
+  gap: 1rem;
+  align-items: start;
+}
+
+.literature-toolbar-copy {
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+}
+
+.literature-kicker {
+  color: color-mix(in srgb, #cb7a1b 78%, var(--accent-soft));
+}
+
+.literature-toolbar-copy h1 {
+  margin: 0;
+}
+
+.literature-search-panel {
+  display: grid;
+  gap: 0.95rem;
+  align-content: start;
+}
+
+.literature-search-shell {
+  max-width: none;
+}
+
+.literature-jumpbar {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.literature-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.42fr) minmax(340px, 400px);
+  gap: 1rem;
+  align-items: start;
+}
+
+.literature-map-card,
+.literature-panel {
+  min-width: 0;
+}
+
+.literature-map-card {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.literature-map-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.literature-toggle-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.literature-toggle.is-active {
+  border-color: rgba(84, 108, 132, 0.34);
+  background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
+  color: var(--text);
+}
+
+.literature-status {
+  min-height: 3rem;
+}
+
+.literature-canvas {
+  min-height: clamp(36rem, 46vw, 52rem);
+}
+
+.literature-help-row {
+  margin-top: -0.15rem;
+}
+
+.literature-panel {
+  position: sticky;
+  top: 1rem;
+  display: grid;
+  gap: 0.95rem;
+}
+
+.literature-summary {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.literature-summary-copy {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.literature-summary-copy h2 {
+  margin: 0;
+}
+
+.literature-summary-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.literature-summary-actions {
+  margin-top: 0;
+}
+
+.literature-panel-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.literature-tab-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface-strong) 86%, transparent);
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease;
+}
+
+.literature-tab-button:hover,
+.literature-tab-button.is-active {
+  color: var(--text);
+  border-color: rgba(84, 108, 132, 0.34);
+  background: color-mix(in srgb, rgba(255, 255, 255, 0.94) 100%, transparent);
+}
+
+.literature-panel-section {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.literature-panel-stack,
+.literature-paper-stack {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.literature-paper-card {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface-strong) 82%, transparent);
+}
+
 .graph-toolbar {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -2497,6 +2700,16 @@ h3 {
   stroke: rgba(31, 50, 72, 0.18);
 }
 
+.graph-node-halo.is-mediator {
+  fill: rgba(76, 155, 143, 0.12);
+  stroke: rgba(52, 103, 103, 0.24);
+}
+
+.graph-node-halo.is-second-ring {
+  fill: rgba(80, 101, 126, 0.06);
+  stroke: rgba(80, 101, 126, 0.1);
+}
+
 .graph-node-halo.is-selected {
   fill: rgba(224, 176, 79, 0.24);
   stroke: rgba(212, 146, 42, 0.2);
@@ -2512,6 +2725,16 @@ h3 {
   fill: rgba(50, 126, 111, 0.9);
   stroke: var(--graph-node-neighbor-stroke);
   stroke-width: 2.2;
+}
+
+.graph-node-group.is-second-ring .graph-node {
+  fill: rgba(129, 144, 163, 0.42);
+  stroke: rgba(76, 94, 118, 0.28);
+}
+
+.graph-node-group.is-mediator .graph-node {
+  fill: rgba(84, 162, 149, 0.82);
+  stroke: rgba(53, 101, 101, 0.46);
 }
 
 .graph-node {
@@ -2561,6 +2784,16 @@ h3 {
 .graph-label-chip.is-question-target rect {
   fill: rgba(242, 245, 248, 0.98);
   stroke: rgba(31, 50, 72, 0.16);
+}
+
+.graph-label-chip.is-mediator rect {
+  fill: rgba(233, 248, 245, 0.98);
+  stroke: rgba(53, 101, 101, 0.16);
+}
+
+.graph-label-chip.is-second-ring rect {
+  fill: rgba(248, 250, 252, 0.96);
+  stroke: rgba(80, 101, 126, 0.12);
 }
 
 .graph-label-chip.is-selected rect {
@@ -3304,8 +3537,10 @@ h3 {
   .spotlight-grid,
   .corridor-grid,
   .graph-toolbar,
+  .literature-toolbar,
   .graph-layout,
   .graph-stage,
+  .literature-stage,
   .graph-master-detail,
   .graph-detail-workspace,
   .lookup-grid,
@@ -3421,6 +3656,10 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .literature-panel {
+    position: static;
+  }
+
   .homepage-carousel-heading {
     flex-direction: column;
   }
@@ -3480,6 +3719,10 @@ h3 {
     padding-top: 1rem;
   }
 
+  .brand-copy {
+    gap: 0;
+  }
+
   .site-nav-shell {
     gap: 0.6rem;
   }
@@ -3493,6 +3736,11 @@ h3 {
   .site-nav a,
   .footer-links a {
     font-size: 0.95rem;
+  }
+
+  .literature-canvas {
+    min-height: 28rem;
+    aspect-ratio: auto;
   }
 
   .header-cta {

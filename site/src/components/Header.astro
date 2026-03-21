@@ -7,7 +7,7 @@ interface Props {
   appLabel?: string;
   brandHref?: string;
   variantLabel?: string;
-  links?: { href: string; label: string }[];
+  links?: { href: string; label: string; emphasis?: boolean }[];
   currentPath?: string;
 }
 
@@ -20,6 +20,7 @@ const {
   links = [
     { href: `${navPrefix}/`, label: "Home" },
     { href: `${navPrefix}/questions/`, label: "Questions" },
+    { href: `${navPrefix}/literature/`, label: "Literature Graph", emphasis: true },
     { href: `${navPrefix}/graph/`, label: "Graph" },
     { href: `${navPrefix}/paper/`, label: "Paper" },
     { href: `${navPrefix}/about/`, label: "About" },
@@ -45,15 +46,27 @@ const isActiveLink = (href: string) => {
 <header class="site-header">
   <a href={brandHref} class="brand-lockup">
     <span class="brand-mark" aria-hidden="true"></span>
-    <span>
-      <span class="brand-name">Frontier Graph</span>
+    <span class="brand-copy">
+      <span class="brand-name-row">
+        <span class="brand-name">Frontier Graph</span>
+      </span>
+      <span class="brand-beta">Beta</span>
       {variantLabel && <span class="site-variant-pill">{variantLabel}</span>}
     </span>
   </a>
   <div class="site-nav-shell">
     <nav class="site-nav">
       {links.map((link) => (
-        <a href={link.href} aria-current={isActiveLink(link.href) ? "page" : undefined}>{link.label}</a>
+        <a
+          href={link.href}
+          class:list={[
+            "site-nav-link",
+            link.emphasis && "is-emphasized",
+          ]}
+          aria-current={isActiveLink(link.href) ? "page" : undefined}
+        >
+          {link.label}
+        </a>
       ))}
     </nav>
     <div class="site-nav-actions">

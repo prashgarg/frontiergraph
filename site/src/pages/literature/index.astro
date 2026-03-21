@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LiteratureGraphWorkbench from "../../components/LiteratureGraphWorkbench.astro";
+import { data } from "../../lib/site-data";
+---
+
+<BaseLayout
+  title="Literature Graph | FrontierGraph"
+  description="Map the ideas inside a literature with a topic-first local graph, nearby bridges, and anchor papers."
+  shellClass="site-shell-wide"
+>
+  <main>
+    <LiteratureGraphWorkbench
+      graphPath={data.graph.backbone_path}
+      conceptIndexPath={data.graph.concept_index_path}
+      neighborhoodsIndexPath={data.graph.concept_neighborhoods_index_path}
+      opportunitiesIndexPath={data.graph.concept_opportunities_index_path}
+      centralConceptsPath={data.graph.central_concepts_path}
+      contextLabel="published economics graph"
+    />
+  </main>
+</BaseLayout>

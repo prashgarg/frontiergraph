@@ -12,11 +12,12 @@ const { navPrefix = "" } = Astro.props;
   <div>
     <div class="footer-title">Frontier Graph</div>
     <p class="footer-copy">
-      Questions, graph, paper, and public data from the Frontier Graph release.
+      Questions, literature graph, paper, and public data from the Frontier Graph release.
     </p>
   </div>
   <div class="footer-links">
     <a href={navPrefix ? `${navPrefix}/questions/` : "/questions/"}>Questions</a>
+    <a href={navPrefix ? `${navPrefix}/literature/` : "/literature/"}>Literature Graph</a>
     <a href={navPrefix ? `${navPrefix}/graph/` : "/graph/"}>Graph</a>
     <a href="/about/">About</a>
     <a href={navPrefix ? `${navPrefix}/paper/` : "/paper/"}>Paper</a>
