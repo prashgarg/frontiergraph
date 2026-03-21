@@ -29,31 +29,61 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   data-opportunities-index-path={opportunitiesIndexPath}
   data-central-concepts-path={centralConceptsPath}
 >
-  <div class="literature-toolbar">
-    <div class="literature-toolbar-copy">
-      <span class="tiny-label literature-kicker">Experimental</span>
-      <h1>Literature Graph</h1>
-      <p class="card-copy">
-        Start from one topic and open the surrounding literature as a calm local map. Keep the graph visible, then inspect nearby bridges, short paths, and anchor papers without leaving the page.
-      </p>
-    </div>
-
-    <div class="sidebar-card inspector-card literature-search-panel">
-      <label class="search-shell literature-search-shell">
-        <span>Search topic</span>
-        <input type="search" placeholder="Search topics or close variants" data-role="search-input" />
-        <div class="search-results" data-role="search-results"></div>
-      </label>
-
-      <div class="literature-jumpbar">
-        <span class="tiny-label">Try one of these</span>
-        <div class="central-list central-list-inline" data-role="central-list"></div>
-      </div>
-    </div>
+  <div class="literature-page-note">
+    <span class="literature-construction-pill">Under Active Construction</span>
+    <p class="mini-copy">
+      This is the graph-first experimental surface. Click a topic to inspect it. Rebuild the map around that topic only when you choose to.
+    </p>
   </div>
 
   <div class="literature-stage">
     <section class="graph-panel literature-map-card">
+      <div class="sidebar-card inspector-card literature-search-panel">
+        <label class="search-shell literature-search-shell">
+          <span>Search topic</span>
+          <input type="search" placeholder="Search topics or close variants" data-role="search-input" />
+          <div class="search-results" data-role="search-results"></div>
+        </label>
+
+        <div class="literature-jumpbar">
+          <span class="tiny-label">Try one of these</span>
+          <div class="central-list central-list-inline" data-role="central-list"></div>
+        </div>
+      </div>
+
+      <aside class="graph-panel literature-panel">
+        <div class="literature-panel-header" data-role="selected-concept">
+          <p class="card-copy">Choose a topic to see its local neighborhood.</p>
+        </div>
+
+        <div class="literature-panel-tabs" role="tablist" aria-label="Literature graph panel">
+          <button class="literature-tab-button is-active" type="button" data-role="panel-tab" data-tab="overview" aria-selected="true">Overview</button>
+          <button class="literature-tab-button" type="button" data-role="panel-tab" data-tab="paths" aria-selected="false">Paths</button>
+          <button class="literature-tab-button" type="button" data-role="panel-tab" data-tab="papers" aria-selected="false">Papers</button>
+        </div>
+
+        <section class="literature-panel-section" data-role="panel-section" data-panel="overview">
+          <div data-role="selected-neighborhood">
+            <p class="card-copy">Nearby topics and local map context will appear here.</p>
+          </div>
+        </section>
+
+        <section class="literature-panel-section" data-role="panel-section" data-panel="paths" hidden>
+          <div data-role="selected-question">
+            <p class="card-copy">Once you choose a topic, this panel will show the strongest nearby question-shaped paths and bridges.</p>
+          </div>
+          <div data-role="selected-opportunities">
+            <p class="card-copy">Candidate paths will appear here.</p>
+          </div>
+        </section>
+
+        <section class="literature-panel-section" data-role="panel-section" data-panel="papers" hidden>
+          <div data-role="selected-papers">
+            <p class="card-copy">Anchor papers will appear here once a topic is selected.</p>
+          </div>
+        </section>
+      </aside>
+
       <div class="literature-map-toolbar">
         <div class="literature-toggle-group" role="group" aria-label="Map depth">
           <button class="button-tertiary literature-toggle" type="button" data-role="depth-1">1 hop</button>
@@ -79,43 +109,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
       <div class="graph-help-row literature-help-row">
         <span class="mini-copy">
-          Click any topic to recenter the graph. The right-hand panel explains why the topic is here, which paths are strongest nearby, and which anchor papers to inspect first.
+          The graph stays rooted in one neighborhood. Click a topic to inspect it. Use the panel to rebuild the map only when you want to pivot.
         </span>
       </div>
     </section>
-
-    <aside class="graph-panel literature-panel">
-      <div class="literature-panel-header" data-role="selected-concept">
-        <p class="card-copy">Choose a topic to see its local neighborhood.</p>
-      </div>
-
-      <div class="literature-panel-tabs" role="tablist" aria-label="Literature graph panel">
-        <button class="literature-tab-button is-active" type="button" data-role="panel-tab" data-tab="overview" aria-selected="true">Overview</button>
-        <button class="literature-tab-button" type="button" data-role="panel-tab" data-tab="paths" aria-selected="false">Paths</button>
-        <button class="literature-tab-button" type="button" data-role="panel-tab" data-tab="papers" aria-selected="false">Papers</button>
-      </div>
-
-      <section class="literature-panel-section" data-role="panel-section" data-panel="overview">
-        <div data-role="selected-neighborhood">
-          <p class="card-copy">Nearby topics and local map context will appear here.</p>
-        </div>
-      </section>
-
-      <section class="literature-panel-section" data-role="panel-section" data-panel="paths" hidden>
-        <div data-role="selected-question">
-          <p class="card-copy">Once you choose a topic, this panel will show the strongest nearby question-shaped paths and bridges.</p>
-        </div>
-        <div data-role="selected-opportunities">
-          <p class="card-copy">Candidate paths will appear here.</p>
-        </div>
-      </section>
-
-      <section class="literature-panel-section" data-role="panel-section" data-panel="papers" hidden>
-        <div data-role="selected-papers">
-          <p class="card-copy">Anchor papers will appear here once a topic is selected.</p>
-        </div>
-      </section>
-    </aside>
   </div>
 </section>
 
@@ -172,6 +169,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   const zoomInButton = root.querySelector('[data-role="zoom-in"]');
 
   const shardCache = new Map();
+  let rootConceptId = null;
   let selectedId = null;
   let graph = null;
   let concepts = [];
@@ -366,7 +364,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   };
 
   const buildSecondRing = (firstRingIds) => {
-    const exclude = new Set([selectedId, ...firstRingIds]);
+    const exclude = new Set([rootConceptId, ...firstRingIds]);
     const secondRingIds = [];
     for (const neighborId of firstRingIds) {
       const localAdds = getRankedNeighbors(neighborId, 2, exclude);
@@ -387,7 +385,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const positionMap = new Map();
     const centerX = GRAPH_WIDTH * 0.5;
     const centerY = GRAPH_HEIGHT * 0.5;
-    positionMap.set(selectedId, { x: centerX, y: centerY, angle: -Math.PI / 2 });
+    positionMap.set(rootConceptId, { x: centerX, y: centerY, angle: -Math.PI / 2 });
 
     if (firstRingIds.length) {
       const radiusX = firstRingIds.length <= 6 ? 245 : 295;
@@ -431,7 +429,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   };
 
   const getVisibleGraphState = () => {
-    const selectedActive = Boolean(selectedId) && isInBackbone(selectedId);
+    const selectedActive = Boolean(rootConceptId) && isInBackbone(rootConceptId);
     const activeQuestion = currentQuestion();
     const counterpartId = activeQuestion
       ? activeQuestion.source_id === selectedId
@@ -462,9 +460,9 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       };
     }
 
-    const firstRingIds = getRankedNeighbors(selectedId, FIRST_RING_LIMIT, new Set([selectedId]));
+    const firstRingIds = getRankedNeighbors(rootConceptId, FIRST_RING_LIMIT, new Set([rootConceptId]));
     const secondRingIds = hopDepth > 1 ? buildSecondRing(firstRingIds) : [];
-    const visibleIds = new Set([selectedId, ...firstRingIds, ...secondRingIds]);
+    const visibleIds = new Set([rootConceptId, ...firstRingIds, ...secondRingIds]);
     if (counterpartId) visibleIds.add(counterpartId);
     mediatorIds.forEach((conceptId) => visibleIds.add(conceptId));
 
@@ -474,8 +472,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const visibleEdges = graph.edges.filter((edge) => {
       if (!visibleIds.has(edge.source) || !visibleIds.has(edge.target)) return false;
       return (
-        edge.source === selectedId ||
-        edge.target === selectedId ||
+        edge.source === rootConceptId ||
+        edge.target === rootConceptId ||
         firstRingSet.has(edge.source) ||
         firstRingSet.has(edge.target) ||
         highlightSet.has(edge.source) ||
@@ -576,7 +574,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
   const setDefaultViewport = () => {
     if (!graph) return;
-    if (mapMode === "local" && selectedId && isInBackbone(selectedId)) {
+    if (mapMode === "local" && rootConceptId && isInBackbone(rootConceptId)) {
       fitViewToNodeIds(getVisibleGraphState().nodes.map((node) => node.id), 150, 0.92);
       return;
     }
@@ -634,14 +632,19 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
   const restoreStatus = () => {
     if (!(hoverCard instanceof HTMLElement)) return;
-    const concept = selectedId ? conceptMap.get(selectedId) : null;
+    const concept = rootConceptId ? conceptMap.get(rootConceptId) : null;
+    const inspectedConcept = selectedId ? conceptMap.get(selectedId) : null;
     const activeQuestion = currentQuestion();
     if (activeQuestion) {
       hoverCard.textContent = `Path focus: ${questionTitle(activeQuestion)} Click another topic to pivot the map, or stay here and inspect the supporting route.`;
       return;
     }
     if (concept) {
-      hoverCard.textContent = `Showing a ${hopDepth}-hop local map around ${conceptTitle(concept)}. Click any topic to recenter, or switch to the backbone when you want the wider graph.`;
+      if (inspectedConcept && inspectedConcept.concept_id !== rootConceptId) {
+        hoverCard.textContent = `Inspecting ${conceptTitle(inspectedConcept)} inside a ${hopDepth}-hop map rooted in ${conceptTitle(concept)}. Use the panel when you want to rebuild the map around it.`;
+        return;
+      }
+      hoverCard.textContent = `Showing a ${hopDepth}-hop local map around ${conceptTitle(concept)}. Click any topic to inspect it, or switch to the backbone when you want the wider graph.`;
       return;
     }
     hoverCard.textContent = "Choose a topic to open its local literature map.";
@@ -677,18 +680,25 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       )
       .join("");
     for (const button of centralList.querySelectorAll("[data-concept-id]")) {
-      button.addEventListener("click", () => selectConcept(button.dataset.conceptId));
+      button.addEventListener("click", () => selectConcept(button.dataset.conceptId, { rebuildMap: true, switchToOverview: true }));
     }
   };
 
   const renderSelectedConcept = (concept) => {
     if (!(selectedConcept instanceof HTMLElement)) return;
+    const rootConcept = rootConceptId ? conceptMap.get(rootConceptId) : null;
+    const isMapRoot = concept.concept_id === rootConceptId;
     selectedConcept.innerHTML = `
       <div class="literature-summary">
         <div class="literature-summary-copy">
-          <span class="tiny-label">Selected topic</span>
+          <span class="tiny-label">${isMapRoot ? "Selected topic" : "Inspected topic"}</span>
           <h2>${escapeHtml(conceptTitle(concept))}</h2>
           ${conceptSubtitle(concept) ? `<p class="mini-copy">${escapeHtml(conceptSubtitle(concept))}</p>` : ""}
+          ${
+            rootConcept && !isMapRoot
+              ? `<p class="mini-copy literature-root-note">Map rooted in <strong>${escapeHtml(conceptTitle(rootConcept))}</strong>.</p>`
+              : ""
+          }
         </div>
         <div class="literature-summary-stats">
           <span class="graph-topic-stat">${formatNumber(safeNumber(concept.distinct_paper_support))} papers</span>
@@ -696,6 +706,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           <span class="graph-topic-stat">${hopDepth}-hop local map</span>
         </div>
         <div class="button-row literature-summary-actions">
+          ${!isMapRoot ? `<button class="button-secondary" type="button" data-role="rebuild-map-here">Rebuild map here</button>` : ""}
           <button class="button-tertiary" type="button" data-role="change-topic">Change topic</button>
         </div>
       </div>
@@ -705,6 +716,12 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       button.addEventListener("click", () => {
         searchInput.focus();
         searchInput.select();
+      });
+    }
+    const rebuildButton = selectedConcept.querySelector('[data-role="rebuild-map-here"]');
+    if (rebuildButton instanceof HTMLButtonElement) {
+      rebuildButton.addEventListener("click", () => {
+        selectConcept(concept.concept_id, { rebuildMap: true, switchToOverview: false });
       });
     }
   };
@@ -769,7 +786,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     `;
 
     for (const button of selectedNeighborhood.querySelectorAll("[data-neighbor-id]")) {
-      button.addEventListener("click", () => selectConcept(button.dataset.neighborId));
+      button.addEventListener("click", () => selectConcept(button.dataset.neighborId, { rebuildMap: false, switchToOverview: false }));
     }
   };
 
@@ -836,7 +853,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     `;
 
     for (const button of selectedQuestion.querySelectorAll("[data-mediator-id]")) {
-      button.addEventListener("click", () => selectConcept(button.dataset.mediatorId));
+      button.addEventListener("click", () => selectConcept(button.dataset.mediatorId, { rebuildMap: false, switchToOverview: false }));
     }
 
     selectedOpportunities.innerHTML = `
@@ -934,7 +951,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const nodeMarkup = [];
     const edgeMarkup = [];
     const visibleState = getVisibleGraphState();
-    const selectedActive = Boolean(selectedId) && isInBackbone(selectedId);
+    const selectedActive = Boolean(rootConceptId) && isInBackbone(rootConceptId);
     const {
       focusedActive,
       nodes: visibleNodes,
@@ -951,7 +968,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       const target = graph.nodeMap.get(edge.target);
       const sourceRender = nodeRenderState(source, renderPositionMap);
       const targetRender = nodeRenderState(target, renderPositionMap);
-      const isSelectedEdge = selectedActive && (edge.source === selectedId || edge.target === selectedId);
+      const isSelectedEdge = selectedActive && (edge.source === rootConceptId || edge.target === rootConceptId);
       const isPathEdge =
         mediatorIds.has(edge.source) ||
         mediatorIds.has(edge.target) ||
@@ -964,16 +981,19 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
 
     for (const node of visibleNodes) {
-      const isSelected = node.id === selectedId;
+      const isRoot = node.id === rootConceptId;
+      const isSelected = node.id === selectedId && node.id !== rootConceptId;
       const isQuestionTarget = Boolean(counterpartId) && node.id === counterpartId;
       const isMediator = mediatorIds.has(node.id);
       const isFirstRing = firstRing.has(node.id);
       const isSecondRing = secondRing.has(node.id);
-      const isDimmed = mapMode === "global" && selectedActive && !isSelected && !isQuestionTarget && !isMediator;
+      const isDimmed = mapMode === "global" && selectedActive && !isRoot && !isSelected && !isQuestionTarget && !isMediator;
       const renderState = nodeRenderState(node, renderPositionMap);
       const radius = focusedActive
-        ? isSelected
+        ? isRoot
           ? 26
+          : isSelected
+            ? 20
           : isQuestionTarget
             ? 21
             : isMediator
@@ -983,27 +1003,27 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
                 : Math.max(9.5, Math.min(14.5, 9 + Math.log10(safeNumber(node.weighted_degree) + 1) * 1.4))
         : Math.max(2.8, Math.min(24, 2.8 + Math.log10(safeNumber(node.weighted_degree) + 1) * 4.4));
       const showLabel = focusedActive
-        ? isSelected || isQuestionTarget || isMediator || isFirstRing || (isSecondRing && safeNumber(node.weighted_degree) >= 60)
-        : node.show_label || isSelected || isQuestionTarget;
+        ? isRoot || isSelected || isQuestionTarget || isMediator || isFirstRing || (isSecondRing && safeNumber(node.weighted_degree) >= 60)
+        : node.show_label || isRoot || isSelected || isQuestionTarget;
       const label = node.plain_label || node.label;
       const labelWidth = estimateChipWidth(label);
       const labelAbove = focusedActive ? Math.sin(renderState.angle) <= 0 : true;
       const labelY = focusedActive
         ? renderState.y + (labelAbove ? -(radius + 18) : radius + 28)
-        : renderState.y - (radius + (isSelected ? 16 : 8));
+        : renderState.y - (radius + (isRoot || isSelected ? 16 : 8));
       const chipY = labelAbove ? labelY - 20 : labelY - 18;
       nodeMarkup.push(
-        `<g class="graph-node-group${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeAttr(node.id)}">
-          ${focusedActive ? `<circle class="graph-node-halo${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}" cx="${renderState.x}" cy="${renderState.y}" r="${radius + (isSelected ? 10 : isQuestionTarget ? 8 : isMediator ? 7 : 6)}"></circle>` : ""}
+        `<g class="graph-node-group${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeAttr(node.id)}">
+          ${focusedActive ? `<circle class="graph-node-halo${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}" cx="${renderState.x}" cy="${renderState.y}" r="${radius + (isRoot ? 10 : isSelected ? 8 : isQuestionTarget ? 8 : isMediator ? 7 : 6)}"></circle>` : ""}
           <circle class="graph-node" cx="${renderState.x}" cy="${renderState.y}" r="${radius}"></circle>
           ${
             showLabel
               ? focusedActive
-                ? `<g class="graph-label-chip${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}">
+                ? `<g class="graph-label-chip${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}">
                     <rect x="${renderState.x - labelWidth / 2}" y="${chipY}" width="${labelWidth}" height="28" rx="14" ry="14"></rect>
-                    <text class="graph-label graph-label-chip-text${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>
+                    <text class="graph-label graph-label-chip-text${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>
                   </g>`
-                : `<text class="graph-label${isSelected ? " is-selected" : ""}${isQuestionTarget ? " is-question-target" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>`
+                : `<text class="graph-label${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>`
               : ""
           }
         </g>`,
@@ -1027,7 +1047,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           ${node.subtitle ? `${escapeHtml(node.subtitle)}<br />` : ""}
           <span>${formatNumber(safeNumber(node.distinct_paper_support))} papers in the ${contextLabel}.</span><br />
           <span>${formatNumber(safeNumber(node.weighted_degree))} weighted links in the backbone.</span><br />
-          <span class="tooltip-action">Click to recenter the map here.</span>
+          <span class="tooltip-action">Click to inspect this topic. Use the panel to rebuild the map here.</span>
         `);
       });
       nodeElement.addEventListener("mousemove", moveTooltip);
@@ -1038,7 +1058,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       });
       nodeElement.addEventListener("click", (event) => {
         event.stopPropagation();
-        selectConcept(nodeElement.dataset.nodeId);
+        selectConcept(nodeElement.dataset.nodeId, { rebuildMap: false, switchToOverview: false });
       });
     }
 
@@ -1097,15 +1117,20 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     renderAllPanels();
   };
 
-  const selectConcept = async (conceptId) => {
+  const selectConcept = async (conceptId, { rebuildMap = true, switchToOverview = rebuildMap } = {}) => {
     if (!conceptId) return;
     const concept = conceptMap.get(conceptId);
     if (!concept) return;
+    if (rebuildMap || !rootConceptId) {
+      rootConceptId = conceptId;
+    }
     selectedId = conceptId;
     currentNeighborhood = null;
     currentOpportunities = [];
     activeQuestionPairKey = null;
-    setPanelTab("overview");
+    if (switchToOverview) {
+      setPanelTab("overview");
+    }
     if (selectedConcept instanceof HTMLElement) {
       selectedConcept.innerHTML = `<p class="card-copy">Loading topic context...</p>`;
     }
@@ -1124,13 +1149,17 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     renderGraph();
     restoreStatus();
 
-    const nextUrl = new URL(window.location.href);
-    nextUrl.searchParams.set("q", conceptTitle(concept));
-    window.history.replaceState({}, "", nextUrl);
+    if (rebuildMap) {
+      const nextUrl = new URL(window.location.href);
+      nextUrl.searchParams.set("q", conceptTitle(concept));
+      window.history.replaceState({}, "", nextUrl);
+    }
 
     await Promise.all([renderNeighborhood(conceptId), renderOpportunities(conceptId)]);
     renderGraph();
-    setDefaultViewport();
+    if (rebuildMap) {
+      setDefaultViewport();
+    }
     restoreStatus();
     hideTooltip();
   };
@@ -1157,7 +1186,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       button.addEventListener("click", () => {
         searchResults.innerHTML = "";
         if (searchInput instanceof HTMLInputElement) searchInput.value = "";
-        selectConcept(button.dataset.conceptId);
+        selectConcept(button.dataset.conceptId, { rebuildMap: true, switchToOverview: true });
       });
     }
     return matches;
@@ -1238,7 +1267,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       if (matches[0]?.concept_id) {
         searchResults.innerHTML = "";
         searchInput.value = "";
-        selectConcept(matches[0].concept_id);
+        selectConcept(matches[0].concept_id, { rebuildMap: true, switchToOverview: true });
       }
     });
   }
