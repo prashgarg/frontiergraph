@@ -45,10 +45,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           <div class="search-results" data-role="search-results"></div>
         </label>
 
-        <div class="literature-jumpbar">
-          <span class="tiny-label">Try one of these</span>
+        <details class="literature-suggested-shell" data-role="suggested-shell">
+          <summary>Suggested Topics</summary>
           <div class="central-list central-list-inline" data-role="central-list"></div>
-        </div>
+        </details>
       </div>
 
       <aside class="graph-panel literature-panel">
@@ -696,13 +696,13 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           ${conceptSubtitle(concept) ? `<p class="mini-copy">${escapeHtml(conceptSubtitle(concept))}</p>` : ""}
           ${
             rootConcept && !isMapRoot
-              ? `<p class="mini-copy literature-root-note">Map rooted in <strong>${escapeHtml(conceptTitle(rootConcept))}</strong>.</p>`
+              ? `<p class="mini-copy literature-root-note">Rooted in <strong>${escapeHtml(conceptTitle(rootConcept))}</strong>.</p>`
               : ""
           }
         </div>
         <div class="literature-summary-stats">
           <span class="graph-topic-stat">${formatNumber(safeNumber(concept.distinct_paper_support))} papers</span>
-          <span class="graph-topic-stat">${formatNumber(currentOpportunities.length)} path candidates</span>
+          <span class="graph-topic-stat">${formatNumber(currentOpportunities.length)} paths</span>
           <span class="graph-topic-stat">${hopDepth}-hop local map</span>
         </div>
         <div class="button-row literature-summary-actions">
@@ -740,47 +740,49 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           .filter((item) => item?.concept_id && item.concept_id !== selectedId)
           .map((item) => [item.concept_id, item]),
       ).values(),
-    ).slice(0, 8);
+    ).slice(0, 6);
 
     selectedNeighborhood.innerHTML = `
       <div class="literature-panel-stack">
-        <section class="question-detail-panel">
+        <section class="question-detail-panel literature-compact-panel">
           <h3>Local neighborhood</h3>
-          <p class="mini-copy">
-            The graph starts from ${escapeHtml(conceptTitle(concept))}, keeps the strongest direct neighbors close, and adds a second ring of bridge topics farther out.
-          </p>
           ${
             nearbyTopics.length
               ? `
-                <div class="graph-topic-chip-list">
-                  ${nearbyTopics
-                    .map((item) => {
-                      const neighbor = conceptMap.get(item.concept_id);
-                      const label = neighbor ? conceptTitle(neighbor) : item.label;
-                      return `
-                        <button class="topic-chip-button" type="button" data-neighbor-id="${escapeAttr(item.concept_id)}">
-                          <span>${escapeHtml(label)}</span>
-                          <small>${formatNumber(safeNumber(item.support_count))} papers</small>
-                        </button>
-                      `;
-                    })
-                    .join("")}
-                </div>
+                <details class="literature-collapsible" open>
+                  <summary>Show nearby topics</summary>
+                  <div class="graph-topic-chip-list">
+                    ${nearbyTopics
+                      .map((item) => {
+                        const neighbor = conceptMap.get(item.concept_id);
+                        const label = neighbor ? conceptTitle(neighbor) : item.label;
+                        return `
+                          <button class="topic-chip-button" type="button" data-neighbor-id="${escapeAttr(item.concept_id)}">
+                            <span>${escapeHtml(label)}</span>
+                            <small>${formatNumber(safeNumber(item.support_count))} papers</small>
+                          </button>
+                        `;
+                      })
+                      .join("")}
+                  </div>
+                </details>
               `
               : `<p class="mini-copy">No nearby-topic summary was exported for this topic in the ${contextLabel}.</p>`
           }
         </section>
 
-        <section class="question-detail-panel">
-          <h3>What sits behind this view</h3>
-          <div class="graph-question-meta">
-            <span>${formatNumber(safeNumber(concept.weighted_degree))} weighted links in the backbone</span>
-            <span>${formatNumber(currentOpportunities.length)} nearby question-shaped routes</span>
-            <span>${mapMode === "global" ? "Backbone view" : "Local view"}</span>
-          </div>
-          <p class="mini-copy">
-            Use this panel to orient yourself first, then switch to Paths when you want the strongest question-like bridges, or Papers when you want a reading list.
-          </p>
+        <section class="question-detail-panel literature-compact-panel">
+          <details class="literature-collapsible">
+            <summary>About this view</summary>
+            <div class="graph-question-meta">
+              <span>${formatNumber(safeNumber(concept.weighted_degree))} weighted links</span>
+              <span>${formatNumber(currentOpportunities.length)} nearby routes</span>
+              <span>${mapMode === "global" ? "Backbone view" : "Local view"}</span>
+            </div>
+            <p class="mini-copy">
+              Direct neighbors stay near the root topic. Bridge topics sit farther out.
+            </p>
+          </details>
         </section>
       </div>
     `;
@@ -814,38 +816,43 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         : [];
 
     selectedQuestion.innerHTML = `
-      <article class="graph-question-focus-card literature-path-focus-card">
+      <article class="graph-question-focus-card literature-path-focus-card literature-compact-panel">
         <h3>${escapeHtml(questionTitle(activeQuestion))}</h3>
-        <p class="card-copy focus-summary"><strong>Why this surfaced:</strong> ${escapeHtml(conciseQuestionReason(activeQuestion))}</p>
         <div class="graph-question-meta">
-          <span>${formatNumber(safeNumber(activeQuestion.supporting_path_count))} supporting paths</span>
-          <span>${formatNumber(safeNumber(activeQuestion.mediator_count))} intermediate topics</span>
+          <span>${formatNumber(safeNumber(activeQuestion.supporting_path_count))} paths</span>
+          <span>${formatNumber(safeNumber(activeQuestion.mediator_count))} mediators</span>
           <span>${escapeHtml(questionProjectShapeLabel(activeQuestion))}</span>
         </div>
+        <details class="literature-collapsible">
+          <summary>Why this surfaced</summary>
+          <p class="mini-copy">${escapeHtml(conciseQuestionReason(activeQuestion))}</p>
+        </details>
         ${
           mediatorLabels.length
             ? `
-              <div class="graph-topic-chip-list">
-                ${mediatorLabels
-                  .map((label) => {
-                    const mediatorId = resolveMediatorConceptId(label);
-                    return mediatorId
-                      ? `
-                        <button class="topic-chip-button" type="button" data-mediator-id="${escapeAttr(mediatorId)}">
-                          <span>${escapeHtml(label)}</span>
-                          <small>Open topic</small>
-                        </button>
-                      `
-                      : `
-                        <span class="graph-topic-stat">${escapeHtml(label)}</span>
-                      `;
-                  })
-                  .join("")}
-              </div>
+              <details class="literature-collapsible">
+                <summary>Show bridge topics</summary>
+                <div class="graph-topic-chip-list">
+                  ${mediatorLabels
+                    .map((label) => {
+                      const mediatorId = resolveMediatorConceptId(label);
+                      return mediatorId
+                        ? `
+                          <button class="topic-chip-button" type="button" data-mediator-id="${escapeAttr(mediatorId)}">
+                            <span>${escapeHtml(label)}</span>
+                            <small>Open topic</small>
+                          </button>
+                        `
+                        : `
+                          <span class="graph-topic-stat">${escapeHtml(label)}</span>
+                        `;
+                    })
+                    .join("")}
+                </div>
+              </details>
             `
             : ""
         }
-        <p class="mini-copy focus-step"><strong>What to inspect first:</strong> ${escapeHtml(activeQuestion.recommended_move || "Start with the nearby literature and pin down the empirical setting.")}</p>
         <div class="graph-question-actions">
           <a class="button-secondary" href="${escapeAttr(activeQuestion.app_link)}" target="_blank" rel="noopener noreferrer">Open Explorer</a>
         </div>
@@ -858,9 +865,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
     selectedOpportunities.innerHTML = `
       <div class="literature-panel-stack">
-        <div class="inspector-head">
+        <div class="inspector-head literature-compact-head">
           <h3>Candidate paths around this topic</h3>
-          <p class="mini-copy">Choose one to highlight a counterpart and the nearby bridge topics already holding the route together.</p>
         </div>
         ${currentOpportunities
           .slice(0, TOP_PATH_LIMIT)
@@ -873,7 +879,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
                 <strong>${escapeHtml(questionTitle(item))}</strong>
                 <div class="graph-question-meta graph-question-meta-tight">
                   <span>Other side: ${escapeHtml(conceptLabel(counterpartId, "Other topic"))}</span>
-                  <span>${formatNumber(safeNumber(item.supporting_path_count))} supporting paths</span>
+                  <span>${formatNumber(safeNumber(item.supporting_path_count))} paths</span>
                   <span>${escapeHtml(questionProjectShapeLabel(item))}</span>
                 </div>
               </button>
@@ -921,26 +927,28 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     selectedPapers.innerHTML = dedupedPapers.length
       ? `
         <div class="literature-panel-stack">
-          <div class="inspector-head">
+          <div class="inspector-head literature-compact-head">
             <h3>Anchor papers</h3>
-            <p class="mini-copy">These paper previews come from the strongest question-shaped routes touching ${escapeHtml(conceptTitle(concept))}.</p>
           </div>
-          <div class="literature-paper-stack">
-            ${dedupedPapers
-              .map(
-                (paper) => `
-                  <article class="literature-paper-card">
-                    <span class="tiny-label">${escapeHtml(paper.sourceQuestion)}</span>
-                    <strong>${escapeHtml(paper.title)}</strong>
-                    <div class="graph-question-meta graph-question-meta-tight">
-                      <span>${paper.year ? escapeHtml(String(paper.year)) : "Year unknown"}</span>
-                      <span>${escapeHtml(contextLabel)}</span>
-                    </div>
-                  </article>
-                `,
-              )
-              .join("")}
-          </div>
+          <details class="literature-collapsible" open>
+            <summary>Show papers</summary>
+            <div class="literature-paper-stack">
+              ${dedupedPapers
+                .map(
+                  (paper) => `
+                    <article class="literature-paper-card">
+                      <span class="tiny-label">${escapeHtml(paper.sourceQuestion)}</span>
+                      <strong>${escapeHtml(paper.title)}</strong>
+                      <div class="graph-question-meta graph-question-meta-tight">
+                        <span>${paper.year ? escapeHtml(String(paper.year)) : "Year unknown"}</span>
+                        <span>${escapeHtml(contextLabel)}</span>
+                      </div>
+                    </article>
+                  `,
+                )
+                .join("")}
+            </div>
+          </details>
         </div>
       `
       : `<p class="card-copy">No paper previews were exported for this topic in the ${contextLabel}.</p>`;
