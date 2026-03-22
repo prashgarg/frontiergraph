@@ -3301,8 +3301,15 @@ h3 {
 }
 
 .graph-edge.is-directional {
-  stroke: rgba(31, 50, 72, 0.82);
-  stroke-opacity: calc(0.18 + (var(--edge-support, 0.2) * 0.5));
+  stroke: rgba(31, 50, 72, 0.92);
+  stroke-opacity: calc(0.22 + (var(--edge-support, 0.2) * 0.56));
+  stroke-width: calc(1.2px + (var(--edge-support, 0.2) * 4.35px));
+}
+
+.graph-edge.is-paper-layer {
+  stroke: rgba(190, 139, 47, 0.9);
+  stroke-opacity: calc(0.16 + (var(--edge-support, 0.2) * 0.52));
+  stroke-width: calc(1.15px + (var(--edge-support, 0.2) * 4.7px));
 }
 
 .graph-edge.is-scope-match {
@@ -3388,6 +3395,11 @@ h3 {
   stroke: rgba(45, 119, 109, 0.22);
 }
 
+.graph-node-halo.is-paper-layer {
+  fill: rgba(214, 169, 84, 0.08);
+  stroke: rgba(195, 145, 46, 0.18);
+}
+
 .graph-node-group.is-question-target .graph-node {
   fill: rgba(31, 50, 72, 0.88);
   stroke: rgba(255, 253, 248, 0.98);
@@ -3430,6 +3442,12 @@ h3 {
 .graph-node-group.is-scope-match .graph-node {
   stroke: rgba(58, 105, 170, 0.52);
   stroke-width: 2.1;
+}
+
+.graph-node-group.is-paper-layer .graph-node {
+  fill: color-mix(in srgb, rgba(214, 169, 84, 0.3) calc(18% + (var(--paper-support, 0.2) * 34%)), rgba(50, 126, 111, 0.78));
+  stroke: rgba(181, 129, 35, 0.34);
+  stroke-width: calc(1.6px + (var(--paper-support, 0.2) * 1.15px));
 }
 
 .graph-node {

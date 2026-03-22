@@ -984,8 +984,14 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       if (layer.type === "scope") return "Scope";
       return "Overlay";
     };
+    const visibleLayers = LAYER_DEFS.filter((layer) => {
+      if (layer.type !== "scope") return true;
+      const expectedType =
+        layer.key === "geography" ? "geography" : layer.key === "methods" ? "method" : layer.key === "datasets" ? "dataset" : "";
+      return scopeState.some((item) => (item.scope_type || item.entity_type) === expectedType) || layerState[layer.key];
+    });
     const layerDisabled = (layer) => layer.key === "fringeTopics" && hopDepth === 1;
-    layersList.innerHTML = LAYER_DEFS.map(
+    layersList.innerHTML = visibleLayers.map(
       (layer) => `
         <label class="literature-layer-option${layerState[layer.key] ? " is-active" : ""}${layerDisabled(layer) ? " is-disabled" : ""}" data-layer-kind="${escapeAttr(layer.type)}">
           <input type="checkbox" data-layer-key="${escapeAttr(layer.key)}" ${layerState[layer.key] ? "checked" : ""} ${layerDisabled(layer) ? "disabled" : ""} />
@@ -1042,8 +1048,17 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   };
   const edgeArrowMode = (edge) => {
     const summary = edgePairSummary(edge);
-    if (!summary) return "none";
-    return summary.arrow_mode || "none";
+    if (summary?.arrow_mode && summary.arrow_mode !== "none") return summary.arrow_mode;
+    const directionMix = Array.isArray(edge?.directionality_mix) ? edge.directionality_mix : [];
+    if (!directionMix.length) return summary?.arrow_mode || "none";
+    const directedCount = directionMix
+      .filter((item) => normalizeText(mixItemValue(item)).includes("directed"))
+      .reduce((sum, item) => sum + safeNumber(mixItemCount(item)), 0);
+    const undirectedCount = directionMix
+      .filter((item) => normalizeText(mixItemValue(item)).includes("undirected") || normalizeText(mixItemValue(item)).includes("context"))
+      .reduce((sum, item) => sum + safeNumber(mixItemCount(item)), 0);
+    if (directedCount || undirectedCount) return "both";
+    return summary?.arrow_mode || "none";
   };
 
   const fetchJson = async (path) => {
@@ -1305,6 +1320,248 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     return positionMap;
   };
 
+  const localNodeLayoutProfile = (node, context) => {
+    const isRoot = node.id === context.rootId;
+    const isSelected = node.id === context.selectedConceptId && node.id !== context.rootId;
+    const isQuestionTarget = Boolean(context.counterpartId) && node.id === context.counterpartId;
+    const isMediator = context.mediatorIds.has(node.id);
+    const isFirstRing = context.firstRing.has(node.id);
+    const isSecondRing = context.secondRing.has(node.id);
+    const isThirdRing = context.thirdRing.has(node.id);
+    const isScopeMatch = context.scopeFilteringActive ? nodeMatchesActiveScopeLayers(node) : false;
+    const prominence = Math.max(
+      safeNumber(node.distinct_paper_support),
+      safeNumber(node.weighted_degree) * 0.2,
+    );
+    const radius = isRoot
+      ? 26
+      : isSelected
+        ? 20
+        : isQuestionTarget
+          ? 21
+          : isMediator
+            ? 17
+            : isFirstRing
+              ? Math.max(13, Math.min(22, 11.8 + Math.log10(prominence + 1) * 2.8))
+              : isSecondRing
+                ? Math.max(10, Math.min(16, 9.8 + Math.log10(prominence + 1) * 1.55))
+                : isThirdRing
+                  ? 5.7
+                  : Math.max(8.5, Math.min(13.5, 8.8 + Math.log10(prominence + 1) * 1.2));
+    const label = node.plain_label || node.label || "";
+    return {
+      isRoot,
+      isSelected,
+      isQuestionTarget,
+      isMediator,
+      isFirstRing,
+      isSecondRing,
+      isThirdRing,
+      isScopeMatch,
+      prominence,
+      radius,
+      label,
+      labelWidth: estimateChipWidth(label),
+      showLabel:
+        isRoot ||
+        isSelected ||
+        isQuestionTarget ||
+        isMediator ||
+        isScopeMatch ||
+        context.firstRingLabels.has(node.id) ||
+        context.dynamicLabelIds.has(node.id),
+      mobility: isRoot ? 0 : isSelected || isQuestionTarget ? 0.14 : isMediator ? 0.2 : isFirstRing ? 0.22 : isSecondRing ? 0.48 : isThirdRing ? 0.74 : 0.56,
+      spring: isRoot ? 0.28 : isSelected || isQuestionTarget ? 0.12 : isMediator ? 0.09 : isFirstRing ? 0.075 : isSecondRing ? 0.05 : 0.036,
+      labelPriority: isRoot ? 100 : isSelected ? 95 : isQuestionTarget ? 92 : isMediator ? 78 : isFirstRing ? 64 : context.dynamicLabelIds.has(node.id) ? 56 : isSecondRing ? 38 : isThirdRing ? 10 : 18,
+    };
+  };
+
+  const clampPositionToCanvas = (x, y, paddingX = 56, paddingY = 64) => ({
+    x: clamp(x, paddingX, GRAPH_WIDTH - paddingX),
+    y: clamp(y, paddingY, GRAPH_HEIGHT - paddingY),
+  });
+
+  const rectOverlapArea = (left, right) => {
+    const overlapX = Math.max(0, Math.min(left.right, right.right) - Math.max(left.left, right.left));
+    const overlapY = Math.max(0, Math.min(left.bottom, right.bottom) - Math.max(left.top, right.top));
+    return overlapX * overlapY;
+  };
+
+  const rectCircleOverlapArea = (rect, circle) => {
+    const nearestX = clamp(circle.x, rect.left, rect.right);
+    const nearestY = clamp(circle.y, rect.top, rect.bottom);
+    const dx = circle.x - nearestX;
+    const dy = circle.y - nearestY;
+    const distanceSquared = dx * dx + dy * dy;
+    if (distanceSquared >= circle.r * circle.r) return 0;
+    return (circle.r * circle.r - distanceSquared) / Math.max(circle.r, 1);
+  };
+
+  const createLabelCandidates = (position, profile) => {
+    const labelHeight = 28;
+    const gap = profile.isThirdRing ? 10 : profile.isSecondRing ? 13 : 16;
+    const candidates = [
+      { name: "top", dx: 0, dy: -(profile.radius + gap + labelHeight / 2), bias: 0 },
+      { name: "bottom", dx: 0, dy: profile.radius + gap + labelHeight / 2, bias: 1.1 },
+      { name: "right", dx: profile.radius + gap + profile.labelWidth / 2, dy: 0, bias: 1.9 },
+      { name: "left", dx: -(profile.radius + gap + profile.labelWidth / 2), dy: 0, bias: 2.2 },
+      { name: "top-right", dx: profile.radius + gap + profile.labelWidth * 0.34, dy: -(profile.radius + gap + labelHeight * 0.6), bias: 2.7 },
+      { name: "top-left", dx: -(profile.radius + gap + profile.labelWidth * 0.34), dy: -(profile.radius + gap + labelHeight * 0.6), bias: 2.9 },
+      { name: "bottom-right", dx: profile.radius + gap + profile.labelWidth * 0.34, dy: profile.radius + gap + labelHeight * 0.6, bias: 3.2 },
+      { name: "bottom-left", dx: -(profile.radius + gap + profile.labelWidth * 0.34), dy: profile.radius + gap + labelHeight * 0.6, bias: 3.35 },
+    ];
+    return candidates.map((candidate) => {
+      const centerX = position.x + candidate.dx;
+      const centerY = position.y + candidate.dy;
+      const rectX = centerX - profile.labelWidth / 2;
+      const rectY = centerY - labelHeight / 2;
+      return {
+        ...candidate,
+        centerX,
+        centerY,
+        textY: rectY + 18,
+        rect: {
+          left: rectX,
+          top: rectY,
+          right: rectX + profile.labelWidth,
+          bottom: rectY + labelHeight,
+        },
+      };
+    });
+  };
+
+  const relaxClusteredPositionMap = (positionMap, visibleNodes, context) => {
+    const profiles = new Map(visibleNodes.map((node) => [node.id, localNodeLayoutProfile(node, context)]));
+    const original = new Map(
+      visibleNodes.map((node) => {
+        const position = positionMap.get(node.id) || { x: GRAPH_WIDTH * 0.5, y: GRAPH_HEIGHT * 0.5, angle: -Math.PI / 2 };
+        return [node.id, { ...position }];
+      }),
+    );
+    const next = new Map(Array.from(original.entries()).map(([nodeId, position]) => [nodeId, { ...position }]));
+    const ids = visibleNodes.map((node) => node.id);
+
+    for (let iteration = 0; iteration < 56; iteration += 1) {
+      const displacement = new Map(ids.map((nodeId) => [nodeId, { x: 0, y: 0 }]));
+
+      for (let i = 0; i < ids.length; i += 1) {
+        for (let j = i + 1; j < ids.length; j += 1) {
+          const leftId = ids[i];
+          const rightId = ids[j];
+          const leftProfile = profiles.get(leftId);
+          const rightProfile = profiles.get(rightId);
+          if (!leftProfile || !rightProfile) continue;
+          const leftPosition = next.get(leftId);
+          const rightPosition = next.get(rightId);
+          if (!leftPosition || !rightPosition) continue;
+          const dx = rightPosition.x - leftPosition.x;
+          const dy = rightPosition.y - leftPosition.y;
+          const distance = Math.hypot(dx, dy) || 0.001;
+          const desiredDistance =
+            leftProfile.radius +
+            rightProfile.radius +
+            (leftProfile.showLabel || rightProfile.showLabel ? 36 : 18) +
+            (leftProfile.isFirstRing || rightProfile.isFirstRing ? 8 : 0);
+          if (distance >= desiredDistance) continue;
+          const overlap = desiredDistance - distance;
+          const push = overlap * 0.24;
+          const ux = dx / distance;
+          const uy = dy / distance;
+          const leftDisplacement = displacement.get(leftId);
+          const rightDisplacement = displacement.get(rightId);
+          if (leftDisplacement && leftProfile.mobility > 0) {
+            leftDisplacement.x -= ux * push * leftProfile.mobility;
+            leftDisplacement.y -= uy * push * leftProfile.mobility;
+          }
+          if (rightDisplacement && rightProfile.mobility > 0) {
+            rightDisplacement.x += ux * push * rightProfile.mobility;
+            rightDisplacement.y += uy * push * rightProfile.mobility;
+          }
+        }
+      }
+
+      for (const nodeId of ids) {
+        const profile = profiles.get(nodeId);
+        const position = next.get(nodeId);
+        const origin = original.get(nodeId);
+        const delta = displacement.get(nodeId);
+        if (!profile || !position || !origin || !delta) continue;
+        if (profile.mobility > 0) {
+          delta.x += (origin.x - position.x) * profile.spring;
+          delta.y += (origin.y - position.y) * profile.spring;
+          const bounded = clampPositionToCanvas(position.x + delta.x, position.y + delta.y, 56, 64);
+          position.x = bounded.x;
+          position.y = bounded.y;
+        } else {
+          position.x = origin.x;
+          position.y = origin.y;
+        }
+        position.angle = Math.atan2(position.y - context.centerY, position.x - context.centerX);
+      }
+    }
+
+    return next;
+  };
+
+  const applyClusteredLabelPlacements = (positionMap, visibleNodes, context) => {
+    const profiles = visibleNodes
+      .map((node) => ({ node, profile: localNodeLayoutProfile(node, context), position: positionMap.get(node.id) }))
+      .filter((item) => item.position)
+      .sort((left, right) => right.profile.labelPriority - left.profile.labelPriority);
+    const placedRects = [];
+    const nodeCircles = profiles.map((item) => ({
+      id: item.node.id,
+      x: item.position.x,
+      y: item.position.y,
+      r: item.profile.radius + 7,
+    }));
+    const result = new Map();
+
+    for (const item of profiles) {
+      const { node, profile, position } = item;
+      let labelPlacement = null;
+      if (profile.showLabel && profile.label) {
+        const candidates = createLabelCandidates(position, profile);
+        let bestCandidate = null;
+        let bestScore = Number.POSITIVE_INFINITY;
+        for (const candidate of candidates) {
+          let score = candidate.bias;
+          score += Math.max(0, 18 - candidate.rect.left) * 0.45;
+          score += Math.max(0, candidate.rect.right - (GRAPH_WIDTH - 18)) * 0.45;
+          score += Math.max(0, 18 - candidate.rect.top) * 0.52;
+          score += Math.max(0, candidate.rect.bottom - (GRAPH_HEIGHT - 18)) * 0.52;
+          for (const placed of placedRects) score += rectOverlapArea(candidate.rect, placed) * 0.06;
+          for (const circle of nodeCircles) {
+            if (circle.id === node.id) continue;
+            score += rectCircleOverlapArea(candidate.rect, circle) * 0.28;
+          }
+          if (score < bestScore) {
+            bestScore = score;
+            bestCandidate = candidate;
+          }
+        }
+        if (bestCandidate) {
+          labelPlacement = {
+            centerX: bestCandidate.centerX,
+            textY: bestCandidate.textY,
+            rectX: bestCandidate.rect.left,
+            rectY: bestCandidate.rect.top,
+            width: profile.labelWidth,
+            height: 28,
+          };
+          placedRects.push(bestCandidate.rect);
+        }
+      }
+      result.set(node.id, {
+        ...position,
+        angle: Math.atan2(position.y - context.centerY, position.x - context.centerX),
+        labelPlacement,
+      });
+    }
+
+    return result;
+  };
+
   const nodeRenderState = (node, renderPositionMap) => {
     const focusedPosition = renderPositionMap?.get(node.id);
     if (focusedPosition) return focusedPosition;
@@ -1408,6 +1665,29 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           buildSyntheticNode(rootId),
           ...graph.nodes.filter((node) => visibleIds.has(node.id) && node.id !== rootId),
         ].filter(Boolean);
+    const scopeFilteringActive = scopeState.some((item) => {
+      const layerKey = scopeLayerKey(scopeTypeForEntity(item));
+      return layerKey && layers[layerKey];
+    });
+    const layoutContext = {
+      rootId,
+      selectedConceptId,
+      counterpartId,
+      mediatorIds: new Set(mediatorIds),
+      firstRing: firstRingSet,
+      secondRing: secondRingSet,
+      thirdRing: thirdRingSet,
+      firstRingLabels,
+      dynamicLabelIds,
+      scopeFilteringActive,
+      centerX: workspaceAnchorPoint().centerX,
+      centerY: workspaceAnchorPoint().centerY,
+    };
+    let renderPositionMap = buildLocalPositionMap(rootId, firstRingIds, secondRingIds, thirdRingIds);
+    if (layoutMode === "clustered") {
+      renderPositionMap = relaxClusteredPositionMap(renderPositionMap, visibleNodes, layoutContext);
+      renderPositionMap = applyClusteredLabelPlacements(renderPositionMap, visibleNodes, layoutContext);
+    }
 
     return {
       focusedActive: true,
@@ -1420,7 +1700,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       mediatorIds: new Set(mediatorIds),
       firstRingLabels,
       dynamicLabelIds,
-      renderPositionMap: buildLocalPositionMap(rootId, firstRingIds, secondRingIds, thirdRingIds),
+      renderPositionMap,
     };
   };
 
@@ -2451,6 +2731,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const visibleNodeMap = new Map(visibleNodes.map((node) => [node.id, node]));
     const edgeLookup = new Map(visibleEdges.map((edge) => [edge.id, edge]));
     const maxVisibleSupport = Math.max(1, ...visibleEdges.map((edge) => safeNumber(edge.support_count)));
+    const maxVisiblePaperSupport = Math.max(1, ...visibleNodes.map((node) => safeNumber(node.distinct_paper_support)));
     const scopeFilteringActive = scopeState.some((item) => {
       const layerKey = scopeLayerKey(scopeTypeForEntity(item));
       return layerKey && layerState[layerKey];
@@ -2485,8 +2766,9 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       const markerEnd = arrowMode === "forward" || arrowMode === "both" ? ` marker-end="url(#literature-arrow-end)"` : "";
       const edgeSupport = scaleSupportCount(edge.support_count, maxVisibleSupport);
       const edgeStrength = clamp(Math.max(safeNumber(edge.strength) || 0, edgeSupport), 0.08, 1);
+      const paperLayerActive = layerState.papers && safeNumber(edge.support_count) > 0;
       edgeMarkup.push(
-        `<line class="graph-edge${isRootEdge ? " is-selected" : ""}${isSelectedEdge ? " is-selected-edge" : ""}${isPathEdge ? " is-focused" : ""}${isQuestionRoute ? " is-question-route" : ""}${scopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${layerState.direction && arrowMode !== "none" ? " is-directional" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edgeStrength}; --edge-support:${edgeSupport}; opacity:${edgeOpacityMap.get(edge.id) ?? 1};" data-edge-id="${escapeHtml(edge.id)}" x1="${sourceRender.x}" y1="${sourceRender.y}" x2="${targetRender.x}" y2="${targetRender.y}"${markerStart}${markerEnd}></line>`,
+        `<line class="graph-edge${isRootEdge ? " is-selected" : ""}${isSelectedEdge ? " is-selected-edge" : ""}${isPathEdge ? " is-focused" : ""}${isQuestionRoute ? " is-question-route" : ""}${scopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${layerState.direction && arrowMode !== "none" ? " is-directional" : ""}${paperLayerActive ? " is-paper-layer" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edgeStrength}; --edge-support:${edgeSupport}; opacity:${edgeOpacityMap.get(edge.id) ?? 1};" data-edge-id="${escapeHtml(edge.id)}" x1="${sourceRender.x}" y1="${sourceRender.y}" x2="${targetRender.x}" y2="${targetRender.y}"${markerStart}${markerEnd}></line>`,
       );
     }
 
@@ -2509,6 +2791,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         safeNumber(node.distinct_paper_support),
         safeNumber(node.weighted_degree) * 0.2,
       );
+      const paperSupport = scaleSupportCount(node.distinct_paper_support, maxVisiblePaperSupport);
       const baseRadius = focusedActive
         ? isRoot
           ? 26
@@ -2531,22 +2814,28 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         ? isRoot || isSelected || isQuestionTarget || isMediator || isScopeMatch || firstRingLabels.has(node.id) || dynamicLabelIds.has(node.id)
         : node.show_label || isRoot || isSelected || isQuestionTarget;
       const label = node.plain_label || node.label;
-      const labelWidth = estimateChipWidth(label);
+      const labelPlacement = renderState.labelPlacement || null;
+      const labelWidth = labelPlacement?.width || estimateChipWidth(label);
       const labelAbove = focusedActive ? Math.sin(renderState.angle) <= 0 : true;
-      const labelY = focusedActive
-        ? renderState.y + (labelAbove ? -(radius + 18) : radius + 28)
-        : renderState.y - (radius + (isRoot || isSelected ? 16 : 8));
-      const chipY = labelAbove ? labelY - 20 : labelY - 18;
+      const labelY = labelPlacement
+        ? labelPlacement.textY
+        : focusedActive
+          ? renderState.y + (labelAbove ? -(radius + 18) : radius + 28)
+          : renderState.y - (radius + (isRoot || isSelected ? 16 : 8));
+      const chipY = labelPlacement ? labelPlacement.rectY : labelAbove ? labelY - 20 : labelY - 18;
+      const chipX = labelPlacement ? labelPlacement.rectX : renderState.x - labelWidth / 2;
+      const labelX = labelPlacement ? labelPlacement.centerX : renderState.x;
+      const paperLayerActive = layerState.papers && paperSupport > 0;
       nodeMarkup.push(
-        `<g class="graph-node-group${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${enteringNodeIds.has(node.id) ? " is-entering" : ""}${exitingNodeIds.has(node.id) ? " is-exiting" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeAttr(node.id)}" style="opacity:${renderState.opacity ?? 1};">
-          ${focusedActive ? `<circle class="graph-node-halo${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}" cx="${renderState.x}" cy="${renderState.y}" r="${radius + (isRoot ? 10 : isSelected ? 8 : isQuestionTarget ? 8 : isMediator ? 7 : isThirdRing ? 4 : 6)}"></circle>` : ""}
+        `<g class="graph-node-group${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${paperLayerActive ? " is-paper-layer" : ""}${enteringNodeIds.has(node.id) ? " is-entering" : ""}${exitingNodeIds.has(node.id) ? " is-exiting" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeAttr(node.id)}" style="--paper-support:${paperSupport}; opacity:${renderState.opacity ?? 1};">
+          ${focusedActive ? `<circle class="graph-node-halo${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${paperLayerActive ? " is-paper-layer" : ""}" cx="${renderState.x}" cy="${renderState.y}" r="${radius + (isRoot ? 10 : isSelected ? 8 : isQuestionTarget ? 8 : isMediator ? 7 : isThirdRing ? 4 : 6)}"></circle>` : ""}
           <circle class="graph-node" cx="${renderState.x}" cy="${renderState.y}" r="${radius}"></circle>
           ${
             showLabel
               ? focusedActive
                 ? `<g class="graph-label-chip${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}">
-                    <rect x="${renderState.x - labelWidth / 2}" y="${chipY}" width="${labelWidth}" height="28" rx="14" ry="14"></rect>
-                    <text class="graph-label graph-label-chip-text${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>
+                    <rect x="${chipX}" y="${chipY}" width="${labelWidth}" height="28" rx="14" ry="14"></rect>
+                    <text class="graph-label graph-label-chip-text${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}" x="${labelX}" y="${labelY}">${escapeHtml(label)}</text>
                   </g>`
                 : `<text class="graph-label${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>`
               : ""
