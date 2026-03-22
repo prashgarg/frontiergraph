@@ -157,6 +157,19 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   const NODE_SINGLE_CLICK_DELAY_MS = 180;
   const NODE_DOUBLE_CLICK_WINDOW_MS = 220;
   const PIVOT_DURATION_MS = 420;
+  const GLOBAL_CLUSTER_COUNT = 8;
+  const GLOBAL_LABEL_CAP = 36;
+  const GLOBAL_BRIDGE_LABEL_LIMIT = 8;
+  const GLOBAL_CLUSTER_PALETTE = [
+    { fill: "rgba(194, 214, 225, 0.22)", stroke: "rgba(124, 153, 171, 0.34)" },
+    { fill: "rgba(212, 224, 207, 0.22)", stroke: "rgba(138, 165, 132, 0.34)" },
+    { fill: "rgba(228, 214, 198, 0.22)", stroke: "rgba(174, 147, 120, 0.34)" },
+    { fill: "rgba(221, 206, 225, 0.22)", stroke: "rgba(162, 134, 171, 0.34)" },
+    { fill: "rgba(209, 226, 223, 0.22)", stroke: "rgba(122, 166, 157, 0.34)" },
+    { fill: "rgba(231, 221, 203, 0.22)", stroke: "rgba(180, 155, 118, 0.34)" },
+    { fill: "rgba(214, 221, 234, 0.22)", stroke: "rgba(133, 149, 182, 0.34)" },
+    { fill: "rgba(224, 214, 214, 0.22)", stroke: "rgba(170, 138, 138, 0.34)" },
+  ];
 
   const graphPath = root.dataset.graphPath;
   const conceptIndexPath = root.dataset.conceptIndexPath;
@@ -251,6 +264,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   let layoutMode = "radial";
   let manualNodePositions = new Map();
   let paperSortMode = "journal";
+  let globalClusterMap = null;
+  let globalClusterFocusId = null;
+  let globalVisibleLabelIds = new Set();
+  let globalVisibleEdgeIds = new Set();
   let layerState = {
     stableAnchors: true,
     bridgeTopics: true,
@@ -640,6 +657,126 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const maxSupport = Math.max(1, safeNumber(maxSupportCount));
     if (!support) return 0;
     return clamp(Math.log1p(support) / Math.log1p(maxSupport), 0, 1);
+  };
+  const quantileFromValues = (values, percentile) => {
+    const sorted = (Array.isArray(values) ? values : [])
+      .map((value) => safeNumber(value))
+      .filter((value) => Number.isFinite(value))
+      .sort((left, right) => left - right);
+    if (!sorted.length) return 0;
+    const index = clamp(Math.floor((sorted.length - 1) * percentile), 0, sorted.length - 1);
+    return sorted[index];
+  };
+  const compareNodeProminence = (left, right) => {
+    const paperDelta = safeNumber(right?.distinct_paper_support) - safeNumber(left?.distinct_paper_support);
+    if (paperDelta) return paperDelta;
+    const degreeDelta = safeNumber(right?.weighted_degree) - safeNumber(left?.weighted_degree);
+    if (degreeDelta) return degreeDelta;
+    return String(left?.plain_label || left?.label || left?.id || "").localeCompare(String(right?.plain_label || right?.label || right?.id || ""));
+  };
+  const squaredDistance = (left, right) => {
+    const dx = safeNumber(left?.x) - safeNumber(right?.x);
+    const dy = safeNumber(left?.y) - safeNumber(right?.y);
+    return dx * dx + dy * dy;
+  };
+  const clusterColor = (clusterId) => GLOBAL_CLUSTER_PALETTE[clusterId % GLOBAL_CLUSTER_PALETTE.length] || GLOBAL_CLUSTER_PALETTE[0];
+  const buildGlobalClusterMap = () => {
+    if (globalClusterMap || !graph?.nodes?.length) return globalClusterMap;
+    const nodes = graph.nodes.map((node) => ({
+      ...node,
+      paper_support: safeNumber(node.distinct_paper_support),
+      x_norm: safeNumber(node.x),
+      y_norm: safeNumber(node.y),
+    }));
+    const clusterCount = Math.min(GLOBAL_CLUSTER_COUNT, nodes.length);
+    const maxPaperSupport = Math.max(1, ...nodes.map((node) => node.paper_support));
+    const firstSeed = nodes.slice().sort(compareNodeProminence)[0];
+    const seeds = firstSeed ? [firstSeed] : [];
+
+    while (seeds.length < clusterCount) {
+      const candidate = nodes
+        .filter((node) => !seeds.some((seed) => seed.id === node.id))
+        .map((node) => {
+          const minDistance = Math.min(...seeds.map((seed) => squaredDistance(node, seed)));
+          const paperNorm = Math.sqrt(node.paper_support / maxPaperSupport);
+          return { node, score: Math.max(0.12, paperNorm) * minDistance };
+        })
+        .sort((left, right) => right.score - left.score || compareNodeProminence(left.node, right.node))[0];
+      if (!candidate) break;
+      seeds.push(candidate.node);
+    }
+
+    let centroids = seeds.map((seed, index) => ({ id: index, x: seed.x_norm, y: seed.y_norm }));
+    let nodeToCluster = new Map();
+
+    for (let iteration = 0; iteration < 12; iteration += 1) {
+      nodeToCluster = new Map();
+      for (const node of nodes) {
+        const bestCluster = centroids
+          .map((centroid) => ({ centroid, distance: squaredDistance(node, centroid) }))
+          .sort((left, right) => left.distance - right.distance || left.centroid.id - right.centroid.id)[0];
+        nodeToCluster.set(node.id, bestCluster?.centroid?.id ?? 0);
+      }
+
+      centroids = centroids.map((centroid) => {
+        const members = nodes.filter((node) => nodeToCluster.get(node.id) === centroid.id);
+        if (!members.length) return centroid;
+        const weighted = members.map((node) => ({ node, weight: 1 + Math.sqrt(node.paper_support / maxPaperSupport) }));
+        const totalWeight = weighted.reduce((sum, item) => sum + item.weight, 0) || 1;
+        return {
+          id: centroid.id,
+          x: weighted.reduce((sum, item) => sum + item.node.x_norm * item.weight, 0) / totalWeight,
+          y: weighted.reduce((sum, item) => sum + item.node.y_norm * item.weight, 0) / totalWeight,
+        };
+      });
+    }
+
+    const bridgeScores = new Map(nodes.map((node) => [node.id, 0]));
+    const pairEdgeMap = new Map();
+    for (const edge of graph.edges) {
+      const sourceCluster = nodeToCluster.get(edge.source);
+      const targetCluster = nodeToCluster.get(edge.target);
+      if (sourceCluster === undefined || targetCluster === undefined || sourceCluster === targetCluster) continue;
+      const pairKey = [sourceCluster, targetCluster].sort((left, right) => left - right).join("::");
+      const support = safeNumber(edge.support_count);
+      const strength = safeNumber(edge.strength) * 10;
+      bridgeScores.set(edge.source, safeNumber(bridgeScores.get(edge.source)) + support + strength);
+      bridgeScores.set(edge.target, safeNumber(bridgeScores.get(edge.target)) + support + strength);
+      const current = pairEdgeMap.get(pairKey) || [];
+      current.push(edge);
+      current.sort((left, right) => safeNumber(right.support_count) - safeNumber(left.support_count) || safeNumber(right.strength) - safeNumber(left.strength));
+      pairEdgeMap.set(pairKey, current.slice(0, 2));
+    }
+
+    const clusters = centroids.map((centroid) => {
+      const members = nodes.filter((node) => nodeToCluster.get(node.id) === centroid.id);
+      const sortedMembers = members.slice().sort(compareNodeProminence);
+      const topNodes = sortedMembers.slice(0, 3);
+      const bridgeNodeIds = members
+        .slice()
+        .sort((left, right) => safeNumber(bridgeScores.get(right.id)) - safeNumber(bridgeScores.get(left.id)) || compareNodeProminence(left, right))
+        .slice(0, 8)
+        .map((node) => node.id);
+      return {
+        id: centroid.id,
+        color: clusterColor(centroid.id),
+        centroid,
+        nodeIds: members.map((node) => node.id),
+        topicCount: members.length,
+        topNodeId: topNodes[0]?.id || members[0]?.id || "",
+        topNodeIds: topNodes.map((node) => node.id),
+        bridgeNodeIds,
+      };
+    });
+
+    globalClusterMap = {
+      clusterCount,
+      nodeToCluster,
+      clusters,
+      bridgeScores,
+      pairEdgeMap,
+    };
+    return globalClusterMap;
   };
   const dominantPairBucket = (summary) => {
     if (!summary) return null;
@@ -1545,6 +1682,409 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     return result;
   };
 
+  const globalNodeRadius = (node, options = {}) => {
+    const maxVisiblePaperSupport = Math.max(1, safeNumber(options.maxVisiblePaperSupport));
+    const paperNorm = Math.sqrt(safeNumber(node?.distinct_paper_support) / maxVisiblePaperSupport);
+    let radius = clamp(4.5 + paperNorm * 11, 4.5, 15.5);
+    if (options.isClusterTopNode) radius += 2;
+    if (options.isSelected) radius += 3;
+    if (options.isRoot) radius += 4;
+    return radius;
+  };
+
+  const createGlobalLabelCandidates = (position, profile) => {
+    const labelHeight = 24;
+    const gap = 9;
+    const candidates = [
+      { name: "top", dx: 0, dy: -(profile.radius + gap + labelHeight / 2), bias: 0 },
+      { name: "bottom", dx: 0, dy: profile.radius + gap + labelHeight / 2, bias: 0.45 },
+      { name: "right", dx: profile.radius + gap + profile.labelWidth / 2, dy: 0, bias: 1.2 },
+      { name: "left", dx: -(profile.radius + gap + profile.labelWidth / 2), dy: 0, bias: 1.35 },
+    ];
+    return candidates.map((candidate) => {
+      const centerX = position.x + candidate.dx;
+      const centerY = position.y + candidate.dy;
+      const rectX = centerX - profile.labelWidth / 2;
+      const rectY = centerY - labelHeight / 2;
+      return {
+        ...candidate,
+        centerX,
+        centerY,
+        textY: rectY + 16,
+        rect: {
+          left: rectX,
+          top: rectY,
+          right: rectX + profile.labelWidth,
+          bottom: rectY + labelHeight,
+        },
+      };
+    });
+  };
+
+  const relaxGlobalPositionMap = (positionMap, visibleNodes, labelIds, clusterData) => {
+    const clusterLookup = clusterData?.nodeToCluster || new Map();
+    const maxVisiblePaperSupport = Math.max(1, ...visibleNodes.map((node) => safeNumber(node.distinct_paper_support)));
+    const original = new Map(
+      visibleNodes.map((node) => {
+        const position = positionMap.get(node.id) || { x: GRAPH_WIDTH * 0.5, y: GRAPH_HEIGHT * 0.5 };
+        return [node.id, { ...position }];
+      }),
+    );
+    const next = new Map(Array.from(original.entries()).map(([nodeId, position]) => [nodeId, { ...position }]));
+    const ids = visibleNodes.map((node) => node.id);
+    const profiles = new Map(
+      visibleNodes.map((node) => {
+        const clusterId = clusterLookup.get(node.id);
+        const labelPriorityBase = labelIds.has(node.id) ? 1 : 0;
+        return [
+          node.id,
+          {
+            radius: globalNodeRadius(node, {
+              maxVisiblePaperSupport,
+              isRoot: node.id === rootConceptId,
+              isSelected: node.id === selectedId && node.id !== rootConceptId,
+              isClusterTopNode: clusterData?.clusters?.[clusterId]?.topNodeId === node.id,
+            }),
+            labelPriority: labelPriorityBase,
+            clusterId,
+            spring: node.id === rootConceptId || node.id === selectedId ? 0.16 : 0.07,
+            mobility: node.id === rootConceptId ? 0.05 : node.id === selectedId ? 0.12 : 0.42,
+          },
+        ];
+      }),
+    );
+
+    for (let iteration = 0; iteration < 40; iteration += 1) {
+      const displacement = new Map(ids.map((nodeId) => [nodeId, { x: 0, y: 0 }]));
+
+      for (let i = 0; i < ids.length; i += 1) {
+        for (let j = i + 1; j < ids.length; j += 1) {
+          const leftId = ids[i];
+          const rightId = ids[j];
+          const leftProfile = profiles.get(leftId);
+          const rightProfile = profiles.get(rightId);
+          const leftPosition = next.get(leftId);
+          const rightPosition = next.get(rightId);
+          if (!leftProfile || !rightProfile || !leftPosition || !rightPosition) continue;
+          const dx = rightPosition.x - leftPosition.x;
+          const dy = rightPosition.y - leftPosition.y;
+          const distance = Math.hypot(dx, dy) || 0.001;
+          const differentCluster = leftProfile.clusterId !== rightProfile.clusterId;
+          const desiredDistance =
+            leftProfile.radius +
+            rightProfile.radius +
+            (labelIds.has(leftId) || labelIds.has(rightId) ? 24 : 10) +
+            (differentCluster ? 22 : 0);
+          if (distance >= desiredDistance) continue;
+          const overlap = desiredDistance - distance;
+          const push = overlap * (differentCluster ? 0.34 : 0.26);
+          const ux = dx / distance;
+          const uy = dy / distance;
+          const leftDisplacement = displacement.get(leftId);
+          const rightDisplacement = displacement.get(rightId);
+          if (leftDisplacement) {
+            leftDisplacement.x -= ux * push * leftProfile.mobility;
+            leftDisplacement.y -= uy * push * leftProfile.mobility;
+          }
+          if (rightDisplacement) {
+            rightDisplacement.x += ux * push * rightProfile.mobility;
+            rightDisplacement.y += uy * push * rightProfile.mobility;
+          }
+        }
+      }
+
+      for (const nodeId of ids) {
+        const profile = profiles.get(nodeId);
+        const position = next.get(nodeId);
+        const origin = original.get(nodeId);
+        const delta = displacement.get(nodeId);
+        if (!profile || !position || !origin || !delta) continue;
+        delta.x += (origin.x - position.x) * profile.spring;
+        delta.y += (origin.y - position.y) * profile.spring;
+        const bounded = clampPositionToCanvas(position.x + delta.x, position.y + delta.y, 42, 48);
+        position.x = bounded.x;
+        position.y = bounded.y;
+        position.angle = Math.atan2(position.y - GRAPH_HEIGHT * 0.5, position.x - GRAPH_WIDTH * 0.5);
+      }
+    }
+
+    return next;
+  };
+
+  const applyGlobalLabelPlacements = (positionMap, visibleNodes, labelIds, clusterData) => {
+    const maxVisiblePaperSupport = Math.max(1, ...visibleNodes.map((node) => safeNumber(node.distinct_paper_support)));
+    const profiles = visibleNodes
+      .filter((node) => labelIds.has(node.id))
+      .map((node) => {
+        const clusterId = clusterData?.nodeToCluster?.get(node.id);
+        const cluster = clusterData?.clusters?.[clusterId];
+        const isRoot = node.id === rootConceptId;
+        const isSelected = node.id === selectedId && node.id !== rootConceptId;
+        const isClusterTopNode = cluster?.topNodeId === node.id;
+        return {
+          node,
+          position: positionMap.get(node.id),
+          profile: {
+            label: node.plain_label || node.label || "",
+            labelWidth: clamp(30 + String(node.plain_label || node.label || "").length * 3.35, 48, 152),
+            radius: globalNodeRadius(node, { maxVisiblePaperSupport, isRoot, isSelected, isClusterTopNode }),
+            priority: isRoot ? 110 : isSelected ? 100 : isClusterTopNode ? 78 : cluster?.bridgeNodeIds?.includes(node.id) ? 72 : 58,
+          },
+        };
+      })
+      .filter((item) => item.position)
+      .sort((left, right) => right.profile.priority - left.profile.priority);
+    const placedRects = [];
+    const nodeCircles = visibleNodes.map((node) => {
+      const clusterId = clusterData?.nodeToCluster?.get(node.id);
+      return {
+        id: node.id,
+        x: positionMap.get(node.id)?.x || node.x * GRAPH_WIDTH,
+        y: positionMap.get(node.id)?.y || node.y * GRAPH_HEIGHT,
+        r: globalNodeRadius(node, {
+          maxVisiblePaperSupport,
+          isRoot: node.id === rootConceptId,
+          isSelected: node.id === selectedId && node.id !== rootConceptId,
+          isClusterTopNode: clusterData?.clusters?.[clusterId]?.topNodeId === node.id,
+        }) + 5,
+      };
+    });
+    const result = new Map(Array.from(positionMap.entries()).map(([nodeId, position]) => [nodeId, { ...position }]));
+
+    for (const item of profiles) {
+      const { node, position, profile } = item;
+      const candidates = createGlobalLabelCandidates(position, profile);
+      let bestCandidate = null;
+      let bestScore = Number.POSITIVE_INFINITY;
+      for (const candidate of candidates) {
+        let score = candidate.bias;
+        score += Math.max(0, 18 - candidate.rect.left) * 0.55;
+        score += Math.max(0, candidate.rect.right - (GRAPH_WIDTH - 18)) * 0.55;
+        score += Math.max(0, 18 - candidate.rect.top) * 0.55;
+        score += Math.max(0, candidate.rect.bottom - (GRAPH_HEIGHT - 18)) * 0.55;
+        for (const placed of placedRects) score += rectOverlapArea(candidate.rect, placed) * 0.12;
+        for (const circle of nodeCircles) {
+          if (circle.id === node.id) continue;
+          score += rectCircleOverlapArea(candidate.rect, circle) * 0.4;
+        }
+        if (score < bestScore) {
+          bestScore = score;
+          bestCandidate = candidate;
+        }
+      }
+      if (!bestCandidate) continue;
+      placedRects.push(bestCandidate.rect);
+      result.set(node.id, {
+        ...position,
+        labelPlacement: {
+          centerX: bestCandidate.centerX,
+          textY: bestCandidate.textY,
+          rectX: bestCandidate.rect.left,
+          rectY: bestCandidate.rect.top,
+          width: profile.labelWidth,
+          height: LABEL_CHIP_HEIGHT,
+        },
+      });
+    }
+
+    return result;
+  };
+
+  const convexHull = (points) => {
+    const sorted = points
+      .map((point) => ({ x: safeNumber(point.x), y: safeNumber(point.y) }))
+      .sort((left, right) => left.x - right.x || left.y - right.y);
+    if (sorted.length <= 1) return sorted;
+    const cross = (origin, left, right) => (left.x - origin.x) * (right.y - origin.y) - (left.y - origin.y) * (right.x - origin.x);
+    const lower = [];
+    for (const point of sorted) {
+      while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], point) <= 0) lower.pop();
+      lower.push(point);
+    }
+    const upper = [];
+    for (const point of sorted.slice().reverse()) {
+      while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], point) <= 0) upper.pop();
+      upper.push(point);
+    }
+    lower.pop();
+    upper.pop();
+    return [...lower, ...upper];
+  };
+
+  const paddedHullPoints = (points, padding = 36) => {
+    if (points.length <= 2) return points;
+    const centroid = {
+      x: points.reduce((sum, point) => sum + point.x, 0) / points.length,
+      y: points.reduce((sum, point) => sum + point.y, 0) / points.length,
+    };
+    return points.map((point) => {
+      const dx = point.x - centroid.x;
+      const dy = point.y - centroid.y;
+      const distance = Math.hypot(dx, dy) || 1;
+      return {
+        x: point.x + (dx / distance) * padding,
+        y: point.y + (dy / distance) * padding,
+      };
+    });
+  };
+
+  const hullPathFromPoints = (points) => {
+    if (!points.length) return "";
+    return `M ${points.map((point, index) => `${index ? "L" : ""}${point.x.toFixed(1)} ${point.y.toFixed(1)}`).join(" ")} Z`;
+  };
+
+  const buildGlobalOverviewState = ({ rootId = rootConceptId, selectedConceptId = selectedId, layers = layerState } = {}) => {
+    const clusterData = buildGlobalClusterMap();
+    const visibleNodes = graph?.nodes || [];
+    if (!clusterData || !visibleNodes.length) {
+      return {
+        focusedActive: false,
+        nodes: visibleNodes,
+        edges: graph?.edges || [],
+        firstRing: new Set(),
+        secondRing: new Set(),
+        thirdRing: new Set(),
+        counterpartId: null,
+        mediatorIds: new Set(),
+        firstRingLabels: new Set(),
+        dynamicLabelIds: new Set(),
+        renderPositionMap: null,
+        globalClusters: [],
+      };
+    }
+    const workspace = workspaceAnchorPoint();
+    const rawGlobalCenter = {
+      x: visibleNodes.reduce((sum, node) => sum + safeNumber(node.x) * GRAPH_WIDTH, 0) / visibleNodes.length,
+      y: visibleNodes.reduce((sum, node) => sum + safeNumber(node.y) * GRAPH_HEIGHT, 0) / visibleNodes.length,
+    };
+    const expandedCentroids = new Map(
+      clusterData.clusters.map((cluster) => {
+        const centroidPx = { x: cluster.centroid.x * GRAPH_WIDTH, y: cluster.centroid.y * GRAPH_HEIGHT };
+        return [
+          cluster.id,
+          {
+            x: workspace.centerX + (centroidPx.x - rawGlobalCenter.x) * 1.22,
+            y: workspace.centerY + (centroidPx.y - rawGlobalCenter.y) * 1.22,
+          },
+        ];
+      }),
+    );
+    const initialPositions = new Map(
+      visibleNodes.map((node) => {
+        const clusterId = clusterData.nodeToCluster.get(node.id);
+        const cluster = clusterData.clusters[clusterId];
+        const clusterCenter = expandedCentroids.get(clusterId) || workspace;
+        const rawNode = { x: safeNumber(node.x) * GRAPH_WIDTH, y: safeNumber(node.y) * GRAPH_HEIGHT };
+        const rawCentroid = { x: safeNumber(cluster?.centroid?.x) * GRAPH_WIDTH, y: safeNumber(cluster?.centroid?.y) * GRAPH_HEIGHT };
+        const position = clampPositionToCanvas(
+          clusterCenter.x + (rawNode.x - rawCentroid.x) * 1.15,
+          clusterCenter.y + (rawNode.y - rawCentroid.y) * 1.15,
+          42,
+          48,
+        );
+        return [node.id, { ...position, angle: Math.atan2(position.y - workspace.centerY, position.x - workspace.centerX) }];
+      }),
+    );
+
+    const scopeFilteringActive = scopeState.some((item) => {
+      const layerKey = scopeLayerKey(scopeTypeForEntity(item));
+      return layerKey && layers[layerKey];
+    });
+
+    const labelCandidates = new Map();
+    const addLabelCandidate = (nodeId, priority) => {
+      if (!nodeId || !graph?.nodeMap?.has(nodeId)) return;
+      const existing = labelCandidates.get(nodeId) || Number.NEGATIVE_INFINITY;
+      labelCandidates.set(nodeId, Math.max(existing, priority));
+    };
+    if (rootId) addLabelCandidate(rootId, 120);
+    if (selectedConceptId) addLabelCandidate(selectedConceptId, 110);
+    const searchedConceptId = queryState?.conceptId || entityPrimaryConceptId(queryState);
+    if (searchedConceptId && searchedConceptId !== rootId && searchedConceptId !== selectedConceptId) addLabelCandidate(searchedConceptId, 102);
+    for (const cluster of clusterData.clusters) {
+      cluster.topNodeIds.slice(0, 3).forEach((nodeId, index) => addLabelCandidate(nodeId, 84 - index * 4));
+    }
+    const bridgeNodes = Array.from(clusterData.bridgeScores.entries())
+      .sort((left, right) => safeNumber(right[1]) - safeNumber(left[1]) || safeNumber(graph?.nodeMap?.get(right[0])?.weighted_degree) - safeNumber(graph?.nodeMap?.get(left[0])?.weighted_degree))
+      .slice(0, GLOBAL_BRIDGE_LABEL_LIMIT);
+    bridgeNodes.forEach(([nodeId], index) => addLabelCandidate(nodeId, 76 - index));
+    if (scopeFilteringActive) {
+      for (const node of visibleNodes) {
+        if (nodeMatchesActiveScopeLayers(node)) addLabelCandidate(node.id, 88);
+      }
+    }
+    globalVisibleLabelIds = new Set(
+      Array.from(labelCandidates.entries())
+        .sort((left, right) => right[1] - left[1] || compareNodeProminence(graph.nodeMap.get(left[0]), graph.nodeMap.get(right[0])))
+        .slice(0, GLOBAL_LABEL_CAP)
+        .map(([nodeId]) => nodeId),
+    );
+
+    let renderPositionMap = relaxGlobalPositionMap(initialPositions, visibleNodes, globalVisibleLabelIds, clusterData);
+    renderPositionMap = applyGlobalLabelPlacements(renderPositionMap, visibleNodes, globalVisibleLabelIds, clusterData);
+
+    const supportThreshold = quantileFromValues(graph.edges.map((edge) => edge.support_count), 0.8);
+    const alwaysVisibleEdgeIds = new Set(
+      graph.edges
+        .filter((edge) => edge.source === rootId || edge.target === rootId || edge.source === selectedConceptId || edge.target === selectedConceptId)
+        .map((edge) => edge.id),
+    );
+    const interClusterEdgeIds = new Set(
+      Array.from(clusterData.pairEdgeMap.values())
+        .flat()
+        .map((edge) => edge.id),
+    );
+    globalVisibleEdgeIds = new Set(
+      graph.edges
+        .filter((edge) => safeNumber(edge.support_count) >= supportThreshold || interClusterEdgeIds.has(edge.id) || alwaysVisibleEdgeIds.has(edge.id))
+        .map((edge) => edge.id),
+    );
+
+    const visibleEdges = graph.edges.filter((edge) => globalVisibleEdgeIds.has(edge.id));
+    const globalClusters = clusterData.clusters.map((cluster) => {
+      const color = cluster.color;
+      const nodePositions = cluster.nodeIds
+        .map((nodeId) => renderPositionMap.get(nodeId))
+        .filter(Boolean);
+      const topNode = graph.nodeMap.get(cluster.topNodeId) || buildSyntheticNode(cluster.topNodeId);
+      const centroidPosition = expandedCentroids.get(cluster.id) || workspace;
+      const hull = nodePositions.length >= 3 ? paddedHullPoints(convexHull(nodePositions), 36) : [];
+      const ellipse = nodePositions.length < 3 && nodePositions.length
+        ? {
+            cx: nodePositions.reduce((sum, point) => sum + point.x, 0) / nodePositions.length,
+            cy: nodePositions.reduce((sum, point) => sum + point.y, 0) / nodePositions.length,
+            rx: Math.max(46, Math.max(...nodePositions.map((point) => Math.abs(point.x - centroidPosition.x))) + 36),
+            ry: Math.max(38, Math.max(...nodePositions.map((point) => Math.abs(point.y - centroidPosition.y))) + 28),
+          }
+        : null;
+      return {
+        ...cluster,
+        color,
+        label: topNode ? conceptTitle(topNode) : `Cluster ${cluster.id + 1}`,
+        centroidPosition,
+        hullPath: hull.length ? hullPathFromPoints(hull) : "",
+        ellipse,
+      };
+    });
+
+    return {
+      focusedActive: false,
+      nodes: visibleNodes,
+      edges: visibleEdges,
+      firstRing: new Set(),
+      secondRing: new Set(),
+      thirdRing: new Set(),
+      counterpartId: null,
+      mediatorIds: new Set(),
+      firstRingLabels: new Set(),
+      dynamicLabelIds: new Set(),
+      renderPositionMap,
+      globalClusters,
+      globalClusterFocusId,
+      globalLabelIds: globalVisibleLabelIds,
+    };
+  };
+
   const nodeRenderState = (node, renderPositionMap) => {
     const focusedPosition = renderPositionMap?.get(node.id);
     if (focusedPosition) return focusedPosition;
@@ -1572,20 +2112,12 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       ? getPathHighlightState(selectedConceptId)
       : { activeQuestion: null, counterpartId: null, mediatorIds: [] };
 
-    if ((mode === "global" && rootBackbone) || !selectedActive) {
-      return {
-        focusedActive: false,
-        nodes: graph.nodes,
-        edges: graph.edges,
-        firstRing: new Set(),
-        secondRing: new Set(),
-        thirdRing: new Set(),
-        counterpartId,
-        mediatorIds: new Set(mediatorIds),
-        firstRingLabels: new Set(),
-        dynamicLabelIds: new Set(),
-        renderPositionMap: null,
-      };
+    if (mode === "global" || !selectedActive) {
+      return buildGlobalOverviewState({
+        rootId,
+        selectedConceptId,
+        layers,
+      });
     }
 
     const proxy = rootBackbone ? null : getProxyRootNeighbors(rootId, FIRST_RING_LIMIT, neighborhood);
@@ -1738,7 +2270,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     setViewportTransform();
   };
 
-  const fitViewToNodeIds = (nodeIds, padding = 100, zoomOutFactor = 0.98) => {
+  const fitViewToNodeIds = (nodeIds, padding = 100, zoomOutFactor = 0.98, centerOverride = null) => {
     if (!graph || !nodeIds.length) {
       resetViewportTransform();
       return;
@@ -1767,10 +2299,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     );
     const centerX = (minX + maxX) / 2;
     const centerY = (minY + maxY) / 2;
+    const centerPoint = centerOverride || workspaceAnchorPoint();
     viewState = {
       scale: nextScale,
-      translateX: GRAPH_WIDTH / 2 - centerX * nextScale,
-      translateY: GRAPH_HEIGHT / 2 - centerY * nextScale,
+      translateX: centerPoint.centerX - centerX * nextScale,
+      translateY: centerPoint.centerY - centerY * nextScale,
     };
     setViewportTransform();
   };
@@ -1781,7 +2314,38 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       fitViewToNodeIds(getVisibleGraphState().nodes.map((node) => node.id), 100, 0.98);
       return;
     }
+    if (mapMode === "global") {
+      const clusterData = buildGlobalClusterMap();
+      if (globalClusterFocusId !== null) {
+        const cluster = clusterData?.clusters?.find((item) => item.id === globalClusterFocusId);
+        if (cluster?.nodeIds?.length) {
+          fitViewToNodeIds(cluster.nodeIds, 140, 0.95);
+          return;
+        }
+      }
+      fitViewToNodeIds(getVisibleGraphState().nodes.map((node) => node.id), 94, 0.93);
+      return;
+    }
     resetViewportTransform();
+  };
+
+  const focusGlobalCluster = (clusterId, { toggle = true } = {}) => {
+    if (mapMode !== "global") return;
+    const nextFocusId = toggle && globalClusterFocusId === clusterId ? null : clusterId;
+    globalClusterFocusId = Number.isFinite(nextFocusId) ? nextFocusId : nextFocusId === null ? null : safeNumber(clusterId);
+    closeDetailSheet();
+    renderGraph();
+    if (globalClusterFocusId !== null) {
+      const cluster = buildGlobalClusterMap()?.clusters?.find((item) => item.id === globalClusterFocusId);
+      if (cluster?.nodeIds?.length) {
+        fitViewToNodeIds(cluster.nodeIds, 140, 0.95);
+      } else {
+        setDefaultViewport();
+      }
+    } else {
+      setDefaultViewport();
+    }
+    restoreStatus();
   };
 
   const moveTooltip = (event) => {
@@ -1810,8 +2374,15 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   };
 
   const updateDepthButtons = () => {
-    if (depthOneButton instanceof HTMLButtonElement) depthOneButton.classList.toggle("is-active", hopDepth === 1);
-    if (depthTwoButton instanceof HTMLButtonElement) depthTwoButton.classList.toggle("is-active", hopDepth === 2);
+    const disableDepth = mapMode === "global";
+    if (depthOneButton instanceof HTMLButtonElement) {
+      depthOneButton.classList.toggle("is-active", hopDepth === 1);
+      depthOneButton.disabled = disableDepth;
+    }
+    if (depthTwoButton instanceof HTMLButtonElement) {
+      depthTwoButton.classList.toggle("is-active", hopDepth === 2);
+      depthTwoButton.disabled = disableDepth;
+    }
   };
 
   const updateMapModeButton = () => {
@@ -1820,18 +2391,29 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       toggleMapMode.textContent = "All nodes unavailable";
       toggleMapMode.classList.remove("is-active");
       toggleMapMode.disabled = true;
+      toggleMapMode.title = "Overview is only available for backbone topics.";
       return;
     }
     const showGlobal = mapMode === "global";
     toggleMapMode.textContent = showGlobal ? "Return to local map" : "Show all nodes";
     toggleMapMode.classList.toggle("is-active", showGlobal);
     toggleMapMode.disabled = false;
+    toggleMapMode.title = showGlobal ? "Return to the local literature map" : "Overview of the whole literature backbone";
   };
 
   const updateLayoutModeButton = () => {
     if (!(toggleLayoutMode instanceof HTMLButtonElement)) return;
+    if (mapMode === "global") {
+      toggleLayoutMode.textContent = "Clustered overview";
+      toggleLayoutMode.classList.add("is-active");
+      toggleLayoutMode.disabled = true;
+      toggleLayoutMode.title = "The full literature overview uses its own clustered layout.";
+      return;
+    }
     toggleLayoutMode.textContent = layoutMode === "clustered" ? "Switch to Radial View" : "Switch to Clustered View";
     toggleLayoutMode.classList.toggle("is-active", layoutMode === "clustered");
+    toggleLayoutMode.disabled = false;
+    toggleLayoutMode.title = layoutMode === "clustered" ? "Switch back to the radial local-map layout" : "Switch to a clustered local-map layout";
   };
 
   const syncPanelPopoutUi = () => {
@@ -2574,10 +3156,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     );
     const centerX = (minX + maxX) / 2;
     const centerY = (minY + maxY) / 2;
+    const centerPoint = workspaceAnchorPoint();
     return {
       scale,
-      translateX: GRAPH_WIDTH / 2 - centerX * scale,
-      translateY: GRAPH_HEIGHT / 2 - centerY * scale,
+      translateX: centerPoint.centerX - centerX * scale,
+      translateY: centerPoint.centerY - centerY * scale,
     };
   };
 
@@ -2671,6 +3254,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     if (!(canvas instanceof SVGSVGElement)) return;
     const nodeMarkup = [];
     const edgeMarkup = [];
+    const clusterMarkup = [];
     const liveVisibleState = getVisibleGraphState();
     let visibleState = liveVisibleState;
     let edgeOpacityMap = new Map();
@@ -2730,6 +3314,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
 
     const selectedActive = Boolean(renderRootId);
+    const globalModeActive = renderMode === "global";
     const {
       focusedActive,
       nodes: visibleNodes,
@@ -2742,15 +3327,46 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       firstRingLabels,
       dynamicLabelIds,
       renderPositionMap,
+      globalClusters = [],
+      globalLabelIds = new Set(),
+      globalClusterFocusId: activeClusterFocusId = null,
     } = visibleState;
     const visibleNodeMap = new Map(visibleNodes.map((node) => [node.id, node]));
     const edgeLookup = new Map(visibleEdges.map((edge) => [edge.id, edge]));
     const maxVisibleSupport = Math.max(1, ...visibleEdges.map((edge) => safeNumber(edge.support_count)));
     const maxVisiblePaperSupport = Math.max(1, ...visibleNodes.map((node) => safeNumber(node.distinct_paper_support)));
+    const clusterLookup = globalClusterMap?.nodeToCluster || new Map();
+    const clusterById = new Map(globalClusters.map((cluster) => [cluster.id, cluster]));
+    const clusterFocusActive = globalModeActive && activeClusterFocusId !== null;
     const scopeFilteringActive = scopeState.some((item) => {
       const layerKey = scopeLayerKey(scopeTypeForEntity(item));
       return layerKey && layerState[layerKey];
     });
+
+    if (renderMode === "global") {
+      for (const cluster of globalClusters) {
+        const isFocusedCluster = activeClusterFocusId === cluster.id;
+        const isClusterDimmed = activeClusterFocusId !== null && !isFocusedCluster;
+        const style = `--cluster-fill:${cluster.color.fill}; --cluster-stroke:${cluster.color.stroke};`;
+        if (cluster.hullPath) {
+          clusterMarkup.push(
+            `<path class="graph-cluster-hull${isFocusedCluster ? " is-focused" : ""}${isClusterDimmed ? " is-dimmed" : ""}" data-cluster-id="${escapeAttr(cluster.id)}" d="${cluster.hullPath}" style="${style}"></path>`,
+          );
+        } else if (cluster.ellipse) {
+          clusterMarkup.push(
+            `<ellipse class="graph-cluster-hull${isFocusedCluster ? " is-focused" : ""}${isClusterDimmed ? " is-dimmed" : ""}" data-cluster-id="${escapeAttr(cluster.id)}" cx="${cluster.ellipse.cx}" cy="${cluster.ellipse.cy}" rx="${cluster.ellipse.rx}" ry="${cluster.ellipse.ry}" style="${style}"></ellipse>`,
+          );
+        }
+        if (cluster.centroidPosition) {
+          clusterMarkup.push(
+            `<g class="graph-cluster-label${isFocusedCluster ? " is-focused" : ""}${isClusterDimmed ? " is-dimmed" : ""}" data-cluster-id="${escapeAttr(cluster.id)}" style="${style}">
+              <text class="graph-cluster-label-title" x="${cluster.centroidPosition.x}" y="${cluster.centroidPosition.y}">${escapeHtml(cluster.label)}</text>
+              <text class="graph-cluster-label-meta" x="${cluster.centroidPosition.x}" y="${cluster.centroidPosition.y + 16}">${escapeHtml(`${formatNumber(cluster.topicCount)} topics`)}</text>
+            </g>`,
+          );
+        }
+      }
+    }
 
     for (const edge of visibleEdges) {
       const source = visibleNodeMap.get(edge.source) || graph.nodeMap.get(edge.source) || buildSyntheticNode(edge.source);
@@ -2771,8 +3387,13 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         edge.target === counterpartId;
       const isQuestionRoute = Boolean(counterpartId) && (edge.source === counterpartId || edge.target === counterpartId);
       const scopeMatch = scopeFilteringActive ? edgeMatchesActiveScopeLayers(edge) : false;
+      const sourceClusterId = clusterLookup.get(edge.source);
+      const targetClusterId = clusterLookup.get(edge.target);
+      const clusterFocusEdge =
+        clusterFocusActive &&
+        !(sourceClusterId === activeClusterFocusId && targetClusterId === activeClusterFocusId);
       const isDimmed =
-        (renderMode === "global" && selectedActive && !isRootEdge && !isPathEdge && !isSelectedEdge) ||
+        (clusterFocusEdge && !isSelectedEdge && !isRootEdge) ||
         (scopeFilteringActive && !scopeMatch && !isSelectedEdge && !isRootEdge);
       const shouldShowArrows = layerState.direction || isSelectedEdge || (layerState.paths && isPathEdge);
       const arrowMode = shouldShowArrows ? edgeArrowMode(edge) : "none";
@@ -2783,7 +3404,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       const edgeStrength = clamp(Math.max(safeNumber(edge.strength) || 0, edgeSupport), 0.08, 1);
       const paperLayerActive = layerState.papers && safeNumber(edge.support_count) > 0;
       edgeMarkup.push(
-        `<line class="graph-edge${isRootEdge ? " is-selected" : ""}${isSelectedEdge ? " is-selected-edge" : ""}${isPathEdge ? " is-focused" : ""}${isQuestionRoute ? " is-question-route" : ""}${scopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${layerState.direction && arrowMode !== "none" ? " is-directional" : ""}${paperLayerActive ? " is-paper-layer" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edgeStrength}; --edge-support:${edgeSupport}; opacity:${edgeOpacityMap.get(edge.id) ?? 1};" data-edge-id="${escapeHtml(edge.id)}" x1="${sourceRender.x}" y1="${sourceRender.y}" x2="${targetRender.x}" y2="${targetRender.y}"${markerStart}${markerEnd}></line>`,
+        `<line class="graph-edge${globalModeActive ? " is-global" : ""}${isRootEdge ? " is-selected" : ""}${isSelectedEdge ? " is-selected-edge" : ""}${isPathEdge ? " is-focused" : ""}${isQuestionRoute ? " is-question-route" : ""}${scopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${layerState.direction && arrowMode !== "none" ? " is-directional" : ""}${paperLayerActive ? " is-paper-layer" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edgeStrength}; --edge-support:${edgeSupport}; opacity:${edgeOpacityMap.get(edge.id) ?? 1};" data-edge-id="${escapeHtml(edge.id)}" x1="${sourceRender.x}" y1="${sourceRender.y}" x2="${targetRender.x}" y2="${targetRender.y}"${markerStart}${markerEnd}></line>`,
       );
     }
 
@@ -2798,8 +3419,12 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       const isScopeMatch = scopeFilteringActive ? nodeMatchesActiveScopeLayers(node) : false;
       const context = nodeContext(node.id);
       const hasContext = layerState.context && Boolean(context.topCountries.length || context.topUnits.length);
+      const clusterId = clusterLookup.get(node.id);
+      const cluster = clusterById.get(clusterId);
+      const isClusterTopNode = Boolean(cluster && cluster.topNodeId === node.id);
+      const clusterFocusDimmed = clusterFocusActive && clusterId !== activeClusterFocusId;
       const isDimmed =
-        (renderMode === "global" && selectedActive && !isRoot && !isSelected && !isQuestionTarget && !isMediator) ||
+        (clusterFocusDimmed && !isRoot && !isSelected && !isQuestionTarget && !isMediator) ||
         (scopeFilteringActive && !isScopeMatch && !isRoot && !isSelected && !isQuestionTarget && !isMediator);
       const renderState = nodeRenderState(node, renderPositionMap);
       const prominence = Math.max(
@@ -2807,50 +3432,62 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         safeNumber(node.weighted_degree) * 0.2,
       );
       const paperSupport = scaleSupportCount(node.distinct_paper_support, maxVisiblePaperSupport);
-      const baseRadius = focusedActive
-        ? isRoot
-          ? 26
-          : isSelected
-            ? 20
-          : isQuestionTarget
-            ? 21
-            : isMediator
-              ? 17
-              : isFirstRing
-                ? Math.max(13, Math.min(22, 11.8 + Math.log10(prominence + 1) * 2.8))
-                : isSecondRing
-                  ? Math.max(10, Math.min(16, 9.8 + Math.log10(prominence + 1) * 1.55))
-                  : isThirdRing
-                    ? 5.7
-                    : Math.max(8.5, Math.min(13.5, 8.8 + Math.log10(prominence + 1) * 1.2))
-        : Math.max(2.8, Math.min(24, 2.8 + Math.log10(prominence + 1) * 4.4));
+      const baseRadius = globalModeActive
+        ? globalNodeRadius(node, {
+            maxVisiblePaperSupport,
+            isRoot,
+            isSelected,
+            isClusterTopNode: isClusterTopNode && (!clusterFocusActive || clusterId === activeClusterFocusId),
+          })
+        : focusedActive
+          ? isRoot
+            ? 26
+            : isSelected
+              ? 20
+              : isQuestionTarget
+                ? 21
+                : isMediator
+                  ? 17
+                  : isFirstRing
+                    ? Math.max(13, Math.min(22, 11.8 + Math.log10(prominence + 1) * 2.8))
+                    : isSecondRing
+                      ? Math.max(10, Math.min(16, 9.8 + Math.log10(prominence + 1) * 1.55))
+                      : isThirdRing
+                        ? 5.7
+                        : Math.max(8.5, Math.min(13.5, 8.8 + Math.log10(prominence + 1) * 1.2))
+          : Math.max(2.8, Math.min(24, 2.8 + Math.log10(prominence + 1) * 4.4));
       const radius = baseRadius * (renderState.scaleMultiplier || 1);
-      const showLabel = focusedActive
-        ? isRoot || isSelected || isQuestionTarget || isMediator || isScopeMatch || firstRingLabels.has(node.id) || dynamicLabelIds.has(node.id)
-        : node.show_label || isRoot || isSelected || isQuestionTarget;
+      const showLabel = globalModeActive
+        ? globalLabelIds.has(node.id)
+        : focusedActive
+          ? isRoot || isSelected || isQuestionTarget || isMediator || isScopeMatch || firstRingLabels.has(node.id) || dynamicLabelIds.has(node.id)
+          : node.show_label || isRoot || isSelected || isQuestionTarget;
       const label = node.plain_label || node.label;
       const labelPlacement = renderState.labelPlacement || null;
       const labelWidth = labelPlacement?.width || estimateChipWidth(label);
-      const labelAbove = focusedActive ? Math.sin(renderState.angle) <= 0 : true;
+      const labelAbove = (focusedActive || globalModeActive) ? Math.sin(renderState.angle) <= 0 : true;
       const labelY = labelPlacement
         ? labelPlacement.textY
-        : focusedActive
+        : (focusedActive || globalModeActive)
           ? renderState.y + (labelAbove ? -(radius + 18) : radius + 28)
           : renderState.y - (radius + (isRoot || isSelected ? 16 : 8));
       const chipY = labelPlacement ? labelPlacement.rectY : labelY - LABEL_CHIP_TEXT_BASELINE;
       const chipX = labelPlacement ? labelPlacement.rectX : renderState.x - labelWidth / 2;
       const labelX = labelPlacement ? labelPlacement.centerX : renderState.x;
       const paperLayerActive = layerState.papers && paperSupport > 0;
+      const clusterColorStyle = globalModeActive && cluster
+        ? `--cluster-node-fill:${cluster.color.fill}; --cluster-node-stroke:${cluster.color.stroke};`
+        : "";
       nodeMarkup.push(
-        `<g class="graph-node-group${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${paperLayerActive ? " is-paper-layer" : ""}${enteringNodeIds.has(node.id) ? " is-entering" : ""}${exitingNodeIds.has(node.id) ? " is-exiting" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeAttr(node.id)}" style="--paper-support:${paperSupport}; opacity:${renderState.opacity ?? 1};">
-          ${focusedActive ? `<circle class="graph-node-halo${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${paperLayerActive ? " is-paper-layer" : ""}" cx="${renderState.x}" cy="${renderState.y}" r="${radius + (isRoot ? 10 : isSelected ? 8 : isQuestionTarget ? 8 : isMediator ? 7 : isThirdRing ? 4 : 6)}"></circle>` : ""}
+        `<g class="graph-node-group${globalModeActive ? " is-global" : ""}${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${paperLayerActive ? " is-paper-layer" : ""}${enteringNodeIds.has(node.id) ? " is-entering" : ""}${exitingNodeIds.has(node.id) ? " is-exiting" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeAttr(node.id)}" style="--paper-support:${paperSupport}; opacity:${renderState.opacity ?? 1}; ${clusterColorStyle}">
+          ${(focusedActive || globalModeActive) ? `<circle class="graph-node-halo${globalModeActive ? " is-global" : ""}${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${paperLayerActive ? " is-paper-layer" : ""}" cx="${renderState.x}" cy="${renderState.y}" r="${radius + (globalModeActive ? (isRoot ? 11 : isSelected ? 9 : isClusterTopNode ? 7 : 5.5) : isRoot ? 10 : isSelected ? 8 : isQuestionTarget ? 8 : isMediator ? 7 : isThirdRing ? 4 : 6)}"></circle>` : ""}
           <circle class="graph-node" cx="${renderState.x}" cy="${renderState.y}" r="${radius}"></circle>
           ${
             showLabel
-              ? focusedActive
-                ? `<g class="graph-label-chip${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}">
+              ? (focusedActive || globalModeActive)
+                ? `<g class="graph-label-chip${globalModeActive ? " is-global" : ""}${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}">
                     <rect x="${chipX}" y="${chipY}" width="${labelWidth}" height="${LABEL_CHIP_HEIGHT}" rx="${LABEL_CHIP_HEIGHT / 2}" ry="${LABEL_CHIP_HEIGHT / 2}"></rect>
-                    <text class="graph-label graph-label-chip-text${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}" x="${labelX}" y="${labelY}">${escapeHtml(label)}</text>
+                    <text class="graph-label graph-label-chip-text${globalModeActive ? " is-global" : ""}${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}" x="${labelX}" y="${labelY}">${escapeHtml(label)}</text>
                   </g>`
                 : `<text class="graph-label${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>`
               : ""
@@ -2870,10 +3507,20 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       </defs>
       <g data-role="graph-viewport">
         <rect class="graph-pan-target" x="-900" y="-900" width="3200" height="2800"></rect>
+        <g class="graph-cluster-layer">${clusterMarkup.join("")}</g>
         <g class="graph-edge-layer">${edgeMarkup.join("")}</g>
         <g class="graph-node-layer">${nodeMarkup.join("")}</g>
       </g>
     `;
+
+    for (const clusterElement of canvas.querySelectorAll("[data-cluster-id]")) {
+      clusterElement.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const clusterId = safeNumber(clusterElement.dataset.clusterId);
+        if (!Number.isFinite(clusterId)) return;
+        focusGlobalCluster(clusterId);
+      });
+    }
 
     for (const nodeElement of canvas.querySelectorAll("[data-node-id]")) {
       const dragHandle = nodeElement.querySelector("circle");
@@ -3064,6 +3711,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       anchorConceptId = anchorId || (isInBackbone(conceptId) ? conceptId : entityPrimaryConceptId(entity) || "");
       rootNeighborhood = null;
       manualNodePositions = new Map();
+      globalClusterFocusId = null;
       if (nextMapMode) mapMode = nextMapMode;
       else if (!isInBackbone(conceptId)) mapMode = "local";
     }
@@ -3094,6 +3742,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       selectedPapers.innerHTML = `<p class="card-copy">Loading anchor papers...</p>`;
     }
     renderStateChips();
+    updateDepthButtons();
     renderLayoutMenu();
     renderLayersMenu();
     updateMapModeButton();
@@ -3103,6 +3752,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     await Promise.all([renderNeighborhood(conceptId), renderOpportunities(conceptId)]);
     updateMapModeButton();
     renderStateChips();
+    updateDepthButtons();
     renderLayoutMenu();
     renderLayersMenu();
     renderGraph();
@@ -3356,9 +4006,12 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   if (toggleMapMode instanceof HTMLButtonElement) {
     toggleMapMode.addEventListener("click", () => {
       mapMode = mapMode === "local" ? "global" : "local";
+      globalClusterFocusId = null;
       manualNodePositions = new Map();
       closeDetailSheet();
       updateMapModeButton();
+      updateDepthButtons();
+      renderLayoutMenu();
       renderGraph();
       setDefaultViewport();
       restoreStatus();
@@ -3424,8 +4077,15 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     startPan(event.target, event.clientX, event.clientY);
   });
   canvas.addEventListener("click", (event) => {
-    if (event.target instanceof Element && event.target.closest("[data-node-id], [data-edge-id]")) return;
+    if (event.target instanceof Element && event.target.closest("[data-node-id], [data-edge-id], [data-cluster-id]")) return;
     clearPendingNodeClick();
+    if (mapMode === "global" && globalClusterFocusId !== null) {
+      globalClusterFocusId = null;
+      renderGraph();
+      setDefaultViewport();
+      restoreStatus();
+      return;
+    }
     if (selectedEdgeId) {
       selectedEdgeId = null;
       renderAllPanels();
@@ -3457,7 +4117,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   window.addEventListener("resize", () => {
     if (pivotState?.locked) return;
     renderGraph();
-    if (mapMode === "local" && rootConceptId) {
+    if ((mapMode === "local" && rootConceptId) || mapMode === "global") {
       setDefaultViewport();
     } else {
       setViewportTransform();

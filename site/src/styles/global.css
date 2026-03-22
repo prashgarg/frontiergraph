@@ -3282,6 +3282,57 @@ h3 {
   fill: transparent;
 }
 
+.graph-cluster-hull {
+  fill: var(--cluster-fill, rgba(194, 214, 225, 0.18));
+  stroke: var(--cluster-stroke, rgba(124, 153, 171, 0.28));
+  stroke-width: 1.2px;
+  cursor: pointer;
+  transition: opacity 160ms ease, stroke-width 160ms ease, fill 160ms ease, stroke 160ms ease;
+}
+
+.graph-cluster-hull.is-focused {
+  stroke-width: 1.8px;
+  fill: color-mix(in srgb, var(--cluster-fill, rgba(194, 214, 225, 0.18)) 118%, rgba(255, 255, 255, 0.1));
+}
+
+.graph-cluster-hull.is-dimmed {
+  opacity: 0.18;
+}
+
+.graph-cluster-label {
+  cursor: pointer;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.graph-cluster-label.is-focused {
+  transform: translateY(-1px);
+}
+
+.graph-cluster-label.is-dimmed {
+  opacity: 0.22;
+}
+
+.graph-cluster-label-title,
+.graph-cluster-label-meta {
+  fill: color-mix(in srgb, var(--cluster-stroke, rgba(124, 153, 171, 0.28)) 82%, var(--text));
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.graph-cluster-label-title {
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.graph-cluster-label-meta {
+  font-size: 0.72rem;
+  font-weight: 600;
+  opacity: 0.72;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .graph-canvas {
   width: 100%;
   aspect-ratio: 16 / 8.8;
@@ -3356,6 +3407,12 @@ h3 {
   transition: stroke 120ms ease, opacity 120ms ease, stroke-width 120ms ease;
 }
 
+.graph-edge.is-global {
+  stroke: rgba(91, 108, 135, 0.78);
+  stroke-opacity: calc(0.1 + (var(--edge-support, 0.2) * 0.56));
+  stroke-width: calc(0.8px + (var(--edge-support, 0.2) * 4.7px));
+}
+
 .graph-edge.is-selected {
   stroke: rgba(224, 176, 79, 0.96);
   stroke-opacity: calc(0.32 + (var(--edge-support, 0.2) * 0.46));
@@ -3400,6 +3457,10 @@ h3 {
 
 .graph-edge.is-dimmed {
   opacity: 0.12;
+}
+
+.graph-edge.is-global.is-dimmed {
+  opacity: 0.08;
 }
 
 .graph-node-group {
@@ -3478,6 +3539,11 @@ h3 {
   stroke: rgba(195, 145, 46, 0.18);
 }
 
+.graph-node-halo.is-global {
+  fill: rgba(31, 50, 72, 0.03);
+  stroke: rgba(31, 50, 72, 0.07);
+}
+
 .graph-node-group.is-question-target .graph-node {
   fill: rgba(31, 50, 72, 0.88);
   stroke: rgba(255, 253, 248, 0.98);
@@ -3528,6 +3594,21 @@ h3 {
   stroke-width: calc(1.6px + (var(--paper-support, 0.2) * 1.15px));
 }
 
+.graph-node-group.is-global .graph-node {
+  fill: color-mix(in srgb, var(--cluster-fill, rgba(194, 214, 225, 0.24)) 72%, rgba(84, 108, 132, 0.48));
+  stroke: color-mix(in srgb, var(--cluster-stroke, rgba(124, 153, 171, 0.34)) 86%, rgba(41, 57, 76, 0.2));
+  stroke-width: 1.7px;
+}
+
+.graph-node-group.is-global.is-paper-layer .graph-node {
+  fill: color-mix(
+    in srgb,
+    rgba(214, 169, 84, 0.26) calc(16% + (var(--paper-support, 0.2) * 32%)),
+    color-mix(in srgb, var(--cluster-fill, rgba(194, 214, 225, 0.24)) 70%, rgba(84, 108, 132, 0.48))
+  );
+  stroke: color-mix(in srgb, rgba(181, 129, 35, 0.3) 34%, var(--cluster-stroke, rgba(124, 153, 171, 0.34)));
+}
+
 .graph-node {
   fill: rgba(111, 124, 140, 0.34);
 }
@@ -3566,6 +3647,11 @@ h3 {
   fill: rgba(255, 253, 248, 0.54);
   stroke: rgba(24, 38, 58, 0.07);
   stroke-width: 1px;
+}
+
+.graph-label-chip.is-global rect {
+  fill: rgba(255, 253, 248, 0.34);
+  stroke: rgba(24, 38, 58, 0.05);
 }
 
 .graph-label-chip.is-neighbor rect {
@@ -3619,6 +3705,11 @@ h3 {
 .graph-label-chip-text {
   stroke: transparent;
   paint-order: normal;
+}
+
+.graph-label-chip-text.is-global {
+  fill: rgba(34, 47, 64, 0.88);
+  font-size: 11.5px;
 }
 
 .graph-label-chip-text.is-scope-match {
