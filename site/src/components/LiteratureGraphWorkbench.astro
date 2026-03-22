@@ -2,6 +2,7 @@
 interface Props {
   graphPath: string;
   conceptIndexPath: string;
+  literatureSearchIndexPath: string;
   neighborhoodsIndexPath: string;
   opportunitiesIndexPath: string;
   centralConceptsPath: string;
@@ -11,6 +12,7 @@ interface Props {
 const {
   graphPath,
   conceptIndexPath,
+  literatureSearchIndexPath,
   neighborhoodsIndexPath,
   opportunitiesIndexPath,
   centralConceptsPath,
@@ -25,6 +27,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   class="literature-workbench"
   data-graph-path={graphPath}
   data-concept-index-path={conceptIndexPath}
+  data-literature-search-index-path={literatureSearchIndexPath}
   data-neighborhoods-index-path={neighborhoodsIndexPath}
   data-opportunities-index-path={opportunitiesIndexPath}
   data-central-concepts-path={centralConceptsPath}
@@ -44,6 +47,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           <input type="search" placeholder="Search topics or close variants" data-role="search-input" />
           <div class="search-results" data-role="search-results"></div>
         </label>
+
+        <div class="literature-chip-stack">
+          <div class="literature-chip-row" data-role="query-chip-row"></div>
+          <div class="literature-chip-row" data-role="scope-chip-row"></div>
+        </div>
 
         <details class="literature-suggested-shell" data-role="suggested-shell">
           <summary>Suggested Topics</summary>
@@ -89,6 +97,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           <button class="button-tertiary literature-toggle" type="button" data-role="depth-1">1 hop</button>
           <button class="button-secondary literature-toggle is-active" type="button" data-role="depth-2">2 hops</button>
           <button class="button-tertiary literature-toggle" type="button" data-role="toggle-map-mode">Show backbone</button>
+          <details class="literature-layers-menu" data-role="layers-menu">
+            <summary>Layers</summary>
+            <div class="literature-layers-list" data-role="layers-list"></div>
+          </details>
         </div>
 
         <div class="graph-control-row literature-map-actions">
@@ -133,6 +145,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
   const graphPath = root.dataset.graphPath;
   const conceptIndexPath = root.dataset.conceptIndexPath;
+  const literatureSearchIndexPath = root.dataset.literatureSearchIndexPath;
   const neighborhoodsIndexPath = root.dataset.neighborhoodsIndexPath;
   const opportunitiesIndexPath = root.dataset.opportunitiesIndexPath;
   const centralConceptsPath = root.dataset.centralConceptsPath;
@@ -151,6 +164,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   const searchInput = root.querySelector('[data-role="search-input"]');
   const searchResults = root.querySelector('[data-role="search-results"]');
   const centralList = root.querySelector('[data-role="central-list"]');
+  const queryChipRow = root.querySelector('[data-role="query-chip-row"]');
+  const scopeChipRow = root.querySelector('[data-role="scope-chip-row"]');
   const hoverCard = root.querySelector('[data-role="hover-card"]');
   const canvas = root.querySelector('[data-role="graph-canvas"]');
   const graphTooltip = root.querySelector('[data-role="graph-tooltip"]');
@@ -164,6 +179,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   const depthOneButton = root.querySelector('[data-role="depth-1"]');
   const depthTwoButton = root.querySelector('[data-role="depth-2"]');
   const toggleMapMode = root.querySelector('[data-role="toggle-map-mode"]');
+  const layersList = root.querySelector('[data-role="layers-list"]');
   const resetView = root.querySelector('[data-role="reset-view"]');
   const zoomOutButton = root.querySelector('[data-role="zoom-out"]');
   const zoomInButton = root.querySelector('[data-role="zoom-in"]');
@@ -173,6 +189,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   let selectedId = null;
   let graph = null;
   let concepts = [];
+  let literatureSearchIndex = [];
+  let searchEntityByConceptId = new Map();
   let conceptMap = new Map();
   let neighborhoodIndex = {};
   let opportunitiesIndex = {};
@@ -182,11 +200,40 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   let currentNeighborhood = null;
   let currentOpportunities = [];
   let activeQuestionPairKey = null;
+  let anchorConceptId = null;
+  let queryState = { id: "", label: "", badge: "", entityType: "concept", stability: "", conceptId: "" };
+  let scopeState = [];
+  let selectedEdgeId = null;
   let mapMode = "local";
   let hopDepth = DEFAULT_HOP_DEPTH;
   let panelTab = "overview";
   let interaction = null;
   let viewState = { scale: 1, translateX: 0, translateY: 0 };
+  let layerState = {
+    stableAnchors: true,
+    bridgeTopics: true,
+    paths: false,
+    papers: false,
+    questions: false,
+    direction: false,
+    context: false,
+    geography: false,
+    methods: false,
+    datasets: false,
+  };
+
+  const LAYER_DEFS = [
+    { key: "stableAnchors", label: "Stable Anchors", type: "graph", description: "Canonical topic nodes and core local links." },
+    { key: "bridgeTopics", label: "Bridge Topics", type: "graph", description: "Second-ring connectors that widen the local map." },
+    { key: "paths", label: "Paths", type: "overlay", description: "Highlight bridge routes through intermediate topics." },
+    { key: "papers", label: "Papers", type: "overlay", description: "Bring supporting paper evidence into focus." },
+    { key: "questions", label: "Questions", type: "overlay", description: "Surface nearby question-shaped links and the other side." },
+    { key: "direction", label: "Direction", type: "overlay", description: "Show arrowheads and directional summaries on edges." },
+    { key: "context", label: "Context", type: "overlay", description: "Expose countries, units, and years on hover and inspect." },
+    { key: "geography", label: "Geography", type: "scope", description: "Use country or place queries as a scope overlay." },
+    { key: "methods", label: "Methods", type: "scope", description: "Filter or highlight method-shaped entities." },
+    { key: "datasets", label: "Datasets", type: "scope", description: "Experimental dataset scope built from existing labels.", note: "Experimental" },
+  ];
 
   const escapeHtml = (value) =>
     String(value ?? "")
@@ -270,26 +317,200 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
     return score;
   };
+  const entityLabel = (entity) => entity?.plain_label || entity?.label || "";
+  const entityAnchorCandidates = (entity) => Array.isArray(entity?.anchor_candidates) ? entity.anchor_candidates : [];
+  const entityPrimaryConceptId = (entity) => entity?.concept_id || entityAnchorCandidates(entity)[0]?.concept_id || "";
+  const entityDistinctPaperSupport = (entity) => safeNumber(entity?.distinct_paper_support);
+  const entityNeighborCount = (entity) => safeNumber(entity?.neighbor_count);
+  const scopeTypeForEntity = (entity) => entity?.scope_type || entity?.entity_type || "";
+  const humanizeScopeType = (value) => {
+    if (value === "geography") return "Geography";
+    if (value === "method") return "Method";
+    if (value === "dataset") return "Dataset";
+    return "Scope";
+  };
+  const scopeLayerKey = (value) => {
+    if (value === "geography") return "geography";
+    if (value === "method") return "methods";
+    if (value === "dataset") return "datasets";
+    return "";
+  };
+  const edgeDirectionSummary = (edge) => {
+    const summary = edgePairSummary(edge);
+    if (!summary) {
+      const directionMix = Array.isArray(edge?.directionality_mix) ? edge.directionality_mix : [];
+      if (!directionMix.length) return "No direction summary";
+      return `Direction mix led by ${directionMix
+        .slice(0, 2)
+        .map((item) => `${item.value} ${formatNumber(safeNumber(item.count))}`)
+        .join(", ")}`;
+    }
+    if (summary.arrow_mode === "forward") return "Mostly reported in this direction";
+    if (summary.arrow_mode === "reverse") return "Mostly reported in the reverse direction";
+    if (summary.arrow_mode === "both") return "Bidirectional or mixed directional support";
+    return "Undirected or contextual support";
+  };
+  const formatNetSign = (value) => {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return "";
+    return numeric > 0 ? `+${numeric.toFixed(2)}` : numeric.toFixed(2);
+  };
+  const dominantPairBucket = (summary) => {
+    if (!summary) return null;
+    return [summary.x_to_y, summary.y_to_x, summary.undirected]
+      .filter(Boolean)
+      .sort((left, right) => safeNumber(right.support_count) - safeNumber(left.support_count))[0] || null;
+  };
+  const edgeSignBadge = (edge) => {
+    const dominantBucket = dominantPairBucket(edgePairSummary(edge));
+    if (!dominantBucket) return "";
+    if (dominantBucket.net_sign === null || dominantBucket.net_sign === undefined) return "";
+    return `Net sign ${formatNetSign(dominantBucket.net_sign)}`;
+  };
+  const nodeContext = (nodeId) => {
+    const concept = conceptMap.get(nodeId);
+    const graphNode = graph?.nodeMap?.get(nodeId);
+    return {
+      concept,
+      graphNode,
+      entity: searchEntityByConceptId.get(nodeId) || null,
+      topCountries: concept?.top_countries || graphNode?.top_countries || [],
+      topUnits: concept?.top_units || graphNode?.top_units || [],
+      neighborCount: safeNumber(concept?.neighbor_count || graphNode?.neighbor_count || adjacency.get(nodeId)?.length || 0),
+      weightedDegree: safeNumber(concept?.weighted_degree || graphNode?.weighted_degree || 0),
+      paperSupport: safeNumber(concept?.distinct_paper_support || graphNode?.distinct_paper_support || 0),
+    };
+  };
+  const cloneEntityState = (entity, fallbackConceptId = "") => ({
+    id: entity?.id || fallbackConceptId || entityPrimaryConceptId(entity),
+    concept_id: entity?.concept_id || fallbackConceptId || entityPrimaryConceptId(entity),
+    label: entityLabel(entity) || conceptLabel(fallbackConceptId, ""),
+    plain_label: entityLabel(entity) || conceptLabel(fallbackConceptId, ""),
+    subtitle: entity?.subtitle || "",
+    badge: entity?.badge || (fallbackConceptId && isInBackbone(fallbackConceptId) ? "Map-ready" : "Search-only"),
+    entity_type: entity?.entity_type || "concept",
+    scope_type: entity?.scope_type || "",
+    stability: entity?.stability || "",
+    anchor_candidates: entityAnchorCandidates(entity),
+    distinct_paper_support: entityDistinctPaperSupport(entity),
+    neighbor_count: entityNeighborCount(entity),
+    top_countries: Array.isArray(entity?.top_countries) ? entity.top_countries : [],
+    top_units: Array.isArray(entity?.top_units) ? entity.top_units : [],
+    search_terms: Array.isArray(entity?.search_terms) ? entity.search_terms : [],
+  });
+  const pseudoEntityForConcept = (conceptId) => {
+    const concept = conceptMap.get(conceptId);
+    if (!concept) return null;
+    return cloneEntityState(
+      {
+        id: conceptId,
+        concept_id: conceptId,
+        label: conceptTitle(concept),
+        plain_label: conceptTitle(concept),
+        subtitle: conceptSubtitle(concept),
+        badge: isInBackbone(conceptId) ? "Map-ready" : "Search-only",
+        entity_type: "concept",
+        scope_type: "",
+        stability: isInBackbone(conceptId) ? "backbone" : "search_only",
+        anchor_candidates: [
+          {
+            concept_id: conceptId,
+            label: conceptTitle(concept),
+            support_count: safeNumber(concept.distinct_paper_support),
+          },
+        ],
+        distinct_paper_support: safeNumber(concept.distinct_paper_support),
+        neighbor_count: safeNumber(concept.neighbor_count),
+        top_countries: concept.top_countries || [],
+        top_units: concept.top_units || [],
+        search_terms: [conceptTitle(concept), ...(concept.aliases || [])],
+      },
+      conceptId,
+    );
+  };
+  const renderStateChips = () => {
+    if (queryChipRow instanceof HTMLElement) {
+      const rootConcept = anchorConceptId ? conceptMap.get(anchorConceptId) : rootConceptId ? conceptMap.get(rootConceptId) : null;
+      const queryHtml = queryState?.label
+        ? `
+          <span class="literature-state-chip">
+            <span class="literature-state-chip-label">Query</span>
+            <strong>${escapeHtml(queryState.label)}</strong>
+            ${queryState.badge ? `<small>${escapeHtml(queryState.badge)}</small>` : ""}
+          </span>
+        `
+        : "";
+      const rootHtml = rootConcept
+        ? `
+          <span class="literature-state-chip is-root">
+            <span class="literature-state-chip-label">Map root</span>
+            <strong>${escapeHtml(conceptTitle(rootConcept))}</strong>
+          </span>
+        `
+        : "";
+      queryChipRow.innerHTML = [queryHtml, rootHtml].filter(Boolean).join("");
+    }
+    if (scopeChipRow instanceof HTMLElement) {
+      scopeChipRow.innerHTML = scopeState.length
+        ? scopeState
+            .map(
+              (scope) => `
+                <button class="literature-state-chip is-scope" type="button" data-remove-scope="${escapeAttr(scope.id)}">
+                  <span class="literature-state-chip-label">${escapeHtml(humanizeScopeType(scope.scope_type || scope.entity_type))}</span>
+                  <strong>${escapeHtml(entityLabel(scope))}</strong>
+                  <small>Remove</small>
+                </button>
+              `,
+            )
+            .join("")
+        : "";
+      for (const button of scopeChipRow.querySelectorAll("[data-remove-scope]")) {
+        button.addEventListener("click", () => {
+          scopeState = scopeState.filter((item) => item.id !== button.dataset.removeScope);
+          syncScopeLayers();
+          renderLayersMenu();
+          renderStateChips();
+          renderGraph();
+          renderAllPanels();
+          restoreStatus();
+        });
+      }
+    }
+  };
+  const syncScopeLayers = () => {
+    layerState.geography = scopeState.some((item) => (item.scope_type || item.entity_type) === "geography");
+    layerState.methods = scopeState.some((item) => (item.scope_type || item.entity_type) === "method");
+    layerState.datasets = scopeState.some((item) => (item.scope_type || item.entity_type) === "dataset");
+  };
+  const addScopeChip = (entity) => {
+    if (!entity?.id) return;
+    if (scopeState.some((item) => item.id === entity.id)) return;
+    scopeState = [...scopeState, entity];
+    syncScopeLayers();
+  };
   const searchConcepts = (query) => {
     const normalized = normalizeText(query);
     if (!normalized) return [];
     const queryTokens = tokenize(normalized);
-    return concepts
-      .map((concept) => {
-        const plainLabel = normalizeText(concept.plain_label || concept.label);
-        const aliases = (concept.aliases || []).map((alias) => normalizeText(alias)).filter(Boolean);
-        const searchTerms = (concept.search_terms || []).map((term) => normalizeText(term)).filter(Boolean);
+    return literatureSearchIndex
+      .map((entity) => {
+        const plainLabel = normalizeText(entityLabel(entity));
+        const aliases = (entity.aliases || []).map((alias) => normalizeText(alias)).filter(Boolean);
+        const searchTerms = (entity.search_terms || []).map((term) => normalizeText(term)).filter(Boolean);
         let score = 0;
         score += scoreTextMatch(plainLabel, normalized, queryTokens, 3.4);
         for (const alias of aliases) score = Math.max(score, scoreTextMatch(alias, normalized, queryTokens, 2.6));
         for (const term of searchTerms) score = Math.max(score, scoreTextMatch(term, normalized, queryTokens, 1.15));
         if (!score) return null;
-        return { concept, score };
+        if (entity.badge === "Map-ready") score += 42;
+        else if (entity.badge === "Broad") score += 28;
+        else if (entity.badge === "Scope") score += 16;
+        return { entity, score };
       })
       .filter(Boolean)
-      .sort((a, b) => b.score - a.score || safeNumber(b.concept.weighted_degree) - safeNumber(a.concept.weighted_degree))
+      .sort((a, b) => b.score - a.score || safeNumber(b.entity.distinct_paper_support) - safeNumber(a.entity.distinct_paper_support))
       .slice(0, 8)
-      .map((entry) => entry.concept);
+      .map((entry) => entry.entity);
   };
   const questionPriorityScore = (item, selectedConceptId) => {
     const baseScore = safeNumber(item.score);
@@ -303,6 +524,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   };
   const currentQuestion = () =>
     activeQuestionPairKey ? currentOpportunities.find((item) => item.pair_key === activeQuestionPairKey) || null : null;
+  const currentVisibleEdge = () => {
+    if (!selectedEdgeId) return null;
+    return getVisibleGraphState().edges.find((edge) => edge.id === selectedEdgeId) || null;
+  };
   const questionTitle = (item) => {
     if (item?.display_question_title) return item.display_question_title;
     if (item?.display_title) return item.display_title;
@@ -332,6 +557,98 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     if (!needle) return null;
     const exact = concepts.find((concept) => normalizeText(concept.plain_label || concept.label) === needle);
     return exact?.concept_id || null;
+  };
+  const matchesScopeChip = (values, scope) => {
+    const haystack = Array.isArray(values) ? values : [values];
+    const scopeNeedle = normalizeText(entityLabel(scope));
+    if (!scopeNeedle) return false;
+    return haystack.some((value) => {
+      const normalized = normalizeText(value);
+      return normalized === scopeNeedle || normalized.includes(scopeNeedle) || scopeNeedle.includes(normalized);
+    });
+  };
+  const nodeMatchesActiveScopeLayers = (node) => {
+    const concept = conceptMap.get(node.id);
+    if (!concept || !scopeState.length) return false;
+    return scopeState.some((scope) => {
+      const scopeType = scope.scope_type || scope.entity_type;
+      if (scopeType === "geography" && layerState.geography) {
+        return matchesScopeChip(concept.top_countries || [], scope) || matchesScopeChip([conceptTitle(concept), ...(concept.aliases || [])], scope);
+      }
+      if (scopeType === "method" && layerState.methods) {
+        return matchesScopeChip([conceptTitle(concept), ...(concept.aliases || []), ...(concept.search_terms || [])], scope);
+      }
+      if (scopeType === "dataset" && layerState.datasets) {
+        return matchesScopeChip([conceptTitle(concept), ...(concept.aliases || []), ...(concept.search_terms || [])], scope);
+      }
+      return false;
+    });
+  };
+  const edgePairSummary = (edge) => edge?.pair_summary || null;
+  const edgeMatchesActiveScopeLayers = (edge) => {
+    const summary = edgePairSummary(edge);
+    if (!summary || !scopeState.length) return false;
+    return scopeState.some((scope) => {
+      const scopeType = scope.scope_type || scope.entity_type;
+      if (scopeType === "geography" && layerState.geography) {
+        return matchesScopeChip((summary.dominant_countries || []).map((item) => item.value || item), scope);
+      }
+      if (scopeType === "method" && layerState.methods) {
+        const methodValues = [
+          ...((summary.x_to_y?.method_mix || []).map((item) => item.value || item)),
+          ...((summary.y_to_x?.method_mix || []).map((item) => item.value || item)),
+          ...((summary.undirected?.method_mix || []).map((item) => item.value || item)),
+        ];
+        return matchesScopeChip(methodValues, scope);
+      }
+      if (scopeType === "dataset" && layerState.datasets) {
+        const exampleValues = [
+          ...((summary.x_to_y?.examples || []).flatMap((item) => [item.title, item.claim_text, item.evidence_text])),
+          ...((summary.y_to_x?.examples || []).flatMap((item) => [item.title, item.claim_text, item.evidence_text])),
+          ...((summary.undirected?.examples || []).flatMap((item) => [item.title, item.claim_text, item.evidence_text])),
+        ];
+        return matchesScopeChip(exampleValues, scope);
+      }
+      return false;
+    });
+  };
+  const renderLayersMenu = () => {
+    if (!(layersList instanceof HTMLElement)) return;
+    const layerTypeLabel = (layer) => {
+      if (layer.type === "graph") return "Map";
+      if (layer.type === "scope") return "Scope";
+      return "Overlay";
+    };
+    layersList.innerHTML = LAYER_DEFS.map(
+      (layer) => `
+        <label class="literature-layer-option${layerState[layer.key] ? " is-active" : ""}" data-layer-kind="${escapeAttr(layer.type)}">
+          <input type="checkbox" data-layer-key="${escapeAttr(layer.key)}" ${layerState[layer.key] ? "checked" : ""} />
+          <span class="literature-layer-copy">
+            <span class="literature-layer-title-row">
+              <strong>${escapeHtml(layer.label)}</strong>
+              <span class="literature-layer-kind">${escapeHtml(layerTypeLabel(layer))}</span>
+            </span>
+            <small class="literature-layer-description">${escapeHtml(layer.description)}</small>
+            ${layer.note ? `<span class="literature-layer-note">${escapeHtml(layer.note)}</span>` : ""}
+          </span>
+        </label>
+      `,
+    ).join("");
+    for (const input of layersList.querySelectorAll("[data-layer-key]")) {
+      input.addEventListener("change", () => {
+        const key = input.dataset.layerKey;
+        if (!key) return;
+        layerState = { ...layerState, [key]: input.checked };
+        renderGraph();
+        renderAllPanels();
+        restoreStatus();
+      });
+    }
+  };
+  const edgeArrowMode = (edge) => {
+    const summary = edgePairSummary(edge);
+    if (!summary) return "none";
+    return summary.arrow_mode || "none";
   };
 
   const fetchJson = async (path) => {
@@ -472,7 +789,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   const getVisibleGraphState = () => {
     const selectedActive = Boolean(rootConceptId);
     const rootBackbone = rootIsInBackbone();
-    const activeQuestion = currentQuestion();
+    const activeQuestion = layerState.questions || layerState.paths ? currentQuestion() : null;
     const counterpartId = activeQuestion
       ? activeQuestion.source_id === selectedId
         ? activeQuestion.target_id
@@ -503,16 +820,21 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
 
     const proxy = rootBackbone ? null : getProxyRootNeighbors(FIRST_RING_LIMIT);
-    const firstRingIds = rootBackbone
-      ? getRankedNeighbors(rootConceptId, FIRST_RING_LIMIT, new Set([rootConceptId]))
-      : proxy.neighborIds;
-    const secondRingIds = hopDepth > 1 ? buildSecondRing(firstRingIds) : [];
+    const firstRingIds = layerState.stableAnchors
+      ? rootBackbone
+        ? getRankedNeighbors(rootConceptId, FIRST_RING_LIMIT, new Set([rootConceptId]))
+        : proxy.neighborIds
+      : [];
+    const secondRingIds = hopDepth > 1 && layerState.bridgeTopics ? buildSecondRing(firstRingIds) : [];
     const visibleIds = new Set([rootConceptId, ...firstRingIds, ...secondRingIds]);
-    if (counterpartId) visibleIds.add(counterpartId);
-    mediatorIds.forEach((conceptId) => visibleIds.add(conceptId));
+    if (layerState.questions && counterpartId) visibleIds.add(counterpartId);
+    if (layerState.paths) mediatorIds.forEach((conceptId) => visibleIds.add(conceptId));
 
     const firstRingSet = new Set(firstRingIds);
-    const highlightSet = new Set([counterpartId, ...mediatorIds].filter(Boolean));
+    const highlightSet = new Set([
+      ...(layerState.questions && counterpartId ? [counterpartId] : []),
+      ...(layerState.paths ? mediatorIds : []),
+    ].filter(Boolean));
 
     const visibleBackboneEdges = graph.edges.filter((edge) => {
       if (!visibleIds.has(edge.source) || !visibleIds.has(edge.target)) return false;
@@ -711,6 +1033,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const concept = rootConceptId ? conceptMap.get(rootConceptId) : null;
     const inspectedConcept = selectedId ? conceptMap.get(selectedId) : null;
     const activeQuestion = currentQuestion();
+    const selectedEdge = currentVisibleEdge();
+    if (selectedEdge) {
+      hoverCard.textContent = `Inspecting the relationship between ${conceptLabel(selectedEdge.source, selectedEdge.source)} and ${conceptLabel(selectedEdge.target, selectedEdge.target)}. Use Direction or Context layers when you want more structure on the canvas.`;
+      return;
+    }
     if (activeQuestion) {
       hoverCard.textContent = `Path focus: ${questionTitle(activeQuestion)} Click another topic to pivot the map, or stay here and inspect the supporting route.`;
       return;
@@ -764,8 +1091,107 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
   };
 
+  const renderSearchResults = (matches) => {
+    if (!(searchResults instanceof HTMLElement)) return;
+    if (!matches.length) {
+      searchResults.innerHTML = `<div class="search-hit search-hit-empty"><span>No close matches in the current literature index.</span></div>`;
+      return;
+    }
+    searchResults.innerHTML = matches
+      .map((entity) => {
+        const scopeType = scopeTypeForEntity(entity);
+        const primaryConceptId = entityPrimaryConceptId(entity);
+        const paperCount = entityDistinctPaperSupport(entity);
+        const metaBits = [
+          entity.badge || "",
+          scopeType ? humanizeScopeType(scopeType) : "",
+          paperCount ? `${formatNumber(paperCount)} papers` : "",
+        ].filter(Boolean);
+        return `
+          <button class="search-hit search-hit-rich" type="button" data-entity-id="${escapeAttr(entity.id || primaryConceptId)}">
+            <div class="search-hit-copy">
+              <strong>${escapeHtml(entityLabel(entity) || conceptLabel(primaryConceptId, ""))}</strong>
+              ${entity.subtitle ? `<small>${escapeHtml(entity.subtitle)}</small>` : ""}
+              <div class="search-hit-meta">
+                ${metaBits.map((bit, index) => `<span class="search-hit-pill${index === 0 ? " is-badge" : ""}">${escapeHtml(bit)}</span>`).join("")}
+              </div>
+            </div>
+            <span class="search-hit-action">${scopeType ? "Add" : "Open"}</span>
+          </button>
+        `;
+      })
+      .join("");
+  };
+
+  const clearSearchUi = () => {
+    if (searchResults instanceof HTMLElement) searchResults.innerHTML = "";
+    if (searchInput instanceof HTMLInputElement) searchInput.value = "";
+  };
+
   const renderSelectedConcept = (concept) => {
     if (!(selectedConcept instanceof HTMLElement)) return;
+    const selectedEdge = currentVisibleEdge();
+    if (selectedEdge) {
+      const pairSummary = edgePairSummary(selectedEdge);
+      const sourceLabel = conceptLabel(selectedEdge.source, selectedEdge.source);
+      const targetLabel = conceptLabel(selectedEdge.target, selectedEdge.target);
+      const bucketCard = (title, bucket) => `
+        <article class="literature-edge-card">
+          <span class="tiny-label">${escapeHtml(title)}</span>
+          <div class="graph-question-meta graph-question-meta-tight">
+            <span>${formatNumber(safeNumber(bucket?.support_count))} records</span>
+            ${bucket?.net_sign !== null && bucket?.net_sign !== undefined ? `<span>Net sign ${escapeHtml(String(bucket.net_sign))}</span>` : ""}
+          </div>
+          <div class="graph-question-meta graph-question-meta-tight">
+            ${(bucket?.sign_mix || []).slice(0, 3).map((item) => `<span>${escapeHtml(item.value)} ${formatNumber(safeNumber(item.count))}</span>`).join("")}
+          </div>
+          <div class="graph-question-meta graph-question-meta-tight">
+            ${(bucket?.method_mix || []).slice(0, 2).map((item) => `<span>${escapeHtml(item.value)} ${formatNumber(safeNumber(item.count))}</span>`).join("")}
+          </div>
+          <div class="graph-question-meta graph-question-meta-tight">
+            ${(bucket?.claim_status_mix || []).slice(0, 2).map((item) => `<span>${escapeHtml(item.value)} ${formatNumber(safeNumber(item.count))}</span>`).join("")}
+          </div>
+        </article>
+      `;
+      const fallbackCard = (title, items) => `
+        <article class="literature-edge-card">
+          <span class="tiny-label">${escapeHtml(title)}</span>
+          <div class="graph-question-meta graph-question-meta-tight">
+            ${(items || []).slice(0, 4).map((item) => `<span>${escapeHtml(item.value)} ${formatNumber(safeNumber(item.count))}</span>`).join("")}
+          </div>
+        </article>
+      `;
+      selectedConcept.innerHTML = `
+        <div class="literature-summary">
+          <div class="literature-summary-copy">
+            <span class="tiny-label">Selected edge</span>
+            <h2>${escapeHtml(sourceLabel)} → ${escapeHtml(targetLabel)}</h2>
+            <p class="mini-copy literature-root-note">Inspecting the reported relationship summary for this pair.</p>
+          </div>
+          <div class="literature-summary-stats">
+            <span class="graph-topic-stat">${formatNumber(safeNumber(selectedEdge.support_count))} papers</span>
+            <span class="graph-topic-stat">${escapeHtml(edgeArrowMode(selectedEdge))} arrows</span>
+            ${pairSummary?.x_to_y?.net_sign !== null && pairSummary?.x_to_y?.net_sign !== undefined ? `<span class="graph-topic-stat">Net sign ${escapeHtml(String(pairSummary.x_to_y.net_sign))}</span>` : ""}
+          </div>
+          <div class="literature-panel-stack">
+            ${
+              pairSummary
+                ? `
+                  ${bucketCard(`${sourceLabel} → ${targetLabel}`, pairSummary?.x_to_y)}
+                  ${bucketCard(`${targetLabel} → ${sourceLabel}`, pairSummary?.y_to_x)}
+                  ${bucketCard(`${sourceLabel} ↔ ${targetLabel}`, pairSummary?.undirected)}
+                `
+                : `
+                  ${fallbackCard("Direction mix", selectedEdge.directionality_mix)}
+                  ${fallbackCard("Relationship mix", selectedEdge.relationship_type_mix)}
+                  ${fallbackCard("Edge role mix", selectedEdge.edge_role_mix)}
+                `
+            }
+          </div>
+        </div>
+      `;
+      return;
+    }
     const rootConcept = rootConceptId ? conceptMap.get(rootConceptId) : null;
     const isMapRoot = concept.concept_id === rootConceptId;
     const rootNotBackbone = Boolean(rootConceptId) && !rootIsInBackbone();
@@ -778,6 +1204,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           ${
             rootConcept && !isMapRoot
               ? `<p class="mini-copy literature-root-note">Rooted in <strong>${escapeHtml(conceptTitle(rootConcept))}</strong>.</p>`
+              : ""
+          }
+          ${
+            queryState?.label && queryState.label !== conceptTitle(rootConcept || concept)
+              ? `<p class="mini-copy literature-root-note">Query: <strong>${escapeHtml(queryState.label)}</strong></p>`
               : ""
           }
           ${
@@ -814,6 +1245,29 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
   const renderOverview = () => {
     if (!(selectedNeighborhood instanceof HTMLElement)) return;
+    const selectedEdge = currentVisibleEdge();
+    if (selectedEdge) {
+      const summary = edgePairSummary(selectedEdge);
+      const dominantCountries = summary?.dominant_countries || selectedEdge.dominant_countries || [];
+      const dominantUnits = summary?.dominant_units || selectedEdge.dominant_units || [];
+      const dominantYears = summary?.dominant_years || selectedEdge.dominant_years || [];
+      selectedNeighborhood.innerHTML = `
+        <div class="literature-panel-stack">
+          <section class="question-detail-panel literature-compact-panel">
+            <h3>Edge context</h3>
+            <details class="literature-collapsible" open>
+              <summary>Show context</summary>
+              <div class="graph-question-meta">
+                ${dominantCountries.slice(0, 3).map((item) => `<span>${escapeHtml(item.value || item)} ${formatNumber(safeNumber(item.count || 0))}</span>`).join("")}
+                ${dominantUnits.slice(0, 3).map((item) => `<span>${escapeHtml(item.value || item)} ${formatNumber(safeNumber(item.count || 0))}</span>`).join("")}
+                ${dominantYears.slice(0, 3).map((item) => `<span>${escapeHtml(item.value || item)} ${formatNumber(safeNumber(item.count || 0))}</span>`).join("")}
+              </div>
+            </details>
+          </section>
+        </div>
+      `;
+      return;
+    }
     const concept = selectedId ? conceptMap.get(selectedId) : null;
     if (!concept) {
       selectedNeighborhood.innerHTML = `<p class="card-copy">Choose a topic to inspect its local neighborhood.</p>`;
@@ -865,9 +1319,12 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
               <span>${formatNumber(currentOpportunities.length)} nearby routes</span>
               <span>${mapMode === "global" ? "Backbone view" : "Local view"}</span>
             </div>
-            <p class="mini-copy">
-              Direct neighbors stay near the root topic. Bridge topics sit farther out.
-            </p>
+            ${layerState.context ? `
+              <div class="graph-question-meta">
+                ${(concept.top_countries || []).slice(0, 3).map((value) => `<span>${escapeHtml(value)}</span>`).join("")}
+                ${(concept.top_units || []).slice(0, 3).map((value) => `<span>${escapeHtml(value)}</span>`).join("")}
+              </div>
+            ` : ""}
           </details>
         </section>
       </div>
@@ -880,6 +1337,33 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
   const renderPaths = () => {
     if (!(selectedQuestion instanceof HTMLElement) || !(selectedOpportunities instanceof HTMLElement)) return;
+    const selectedEdge = currentVisibleEdge();
+    if (selectedEdge) {
+      const summary = edgePairSummary(selectedEdge);
+      const exampleTexts = [
+        ...((summary?.x_to_y?.examples || []).map((item) => item.claim_text || item.evidence_text || item.title)),
+        ...((summary?.y_to_x?.examples || []).map((item) => item.claim_text || item.evidence_text || item.title)),
+        ...((summary?.undirected?.examples || []).map((item) => item.claim_text || item.evidence_text || item.title)),
+        ...((selectedEdge.examples || []).map((item) => item.claim_text || item.evidence_text || item.title)),
+      ].filter(Boolean).slice(0, 6);
+      selectedQuestion.innerHTML = `
+        <article class="graph-question-focus-card literature-path-focus-card literature-compact-panel">
+          <h3>Reported pathways</h3>
+          <div class="graph-question-meta">
+            <span>${formatNumber(safeNumber(selectedEdge.support_count))} supporting records</span>
+            <span>${escapeHtml(edgeArrowMode(selectedEdge))} arrows</span>
+          </div>
+        </article>
+      `;
+      selectedOpportunities.innerHTML = exampleTexts.length
+        ? `
+          <div class="literature-panel-stack">
+            ${exampleTexts.map((text) => `<article class="literature-paper-card"><p class="mini-copy">${escapeHtml(text)}</p></article>`).join("")}
+          </div>
+        `
+        : `<p class="card-copy">No example claims were exported for this edge.</p>`;
+      return;
+    }
     const concept = selectedId ? conceptMap.get(selectedId) : null;
     if (!concept) {
       selectedQuestion.innerHTML = `<p class="card-copy">Choose a topic to see the strongest nearby paths.</p>`;
@@ -977,6 +1461,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
     for (const button of selectedOpportunities.querySelectorAll("[data-select-pair]")) {
       button.addEventListener("click", () => {
+        selectedEdgeId = null;
         activeQuestionPairKey = button.dataset.selectPair;
         setPanelTab("paths");
         renderPaths();
@@ -989,6 +1474,35 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
   const renderPapers = () => {
     if (!(selectedPapers instanceof HTMLElement)) return;
+    const selectedEdge = currentVisibleEdge();
+    if (selectedEdge) {
+      const summary = edgePairSummary(selectedEdge);
+      const papers = [
+        ...((summary?.x_to_y?.examples || [])),
+        ...((summary?.y_to_x?.examples || [])),
+        ...((summary?.undirected?.examples || [])),
+        ...((selectedEdge.examples || [])),
+      ].filter((item) => item?.title).slice(0, 8);
+      selectedPapers.innerHTML = papers.length
+        ? `
+          <div class="literature-panel-stack">
+            <div class="inspector-head literature-compact-head">
+              <h3>Anchor papers</h3>
+            </div>
+            ${papers.map((paper) => `
+              <article class="literature-paper-card">
+                <strong>${escapeHtml(paper.title)}</strong>
+                <div class="graph-question-meta graph-question-meta-tight">
+                  <span>${paper.year ? escapeHtml(String(paper.year)) : "Year unknown"}</span>
+                  <span>${escapeHtml(paper.bucket || contextLabel)}</span>
+                </div>
+              </article>
+            `).join("")}
+          </div>
+        `
+        : `<p class="card-copy">No paper previews were exported for this edge.</p>`;
+      return;
+    }
     const concept = selectedId ? conceptMap.get(selectedId) : null;
     if (!concept) {
       selectedPapers.innerHTML = `<p class="card-copy">Choose a topic to see the anchor papers around it.</p>`;
@@ -1058,6 +1572,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     } = visibleState;
     const visibleNodeMap = new Map(visibleNodes.map((node) => [node.id, node]));
     const edgeLookup = new Map(visibleEdges.map((edge) => [edge.id, edge]));
+    const scopeFilteringActive = scopeState.some((item) => {
+      const layerKey = scopeLayerKey(scopeTypeForEntity(item));
+      return layerKey && layerState[layerKey];
+    });
 
     for (const edge of visibleEdges) {
       const source = visibleNodeMap.get(edge.source) || graph.nodeMap.get(edge.source) || buildSyntheticNode(edge.source);
@@ -1065,15 +1583,29 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       if (!source || !target) continue;
       const sourceRender = nodeRenderState(source, renderPositionMap);
       const targetRender = nodeRenderState(target, renderPositionMap);
-      const isSelectedEdge = selectedActive && (edge.source === rootConceptId || edge.target === rootConceptId);
+      const summary = edgePairSummary(edge);
+      const dominantCountries = (summary?.dominant_countries || edge.dominant_countries || []).filter(Boolean);
+      const dominantUnits = (summary?.dominant_units || edge.dominant_units || []).filter(Boolean);
+      const dominantYears = (summary?.dominant_years || edge.dominant_years || []).filter(Boolean);
+      const isSelectedEdge = selectedEdgeId === edge.id;
+      const isRootEdge = selectedActive && (edge.source === rootConceptId || edge.target === rootConceptId);
       const isPathEdge =
         mediatorIds.has(edge.source) ||
         mediatorIds.has(edge.target) ||
         edge.source === counterpartId ||
         edge.target === counterpartId;
-      const isDimmed = mapMode === "global" && selectedActive && !isSelectedEdge && !isPathEdge;
+      const isQuestionRoute = Boolean(counterpartId) && (edge.source === counterpartId || edge.target === counterpartId);
+      const scopeMatch = scopeFilteringActive ? edgeMatchesActiveScopeLayers(edge) : false;
+      const isDimmed =
+        (mapMode === "global" && selectedActive && !isRootEdge && !isPathEdge && !isSelectedEdge) ||
+        (scopeFilteringActive && !scopeMatch && !isSelectedEdge && !isRootEdge);
+      const shouldShowArrows = layerState.direction || isSelectedEdge || (layerState.paths && isPathEdge);
+      const arrowMode = shouldShowArrows ? edgeArrowMode(edge) : "none";
+      const hasContext = layerState.context && Boolean(dominantCountries.length || dominantUnits.length || dominantYears.length);
+      const markerStart = arrowMode === "reverse" || arrowMode === "both" ? ` marker-start="url(#literature-arrow-start)"` : "";
+      const markerEnd = arrowMode === "forward" || arrowMode === "both" ? ` marker-end="url(#literature-arrow-end)"` : "";
       edgeMarkup.push(
-        `<line class="graph-edge${isSelectedEdge ? " is-selected" : ""}${isPathEdge ? " is-focused" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edge.strength || 0.3};" data-edge-id="${escapeHtml(edge.id)}" x1="${sourceRender.x}" y1="${sourceRender.y}" x2="${targetRender.x}" y2="${targetRender.y}"></line>`,
+        `<line class="graph-edge${isRootEdge ? " is-selected" : ""}${isSelectedEdge ? " is-selected-edge" : ""}${isPathEdge ? " is-focused" : ""}${isQuestionRoute ? " is-question-route" : ""}${scopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${layerState.direction && arrowMode !== "none" ? " is-directional" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edge.strength || 0.3};" data-edge-id="${escapeHtml(edge.id)}" x1="${sourceRender.x}" y1="${sourceRender.y}" x2="${targetRender.x}" y2="${targetRender.y}"${markerStart}${markerEnd}></line>`,
       );
     }
 
@@ -1084,7 +1616,12 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       const isMediator = mediatorIds.has(node.id);
       const isFirstRing = firstRing.has(node.id);
       const isSecondRing = secondRing.has(node.id);
-      const isDimmed = mapMode === "global" && selectedActive && !isRoot && !isSelected && !isQuestionTarget && !isMediator;
+      const isScopeMatch = scopeFilteringActive ? nodeMatchesActiveScopeLayers(node) : false;
+      const context = nodeContext(node.id);
+      const hasContext = layerState.context && Boolean(context.topCountries.length || context.topUnits.length);
+      const isDimmed =
+        (mapMode === "global" && selectedActive && !isRoot && !isSelected && !isQuestionTarget && !isMediator) ||
+        (scopeFilteringActive && !isScopeMatch && !isRoot && !isSelected && !isQuestionTarget && !isMediator);
       const renderState = nodeRenderState(node, renderPositionMap);
       const radius = focusedActive
         ? isRoot
@@ -1100,7 +1637,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
                 : Math.max(9.5, Math.min(14.5, 9 + Math.log10(safeNumber(node.weighted_degree) + 1) * 1.4))
         : Math.max(2.8, Math.min(24, 2.8 + Math.log10(safeNumber(node.weighted_degree) + 1) * 4.4));
       const showLabel = focusedActive
-        ? isRoot || isSelected || isQuestionTarget || isMediator || isFirstRing || (isSecondRing && safeNumber(node.weighted_degree) >= 60)
+        ? isRoot || isSelected || isQuestionTarget || isMediator || isFirstRing || isScopeMatch || (isSecondRing && safeNumber(node.weighted_degree) >= 60)
         : node.show_label || isRoot || isSelected || isQuestionTarget;
       const label = node.plain_label || node.label;
       const labelWidth = estimateChipWidth(label);
@@ -1110,15 +1647,15 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         : renderState.y - (radius + (isRoot || isSelected ? 16 : 8));
       const chipY = labelAbove ? labelY - 20 : labelY - 18;
       nodeMarkup.push(
-        `<g class="graph-node-group${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeAttr(node.id)}">
-          ${focusedActive ? `<circle class="graph-node-halo${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}" cx="${renderState.x}" cy="${renderState.y}" r="${radius + (isRoot ? 10 : isSelected ? 8 : isQuestionTarget ? 8 : isMediator ? 7 : 6)}"></circle>` : ""}
+        `<g class="graph-node-group${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${isDimmed ? " is-dimmed" : ""}" data-node-id="${escapeAttr(node.id)}">
+          ${focusedActive ? `<circle class="graph-node-halo${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}" cx="${renderState.x}" cy="${renderState.y}" r="${radius + (isRoot ? 10 : isSelected ? 8 : isQuestionTarget ? 8 : isMediator ? 7 : 6)}"></circle>` : ""}
           <circle class="graph-node" cx="${renderState.x}" cy="${renderState.y}" r="${radius}"></circle>
           ${
             showLabel
               ? focusedActive
-                ? `<g class="graph-label-chip${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}">
+                ? `<g class="graph-label-chip${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}">
                     <rect x="${renderState.x - labelWidth / 2}" y="${chipY}" width="${labelWidth}" height="28" rx="14" ry="14"></rect>
-                    <text class="graph-label graph-label-chip-text${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>
+                    <text class="graph-label graph-label-chip-text${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>
                   </g>`
                 : `<text class="graph-label${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>`
               : ""
@@ -1128,6 +1665,14 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
 
     canvas.innerHTML = `
+      <defs>
+        <marker id="literature-arrow-end" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M1 1 L11 6 L1 11 z" fill="rgba(31, 50, 72, 0.68)"></path>
+        </marker>
+        <marker id="literature-arrow-start" viewBox="0 0 12 12" refX="2" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M1 1 L11 6 L1 11 z" fill="rgba(31, 50, 72, 0.68)"></path>
+        </marker>
+      </defs>
       <g data-role="graph-viewport">
         <rect class="graph-pan-target" x="-900" y="-900" width="3200" height="2800"></rect>
         <g class="graph-edge-layer">${edgeMarkup.join("")}</g>
@@ -1140,14 +1685,24 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       nodeElement.addEventListener("mouseenter", (event) => {
         const node = visibleNodeMap.get(nodeElement.dataset.nodeId) || graph.nodeMap.get(nodeElement.dataset.nodeId) || buildSyntheticNode(nodeElement.dataset.nodeId);
         if (!node) return;
+        const context = nodeContext(node.id);
         const backboneDetail = isInBackbone(node.id)
-          ? `${formatNumber(safeNumber(node.weighted_degree))} weighted links in the backbone.`
+          ? `${formatNumber(context.weightedDegree)} weighted links in the backbone.`
           : "Searchable topic outside the released backbone.";
+        const entityTags = [];
+        if (context.entity?.badge) entityTags.push(context.entity.badge);
+        if (context.entity?.entity_type && context.entity.entity_type !== "concept") {
+          entityTags.push(humanizeScopeType(context.entity.entity_type));
+        }
         showTooltip(event, `
           <strong>${escapeHtml(node.plain_label || node.label)}</strong><br />
           ${node.subtitle ? `${escapeHtml(node.subtitle)}<br />` : ""}
-          <span>${formatNumber(safeNumber(node.distinct_paper_support))} papers in the ${contextLabel}.</span><br />
+          <span>${formatNumber(context.paperSupport)} papers in the ${contextLabel}.</span><br />
+          <span>${formatNumber(context.neighborCount)} nearby links in this released view.</span><br />
           <span>${escapeHtml(backboneDetail)}</span><br />
+          ${entityTags.length ? `<span>${escapeHtml(entityTags.join(" · "))}</span><br />` : ""}
+          ${layerState.context && context.topCountries.length ? `<span>Countries: ${escapeHtml(context.topCountries.slice(0, 3).join(", "))}</span><br />` : ""}
+          ${layerState.context && context.topUnits.length ? `<span>Units: ${escapeHtml(context.topUnits.slice(0, 3).join(", "))}</span><br />` : ""}
           <span class="tooltip-action">Click to inspect this topic. Use the panel to rebuild the map here.</span>
         `);
       });
@@ -1164,19 +1719,46 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
 
     for (const edgeElement of canvas.querySelectorAll("[data-edge-id]")) {
+      edgeElement.addEventListener("pointerdown", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+      });
+      edgeElement.addEventListener("mousedown", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+      });
       edgeElement.addEventListener("mouseenter", (event) => {
         const edge = edgeLookup.get(edgeElement.dataset.edgeId);
         if (!edge) return;
         const sourceNode = visibleNodeMap.get(edge.source) || graph.nodeMap.get(edge.source) || buildSyntheticNode(edge.source);
         const targetNode = visibleNodeMap.get(edge.target) || graph.nodeMap.get(edge.target) || buildSyntheticNode(edge.target);
+        const summary = edgePairSummary(edge);
+        const dominantCountries = (summary?.dominant_countries || []).slice(0, 2).map((item) => item.value || item).filter(Boolean);
+        const dominantUnits = (summary?.dominant_units || []).slice(0, 2).map((item) => item.value || item).filter(Boolean);
+        const dominantYears = (summary?.dominant_years || []).slice(0, 2).map((item) => item.value || item).filter(Boolean);
         showTooltip(event, `
-          <strong>${escapeHtml(conceptLabel(edge.source, sourceNode?.label || ""))} to ${escapeHtml(conceptLabel(edge.target, targetNode?.label || ""))}</strong><br />
+          <strong>${escapeHtml(conceptLabel(edge.source, sourceNode?.label || ""))} ↔ ${escapeHtml(conceptLabel(edge.target, targetNode?.label || ""))}</strong><br />
           <span>${formatNumber(safeNumber(edge.support_count))} papers mention this nearby directed relation.</span><br />
+          <span>${escapeHtml(edgeDirectionSummary(edge))}</span><br />
+          ${edgeSignBadge(edge) ? `<span>${escapeHtml(edgeSignBadge(edge))}</span><br />` : ""}
+          ${layerState.context && dominantCountries.length ? `<span>Countries: ${escapeHtml(dominantCountries.join(", "))}</span><br />` : ""}
+          ${layerState.context && dominantUnits.length ? `<span>Units: ${escapeHtml(dominantUnits.join(", "))}</span><br />` : ""}
+          ${layerState.context && dominantYears.length ? `<span>Years: ${escapeHtml(dominantYears.join(", "))}</span><br />` : ""}
           <span>${edge.synthetic ? "This is a proxy link from the searched topic into the released backbone." : `Local edge strength: ${safeNumber(edge.strength).toFixed(2)} on the current map.`}</span>
         `);
       });
       edgeElement.addEventListener("mousemove", moveTooltip);
       edgeElement.addEventListener("mouseleave", hideTooltip);
+      edgeElement.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const edge = edgeLookup.get(edgeElement.dataset.edgeId);
+        if (edge?.synthetic) return;
+        selectedEdgeId = edgeElement.dataset.edgeId || null;
+        if (!selectedId) selectedId = rootConceptId;
+        renderAllPanels();
+        renderGraph();
+        restoreStatus();
+      });
     }
 
     setViewportTransform();
@@ -1223,16 +1805,26 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     renderAllPanels();
   };
 
-  const selectConcept = async (conceptId, { rebuildMap = true, switchToOverview = rebuildMap } = {}) => {
+  const selectConcept = async (
+    conceptId,
+    { rebuildMap = true, switchToOverview = rebuildMap, entity = null, anchorId = "" } = {},
+  ) => {
     if (!conceptId) return;
     const concept = conceptMap.get(conceptId);
     if (!concept) return;
+    if (entity) {
+      queryState = cloneEntityState(entity, conceptId);
+    } else if (rebuildMap || !queryState?.label) {
+      queryState = pseudoEntityForConcept(conceptId) || queryState;
+    }
     if (rebuildMap || !rootConceptId) {
       rootConceptId = conceptId;
+      anchorConceptId = anchorId || (isInBackbone(conceptId) ? conceptId : entityPrimaryConceptId(entity) || "");
       rootNeighborhood = null;
       if (!isInBackbone(conceptId)) mapMode = "local";
     }
     selectedId = conceptId;
+    selectedEdgeId = null;
     currentNeighborhood = null;
     currentOpportunities = [];
     activeQuestionPairKey = null;
@@ -1254,6 +1846,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     if (selectedPapers instanceof HTMLElement) {
       selectedPapers.innerHTML = `<p class="card-copy">Loading anchor papers...</p>`;
     }
+    renderStateChips();
+    renderLayersMenu();
     updateMapModeButton();
     renderGraph();
     restoreStatus();
@@ -1266,12 +1860,60 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
     await Promise.all([renderNeighborhood(conceptId), renderOpportunities(conceptId)]);
     updateMapModeButton();
+    renderStateChips();
+    renderLayersMenu();
     renderGraph();
     if (rebuildMap) {
       setDefaultViewport();
     }
     restoreStatus();
     hideTooltip();
+  };
+
+  const selectEntity = async (entity, { switchToOverview = true } = {}) => {
+    if (!entity) return;
+    const entityState = cloneEntityState(entity, entityPrimaryConceptId(entity));
+    const scopeType = scopeTypeForEntity(entityState);
+    if (scopeType && scopeType !== "concept") {
+      addScopeChip(entityState);
+      const conceptId = entityPrimaryConceptId(entityState);
+      if (conceptId && conceptMap.has(conceptId)) {
+        const stableAnchor = entityAnchorCandidates(entityState)
+          .map((candidate) => candidate?.concept_id)
+          .find((candidateId) => candidateId && isInBackbone(candidateId));
+        await selectConcept(conceptId, {
+          rebuildMap: true,
+          switchToOverview,
+          entity: entityState,
+          anchorId: stableAnchor || (isInBackbone(conceptId) ? conceptId : ""),
+        });
+      } else {
+        renderLayersMenu();
+        renderStateChips();
+        renderGraph();
+        renderAllPanels();
+        restoreStatus();
+        if (!rootConceptId) {
+          const anchorId = entityPrimaryConceptId(entityState);
+          if (anchorId) {
+            await selectConcept(anchorId, { rebuildMap: true, switchToOverview, entity: pseudoEntityForConcept(anchorId), anchorId });
+          }
+        }
+      }
+      hideTooltip();
+      return;
+    }
+    const conceptId = entityState.concept_id || entityPrimaryConceptId(entityState);
+    if (!conceptId) return;
+    const stableAnchor = entityAnchorCandidates(entityState)
+      .map((candidate) => candidate?.concept_id)
+      .find((candidateId) => candidateId && isInBackbone(candidateId));
+    await selectConcept(conceptId, {
+      rebuildMap: true,
+      switchToOverview,
+      entity: entityState,
+      anchorId: stableAnchor || (isInBackbone(conceptId) ? conceptId : ""),
+    });
   };
 
   const runSearch = (query) => {
@@ -1282,21 +1924,14 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       return [];
     }
     const matches = searchConcepts(trimmed);
-    searchResults.innerHTML = matches
-      .map(
-        (concept) => `
-          <button class="search-hit" data-concept-id="${escapeHtml(concept.concept_id)}">
-            <strong>${escapeHtml(conceptTitle(concept))}</strong>
-            <span>${formatNumber(safeNumber(concept.distinct_paper_support))} papers</span>
-          </button>
-        `,
-      )
-      .join("");
-    for (const button of searchResults.querySelectorAll("[data-concept-id]")) {
+    renderSearchResults(matches);
+    for (const button of searchResults.querySelectorAll("[data-entity-id]")) {
       button.addEventListener("click", () => {
-        searchResults.innerHTML = "";
-        if (searchInput instanceof HTMLInputElement) searchInput.value = "";
-        selectConcept(button.dataset.conceptId, { rebuildMap: true, switchToOverview: true });
+        const entity = matches.find((item) => String(item.id || entityPrimaryConceptId(item)) === button.dataset.entityId);
+        clearSearchUi();
+        if (entity) {
+          selectEntity(entity, { switchToOverview: true });
+        }
       });
     }
     return matches;
@@ -1327,9 +1962,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   };
 
   const bootstrap = async () => {
-    const [graphPayload, conceptPayload, neighborhoodsPayload, opportunitiesPayload, centralPayload] = await Promise.all([
+    const [graphPayload, conceptPayload, literatureSearchPayload, neighborhoodsPayload, opportunitiesPayload, centralPayload] = await Promise.all([
       fetchJson(graphPath),
       fetchJson(conceptIndexPath),
+      fetchJson(literatureSearchIndexPath),
       fetchJson(neighborhoodsIndexPath),
       fetchJson(opportunitiesIndexPath),
       fetchJson(centralConceptsPath),
@@ -1342,24 +1978,35 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     };
     graph.nodes = Array.from(graph.nodeMap.values());
     concepts = conceptPayload;
+    literatureSearchIndex = Array.isArray(literatureSearchPayload) ? literatureSearchPayload : [];
+    searchEntityByConceptId = new Map(
+      literatureSearchIndex
+        .filter((entity) => entity?.concept_id)
+        .map((entity) => [entity.concept_id, entity]),
+    );
     conceptMap = new Map(concepts.map((concept) => [concept.concept_id, concept]));
     neighborhoodIndex = neighborhoodsPayload;
     opportunitiesIndex = opportunitiesPayload;
     centralConcepts = centralPayload;
     buildAdjacency();
     renderCentralList();
+    renderLayersMenu();
+    renderStateChips();
     updateDepthButtons();
     updateMapModeButton();
 
     const params = new URLSearchParams(window.location.search);
     const query = params.get("q");
     const selected = query ? searchConcepts(query)[0] : null;
-    const defaultTopic = concepts.find(
-      (concept) => String(concept.plain_label || concept.label || "").trim().toLowerCase() === DEFAULT_TOPIC_LABEL,
-    );
-    const initialConcept = selected || defaultTopic || centralConcepts[0] || null;
-    if (initialConcept?.concept_id) {
-      await selectConcept(initialConcept.concept_id);
+    const defaultTopic =
+      literatureSearchIndex.find((entity) => normalizeText(entityLabel(entity)) === normalizeText(DEFAULT_TOPIC_LABEL)) ||
+      pseudoEntityForConcept(
+        concepts.find((concept) => String(concept.plain_label || concept.label || "").trim().toLowerCase() === DEFAULT_TOPIC_LABEL)?.concept_id,
+      ) ||
+      pseudoEntityForConcept(centralConcepts[0]?.concept_id);
+    const initialEntity = selected || defaultTopic || null;
+    if (initialEntity) {
+      await selectEntity(initialEntity, { switchToOverview: true });
     } else {
       restoreStatus();
     }
@@ -1374,10 +2021,9 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     searchInput.addEventListener("keydown", (event) => {
       if (event.key !== "Enter") return;
       const matches = runSearch(searchInput.value);
-      if (matches[0]?.concept_id) {
-        searchResults.innerHTML = "";
-        searchInput.value = "";
-        selectConcept(matches[0].concept_id, { rebuildMap: true, switchToOverview: true });
+      if (matches[0]) {
+        clearSearchUi();
+        selectEntity(matches[0], { switchToOverview: true });
       }
     });
   }
@@ -1437,6 +2083,15 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   });
   canvas.addEventListener("mousedown", (event) => {
     startPan(event.target, event.clientX, event.clientY);
+  });
+  canvas.addEventListener("click", (event) => {
+    if (event.target instanceof Element && event.target.closest("[data-node-id], [data-edge-id]")) return;
+    if (selectedEdgeId) {
+      selectedEdgeId = null;
+      renderAllPanels();
+      renderGraph();
+      restoreStatus();
+    }
   });
 
   window.addEventListener("pointermove", (event) => {

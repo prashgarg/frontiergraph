@@ -206,6 +206,7 @@ export type SiteData = {
   graph: {
     backbone_path: string;
     concept_index_path: string;
+    literature_search_index_path: string;
     concept_neighborhoods_index_path: string;
     concept_opportunities_index_path: string;
     central_concepts_path: string;

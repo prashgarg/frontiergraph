@@ -3,7 +3,7 @@ title: "What Should Economics Ask Next?"
 description: "Full HTML manuscript for the Frontier Graph working paper."
 eyebrow: "Working paper"
 author: "Prashant Garg"
-date: "17 March 2026"
+date: "15 March 2026"
 ---
 
 ## Abstract

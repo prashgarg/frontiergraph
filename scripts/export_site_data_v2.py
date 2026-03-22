@@ -11,7 +11,7 @@ import sqlite3
 import subprocess
 import sys
 import zipfile
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -34,6 +34,7 @@ PUBLIC_DATA_DIR = SITE_ROOT / "public" / "data" / PUBLIC_DATA_SEGMENT
 PUBLIC_DOWNLOADS_DIR = SITE_ROOT / "public" / "downloads"
 NEIGHBORHOOD_SHARDS_DIR = PUBLIC_DATA_DIR / "concept_neighborhoods"
 OPPORTUNITY_SHARDS_DIR = PUBLIC_DATA_DIR / "concept_opportunities"
+LITERATURE_SEARCH_INDEX_PATH = PUBLIC_DATA_DIR / "literature_search_index.json"
 
 REPO_URL = "https://github.com/prashgarg/frontiergraph"
 DB_FILENAME = "frontiergraph-economics-public.db"
@@ -52,20 +53,26 @@ DEFAULT_PUBLIC_RELEASE_DB_PATH = Path(os.environ.get("FRONTIERGRAPH_PUBLIC_RELEA
 SOURCE_PUBLIC_APP_DB_PATH = Path(
     os.environ.get(
         "FRONTIERGRAPH_PUBLIC_SOURCE_DB",
-        ROOT
-        / "data"
-        / "production"
-        / "frontiergraph_concept_compare_v1"
-        / "baseline"
-        / "suppression"
-        / "concept_exploratory_suppressed_top100k_app.sqlite",
+        ROOT / "data" / "production" / "frontiergraph_concept_public" / "concept_exploratory_app.sqlite",
     )
 )
 PUBLIC_RELEASE_DB_PATH = DEFAULT_PUBLIC_RELEASE_DB_PATH
 PUBLIC_GRAPH_DB_PATH = Path(
     os.environ.get(
         "FRONTIERGRAPH_PUBLIC_GRAPH_DB",
-        str(PUBLIC_RELEASE_DIR / "frontiergraph-economics-public-graph.sqlite"),
+        str(ROOT / "data" / "production" / "frontiergraph_concept_public" / "concept_graph_exploratory.sqlite"),
+    )
+)
+EXTRACTION_DB_PATH = Path(
+    os.environ.get(
+        "FRONTIERGRAPH_EXTRACTION_DB",
+        ROOT
+        / "data"
+        / "production"
+        / "frontiergraph_extraction_v2"
+        / "fwci_core150_adj150"
+        / "merged"
+        / "fwci_core150_adj150_extractions.sqlite",
     )
 )
 PAPER_SYNC_SCRIPT = ROOT / "scripts" / "sync_paper_site_assets.py"
@@ -424,6 +431,26 @@ COUNTRY_CODE_ALIASES = {
     "ZAF": "South Africa",
     "ARE": "United Arab Emirates",
 }
+DATASET_LABEL_PATTERN = re.compile(
+    r"\b(data|dataset|datasets|survey|surveys|census|claims data|register data|panel study|panel studies|"
+    r"psid|nlsy|nhis|nhanes|cps|current population survey|sipp|meps|dhs|hilda|soep|"
+    r"world values survey|eurobarometer|lsms|compustat|scanner data)\b",
+    flags=re.IGNORECASE,
+)
+METHOD_LABEL_PATTERN = re.compile(
+    r"\b(regression|difference[- ]in[- ]differences|did\b|instrumental variable|iv\b|rdd\b|"
+    r"event study|cointegration|garch|ols\b|quantile|vector error correction|stochastic frontier|"
+    r"structural model|simulation|forecast|granger causality|panel data model|panel ardl|"
+    r"experiment|contingent valuation|choice experiment|markov switching)\b",
+    flags=re.IGNORECASE,
+)
+GEOGRAPHY_LABEL_PATTERN = re.compile(
+    r"\b(country|countries|region|regions|city|cities|province|provinces|state|states|county|counties|"
+    r"oecd|europe|asia|africa|latin america|united states|u\.s\.|us\b|uk\b|united kingdom|china|germany|canada|"
+    r"australia|france|italy|spain|india|japan|sweden|brazil|kenya|ghana|nigeria|tanzania)\b",
+    flags=re.IGNORECASE,
+)
+SEARCH_SCOPE_ORDER = ("geography", "method", "dataset")
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -595,6 +622,80 @@ def top_values(raw: Any, limit: int = 3) -> list[str]:
             if text:
                 values.append(text)
     return uniq_keep_order(values, limit=limit)
+
+
+def top_count_rows(counter: Counter[str], limit: int = 5) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for value, count in counter.most_common():
+        cleaned = clean_public_text(value)
+        if not cleaned or count <= 0:
+            continue
+        rows.append({"value": cleaned, "count": int(count)})
+        if len(rows) >= limit:
+            break
+    return rows
+
+
+def normalized_label_key(value: Any) -> str:
+    return " ".join(
+        "".join(ch if ch.isalnum() or ch.isspace() else " " for ch in str(value or "").lower()).split()
+    )
+
+
+def classify_search_entity_type(label: Any, top_countries: list[str] | None = None, top_units: list[str] | None = None) -> str:
+    text = clean_public_text(label)
+    normalized = normalized_label_key(text)
+    country_values = {normalized_label_key(value) for value in (top_countries or []) if value}
+    if normalized in {normalized_label_key(value) for value in COUNTRY_CODE_ALIASES.values()}:
+        return "geography"
+    if GEOGRAPHY_LABEL_PATTERN.search(text) or normalized in country_values:
+        return "geography"
+    if DATASET_LABEL_PATTERN.search(text):
+        return "dataset"
+    if METHOD_LABEL_PATTERN.search(text):
+        return "method"
+    return "concept"
+
+
+def classify_search_badge(
+    *,
+    entity_type: str,
+    concept_id: str | None,
+    backbone_ids: set[str],
+    distinct_paper_support: int,
+    neighbor_count: int,
+    anchor_candidates: list[str],
+) -> tuple[str, str, bool]:
+    if entity_type in SEARCH_SCOPE_ORDER:
+        return ("Scope", "scope", False)
+    if concept_id and concept_id in backbone_ids:
+        return ("Map-ready", "backbone", True)
+    if anchor_candidates and (neighbor_count >= 10 or distinct_paper_support >= 50):
+        return ("Broad", "proxy", False)
+    return ("Search-only", "search_only", False)
+
+
+def normalize_sign_bucket(value: Any) -> str:
+    text = clean_public_text(value).lower()
+    if text == "increase":
+        return "positive"
+    if text == "decrease":
+        return "negative"
+    if text == "no_effect":
+        return "zero"
+    if text == "ambiguous":
+        return "ambiguous"
+    return "other"
+
+
+def net_sign_from_counts(counter: Counter[str]) -> float | None:
+    positive = int(counter.get("positive", 0))
+    negative = int(counter.get("negative", 0))
+    zero = int(counter.get("zero", 0))
+    denominator = positive + negative + zero
+    if denominator <= 0:
+        return None
+    return round((positive - negative) / denominator, 4)
 
 
 def uniq_keep_order(values: list[str], limit: int | None = None) -> list[str]:
@@ -1192,20 +1293,26 @@ def opportunity_record(
     editorial: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     values = dict(zip(columns, row))
-    cooc_count = to_int(values["cooc_count"])
-    top_source = top_values(values["u_top_countries"], limit=3)
-    top_target = top_values(values["v_top_countries"], limit=3)
-    source_public = public_label_payload(values["u"], values["u_preferred_label"], glossary, display_refinement)
-    target_public = public_label_payload(values["v"], values["v_preferred_label"], glossary, display_refinement)
+    pair_key = clean_public_text(values.get("pair_key"))
+    if not pair_key:
+        endpoints = sorted(
+            [
+                clean_public_text(values.get("u")),
+                clean_public_text(values.get("v")),
+            ]
+        )
+        pair_key = "__".join([value for value in endpoints if value])
+        values["pair_key"] = pair_key
+    cooc_count = to_int(values.get("cooc_count"))
+    top_source = top_values(values.get("u_top_countries"), limit=3)
+    top_target = top_values(values.get("v_top_countries"), limit=3)
+    source_public = public_label_payload(values.get("u"), values.get("u_preferred_label"), glossary, display_refinement)
+    target_public = public_label_payload(values.get("v"), values.get("v_preferred_label"), glossary, display_refinement)
     editorial_entry = (editorial or {}).get(str(values["pair_key"]), {})
     cross_field = clean_public_text(values.get("u_bucket_hint")) != clean_public_text(values.get("v_bucket_hint"))
     representative_papers = select_representative_papers(
         values,
-        [
-            paper
-            for paper in representative_papers_lookup.get((str(values["u"]), str(values["v"])), [])
-            if clean_public_text(paper.get("title"))
-        ],
+        [paper for paper in representative_papers_lookup.get((str(values.get("u")), str(values.get("v"))), []) if clean_public_text(paper.get("title"))],
         concept_label_lookup,
         glossary,
         display_refinement,
@@ -1223,10 +1330,10 @@ def opportunity_record(
     )
     return {
         "pair_key": values["pair_key"],
-        "source_id": values["u"],
-        "target_id": values["v"],
-        "source_label": values["u_preferred_label"],
-        "target_label": values["v_preferred_label"],
+        "source_id": values.get("u", ""),
+        "target_id": values.get("v", ""),
+        "source_label": values.get("u_preferred_label", ""),
+        "target_label": values.get("v_preferred_label", ""),
         "source_display_label": source_public["plain_label"],
         "target_display_label": target_public["plain_label"],
         "source_display_concept_id": source_public["display_concept_id"],
@@ -1236,19 +1343,19 @@ def opportunity_record(
         "display_refinement_confidence": display_refinement_confidence,
         "source_alternate_display_labels": source_public["alternate_display_labels"],
         "target_alternate_display_labels": target_public["alternate_display_labels"],
-        "source_bucket": values["u_bucket_hint"],
-        "target_bucket": values["v_bucket_hint"],
+        "source_bucket": values.get("u_bucket_hint", ""),
+        "target_bucket": values.get("v_bucket_hint", ""),
         "cross_field": cross_field,
-        "score": round(to_float(values["score"]), 6),
-        "base_score": round(to_float(values["base_score"]), 6),
+        "score": round(to_float(values.get("score")), 6),
+        "base_score": round(to_float(values.get("base_score")), 6),
         "duplicate_penalty": round(to_float(values.get("duplicate_penalty", 0.0)), 6),
-        "path_support_norm": round(to_float(values["path_support_norm"]), 6),
-        "gap_bonus": round(to_float(values["gap_bonus"]), 6),
-        "mediator_count": to_int(values["mediator_count"]),
-        "motif_count": to_int(values["motif_count"]),
+        "path_support_norm": round(to_float(values.get("path_support_norm")), 6),
+        "gap_bonus": round(to_float(values.get("gap_bonus")), 6),
+        "mediator_count": to_int(values.get("mediator_count")),
+        "motif_count": to_int(values.get("motif_count")),
         "cooc_count": cooc_count,
         "direct_link_status": direct_link_status(cooc_count),
-        "supporting_path_count": to_int(values["mediator_count"]),
+        "supporting_path_count": to_int(values.get("mediator_count")),
         "why_now": why_now(
             {
                 **values,
@@ -1299,7 +1406,7 @@ def opportunity_record(
             target_context_summary,
         ),
         "public_specificity_score": specificity_score,
-        "app_link": build_app_question_link(values["pair_key"]),
+        "app_link": build_app_question_link(values.get("pair_key")),
         "editorial_question_title": clean_public_text(editorial_entry.get("question_title")),
     }
 
@@ -1323,13 +1430,14 @@ def load_node_details() -> pd.DataFrame:
         return pd.read_sql_query("SELECT * FROM node_details", conn)
 
 
-def load_graph_tables() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+def load_graph_tables() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     with connect(PUBLIC_GRAPH_DB_PATH) as conn:
         edges = pd.read_sql_query("SELECT * FROM concept_edges", conn)
         profiles = pd.read_sql_query("SELECT * FROM concept_edge_profiles", conn)
         contexts = pd.read_sql_query("SELECT * FROM concept_edge_contexts", conn)
         exemplars = pd.read_sql_query("SELECT * FROM concept_edge_exemplars", conn)
-    return edges, profiles, contexts, exemplars
+        edge_instances = pd.read_sql_query("SELECT * FROM concept_edge_instances", conn)
+    return edges, profiles, contexts, exemplars, edge_instances
 
 
 def add_slice_flags(df: pd.DataFrame) -> pd.DataFrame:
@@ -1511,6 +1619,7 @@ def build_backbone(
     edge_profiles_df: pd.DataFrame,
     edge_contexts_df: pd.DataFrame,
     edge_exemplars_df: pd.DataFrame,
+    pair_summary_lookup: dict[tuple[str, str], dict[str, Any]],
     glossary: dict[str, dict[str, Any]],
     display_refinement: dict[str, dict[str, Any]],
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
@@ -1621,10 +1730,12 @@ def build_backbone(
                 "directionality_mix": parse_json_list(getattr(profile, "directionality_json", "[]")) if profile else [],
                 "relationship_type_mix": parse_json_list(getattr(profile, "relationship_type_json", "[]")) if profile else [],
                 "edge_role_mix": parse_json_list(getattr(profile, "edge_role_json", "[]")) if profile else [],
+                "claim_status_mix": parse_json_list(getattr(profile, "claim_status_json", "[]")) if profile else [],
                 "dominant_countries": top_values(getattr(context, "dominant_countries_json", "[]"), limit=3) if context else [],
                 "dominant_units": top_values(getattr(context, "dominant_units_json", "[]"), limit=3) if context else [],
                 "dominant_years": parse_json_list(getattr(context, "dominant_years_json", "[]")) if context else [],
                 "examples": edge_exemplars_map.get(key, []),
+                "pair_summary": orient_pair_summary(pair_summary_lookup, row.source_concept_id, row.target_concept_id),
             }
         )
 
@@ -1646,6 +1757,7 @@ def build_neighborhoods(
     edges_df: pd.DataFrame,
     edge_profiles_df: pd.DataFrame,
     edge_contexts_df: pd.DataFrame,
+    pair_summary_lookup: dict[tuple[str, str], dict[str, Any]],
     glossary: dict[str, dict[str, Any]],
     display_refinement: dict[str, dict[str, Any]],
 ) -> dict[str, Any]:
@@ -1678,7 +1790,11 @@ def build_neighborhoods(
             "directionality_mix": parse_json_list(getattr(profile, "directionality_json", "[]")) if profile else [],
             "relationship_type_mix": parse_json_list(getattr(profile, "relationship_type_json", "[]")) if profile else [],
             "edge_role_mix": parse_json_list(getattr(profile, "edge_role_json", "[]")) if profile else [],
+            "claim_status_mix": parse_json_list(getattr(profile, "claim_status_json", "[]")) if profile else [],
             "dominant_countries": top_values(getattr(context, "dominant_countries_json", "[]"), limit=3) if context else [],
+            "dominant_units": top_values(getattr(context, "dominant_units_json", "[]"), limit=3) if context else [],
+            "dominant_years": parse_json_list(getattr(context, "dominant_years_json", "[]")) if context else [],
+            "pair_summary": orient_pair_summary(pair_summary_lookup, row.source_concept_id, row.target_concept_id),
         }
         outgoing[row.source_concept_id].append(payload)
         incoming[row.target_concept_id].append(
@@ -1800,6 +1916,341 @@ def build_search_index(
         )
     records.sort(key=lambda item: (item["weighted_degree"], item["instance_support"]), reverse=True)
     return records
+
+
+def build_anchor_candidate_map(edges_df: pd.DataFrame, backbone_ids: set[str], limit: int = 5) -> dict[str, list[str]]:
+    neighbor_support: dict[str, Counter[str]] = defaultdict(Counter)
+    for row in edges_df.itertuples(index=False):
+        source_id = clean_public_text(row.source_concept_id)
+        target_id = clean_public_text(row.target_concept_id)
+        support_count = int(row.support_count or 0)
+        if not source_id or not target_id or support_count <= 0:
+            continue
+        if target_id in backbone_ids and source_id != target_id:
+            neighbor_support[source_id][target_id] += support_count
+        if source_id in backbone_ids and source_id != target_id:
+            neighbor_support[target_id][source_id] += support_count
+    return {
+        concept_id: [neighbor_id for neighbor_id, _count in counter.most_common(limit)]
+        for concept_id, counter in neighbor_support.items()
+    }
+
+
+def load_shadow_scope_entities(
+    concept_lookup: dict[str, dict[str, Any]],
+    existing_search_keys: set[str],
+) -> list[dict[str, Any]]:
+    if not EXTRACTION_DB_PATH.exists() or not PUBLIC_GRAPH_DB_PATH.exists():
+        return []
+
+    query = """
+        WITH raw_links AS (
+            SELECT raw.label AS raw_label, inst.source_concept_id AS concept_id, COUNT(*) AS support_count
+            FROM concept_edge_instances inst
+            JOIN ext.nodes raw ON raw.node_id = inst.source_node_id
+            GROUP BY raw.label, inst.source_concept_id
+            UNION ALL
+            SELECT raw.label AS raw_label, inst.target_concept_id AS concept_id, COUNT(*) AS support_count
+            FROM concept_edge_instances inst
+            JOIN ext.nodes raw ON raw.node_id = inst.target_node_id
+            GROUP BY raw.label, inst.target_concept_id
+        )
+        SELECT raw_label, concept_id, SUM(support_count) AS support_count
+        FROM raw_links
+        GROUP BY raw_label, concept_id
+        HAVING SUM(support_count) >= 3
+        ORDER BY support_count DESC, raw_label ASC
+    """
+
+    with connect(PUBLIC_GRAPH_DB_PATH) as conn:
+        conn.execute("ATTACH DATABASE ? AS ext", (str(EXTRACTION_DB_PATH),))
+        shadow_rows = pd.read_sql_query(query, conn)
+        conn.execute("DETACH DATABASE ext")
+
+    grouped: dict[str, list[tuple[str, int]]] = defaultdict(list)
+    for row in shadow_rows.itertuples(index=False):
+        label = clean_public_text(row.raw_label)
+        concept_id = clean_public_text(row.concept_id)
+        support_count = int(row.support_count or 0)
+        if not label or not concept_id or support_count <= 0:
+            continue
+        entity_type = classify_search_entity_type(label)
+        if entity_type not in SEARCH_SCOPE_ORDER:
+            continue
+        grouped[label].append((concept_id, support_count))
+
+    records: list[dict[str, Any]] = []
+    for label, concept_counts in grouped.items():
+        normalized = normalized_label_key(label)
+        if normalized in existing_search_keys:
+            continue
+        ranked = sorted(concept_counts, key=lambda item: item[1], reverse=True)
+        top_concepts = []
+        for concept_id, support_count in ranked:
+            concept = concept_lookup.get(concept_id)
+            if not concept:
+                continue
+            top_concepts.append(
+                {
+                    "concept_id": concept_id,
+                    "label": concept.get("plain_label") or concept.get("label") or concept_id,
+                    "support_count": int(support_count),
+                }
+            )
+            if len(top_concepts) >= 5:
+                break
+        if not top_concepts:
+            continue
+        best_concept = concept_lookup.get(top_concepts[0]["concept_id"], {})
+        entity_type = classify_search_entity_type(label)
+        records.append(
+            {
+                "id": f"shadow::{normalized.replace(' ', '-')}",
+                "concept_id": "",
+                "label": label,
+                "plain_label": label,
+                "subtitle": "",
+                "entity_type": entity_type,
+                "scope_type": entity_type,
+                "badge": "Scope",
+                "map_ready": False,
+                "stability": "scope",
+                "anchor_candidates": top_concepts,
+                "distinct_paper_support": int(sum(support for _concept_id, support in ranked)),
+                "neighbor_count": int(best_concept.get("neighbor_count", 0) or 0),
+                "top_countries": list(best_concept.get("top_countries", []) or []),
+                "top_units": list(best_concept.get("top_units", []) or []),
+                "search_terms": uniq_keep_order([label], limit=6),
+            }
+        )
+    records.sort(key=lambda item: item["distinct_paper_support"], reverse=True)
+    return records
+
+
+def build_literature_search_index(
+    concept_records: list[dict[str, Any]],
+    edges_df: pd.DataFrame,
+    backbone_ids: set[str],
+) -> list[dict[str, Any]]:
+    concept_lookup = {str(row["concept_id"]): row for row in concept_records}
+    anchor_candidate_map = build_anchor_candidate_map(edges_df, backbone_ids)
+    records: list[dict[str, Any]] = []
+    existing_keys: set[str] = set()
+
+    for row in concept_records:
+        concept_id = str(row["concept_id"])
+        entity_type = classify_search_entity_type(
+            row.get("plain_label") or row.get("label"),
+            list(row.get("top_countries", []) or []),
+            list(row.get("top_units", []) or []),
+        )
+        candidates = []
+        if entity_type == "concept" and concept_id in backbone_ids:
+            candidates.append(
+                {
+                    "concept_id": concept_id,
+                    "label": row.get("plain_label") or row.get("label") or concept_id,
+                    "support_count": int(row.get("distinct_paper_support", 0) or 0),
+                }
+            )
+        for anchor_id in anchor_candidate_map.get(concept_id, []):
+            concept = concept_lookup.get(anchor_id)
+            if not concept:
+                continue
+            candidates.append(
+                {
+                    "concept_id": anchor_id,
+                    "label": concept.get("plain_label") or concept.get("label") or anchor_id,
+                    "support_count": int(concept.get("distinct_paper_support", 0) or 0),
+                }
+            )
+            if len(candidates) >= 5:
+                break
+        deduped_candidates: list[dict[str, Any]] = []
+        seen_candidates: set[str] = set()
+        for item in candidates:
+            if item["concept_id"] in seen_candidates:
+                continue
+            seen_candidates.add(item["concept_id"])
+            deduped_candidates.append(item)
+        badge, stability, map_ready = classify_search_badge(
+            entity_type=entity_type,
+            concept_id=concept_id,
+            backbone_ids=backbone_ids,
+            distinct_paper_support=int(row.get("distinct_paper_support", 0) or 0),
+            neighbor_count=int(row.get("neighbor_count", 0) or 0),
+            anchor_candidates=[item["concept_id"] for item in deduped_candidates],
+        )
+        search_terms = uniq_keep_order(
+            [
+                row.get("label", ""),
+                row.get("plain_label", ""),
+                *(row.get("aliases", []) or []),
+                *(row.get("search_terms", []) or []),
+            ],
+            limit=20,
+        )
+        existing_keys.update(normalized_label_key(term) for term in search_terms if clean_public_text(term))
+        records.append(
+            {
+                "id": concept_id,
+                "concept_id": concept_id,
+                "label": row.get("label", ""),
+                "plain_label": row.get("plain_label", ""),
+                "subtitle": row.get("subtitle", ""),
+                "entity_type": entity_type,
+                "scope_type": entity_type if entity_type in SEARCH_SCOPE_ORDER else "",
+                "badge": badge,
+                "map_ready": map_ready,
+                "stability": stability,
+                "anchor_candidates": deduped_candidates,
+                "distinct_paper_support": int(row.get("distinct_paper_support", 0) or 0),
+                "neighbor_count": int(row.get("neighbor_count", 0) or 0),
+                "top_countries": list(row.get("top_countries", []) or []),
+                "top_units": list(row.get("top_units", []) or []),
+                "search_terms": search_terms,
+            }
+        )
+
+    records.extend(load_shadow_scope_entities(concept_lookup, existing_keys))
+    records.sort(
+        key=lambda item: (
+            item.get("badge") != "Map-ready",
+            item.get("badge") != "Broad",
+            -int(item.get("distinct_paper_support", 0) or 0),
+            -int(item.get("neighbor_count", 0) or 0),
+            clean_public_text(item.get("plain_label") or item.get("label")),
+        )
+    )
+    return records
+
+
+def build_pair_summary_lookup(edge_instances_df: pd.DataFrame) -> dict[tuple[str, str], dict[str, Any]]:
+    def init_bucket() -> dict[str, Any]:
+        return {
+            "support_count": 0,
+            "sign_counter": Counter(),
+            "method_counter": Counter(),
+            "claim_counter": Counter(),
+            "examples": [],
+        }
+
+    pair_accumulator: dict[tuple[str, str], dict[str, Any]] = {}
+    for row in edge_instances_df.itertuples(index=False):
+        source_id = clean_public_text(getattr(row, "source_concept_id", ""))
+        target_id = clean_public_text(getattr(row, "target_concept_id", ""))
+        if not source_id or not target_id:
+            continue
+        pair_key = tuple(sorted((source_id, target_id)))
+        pair_state = pair_accumulator.setdefault(
+            pair_key,
+            {
+                "concept_ids": pair_key,
+                "countries": Counter(),
+                "units": Counter(),
+                "years": Counter(),
+                "forward": init_bucket(),
+                "reverse": init_bucket(),
+                "undirected": init_bucket(),
+            },
+        )
+        bucket_key = "undirected"
+        if clean_public_text(getattr(row, "directionality", "")).lower() != "undirected":
+            bucket_key = "forward" if (source_id, target_id) == pair_key else "reverse"
+        bucket = pair_state[bucket_key]
+        bucket["support_count"] += 1
+        bucket["sign_counter"][normalize_sign_bucket(getattr(row, "sign", ""))] += 1
+        method_value = clean_public_text(getattr(row, "evidence_method", "")) or "other"
+        bucket["method_counter"][method_value] += 1
+        claim_value = clean_public_text(getattr(row, "claim_status", "")) or "other"
+        bucket["claim_counter"][claim_value] += 1
+        if len(bucket["examples"]) < 3:
+            bucket["examples"].append(
+                {
+                    "paper_id": clean_public_text(getattr(row, "openalex_work_id", "")),
+                    "title": clean_public_text(getattr(row, "title", "")),
+                    "year": int(getattr(row, "publication_year", 0) or 0),
+                    "bucket": clean_public_text(getattr(row, "bucket", "")),
+                    "claim_text": clean_public_text(getattr(row, "claim_text", "")),
+                    "evidence_text": clean_public_text(getattr(row, "evidence_text", "")),
+                }
+            )
+        for value in parse_json_list(getattr(row, "source_countries_json", "[]")) + parse_json_list(
+            getattr(row, "target_countries_json", "[]")
+        ):
+            cleaned = normalize_context_value(value)
+            if cleaned:
+                pair_state["countries"][cleaned] += 1
+        for value in parse_json_list(getattr(row, "source_units_json", "[]")) + parse_json_list(
+            getattr(row, "target_units_json", "[]")
+        ):
+            cleaned = normalize_context_value(value)
+            if cleaned:
+                pair_state["units"][cleaned] += 1
+        publication_year = int(getattr(row, "publication_year", 0) or 0)
+        if publication_year > 0:
+            pair_state["years"][str(publication_year)] += 1
+
+    def finalize_bucket(bucket: dict[str, Any]) -> dict[str, Any]:
+        sign_counter = Counter(bucket["sign_counter"])
+        sign_mix = top_count_rows(sign_counter, limit=5)
+        sign_counts = {
+            "positive": int(sign_counter.get("positive", 0)),
+            "negative": int(sign_counter.get("negative", 0)),
+            "zero": int(sign_counter.get("zero", 0)),
+            "ambiguous": int(sign_counter.get("ambiguous", 0)),
+            "other": int(sign_counter.get("other", 0)),
+        }
+        return {
+            "support_count": int(bucket["support_count"]),
+            "sign_mix": sign_mix,
+            "sign_counts": sign_counts,
+            "net_sign": net_sign_from_counts(sign_counter),
+            "method_mix": top_count_rows(Counter(bucket["method_counter"]), limit=5),
+            "claim_status_mix": top_count_rows(Counter(bucket["claim_counter"]), limit=5),
+            "examples": bucket["examples"],
+        }
+
+    lookup: dict[tuple[str, str], dict[str, Any]] = {}
+    for pair_key, state in pair_accumulator.items():
+        lookup[pair_key] = {
+            "concept_ids": list(pair_key),
+            "dominant_countries": top_count_rows(Counter(state["countries"]), limit=3),
+            "dominant_units": top_count_rows(Counter(state["units"]), limit=3),
+            "dominant_years": top_count_rows(Counter(state["years"]), limit=3),
+            "forward": finalize_bucket(state["forward"]),
+            "reverse": finalize_bucket(state["reverse"]),
+            "undirected": finalize_bucket(state["undirected"]),
+        }
+    return lookup
+
+
+def orient_pair_summary(pair_summary_lookup: dict[tuple[str, str], dict[str, Any]], source_id: str, target_id: str) -> dict[str, Any] | None:
+    pair_key = tuple(sorted((clean_public_text(source_id), clean_public_text(target_id))))
+    summary = pair_summary_lookup.get(pair_key)
+    if not summary:
+        return None
+    forward = summary["forward"]
+    reverse = summary["reverse"]
+    if tuple(summary["concept_ids"]) != (clean_public_text(source_id), clean_public_text(target_id)):
+        forward, reverse = reverse, forward
+    if forward["support_count"] > 0 and reverse["support_count"] == 0 and summary["undirected"]["support_count"] == 0:
+        arrow_mode = "forward"
+    elif reverse["support_count"] > 0 and forward["support_count"] == 0 and summary["undirected"]["support_count"] == 0:
+        arrow_mode = "reverse"
+    elif forward["support_count"] > 0 or reverse["support_count"] > 0 or summary["undirected"]["support_count"] > 0:
+        arrow_mode = "both"
+    else:
+        arrow_mode = "none"
+    return {
+        "arrow_mode": arrow_mode,
+        "dominant_countries": summary["dominant_countries"],
+        "dominant_units": summary["dominant_units"],
+        "dominant_years": summary["dominant_years"],
+        "x_to_y": forward,
+        "y_to_x": reverse,
+        "undirected": summary["undirected"],
+    }
 
 
 def diversify_featured_opportunities(
@@ -2983,9 +3434,10 @@ def main() -> None:
     concept_label_lookup = (
         node_details_df.set_index("concept_id")["preferred_label"].to_dict()
     )
-    graph_edges_df, edge_profiles_df, edge_contexts_df, edge_exemplars_df = load_graph_tables()
+    graph_edges_df, edge_profiles_df, edge_contexts_df, edge_exemplars_df, edge_instances_df = load_graph_tables()
 
     node_metrics_df, _graph = compute_centrality(node_details_df, graph_edges_df)
+    pair_summary_lookup = build_pair_summary_lookup(edge_instances_df)
     backbone_payload, backbone_nodes = build_backbone(
         node_details_df,
         graph_edges_df,
@@ -2993,14 +3445,17 @@ def main() -> None:
         edge_profiles_df,
         edge_contexts_df,
         edge_exemplars_df,
+        pair_summary_lookup,
         public_label_glossary,
         display_refinement,
     )
+    backbone_ids = {str(row["id"]) for row in backbone_payload.get("nodes", [])}
     neighborhoods = build_neighborhoods(
         node_details_df,
         graph_edges_df,
         edge_profiles_df,
         edge_contexts_df,
+        pair_summary_lookup,
         public_label_glossary,
         display_refinement,
     )
@@ -3013,6 +3468,7 @@ def main() -> None:
         editorial_opportunities,
     )
     search_index = build_search_index(node_details_df, node_metrics_df, public_label_glossary, display_refinement)
+    literature_search_index = build_literature_search_index(search_index, graph_edges_df, backbone_ids)
 
     central_concepts_df = (
         node_details_df.merge(node_metrics_df, left_on="concept_id", right_on="concept_id", how="left")
@@ -3119,6 +3575,7 @@ def main() -> None:
 
     write_json(PUBLIC_DATA_DIR / "graph_backbone.json", backbone_payload)
     write_json(PUBLIC_DATA_DIR / "concept_index.json", search_index)
+    write_json(LITERATURE_SEARCH_INDEX_PATH, literature_search_index)
     neighborhood_shard_index = chunk_mapping(neighborhoods, NEIGHBORHOOD_SHARDS_DIR, "neighborhoods")
     opportunity_shard_index = chunk_mapping(concept_opportunities, OPPORTUNITY_SHARDS_DIR, "opportunities")
     write_json(PUBLIC_DATA_DIR / "concept_neighborhoods_index.json", neighborhood_shard_index)
@@ -3243,6 +3700,7 @@ def main() -> None:
         [
             (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/graph_backbone.json"), "graph_backbone.json"),
             (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/concept_index.json"), "concept_index.json"),
+            (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/literature_search_index.json"), "literature_search_index.json"),
             (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/concept_neighborhoods_index.json"), "concept_neighborhoods_index.json"),
             (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/concept_opportunities_index.json"), "concept_opportunities_index.json"),
             (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/opportunity_slices.json"), "opportunity_slices.json"),
@@ -3262,6 +3720,7 @@ def main() -> None:
         "central_concepts_csv": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/central_concepts.csv"),
         "graph_backbone_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/graph_backbone.json"),
         "concept_index_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/concept_index.json"),
+        "literature_search_index_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/literature_search_index.json"),
         "concept_neighborhoods_index_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/concept_neighborhoods_index.json"),
         "concept_opportunities_index_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/concept_opportunities_index.json"),
         "opportunity_slices_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/opportunity_slices.json"),
@@ -3299,6 +3758,7 @@ def main() -> None:
         "graph": {
             "backbone_path": f"{PUBLIC_DATA_URL_PREFIX}/graph_backbone.json",
             "concept_index_path": f"{PUBLIC_DATA_URL_PREFIX}/concept_index.json",
+            "literature_search_index_path": f"{PUBLIC_DATA_URL_PREFIX}/literature_search_index.json",
             "concept_neighborhoods_index_path": f"{PUBLIC_DATA_URL_PREFIX}/concept_neighborhoods_index.json",
             "concept_opportunities_index_path": f"{PUBLIC_DATA_URL_PREFIX}/concept_opportunities_index.json",
             "central_concepts_path": f"{PUBLIC_DATA_URL_PREFIX}/central_concepts.json",

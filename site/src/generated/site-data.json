@@ -274,7 +274,7 @@
         "representative_papers": [
           {
             "paper_id": "W1488339449__gpt5mini_low",
-            "title": "Impact of High\u2010Deductible Health Plans on Health Care Utilization and Costs",
+            "title": "Impact of High‐Deductible Health Plans on Health Care Utilization and Costs",
             "year": 2010,
             "edge_src": "FG3C006085",
             "edge_dst": "FG3C000825",
@@ -292,7 +292,7 @@
           },
           {
             "paper_id": "W2981776378__gpt5mini_low",
-            "title": "The role of plan choice in health care utilization of high\u2010deductible plan enrollees",
+            "title": "The role of plan choice in health care utilization of high‐deductible plan enrollees",
             "year": 2019,
             "edge_src": "FG3C006085",
             "edge_dst": "FG3C000825",
@@ -805,7 +805,7 @@
         "representative_papers": [
           {
             "paper_id": "W4378895327__gpt5mini_low",
-            "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+            "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
             "year": 2023,
             "edge_src": "FG3C000012",
             "edge_dst": "FG3C000173",
@@ -1273,7 +1273,8 @@
     "concept_index_path": "/data/v2/concept_index.json",
     "concept_neighborhoods_index_path": "/data/v2/concept_neighborhoods_index.json",
     "concept_opportunities_index_path": "/data/v2/concept_opportunities_index.json",
-    "central_concepts_path": "/data/v2/central_concepts.json"
+    "central_concepts_path": "/data/v2/central_concepts.json",
+    "literature_search_index_path": "/data/v2/literature_search_index.json"
   },
   "questions": {
     "slices_path": "/data/v2/opportunity_slices.json",
@@ -1443,7 +1444,7 @@
         "representative_papers": [
           {
             "paper_id": "W4378895327__gpt5mini_low",
-            "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+            "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
             "year": 2023,
             "edge_src": "FG3C000012",
             "edge_dst": "FG3C000173",
@@ -2409,7 +2410,7 @@
             "representative_papers": [
               {
                 "paper_id": "W4378895327__gpt5mini_low",
-                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
                 "year": 2023,
                 "edge_src": "FG3C000012",
                 "edge_dst": "FG3C000173",
@@ -3013,7 +3014,7 @@
               },
               {
                 "paper_id": "W2092083630__gpt5mini_low",
-                "title": "Short\u2010 versus Long\u2010Run Implications of Trade Liberalization for Poverty in Three Developing Countries",
+                "title": "Short‐ versus Long‐Run Implications of Trade Liberalization for Poverty in Three Developing Countries",
                 "year": 2003,
                 "edge_src": "FG3C000083",
                 "edge_dst": "FG3C000149",
@@ -3602,7 +3603,7 @@
             "representative_papers": [
               {
                 "paper_id": "W2534466090__gpt5mini_low",
-                "title": "The UK productivity puzzle, 2008\u20132012: evidence using plant-level estimates of total factor productivity",
+                "title": "The UK productivity puzzle, 2008–2012: evidence using plant-level estimates of total factor productivity",
                 "year": 2016,
                 "edge_src": "FG3C002284",
                 "edge_dst": "FG3C000061",
@@ -3611,7 +3612,7 @@
               },
               {
                 "paper_id": "W4412017035__gpt5mini_low",
-                "title": "Green Innovation, Export Synergy, and Total Factor Productivity: Evidence from China\u2019s Marine Enterprises",
+                "title": "Green Innovation, Export Synergy, and Total Factor Productivity: Evidence from China’s Marine Enterprises",
                 "year": 2025,
                 "edge_src": "FG3C000181",
                 "edge_dst": "FG3C000061",
@@ -4212,7 +4213,7 @@
             "representative_papers": [
               {
                 "paper_id": "W4378895327__gpt5mini_low",
-                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
                 "year": 2023,
                 "edge_src": "FG3C000012",
                 "edge_dst": "FG3C000173",
@@ -4939,7 +4940,7 @@
             "representative_papers": [
               {
                 "paper_id": "W4378895327__gpt5mini_low",
-                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
                 "year": 2023,
                 "edge_src": "FG3C000012",
                 "edge_dst": "FG3C000173",
@@ -5302,7 +5303,7 @@
             "representative_papers": [
               {
                 "paper_id": "W4378895327__gpt5mini_low",
-                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
                 "year": 2023,
                 "edge_src": "FG3C000012",
                 "edge_dst": "FG3C000173",
@@ -6103,7 +6104,7 @@
               },
               {
                 "paper_id": "W7117993861__gpt5mini_low",
-                "title": "Green finance and carbon intensity in OECD economies\u2013Mediating roles of industrial structure upgrading and green technology innovation",
+                "title": "Green finance and carbon intensity in OECD economies–Mediating roles of industrial structure upgrading and green technology innovation",
                 "year": 2026,
                 "edge_src": "FG3C000094",
                 "edge_dst": "FG3C000184",
@@ -6420,7 +6421,7 @@
               },
               {
                 "paper_id": "W2148072480__gpt5mini_low",
-                "title": "Foreign Direct Investment and R&amp;D: Substitutes or Complements\u2014A Case of Indian Manufacturing after 1991 Reforms",
+                "title": "Foreign Direct Investment and R&amp;D: Substitutes or Complements—A Case of Indian Manufacturing after 1991 Reforms",
                 "year": 2011,
                 "edge_src": "FG3C000681",
                 "edge_dst": "FG3C000089",
@@ -6517,7 +6518,7 @@
             "representative_papers": [
               {
                 "paper_id": "W4403039686__gpt5mini_low",
-                "title": "Central Bank Independence and Inflation in Latin America\u2014Through the Lens of History",
+                "title": "Central Bank Independence and Inflation in Latin America—Through the Lens of History",
                 "year": 2024,
                 "edge_src": "FG3C000283",
                 "edge_dst": "FG3C000002",
@@ -6737,7 +6738,7 @@
             "representative_papers": [
               {
                 "paper_id": "W4378895327__gpt5mini_low",
-                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
                 "year": 2023,
                 "edge_src": "FG3C000012",
                 "edge_dst": "FG3C000173",
@@ -7101,12 +7102,12 @@
             ],
             "top_countries_target": [
               "China",
-              "C\u00f4te d\u2019Ivoire",
+              "Côte d’Ivoire",
               "101 countries"
             ],
             "source_context_summary": "China and India",
-            "target_context_summary": "China, C\u00f4te d\u2019Ivoire, and related settings",
-            "common_contexts": "foreign direct investments studies are common in China and India; subjective well-being studies are common in China, C\u00f4te d\u2019Ivoire, and related settings.",
+            "target_context_summary": "China, Côte d’Ivoire, and related settings",
+            "common_contexts": "foreign direct investments studies are common in China and India; subjective well-being studies are common in China, Côte d’Ivoire, and related settings.",
             "public_specificity_score": 0.2062,
             "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C003298",
             "editorial_question_title": "",
@@ -7272,7 +7273,7 @@
               },
               {
                 "paper_id": "W3029799799__gpt5mini_low",
-                "title": "The strange case of less C\u2010sections: Hospital ownership, market concentration, and DRG\u2010tariff regulation",
+                "title": "The strange case of less C‐sections: Hospital ownership, market concentration, and DRG‐tariff regulation",
                 "year": 2020,
                 "edge_src": "FG3C000114",
                 "edge_dst": "FG3C001219",
@@ -7370,7 +7371,7 @@
             "representative_papers": [
               {
                 "paper_id": "W4289731394__gpt5mini_low",
-                "title": "The Effect of Energy Consumption on China\u2019s Regional Economic Growth from a Spatial Spillover Perspective",
+                "title": "The Effect of Energy Consumption on China’s Regional Economic Growth from a Spatial Spillover Perspective",
                 "year": 2022,
                 "edge_src": "FG3C000014",
                 "edge_dst": "FG3C000236",
@@ -7799,7 +7800,7 @@
             "representative_papers": [
               {
                 "paper_id": "W2042442646__gpt5mini_low",
-                "title": "An analysis of profitability of the world\u2019s major airlines",
+                "title": "An analysis of profitability of the world’s major airlines",
                 "year": 1998,
                 "edge_src": "FG3C000070",
                 "edge_dst": "FG3C000067",
@@ -8197,7 +8198,7 @@
             "target_alternate_display_labels": [
               "rules of origin",
               "international trade patterns",
-              "North\u2013South trade"
+              "North–South trade"
             ],
             "source_bucket": "core",
             "target_bucket": "core",
@@ -8540,7 +8541,7 @@
             "representative_papers": [
               {
                 "paper_id": "W4225294531__gpt5mini_low",
-                "title": "CO2 Emissions in Asia\u2013Pacific Region: Do Energy Use, Economic Growth, Financial Development, and International Trade Have Detrimental Effects?",
+                "title": "CO2 Emissions in Asia–Pacific Region: Do Energy Use, Economic Growth, Financial Development, and International Trade Have Detrimental Effects?",
                 "year": 2022,
                 "edge_src": "FG3C000003",
                 "edge_dst": "FG3C000078",
@@ -8558,7 +8559,7 @@
               },
               {
                 "paper_id": "W4293695095__gpt5mini_low",
-                "title": "Towards sustainable development in the European Union countries: Does economic complexity affect renewable and non\u2010renewable energy consumption?",
+                "title": "Towards sustainable development in the European Union countries: Does economic complexity affect renewable and non‐renewable energy consumption?",
                 "year": 2022,
                 "edge_src": "FG3C000199",
                 "edge_dst": "FG3C000018",
@@ -8763,7 +8764,7 @@
               },
               {
                 "paper_id": "W4292337126__gpt5mini_low",
-                "title": "The Relationship between Trade Liberalization, Financial Development and Carbon Dioxide Emission\u2014An Empirical Analysis",
+                "title": "The Relationship between Trade Liberalization, Financial Development and Carbon Dioxide Emission—An Empirical Analysis",
                 "year": 2022,
                 "edge_src": "FG3C000083",
                 "edge_dst": "FG3C000006",
@@ -8772,7 +8773,7 @@
               },
               {
                 "paper_id": "W4308652061__gpt5mini_low",
-                "title": "Can New-Type Urbanization Construction Narrow the Urban\u2013Rural Income Gap? Evidence from China",
+                "title": "Can New-Type Urbanization Construction Narrow the Urban–Rural Income Gap? Evidence from China",
                 "year": 2022,
                 "edge_src": "FG3C000006",
                 "edge_dst": "FG3C000869",
@@ -9298,7 +9299,7 @@
               },
               {
                 "paper_id": "W4382022163__gpt5mini_low",
-                "title": "How can a carbon tax benefit developing economies with informality? A CGE analysis for C\u00f4te d\u2019Ivoire",
+                "title": "How can a carbon tax benefit developing economies with informality? A CGE analysis for Côte d’Ivoire",
                 "year": 2023,
                 "edge_src": "FG3C000152",
                 "edge_dst": "FG3C000037",
@@ -9930,7 +9931,7 @@
             "representative_papers": [
               {
                 "paper_id": "W2534466090__gpt5mini_low",
-                "title": "The UK productivity puzzle, 2008\u20132012: evidence using plant-level estimates of total factor productivity",
+                "title": "The UK productivity puzzle, 2008–2012: evidence using plant-level estimates of total factor productivity",
                 "year": 2016,
                 "edge_src": "FG3C002284",
                 "edge_dst": "FG3C000061",
@@ -9939,7 +9940,7 @@
               },
               {
                 "paper_id": "W4412017035__gpt5mini_low",
-                "title": "Green Innovation, Export Synergy, and Total Factor Productivity: Evidence from China\u2019s Marine Enterprises",
+                "title": "Green Innovation, Export Synergy, and Total Factor Productivity: Evidence from China’s Marine Enterprises",
                 "year": 2025,
                 "edge_src": "FG3C000181",
                 "edge_dst": "FG3C000061",
@@ -10257,7 +10258,7 @@
               },
               {
                 "paper_id": "W4308515307__gpt5mini_low",
-                "title": "Technological Innovation, Risk-Taking and Firm Performance\u2014Empirical Evidence from Chinese Listed Companies",
+                "title": "Technological Innovation, Risk-Taking and Firm Performance—Empirical Evidence from Chinese Listed Companies",
                 "year": 2022,
                 "edge_src": "FG3C000013",
                 "edge_dst": "FG3C000113",
@@ -10266,7 +10267,7 @@
               },
               {
                 "paper_id": "W4375845693__gpt5mini_low",
-                "title": "The role of technology innovation, customer retention and business continuity on firm performance after post-pandemic era in China\u2019s SMEs",
+                "title": "The role of technology innovation, customer retention and business continuity on firm performance after post-pandemic era in China’s SMEs",
                 "year": 2023,
                 "edge_src": "FG3C001536",
                 "edge_dst": "FG3C000113",
@@ -11071,7 +11072,7 @@
             ],
             "target_alternate_display_labels": [
               "wage setting",
-              "North\u2013South wage gap",
+              "North–South wage gap",
               "wage differential"
             ],
             "source_bucket": "core",
@@ -11179,7 +11180,7 @@
             ],
             "target_alternate_display_labels": [
               "male-female wage differential",
-              "North\u2013South wage gap",
+              "North–South wage gap",
               "male-female wage gap"
             ],
             "source_bucket": "adjacent",
@@ -11970,7 +11971,7 @@
               },
               {
                 "paper_id": "W2534466090__gpt5mini_low",
-                "title": "The UK productivity puzzle, 2008\u20132012: evidence using plant-level estimates of total factor productivity",
+                "title": "The UK productivity puzzle, 2008–2012: evidence using plant-level estimates of total factor productivity",
                 "year": 2016,
                 "edge_src": "FG3C002284",
                 "edge_dst": "FG3C000251",
@@ -12066,7 +12067,7 @@
             "representative_papers": [
               {
                 "paper_id": "W1488339449__gpt5mini_low",
-                "title": "Impact of High\u2010Deductible Health Plans on Health Care Utilization and Costs",
+                "title": "Impact of High‐Deductible Health Plans on Health Care Utilization and Costs",
                 "year": 2010,
                 "edge_src": "FG3C006085",
                 "edge_dst": "FG3C000825",
@@ -12084,7 +12085,7 @@
               },
               {
                 "paper_id": "W2981776378__gpt5mini_low",
-                "title": "The role of plan choice in health care utilization of high\u2010deductible plan enrollees",
+                "title": "The role of plan choice in health care utilization of high‐deductible plan enrollees",
                 "year": 2019,
                 "edge_src": "FG3C006085",
                 "edge_dst": "FG3C000825",
@@ -12638,12 +12639,12 @@
             ],
             "top_countries_target": [
               "China",
-              "C\u00f4te d\u2019Ivoire",
+              "Côte d’Ivoire",
               "101 countries"
             ],
             "source_context_summary": "China, India, and related settings",
-            "target_context_summary": "China, C\u00f4te d\u2019Ivoire, and related settings",
-            "common_contexts": "trade openness studies are common in China, India, and related settings; subjective well-being studies are common in China, C\u00f4te d\u2019Ivoire, and related settings.",
+            "target_context_summary": "China, Côte d’Ivoire, and related settings",
+            "common_contexts": "trade openness studies are common in China, India, and related settings; subjective well-being studies are common in China, Côte d’Ivoire, and related settings.",
             "public_specificity_score": -12.2904,
             "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000017__FG3C003298",
             "editorial_question_title": "",
@@ -12672,7 +12673,7 @@
             ],
             "target_alternate_display_labels": [
               "wage setting",
-              "North\u2013South wage gap",
+              "North–South wage gap",
               "wage differential"
             ],
             "source_bucket": "core",
@@ -12924,7 +12925,7 @@
               },
               {
                 "paper_id": "W2162410775__gpt5mini_low",
-                "title": "Does local governments\u2019 budget deficit push up housing prices in China?",
+                "title": "Does local governments’ budget deficit push up housing prices in China?",
                 "year": 2014,
                 "edge_src": "FG3C000008",
                 "edge_dst": "FG3C000050",
@@ -13547,7 +13548,7 @@
             "representative_papers": [
               {
                 "paper_id": "W4293695095__gpt5mini_low",
-                "title": "Towards sustainable development in the European Union countries: Does economic complexity affect renewable and non\u2010renewable energy consumption?",
+                "title": "Towards sustainable development in the European Union countries: Does economic complexity affect renewable and non‐renewable energy consumption?",
                 "year": 2022,
                 "edge_src": "FG3C000199",
                 "edge_dst": "FG3C000018",
@@ -13565,7 +13566,7 @@
               },
               {
                 "paper_id": "W4415960472__gpt5mini_low",
-                "title": "Economic Growth and Sustainable Development: The Role of Financial Inclusion, <scp>FinTech</scp> , Eco\u2010Innovation, and Economic Complexity",
+                "title": "Economic Growth and Sustainable Development: The Role of Financial Inclusion, <scp>FinTech</scp> , Eco‐Innovation, and Economic Complexity",
                 "year": 2025,
                 "edge_src": "FG3C000199",
                 "edge_dst": "FG3C000001",
@@ -13781,7 +13782,7 @@
               },
               {
                 "paper_id": "W4289333764__gpt5mini_low",
-                "title": "Financial development and income inequality: A meta\u2010analysis",
+                "title": "Financial development and income inequality: A meta‐analysis",
                 "year": 2022,
                 "edge_src": "FG3C000006",
                 "edge_dst": "FG3C000025",
@@ -13977,7 +13978,7 @@
             "representative_papers": [
               {
                 "paper_id": "W4403039686__gpt5mini_low",
-                "title": "Central Bank Independence and Inflation in Latin America\u2014Through the Lens of History",
+                "title": "Central Bank Independence and Inflation in Latin America—Through the Lens of History",
                 "year": 2024,
                 "edge_src": "FG3C000283",
                 "edge_dst": "FG3C000002",
@@ -14411,7 +14412,7 @@
               },
               {
                 "paper_id": "W4399563226__gpt5mini_low",
-                "title": "The impact of macroeconomic policy uncertainty on micro-enterprise investment efficiency\u2014Empirical evidence from China",
+                "title": "The impact of macroeconomic policy uncertainty on micro-enterprise investment efficiency—Empirical evidence from China",
                 "year": 2024,
                 "edge_src": "FG3C000074",
                 "edge_dst": "FG3C005336",
@@ -14498,7 +14499,7 @@
             "representative_papers": [
               {
                 "paper_id": "W2075303735__gpt5mini_low",
-                "title": "Informed trading and the bid\u2013ask spread: evidence from an emerging market",
+                "title": "Informed trading and the bid–ask spread: evidence from an emerging market",
                 "year": 2003,
                 "edge_src": "FG3C000699",
                 "edge_dst": "FG3C000190",
@@ -14894,7 +14895,7 @@
             ],
             "target_alternate_display_labels": [
               "male-female wage differential",
-              "North\u2013South wage gap",
+              "North–South wage gap",
               "male-female wage gap"
             ],
             "source_bucket": "core",
@@ -15527,7 +15528,7 @@
         ],
         "target_alternate_display_labels": [
           "wage setting",
-          "North\u2013South wage gap",
+          "North–South wage gap",
           "wage differential"
         ],
         "source_bucket": "core",
@@ -16173,7 +16174,7 @@
           },
           {
             "paper_id": "W4289333764__gpt5mini_low",
-            "title": "Financial development and income inequality: A meta\u2010analysis",
+            "title": "Financial development and income inequality: A meta‐analysis",
             "year": 2022,
             "edge_src": "FG3C000006",
             "edge_dst": "FG3C000025",
@@ -16370,7 +16371,7 @@
         "representative_papers": [
           {
             "paper_id": "W4406082045__gpt5mini_low",
-            "title": "Governance, Corruption, Trade Openness, and Innovation: Key Drivers of Green Growth and Sustainable Development in T\u00fcrkiye",
+            "title": "Governance, Corruption, Trade Openness, and Innovation: Key Drivers of Green Growth and Sustainable Development in Türkiye",
             "year": 2025,
             "edge_src": "FG3C000017",
             "edge_dst": "FG3C000246",
@@ -16776,7 +16777,7 @@
         "representative_papers": [
           {
             "paper_id": "W4200385732__gpt5mini_low",
-            "title": "Economic policy uncertainty, investor sentiment and financial stability\u2014an empirical study based on the time varying parameter-vector autoregression model",
+            "title": "Economic policy uncertainty, investor sentiment and financial stability—an empirical study based on the time varying parameter-vector autoregression model",
             "year": 2021,
             "edge_src": "FG3C000071",
             "edge_dst": "FG3C000100",
@@ -16888,7 +16889,7 @@
           },
           {
             "paper_id": "W4407723203__gpt5mini_low",
-            "title": "Revisiting the macroeconomic determinants of non-performing loans with a deep learning technique with causal inference: Evidence from T\u00fcrkiye",
+            "title": "Revisiting the macroeconomic determinants of non-performing loans with a deep learning technique with causal inference: Evidence from Türkiye",
             "year": 2025,
             "edge_src": "FG3C000009",
             "edge_dst": "FG3C001067",
@@ -17085,7 +17086,7 @@
         "representative_papers": [
           {
             "paper_id": "W4386604997__gpt5mini_low",
-            "title": "Did high speed rail accelerate the development of tourism economy? \u2013 Empirical analysis from Northeast China",
+            "title": "Did high speed rail accelerate the development of tourism economy? – Empirical analysis from Northeast China",
             "year": 2023,
             "edge_src": "FG3C000753",
             "edge_dst": "FG3C000727",
@@ -17609,7 +17610,7 @@
           },
           {
             "paper_id": "W4391850497__gpt5mini_low",
-            "title": "A new look at physicians\u2019 responses to financial incentives: Quality of care, practice characteristics, and motivations",
+            "title": "A new look at physicians’ responses to financial incentives: Quality of care, practice characteristics, and motivations",
             "year": 2024,
             "edge_src": "FG3C001519",
             "edge_dst": "FG3C000109",
@@ -18018,7 +18019,7 @@
           },
           {
             "paper_id": "W2095588614__gpt5mini_low",
-            "title": "Expanding Coverage to Low\u2010Income Childless Adults in Massachusetts: Implications for National Health Reform",
+            "title": "Expanding Coverage to Low‐Income Childless Adults in Massachusetts: Implications for National Health Reform",
             "year": 2014,
             "edge_src": "FG3C004045",
             "edge_dst": "FG3C002397",
@@ -18515,7 +18516,7 @@
         "representative_papers": [
           {
             "paper_id": "W4414158543__gpt5mini_low",
-            "title": "Market Access, the Skill Premium and Human Capital in Spain (1860\u20131930)",
+            "title": "Market Access, the Skill Premium and Human Capital in Spain (1860–1930)",
             "year": 2025,
             "edge_src": "FG3C001077",
             "edge_dst": "FG3C000499",
@@ -18927,7 +18928,7 @@
         "representative_papers": [
           {
             "paper_id": "W4319599484__gpt5mini_low",
-            "title": "Research on Passengers\u2019 Preferences and Impact of High-Speed Rail on Air Transport Demand",
+            "title": "Research on Passengers’ Preferences and Impact of High-Speed Rail on Air Transport Demand",
             "year": 2023,
             "edge_src": "FG3C000753",
             "edge_dst": "FG3C002990",
@@ -18945,7 +18946,7 @@
           },
           {
             "paper_id": "W4386604997__gpt5mini_low",
-            "title": "Did high speed rail accelerate the development of tourism economy? \u2013 Empirical analysis from Northeast China",
+            "title": "Did high speed rail accelerate the development of tourism economy? – Empirical analysis from Northeast China",
             "year": 2023,
             "edge_src": "FG3C000753",
             "edge_dst": "FG3C000727",
@@ -19028,7 +19029,7 @@
         "representative_papers": [
           {
             "paper_id": "W4308515307__gpt5mini_low",
-            "title": "Technological Innovation, Risk-Taking and Firm Performance\u2014Empirical Evidence from Chinese Listed Companies",
+            "title": "Technological Innovation, Risk-Taking and Firm Performance—Empirical Evidence from Chinese Listed Companies",
             "year": 2022,
             "edge_src": "FG3C000013",
             "edge_dst": "FG3C000113",
@@ -19514,7 +19515,7 @@
         ],
         "target_alternate_display_labels": [
           "wage setting",
-          "North\u2013South wage gap",
+          "North–South wage gap",
           "wage differential"
         ],
         "source_bucket": "adjacent",
@@ -19760,7 +19761,7 @@
           },
           {
             "paper_id": "W4286433639__gpt5mini_low",
-            "title": "Has Industrial Upgrading Improved Air Pollution?\u2014Evidence from China\u2019s Digital Economy",
+            "title": "Has Industrial Upgrading Improved Air Pollution?—Evidence from China’s Digital Economy",
             "year": 2022,
             "edge_src": "FG3C000443",
             "edge_dst": "FG3C001615",
@@ -20765,7 +20766,7 @@
           },
           {
             "paper_id": "W3125591525__gpt5mini_low",
-            "title": "Media Coverage and the Cross\u2010section of Stock Returns",
+            "title": "Media Coverage and the Cross‐section of Stock Returns",
             "year": 2009,
             "edge_src": "FG3C001858",
             "edge_dst": "FG3C000811",
@@ -20951,7 +20952,7 @@
         "representative_papers": [
           {
             "paper_id": "W4406613855__gpt5mini_low",
-            "title": "Economic Policy Uncertainty and Corporate Green Technology Innovation\u2014Evidence from Privately Listed Companies in China",
+            "title": "Economic Policy Uncertainty and Corporate Green Technology Innovation—Evidence from Privately Listed Companies in China",
             "year": 2025,
             "edge_src": "FG3C000074",
             "edge_dst": "FG3C001741",
@@ -20969,7 +20970,7 @@
           },
           {
             "paper_id": "W4295926545__gpt5mini_low",
-            "title": "The Effect of Economic Policy Uncertainty on Green Technology Innovation: Evidence from China\u2019s Enterprises",
+            "title": "The Effect of Economic Policy Uncertainty on Green Technology Innovation: Evidence from China’s Enterprises",
             "year": 2022,
             "edge_src": "FG3C000074",
             "edge_dst": "FG3C001741",
@@ -21172,7 +21173,7 @@
           },
           {
             "paper_id": "W4389919576__gpt5mini_low",
-            "title": "Can China\u2019s Campaign-Style Environmental Regulation Improve the Green Total Factor Productivity?",
+            "title": "Can China’s Campaign-Style Environmental Regulation Improve the Green Total Factor Productivity?",
             "year": 2023,
             "edge_src": "FG3C000045",
             "edge_dst": "FG3C000797",
@@ -21675,7 +21676,7 @@
           },
           {
             "paper_id": "W1910652022__gpt5mini_low",
-            "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out\u2010of\u2010Pocket Spending for Mental Health Services",
+            "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out‐of‐Pocket Spending for Mental Health Services",
             "year": 2015,
             "edge_src": "FG3C005647",
             "edge_dst": "FG3C000305",
@@ -21970,7 +21971,7 @@
           },
           {
             "paper_id": "W4320032616__gpt5mini_low",
-            "title": "An empirical analysis of the nexus between digital financial inclusion, industrial structure distortion, and China\u2019s energy intensity",
+            "title": "An empirical analysis of the nexus between digital financial inclusion, industrial structure distortion, and China’s energy intensity",
             "year": 2023,
             "edge_src": "FG3C000717",
             "edge_dst": "FG3C000044",
@@ -21979,7 +21980,7 @@
           },
           {
             "paper_id": "W4400077304__gpt5mini_low",
-            "title": "Digital financial inclusion, industrial structure and urban\u2013Rural income disparity: Evidence from Zhejiang Province, China",
+            "title": "Digital financial inclusion, industrial structure and urban–Rural income disparity: Evidence from Zhejiang Province, China",
             "year": 2024,
             "edge_src": "FG3C000717",
             "edge_dst": "FG3C000869",
@@ -22274,7 +22275,7 @@
           },
           {
             "paper_id": "W4401977559__gpt5mini_low",
-            "title": "The Effect of Trade Policy Uncertainty on Green Technology Innovation: Evidence from China\u2019s Enterprises",
+            "title": "The Effect of Trade Policy Uncertainty on Green Technology Innovation: Evidence from China’s Enterprises",
             "year": 2024,
             "edge_src": "FG3C000296",
             "edge_dst": "FG3C000094",
@@ -23393,7 +23394,7 @@
           },
           {
             "paper_id": "W4407031367__gpt5mini_low",
-            "title": "How Does China\u2019s Digital Economy Affect Green Total Factor Energy Efficiency in the Context of Sustainable Development?",
+            "title": "How Does China’s Digital Economy Affect Green Total Factor Energy Efficiency in the Context of Sustainable Development?",
             "year": 2025,
             "edge_src": "FG3C000068",
             "edge_dst": "FG3C000013",
@@ -23698,7 +23699,7 @@
           },
           {
             "paper_id": "W4396785390__gpt5mini_low",
-            "title": "How does economic policy uncertainty impact CO2 emissions? Investigating investment's role across 22 economies (1997\u20132021)",
+            "title": "How does economic policy uncertainty impact CO2 emissions? Investigating investment's role across 22 economies (1997–2021)",
             "year": 2024,
             "edge_src": "FG3C000074",
             "edge_dst": "FG3C000003",
@@ -23782,7 +23783,7 @@
         "representative_papers": [
           {
             "paper_id": "W4368374093__gpt5mini_low",
-            "title": "Influence and effect of industrial agglomeration on urban green total factor productivity\u2014On the regulatory role of innovation agglomeration and institutional distance",
+            "title": "Influence and effect of industrial agglomeration on urban green total factor productivity—On the regulatory role of innovation agglomeration and institutional distance",
             "year": 2023,
             "edge_src": "FG3C000225",
             "edge_dst": "FG3C003177",
@@ -23883,7 +23884,7 @@
         "representative_papers": [
           {
             "paper_id": "W4309741906__gpt5mini_low",
-            "title": "A General Equilibrium Analysis of Achieving the Goal of Stable Growth by China\u2019s Market Expectations in the Context of the COVID-19 Pandemic",
+            "title": "A General Equilibrium Analysis of Achieving the Goal of Stable Growth by China’s Market Expectations in the Context of the COVID-19 Pandemic",
             "year": 2022,
             "edge_src": "FG3C000005",
             "edge_dst": "FG3C000046",
@@ -23985,7 +23986,7 @@
         "representative_papers": [
           {
             "paper_id": "W4392387681__gpt5mini_low",
-            "title": "High-Speed Railway Opening, Industrial Symbiotic Agglomeration and Green Sustainable Development\u2014Empirical Evidence from China",
+            "title": "High-Speed Railway Opening, Industrial Symbiotic Agglomeration and Green Sustainable Development—Empirical Evidence from China",
             "year": 2024,
             "edge_src": "FG3C000753",
             "edge_dst": "FG3C000225",
@@ -24096,7 +24097,7 @@
           },
           {
             "paper_id": "W2803313057__gpt5mini_low",
-            "title": "Volatility\u2013Trading volume intraday correlation profiles and its nonstationary features",
+            "title": "Volatility–Trading volume intraday correlation profiles and its nonstationary features",
             "year": 2018,
             "edge_src": "FG3C000043",
             "edge_dst": "FG3C000042",
@@ -24199,7 +24200,7 @@
           },
           {
             "paper_id": "W1959079159__gpt5mini_low",
-            "title": "SEMI\u2010INPUT\u2013OUTPUT AND SHADOW PRICES: A REPLY",
+            "title": "SEMI‐INPUT–OUTPUT AND SHADOW PRICES: A REPLY",
             "year": 1980,
             "edge_src": "FG3C003077",
             "edge_dst": "FG3C000011",
@@ -24596,7 +24597,7 @@
         "representative_papers": [
           {
             "paper_id": "W4200605434__gpt5mini_low",
-            "title": "High-frequency trading and market quality: The case of a \u201cslightly exposed\u201d market",
+            "title": "High-frequency trading and market quality: The case of a “slightly exposed” market",
             "year": 2021,
             "edge_src": "FG3C004458",
             "edge_dst": "FG3C000043",
@@ -24799,7 +24800,7 @@
         "representative_papers": [
           {
             "paper_id": "W4200605434__gpt5mini_low",
-            "title": "High-frequency trading and market quality: The case of a \u201cslightly exposed\u201d market",
+            "title": "High-frequency trading and market quality: The case of a “slightly exposed” market",
             "year": 2021,
             "edge_src": "FG3C004458",
             "edge_dst": "FG3C000043",
@@ -24909,7 +24910,7 @@
           },
           {
             "paper_id": "W4200605434__gpt5mini_low",
-            "title": "High-frequency trading and market quality: The case of a \u201cslightly exposed\u201d market",
+            "title": "High-frequency trading and market quality: The case of a “slightly exposed” market",
             "year": 2021,
             "edge_src": "FG3C004458",
             "edge_dst": "FG3C000043",
@@ -24918,7 +24919,7 @@
           },
           {
             "paper_id": "W2906304234__gpt5mini_low",
-            "title": "Measurement of Investor Sentiment and Its Bi-Directional Contemporaneous and Lead\u2013Lag Relationship with Returns: Evidence from Pakistan",
+            "title": "Measurement of Investor Sentiment and Its Bi-Directional Contemporaneous and Lead–Lag Relationship with Returns: Evidence from Pakistan",
             "year": 2018,
             "edge_src": "FG3C000626",
             "edge_dst": "FG3C000100",
@@ -25927,7 +25928,7 @@
           },
           {
             "paper_id": "W4200605434__gpt5mini_low",
-            "title": "High-frequency trading and market quality: The case of a \u201cslightly exposed\u201d market",
+            "title": "High-frequency trading and market quality: The case of a “slightly exposed” market",
             "year": 2021,
             "edge_src": "FG3C004458",
             "edge_dst": "FG3C000043",
@@ -26224,7 +26225,7 @@
         "representative_papers": [
           {
             "paper_id": "W3138605302__gpt5mini_low",
-            "title": "The impact of Renewable Portfolio Standards on carbon emission trading under the background of China\u2019s electricity marketization reform",
+            "title": "The impact of Renewable Portfolio Standards on carbon emission trading under the background of China’s electricity marketization reform",
             "year": 2021,
             "edge_src": "FG3C002799",
             "edge_dst": "FG3C005566",
@@ -26629,7 +26630,7 @@
         "representative_papers": [
           {
             "paper_id": "W3138605302__gpt5mini_low",
-            "title": "The impact of Renewable Portfolio Standards on carbon emission trading under the background of China\u2019s electricity marketization reform",
+            "title": "The impact of Renewable Portfolio Standards on carbon emission trading under the background of China’s electricity marketization reform",
             "year": 2021,
             "edge_src": "FG3C002799",
             "edge_dst": "FG3C005566",
@@ -26647,7 +26648,7 @@
           },
           {
             "paper_id": "W2598925650__gpt5mini_low",
-            "title": "The Development of the Renewable Energy Power Industry under Feed-In Tariff and Renewable Portfolio Standard: A Case Study of China\u2019s Photovoltaic Power Industry",
+            "title": "The Development of the Renewable Energy Power Industry under Feed-In Tariff and Renewable Portfolio Standard: A Case Study of China’s Photovoltaic Power Industry",
             "year": 2017,
             "edge_src": "FG3C002799",
             "edge_dst": "FG3C001511",
@@ -26797,7 +26798,7 @@
         "source_id": "FG3C001621",
         "target_id": "FG3C005649",
         "source_label": "property taxes",
-        "target_label": "price\u2013rent ratio",
+        "target_label": "price–rent ratio",
         "source_display_label": "property taxes",
         "target_display_label": "price-to-rent ratio",
         "source_display_concept_id": "FG3C001621",
@@ -27455,7 +27456,7 @@
           "representative_papers": [
             {
               "paper_id": "W1488339449__gpt5mini_low",
-              "title": "Impact of High\u2010Deductible Health Plans on Health Care Utilization and Costs",
+              "title": "Impact of High‐Deductible Health Plans on Health Care Utilization and Costs",
               "year": 2010,
               "edge_src": "FG3C006085",
               "edge_dst": "FG3C000825",
@@ -27473,7 +27474,7 @@
             },
             {
               "paper_id": "W2981776378__gpt5mini_low",
-              "title": "The role of plan choice in health care utilization of high\u2010deductible plan enrollees",
+              "title": "The role of plan choice in health care utilization of high‐deductible plan enrollees",
               "year": 2019,
               "edge_src": "FG3C006085",
               "edge_dst": "FG3C000825",
@@ -27876,7 +27877,7 @@
             },
             {
               "paper_id": "W3125591525__gpt5mini_low",
-              "title": "Media Coverage and the Cross\u2010section of Stock Returns",
+              "title": "Media Coverage and the Cross‐section of Stock Returns",
               "year": 2009,
               "edge_src": "FG3C001858",
               "edge_dst": "FG3C000811",
@@ -28485,7 +28486,7 @@
             },
             {
               "paper_id": "W1910652022__gpt5mini_low",
-              "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out\u2010of\u2010Pocket Spending for Mental Health Services",
+              "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out‐of‐Pocket Spending for Mental Health Services",
               "year": 2015,
               "edge_src": "FG3C005647",
               "edge_dst": "FG3C000305",
@@ -29883,7 +29884,7 @@
           "representative_papers": [
             {
               "paper_id": "W1488339449__gpt5mini_low",
-              "title": "Impact of High\u2010Deductible Health Plans on Health Care Utilization and Costs",
+              "title": "Impact of High‐Deductible Health Plans on Health Care Utilization and Costs",
               "year": 2010,
               "edge_src": "FG3C006085",
               "edge_dst": "FG3C000825",
@@ -29901,7 +29902,7 @@
             },
             {
               "paper_id": "W2981776378__gpt5mini_low",
-              "title": "The role of plan choice in health care utilization of high\u2010deductible plan enrollees",
+              "title": "The role of plan choice in health care utilization of high‐deductible plan enrollees",
               "year": 2019,
               "edge_src": "FG3C006085",
               "edge_dst": "FG3C000825",
@@ -30304,7 +30305,7 @@
             },
             {
               "paper_id": "W3125591525__gpt5mini_low",
-              "title": "Media Coverage and the Cross\u2010section of Stock Returns",
+              "title": "Media Coverage and the Cross‐section of Stock Returns",
               "year": 2009,
               "edge_src": "FG3C001858",
               "edge_dst": "FG3C000811",
@@ -30913,7 +30914,7 @@
             },
             {
               "paper_id": "W1910652022__gpt5mini_low",
-              "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out\u2010of\u2010Pocket Spending for Mental Health Services",
+              "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out‐of‐Pocket Spending for Mental Health Services",
               "year": 2015,
               "edge_src": "FG3C005647",
               "edge_dst": "FG3C000305",
@@ -31304,7 +31305,7 @@
           "representative_papers": [
             {
               "paper_id": "W1488339449__gpt5mini_low",
-              "title": "Impact of High\u2010Deductible Health Plans on Health Care Utilization and Costs",
+              "title": "Impact of High‐Deductible Health Plans on Health Care Utilization and Costs",
               "year": 2010,
               "edge_src": "FG3C006085",
               "edge_dst": "FG3C000825",
@@ -31322,7 +31323,7 @@
             },
             {
               "paper_id": "W2981776378__gpt5mini_low",
-              "title": "The role of plan choice in health care utilization of high\u2010deductible plan enrollees",
+              "title": "The role of plan choice in health care utilization of high‐deductible plan enrollees",
               "year": 2019,
               "edge_src": "FG3C006085",
               "edge_dst": "FG3C000825",
@@ -31725,7 +31726,7 @@
             },
             {
               "paper_id": "W3125591525__gpt5mini_low",
-              "title": "Media Coverage and the Cross\u2010section of Stock Returns",
+              "title": "Media Coverage and the Cross‐section of Stock Returns",
               "year": 2009,
               "edge_src": "FG3C001858",
               "edge_dst": "FG3C000811",
@@ -32334,7 +32335,7 @@
             },
             {
               "paper_id": "W1910652022__gpt5mini_low",
-              "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out\u2010of\u2010Pocket Spending for Mental Health Services",
+              "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out‐of‐Pocket Spending for Mental Health Services",
               "year": 2015,
               "edge_src": "FG3C005647",
               "edge_dst": "FG3C000305",

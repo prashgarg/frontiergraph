@@ -18,16 +18,11 @@ PUBLIC_DOWNLOADS_DIR = SITE_ROOT / "public" / "downloads"
 GENERATED_SITE_DATA_PATH = SITE_ROOT / "src" / "generated" / "site-data.json"
 DEFAULT_OUTPUT_DB_PATH = Path("/tmp/frontiergraph-economics-public.db")
 OUTPUT_DB_PATH = Path(os.environ.get("FRONTIERGRAPH_PUBLIC_RELEASE_DB", str(DEFAULT_OUTPUT_DB_PATH)))
+PUBLIC_DB_FILENAME = os.environ.get("FRONTIERGRAPH_PUBLIC_DB_FILENAME", OUTPUT_DB_PATH.name)
 SOURCE_DB_PATH = Path(
     os.environ.get(
         "FRONTIERGRAPH_PUBLIC_SOURCE_DB",
-        ROOT
-        / "data"
-        / "production"
-        / "frontiergraph_concept_compare_v1"
-        / "baseline"
-        / "suppression"
-        / "concept_exploratory_suppressed_top100k_app.sqlite",
+        ROOT / "data" / "production" / "frontiergraph_concept_public" / "concept_exploratory_app.sqlite",
     )
 )
 MANIFEST_PATH = PUBLIC_DOWNLOADS_DIR / "frontiergraph-economics-public.manifest.json"
@@ -338,6 +333,7 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
     top_questions = load_csv_rows(PUBLIC_DATA_DIR / "top_questions.csv")
     central_concepts = load_csv_rows(PUBLIC_DATA_DIR / "central_concepts.csv")
     concept_index = read_json(PUBLIC_DATA_DIR / "concept_index.json")
+    literature_search_index = read_json(PUBLIC_DATA_DIR / "literature_search_index.json")
     graph_backbone = read_json(PUBLIC_DATA_DIR / "graph_backbone.json")
     opportunity_slices = read_json(PUBLIC_DATA_DIR / "opportunity_slices.json")
     neighborhoods_index = read_json(PUBLIC_DATA_DIR / "concept_neighborhoods_index.json")
@@ -500,6 +496,25 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
             search_terms_json TEXT,
             app_link TEXT
         );
+        CREATE TABLE literature_search_index (
+            entity_id TEXT PRIMARY KEY,
+            concept_id TEXT,
+            label TEXT,
+            plain_label TEXT,
+            subtitle TEXT,
+            entity_type TEXT,
+            scope_type TEXT,
+            badge TEXT,
+            map_ready INTEGER,
+            stability TEXT,
+            distinct_paper_support INTEGER,
+            neighbor_count INTEGER,
+            top_countries_json TEXT,
+            top_units_json TEXT,
+            search_terms_json TEXT,
+            anchor_candidates_json TEXT,
+            row_json TEXT
+        );
         CREATE TABLE graph_nodes (
             concept_id TEXT PRIMARY KEY,
             label TEXT,
@@ -535,10 +550,12 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
             directionality_mix_json TEXT,
             relationship_type_mix_json TEXT,
             edge_role_mix_json TEXT,
+            claim_status_mix_json TEXT,
             dominant_countries_json TEXT,
             dominant_units_json TEXT,
             dominant_years_json TEXT,
-            examples_json TEXT
+            examples_json TEXT,
+            pair_summary_json TEXT
         );
         CREATE TABLE opportunity_slices (
             slice_name TEXT,
@@ -670,6 +687,7 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
         "central_concepts_csv": site_data["downloads"]["artifacts"]["central_concepts_csv"],
         "curated_questions_json": site_data["downloads"]["artifacts"].get("curated_questions_json", ""),
         "concept_index_json": site_data["downloads"]["artifacts"].get("concept_index_json", ""),
+        "literature_search_index_json": site_data["downloads"]["artifacts"].get("literature_search_index_json", ""),
         "concept_neighborhoods_index_json": site_data["downloads"]["artifacts"].get("concept_neighborhoods_index_json", ""),
         "concept_opportunities_index_json": site_data["downloads"]["artifacts"].get("concept_opportunities_index_json", ""),
         "opportunity_slices_json": site_data["downloads"]["artifacts"].get("opportunity_slices_json", ""),
@@ -810,6 +828,38 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
             for row in concept_index
         ],
     )
+    conn.executemany(
+        """
+        INSERT INTO literature_search_index VALUES (
+            :id, :concept_id, :label, :plain_label, :subtitle, :entity_type,
+            :scope_type, :badge, :map_ready, :stability, :distinct_paper_support,
+            :neighbor_count, :top_countries_json, :top_units_json, :search_terms_json,
+            :anchor_candidates_json, :row_json
+        )
+        """,
+        [
+            {
+                "id": row.get("id", ""),
+                "concept_id": row.get("concept_id", ""),
+                "label": row.get("label", ""),
+                "plain_label": row.get("plain_label", ""),
+                "subtitle": row.get("subtitle", ""),
+                "entity_type": row.get("entity_type", ""),
+                "scope_type": row.get("scope_type", ""),
+                "badge": row.get("badge", ""),
+                "map_ready": int(bool(row.get("map_ready", False))),
+                "stability": row.get("stability", ""),
+                "distinct_paper_support": int(row.get("distinct_paper_support", 0) or 0),
+                "neighbor_count": int(row.get("neighbor_count", 0) or 0),
+                "top_countries_json": sqlite_json(row.get("top_countries", [])),
+                "top_units_json": sqlite_json(row.get("top_units", [])),
+                "search_terms_json": sqlite_json(row.get("search_terms", [])),
+                "anchor_candidates_json": sqlite_json(row.get("anchor_candidates", [])),
+                "row_json": sqlite_json(row),
+            }
+            for row in literature_search_index
+        ],
+    )
 
     conn.executemany(
         """
@@ -838,9 +888,9 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
         INSERT INTO graph_edges VALUES (
             :id, :source, :target, :support_count, :distinct_papers,
             :avg_stability, :strength, :directionality_mix_json,
-            :relationship_type_mix_json, :edge_role_mix_json,
+            :relationship_type_mix_json, :edge_role_mix_json, :claim_status_mix_json,
             :dominant_countries_json, :dominant_units_json, :dominant_years_json,
-            :examples_json
+            :examples_json, :pair_summary_json
         )
         """,
         [
@@ -849,10 +899,12 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
                 "directionality_mix_json": sqlite_json(row.get("directionality_mix", [])),
                 "relationship_type_mix_json": sqlite_json(row.get("relationship_type_mix", [])),
                 "edge_role_mix_json": sqlite_json(row.get("edge_role_mix", [])),
+                "claim_status_mix_json": sqlite_json(row.get("claim_status_mix", [])),
                 "dominant_countries_json": sqlite_json(row.get("dominant_countries", [])),
                 "dominant_units_json": sqlite_json(row.get("dominant_units", [])),
                 "dominant_years_json": sqlite_json(row.get("dominant_years", [])),
                 "examples_json": sqlite_json(row.get("examples", [])),
+                "pair_summary_json": sqlite_json(row.get("pair_summary", {})),
             }
             for row in graph_backbone.get("edges", [])
         ],
@@ -941,6 +993,9 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
     for row in source_conn.execute("SELECT * FROM candidates ORDER BY rank"):
         source_id = str(row["u"])
         target_id = str(row["v"])
+        pair_key = clean_public_text(row["pair_key"]) if "pair_key" in row.keys() else ""
+        if not pair_key:
+            pair_key = "__".join(sorted([source_id, target_id]))
         source_plain = label_lookup.get(source_id, str(row["u_preferred_label"] or source_id))
         target_plain = label_lookup.get(target_id, str(row["v_preferred_label"] or target_id))
         top_source = top_values_from_json(row["u_top_countries"])
@@ -952,7 +1007,7 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
         ]
         source_context_summary = plain_context(top_source, "No dominant source setting in the current public release")
         target_context_summary = plain_context(top_target, "No dominant target setting in the current public release")
-        public_row = top_question_lookup.get(str(row["pair_key"]), {})
+        public_row = top_question_lookup.get(pair_key, {})
         source_display_label = clean_public_text(public_row.get("source_display_label")) or clean_public_text(
             concept_display_lookup.get(source_id, {}).get("plain_label")
         ) or source_plain
@@ -988,7 +1043,7 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
             cooc_count=int(row["cooc_count"] or 0),
         )
         prepared = {
-            "pair_key": str(row["pair_key"]),
+            "pair_key": pair_key,
             "source_id": source_id,
             "target_id": target_id,
             "source_label": str(row["u_preferred_label"] or source_plain),
@@ -1003,9 +1058,15 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
             "source_bucket": str(row["u_bucket_hint"] or ""),
             "target_bucket": str(row["v_bucket_hint"] or ""),
             "cross_field": int(str(row["u_bucket_hint"] or "") != str(row["v_bucket_hint"] or "")),
-            "score": float(row["score"] if row["score"] is not None else row["final_score"] or row["base_score"] or 0.0),
-            "base_score": float(row["base_score"] or row["score"] or 0.0),
-            "duplicate_penalty": float(row["duplicate_penalty"] or 0.0),
+            "score": float(
+                row["score"]
+                if "score" in row.keys() and row["score"] is not None
+                else (row["final_score"] if "final_score" in row.keys() else 0.0)
+                or (row["base_score"] if "base_score" in row.keys() else 0.0)
+                or 0.0
+            ),
+            "base_score": float((row["base_score"] if "base_score" in row.keys() else 0.0) or row["score"] or 0.0),
+            "duplicate_penalty": float((row["duplicate_penalty"] if "duplicate_penalty" in row.keys() else 0.0) or 0.0),
             "path_support_norm": float(row["path_support_norm"] or 0.0),
             "gap_bonus": float(row["gap_bonus"] or 0.0),
             "mediator_count": int(row["mediator_count"] or 0),
@@ -1045,7 +1106,7 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
             "common_contexts": clean_public_text(public_row.get("common_contexts"))
             or f"Source-side settings most often mention {source_context_summary}. Target-side settings most often mention {target_context_summary}.",
             "public_specificity_score": specificity_score,
-            "app_link": clean_public_text(public_row.get("app_link")) or f"{site_data['app_url']}?view=question&pair={row['pair_key']}",
+            "app_link": clean_public_text(public_row.get("app_link")) or f"{site_data['app_url']}?view=question&pair={pair_key}",
         }
         existing = full_question_rows.get(prepared["pair_key"])
         if existing is None or prepared["score"] > existing["score"]:
@@ -1231,7 +1292,7 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
 def update_release_artifacts(size_bytes: int, sha256: str, public_url: str) -> None:
     PUBLIC_DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
     manifest = {
-        "filename": "frontiergraph-economics-public.db",
+        "filename": PUBLIC_DB_FILENAME,
         "db_size_bytes": size_bytes,
         "db_size_gb": round(size_bytes / (1024**3), 2),
         "sha256": sha256,
@@ -1239,11 +1300,11 @@ def update_release_artifacts(size_bytes: int, sha256: str, public_url: str) -> N
         "published_at": read_json(GENERATED_SITE_DATA_PATH)["generated_at"],
     }
     MANIFEST_PATH.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
-    CHECKSUM_PATH.write_text(f"{sha256}  frontiergraph-economics-public.db\n", encoding="utf-8")
+    CHECKSUM_PATH.write_text(f"{sha256}  {PUBLIC_DB_FILENAME}\n", encoding="utf-8")
 
     site_data = read_json(GENERATED_SITE_DATA_PATH)
     site_data["downloads"]["public_db"] = {
-        "filename": "frontiergraph-economics-public.db",
+        "filename": PUBLIC_DB_FILENAME,
         "public_url": public_url,
         "sha256": sha256,
         "db_size_gb": round(size_bytes / (1024**3), 2),

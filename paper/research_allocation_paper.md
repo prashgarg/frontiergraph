@@ -202,7 +202,7 @@ I first ask whether the method beats a simple popularity-based rule at the very 
 
 At the strict top of the ranking, the simple popularity-based rule still wins. In network terms that rule is preferential attachment. The easiest way to read the magnitude is in future links captured inside a 100-question shortlist: preferential attachment places about `8.3`, `12.0`, `23.3`, and `36.3` future directed links inside the top 100 at `h=3,5,10,15`, while the graph-based score places about `5.7`, `8.7`, `16.3`, and `26.3`. So the popularity benchmark buys roughly `2.6`, `3.3`, `7.0`, and `10.0` extra realized directed links inside the same 100-candidate shortlist. Put differently, preferential attachment retrieves roughly 40 percent more realized directed links than the graph score, depending on the horizon. The normalized Recall@100 and MRR statistics tell the same story.
 
-![Figure 5](../outputs/paper/slides_figures/mainline_full_rolling_vs_pref.png)
+![Figure 5](/paper-assets/outputs/paper/slides_figures/mainline_full_rolling_vs_pref.png)
 
 **Notes.** The left panel asks what share of later-realized links are captured inside a 100-question shortlist (Recall@100). The right panel asks how highly those later-realized links are placed within the same shortlist (MRR). Each bar is the mean across eligible rolling cutoffs for a given horizon, with bootstrap confidence intervals. For readers who prefer a more concrete scale, the corresponding mean hits inside the top-100 shortlist are about `5.7`, `8.7`, `16.3`, and `26.3` for the graph score and `8.3`, `12.0`, `23.3`, and `36.3` for preferential attachment across `h=3,5,10,15`.
 
@@ -214,7 +214,7 @@ The first way to move from prediction toward allocation is to relax the top-100 
 
 The result is again mixed but informative. At `h=3`, preferential attachment places about `11.0` future links per 100 suggestions at `K=100`, compared with `5.75` for the graph score. By `K=1000`, the two rules are essentially tied in practical terms: preferential attachment yields about `4.25` future links per 100 while the graph score yields about `4.70`. The same pattern appears at `h=5`: the gap is `14.75` versus `8.25` at `K=100`, but `6.83` versus `7.10` by `K=1000`. At `h=10`, the tight-budget gap remains larger, yet even there the frontier narrows substantially, from `27.5` versus `17.75` at `K=100` to `13.6` versus `13.5` by `K=1000`.
 
-![Figure 6](../outputs/paper/14_title_revision/attention_allocation_frontier_main.png)
+![Figure 6](/paper-assets/outputs/paper/14_title_revision/attention_allocation_frontier_main.png)
 
 **Notes.** Each panel reports mean future links per 100 surfaced suggestions as the shortlist expands from `K=50` to `K=1000`. In plain terms, the figure asks what happens as a researcher becomes willing to inspect more suggestions. Preferential attachment remains stronger at very small `K`, but the gap shrinks sharply as that shortlist widens.
 
@@ -226,7 +226,7 @@ Future appearance is not the only margin that matters. A later realized link can
 
 The answer is again disciplined rather than triumphant. Weighted MRR still favors preferential attachment at each of the main horizons: about `0.001523` versus `0.001383` at `h=3`, `0.001154` versus `0.000943` at `h=5`, and `0.000809` versus `0.000568` at `h=10`. So the strict-headline result is not only about low-value fills. Central concepts still capture more of the heavily reused future links. But the broader weighted frontier is less one-sided than the weighted MRR line alone suggests. At `K=1000`, weighted recall is nearly tied at `h=3` and `h=10`: preferential attachment reaches about `0.01762` and `0.01495`, while the graph score reaches about `0.01729` and `0.01488`. The gap is still larger at `h=5`, but even there it is far smaller than the tight-rank headline would suggest.
 
-![Figure 7](../outputs/paper/14_title_revision/impact_weighted_main.png)
+![Figure 7](/paper-assets/outputs/paper/14_title_revision/impact_weighted_main.png)
 
 **Notes.** The left panel reports weighted MRR by horizon, where future realized links are weighted by later reuse. The right panels report weighted recall frontiers over shortlist size `K`. Preferential attachment still dominates the tighter top ranks, but the weighted frontier narrows materially at broad lists.
 
@@ -238,19 +238,19 @@ This is also where the paper's credibility story enters. The graph is not built 
 
 The pooled top-100 comparison hides meaningful variation. The most useful way to read the atlas is not as a search for one subgroup in which the graph score cleanly "wins." It is a map of where cumulative advantage is more dominant and where the nearby structure of the literature adds more screening value. Once the frontier is evaluated over broader fixed-`K` and percentile-`K` shortlists, the graph score becomes substantially more competitive than the strict top-100 headline suggests.
 
-![Figure 8](../outputs/paper/13_heterogeneity_atlas/figures/pooled_frontier_main.png)
+![Figure 8](/paper-assets/outputs/paper/13_heterogeneity_atlas/figures/pooled_frontier_main.png)
 
 **Notes.** The pooled frontier figure reports the graph score's relative recall advantage over preferential attachment. Positive values favor the graph score. The lighter horizon lines correspond to shorter horizons and the darker lines to longer horizons.
 
 Journal tier matters. Adjacent journals are more favorable terrain for the structural score than the core. Method family matters as well. Design-based causal slices are much more favorable than panel- or time-series-heavy slices.
 
-![Figure 9](../outputs/paper/13_heterogeneity_atlas/figures/method_theory_forest_main.png)
+![Figure 9](/paper-assets/outputs/paper/13_heterogeneity_atlas/figures/method_theory_forest_main.png)
 
 **Notes.** This figure compares broad method families. The practical reading is simple: design-based causal work is materially more favorable terrain for the graph score than panel- or time-series-heavy work.
 
 Funding adds nuance rather than a single clean pattern. In the coarse funded-versus-unfunded split, the funded literature is less favorable to the graph score than the unfunded literature. The appendix therefore treats funding as suggestive rather than central, and the funding-by-journal interaction view is useful mainly because it shows that the funded pattern is not uniform.
 
-![Figure 10](../outputs/paper/13_heterogeneity_atlas/figures/subfield_heatmap_main.png)
+![Figure 10](/paper-assets/outputs/paper/13_heterogeneity_atlas/figures/subfield_heatmap_main.png)
 
 **Notes.** The main topic heatmap prioritizes the most populous economics-facing topic groups rather than all broad adjacent categories. Cell color reports the pooled percentile-frontier advantage of the graph score over preferential attachment, while the annotations report the top-100 hit delta in basis points.
 
@@ -262,7 +262,7 @@ The robust main-text message is therefore restrained but substantive. Broader fr
 
 The direct-link framing is not the only way research can evolve. I distinguish two simple transition types on length-2 structure. `path_to_direct` means a supporting path exists first and the missing direct edge later appears. `direct_to_path` means the direct edge exists first and a supporting mediator path appears only later.
 
-![Figure 11](../outputs/paper/13_heterogeneity_atlas/figures/path_evolution_comparison.png)
+![Figure 11](/paper-assets/outputs/paper/13_heterogeneity_atlas/figures/path_evolution_comparison.png)
 
 **Notes.** The figure compares `path_to_direct` and `direct_to_path` transitions. The key interpretation is that mechanism-deepening around existing direct claims is often more common than direct-link closure.
 
@@ -272,13 +272,13 @@ At `h=10`, for example, the direct-to-path share rises from roughly `0.049` in t
 
 The journal split is especially revealing. At `h=3,5,10,15`, the share of realized path-related transitions that take the path-to-direct form is about `0.571`, `0.579`, `0.529`, and `0.471` in adjacent journals, but only about `0.442`, `0.443`, `0.400`, and `0.360` in the core.
 
-![Figure 12](../outputs/paper/13_heterogeneity_atlas/figures/path_transition_mix_by_source.png)
+![Figure 12](/paper-assets/outputs/paper/13_heterogeneity_atlas/figures/path_transition_mix_by_source.png)
 
 **Notes.** The figure reports the share of realized path-related transitions that take the path-to-direct form by journal tier and horizon. Adjacent journals are consistently more path-to-direct heavy than core journals.
 
 The broad subfield split points in the same direction. Economics and Econometrics is relatively balanced at short horizons, while Finance is more direct-to-path heavy throughout.
 
-![Figure 13](../outputs/paper/13_heterogeneity_atlas/figures/path_transition_mix_by_subfield.png)
+![Figure 13](/paper-assets/outputs/paper/13_heterogeneity_atlas/figures/path_transition_mix_by_subfield.png)
 
 **Notes.** This figure reports the share of realized path-related transitions that take the path-to-direct form by broad subfield and horizon. Economics and Econometrics is more balanced than Finance at short horizons, but both become more direct-to-path heavy at longer horizons.
 
@@ -556,19 +556,19 @@ The fuller force-mapped corpus is now the canonical benchmark because the altern
 
 ## Appendix D. Heterogeneity atlas extensions
 
-![Time-period heatmap](../outputs/paper/13_heterogeneity_atlas/figures/time_period_heatmap_main.png)
+![Time-period heatmap](/paper-assets/outputs/paper/13_heterogeneity_atlas/figures/time_period_heatmap_main.png)
 
 **Notes.** Rows correspond to cutoff-period bins and columns to horizons. Cell color reports the pooled percentile-frontier advantage of the graph score over preferential attachment.
 
-![Funding and source interactions](../outputs/paper/13_heterogeneity_atlas/figures/funding_source_interaction_main.png)
+![Funding and source interactions](/paper-assets/outputs/paper/13_heterogeneity_atlas/figures/funding_source_interaction_main.png)
 
 **Notes.** This interaction view combines funding status and journal tier. It is useful but secondary because funding coverage is uneven and institution-level interpretation mixes composition with behavior.
 
-![Topic heatmap](../outputs/paper/13_heterogeneity_atlas/figures/subfield_heatmap_main.png)
+![Topic heatmap](/paper-assets/outputs/paper/13_heterogeneity_atlas/figures/subfield_heatmap_main.png)
 
 **Notes.** The main topic heatmap prioritizes the most populous economics-facing topic groups rather than all broad adjacent categories.
 
-![Top-funder heatmap](../outputs/paper/13_heterogeneity_atlas/figures/top_funder_heatmap_appendix.png)
+![Top-funder heatmap](/paper-assets/outputs/paper/13_heterogeneity_atlas/figures/top_funder_heatmap_appendix.png)
 
 **Notes.** Only stable, high-support funders are shown. The current stable set keeps ESRC, NSFC China, DFG, and NSF.
 
@@ -603,7 +603,7 @@ The main score does not yet fully weight evidence quality, but the benchmark obj
 
 ## Appendix F. Path-evolution extensions
 
-![Path transition mix by subfield](../outputs/paper/13_heterogeneity_atlas/figures/path_transition_mix_by_subfield.png)
+![Path transition mix by subfield](/paper-assets/outputs/paper/13_heterogeneity_atlas/figures/path_transition_mix_by_subfield.png)
 
 **Notes.** Economics and Econometrics is more balanced than Finance at short horizons, but both become more direct-to-path heavy at longer horizons.
 
