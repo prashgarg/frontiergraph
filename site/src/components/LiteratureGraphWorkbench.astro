@@ -39,20 +39,9 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     <section class="literature-map-card">
       <div class="literature-search-panel">
         <label class="search-shell literature-search-shell">
-          <span>Search topic</span>
           <input type="search" placeholder="Search topics or close variants" data-role="search-input" />
           <div class="search-results" data-role="search-results"></div>
         </label>
-
-        <div class="literature-chip-stack">
-          <div class="literature-chip-row" data-role="query-chip-row"></div>
-          <div class="literature-chip-row" data-role="scope-chip-row"></div>
-        </div>
-
-        <details class="literature-suggested-shell" data-role="suggested-shell">
-          <summary>Suggested Topics</summary>
-          <div class="central-list central-list-inline" data-role="central-list"></div>
-        </details>
       </div>
 
       <aside class="literature-panel">
@@ -130,10 +119,6 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           <button class="button-tertiary" type="button" data-role="zoom-in">Zoom in</button>
           <button class="button-tertiary" type="button" data-role="reset-view">Reset view</button>
         </div>
-      </div>
-
-      <div class="graph-status literature-status" data-role="hover-card" aria-live="polite">
-        Choose a topic to open its local literature map.
       </div>
 
       <div class="graph-canvas-shell literature-canvas-shell">
