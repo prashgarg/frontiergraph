@@ -109,6 +109,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
       <div class="literature-map-toolbar">
         <div class="literature-toggle-group" role="group" aria-label="Map depth">
+          <button class="button-tertiary literature-toggle" type="button" data-role="nav-back">Back</button>
+          <button class="button-tertiary literature-toggle" type="button" data-role="nav-forward">Forward</button>
           <button class="button-tertiary literature-toggle" type="button" data-role="depth-1">1 hop</button>
           <button class="button-secondary literature-toggle is-active" type="button" data-role="depth-2">2 hops</button>
           <button class="button-tertiary literature-toggle" type="button" data-role="toggle-map-mode">Show backbone</button>
@@ -175,6 +177,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     "monetary policy",
   ];
 
+  const searchPanel = root.querySelector(".literature-search-panel");
+  const inspectorPanel = root.querySelector(".literature-panel");
+  const mapToolbar = root.querySelector(".literature-map-toolbar");
+  const pageNote = root.querySelector(".literature-page-note");
   const searchInput = root.querySelector('[data-role="search-input"]');
   const searchResults = root.querySelector('[data-role="search-results"]');
   const centralList = root.querySelector('[data-role="central-list"]');
@@ -196,6 +202,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   const detailSheetClose = root.querySelector('[data-role="detail-sheet-close"]');
   const depthOneButton = root.querySelector('[data-role="depth-1"]');
   const depthTwoButton = root.querySelector('[data-role="depth-2"]');
+  const navBackButton = root.querySelector('[data-role="nav-back"]');
+  const navForwardButton = root.querySelector('[data-role="nav-forward"]');
   const toggleMapMode = root.querySelector('[data-role="toggle-map-mode"]');
   const layersList = root.querySelector('[data-role="layers-list"]');
   const resetView = root.querySelector('[data-role="reset-view"]');
@@ -230,6 +238,9 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   let detailSheetState = { open: false, kind: null };
   let pivotState = null;
   let pendingNodeClick = null;
+  let navHistory = [];
+  let navHistoryIndex = -1;
+  let restoringHistory = false;
   let layerState = {
     stableAnchors: true,
     bridgeTopics: true,
@@ -568,6 +579,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           renderGraph();
           renderAllPanels();
           restoreStatus();
+          commitNavigationState("push");
         });
       }
     }
@@ -582,6 +594,89 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     if (scopeState.some((item) => item.id === entity.id)) return;
     scopeState = [...scopeState, entity];
     syncScopeLayers();
+  };
+  const cloneStatePayload = (value) => JSON.parse(JSON.stringify(value ?? null));
+  const navigationSnapshot = () => ({
+    rootConceptId: rootConceptId || "",
+    anchorConceptId: anchorConceptId || "",
+    selectedId: selectedId || "",
+    queryState: cloneStatePayload(queryState),
+    scopeState: cloneStatePayload(scopeState),
+    mapMode,
+    hopDepth,
+  });
+  const sameNavigationState = (left, right) => {
+    if (!left || !right) return false;
+    return JSON.stringify(left) === JSON.stringify(right);
+  };
+  const buildNavigationUrl = (state) => {
+    const url = new URL(window.location.href);
+    const queryLabel = state?.queryState?.label || (state?.rootConceptId ? conceptLabel(state.rootConceptId, "") : "");
+    if (queryLabel) url.searchParams.set("q", queryLabel);
+    else url.searchParams.delete("q");
+    if (state?.mapMode === "global") url.searchParams.set("view", "backbone");
+    else url.searchParams.delete("view");
+    if (safeNumber(state?.hopDepth) && safeNumber(state?.hopDepth) !== DEFAULT_HOP_DEPTH) {
+      url.searchParams.set("hops", String(state.hopDepth));
+    } else {
+      url.searchParams.delete("hops");
+    }
+    return url;
+  };
+  const updateNavigationButtons = () => {
+    if (navBackButton instanceof HTMLButtonElement) navBackButton.disabled = navHistoryIndex <= 0;
+    if (navForwardButton instanceof HTMLButtonElement) navForwardButton.disabled = navHistoryIndex >= navHistory.length - 1;
+  };
+  const commitNavigationState = (mode = "push") => {
+    if (restoringHistory) return;
+    const snapshot = navigationSnapshot();
+    if (!snapshot.rootConceptId) return;
+    if (mode === "replace") {
+      if (navHistoryIndex < 0) {
+        navHistory = [snapshot];
+        navHistoryIndex = 0;
+      } else {
+        navHistory[navHistoryIndex] = snapshot;
+      }
+      window.history.replaceState({ literatureNav: snapshot, literatureNavIndex: navHistoryIndex }, "", buildNavigationUrl(snapshot));
+      updateNavigationButtons();
+      return;
+    }
+    const current = navHistory[navHistoryIndex] || null;
+    if (sameNavigationState(current, snapshot)) {
+      updateNavigationButtons();
+      return;
+    }
+    navHistory = navHistory.slice(0, navHistoryIndex + 1);
+    navHistory.push(snapshot);
+    navHistoryIndex = navHistory.length - 1;
+    window.history.pushState({ literatureNav: snapshot, literatureNavIndex: navHistoryIndex }, "", buildNavigationUrl(snapshot));
+    updateNavigationButtons();
+  };
+  const applyNavigationState = async (state) => {
+    if (!state?.rootConceptId) return;
+    restoringHistory = true;
+    scopeState = Array.isArray(state.scopeState) ? state.scopeState.map((item) => cloneEntityState(item, item?.concept_id || item?.id || "")) : [];
+    hopDepth = safeNumber(state.hopDepth) === 1 ? 1 : DEFAULT_HOP_DEPTH;
+    syncScopeLayers();
+    layerState = { ...layerState, fringeTopics: hopDepth > 1 };
+    updateDepthButtons();
+    renderLayersMenu();
+    const queryEntity = state.queryState && (state.queryState.id || state.queryState.label)
+      ? cloneEntityState(state.queryState, state.queryState.concept_id || state.rootConceptId)
+      : pseudoEntityForConcept(state.rootConceptId);
+    await selectConcept(state.rootConceptId, {
+      rebuildMap: true,
+      switchToOverview: true,
+      entity: queryEntity,
+      anchorId: state.anchorConceptId || "",
+      preserveViewport: false,
+      historyMode: "none",
+      nextMapMode: state.mapMode === "global" ? "global" : "local",
+      inspectedConceptId: state.selectedId || state.rootConceptId,
+    });
+    restoringHistory = false;
+    updateNavigationButtons();
   };
   const searchConcepts = (query) => {
     const normalized = normalizeText(query);
@@ -875,15 +970,42 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     return thirdRingIds.slice(0, THIRD_RING_LIMIT);
   };
 
+  const workspaceAnchorPoint = () => {
+    const canvasRect = canvas instanceof SVGSVGElement ? canvas.getBoundingClientRect() : null;
+    if (!canvasRect || !canvasRect.width || !canvasRect.height) {
+      return {
+        centerX: GRAPH_WIDTH * 0.5,
+        centerY: GRAPH_HEIGHT * 0.45,
+      };
+    }
+    const toGraphX = (pixels) => (pixels / canvasRect.width) * GRAPH_WIDTH;
+    const toGraphY = (pixels) => (pixels / canvasRect.height) * GRAPH_HEIGHT;
+    const searchRect = searchPanel instanceof HTMLElement ? searchPanel.getBoundingClientRect() : null;
+    const inspectorRect = inspectorPanel instanceof HTMLElement ? inspectorPanel.getBoundingClientRect() : null;
+    const toolbarRect = mapToolbar instanceof HTMLElement ? mapToolbar.getBoundingClientRect() : null;
+    const noteRect = pageNote instanceof HTMLElement ? pageNote.getBoundingClientRect() : null;
+    const leftInset = 32 + (searchRect ? searchRect.width + 18 : 0);
+    const rightInset = 36 + (inspectorRect ? inspectorRect.width + 12 : 0);
+    const topInset = 40 + (noteRect ? Math.min(noteRect.height * 0.18, 28) : 0);
+    const bottomInset = 44 + (toolbarRect ? toolbarRect.height + 28 : 0) + (hoverCard instanceof HTMLElement ? hoverCard.getBoundingClientRect().height + 18 : 0);
+    const usableLeft = clamp(toGraphX(leftInset), 120, GRAPH_WIDTH * 0.45);
+    const usableRight = clamp(GRAPH_WIDTH - toGraphX(rightInset), GRAPH_WIDTH * 0.55, GRAPH_WIDTH - 120);
+    const usableTop = clamp(toGraphY(topInset), 80, GRAPH_HEIGHT * 0.35);
+    const usableBottom = clamp(GRAPH_HEIGHT - toGraphY(bottomInset), GRAPH_HEIGHT * 0.62, GRAPH_HEIGHT - 90);
+    return {
+      centerX: clamp((usableLeft + usableRight) / 2, GRAPH_WIDTH * 0.38, GRAPH_WIDTH * 0.64),
+      centerY: clamp(lerp(usableTop, usableBottom, 0.44), GRAPH_HEIGHT * 0.32, GRAPH_HEIGHT * 0.56),
+    };
+  };
+
   const buildLocalPositionMap = (rootId, firstRingIds, secondRingIds, thirdRingIds) => {
     const positionMap = new Map();
-    const centerX = GRAPH_WIDTH * 0.5;
-    const centerY = GRAPH_HEIGHT * 0.5;
+    const { centerX, centerY } = workspaceAnchorPoint();
     positionMap.set(rootId, { x: centerX, y: centerY, angle: -Math.PI / 2 });
 
     if (firstRingIds.length) {
-      const radiusX = firstRingIds.length <= 10 ? 330 : 400;
-      const radiusY = firstRingIds.length <= 10 ? 225 : 270;
+      const radiusX = firstRingIds.length <= 10 ? 360 : 430;
+      const radiusY = firstRingIds.length <= 10 ? 240 : 285;
       const step = (Math.PI * 2) / firstRingIds.length;
       firstRingIds.forEach((neighborId, index) => {
         const angle = -Math.PI / 2 + step * index;
@@ -896,8 +1018,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
 
     if (secondRingIds.length) {
-      const radiusX = 500;
-      const radiusY = 340;
+      const radiusX = 560;
+      const radiusY = 380;
       const step = (Math.PI * 2) / secondRingIds.length;
       secondRingIds.forEach((neighborId, index) => {
         const angle = -Math.PI / 2 + step * index + Math.PI / Math.max(secondRingIds.length, 8);
@@ -910,8 +1032,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
 
     if (thirdRingIds.length) {
-      const radiusX = 620;
-      const radiusY = 430;
+      const radiusX = 700;
+      const radiusY = 470;
       const step = (Math.PI * 2) / thirdRingIds.length;
       thirdRingIds.forEach((neighborId, index) => {
         const angle = -Math.PI / 2 + step * index + Math.PI / Math.max(thirdRingIds.length, 6) / 2;
@@ -1207,23 +1329,25 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const activeQuestion = currentQuestion();
     const selectedEdge = currentVisibleEdge();
     if (selectedEdge) {
-      hoverCard.textContent = `Inspecting the relationship between ${conceptLabel(selectedEdge.source, selectedEdge.source)} and ${conceptLabel(selectedEdge.target, selectedEdge.target)}. Use Direction or Context layers when you want more structure on the canvas.`;
+      hoverCard.textContent = `Inspecting edge: ${edgeTitle(selectedEdge)}`;
       return;
     }
     if (activeQuestion) {
-      hoverCard.textContent = `Path focus: ${questionTitle(activeQuestion)} Click another topic to pivot the map, or stay here and inspect the supporting route.`;
+      hoverCard.textContent = `Viewing nearby route touching ${questionSideLabel(activeQuestion, "source")} and ${questionSideLabel(activeQuestion, "target")}.`;
       return;
     }
     if (concept) {
       if (!rootIsInBackbone()) {
-        hoverCard.textContent = `${conceptTitle(concept)} is searchable but not stable enough for the released backbone view yet. Showing nearby supported topics up to ${hopDepth} hops away.`;
+        hoverCard.textContent = `Proxy local map for unstable topic: ${conceptTitle(concept)}.`;
         return;
       }
       if (inspectedConcept && inspectedConcept.concept_id !== rootConceptId) {
-        hoverCard.textContent = `Inspecting ${conceptTitle(inspectedConcept)} inside a ${hopDepth}-hop map rooted in ${conceptTitle(concept)}. Use the panel when you want to rebuild the map around it.`;
+        hoverCard.textContent = `Inspecting ${conceptTitle(inspectedConcept)} inside a ${hopDepth}-hop map rooted in ${conceptTitle(concept)}.`;
         return;
       }
-      hoverCard.textContent = `Showing a ${hopDepth}-hop local map around ${conceptTitle(concept)}. Click any topic to inspect it, or switch to the backbone when you want the wider graph.`;
+      hoverCard.textContent = mapMode === "global"
+        ? `Backbone view around ${conceptTitle(concept)}. Double-click a node to return to a local map there.`
+        : `Local ${hopDepth}-hop map around ${conceptTitle(concept)}.`;
       return;
     }
     hoverCard.textContent = "Choose a topic to open its local literature map.";
@@ -1232,32 +1356,90 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   const renderCentralList = () => {
     if (!(centralList instanceof HTMLElement)) return;
     const chosen = new Set();
-    const visibleConcepts = [];
+    const contextNeighborhood =
+      currentNeighborhood ||
+      (rootConceptId && selectedId !== rootConceptId ? rootNeighborhood : null);
+    const pivotCandidates = contextNeighborhood
+      ? getNeighborhoodItems(contextNeighborhood)
+          .filter((item) => item?.concept_id && item.concept_id !== rootConceptId)
+          .sort((left, right) => safeNumber(right.support_count) - safeNumber(left.support_count))
+          .slice(0, 6)
+      : [];
+    const recentRoots = navHistory
+      .slice()
+      .reverse()
+      .map((entry) => entry.rootConceptId)
+      .filter(Boolean)
+      .filter((conceptId, index, list) => list.indexOf(conceptId) === index)
+      .filter((conceptId) => conceptId !== rootConceptId)
+      .slice(0, 4)
+      .map((conceptId) => conceptMap.get(conceptId))
+      .filter(Boolean);
     const manualStartingConcepts = STARTING_TOPIC_LABELS.map((label) =>
       concepts.find((concept) => String(concept.plain_label || concept.label || "").trim().toLowerCase() === label),
     ).filter(Boolean);
-    for (const concept of manualStartingConcepts) {
-      if (chosen.has(concept.concept_id)) continue;
-      chosen.add(concept.concept_id);
-      visibleConcepts.push(concept);
-      if (visibleConcepts.length >= 8) break;
-    }
-    for (const concept of centralConcepts) {
-      if (chosen.has(concept.concept_id)) continue;
-      chosen.add(concept.concept_id);
-      visibleConcepts.push(concept);
-      if (visibleConcepts.length >= 8) break;
-    }
-    centralList.innerHTML = visibleConcepts
-      .map(
-        (concept) => `
+    const defaultConcepts = [...manualStartingConcepts, ...centralConcepts]
+      .filter(Boolean)
+      .filter((concept) => concept.concept_id !== rootConceptId)
+      .filter((concept, index, list) => list.findIndex((item) => item.concept_id === concept.concept_id) === index)
+      .slice(0, 8);
+
+    const renderSection = (title, rows) => {
+      if (!rows.length) return "";
+      return `
+        <div class="literature-suggestion-section">
+          <span class="tiny-label">${escapeHtml(title)}</span>
+          <div class="literature-suggestion-buttons">
+            ${rows.join("")}
+          </div>
+        </div>
+      `;
+    };
+
+    const pivotButtons = pivotCandidates
+      .map((item) => {
+        if (chosen.has(item.concept_id)) return "";
+        chosen.add(item.concept_id);
+        const concept = conceptMap.get(item.concept_id);
+        const label = concept ? conceptTitle(concept) : item.label;
+        return `
+          <button class="list-link" data-concept-id="${escapeHtml(item.concept_id)}">
+            <span>${escapeHtml(label)}</span>
+            <span>${formatNumber(safeNumber(item.support_count))} papers</span>
+          </button>
+        `;
+      })
+      .filter(Boolean);
+    const recentButtons = recentRoots
+      .map((concept) => {
+        if (!concept || chosen.has(concept.concept_id)) return "";
+        chosen.add(concept.concept_id);
+        return `
+          <button class="list-link" data-concept-id="${escapeHtml(concept.concept_id)}">
+            <span>${escapeHtml(conceptTitle(concept))}</span>
+            <span>Recent root</span>
+          </button>
+        `;
+      })
+      .filter(Boolean);
+    const defaultButtons = defaultConcepts
+      .map((concept) => {
+        if (!concept || chosen.has(concept.concept_id)) return "";
+        chosen.add(concept.concept_id);
+        return `
           <button class="list-link" data-concept-id="${escapeHtml(concept.concept_id)}">
             <span>${escapeHtml(conceptTitle(concept))}</span>
             <span>${formatNumber(safeNumber(concept.distinct_paper_support))} papers</span>
           </button>
-        `,
-      )
-      .join("");
+        `;
+      })
+      .filter(Boolean);
+
+    centralList.innerHTML = [
+      renderSection(pivotButtons.length ? "Pivot from here" : "", pivotButtons),
+      renderSection(recentButtons.length ? "Recent roots" : "", recentButtons),
+      renderSection("Start over", defaultButtons),
+    ].join("");
     for (const button of centralList.querySelectorAll("[data-concept-id]")) {
       button.addEventListener("click", () => selectConcept(button.dataset.conceptId, { rebuildMap: true, switchToOverview: true }));
     }
@@ -1387,7 +1569,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       for (const button of detailSheetBody.querySelectorAll("[data-sheet-neighbor-id]")) {
         button.addEventListener("click", () => {
           closeDetailSheet();
-          selectConcept(button.dataset.sheetNeighborId, { rebuildMap: false, switchToOverview: false });
+          selectConcept(button.dataset.sheetNeighborId, { rebuildMap: true, switchToOverview: true });
         });
       }
       return;
@@ -1678,7 +1860,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     `;
 
     for (const button of selectedNeighborhood.querySelectorAll("[data-neighbor-id]")) {
-      button.addEventListener("click", () => selectConcept(button.dataset.neighborId, { rebuildMap: false, switchToOverview: false }));
+      button.addEventListener("click", () => selectConcept(button.dataset.neighborId, { rebuildMap: true, switchToOverview: true }));
     }
     for (const button of selectedNeighborhood.querySelectorAll("[data-open-sheet]")) {
       button.addEventListener("click", () => openDetailSheet(button.dataset.openSheet));
@@ -1999,7 +2181,13 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       }
       viewState = { ...frameState.targetView };
       pivotState = null;
-      selectConcept(conceptId, { rebuildMap: true, switchToOverview: false, preserveViewport: true });
+      selectConcept(conceptId, {
+        rebuildMap: true,
+        switchToOverview: true,
+        preserveViewport: true,
+        nextMapMode: "local",
+        historyMode: "push",
+      });
     };
 
     frameState.frameId = requestAnimationFrame(step);
@@ -2307,6 +2495,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const concept = selectedId ? conceptMap.get(selectedId) : null;
     if (!concept) return;
     updatePanelTabLabels();
+    renderCentralList();
     renderSelectedConcept(concept);
     renderOverview();
     renderPaths();
@@ -2348,7 +2537,16 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
   const selectConcept = async (
     conceptId,
-    { rebuildMap = true, switchToOverview = rebuildMap, entity = null, anchorId = "", preserveViewport = false } = {},
+    {
+      rebuildMap = true,
+      switchToOverview = rebuildMap,
+      entity = null,
+      anchorId = "",
+      preserveViewport = false,
+      historyMode = rebuildMap ? "push" : "none",
+      nextMapMode = "",
+      inspectedConceptId = "",
+    } = {},
   ) => {
     if (!conceptId) return;
     const concept = conceptMap.get(conceptId);
@@ -2364,9 +2562,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       rootConceptId = conceptId;
       anchorConceptId = anchorId || (isInBackbone(conceptId) ? conceptId : entityPrimaryConceptId(entity) || "");
       rootNeighborhood = null;
-      if (!isInBackbone(conceptId)) mapMode = "local";
+      if (nextMapMode) mapMode = nextMapMode;
+      else if (!isInBackbone(conceptId)) mapMode = "local";
     }
-    selectedId = conceptId;
+    selectedId = inspectedConceptId || conceptId;
     selectedEdgeId = null;
     currentNeighborhood = null;
     currentOpportunities = [];
@@ -2395,12 +2594,6 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     renderGraph();
     restoreStatus();
 
-    if (rebuildMap) {
-      const nextUrl = new URL(window.location.href);
-      nextUrl.searchParams.set("q", conceptTitle(concept));
-      window.history.replaceState({}, "", nextUrl);
-    }
-
     await Promise.all([renderNeighborhood(conceptId), renderOpportunities(conceptId)]);
     updateMapModeButton();
     renderStateChips();
@@ -2410,10 +2603,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       setDefaultViewport();
     }
     restoreStatus();
+    if (historyMode !== "none") commitNavigationState(historyMode);
     hideTooltip();
   };
 
-  const selectEntity = async (entity, { switchToOverview = true } = {}) => {
+  const selectEntity = async (entity, { switchToOverview = true, historyMode = "push" } = {}) => {
     if (!entity) return;
     const entityState = cloneEntityState(entity, entityPrimaryConceptId(entity));
     const scopeType = scopeTypeForEntity(entityState);
@@ -2429,6 +2623,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           switchToOverview,
           entity: entityState,
           anchorId: stableAnchor || (isInBackbone(conceptId) ? conceptId : ""),
+          historyMode,
         });
       } else {
         renderLayersMenu();
@@ -2436,10 +2631,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         renderGraph();
         renderAllPanels();
         restoreStatus();
+        commitNavigationState("push");
         if (!rootConceptId) {
           const anchorId = entityPrimaryConceptId(entityState);
           if (anchorId) {
-            await selectConcept(anchorId, { rebuildMap: true, switchToOverview, entity: pseudoEntityForConcept(anchorId), anchorId });
+            await selectConcept(anchorId, { rebuildMap: true, switchToOverview, entity: pseudoEntityForConcept(anchorId), anchorId, historyMode });
           }
         }
       }
@@ -2456,6 +2652,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       switchToOverview,
       entity: entityState,
       anchorId: stableAnchor || (isInBackbone(conceptId) ? conceptId : ""),
+      historyMode,
     });
   };
 
@@ -2537,9 +2734,17 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     renderStateChips();
     updateDepthButtons();
     updateMapModeButton();
+    updateNavigationButtons();
 
     const params = new URLSearchParams(window.location.search);
     const query = params.get("q");
+    const viewParam = params.get("view");
+    const hopParam = safeNumber(params.get("hops"));
+    mapMode = viewParam === "backbone" ? "global" : "local";
+    hopDepth = hopParam === 1 ? 1 : DEFAULT_HOP_DEPTH;
+    layerState = { ...layerState, fringeTopics: hopDepth > 1 };
+    updateDepthButtons();
+    renderLayersMenu();
     const selected = query ? searchConcepts(query)[0] : null;
     const defaultTopic =
       literatureSearchIndex.find((entity) => normalizeText(entityLabel(entity)) === normalizeText(DEFAULT_TOPIC_LABEL)) ||
@@ -2549,7 +2754,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       pseudoEntityForConcept(centralConcepts[0]?.concept_id);
     const initialEntity = selected || defaultTopic || null;
     if (initialEntity) {
-      await selectEntity(initialEntity, { switchToOverview: true });
+      await selectEntity(initialEntity, { switchToOverview: true, historyMode: "replace" });
     } else {
       restoreStatus();
     }
@@ -2585,6 +2790,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       setDefaultViewport();
       renderAllPanels();
       restoreStatus();
+      commitNavigationState("push");
     });
   }
 
@@ -2599,6 +2805,21 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       setDefaultViewport();
       renderAllPanels();
       restoreStatus();
+      commitNavigationState("push");
+    });
+  }
+
+  if (navBackButton instanceof HTMLButtonElement) {
+    navBackButton.addEventListener("click", () => {
+      if (navHistoryIndex <= 0) return;
+      window.history.back();
+    });
+  }
+
+  if (navForwardButton instanceof HTMLButtonElement) {
+    navForwardButton.addEventListener("click", () => {
+      if (navHistoryIndex >= navHistory.length - 1) return;
+      window.history.forward();
     });
   }
 
@@ -2610,6 +2831,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       renderGraph();
       setDefaultViewport();
       restoreStatus();
+      commitNavigationState("push");
     });
   }
 
@@ -2660,6 +2882,23 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   });
   window.addEventListener("mouseup", () => {
     interaction = null;
+  });
+
+  window.addEventListener("resize", () => {
+    if (pivotState?.locked) return;
+    renderGraph();
+    if (mapMode === "local" && rootConceptId) {
+      setDefaultViewport();
+    } else {
+      setViewportTransform();
+    }
+  });
+
+  window.addEventListener("popstate", (event) => {
+    const state = event.state?.literatureNav;
+    if (!state) return;
+    if (Number.isFinite(event.state?.literatureNavIndex)) navHistoryIndex = event.state.literatureNavIndex;
+    applyNavigationState(state).catch((error) => console.error(error));
   });
 
   detailSheetClose?.addEventListener("click", closeDetailSheet);

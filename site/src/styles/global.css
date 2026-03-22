@@ -2299,7 +2299,7 @@ h3 {
   top: 1rem;
   left: 1rem;
   z-index: 4;
-  width: min(14.5rem, calc(100% - 2rem));
+  width: min(16.75rem, calc(100% - 2rem));
   display: grid;
   gap: 0.6rem;
   align-content: start;
@@ -2326,7 +2326,7 @@ h3 {
 
 .literature-map-card {
   position: relative;
-  min-height: calc(100vh - 9.9rem);
+  min-height: calc(100vh - 8.9rem);
   padding: 0;
   overflow: hidden;
 }
@@ -2341,7 +2341,7 @@ h3 {
   align-items: center;
   justify-content: flex-start;
   gap: 0.8rem;
-  max-width: calc(100% - 23.5rem);
+  max-width: calc(100% - 25.5rem);
 }
 
 .literature-toggle-group {
@@ -2361,7 +2361,7 @@ h3 {
   left: 1rem;
   bottom: 4.65rem;
   z-index: 4;
-  width: min(28rem, calc(100% - 23.5rem));
+  width: min(34rem, calc(100% - 25.5rem));
   min-height: 2.2rem;
   padding: 0.55rem 0.8rem;
   background: rgba(255, 253, 248, 0.6);
@@ -2378,7 +2378,7 @@ h3 {
 }
 
 .literature-canvas {
-  min-height: calc(100vh - 9.9rem);
+  min-height: calc(100vh - 8.9rem);
   height: 100%;
   aspect-ratio: auto;
   border-radius: 1.25rem;
@@ -2485,6 +2485,16 @@ h3 {
 
 .literature-sheet-button {
   justify-self: start;
+}
+
+.literature-suggestion-section {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.literature-suggestion-buttons {
+  display: grid;
+  gap: 0.5rem;
 }
 
 .literature-detail-sheet {
@@ -2871,6 +2881,12 @@ h3 {
 .literature-layer-description {
   color: var(--muted);
   line-height: 1.35;
+}
+
+.literature-toggle:disabled {
+  opacity: 0.48;
+  cursor: default;
+  transform: none;
 }
 
 .literature-edge-card {
