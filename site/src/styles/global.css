@@ -2477,6 +2477,10 @@ h3 {
   gap: 0.7rem;
 }
 
+.literature-panel-section[hidden] {
+  display: none;
+}
+
 .literature-panel-stack,
 .literature-paper-stack {
   display: grid;
