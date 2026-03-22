@@ -97,28 +97,37 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       </dialog>
 
       <div class="literature-map-toolbar">
-        <div class="literature-toggle-group" role="group" aria-label="Map depth">
-          <button class="button-tertiary literature-toggle" type="button" data-role="nav-back">Back</button>
-          <button class="button-tertiary literature-toggle" type="button" data-role="nav-forward">Forward</button>
-          <button class="button-tertiary literature-toggle" type="button" data-role="depth-1">1 hop</button>
-          <button class="button-secondary literature-toggle is-active" type="button" data-role="depth-2">2 hops</button>
-          <button class="button-tertiary literature-toggle" type="button" data-role="toggle-map-mode">Show backbone</button>
-          <details class="literature-layers-menu" data-role="layout-menu">
-            <summary>Layout</summary>
-            <div class="literature-layers-list" data-role="layout-list"></div>
-          </details>
+        <section class="literature-control-section" aria-label="Navigation">
+          <span class="tiny-label">Navigate</span>
+          <div class="literature-control-buttons literature-control-buttons-two">
+            <button class="button-tertiary literature-toggle" type="button" data-role="nav-back">Back</button>
+            <button class="button-tertiary literature-toggle" type="button" data-role="nav-forward">Forward</button>
+          </div>
+          <button class="button-tertiary literature-toggle literature-control-full" type="button" data-role="fullscreen-toggle">Full screen</button>
+        </section>
+
+        <section class="literature-control-section" aria-label="View">
+          <span class="tiny-label">View</span>
+          <div class="literature-control-buttons literature-control-buttons-two" role="group" aria-label="Map depth">
+            <button class="button-tertiary literature-toggle" type="button" data-role="depth-1">1 hop</button>
+            <button class="button-secondary literature-toggle is-active" type="button" data-role="depth-2">2 hops</button>
+          </div>
+          <button class="button-tertiary literature-toggle literature-control-full" type="button" data-role="toggle-map-mode">Show all nodes</button>
+          <button class="button-tertiary literature-toggle literature-control-full" type="button" data-role="toggle-layout-mode">Switch to Clustered View</button>
+        </section>
+
+        <section class="literature-control-section" aria-label="Display">
+          <span class="tiny-label">Display</span>
+          <label class="literature-zoom-shell">
+            <span class="literature-zoom-copy">Zoom</span>
+            <input class="literature-zoom-slider" type="range" min="55" max="400" step="1" value="100" data-role="zoom-slider" />
+          </label>
+          <button class="button-tertiary literature-toggle literature-control-full" type="button" data-role="reset-view">Reset view</button>
           <details class="literature-layers-menu" data-role="layers-menu">
             <summary>Layers</summary>
             <div class="literature-layers-list" data-role="layers-list"></div>
           </details>
-        </div>
-
-        <div class="graph-control-row literature-map-actions">
-          <button class="button-tertiary" type="button" data-role="fullscreen-toggle">Full screen</button>
-          <button class="button-tertiary" type="button" data-role="zoom-out">Zoom out</button>
-          <button class="button-tertiary" type="button" data-role="zoom-in">Zoom in</button>
-          <button class="button-tertiary" type="button" data-role="reset-view">Reset view</button>
-        </div>
+        </section>
       </div>
 
       <div class="graph-canvas-shell literature-canvas-shell">
@@ -200,12 +209,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   const navBackButton = root.querySelector('[data-role="nav-back"]');
   const navForwardButton = root.querySelector('[data-role="nav-forward"]');
   const toggleMapMode = root.querySelector('[data-role="toggle-map-mode"]');
-  const layoutList = root.querySelector('[data-role="layout-list"]');
+  const toggleLayoutMode = root.querySelector('[data-role="toggle-layout-mode"]');
   const fullscreenToggle = root.querySelector('[data-role="fullscreen-toggle"]');
   const layersList = root.querySelector('[data-role="layers-list"]');
   const resetView = root.querySelector('[data-role="reset-view"]');
-  const zoomOutButton = root.querySelector('[data-role="zoom-out"]');
-  const zoomInButton = root.querySelector('[data-role="zoom-in"]');
+  const zoomSlider = root.querySelector('[data-role="zoom-slider"]');
 
   const shardCache = new Map();
   let rootConceptId = null;
@@ -1018,32 +1026,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
   };
   const renderLayoutMenu = () => {
-    if (!(layoutList instanceof HTMLElement)) return;
-    layoutList.innerHTML = LAYOUT_DEFS.map(
-      (layout) => `
-        <button class="literature-layer-option${layoutMode === layout.key ? " is-active" : ""}" type="button" data-layout-key="${escapeAttr(layout.key)}">
-          <span class="literature-layer-copy">
-            <span class="literature-layer-title-row">
-              <strong>${escapeHtml(layout.label)}</strong>
-            </span>
-            <small class="literature-layer-description">${escapeHtml(layout.description)}</small>
-          </span>
-        </button>
-      `,
-    ).join("");
-    for (const button of layoutList.querySelectorAll("[data-layout-key]")) {
-      button.addEventListener("click", () => {
-        const nextLayout = button.dataset.layoutKey || "radial";
-        if (layoutMode === nextLayout) return;
-        layoutMode = nextLayout;
-        manualNodePositions = new Map();
-        closeDetailSheet();
-        renderLayoutMenu();
-        renderGraph();
-        if (mapMode === "local" && rootConceptId) setDefaultViewport();
-        restoreStatus();
-      });
-    }
+    updateLayoutModeButton();
   };
   const edgeArrowMode = (edge) => {
     const summary = edgePairSummary(edge);
@@ -1201,10 +1184,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const inspectorRect = inspectorPanel instanceof HTMLElement ? inspectorPanel.getBoundingClientRect() : null;
     const toolbarRect = mapToolbar instanceof HTMLElement ? mapToolbar.getBoundingClientRect() : null;
     const noteRect = pageNote instanceof HTMLElement ? pageNote.getBoundingClientRect() : null;
-    const leftInset = 32 + (searchRect ? searchRect.width + 18 : 0);
+    const leftRailWidth = Math.max(searchRect?.width || 0, toolbarRect?.width || 0);
+    const leftInset = 32 + (leftRailWidth ? leftRailWidth + 18 : 0);
     const rightInset = 36 + (inspectorRect ? inspectorRect.width + 12 : 0);
     const topInset = 40 + (noteRect ? Math.min(noteRect.height * 0.18, 28) : 0);
-    const bottomInset = 44 + (toolbarRect ? toolbarRect.height + 28 : 0) + (hoverCard instanceof HTMLElement ? hoverCard.getBoundingClientRect().height + 18 : 0);
+    const bottomInset = 44;
     const usableLeft = clamp(toGraphX(leftInset), 120, GRAPH_WIDTH * 0.45);
     const usableRight = clamp(GRAPH_WIDTH - toGraphX(rightInset), GRAPH_WIDTH * 0.55, GRAPH_WIDTH - 120);
     const usableTop = clamp(toGraphY(topInset), 80, GRAPH_HEIGHT * 0.35);
@@ -1712,6 +1696,9 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       "transform",
       `translate(${viewState.translateX} ${viewState.translateY}) scale(${viewState.scale})`,
     );
+    if (zoomSlider instanceof HTMLInputElement) {
+      zoomSlider.value = String(Math.round(viewState.scale * 100));
+    }
   };
 
   const screenToCanvasPoint = (clientX, clientY) => {
@@ -1830,15 +1817,21 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   const updateMapModeButton = () => {
     if (!(toggleMapMode instanceof HTMLButtonElement)) return;
     if (rootConceptId && !rootIsInBackbone()) {
-      toggleMapMode.textContent = "Backbone unavailable";
+      toggleMapMode.textContent = "All nodes unavailable";
       toggleMapMode.classList.remove("is-active");
       toggleMapMode.disabled = true;
       return;
     }
     const showGlobal = mapMode === "global";
-    toggleMapMode.textContent = showGlobal ? "Return to local map" : "Show backbone";
+    toggleMapMode.textContent = showGlobal ? "Return to local map" : "Show all nodes";
     toggleMapMode.classList.toggle("is-active", showGlobal);
     toggleMapMode.disabled = false;
+  };
+
+  const updateLayoutModeButton = () => {
+    if (!(toggleLayoutMode instanceof HTMLButtonElement)) return;
+    toggleLayoutMode.textContent = layoutMode === "clustered" ? "Switch to Radial View" : "Switch to Clustered View";
+    toggleLayoutMode.classList.toggle("is-active", layoutMode === "clustered");
   };
 
   const syncPanelPopoutUi = () => {
@@ -3395,12 +3388,27 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     resetView.addEventListener("click", setDefaultViewport);
   }
 
-  if (zoomOutButton instanceof HTMLButtonElement) {
-    zoomOutButton.addEventListener("click", () => zoomAroundCanvasCenter(1 / 1.15));
+  if (toggleLayoutMode instanceof HTMLButtonElement) {
+    updateLayoutModeButton();
+    toggleLayoutMode.addEventListener("click", () => {
+      layoutMode = layoutMode === "clustered" ? "radial" : "clustered";
+      manualNodePositions = new Map();
+      closeDetailSheet();
+      renderLayoutMenu();
+      renderGraph();
+      if (mapMode === "local" && rootConceptId) setDefaultViewport();
+      restoreStatus();
+    });
   }
 
-  if (zoomInButton instanceof HTMLButtonElement) {
-    zoomInButton.addEventListener("click", () => zoomAroundCanvasCenter(1.15));
+  if (zoomSlider instanceof HTMLInputElement) {
+    zoomSlider.value = String(Math.round(viewState.scale * 100));
+    zoomSlider.addEventListener("input", () => {
+      const nextScale = clamp(safeNumber(zoomSlider.value) / 100, MIN_SCALE, MAX_SCALE);
+      if (!nextScale || Math.abs(nextScale - viewState.scale) < 0.001) return;
+      const factor = nextScale / Math.max(viewState.scale, 0.001);
+      zoomAroundCanvasCenter(factor);
+    });
   }
 
   canvas.addEventListener("wheel", (event) => {

@@ -2344,20 +2344,59 @@ h3 {
 .literature-map-toolbar {
   position: absolute;
   left: 1rem;
-  bottom: 1rem;
+  top: 5.7rem;
   z-index: 4;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.8rem;
-  max-width: calc(100% - 25.5rem);
+  width: min(19rem, calc(100% - 2rem));
+  display: grid;
+  gap: 0.7rem;
+  align-content: start;
 }
 
 .literature-toggle-group {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
+}
+
+.literature-control-section {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.72rem 0.76rem;
+  border: 1px solid rgba(84, 108, 132, 0.1);
+  border-radius: 1rem;
+  background: rgba(255, 253, 248, 0.4);
+  box-shadow: 0 8px 18px rgba(20, 31, 48, 0.04);
+  backdrop-filter: blur(12px);
+}
+
+.literature-control-buttons {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.literature-control-buttons-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.literature-control-full,
+.literature-control-section .literature-layers-menu {
+  width: 100%;
+}
+
+.literature-zoom-shell {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.literature-zoom-copy {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.literature-zoom-slider {
+  width: 100%;
+  accent-color: #546c84;
 }
 
 .literature-toggle.is-active {
@@ -2909,6 +2948,11 @@ h3 {
   color: var(--muted);
 }
 
+.literature-map-toolbar .literature-layers-menu {
+  border-radius: 0.95rem;
+  background: rgba(255, 253, 248, 0.72);
+}
+
 .literature-layers-menu summary {
   display: inline-flex;
   align-items: center;
@@ -2917,6 +2961,11 @@ h3 {
   cursor: pointer;
   list-style: none;
   font-weight: 600;
+}
+
+.literature-map-toolbar .literature-layers-menu summary {
+  width: 100%;
+  justify-content: center;
 }
 
 .literature-layers-menu summary::-webkit-details-marker {
@@ -2937,6 +2986,12 @@ h3 {
   background: rgba(255, 253, 248, 0.94);
   box-shadow: 0 18px 44px rgba(20, 31, 48, 0.12);
   backdrop-filter: blur(12px);
+}
+
+.literature-map-toolbar .literature-layers-list {
+  top: 0;
+  bottom: auto;
+  left: calc(100% + 0.7rem);
 }
 
 .literature-layer-option {
@@ -4464,6 +4519,11 @@ h3 {
 
   .literature-canvas-shell {
     min-height: 0;
+  }
+
+  .literature-map-toolbar .literature-layers-list {
+    top: calc(100% + 0.6rem);
+    left: 0;
   }
 
   .homepage-carousel-heading {
