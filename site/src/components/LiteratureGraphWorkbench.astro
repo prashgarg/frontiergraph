@@ -1052,6 +1052,14 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     };
   };
 
+  const viewportAnchorPoint = (focusedActive) =>
+    focusedActive
+      ? workspaceAnchorPoint()
+      : {
+          centerX: GRAPH_WIDTH * 0.5,
+          centerY: GRAPH_HEIGHT * 0.5,
+        };
+
   const buildLocalPositionMap = (rootId, firstRingIds, secondRingIds, thirdRingIds) => {
     const positionMap = new Map();
     const { centerX, centerY } = workspaceAnchorPoint();
@@ -1138,6 +1146,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         counterpartId,
         mediatorIds: new Set(mediatorIds),
         firstRingLabels: new Set(),
+        dynamicLabelIds: new Set(),
         renderPositionMap: null,
       };
     }
@@ -1158,6 +1167,15 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const secondRingSet = new Set(secondRingIds);
     const thirdRingSet = new Set(thirdRingIds);
     const firstRingLabels = new Set(firstRingIds.slice(0, 8));
+    const labelSeedId =
+      selectedConceptId && visibleIds.has(selectedConceptId) ? selectedConceptId : rootId;
+    const dynamicLabelIds = new Set(
+      labelSeedId
+        ? getRankedNeighbors(labelSeedId, 6, new Set([labelSeedId])).filter((conceptId) =>
+            visibleIds.has(conceptId),
+          )
+        : [],
+    );
     const highlightSet = new Set([
       ...(layers.questions && counterpartId ? [counterpartId] : []),
       ...(layers.paths ? mediatorIds : []),
@@ -1207,6 +1225,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       counterpartId,
       mediatorIds: new Set(mediatorIds),
       firstRingLabels,
+      dynamicLabelIds,
       renderPositionMap: buildLocalPositionMap(rootId, firstRingIds, secondRingIds, thirdRingIds),
     };
   };
@@ -1288,10 +1307,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     );
     const centerX = (minX + maxX) / 2;
     const centerY = (minY + maxY) / 2;
+    const viewportCenter = viewportAnchorPoint(visibleState.focusedActive);
     viewState = {
       scale: nextScale,
-      translateX: GRAPH_WIDTH / 2 - centerX * nextScale,
-      translateY: GRAPH_HEIGHT / 2 - centerY * nextScale,
+      translateX: viewportCenter.centerX - centerX * nextScale,
+      translateY: viewportCenter.centerY - centerY * nextScale,
     };
     setViewportTransform();
   };
@@ -2085,10 +2105,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     );
     const centerX = (minX + maxX) / 2;
     const centerY = (minY + maxY) / 2;
+    const viewportCenter = viewportAnchorPoint(visibleState.focusedActive);
     return {
       scale,
-      translateX: GRAPH_WIDTH / 2 - centerX * scale,
-      translateY: GRAPH_HEIGHT / 2 - centerY * scale,
+      translateX: viewportCenter.centerX - centerX * scale,
+      translateY: viewportCenter.centerY - centerY * scale,
     };
   };
 
@@ -2251,6 +2272,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       counterpartId,
       mediatorIds,
       firstRingLabels,
+      dynamicLabelIds,
       renderPositionMap,
     } = visibleState;
     const visibleNodeMap = new Map(visibleNodes.map((node) => [node.id, node]));
@@ -2329,7 +2351,13 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         : Math.max(2.8, Math.min(24, 2.8 + Math.log10(safeNumber(node.weighted_degree) + 1) * 4.4));
       const radius = baseRadius * (renderState.scaleMultiplier || 1);
       const showLabel = focusedActive
-        ? isRoot || isSelected || isQuestionTarget || isMediator || isScopeMatch || firstRingLabels.has(node.id)
+        ? isRoot ||
+          isSelected ||
+          isQuestionTarget ||
+          isMediator ||
+          isScopeMatch ||
+          firstRingLabels.has(node.id) ||
+          dynamicLabelIds.has(node.id)
         : node.show_label || isRoot || isSelected || isQuestionTarget;
       const label = node.plain_label || node.label;
       const labelWidth = estimateChipWidth(label);
