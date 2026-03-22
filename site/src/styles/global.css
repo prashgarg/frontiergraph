@@ -2581,6 +2581,59 @@ h3 {
   background: rgba(255, 253, 248, 0.64);
 }
 
+.literature-paper-stack {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.literature-paper-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.55rem 0.9rem;
+  align-items: start;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid rgba(84, 108, 132, 0.12);
+  border-radius: 0.9rem;
+  background: rgba(255, 253, 248, 0.58);
+}
+
+.literature-paper-copy {
+  min-width: 0;
+  display: grid;
+  gap: 0.18rem;
+}
+
+.literature-paper-title {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.35;
+}
+
+.literature-paper-meta {
+  margin-top: 0.08rem;
+}
+
+.literature-paper-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.literature-paper-link {
+  color: var(--text);
+  font-size: 0.77rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.literature-paper-link:hover {
+  text-decoration: underline;
+}
+
 .literature-suggested-shell,
 .literature-collapsible {
   border: 1px solid rgba(84, 108, 132, 0.12);

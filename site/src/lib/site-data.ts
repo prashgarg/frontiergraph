@@ -20,6 +20,12 @@ export type RepresentativePaper = {
   paper_id: string;
   title: string;
   year: number;
+  authors?: string[];
+  citation_label?: string;
+  journal?: string;
+  citation_count?: number;
+  url?: string;
+  openalex_url?: string;
   edge_src: string;
   edge_dst: string;
   edge_src_display_label?: string;

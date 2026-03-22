@@ -75,6 +75,12 @@ EXTRACTION_DB_PATH = Path(
         / "fwci_core150_adj150_extractions.sqlite",
     )
 )
+OPENALEX_ENRICHED_DB_PATH = Path(
+    os.environ.get(
+        "FRONTIERGRAPH_OPENALEX_ENRICHED_DB",
+        ROOT / "data" / "processed" / "openalex" / "published_enriched" / "openalex_published_enriched.sqlite",
+    )
+)
 PAPER_SYNC_SCRIPT = ROOT / "scripts" / "sync_paper_site_assets.py"
 DISPLAY_REFINEMENT_SCRIPT = ROOT / "scripts" / "build_public_display_refinement.py"
 DISPLAY_REFINEMENT_PATH = PUBLIC_RELEASE_DIR / "display_refinement_v1.json"
@@ -521,6 +527,115 @@ def clean_public_text(value: Any) -> str:
     if text.lower() in {"", "na", "n/a", "nan", "none", "null", "undefined"}:
         return ""
     return text
+
+
+def extract_openalex_work_token(value: Any) -> str:
+    text = clean_public_text(value)
+    if not text:
+        return ""
+    match = re.search(r"(W\d+)", text)
+    return match.group(1) if match else ""
+
+
+def normalize_openalex_work_url(value: Any) -> str:
+    text = clean_public_text(value)
+    if text.startswith("https://openalex.org/W"):
+        return text
+    token = extract_openalex_work_token(text)
+    return f"https://openalex.org/{token}" if token else ""
+
+
+def author_surname(name: Any) -> str:
+    text = clean_public_text(name)
+    if not text:
+        return ""
+    if "," in text:
+        surname = clean_public_text(text.split(",", 1)[0])
+        if surname:
+            return surname
+    parts = text.split()
+    return parts[-1] if parts else ""
+
+
+def format_author_citation(authors: list[str], year: Any) -> str:
+    cleaned_authors = [clean_public_text(value) for value in authors if clean_public_text(value)]
+    year_value = to_int(year)
+    year_label = str(year_value) if year_value > 0 else ""
+    if not cleaned_authors:
+        return year_label
+    surnames = [author_surname(value) for value in cleaned_authors if author_surname(value)]
+    if not surnames:
+        return year_label
+    if len(surnames) == 1:
+        stem = surnames[0]
+    elif len(surnames) == 2:
+        stem = f"{surnames[0]} and {surnames[1]}"
+    else:
+        stem = f"{surnames[0]} et al."
+    return f"{stem} ({year_label})" if year_label else stem
+
+
+def load_openalex_metadata_lookup(work_urls: set[str]) -> dict[str, dict[str, Any]]:
+    normalized_urls = sorted({normalize_openalex_work_url(value) for value in work_urls if normalize_openalex_work_url(value)})
+    if not normalized_urls or not OPENALEX_ENRICHED_DB_PATH.exists():
+        return {}
+
+    metadata_lookup: dict[str, dict[str, Any]] = {}
+    with connect(OPENALEX_ENRICHED_DB_PATH) as conn:
+        conn.row_factory = sqlite3.Row
+        for start in range(0, len(normalized_urls), 500):
+            chunk = normalized_urls[start : start + 500]
+            placeholders = ",".join("?" for _ in chunk)
+            work_rows = conn.execute(
+                f"""
+                SELECT
+                    work_id,
+                    source_display_name,
+                    cited_by_count,
+                    primary_landing_page_url,
+                    best_oa_landing_page_url,
+                    open_access_url,
+                    doi
+                FROM works_base
+                WHERE work_id IN ({placeholders})
+                """,
+                chunk,
+            ).fetchall()
+            author_rows = conn.execute(
+                f"""
+                SELECT work_id, author_display_name
+                FROM works_authorships
+                WHERE work_id IN ({placeholders})
+                ORDER BY work_id, author_seq
+                """,
+                chunk,
+            ).fetchall()
+            authors_by_work: dict[str, list[str]] = defaultdict(list)
+            for row in author_rows:
+                work_id = clean_public_text(row["work_id"])
+                author_name = clean_public_text(row["author_display_name"])
+                if work_id and author_name:
+                    authors_by_work[work_id].append(author_name)
+            for row in work_rows:
+                work_id = clean_public_text(row["work_id"])
+                if not work_id:
+                    continue
+                authors = authors_by_work.get(work_id, [])
+                preferred_url = (
+                    clean_public_text(row["primary_landing_page_url"])
+                    or clean_public_text(row["best_oa_landing_page_url"])
+                    or clean_public_text(row["open_access_url"])
+                    or clean_public_text(row["doi"])
+                    or work_id
+                )
+                metadata_lookup[work_id] = {
+                    "authors": authors,
+                    "journal": clean_public_text(row["source_display_name"]),
+                    "citation_count": to_int(row["cited_by_count"]),
+                    "openalex_url": work_id,
+                    "url": preferred_url,
+                }
+    return metadata_lookup
 
 
 def append_query_value(base_url: str, params: dict[str, Any]) -> str:
@@ -1035,6 +1150,12 @@ def select_representative_papers(
                 "year": to_int(paper["year"]),
                 "edge_src": str(paper["edge_src"]),
                 "edge_dst": str(paper["edge_dst"]),
+                "authors": list(paper.get("authors", []) or []),
+                "citation_label": clean_public_text(paper.get("citation_label")),
+                "journal": clean_public_text(paper.get("journal")),
+                "citation_count": to_int(paper.get("citation_count")),
+                "url": clean_public_text(paper.get("url")),
+                "openalex_url": normalize_openalex_work_url(paper.get("openalex_url") or paper.get("paper_id")),
                 "edge_src_display_label": public_label_payload(
                     str(paper["edge_src"]),
                     concept_label_lookup.get(str(paper["edge_src"]), str(paper["edge_src"])),
@@ -1054,22 +1175,75 @@ def select_representative_papers(
 
 def load_representative_papers() -> dict[tuple[str, str], list[dict[str, Any]]]:
     sql = """
-        WITH deduped AS (
+        WITH candidate_bridge AS (
             SELECT
-                candidate_u,
-                candidate_v,
-                path_rank,
-                paper_rank,
-                paper_id,
-                title,
-                year,
-                edge_src,
-                edge_dst,
+                cp.candidate_u,
+                cp.candidate_v,
+                cp.path_rank,
+                cp.paper_rank,
+                cp.paper_id,
+                cp.title,
+                cp.year,
+                cp.edge_src,
+                cp.edge_dst,
+                ew.openalex_work_id,
+                ew.source_display_name AS extraction_source_display_name
+            FROM candidate_papers cp
+            LEFT JOIN extraction.works ew
+                ON ew.custom_id = cp.paper_id
+        ),
+        relevant_works AS (
+            SELECT DISTINCT openalex_work_id AS work_id
+            FROM candidate_bridge
+            WHERE TRIM(COALESCE(openalex_work_id, '')) <> ''
+        ),
+        author_strings AS (
+            SELECT
+                work_id,
+                group_concat(author_display_name, '|||') AS author_names
+            FROM (
+                SELECT work_id, author_display_name
+                FROM openalex.works_authorships
+                WHERE work_id IN (SELECT work_id FROM relevant_works)
+                  AND TRIM(COALESCE(author_display_name, '')) <> ''
+                ORDER BY work_id, author_seq
+            )
+            GROUP BY work_id
+        ),
+        deduped AS (
+            SELECT
+                cb.candidate_u,
+                cb.candidate_v,
+                cb.path_rank,
+                cb.paper_rank,
+                cb.paper_id,
+                cb.title,
+                cb.year,
+                cb.edge_src,
+                cb.edge_dst,
+                cb.openalex_work_id,
+                COALESCE(wb.source_display_name, cb.extraction_source_display_name, '') AS journal,
+                COALESCE(wb.cited_by_count, 0) AS citation_count,
+                COALESCE(
+                    wb.primary_landing_page_url,
+                    wb.best_oa_landing_page_url,
+                    wb.open_access_url,
+                    wb.doi,
+                    wb.work_id,
+                    cb.openalex_work_id,
+                    ''
+                ) AS preferred_url,
+                COALESCE(wb.work_id, cb.openalex_work_id, '') AS openalex_url,
+                COALESCE(auth.author_names, '') AS author_names,
                 ROW_NUMBER() OVER (
-                    PARTITION BY candidate_u, candidate_v, paper_id
+                    PARTITION BY cb.candidate_u, cb.candidate_v, cb.paper_id
                     ORDER BY path_rank, paper_rank
                 ) AS paper_occurrence_rank
-            FROM candidate_papers
+            FROM candidate_bridge cb
+            LEFT JOIN openalex.works_base wb
+                ON wb.work_id = cb.openalex_work_id
+            LEFT JOIN author_strings auth
+                ON auth.work_id = wb.work_id
         ),
         limited AS (
             SELECT
@@ -1082,6 +1256,11 @@ def load_representative_papers() -> dict[tuple[str, str], list[dict[str, Any]]]:
                 year,
                 edge_src,
                 edge_dst,
+                journal,
+                citation_count,
+                preferred_url,
+                openalex_url,
+                author_names,
                 ROW_NUMBER() OVER (
                     PARTITION BY candidate_u, candidate_v
                     ORDER BY path_rank, paper_rank, year DESC, paper_id
@@ -1098,17 +1277,40 @@ def load_representative_papers() -> dict[tuple[str, str], list[dict[str, Any]]]:
             title,
             year,
             edge_src,
-            edge_dst
+            edge_dst,
+            journal,
+            citation_count,
+            preferred_url,
+            openalex_url,
+            author_names
         FROM limited
         WHERE representative_rank <= 16
         ORDER BY candidate_u, candidate_v, representative_rank
     """
 
     with connect(SOURCE_PUBLIC_APP_DB_PATH) as conn:
+        conn.execute("ATTACH DATABASE ? AS extraction", (str(EXTRACTION_DB_PATH),))
+        conn.execute("ATTACH DATABASE ? AS openalex", (str(OPENALEX_ENRICHED_DB_PATH),))
         rows = conn.execute(sql).fetchall()
 
     lookup: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
-    for candidate_u, candidate_v, path_rank, paper_rank, paper_id, title, year, edge_src, edge_dst in rows:
+    for (
+        candidate_u,
+        candidate_v,
+        path_rank,
+        paper_rank,
+        paper_id,
+        title,
+        year,
+        edge_src,
+        edge_dst,
+        journal,
+        citation_count,
+        preferred_url,
+        openalex_url,
+        author_names,
+    ) in rows:
+        authors = [clean_public_text(value) for value in clean_public_text(author_names).split("|||") if clean_public_text(value)]
         lookup[(str(candidate_u), str(candidate_v))].append(
             {
                 "paper_id": str(paper_id),
@@ -1116,6 +1318,12 @@ def load_representative_papers() -> dict[tuple[str, str], list[dict[str, Any]]]:
                 "year": to_int(year),
                 "edge_src": str(edge_src),
                 "edge_dst": str(edge_dst),
+                "authors": authors,
+                "citation_label": format_author_citation(authors, year),
+                "journal": clean_public_text(journal),
+                "citation_count": to_int(citation_count),
+                "url": clean_public_text(preferred_url),
+                "openalex_url": normalize_openalex_work_url(openalex_url or paper_id),
                 "path_rank": to_int(path_rank),
                 "paper_rank": to_int(paper_rank),
             }
@@ -2171,6 +2379,10 @@ def build_pair_summary_lookup(edge_instances_df: pd.DataFrame) -> dict[tuple[str
                     "title": clean_public_text(getattr(row, "title", "")),
                     "year": int(getattr(row, "publication_year", 0) or 0),
                     "bucket": clean_public_text(getattr(row, "bucket", "")),
+                    "journal": clean_public_text(getattr(row, "source_display_name", "")),
+                    "citation_label": str(int(getattr(row, "publication_year", 0) or 0)) if int(getattr(row, "publication_year", 0) or 0) > 0 else "",
+                    "openalex_url": normalize_openalex_work_url(getattr(row, "openalex_work_id", "")),
+                    "url": normalize_openalex_work_url(getattr(row, "openalex_work_id", "")),
                     "claim_text": clean_public_text(getattr(row, "claim_text", "")),
                     "evidence_text": clean_public_text(getattr(row, "evidence_text", "")),
                 }

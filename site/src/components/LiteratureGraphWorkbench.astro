@@ -16,7 +16,7 @@ const {
   neighborhoodsIndexPath,
   opportunitiesIndexPath,
   centralConceptsPath,
-  contextLabel = "published economics graph",
+  contextLabel = "economics corpus",
 } = Astro.props;
 
 const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
@@ -61,7 +61,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
       <aside class="graph-panel literature-panel">
         <div class="literature-panel-header" data-role="selected-concept">
-          <p class="card-copy">Choose a topic to see its local neighborhood.</p>
+          <p class="card-copy">Choose a topic to inspect this map.</p>
         </div>
 
         <div class="literature-panel-tabs" role="tablist" aria-label="Literature graph panel">
@@ -72,7 +72,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
 
         <section class="literature-panel-section" data-role="panel-section" data-panel="overview">
           <div data-role="selected-neighborhood">
-            <p class="card-copy">Nearby topics and local map context will appear here.</p>
+            <p class="card-copy">Map context will appear here.</p>
           </div>
         </section>
 
@@ -316,6 +316,60 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   const conceptLabel = (conceptId, fallback = "") => {
     const concept = conceptMap.get(conceptId);
     return concept ? conceptTitle(concept) : fallback;
+  };
+  const extractWorkToken = (value) => {
+    const match = String(value || "").match(/W\d+/);
+    return match ? match[0] : "";
+  };
+  const paperOpenAlexUrl = (paper) => {
+    const direct = String(paper?.openalex_url || "").trim();
+    if (direct.startsWith("https://openalex.org/W")) return direct;
+    const token = extractWorkToken(paper?.paper_id || direct);
+    return token ? `https://openalex.org/${token}` : "";
+  };
+  const paperPreferredUrl = (paper) => {
+    const direct = String(paper?.url || "").trim();
+    return direct || paperOpenAlexUrl(paper);
+  };
+  const formatCitationCount = (value) => {
+    const count = safeNumber(value);
+    if (!count) return "";
+    return `${formatNumber(count)} citation${count === 1 ? "" : "s"}`;
+  };
+  const paperCitationLabel = (paper) => {
+    const label = String(paper?.citation_label || "").trim();
+    if (label) return label;
+    return paper?.year ? String(paper.year) : "Year unknown";
+  };
+  const renderPaperRow = (paper) => {
+    const title = String(paper?.title || "").trim();
+    if (!title) return "";
+    const citationLabel = paperCitationLabel(paper);
+    const journal = String(paper?.journal || "").trim();
+    const citationCount = formatCitationCount(paper?.citation_count);
+    const primaryUrl = paperPreferredUrl(paper);
+    const openalexUrl = paperOpenAlexUrl(paper);
+    const showOpenAlex = openalexUrl && openalexUrl !== primaryUrl;
+    const metaBits = [journal, citationCount].filter(Boolean);
+    return `
+      <article class="literature-paper-row" title="${escapeAttr(title)}">
+        <div class="literature-paper-copy">
+          <span class="tiny-label">${escapeHtml(citationLabel)}</span>
+          <strong class="literature-paper-title">${escapeHtml(title)}</strong>
+          ${
+            metaBits.length
+              ? `<div class="graph-question-meta graph-question-meta-tight literature-paper-meta">${metaBits
+                  .map((item) => `<span>${escapeHtml(item)}</span>`)
+                  .join("")}</div>`
+              : ""
+          }
+        </div>
+        <div class="literature-paper-links">
+          ${primaryUrl ? `<a class="literature-paper-link" href="${escapeAttr(primaryUrl)}" target="_blank" rel="noopener noreferrer">URL</a>` : ""}
+          ${showOpenAlex ? `<a class="literature-paper-link" href="${escapeAttr(openalexUrl)}" target="_blank" rel="noopener noreferrer">OpenAlex</a>` : ""}
+        </div>
+      </article>
+    `;
   };
   const buildSyntheticNode = (conceptId) => {
     const concept = conceptMap.get(conceptId);
@@ -730,11 +784,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const pathCount = safeNumber(item.supporting_path_count);
     const mediatorCount = safeNumber(item.mediator_count);
     if (pathCount > 0 && mediatorCount > 0) {
-      return `${formatNumber(pathCount)} nearby paths and ${formatNumber(mediatorCount)} intermediate topics already connect these two sides in the ${contextLabel}.`;
+      return `${formatNumber(pathCount)} nearby paths and ${formatNumber(mediatorCount)} intermediate topics already connect these two sides.`;
     }
-    if (pathCount > 0) return `${formatNumber(pathCount)} nearby paths already connect these two sides in the ${contextLabel}.`;
-    if (mediatorCount > 0) return `${formatNumber(mediatorCount)} intermediate topics already connect these two sides in the ${contextLabel}.`;
-    return `Nearby paths and papers already bring these two sides close together in the ${contextLabel}.`;
+    if (pathCount > 0) return `${formatNumber(pathCount)} nearby paths already connect these two sides.`;
+    if (mediatorCount > 0) return `${formatNumber(mediatorCount)} intermediate topics already connect these two sides.`;
+    return `Nearby paths and papers already bring these two sides close together.`;
   };
   const questionProjectShapeLabel = (item) => {
     if (safeNumber(item?.mediator_count) >= 6 || safeNumber(item?.supporting_path_count) >= 8 || safeNumber(item?.motif_count) >= 5) {
@@ -1509,12 +1563,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const dedupedPapers = [];
     const seen = new Set();
     for (const item of seedQuestions) {
-      const sourceQuestion = questionTitle(item);
       for (const paper of Array.isArray(item.representative_papers) ? item.representative_papers : []) {
         const key = `${paper.title || ""}::${paper.year || ""}`;
         if (!paper?.title || seen.has(key)) continue;
         seen.add(key);
-        dedupedPapers.push({ ...paper, sourceQuestion });
+        dedupedPapers.push({ ...paper });
         if (dedupedPapers.length >= 8) break;
       }
       if (dedupedPapers.length >= 8) break;
@@ -1646,18 +1699,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     detailSheetBody.innerHTML = papers.length
       ? `
         <div class="literature-detail-list literature-detail-paper-list">
-          ${papers
-            .map((paper) => `
-              <article class="literature-paper-card">
-                ${paper.sourceQuestion ? `<span class="tiny-label">${escapeHtml(paper.sourceQuestion)}</span>` : ""}
-                <strong>${escapeHtml(paper.title)}</strong>
-                <div class="graph-question-meta graph-question-meta-tight">
-                  <span>${paper.year ? escapeHtml(String(paper.year)) : "Year unknown"}</span>
-                  <span>${escapeHtml(paper.bucket || contextLabel)}</span>
-                </div>
-              </article>
-            `)
-            .join("")}
+          ${papers.map((paper) => renderPaperRow(paper)).join("")}
         </div>
       `
       : `<p class="card-copy">No paper previews were exported for this selection.</p>`;
@@ -1806,65 +1848,28 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
     const concept = selectedId ? conceptMap.get(selectedId) : null;
     if (!concept) {
-      selectedNeighborhood.innerHTML = `<p class="card-copy">Choose a topic to inspect its local neighborhood.</p>`;
+      selectedNeighborhood.innerHTML = `<p class="card-copy">Choose a topic to inspect this map.</p>`;
       return;
     }
 
-    const nearbyTopics = nearbyTopicItems();
-    const previewTopics = nearbyTopics.slice(0, PANEL_PREVIEW_LIMIT);
-
     selectedNeighborhood.innerHTML = `
-      <div class="literature-panel-stack">
-        <section class="question-detail-panel literature-compact-panel">
-          <h3>Local neighborhood</h3>
-          ${
-            previewTopics.length
-              ? `
-                <div class="graph-topic-chip-list">
-                  ${previewTopics
-                    .map((item) => {
-                      const neighbor = conceptMap.get(item.concept_id);
-                      const label = neighbor ? conceptTitle(neighbor) : item.label;
-                      return `
-                        <button class="topic-chip-button" type="button" data-neighbor-id="${escapeAttr(item.concept_id)}">
-                          <span>${escapeHtml(label)}</span>
-                          <small>${formatNumber(safeNumber(item.support_count))} papers</small>
-                        </button>
-                      `;
-                    })
-                    .join("")}
-                </div>
-                ${nearbyTopics.length > PANEL_PREVIEW_LIMIT ? `<button class="button-tertiary literature-sheet-button" type="button" data-open-sheet="topics">Open full topics</button>` : ""}
-              `
-              : `<p class="mini-copy">No nearby-topic summary was exported for this topic in the ${contextLabel}.</p>`
-          }
-        </section>
-
-        <section class="question-detail-panel literature-compact-panel">
-          <details class="literature-collapsible">
-            <summary>About this view</summary>
+      <section class="question-detail-panel literature-compact-panel">
+        <details class="literature-collapsible">
+          <summary>About this view</summary>
+          <div class="graph-question-meta">
+            <span>${formatNumber(safeNumber(concept.weighted_degree))} weighted links</span>
+            <span>${formatNumber(currentOpportunities.length)} nearby routes</span>
+            <span>${mapMode === "global" ? "Backbone view" : "Local view"}</span>
+          </div>
+          ${layerState.context ? `
             <div class="graph-question-meta">
-              <span>${formatNumber(safeNumber(concept.weighted_degree))} weighted links</span>
-              <span>${formatNumber(currentOpportunities.length)} nearby routes</span>
-              <span>${mapMode === "global" ? "Backbone view" : "Local view"}</span>
+              ${(concept.top_countries || []).slice(0, 3).map((value) => `<span>${escapeHtml(value)}</span>`).join("")}
+              ${(concept.top_units || []).slice(0, 3).map((value) => `<span>${escapeHtml(value)}</span>`).join("")}
             </div>
-            ${layerState.context ? `
-              <div class="graph-question-meta">
-                ${(concept.top_countries || []).slice(0, 3).map((value) => `<span>${escapeHtml(value)}</span>`).join("")}
-                ${(concept.top_units || []).slice(0, 3).map((value) => `<span>${escapeHtml(value)}</span>`).join("")}
-              </div>
-            ` : ""}
-          </details>
-        </section>
-      </div>
+          ` : ""}
+        </details>
+      </section>
     `;
-
-    for (const button of selectedNeighborhood.querySelectorAll("[data-neighbor-id]")) {
-      button.addEventListener("click", () => selectConcept(button.dataset.neighborId, { rebuildMap: true, switchToOverview: true }));
-    }
-    for (const button of selectedNeighborhood.querySelectorAll("[data-open-sheet]")) {
-      button.addEventListener("click", () => openDetailSheet(button.dataset.openSheet));
-    }
   };
 
   const renderPaths = () => {
@@ -1908,7 +1913,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
 
     if (!currentOpportunities.length) {
-      selectedQuestion.innerHTML = `<p class="card-copy">No path-style question candidate touching this topic is available in the ${contextLabel}.</p>`;
+      selectedQuestion.innerHTML = `<p class="card-copy">No nearby path candidates are available for this topic.</p>`;
       selectedOpportunities.innerHTML = "";
       return;
     }
@@ -2017,21 +2022,15 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const selectedEdge = currentVisibleEdge();
     const papers = paperPreviewItems();
     if (selectedEdge) {
-      selectedPapers.innerHTML = papers.length
-        ? `
-          <div class="literature-panel-stack">
-            <div class="inspector-head literature-compact-head">
-              <h3>Anchor papers</h3>
-            </div>
-            ${papers.slice(0, PANEL_PREVIEW_LIMIT).map((paper) => `
-              <article class="literature-paper-card">
-                <strong>${escapeHtml(paper.title)}</strong>
-                <div class="graph-question-meta graph-question-meta-tight">
-                  <span>${paper.year ? escapeHtml(String(paper.year)) : "Year unknown"}</span>
-                  <span>${escapeHtml(paper.bucket || contextLabel)}</span>
-                </div>
-              </article>
-            `).join("")}
+    selectedPapers.innerHTML = papers.length
+      ? `
+        <div class="literature-panel-stack">
+          <div class="inspector-head literature-compact-head">
+            <h3>Anchor papers</h3>
+          </div>
+          <div class="literature-paper-stack">
+            ${papers.slice(0, PANEL_PREVIEW_LIMIT).map((paper) => renderPaperRow(paper)).join("")}
+          </div>
             ${papers.length > PANEL_PREVIEW_LIMIT ? `<button class="button-tertiary literature-sheet-button" type="button" data-open-sheet="papers">Open full papers</button>` : ""}
           </div>
         `
@@ -2054,26 +2053,12 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
             <h3>Anchor papers</h3>
           </div>
           <div class="literature-paper-stack">
-            ${papers
-              .slice(0, PANEL_PREVIEW_LIMIT)
-              .map(
-                (paper) => `
-                  <article class="literature-paper-card">
-                    <span class="tiny-label">${escapeHtml(paper.sourceQuestion)}</span>
-                    <strong>${escapeHtml(paper.title)}</strong>
-                    <div class="graph-question-meta graph-question-meta-tight">
-                      <span>${paper.year ? escapeHtml(String(paper.year)) : "Year unknown"}</span>
-                      <span>${escapeHtml(contextLabel)}</span>
-                    </div>
-                  </article>
-                `,
-              )
-              .join("")}
+            ${papers.slice(0, PANEL_PREVIEW_LIMIT).map((paper) => renderPaperRow(paper)).join("")}
           </div>
           ${papers.length > PANEL_PREVIEW_LIMIT ? `<button class="button-tertiary literature-sheet-button" type="button" data-open-sheet="papers">Open full papers</button>` : ""}
         </div>
       `
-      : `<p class="card-copy">No paper previews were exported for this topic in the ${contextLabel}.</p>`;
+      : `<p class="card-copy">No paper previews were exported for this topic.</p>`;
     for (const button of selectedPapers.querySelectorAll("[data-open-sheet]")) {
       button.addEventListener("click", () => openDetailSheet(button.dataset.openSheet));
     }
@@ -2404,7 +2389,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         showTooltip(event, `
           <strong>${escapeHtml(node.plain_label || node.label)}</strong><br />
           ${node.subtitle ? `${escapeHtml(node.subtitle)}<br />` : ""}
-          <span>${formatNumber(context.paperSupport)} papers in the ${contextLabel}.</span><br />
+          <span>${formatNumber(context.paperSupport)} papers in this map.</span><br />
           <span>${formatNumber(context.neighborCount)} nearby links in this released view.</span><br />
           <span>${escapeHtml(backboneDetail)}</span><br />
           ${entityTags.length ? `<span>${escapeHtml(entityTags.join(" · "))}</span><br />` : ""}

@@ -48,7 +48,18 @@
         "edge_src": "FG3C000208",
         "edge_dst": "FG3C000006",
         "edge_src_display_label": "public debt",
-        "edge_dst_display_label": "financial development"
+        "edge_dst_display_label": "financial development",
+        "authors": [
+          "Duan Chengyonghui",
+          "Soh Wei Ni",
+          "Tze San Ong",
+          "Norhuda BT Abdul Rahim"
+        ],
+        "citation_label": "Chengyonghui et al. (2023)",
+        "journal": "Resources Policy",
+        "citation_count": 0,
+        "openalex_url": "https://openalex.org/W4387030205",
+        "url": "https://doi.org/10.1016/j.resourpol.2023.104192"
       },
       {
         "paper_id": "W3130642389__gpt5mini_low",
@@ -57,7 +68,17 @@
         "edge_src": "FG3C000208",
         "edge_dst": "FG3C000018",
         "edge_src_display_label": "public debt",
-        "edge_dst_display_label": "renewable energy consumption"
+        "edge_dst_display_label": "renewable energy consumption",
+        "authors": [
+          "Ali Hashemizadeh",
+          "Quocviet Bui",
+          "Nattapan Kongbuamai"
+        ],
+        "citation_label": "Hashemizadeh et al. (2021)",
+        "journal": "Energy",
+        "citation_count": 69,
+        "openalex_url": "https://openalex.org/W3130642389",
+        "url": "https://doi.org/10.1016/j.energy.2021.120187"
       },
       {
         "paper_id": "W2018005751__gpt5mini_low",
@@ -66,7 +87,15 @@
         "edge_src": "FG3C000208",
         "edge_dst": "FG3C000006",
         "edge_src_display_label": "public debt",
-        "edge_dst_display_label": "financial development"
+        "edge_dst_display_label": "financial development",
+        "authors": [
+          "David Hauner"
+        ],
+        "citation_label": "Hauner (2008)",
+        "journal": "Journal of Development Economics",
+        "citation_count": 123,
+        "openalex_url": "https://openalex.org/W2018005751",
+        "url": "https://doi.org/10.1016/j.jdeveco.2008.02.004"
       }
     ],
     "question_family": "debt-climate",
@@ -163,12 +192,22 @@
     "representative_papers": [
       {
         "paper_id": "W4378895327__gpt5mini_low",
-        "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+        "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
         "year": 2023,
         "edge_src": "FG3C000012",
         "edge_dst": "FG3C000173",
         "edge_src_display_label": "urbanization",
-        "edge_dst_display_label": "energy use"
+        "edge_dst_display_label": "energy use",
+        "authors": [
+          "Ramesh Chandra Das",
+          "Tonmoy Chatterjee",
+          "Enrico Ivaldi"
+        ],
+        "citation_label": "Das et al. (2023)",
+        "journal": "Ecological Indicators",
+        "citation_count": 9,
+        "openalex_url": "https://openalex.org/W4378895327",
+        "url": "https://doi.org/10.1016/j.ecolind.2023.110381"
       },
       {
         "paper_id": "W4402599747__gpt5mini_low",
@@ -177,7 +216,17 @@
         "edge_src": "FG3C000012",
         "edge_dst": "FG3C000014",
         "edge_src_display_label": "urbanization",
-        "edge_dst_display_label": "energy consumption"
+        "edge_dst_display_label": "energy consumption",
+        "authors": [
+          "Tithy Dev",
+          "Morteza Haghiri",
+          "Gabriela Sabau"
+        ],
+        "citation_label": "Dev et al. (2024)",
+        "journal": "Sustainability",
+        "citation_count": 8,
+        "openalex_url": "https://openalex.org/W4402599747",
+        "url": "https://doi.org/10.3390/su16188141"
       },
       {
         "paper_id": "W1986959413__gpt5mini_low",
@@ -186,7 +235,16 @@
         "edge_src": "FG3C000173",
         "edge_dst": "FG3C000110",
         "edge_src_display_label": "energy use",
-        "edge_dst_display_label": "output growth"
+        "edge_dst_display_label": "output growth",
+        "authors": [
+          "Khalifa H. Ghali",
+          "Mohammed El-Sakka"
+        ],
+        "citation_label": "Ghali and El-Sakka (2003)",
+        "journal": "Energy Economics",
+        "citation_count": 599,
+        "openalex_url": "https://openalex.org/W1986959413",
+        "url": "https://doi.org/10.1016/s0140-9883(03)00056-2"
       }
     ],
     "question_family": "urban-growth",
@@ -288,7 +346,16 @@
         "edge_src": "FG3C000025",
         "edge_dst": "FG3C000014",
         "edge_src_display_label": "income inequality",
-        "edge_dst_display_label": "energy consumption"
+        "edge_dst_display_label": "energy consumption",
+        "authors": [
+          "Lamia Beldi",
+          "Tarek Ghazouani"
+        ],
+        "citation_label": "Beldi and Ghazouani (2024)",
+        "journal": "Natural Resources Forum",
+        "citation_count": 15,
+        "openalex_url": "https://openalex.org/W4392592084",
+        "url": "https://doi.org/10.1111/1477-8947.12451"
       },
       {
         "paper_id": "W2029680849__gpt5mini_low",
@@ -297,7 +364,16 @@
         "edge_src": "FG3C000011",
         "edge_dst": "FG3C000014",
         "edge_src_display_label": "output",
-        "edge_dst_display_label": "energy consumption"
+        "edge_dst_display_label": "energy consumption",
+        "authors": [
+          "Hassan Mohammadi",
+          "Shahrokh Parvaresh"
+        ],
+        "citation_label": "Mohammadi and Parvaresh (2013)",
+        "journal": "Energy Economics",
+        "citation_count": 75,
+        "openalex_url": "https://openalex.org/W2029680849",
+        "url": "https://doi.org/10.1016/j.eneco.2013.11.002"
       },
       {
         "paper_id": "W4414569316__gpt5mini_low",
@@ -306,7 +382,16 @@
         "edge_src": "FG3C000024",
         "edge_dst": "FG3C000025",
         "edge_src_display_label": "monetary policy",
-        "edge_dst_display_label": "income inequality"
+        "edge_dst_display_label": "income inequality",
+        "authors": [
+          "Samantha Coccia",
+          "Alberto Russo"
+        ],
+        "citation_label": "Coccia and Russo (2025)",
+        "journal": "Economic Modelling",
+        "citation_count": 1,
+        "openalex_url": "https://openalex.org/W4414569316",
+        "url": "https://doi.org/10.1016/j.econmod.2025.107316"
       }
     ],
     "question_family": "monetary-energy",
@@ -408,7 +493,17 @@
         "edge_src": "FG3C000013",
         "edge_dst": "FG3C000010",
         "edge_src_display_label": "technological innovation",
-        "edge_dst_display_label": "carbon emissions"
+        "edge_dst_display_label": "carbon emissions",
+        "authors": [
+          "Xiaoyu Fang",
+          "Lin Ding",
+          "Meng Gao"
+        ],
+        "citation_label": "Fang et al. (2025)",
+        "journal": "Sustainability",
+        "citation_count": 4,
+        "openalex_url": "https://openalex.org/W4409293498",
+        "url": "https://doi.org/10.3390/su17083344"
       },
       {
         "paper_id": "W7125495636__gpt5mini_low",
@@ -417,7 +512,18 @@
         "edge_src": "FG3C000001",
         "edge_dst": "FG3C000010",
         "edge_src_display_label": "economic growth",
-        "edge_dst_display_label": "carbon emissions"
+        "edge_dst_display_label": "carbon emissions",
+        "authors": [
+          "Fatma Türüç",
+          "Ata Pervar",
+          "Süheyla Üçışık-Erbilen",
+          "Mehdi Seraj"
+        ],
+        "citation_label": "Türüç et al. (2026)",
+        "journal": "Sustainability",
+        "citation_count": 0,
+        "openalex_url": "https://openalex.org/W7125495636",
+        "url": "https://doi.org/10.3390/su18021127"
       },
       {
         "paper_id": "W4393989550__gpt5mini_low",
@@ -426,7 +532,17 @@
         "edge_src": "FG3C000026",
         "edge_dst": "FG3C000010",
         "edge_src_display_label": "economic development",
-        "edge_dst_display_label": "carbon emissions"
+        "edge_dst_display_label": "carbon emissions",
+        "authors": [
+          "Qiang Wang",
+          "Siqi Zhang",
+          "Rongrong Li"
+        ],
+        "citation_label": "Wang et al. (2024)",
+        "journal": "Energy & Environment",
+        "citation_count": 4,
+        "openalex_url": "https://openalex.org/W4393989550",
+        "url": "https://doi.org/10.1177/0958305x241230623"
       }
     ],
     "question_family": "investment-climate",
@@ -526,7 +642,16 @@
         "edge_src": "FG3C001221",
         "edge_dst": "FG3C000001",
         "edge_src_display_label": "trade liberalisation",
-        "edge_dst_display_label": "economic growth"
+        "edge_dst_display_label": "economic growth",
+        "authors": [
+          "Farai Manwa",
+          "Albert Wijeweera"
+        ],
+        "citation_label": "Manwa and Wijeweera (2016)",
+        "journal": "Economic Analysis and Policy",
+        "citation_count": 39,
+        "openalex_url": "https://openalex.org/W2347056154",
+        "url": "https://doi.org/10.1016/j.eap.2016.05.001"
       },
       {
         "paper_id": "W4400358233__gpt5mini_low",
@@ -535,7 +660,17 @@
         "edge_src": "FG3C000001",
         "edge_dst": "FG3C000014",
         "edge_src_display_label": "economic growth",
-        "edge_dst_display_label": "energy consumption"
+        "edge_dst_display_label": "energy consumption",
+        "authors": [
+          "Okyay Uçan",
+          "Ecem Turgut",
+          "Ayberk Nuri Berkman"
+        ],
+        "citation_label": "Uçan et al. (2024)",
+        "journal": "Journal of the Knowledge Economy",
+        "citation_count": 5,
+        "openalex_url": "https://openalex.org/W4400358233",
+        "url": "https://doi.org/10.1007/s13132-024-02137-y"
       },
       {
         "paper_id": "W4393851717__gpt5mini_low",
@@ -544,7 +679,17 @@
         "edge_src": "FG3C000001",
         "edge_dst": "FG3C000014",
         "edge_src_display_label": "economic growth",
-        "edge_dst_display_label": "energy consumption"
+        "edge_dst_display_label": "energy consumption",
+        "authors": [
+          "Mohsen Khezri",
+          "Jamal Mamkhezri",
+          "Almas Heshmati"
+        ],
+        "citation_label": "Khezri et al. (2024)",
+        "journal": "Energy Economics",
+        "citation_count": 13,
+        "openalex_url": "https://openalex.org/W4393851717",
+        "url": "https://doi.org/10.1016/j.eneco.2024.107519"
       }
     ],
     "question_family": "trade-energy",
@@ -645,7 +790,16 @@
         "edge_src": "FG3C000053",
         "edge_dst": "FG3C000018",
         "edge_src_display_label": "green innovation",
-        "edge_dst_display_label": "renewable energy consumption"
+        "edge_dst_display_label": "renewable energy consumption",
+        "authors": [
+          "Mücahit Aydın",
+          "Oğuzhan Bozatli"
+        ],
+        "citation_label": "Aydın and Bozatli (2023)",
+        "journal": "Energy",
+        "citation_count": 35,
+        "openalex_url": "https://openalex.org/W4381621026",
+        "url": "https://doi.org/10.1016/j.energy.2023.128105"
       },
       {
         "paper_id": "W4415370404__gpt5mini_low",
@@ -654,7 +808,18 @@
         "edge_src": "FG3C000053",
         "edge_dst": "FG3C000267",
         "edge_src_display_label": "green innovation",
-        "edge_dst_display_label": "energy transition"
+        "edge_dst_display_label": "energy transition",
+        "authors": [
+          "Salem Younes",
+          "Muri Wole Adedokun",
+          "Ahmad Alzubi",
+          "Hasan Yousef Aljuhmani"
+        ],
+        "citation_label": "Younes et al. (2025)",
+        "journal": "Sustainability",
+        "citation_count": 4,
+        "openalex_url": "https://openalex.org/W4415370404",
+        "url": "https://doi.org/10.3390/su17209249"
       },
       {
         "paper_id": "W4410436254__gpt5mini_low",
@@ -663,7 +828,19 @@
         "edge_src": "FG3C000053",
         "edge_dst": "FG3C000249",
         "edge_src_display_label": "green innovation",
-        "edge_dst_display_label": "natural resource rents"
+        "edge_dst_display_label": "natural resource rents",
+        "authors": [
+          "Abul Hassan",
+          "Ridwan Lanre Ibrahim",
+          "Lukman Raimi",
+          "Olatunde Julius Omokanmi",
+          "Abdul Rahman bin S Senathirajah"
+        ],
+        "citation_label": "Hassan et al. (2025)",
+        "journal": "Sustainability",
+        "citation_count": 13,
+        "openalex_url": "https://openalex.org/W4410436254",
+        "url": "https://doi.org/10.3390/su17104579"
       }
     ],
     "question_family": "innovation-environment",
@@ -753,21 +930,41 @@
     "representative_papers": [
       {
         "paper_id": "W2534466090__gpt5mini_low",
-        "title": "The UK productivity puzzle, 2008\u20132012: evidence using plant-level estimates of total factor productivity",
+        "title": "The UK productivity puzzle, 2008–2012: evidence using plant-level estimates of total factor productivity",
         "year": 2016,
         "edge_src": "FG3C002284",
         "edge_dst": "FG3C000061",
         "edge_src_display_label": "firm total factor productivity (TFP)",
-        "edge_dst_display_label": "total factor productivity (TFP)"
+        "edge_dst_display_label": "total factor productivity (TFP)",
+        "authors": [
+          "Richard Harris",
+          "John Moffat"
+        ],
+        "citation_label": "Harris and Moffat (2016)",
+        "journal": "Oxford Economic Papers",
+        "citation_count": 27,
+        "openalex_url": "https://openalex.org/W2534466090",
+        "url": "https://doi.org/10.1093/oep/gpw057"
       },
       {
         "paper_id": "W4412017035__gpt5mini_low",
-        "title": "Green Innovation, Export Synergy, and Total Factor Productivity: Evidence from China\u2019s Marine Enterprises",
+        "title": "Green Innovation, Export Synergy, and Total Factor Productivity: Evidence from China’s Marine Enterprises",
         "year": 2025,
         "edge_src": "FG3C000181",
         "edge_dst": "FG3C000061",
         "edge_src_display_label": "state-owned enterprises",
-        "edge_dst_display_label": "total factor productivity (TFP)"
+        "edge_dst_display_label": "total factor productivity (TFP)",
+        "authors": [
+          "Peng Tian",
+          "Haofeng Sun",
+          "Yang Yang",
+          "Xu‐Guang Guo"
+        ],
+        "citation_label": "Tian et al. (2025)",
+        "journal": "Sustainability",
+        "citation_count": 1,
+        "openalex_url": "https://openalex.org/W4412017035",
+        "url": "https://doi.org/10.3390/su17136140"
       },
       {
         "paper_id": "W4377091670__gpt5mini_low",
@@ -776,7 +973,17 @@
         "edge_src": "FG3C001431",
         "edge_dst": "FG3C000053",
         "edge_src_display_label": "green credit policy",
-        "edge_dst_display_label": "green innovation"
+        "edge_dst_display_label": "green innovation",
+        "authors": [
+          "Zhiliang Xu",
+          "Changxin Xu",
+          "Yun Li"
+        ],
+        "citation_label": "Xu et al. (2023)",
+        "journal": "Sustainability",
+        "citation_count": 3,
+        "openalex_url": "https://openalex.org/W4377091670",
+        "url": "https://doi.org/10.3390/su15108290"
       }
     ],
     "question_family": "green-credit-policy-total-factor-productivity",
@@ -872,7 +1079,17 @@
         "edge_src": "FG3C000098",
         "edge_dst": "FG3C001452",
         "edge_src_display_label": "per capita income",
-        "edge_dst_display_label": "catastrophic health expenditures"
+        "edge_dst_display_label": "catastrophic health expenditures",
+        "authors": [
+          "Zhonghua Wang",
+          "Xiangjun Li",
+          "Mingsheng Chen"
+        ],
+        "citation_label": "Wang et al. (2015)",
+        "journal": "International Journal for Equity in Health",
+        "citation_count": 162,
+        "openalex_url": "https://openalex.org/W2100111087",
+        "url": "https://doi.org/10.1186/s12939-015-0134-6"
       },
       {
         "paper_id": "W4214722161__gpt5mini_low",
@@ -881,7 +1098,16 @@
         "edge_src": "FG3C000612",
         "edge_dst": "FG3C001452",
         "edge_src_display_label": "household size",
-        "edge_dst_display_label": "catastrophic health expenditures"
+        "edge_dst_display_label": "catastrophic health expenditures",
+        "authors": [
+          "Muaz Sayuti",
+          "Surianti Sukeri"
+        ],
+        "citation_label": "Sayuti and Sukeri (2022)",
+        "journal": "PLoS ONE",
+        "citation_count": 8,
+        "openalex_url": "https://openalex.org/W4214722161",
+        "url": "https://doi.org/10.1371/journal.pone.0264422"
       },
       {
         "paper_id": "W2978899606__gpt5mini_low",
@@ -890,7 +1116,16 @@
         "edge_src": "FG3C000012",
         "edge_dst": "FG3C000098",
         "edge_src_display_label": "urbanization",
-        "edge_dst_display_label": "per capita income"
+        "edge_dst_display_label": "per capita income",
+        "authors": [
+          "Anowara Khanam",
+          "Md. Shariful Islam"
+        ],
+        "citation_label": "Khanam and Islam (2019)",
+        "journal": "The Journal of Business",
+        "citation_count": 0,
+        "openalex_url": "https://openalex.org/W2978899606",
+        "url": "https://journalofbusiness.us/index.php/site/article/download/122/40"
       }
     ],
     "question_family": "urban-health-spending",
@@ -991,7 +1226,15 @@
         "edge_src": "FG3C000024",
         "edge_dst": "FG3C000028",
         "edge_src_display_label": "monetary policy",
-        "edge_dst_display_label": "prices"
+        "edge_dst_display_label": "prices",
+        "authors": [
+          "Martha Starr"
+        ],
+        "citation_label": "Starr (2005)",
+        "journal": "Journal of Comparative Economics",
+        "citation_count": 89,
+        "openalex_url": "https://openalex.org/W2026422102",
+        "url": "https://doi.org/10.1016/j.jce.2005.05.006"
       },
       {
         "paper_id": "W4400119938__gpt5mini_low",
@@ -1000,7 +1243,18 @@
         "edge_src": "FG3C000024",
         "edge_dst": "FG3C000008",
         "edge_src_display_label": "monetary policy",
-        "edge_dst_display_label": "income"
+        "edge_dst_display_label": "income",
+        "authors": [
+          "Miguel Ampudia",
+          "Russell Cooper",
+          "Julia Le Blanc",
+          "Guozhong Zhu"
+        ],
+        "citation_label": "Ampudia et al. (2024)",
+        "journal": "American Economic Journal Macroeconomics",
+        "citation_count": 5,
+        "openalex_url": "https://openalex.org/W4400119938",
+        "url": "https://doi.org/10.1257/mac.20210277"
       },
       {
         "paper_id": "W2107710318__gpt5mini_low",
@@ -1009,7 +1263,15 @@
         "edge_src": "FG3C000024",
         "edge_dst": "FG3C000027",
         "edge_src_display_label": "monetary policy",
-        "edge_dst_display_label": "interest rates"
+        "edge_dst_display_label": "interest rates",
+        "authors": [
+          "Stephen D. Williamson"
+        ],
+        "citation_label": "Williamson (2008)",
+        "journal": "Journal of Monetary Economics",
+        "citation_count": 90,
+        "openalex_url": "https://openalex.org/W2107710318",
+        "url": "https://doi.org/10.1016/j.jmoneco.2008.07.001"
       }
     ],
     "question_family": "monetary-demand",
@@ -1109,7 +1371,16 @@
         "edge_src": "FG3C000038",
         "edge_dst": "FG3C000021",
         "edge_src_display_label": "energy efficiency",
-        "edge_dst_display_label": "productivity"
+        "edge_dst_display_label": "productivity",
+        "authors": [
+          "Pierluigi Montalbano",
+          "Silvia Nenci"
+        ],
+        "citation_label": "Montalbano and Nenci (2018)",
+        "journal": "Energy Economics",
+        "citation_count": 84,
+        "openalex_url": "https://openalex.org/W2795275313",
+        "url": "https://doi.org/10.1016/j.eneco.2018.03.033"
       },
       {
         "paper_id": "W4367052915__gpt5mini_low",
@@ -1118,7 +1389,17 @@
         "edge_src": "FG3C000046",
         "edge_dst": "FG3C000021",
         "edge_src_display_label": "exports",
-        "edge_dst_display_label": "productivity"
+        "edge_dst_display_label": "productivity",
+        "authors": [
+          "Saša Petković",
+          "Jelica Rastoka",
+          "Dragana Radičić"
+        ],
+        "citation_label": "Petković et al. (2023)",
+        "journal": "Sustainability",
+        "citation_count": 1,
+        "openalex_url": "https://openalex.org/W4367052915",
+        "url": "https://doi.org/10.3390/su15097174"
       },
       {
         "paper_id": "W4389342597__gpt5mini_low",
@@ -1127,7 +1408,16 @@
         "edge_src": "FG3C000053",
         "edge_dst": "FG3C000015",
         "edge_src_display_label": "green innovation",
-        "edge_dst_display_label": "foreign direct investments"
+        "edge_dst_display_label": "foreign direct investments",
+        "authors": [
+          "Lakshmana Padhan",
+          "Savita Bhat"
+        ],
+        "citation_label": "Padhan and Bhat (2023)",
+        "journal": "Management of Environmental Quality An International Journal",
+        "citation_count": 5,
+        "openalex_url": "https://openalex.org/W4389342597",
+        "url": "https://doi.org/10.1108/meq-07-2023-0204"
       }
     ],
     "question_family": "innovation-productivity",
@@ -1227,7 +1517,16 @@
         "edge_src": "FG3C000046",
         "edge_dst": "FG3C000014",
         "edge_src_display_label": "exports",
-        "edge_dst_display_label": "energy consumption"
+        "edge_dst_display_label": "energy consumption",
+        "authors": [
+          "Chamil W. Senarathne",
+          "Prabhath Jayasinghe"
+        ],
+        "citation_label": "Senarathne and Jayasinghe (2021)",
+        "journal": "International Journal of Energy Sector Management",
+        "citation_count": 5,
+        "openalex_url": "https://openalex.org/W3190922725",
+        "url": "https://doi.org/10.1108/ijesm-11-2020-0001"
       },
       {
         "paper_id": "W4387365162__gpt5mini_low",
@@ -1236,7 +1535,16 @@
         "edge_src": "FG3C000012",
         "edge_dst": "FG3C000203",
         "edge_src_display_label": "urbanization",
-        "edge_dst_display_label": "environmental pollution"
+        "edge_dst_display_label": "environmental pollution",
+        "authors": [
+          "Xu Shiping",
+          "Lili Wang"
+        ],
+        "citation_label": "Shiping and Wang (2023)",
+        "journal": "Sustainability",
+        "citation_count": 0,
+        "openalex_url": "https://openalex.org/W4387365162",
+        "url": "https://doi.org/10.3390/su151914492"
       },
       {
         "paper_id": "W4378648078__gpt5mini_low",
@@ -1245,7 +1553,21 @@
         "edge_src": "FG3C000014",
         "edge_dst": "FG3C000203",
         "edge_src_display_label": "energy consumption",
-        "edge_dst_display_label": "environmental pollution"
+        "edge_dst_display_label": "environmental pollution",
+        "authors": [
+          "Fredrick Oteng Agyeman",
+          "Emmanuel Adu Gyamfi Kedjanyi",
+          "Agyemang Akwasi Sampene",
+          "Malcom Frimpong Dapaah",
+          "Abdul Razak Monto",
+          "Paul Buabeng",
+          "Guy Carlos Guimatsie Samekong"
+        ],
+        "citation_label": "Agyeman et al. (2023)",
+        "journal": "Heliyon",
+        "citation_count": 16,
+        "openalex_url": "https://openalex.org/W4378648078",
+        "url": "https://doi.org/10.1016/j.heliyon.2023.e16423"
       }
     ],
     "question_family": "trade-environment",
@@ -1340,16 +1662,38 @@
         "edge_src": "FG3C000083",
         "edge_dst": "FG3C000149",
         "edge_src_display_label": "trade liberalization",
-        "edge_dst_display_label": "poverty"
+        "edge_dst_display_label": "poverty",
+        "authors": [
+          "L. Alan Winters",
+          "Neil McCulloch",
+          "Andy McKay"
+        ],
+        "citation_label": "Winters et al. (2004)",
+        "journal": "Journal of Economic Literature",
+        "citation_count": 1040,
+        "openalex_url": "https://openalex.org/W1977162143",
+        "url": "https://doi.org/10.1257/002205104773558056"
       },
       {
         "paper_id": "W2092083630__gpt5mini_low",
-        "title": "Short\u2010 versus Long\u2010Run Implications of Trade Liberalization for Poverty in Three Developing Countries",
+        "title": "Short‐ versus Long‐Run Implications of Trade Liberalization for Poverty in Three Developing Countries",
         "year": 2003,
         "edge_src": "FG3C000083",
         "edge_dst": "FG3C000149",
         "edge_src_display_label": "trade liberalization",
-        "edge_dst_display_label": "poverty"
+        "edge_dst_display_label": "poverty",
+        "authors": [
+          "Thomas W. Hertel",
+          "Maros Ivanic",
+          "Paul V. Preckel",
+          "John Cranfield",
+          "Will Martín"
+        ],
+        "citation_label": "Hertel et al. (2003)",
+        "journal": "American Journal of Agricultural Economics",
+        "citation_count": 18,
+        "openalex_url": "https://openalex.org/W2092083630",
+        "url": "https://doi.org/10.1111/j.0092-5853.2003.00546.x"
       },
       {
         "paper_id": "W3107215790__gpt5mini_low",
@@ -1358,7 +1702,18 @@
         "edge_src": "FG3C005728",
         "edge_dst": "FG3C001452",
         "edge_src_display_label": "poor countries",
-        "edge_dst_display_label": "catastrophic health expenditures"
+        "edge_dst_display_label": "catastrophic health expenditures",
+        "authors": [
+          "Shiai Liu",
+          "Peter C. Coyte",
+          "Mingqi Fu",
+          "Qilin Zhang"
+        ],
+        "citation_label": "Liu et al. (2021)",
+        "journal": "International Journal for Equity in Health",
+        "citation_count": 25,
+        "openalex_url": "https://openalex.org/W3107215790",
+        "url": "https://doi.org/10.1186/s12939-020-01336-8"
       }
     ],
     "question_family": "trade-health-spending",

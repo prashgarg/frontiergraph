@@ -49,7 +49,16 @@
           "edge_src": "FG3C004114",
           "edge_dst": "FG3C006644",
           "edge_src_display_label": "estimation",
-          "edge_dst_display_label": "Method of Moments Quantile Regression (MMQR)"
+          "edge_dst_display_label": "Method of Moments Quantile Regression (MMQR)",
+          "authors": [
+            "Oliver Linton",
+            "Zhijie Xiao"
+          ],
+          "citation_label": "Linton and Xiao (2019)",
+          "journal": "Journal of Econometrics",
+          "citation_count": 11,
+          "openalex_url": "https://openalex.org/W3122236037",
+          "url": "https://doi.org/10.1016/j.jeconom.2019.01.016"
         },
         {
           "paper_id": "W2962853992__gpt5mini_low",
@@ -58,7 +67,17 @@
           "edge_src": "FG3C004114",
           "edge_dst": "FG3C006644",
           "edge_src_display_label": "estimation",
-          "edge_dst_display_label": "Method of Moments Quantile Regression (MMQR)"
+          "edge_dst_display_label": "Method of Moments Quantile Regression (MMQR)",
+          "authors": [
+            "Shaojun Guo",
+            "Dong Li",
+            "Muyi Li"
+          ],
+          "citation_label": "Guo et al. (2019)",
+          "journal": "Journal of Econometrics",
+          "citation_count": 9,
+          "openalex_url": "https://openalex.org/W2962853992",
+          "url": "https://doi.org/10.1016/j.jeconom.2019.01.012"
         },
         {
           "paper_id": "W3143623336__gpt5mini_low",
@@ -67,7 +86,16 @@
           "edge_src": "FG3C004736",
           "edge_dst": "FG3C006644",
           "edge_src_display_label": "econometrics",
-          "edge_dst_display_label": "Method of Moments Quantile Regression (MMQR)"
+          "edge_dst_display_label": "Method of Moments Quantile Regression (MMQR)",
+          "authors": [
+            "Alexander J. McNeil",
+            "Herman J. Bierens"
+          ],
+          "citation_label": "McNeil and Bierens (1997)",
+          "journal": "Journal of the American Statistical Association",
+          "citation_count": 3,
+          "openalex_url": "https://openalex.org/W3143623336",
+          "url": "https://doi.org/10.2307/2965455"
         }
       ],
       "question_family": "econometric-methods-method-of-moments-quantile-regression",
@@ -150,7 +178,17 @@
           "edge_src": "FG3C006539",
           "edge_dst": "FG3C000096",
           "edge_src_display_label": "Real Estate Investment Trusts (REITs)",
-          "edge_dst_display_label": "stock prices"
+          "edge_dst_display_label": "stock prices",
+          "authors": [
+            "Chien‐Chiang Lee",
+            "Mei-Se Chien",
+            "Tsoyu Calvin Lin"
+          ],
+          "citation_label": "Lee et al. (2011)",
+          "journal": "Economic Modelling",
+          "citation_count": 23,
+          "openalex_url": "https://openalex.org/W2137344318",
+          "url": "https://doi.org/10.1016/j.econmod.2011.11.008"
         },
         {
           "paper_id": "W4385128147__gpt5mini_low",
@@ -159,7 +197,16 @@
           "edge_src": "FG3C001165",
           "edge_dst": "FG3C000019",
           "edge_src_display_label": "cash flow",
-          "edge_dst_display_label": "investment"
+          "edge_dst_display_label": "investment",
+          "authors": [
+            "Natalia Restrepo",
+            "Jorge M. Uribe"
+          ],
+          "citation_label": "Restrepo and Uribe (2023)",
+          "journal": "Energy Policy",
+          "citation_count": 5,
+          "openalex_url": "https://openalex.org/W4385128147",
+          "url": "https://doi.org/10.1016/j.enpol.2023.113720"
         },
         {
           "paper_id": "W2952319437__gpt5mini_low",
@@ -168,7 +215,15 @@
           "edge_src": "FG3C001165",
           "edge_dst": "FG3C000019",
           "edge_src_display_label": "cash flow",
-          "edge_dst_display_label": "investment"
+          "edge_dst_display_label": "investment",
+          "authors": [
+            "Fabio Verona"
+          ],
+          "citation_label": "Verona (2019)",
+          "journal": "Oxford Bulletin of Economics and Statistics",
+          "citation_count": 30,
+          "openalex_url": "https://openalex.org/W2952319437",
+          "url": "https://doi.org/10.1111/obes.12321"
         }
       ],
       "question_family": "real-estate-investment-trusts-investment",
@@ -218,7 +273,7 @@
       "display_refinement_confidence": 0.0,
       "source_alternate_display_labels": [
         "hires",
-        "matched employer\u2013employee data",
+        "matched employer–employee data",
         "establishment-level data"
       ],
       "target_alternate_display_labels": [
@@ -252,7 +307,15 @@
           "edge_src": "FG3C001007",
           "edge_dst": "FG3C000009",
           "edge_src_display_label": "wage",
-          "edge_dst_display_label": "unemployment"
+          "edge_dst_display_label": "unemployment",
+          "authors": [
+            "Engelbert Stockhammer"
+          ],
+          "citation_label": "Stockhammer (2011)",
+          "journal": "Oxford Review of Economic Policy",
+          "citation_count": 44,
+          "openalex_url": "https://openalex.org/W1899443305",
+          "url": "https://doi.org/10.1093/oxrep/grr013"
         },
         {
           "paper_id": "W2053504648__gpt5mini_low",
@@ -261,7 +324,17 @@
           "edge_src": "FG3C005801",
           "edge_dst": "FG3C001007",
           "edge_src_display_label": "employer size",
-          "edge_dst_display_label": "wage"
+          "edge_dst_display_label": "wage",
+          "authors": [
+            "Murray C. Kemp",
+            "Daniel Léonard",
+            "Ngo Van Long"
+          ],
+          "citation_label": "Kemp et al. (1987)",
+          "journal": "European Economic Review",
+          "citation_count": 5,
+          "openalex_url": "https://openalex.org/W2053504648",
+          "url": "https://doi.org/10.1016/s0014-2921(87)80006-5"
         },
         {
           "paper_id": "W1998904100__gpt5mini_low",
@@ -270,7 +343,15 @@
           "edge_src": "FG3C005801",
           "edge_dst": "FG3C000022",
           "edge_src_display_label": "employer size",
-          "edge_dst_display_label": "wages"
+          "edge_dst_display_label": "wages",
+          "authors": [
+            "Uwe Jirjahn"
+          ],
+          "citation_label": "Jirjahn (2004)",
+          "journal": "Cambridge Journal of Economics",
+          "citation_count": 75,
+          "openalex_url": "https://openalex.org/W1998904100",
+          "url": "https://doi.org/10.1093/cje/beh027"
         }
       ],
       "question_family": "employer-size-unemployment",
@@ -318,7 +399,7 @@
       "display_refinement_confidence": 0.0,
       "source_alternate_display_labels": [
         "hires",
-        "matched employer\u2013employee data",
+        "matched employer–employee data",
         "establishment-level data"
       ],
       "target_alternate_display_labels": [
@@ -352,7 +433,18 @@
           "edge_src": "FG3C000022",
           "edge_dst": "FG3C000007",
           "edge_src_display_label": "wages",
-          "edge_dst_display_label": "employment"
+          "edge_dst_display_label": "employment",
+          "authors": [
+            "Rong Shu",
+            "Бо Лю",
+            "Si Huang",
+            "Zhang Qi"
+          ],
+          "citation_label": "Shu et al. (2020)",
+          "journal": "China Economic Review",
+          "citation_count": 67,
+          "openalex_url": "https://openalex.org/W3013381244",
+          "url": "https://doi.org/10.1016/j.chieco.2020.101449"
         },
         {
           "paper_id": "W2076356711__gpt5mini_low",
@@ -361,7 +453,17 @@
           "edge_src": "FG3C005801",
           "edge_dst": "FG3C004798",
           "edge_src_display_label": "employer size",
-          "edge_dst_display_label": "separations"
+          "edge_dst_display_label": "separations",
+          "authors": [
+            "Simon Burgess",
+            "Julia Lane",
+            "David P. Stevens"
+          ],
+          "citation_label": "Burgess et al. (2001)",
+          "journal": "Labour Economics",
+          "citation_count": 99,
+          "openalex_url": "https://openalex.org/W2076356711",
+          "url": "https://doi.org/10.1016/s0927-5371(00)00027-0"
         },
         {
           "paper_id": "W1998904100__gpt5mini_low",
@@ -370,7 +472,15 @@
           "edge_src": "FG3C005801",
           "edge_dst": "FG3C000022",
           "edge_src_display_label": "employer size",
-          "edge_dst_display_label": "wages"
+          "edge_dst_display_label": "wages",
+          "authors": [
+            "Uwe Jirjahn"
+          ],
+          "citation_label": "Jirjahn (2004)",
+          "journal": "Cambridge Journal of Economics",
+          "citation_count": 75,
+          "openalex_url": "https://openalex.org/W1998904100",
+          "url": "https://doi.org/10.1093/cje/beh027"
         }
       ],
       "question_family": "employer-size-employment",
@@ -449,12 +559,20 @@
       "representative_papers": [
         {
           "paper_id": "W2072712710__gpt5mini_low",
-          "title": "British economic growth, 1700\u20131850; some difficulties of interpretation",
+          "title": "British economic growth, 1700–1850; some difficulties of interpretation",
           "year": 1987,
           "edge_src": "FG3C001360",
           "edge_dst": "FG3C000001",
           "edge_src_display_label": "wealth distribution",
-          "edge_dst_display_label": "economic growth"
+          "edge_dst_display_label": "economic growth",
+          "authors": [
+            "Nicholas Crafts"
+          ],
+          "citation_label": "Crafts (1987)",
+          "journal": "Explorations in Economic History",
+          "citation_count": 83,
+          "openalex_url": "https://openalex.org/W2072712710",
+          "url": "https://doi.org/10.1016/0014-4983(87)90025-8"
         },
         {
           "paper_id": "W4214885511__gpt5mini_low",
@@ -463,7 +581,17 @@
           "edge_src": "FG3C006417",
           "edge_dst": "FG3C000001",
           "edge_src_display_label": "gender inequality",
-          "edge_dst_display_label": "economic growth"
+          "edge_dst_display_label": "economic growth",
+          "authors": [
+            "Matheus Koengkan",
+            "José Alberto Fuinhas",
+            "Emad Kazemzadeh"
+          ],
+          "citation_label": "Koengkan et al. (2022)",
+          "journal": "Journal of Sustainable Finance & Investment",
+          "citation_count": 12,
+          "openalex_url": "https://openalex.org/W4214885511",
+          "url": "https://doi.org/10.1080/20430795.2022.2031849"
         },
         {
           "paper_id": "W1868719122__gpt5mini_low",
@@ -472,7 +600,15 @@
           "edge_src": "FG3C000043",
           "edge_dst": "FG3C000001",
           "edge_src_display_label": "volatility",
-          "edge_dst_display_label": "economic growth"
+          "edge_dst_display_label": "economic growth",
+          "authors": [
+            "Omar Joya"
+          ],
+          "citation_label": "Joya (2015)",
+          "journal": "Structural Change and Economic Dynamics",
+          "citation_count": 71,
+          "openalex_url": "https://openalex.org/W1868719122",
+          "url": "https://doi.org/10.1016/j.strueco.2015.10.001"
         }
       ],
       "question_family": "balanced-growth-path-economic-growth",
@@ -553,7 +689,16 @@
           "edge_src": "FG3C000303",
           "edge_dst": "FG3C000024",
           "edge_src_display_label": "inflation targeting",
-          "edge_dst_display_label": "monetary policy"
+          "edge_dst_display_label": "monetary policy",
+          "authors": [
+            "Ben Bernanke",
+            "Frederic S. Mishkin"
+          ],
+          "citation_label": "Bernanke and Mishkin (1997)",
+          "journal": "The Journal of Economic Perspectives",
+          "citation_count": 1094,
+          "openalex_url": "https://openalex.org/W2140138058",
+          "url": "https://doi.org/10.1257/jep.11.2.97"
         },
         {
           "paper_id": "W2785421222__gpt5mini_low",
@@ -562,7 +707,17 @@
           "edge_src": "FG3C000303",
           "edge_dst": "FG3C000024",
           "edge_src_display_label": "inflation targeting",
-          "edge_dst_display_label": "monetary policy"
+          "edge_dst_display_label": "monetary policy",
+          "authors": [
+            "Marcel Fratzscher",
+            "Christoph Große Steffen",
+            "Malte Rieth"
+          ],
+          "citation_label": "Fratzscher et al. (2020)",
+          "journal": "Journal of International Economics",
+          "citation_count": 38,
+          "openalex_url": "https://openalex.org/W2785421222",
+          "url": "https://doi.org/10.1016/j.jinteco.2020.103308"
         },
         {
           "paper_id": "W2790933095__gpt5mini_low",
@@ -571,7 +726,17 @@
           "edge_src": "FG3C000303",
           "edge_dst": "FG3C002226",
           "edge_src_display_label": "inflation targeting",
-          "edge_dst_display_label": "inflation level"
+          "edge_dst_display_label": "inflation level",
+          "authors": [
+            "Omid M. Ardakani",
+            "N. Kundan Kishor",
+            "Suyong Song"
+          ],
+          "citation_label": "Ardakani et al. (2018)",
+          "journal": "Journal of Economic Dynamics and Control",
+          "citation_count": 37,
+          "openalex_url": "https://openalex.org/W2790933095",
+          "url": "https://doi.org/10.1016/j.jedc.2018.01.045"
         }
       ],
       "question_family": "inflation-targeting-household-inflation-expectations",
@@ -655,7 +820,16 @@
           "edge_src": "FG3C000002",
           "edge_dst": "FG3C000024",
           "edge_src_display_label": "inflation",
-          "edge_dst_display_label": "monetary policy"
+          "edge_dst_display_label": "monetary policy",
+          "authors": [
+            "Kriti Mukherjee",
+            "Bazoumana Ouattara"
+          ],
+          "citation_label": "Mukherjee and Ouattara (2021)",
+          "journal": "Climatic Change",
+          "citation_count": 41,
+          "openalex_url": "https://openalex.org/W3188145168",
+          "url": "https://doi.org/10.1007/s10584-021-03149-2"
         },
         {
           "paper_id": "W1961390501__gpt5mini_low",
@@ -664,7 +838,15 @@
           "edge_src": "FG3C000002",
           "edge_dst": "FG3C001949",
           "edge_src_display_label": "inflation",
-          "edge_dst_display_label": "product variety"
+          "edge_dst_display_label": "product variety",
+          "authors": [
+            "Mei Dong"
+          ],
+          "citation_label": "Dong (2010)",
+          "journal": "International Economic Review",
+          "citation_count": 11,
+          "openalex_url": "https://openalex.org/W1961390501",
+          "url": "https://doi.org/10.1111/j.1468-2354.2010.00585.x"
         },
         {
           "paper_id": "W2017223325__gpt5mini_low",
@@ -673,7 +855,15 @@
           "edge_src": "FG3C000024",
           "edge_dst": "FG3C005031",
           "edge_src_display_label": "monetary policy",
-          "edge_dst_display_label": "household inflation expectations"
+          "edge_dst_display_label": "household inflation expectations",
+          "authors": [
+            "James M. Hvidding"
+          ],
+          "citation_label": "Hvidding (1985)",
+          "journal": "Journal of money credit and banking",
+          "citation_count": 1,
+          "openalex_url": "https://openalex.org/W2017223325",
+          "url": "https://doi.org/10.2307/1992450"
         }
       ],
       "question_family": "inflation-household-inflation-expectations",
@@ -760,7 +950,17 @@
           "edge_src": "FG3C002502",
           "edge_dst": "FG3C000259",
           "edge_src_display_label": "liquidity creation",
-          "edge_dst_display_label": "bank profitability"
+          "edge_dst_display_label": "bank profitability",
+          "authors": [
+            "Vuong Thao Tran",
+            "Chien‐Ting Lin",
+            "Hoa Nguyen"
+          ],
+          "citation_label": "Tran et al. (2016)",
+          "journal": "International Review of Financial Analysis",
+          "citation_count": 128,
+          "openalex_url": "https://openalex.org/W2523241688",
+          "url": "https://doi.org/10.1016/j.irfa.2016.09.010"
         },
         {
           "paper_id": "W3039858541__gpt5mini_low",
@@ -769,7 +969,16 @@
           "edge_src": "FG3C002502",
           "edge_dst": "FG3C000259",
           "edge_src_display_label": "liquidity creation",
-          "edge_dst_display_label": "bank profitability"
+          "edge_dst_display_label": "bank profitability",
+          "authors": [
+            "Ying Duan",
+            "Jijun Niu"
+          ],
+          "citation_label": "Duan and Niu (2020)",
+          "journal": "The North American Journal of Economics and Finance",
+          "citation_count": 40,
+          "openalex_url": "https://openalex.org/W3039858541",
+          "url": "https://doi.org/10.1016/j.najef.2020.101250"
         },
         {
           "paper_id": "W1899584761__gpt5mini_low",
@@ -778,7 +987,17 @@
           "edge_src": "FG3C000667",
           "edge_dst": "FG3C000259",
           "edge_src_display_label": "bank capital",
-          "edge_dst_display_label": "bank profitability"
+          "edge_dst_display_label": "bank profitability",
+          "authors": [
+            "Chien‐Chiang Lee",
+            "Shao‐Lin Ning",
+            "Chi‐Chuan Lee"
+          ],
+          "citation_label": "Lee et al. (2015)",
+          "journal": "China & World Economy",
+          "citation_count": 24,
+          "openalex_url": "https://openalex.org/W1899584761",
+          "url": "https://doi.org/10.1111/cwe.12119"
         }
       ],
       "question_family": "bank-capital-requirements-bank-profitability",
@@ -865,7 +1084,17 @@
           "edge_src": "FG3C001242",
           "edge_dst": "FG3C000523",
           "edge_src_display_label": "mixed logit model",
-          "edge_dst_display_label": "preference heterogeneity"
+          "edge_dst_display_label": "preference heterogeneity",
+          "authors": [
+            "Raquel Espino",
+            "Juan Carlos",
+            "Concepción Román"
+          ],
+          "citation_label": "Espino et al. (2007)",
+          "journal": "Transportation Research Part E Logistics and Transportation Review",
+          "citation_count": 96,
+          "openalex_url": "https://openalex.org/W2052978839",
+          "url": "https://doi.org/10.1016/j.tre.2007.05.007"
         },
         {
           "paper_id": "W2085514511__gpt5mini_low",
@@ -874,16 +1103,38 @@
           "edge_src": "FG3C003076",
           "edge_dst": "FG3C000523",
           "edge_src_display_label": "latent class model",
-          "edge_dst_display_label": "preference heterogeneity"
+          "edge_dst_display_label": "preference heterogeneity",
+          "authors": [
+            "Emmanouil Mentzakis",
+            "Mandy Ryan",
+            "Paul McNamee"
+          ],
+          "citation_label": "Mentzakis et al. (2010)",
+          "journal": "Health Economics",
+          "citation_count": 70,
+          "openalex_url": "https://openalex.org/W2085514511",
+          "url": "https://doi.org/10.1002/hec.1656"
         },
         {
           "paper_id": "W3009575927__gpt5mini_low",
-          "title": "Modeling Heterogeneity in Patients\u2019 Preferences for Psoriasis Treatments in a Multicountry Study: A Comparison Between Random-Parameters Logit and Latent Class Approaches",
+          "title": "Modeling Heterogeneity in Patients’ Preferences for Psoriasis Treatments in a Multicountry Study: A Comparison Between Random-Parameters Logit and Latent Class Approaches",
           "year": 2020,
           "edge_src": "FG3C003076",
           "edge_dst": "FG3C000523",
           "edge_src_display_label": "latent class model",
-          "edge_dst_display_label": "preference heterogeneity"
+          "edge_dst_display_label": "preference heterogeneity",
+          "authors": [
+            "Marco Boeri",
+            "Daniel Saure",
+            "Alexander Schacht",
+            "Elisabeth Riedl",
+            "Brett Hauber"
+          ],
+          "citation_label": "Boeri et al. (2020)",
+          "journal": "PharmacoEconomics",
+          "citation_count": 21,
+          "openalex_url": "https://openalex.org/W3009575927",
+          "url": "https://doi.org/10.1007/s40273-020-00894-7"
         }
       ],
       "question_family": "stated-preference-survey-preference-heterogeneity",
@@ -964,7 +1215,18 @@
           "edge_src": "FG3C000034",
           "edge_dst": "FG3C000096",
           "edge_src_display_label": "oil prices",
-          "edge_dst_display_label": "stock prices"
+          "edge_dst_display_label": "stock prices",
+          "authors": [
+            "Shabir Mohsin Hashmi",
+            "Bisharat Hussain Chang",
+            "Liang‐Fang Huang",
+            "Emmanuel Uche"
+          ],
+          "citation_label": "Hashmi et al. (2022)",
+          "journal": "Resources Policy",
+          "citation_count": 56,
+          "openalex_url": "https://openalex.org/W4205573494",
+          "url": "https://doi.org/10.1016/j.resourpol.2021.102543"
         },
         {
           "paper_id": "W4304182460__gpt5mini_low",
@@ -973,16 +1235,35 @@
           "edge_src": "FG3C000034",
           "edge_dst": "FG3C000096",
           "edge_src_display_label": "oil prices",
-          "edge_dst_display_label": "stock prices"
+          "edge_dst_display_label": "stock prices",
+          "authors": [
+            "Nini Johana Marín‐Rodríguez",
+            "Juan David González-Ruiz",
+            "Sergio Botero-Botero"
+          ],
+          "citation_label": "Marín‐Rodríguez et al. (2022)",
+          "journal": "Sustainability",
+          "citation_count": 17,
+          "openalex_url": "https://openalex.org/W4304182460",
+          "url": "https://doi.org/10.3390/su141912796"
         },
         {
           "paper_id": "W2014709540__gpt5mini_low",
-          "title": "Government Partisanship, Elections, and the Stock Market: Examining American and British Stock Returns, 1930\u20132000",
+          "title": "Government Partisanship, Elections, and the Stock Market: Examining American and British Stock Returns, 1930–2000",
           "year": 2005,
           "edge_src": "FG3C000096",
           "edge_dst": "FG3C006312",
           "edge_src_display_label": "stock prices",
-          "edge_dst_display_label": "volatility of stock prices"
+          "edge_dst_display_label": "volatility of stock prices",
+          "authors": [
+            "David Leblang",
+            "Bumba Mukherjee"
+          ],
+          "citation_label": "Leblang and Mukherjee (2005)",
+          "journal": "American Journal of Political Science",
+          "citation_count": 160,
+          "openalex_url": "https://openalex.org/W2014709540",
+          "url": "https://doi.org/10.1111/j.1540-5907.2005.00155.x"
         }
       ],
       "question_family": "oil-prices-volatility-of-stock-prices",
@@ -1058,7 +1339,16 @@
           "edge_src": "FG3C005734",
           "edge_dst": "FG3C000173",
           "edge_src_display_label": "CO2 intensity",
-          "edge_dst_display_label": "energy use"
+          "edge_dst_display_label": "energy use",
+          "authors": [
+            "Wei Sun",
+            "Guanxin Yao"
+          ],
+          "citation_label": "Sun and Yao (2023)",
+          "journal": "Resources Policy",
+          "citation_count": 5,
+          "openalex_url": "https://openalex.org/W4387329517",
+          "url": "https://doi.org/10.1016/j.resourpol.2023.104175"
         },
         {
           "paper_id": "W4392029303__gpt5mini_low",
@@ -1067,7 +1357,18 @@
           "edge_src": "FG3C000173",
           "edge_dst": "FG3C000010",
           "edge_src_display_label": "energy use",
-          "edge_dst_display_label": "carbon emissions"
+          "edge_dst_display_label": "carbon emissions",
+          "authors": [
+            "Frank Osei‐Kusi",
+            "Cisheng Wu",
+            "Stephen Tetteh",
+            "Wendy Irena Guerra Castillo"
+          ],
+          "citation_label": "Osei‐Kusi et al. (2024)",
+          "journal": "PLoS ONE",
+          "citation_count": 24,
+          "openalex_url": "https://openalex.org/W4392029303",
+          "url": "https://doi.org/10.1371/journal.pone.0293451"
         },
         {
           "paper_id": "W4403543908__gpt5mini_low",
@@ -1076,7 +1377,16 @@
           "edge_src": "FG3C000173",
           "edge_dst": "FG3C000010",
           "edge_src_display_label": "energy use",
-          "edge_dst_display_label": "carbon emissions"
+          "edge_dst_display_label": "carbon emissions",
+          "authors": [
+            "Ayşe Özge Artekin",
+            "Salih Kalaycı"
+          ],
+          "citation_label": "Artekin and Kalaycı (2024)",
+          "journal": "Sustainability",
+          "citation_count": 2,
+          "openalex_url": "https://openalex.org/W4403543908",
+          "url": "https://doi.org/10.3390/su16209030"
         }
       ],
       "question_family": "co2-intensity-carbon-emissions",
@@ -1151,7 +1461,19 @@
           "edge_src": "FG3C000003",
           "edge_dst": "FG3C000913",
           "edge_src_display_label": "CO2 emissions",
-          "edge_dst_display_label": "environmental innovation"
+          "edge_dst_display_label": "environmental innovation",
+          "authors": [
+            "Najia Saqib",
+            "Magdalena Radulescu",
+            "Muhammad Usman",
+            "Daniel Balsalobre‐Lorente",
+            "Teodor Florin Cilan"
+          ],
+          "citation_label": "Saqib et al. (2023)",
+          "journal": "Heliyon",
+          "citation_count": 36,
+          "openalex_url": "https://openalex.org/W4377292624",
+          "url": "https://doi.org/10.1016/j.heliyon.2023.e16457"
         },
         {
           "paper_id": "W4400197173__gpt5mini_low",
@@ -1160,7 +1482,17 @@
           "edge_src": "FG3C000003",
           "edge_dst": "FG3C001758",
           "edge_src_display_label": "CO2 emissions",
-          "edge_dst_display_label": "inward foreign direct investment (FDI)"
+          "edge_dst_display_label": "inward foreign direct investment (FDI)",
+          "authors": [
+            "Adem Gök",
+            "Ayesha Ashraf",
+            "Elżbieta Jasińska"
+          ],
+          "citation_label": "Gök et al. (2024)",
+          "journal": "Sustainability",
+          "citation_count": 8,
+          "openalex_url": "https://openalex.org/W4400197173",
+          "url": "https://doi.org/10.3390/su16135550"
         },
         {
           "paper_id": "W2907482298__gpt5mini_low",
@@ -1169,7 +1501,15 @@
           "edge_src": "FG3C000060",
           "edge_dst": "FG3C005734",
           "edge_src_display_label": "GDP per capita",
-          "edge_dst_display_label": "CO2 intensity"
+          "edge_dst_display_label": "CO2 intensity",
+          "authors": [
+            "Rögnvaldur Hannesson"
+          ],
+          "citation_label": "Hannesson (2019)",
+          "journal": "International Journal of Energy Sector Management",
+          "citation_count": 7,
+          "openalex_url": "https://openalex.org/W2907482298",
+          "url": "https://doi.org/10.1108/ijesm-02-2019-0011"
         }
       ],
       "question_family": "co2-emissions-co2-intensity",
@@ -1256,7 +1596,17 @@
           "edge_src": "FG3C000529",
           "edge_dst": "FG3C000094",
           "edge_src_display_label": "environmental regulation intensity",
-          "edge_dst_display_label": "green technology innovation"
+          "edge_dst_display_label": "green technology innovation",
+          "authors": [
+            "Yu-Hong Ai",
+            "Diyun Peng",
+            "Hao Xiong"
+          ],
+          "citation_label": "Ai et al. (2021)",
+          "journal": "Sustainability",
+          "citation_count": 21,
+          "openalex_url": "https://openalex.org/W3159813774",
+          "url": "https://doi.org/10.3390/su13094862"
         },
         {
           "paper_id": "W4281843466__gpt5mini_low",
@@ -1265,16 +1615,34 @@
           "edge_src": "FG3C000529",
           "edge_dst": "FG3C000094",
           "edge_src_display_label": "environmental regulation intensity",
-          "edge_dst_display_label": "green technology innovation"
+          "edge_dst_display_label": "green technology innovation",
+          "authors": [
+            "Tao Lin",
+            "Lijun Wang",
+            "Jingbo Wu"
+          ],
+          "citation_label": "Lin et al. (2022)",
+          "journal": "Sustainability",
+          "citation_count": 29,
+          "openalex_url": "https://openalex.org/W4281843466",
+          "url": "https://doi.org/10.3390/su14116882"
         },
         {
           "paper_id": "W4402595829__gpt5mini_low",
-          "title": "Green industrial policy and green development of agriculture\u2014Quasi-natural experiment based on the Yangtze River Economic Belt in China",
+          "title": "Green industrial policy and green development of agriculture—Quasi-natural experiment based on the Yangtze River Economic Belt in China",
           "year": 2024,
           "edge_src": "FG3C002214",
           "edge_dst": "FG3C006008",
           "edge_src_display_label": "technology level",
-          "edge_dst_display_label": "regional green development"
+          "edge_dst_display_label": "regional green development",
+          "authors": [
+            "Jingbo Shao"
+          ],
+          "citation_label": "Shao (2024)",
+          "journal": "PLoS ONE",
+          "citation_count": 2,
+          "openalex_url": "https://openalex.org/W4402595829",
+          "url": "https://doi.org/10.1371/journal.pone.0308307"
         }
       ],
       "question_family": "technology-level-green-technology-innovation",
@@ -1360,7 +1728,17 @@
           "edge_src": "FG3C000020",
           "edge_dst": "FG3C002284",
           "edge_src_display_label": "firm size",
-          "edge_dst_display_label": "firm total factor productivity (TFP)"
+          "edge_dst_display_label": "firm total factor productivity (TFP)",
+          "authors": [
+            "Luis Medrano‐Adán",
+            "Vicente Salas Fumás",
+            "J. Javier Sánchez-Asín"
+          ],
+          "citation_label": "Medrano‐Adán et al. (2018)",
+          "journal": "Small Business Economics",
+          "citation_count": 15,
+          "openalex_url": "https://openalex.org/W2800580436",
+          "url": "https://doi.org/10.1007/s11187-018-0048-y"
         },
         {
           "paper_id": "W2027350619__gpt5mini_low",
@@ -1369,7 +1747,16 @@
           "edge_src": "FG3C000858",
           "edge_dst": "FG3C001837",
           "edge_src_display_label": "technology adoption",
-          "edge_dst_display_label": "firm output"
+          "edge_dst_display_label": "firm output",
+          "authors": [
+            "Myung Joong Kwon",
+            "Paul Stoneman"
+          ],
+          "citation_label": "Kwon and Stoneman (1995)",
+          "journal": "Economics of Innovation and New Technology",
+          "citation_count": 43,
+          "openalex_url": "https://openalex.org/W2027350619",
+          "url": "https://doi.org/10.1080/10438599500000004"
         },
         {
           "paper_id": "W1968377036__gpt5mini_low",
@@ -1378,7 +1765,16 @@
           "edge_src": "FG3C000020",
           "edge_dst": "FG3C000858",
           "edge_src_display_label": "firm size",
-          "edge_dst_display_label": "technology adoption"
+          "edge_dst_display_label": "technology adoption",
+          "authors": [
+            "Sharmila Vishwasrao",
+            "William Bosshardt"
+          ],
+          "citation_label": "Vishwasrao and Bosshardt (2001)",
+          "journal": "Journal of Development Economics",
+          "citation_count": 99,
+          "openalex_url": "https://openalex.org/W1968377036",
+          "url": "https://doi.org/10.1016/s0304-3878(01)00141-9"
         }
       ],
       "question_family": "firm-size-firm-output",
@@ -1461,16 +1857,35 @@
           "edge_src": "FG3C001277",
           "edge_dst": "FG3C002439",
           "edge_src_display_label": "carbon market",
-          "edge_dst_display_label": "cryptocurrency market"
+          "edge_dst_display_label": "cryptocurrency market",
+          "authors": [
+            "Lu Yang",
+            "Shigeyuki Hamori"
+          ],
+          "citation_label": "Yang and Hamori (2021)",
+          "journal": "International Review of Financial Analysis",
+          "citation_count": 50,
+          "openalex_url": "https://openalex.org/W3188514382",
+          "url": "https://doi.org/10.1016/j.irfa.2021.101864"
         },
         {
           "paper_id": "W4402558759__gpt5mini_low",
-          "title": "Re-examining China and the u.s.\u2019s respective green bond markets in extreme conditions: Evidence from quantile connectedness",
+          "title": "Re-examining China and the u.s.’s respective green bond markets in extreme conditions: Evidence from quantile connectedness",
           "year": 2024,
           "edge_src": "FG3C001999",
           "edge_dst": "FG3C000202",
           "edge_src_display_label": "green bond market",
-          "edge_dst_display_label": "green bonds"
+          "edge_dst_display_label": "green bonds",
+          "authors": [
+            "Mei-Chih Wang",
+            "Peiyun Jiang",
+            "Tsangyao Chang"
+          ],
+          "citation_label": "Wang et al. (2024)",
+          "journal": "The North American Journal of Economics and Finance",
+          "citation_count": 7,
+          "openalex_url": "https://openalex.org/W4402558759",
+          "url": "https://doi.org/10.1016/j.najef.2024.102286"
         },
         {
           "paper_id": "W4383345781__gpt5mini_low",
@@ -1479,7 +1894,20 @@
           "edge_src": "FG3C001999",
           "edge_dst": "FG3C003581",
           "edge_src_display_label": "green bond market",
-          "edge_dst_display_label": "clean energy market"
+          "edge_dst_display_label": "clean energy market",
+          "authors": [
+            "Ding Wu",
+            "Zhenqing Luo",
+            "Tidong Zhang",
+            "Lu Tang",
+            "Mahmood Ahmad",
+            "Xiaomei Fang"
+          ],
+          "citation_label": "Wu et al. (2023)",
+          "journal": "Sustainability",
+          "citation_count": 2,
+          "openalex_url": "https://openalex.org/W4383345781",
+          "url": "https://doi.org/10.3390/su151310634"
         }
       ],
       "question_family": "green-bond-market-cryptocurrency-market",
@@ -1558,7 +1986,18 @@
           "edge_src": "FG3C000848",
           "edge_dst": "FG3C000559",
           "edge_src_display_label": "crude oil market",
-          "edge_dst_display_label": "Chinese stock market"
+          "edge_dst_display_label": "Chinese stock market",
+          "authors": [
+            "Qiwei Xie",
+            "Ranran Liu",
+            "Tao Qian",
+            "Jingyu Li"
+          ],
+          "citation_label": "Xie et al. (2021)",
+          "journal": "Energy Economics",
+          "citation_count": 36,
+          "openalex_url": "https://openalex.org/W3191760821",
+          "url": "https://doi.org/10.1016/j.eneco.2021.105484"
         },
         {
           "paper_id": "W4367554322__gpt5mini_low",
@@ -1567,7 +2006,15 @@
           "edge_src": "FG3C002439",
           "edge_dst": "FG3C000848",
           "edge_src_display_label": "cryptocurrency market",
-          "edge_dst_display_label": "crude oil market"
+          "edge_dst_display_label": "crude oil market",
+          "authors": [
+            "Lê Thanh Hà"
+          ],
+          "citation_label": "Hà (2023)",
+          "journal": "Environmental Science and Pollution Research",
+          "citation_count": 6,
+          "openalex_url": "https://openalex.org/W4367554322",
+          "url": "https://doi.org/10.1007/s11356-023-27069-z"
         },
         {
           "paper_id": "W3017130504__gpt5mini_low",
@@ -1576,7 +2023,16 @@
           "edge_src": "FG3C002439",
           "edge_dst": "FG3C000599",
           "edge_src_display_label": "cryptocurrency market",
-          "edge_dst_display_label": "US stock market"
+          "edge_dst_display_label": "US stock market",
+          "authors": [
+            "Oliver Borgards",
+            "Robert Czudaj"
+          ],
+          "citation_label": "Borgards and Czudaj (2020)",
+          "journal": "Journal of International Financial Markets Institutions and Money",
+          "citation_count": 36,
+          "openalex_url": "https://openalex.org/W3017130504",
+          "url": "https://doi.org/10.1016/j.intfin.2020.101194"
         }
       ],
       "question_family": "cryptocurrency-market-chinese-stock-market",
@@ -1660,7 +2116,17 @@
           "edge_src": "FG3C000031",
           "edge_dst": "FG3C000254",
           "edge_src_display_label": "transaction costs",
-          "edge_dst_display_label": "real interest rates"
+          "edge_dst_display_label": "real interest rates",
+          "authors": [
+            "Zhongyuan You",
+            "Barry K. Goodwin",
+            "Selin Güney"
+          ],
+          "citation_label": "You et al. (2023)",
+          "journal": "International Review of Economics & Finance",
+          "citation_count": 1,
+          "openalex_url": "https://openalex.org/W4327944374",
+          "url": "https://doi.org/10.1016/j.iref.2023.03.015"
         },
         {
           "paper_id": "W2091174055__gpt5mini_low",
@@ -1669,7 +2135,15 @@
           "edge_src": "FG3C000350",
           "edge_dst": "FG3C000254",
           "edge_src_display_label": "nominal interest rates",
-          "edge_dst_display_label": "real interest rates"
+          "edge_dst_display_label": "real interest rates",
+          "authors": [
+            "Basma Bekdache"
+          ],
+          "citation_label": "Bekdache (1999)",
+          "journal": "Journal of Applied Econometrics",
+          "citation_count": 12,
+          "openalex_url": "https://openalex.org/W2091174055",
+          "url": "https://doi.org/10.1002/(sici)1099-1255(199903/04)14:2<171::aid-jae502>3.0.co;2-u"
         },
         {
           "paper_id": "W2055778790__gpt5mini_low",
@@ -1678,7 +2152,16 @@
           "edge_src": "FG3C000031",
           "edge_dst": "FG3C000254",
           "edge_src_display_label": "transaction costs",
-          "edge_dst_display_label": "real interest rates"
+          "edge_dst_display_label": "real interest rates",
+          "authors": [
+            "Mouawiya Al Awad",
+            "Thomas Grennes"
+          ],
+          "citation_label": "Awad and Grennes (2002)",
+          "journal": "International Review of Economics & Finance",
+          "citation_count": 7,
+          "openalex_url": "https://openalex.org/W2055778790",
+          "url": "https://doi.org/10.1016/s1059-0560(02)00098-9"
         }
       ],
       "question_family": "foreign-interest-rates-real-interest-rates",
@@ -1757,7 +2240,18 @@
           "edge_src": "FG3C000599",
           "edge_dst": "FG3C001061",
           "edge_src_display_label": "US stock market",
-          "edge_dst_display_label": "oil market"
+          "edge_dst_display_label": "oil market",
+          "authors": [
+            "Matteo Foglia",
+            "Rangan Gupta",
+            "Petre Caraiani",
+            "Vincenzo Pacelli"
+          ],
+          "citation_label": "Foglia et al. (2025)",
+          "journal": "Finance research letters",
+          "citation_count": 0,
+          "openalex_url": "https://openalex.org/W4416890224",
+          "url": "https://doi.org/10.1016/j.frl.2025.109179"
         },
         {
           "paper_id": "W4383742977__gpt5mini_low",
@@ -1766,7 +2260,18 @@
           "edge_src": "FG3C003136",
           "edge_dst": "FG3C001061",
           "edge_src_display_label": "BRICS stock markets",
-          "edge_dst_display_label": "oil market"
+          "edge_dst_display_label": "oil market",
+          "authors": [
+            "Xiu Jin",
+            "Yueli Liu",
+            "Jinming Yu",
+            "Wei-Qiang Huang"
+          ],
+          "citation_label": "Jin et al. (2023)",
+          "journal": "The North American Journal of Economics and Finance",
+          "citation_count": 6,
+          "openalex_url": "https://openalex.org/W4383742977",
+          "url": "https://doi.org/10.1016/j.najef.2023.101967"
         },
         {
           "paper_id": "W3035484674__gpt5mini_low",
@@ -1775,7 +2280,16 @@
           "edge_src": "FG3C002389",
           "edge_dst": "FG3C003136",
           "edge_src_display_label": "U.S. stock market",
-          "edge_dst_display_label": "BRICS stock markets"
+          "edge_dst_display_label": "BRICS stock markets",
+          "authors": [
+            "Ron McIver",
+            "Sang Hoon Kang"
+          ],
+          "citation_label": "McIver and Kang (2020)",
+          "journal": "Research in International Business and Finance",
+          "citation_count": 75,
+          "openalex_url": "https://openalex.org/W3035484674",
+          "url": "https://doi.org/10.1016/j.ribaf.2020.101276"
         }
       ],
       "question_family": "u-s-stock-market-oil-market",
@@ -1858,7 +2372,16 @@
           "edge_src": "FG3C001310",
           "edge_dst": "FG3C000284",
           "edge_src_display_label": "housing market",
-          "edge_dst_display_label": "stock market"
+          "edge_dst_display_label": "stock market",
+          "authors": [
+            "Damian S. Damianov",
+            "Ahmed H. Elsayed"
+          ],
+          "citation_label": "Damianov and Elsayed (2018)",
+          "journal": "Finance research letters",
+          "citation_count": 25,
+          "openalex_url": "https://openalex.org/W2791017166",
+          "url": "https://doi.org/10.1016/j.frl.2018.03.001"
         },
         {
           "paper_id": "W2986361489__gpt5mini_low",
@@ -1867,16 +2390,34 @@
           "edge_src": "FG3C001310",
           "edge_dst": "FG3C000284",
           "edge_src_display_label": "housing market",
-          "edge_dst_display_label": "stock market"
+          "edge_dst_display_label": "stock market",
+          "authors": [
+            "Peiwan Wang",
+            "Lu Zong"
+          ],
+          "citation_label": "Wang and Zong (2019)",
+          "journal": "The North American Journal of Economics and Finance",
+          "citation_count": 21,
+          "openalex_url": "https://openalex.org/W2986361489",
+          "url": "https://doi.org/10.1016/j.najef.2019.101113"
         },
         {
           "paper_id": "W2950416836__gpt5mini_low",
-          "title": "A study of lead\u2013lag structure between international crude oil price and several financial markets",
+          "title": "A study of lead–lag structure between international crude oil price and several financial markets",
           "year": 2019,
           "edge_src": "FG3C002389",
           "edge_dst": "FG3C000848",
           "edge_src_display_label": "U.S. stock market",
-          "edge_dst_display_label": "crude oil market"
+          "edge_dst_display_label": "crude oil market",
+          "authors": [
+            "Can-Zhong Yao",
+            "Peng-Cheng Kuang"
+          ],
+          "citation_label": "Yao and Kuang (2019)",
+          "journal": "Physica A Statistical Mechanics and its Applications",
+          "citation_count": 16,
+          "openalex_url": "https://openalex.org/W2950416836",
+          "url": "https://doi.org/10.1016/j.physa.2019.121755"
         }
       ],
       "question_family": "u-s-stock-market-stock-market",
@@ -1959,7 +2500,17 @@
           "edge_src": "FG3C000174",
           "edge_dst": "FG3C000002",
           "edge_src_display_label": "inflation expectations",
-          "edge_dst_display_label": "inflation"
+          "edge_dst_display_label": "inflation",
+          "authors": [
+            "Muhammad Ali Nasir",
+            "Daniel Balsalobre‐Lorente",
+            "Toan Luu Duc Huynh"
+          ],
+          "citation_label": "Nasir et al. (2020)",
+          "journal": "Energy Economics",
+          "citation_count": 67,
+          "openalex_url": "https://openalex.org/W2994306944",
+          "url": "https://doi.org/10.1016/j.eneco.2020.104662"
         },
         {
           "paper_id": "W2033352567__gpt5mini_low",
@@ -1968,7 +2519,15 @@
           "edge_src": "FG3C005267",
           "edge_dst": "FG3C002612",
           "edge_src_display_label": "policy targets",
-          "edge_dst_display_label": "level of inflation"
+          "edge_dst_display_label": "level of inflation",
+          "authors": [
+            "David R. Johnson"
+          ],
+          "citation_label": "Johnson (2003)",
+          "journal": "The Review of Economics and Statistics",
+          "citation_count": 78,
+          "openalex_url": "https://openalex.org/W2033352567",
+          "url": "https://doi.org/10.1162/003465303772815952"
         },
         {
           "paper_id": "W1975440539__gpt5mini_low",
@@ -1977,7 +2536,15 @@
           "edge_src": "FG3C005267",
           "edge_dst": "FG3C000710",
           "edge_src_display_label": "policy targets",
-          "edge_dst_display_label": "real economic activity"
+          "edge_dst_display_label": "real economic activity",
+          "authors": [
+            "David Laidler"
+          ],
+          "citation_label": "Laidler (2005)",
+          "journal": "Structural Change and Economic Dynamics",
+          "citation_count": 5,
+          "openalex_url": "https://openalex.org/W1975440539",
+          "url": "https://doi.org/10.1016/s0954-349x(03)00048-1"
         }
       ],
       "question_family": "policy-targets-inflation",
@@ -2062,7 +2629,18 @@
           "edge_src": "FG3C000034",
           "edge_dst": "FG3C000072",
           "edge_src_display_label": "oil prices",
-          "edge_dst_display_label": "exchange rates"
+          "edge_dst_display_label": "exchange rates",
+          "authors": [
+            "Tao Wu",
+            "Feng An",
+            "Xiangyun Gao",
+            "Ze Wang"
+          ],
+          "citation_label": "Wu et al. (2023)",
+          "journal": "Resources Policy",
+          "citation_count": 6,
+          "openalex_url": "https://openalex.org/W4361279665",
+          "url": "https://doi.org/10.1016/j.resourpol.2023.103512"
         },
         {
           "paper_id": "W3023077355__gpt5mini_low",
@@ -2071,7 +2649,17 @@
           "edge_src": "FG3C000034",
           "edge_dst": "FG3C000072",
           "edge_src_display_label": "oil prices",
-          "edge_dst_display_label": "exchange rates"
+          "edge_dst_display_label": "exchange rates",
+          "authors": [
+            "Joscha Beckmann",
+            "Robert Czudaj",
+            "Vipin Arora"
+          ],
+          "citation_label": "Beckmann et al. (2020)",
+          "journal": "Energy Economics",
+          "citation_count": 139,
+          "openalex_url": "https://openalex.org/W3023077355",
+          "url": "https://doi.org/10.1016/j.eneco.2020.104772"
         },
         {
           "paper_id": "W4304182460__gpt5mini_low",
@@ -2080,7 +2668,17 @@
           "edge_src": "FG3C000034",
           "edge_dst": "FG3C000072",
           "edge_src_display_label": "oil prices",
-          "edge_dst_display_label": "exchange rates"
+          "edge_dst_display_label": "exchange rates",
+          "authors": [
+            "Nini Johana Marín‐Rodríguez",
+            "Juan David González-Ruiz",
+            "Sergio Botero-Botero"
+          ],
+          "citation_label": "Marín‐Rodríguez et al. (2022)",
+          "journal": "Sustainability",
+          "citation_count": 17,
+          "openalex_url": "https://openalex.org/W4304182460",
+          "url": "https://doi.org/10.3390/su141912796"
         }
       ],
       "question_family": "oil-prices-foreign-prices",
@@ -2159,7 +2757,16 @@
           "edge_src": "FG3C000001",
           "edge_dst": "FG3C001789",
           "edge_src_display_label": "economic growth",
-          "edge_dst_display_label": "elasticity of substitution"
+          "edge_dst_display_label": "elasticity of substitution",
+          "authors": [
+            "Rainer Klump",
+            "Olivier de La Grandville"
+          ],
+          "citation_label": "Klump and Grandville (2000)",
+          "journal": "American Economic Review",
+          "citation_count": 328,
+          "openalex_url": "https://openalex.org/W2159315386",
+          "url": "https://doi.org/10.1257/aer.90.1.282"
         },
         {
           "paper_id": "W4317423858__gpt5mini_low",
@@ -2168,7 +2775,21 @@
           "edge_src": "FG3C000001",
           "edge_dst": "FG3C000054",
           "edge_src_display_label": "economic growth",
-          "edge_dst_display_label": "population growth"
+          "edge_dst_display_label": "population growth",
+          "authors": [
+            "Xianke Huang",
+            "Yujie Huang",
+            "Ruiliang Li",
+            "Wei Cheng",
+            "Yang Su",
+            "Feng Li",
+            "XianXiang Du"
+          ],
+          "citation_label": "Huang et al. (2023)",
+          "journal": "Environmental Science and Pollution Research",
+          "citation_count": 3,
+          "openalex_url": "https://openalex.org/W4317423858",
+          "url": "https://doi.org/10.1007/s11356-023-25335-8"
         },
         {
           "paper_id": "W2055012189__gpt5mini_low",
@@ -2177,7 +2798,15 @@
           "edge_src": "FG3C000054",
           "edge_dst": "FG3C004847",
           "edge_src_display_label": "population growth",
-          "edge_dst_display_label": "immiserizing growth"
+          "edge_dst_display_label": "immiserizing growth",
+          "authors": [
+            "Robert M. Costrell"
+          ],
+          "citation_label": "Costrell (1991)",
+          "journal": "Journal of Public Economics",
+          "citation_count": 9,
+          "openalex_url": "https://openalex.org/W2055012189",
+          "url": "https://doi.org/10.1016/0047-2727(91)90033-x"
         }
       ],
       "question_family": "economic-growth-immiserizing-growth",
@@ -2258,7 +2887,17 @@
           "edge_src": "FG3C000002",
           "edge_dst": "FG3C000174",
           "edge_src_display_label": "inflation",
-          "edge_dst_display_label": "inflation expectations"
+          "edge_dst_display_label": "inflation expectations",
+          "authors": [
+            "Umer Shahzad",
+            "Bianca Orsi",
+            "Gagan Deep Sharma"
+          ],
+          "citation_label": "Shahzad et al. (2024)",
+          "journal": "Energy Economics",
+          "citation_count": 9,
+          "openalex_url": "https://openalex.org/W4392947962",
+          "url": "https://doi.org/10.1016/j.eneco.2024.107474"
         },
         {
           "paper_id": "W2994306944__gpt5mini_low",
@@ -2267,7 +2906,17 @@
           "edge_src": "FG3C000002",
           "edge_dst": "FG3C000174",
           "edge_src_display_label": "inflation",
-          "edge_dst_display_label": "inflation expectations"
+          "edge_dst_display_label": "inflation expectations",
+          "authors": [
+            "Muhammad Ali Nasir",
+            "Daniel Balsalobre‐Lorente",
+            "Toan Luu Duc Huynh"
+          ],
+          "citation_label": "Nasir et al. (2020)",
+          "journal": "Energy Economics",
+          "citation_count": 67,
+          "openalex_url": "https://openalex.org/W2994306944",
+          "url": "https://doi.org/10.1016/j.eneco.2020.104662"
         },
         {
           "paper_id": "W4389232176__gpt5mini_low",
@@ -2276,7 +2925,16 @@
           "edge_src": "FG3C000002",
           "edge_dst": "FG3C000174",
           "edge_src_display_label": "inflation",
-          "edge_dst_display_label": "inflation expectations"
+          "edge_dst_display_label": "inflation expectations",
+          "authors": [
+            "Muhammad Ali Nasir",
+            "Toan Luu Duc Huynh"
+          ],
+          "citation_label": "Nasir and Huynh (2023)",
+          "journal": "Economic Modelling",
+          "citation_count": 0,
+          "openalex_url": "https://openalex.org/W4389232176",
+          "url": "https://doi.org/10.1016/j.econmod.2023.106601"
         }
       ],
       "question_family": "inflation-realized-inflation",
@@ -2361,7 +3019,16 @@
           "edge_src": "FG3C000735",
           "edge_dst": "FG3C001371",
           "edge_src_display_label": "future prices",
-          "edge_dst_display_label": "spot prices"
+          "edge_dst_display_label": "spot prices",
+          "authors": [
+            "Mihaela Nicolau",
+            "Giulio Palomba"
+          ],
+          "citation_label": "Nicolau and Palomba (2015)",
+          "journal": "Resources Policy",
+          "citation_count": 42,
+          "openalex_url": "https://openalex.org/W2137177281",
+          "url": "https://doi.org/10.1016/j.resourpol.2015.04.004"
         },
         {
           "paper_id": "W3012928678__gpt5mini_low",
@@ -2370,7 +3037,18 @@
           "edge_src": "FG3C001371",
           "edge_dst": "FG3C004968",
           "edge_src_display_label": "spot prices",
-          "edge_dst_display_label": "futures contracts"
+          "edge_dst_display_label": "futures contracts",
+          "authors": [
+            "Hao Chen",
+            "Zhixin Liu",
+            "Yinpeng Zhang",
+            "You Wu"
+          ],
+          "citation_label": "Chen et al. (2020)",
+          "journal": "Sustainability",
+          "citation_count": 16,
+          "openalex_url": "https://openalex.org/W3012928678",
+          "url": "https://doi.org/10.3390/su12062517"
         },
         {
           "paper_id": "W1977001412__gpt5mini_low",
@@ -2379,7 +3057,17 @@
           "edge_src": "FG3C000735",
           "edge_dst": "FG3C001371",
           "edge_src_display_label": "future prices",
-          "edge_dst_display_label": "spot prices"
+          "edge_dst_display_label": "spot prices",
+          "authors": [
+            "Joscha Beckmann",
+            "Ansgar Belke",
+            "Robert Czudaj"
+          ],
+          "citation_label": "Beckmann et al. (2014)",
+          "journal": "Economic Modelling",
+          "citation_count": 27,
+          "openalex_url": "https://openalex.org/W1977001412",
+          "url": "https://doi.org/10.1016/j.econmod.2013.12.026"
         }
       ],
       "question_family": "future-prices-futures-contracts",
@@ -2455,7 +3143,16 @@
           "edge_src": "FG3C003193",
           "edge_dst": "FG3C000052",
           "edge_src_display_label": "unanticipated inflation",
-          "edge_dst_display_label": "unemployment rate"
+          "edge_dst_display_label": "unemployment rate",
+          "authors": [
+            "Roy Batchelor",
+            "T. D. Sheriff"
+          ],
+          "citation_label": "Batchelor and Sheriff (1980)",
+          "journal": "Economica",
+          "citation_count": 23,
+          "openalex_url": "https://openalex.org/W2086430976",
+          "url": "https://doi.org/10.2307/2553235"
         },
         {
           "paper_id": "W2159219237__gpt5mini_low",
@@ -2464,7 +3161,16 @@
           "edge_src": "FG3C000052",
           "edge_dst": "FG3C000002",
           "edge_src_display_label": "unemployment rate",
-          "edge_dst_display_label": "inflation"
+          "edge_dst_display_label": "inflation",
+          "authors": [
+            "Markku Lanne",
+            "Jani Luoto"
+          ],
+          "citation_label": "Lanne and Luoto (2013)",
+          "journal": "Oxford Bulletin of Economics and Statistics",
+          "citation_count": 7,
+          "openalex_url": "https://openalex.org/W2159219237",
+          "url": "https://doi.org/10.1111/obes.12041"
         },
         {
           "paper_id": "W2163639681__gpt5mini_low",
@@ -2473,7 +3179,16 @@
           "edge_src": "FG3C002302",
           "edge_dst": "FG3C000002",
           "edge_src_display_label": "relative price variability",
-          "edge_dst_display_label": "inflation"
+          "edge_dst_display_label": "inflation",
+          "authors": [
+            "David Fielding",
+            "Paul Mizen"
+          ],
+          "citation_label": "Fielding and Mizen (2007)",
+          "journal": "Economica",
+          "citation_count": 43,
+          "openalex_url": "https://openalex.org/W2163639681",
+          "url": "https://doi.org/10.1111/j.1468-0335.2007.00637.x"
         }
       ],
       "question_family": "unanticipated-inflation-inflation",
@@ -2560,7 +3275,15 @@
           "edge_src": "FG3C004911",
           "edge_dst": "FG3C004268",
           "edge_src_display_label": "patent citations",
-          "edge_dst_display_label": "technological relatedness"
+          "edge_dst_display_label": "technological relatedness",
+          "authors": [
+            "David L. Rigby"
+          ],
+          "citation_label": "Rigby (2013)",
+          "journal": "Regional Studies",
+          "citation_count": 270,
+          "openalex_url": "https://openalex.org/W2091506017",
+          "url": "https://doi.org/10.1080/00343404.2013.854878"
         },
         {
           "paper_id": "W3126063958__gpt5mini_low",
@@ -2569,7 +3292,17 @@
           "edge_src": "FG3C000020",
           "edge_dst": "FG3C004781",
           "edge_src_display_label": "firm size",
-          "edge_dst_display_label": "patent data"
+          "edge_dst_display_label": "patent data",
+          "authors": [
+            "Bronwyn H. Hall",
+            "Georg von Graevenitz",
+            "Christian Helmers"
+          ],
+          "citation_label": "Hall et al. (2020)",
+          "journal": "Oxford Economic Papers",
+          "citation_count": 10,
+          "openalex_url": "https://openalex.org/W3126063958",
+          "url": "https://doi.org/10.1093/oep/gpaa043"
         },
         {
           "paper_id": "W3124069912__gpt5mini_low",
@@ -2578,7 +3311,17 @@
           "edge_src": "FG3C000020",
           "edge_dst": "FG3C004781",
           "edge_src_display_label": "firm size",
-          "edge_dst_display_label": "patent data"
+          "edge_dst_display_label": "patent data",
+          "authors": [
+            "Bronwyn H. Hall",
+            "Georg von Graevenitz",
+            "Christian Helmers"
+          ],
+          "citation_label": "Hall et al. (2020)",
+          "journal": "Oxford Economic Papers",
+          "citation_count": 24,
+          "openalex_url": "https://openalex.org/W3124069912",
+          "url": "https://doi.org/10.1093/oep/gpaa034"
         }
       ],
       "question_family": "patent-citations-patent-data",
@@ -2665,7 +3408,16 @@
           "edge_src": "FG3C004547",
           "edge_dst": "FG3C004355",
           "edge_src_display_label": "stock market crashes",
-          "edge_dst_display_label": "price pressure"
+          "edge_dst_display_label": "price pressure",
+          "authors": [
+            "Beni Lauterbach",
+            "Uri Ben‐Zion"
+          ],
+          "citation_label": "Lauterbach and Ben‐Zion (1993)",
+          "journal": "The Journal of Finance",
+          "citation_count": 139,
+          "openalex_url": "https://openalex.org/W1968307854",
+          "url": "https://doi.org/10.1111/j.1540-6261.1993.tb05133.x"
         },
         {
           "paper_id": "W3033639955__gpt5mini_low",
@@ -2674,7 +3426,16 @@
           "edge_src": "FG3C000824",
           "edge_dst": "FG3C000168",
           "edge_src_display_label": "contagion",
-          "edge_dst_display_label": "stock market returns"
+          "edge_dst_display_label": "stock market returns",
+          "authors": [
+            "David Iheke Okorie",
+            "Boqiang Lin"
+          ],
+          "citation_label": "Okorie and Lin (2020)",
+          "journal": "Finance research letters",
+          "citation_count": 286,
+          "openalex_url": "https://openalex.org/W3033639955",
+          "url": "https://doi.org/10.1016/j.frl.2020.101640"
         },
         {
           "paper_id": "W2015800048__gpt5mini_low",
@@ -2683,7 +3444,17 @@
           "edge_src": "FG3C000585",
           "edge_dst": "FG3C000168",
           "edge_src_display_label": "aggregate consumption",
-          "edge_dst_display_label": "stock market returns"
+          "edge_dst_display_label": "stock market returns",
+          "authors": [
+            "Nai‐Fu Chen",
+            "Richard Roll",
+            "Stephen A. Ross"
+          ],
+          "citation_label": "Chen et al. (1986)",
+          "journal": "The Journal of Business",
+          "citation_count": 5194,
+          "openalex_url": "https://openalex.org/W2015800048",
+          "url": "https://doi.org/10.1086/296344"
         }
       ],
       "question_family": "stock-market-crashes-stock-market-returns",
@@ -2769,16 +3540,33 @@
           "edge_src": "FG3C003921",
           "edge_dst": "FG3C003343",
           "edge_src_display_label": "interest rate expectations",
-          "edge_dst_display_label": "expectations hypothesis of the term structure"
+          "edge_dst_display_label": "expectations hypothesis of the term structure",
+          "authors": [
+            "Kenneth Froot"
+          ],
+          "citation_label": "Froot (1989)",
+          "journal": "The Journal of Finance",
+          "citation_count": 351,
+          "openalex_url": "https://openalex.org/W1979682371",
+          "url": "https://doi.org/10.1111/j.1540-6261.1989.tb05058.x"
         },
         {
           "paper_id": "W4200357935__gpt5mini_low",
-          "title": "The nonlinear causal relationship between short\u2010 and long\u2010term interest rates: An empirical assessment of the United States, the United Kingdom, and Japan",
+          "title": "The nonlinear causal relationship between short‐ and long‐term interest rates: An empirical assessment of the United States, the United Kingdom, and Japan",
           "year": 2021,
           "edge_src": "FG3C000455",
           "edge_dst": "FG3C000404",
           "edge_src_display_label": "long-term interest rate",
-          "edge_dst_display_label": "short-term interest rate"
+          "edge_dst_display_label": "short-term interest rate",
+          "authors": [
+            "Huiqing Li",
+            "Yang Su"
+          ],
+          "citation_label": "Li and Su (2021)",
+          "journal": "International Finance",
+          "citation_count": 7,
+          "openalex_url": "https://openalex.org/W4200357935",
+          "url": "https://doi.org/10.1111/infi.12400"
         },
         {
           "paper_id": "W3152614050__gpt5mini_low",
@@ -2787,7 +3575,17 @@
           "edge_src": "FG3C000455",
           "edge_dst": "FG3C000404",
           "edge_src_display_label": "long-term interest rate",
-          "edge_dst_display_label": "short-term interest rate"
+          "edge_dst_display_label": "short-term interest rate",
+          "authors": [
+            "Samuel Hanson",
+            "David O. Lucca",
+            "Jonathan H. Wright"
+          ],
+          "citation_label": "Hanson et al. (2021)",
+          "journal": "The Quarterly Journal of Economics",
+          "citation_count": 30,
+          "openalex_url": "https://openalex.org/W3152614050",
+          "url": "https://doi.org/10.1093/qje/qjab011"
         }
       ],
       "question_family": "interest-rate-expectations-short-term-interest-rate",
@@ -2873,7 +3671,17 @@
           "edge_src": "FG3C000003",
           "edge_dst": "FG3C000017",
           "edge_src_display_label": "CO2 emissions",
-          "edge_dst_display_label": "trade openness"
+          "edge_dst_display_label": "trade openness",
+          "authors": [
+            "Claudien Habimana Simbi",
+            "Fengmei Yao",
+            "Jiahua Zhang"
+          ],
+          "citation_label": "Simbi et al. (2025)",
+          "journal": "Sustainability",
+          "citation_count": 16,
+          "openalex_url": "https://openalex.org/W4406435647",
+          "url": "https://doi.org/10.3390/su17020679"
         },
         {
           "paper_id": "W4399202360__gpt5mini_low",
@@ -2882,7 +3690,17 @@
           "edge_src": "FG3C000003",
           "edge_dst": "FG3C000017",
           "edge_src_display_label": "CO2 emissions",
-          "edge_dst_display_label": "trade openness"
+          "edge_dst_display_label": "trade openness",
+          "authors": [
+            "Nguyen Thi Quy",
+            "Nguyễn Chí Hải",
+            "Ha Thi Thieu Dao"
+          ],
+          "citation_label": "Quy et al. (2024)",
+          "journal": "PLoS ONE",
+          "citation_count": 9,
+          "openalex_url": "https://openalex.org/W4399202360",
+          "url": "https://doi.org/10.1371/journal.pone.0304830"
         },
         {
           "paper_id": "W4414451225__gpt5mini_low",
@@ -2891,7 +3709,16 @@
           "edge_src": "FG3C000003",
           "edge_dst": "FG3C000017",
           "edge_src_display_label": "CO2 emissions",
-          "edge_dst_display_label": "trade openness"
+          "edge_dst_display_label": "trade openness",
+          "authors": [
+            "Olani Bekele Sakilu",
+            "Haibo Chen"
+          ],
+          "citation_label": "Sakilu and Chen (2025)",
+          "journal": "Sustainable Development",
+          "citation_count": 1,
+          "openalex_url": "https://openalex.org/W4414451225",
+          "url": "https://doi.org/10.1002/sd.70208"
         }
       ],
       "question_family": "co2-emissions-aggregate-emissions",
@@ -2968,7 +3795,16 @@
           "edge_src": "FG3C000150",
           "edge_dst": "FG3C000160",
           "edge_src_display_label": "energy prices",
-          "edge_dst_display_label": "electricity consumption"
+          "edge_dst_display_label": "electricity consumption",
+          "authors": [
+            "Chor Foon Tang",
+            "Eu Chye Tan"
+          ],
+          "citation_label": "Tang and Tan (2012)",
+          "journal": "Applied Energy",
+          "citation_count": 276,
+          "openalex_url": "https://openalex.org/W1970053784",
+          "url": "https://doi.org/10.1016/j.apenergy.2012.10.061"
         },
         {
           "paper_id": "W4384937324__gpt5mini_low",
@@ -2977,7 +3813,20 @@
           "edge_src": "FG3C000258",
           "edge_dst": "FG3C000160",
           "edge_src_display_label": "industrial production",
-          "edge_dst_display_label": "electricity consumption"
+          "edge_dst_display_label": "electricity consumption",
+          "authors": [
+            "Gazi Salah Uddin",
+            "Md. Bokhtiar Hasan",
+            "Han Phoumin",
+            "Farhad Taghizadeh‐Hesary",
+            "Ali Ahmed",
+            "Victor Troster"
+          ],
+          "citation_label": "Uddin et al. (2023)",
+          "journal": "Energy Economics",
+          "citation_count": 6,
+          "openalex_url": "https://openalex.org/W4384937324",
+          "url": "https://doi.org/10.1016/j.eneco.2023.106875"
         },
         {
           "paper_id": "W3031105492__gpt5mini_low",
@@ -2986,7 +3835,16 @@
           "edge_src": "FG3C002479",
           "edge_dst": "FG3C000160",
           "edge_src_display_label": "output (GDP)",
-          "edge_dst_display_label": "electricity consumption"
+          "edge_dst_display_label": "electricity consumption",
+          "authors": [
+            "Tullio Gregori",
+            "Aviral Kumar Tiwari"
+          ],
+          "citation_label": "Gregori and Tiwari (2020)",
+          "journal": "Energy Economics",
+          "citation_count": 27,
+          "openalex_url": "https://openalex.org/W3031105492",
+          "url": "https://doi.org/10.1016/j.eneco.2020.104800"
         }
       ],
       "question_family": "wind-energy-consumption-electricity-consumption",
@@ -3066,16 +3924,37 @@
           "edge_src": "FG3C002479",
           "edge_dst": "FG3C000014",
           "edge_src_display_label": "output (GDP)",
-          "edge_dst_display_label": "energy consumption"
+          "edge_dst_display_label": "energy consumption",
+          "authors": [
+            "Rabindra Nepal",
+            "Nirash Paija"
+          ],
+          "citation_label": "Nepal and Paija (2018)",
+          "journal": "Economic Modelling",
+          "citation_count": 33,
+          "openalex_url": "https://openalex.org/W2904993233",
+          "url": "https://doi.org/10.1016/j.econmod.2018.05.023"
         },
         {
           "paper_id": "W3209275706__gpt5mini_low",
-          "title": "Renewable Energy Consumption and Carbon Emissions\u2014Testing Nonlinearity for Highly Carbon Emitting Countries",
+          "title": "Renewable Energy Consumption and Carbon Emissions—Testing Nonlinearity for Highly Carbon Emitting Countries",
           "year": 2021,
           "edge_src": "FG3C005378",
           "edge_dst": "FG3C004594",
           "edge_src_display_label": "wind energy consumption",
-          "edge_dst_display_label": "carbon emissions (CO2 emissions)"
+          "edge_dst_display_label": "carbon emissions (CO2 emissions)",
+          "authors": [
+            "Sultan Salem",
+            "Noman Arshed",
+            "Ahsan Anwar",
+            "Mubasher Iqbal",
+            "Nyla Sattar"
+          ],
+          "citation_label": "Salem et al. (2021)",
+          "journal": "Sustainability",
+          "citation_count": 58,
+          "openalex_url": "https://openalex.org/W3209275706",
+          "url": "https://doi.org/10.3390/su132111930"
         },
         {
           "paper_id": "W2972990721__gpt5mini_low",
@@ -3084,7 +3963,16 @@
           "edge_src": "FG3C005378",
           "edge_dst": "FG3C002479",
           "edge_src_display_label": "wind energy consumption",
-          "edge_dst_display_label": "output (GDP)"
+          "edge_dst_display_label": "output (GDP)",
+          "authors": [
+            "Abbas Valadkhani",
+            "Jeremy Nguyen"
+          ],
+          "citation_label": "Valadkhani and Nguyen (2019)",
+          "journal": "Applied Energy",
+          "citation_count": 10,
+          "openalex_url": "https://openalex.org/W2972990721",
+          "url": "https://doi.org/10.1016/j.apenergy.2019.113796"
         }
       ],
       "question_family": "wind-energy-consumption-energy-consumption",
@@ -3170,7 +4058,19 @@
           "edge_src": "FG3C000035",
           "edge_dst": "FG3C000002",
           "edge_src_display_label": "stock returns",
-          "edge_dst_display_label": "inflation"
+          "edge_dst_display_label": "inflation",
+          "authors": [
+            "Aviral Kumar Tiwari",
+            "Arif Billah Dar",
+            "Niyati Bhanja",
+            "Mohamed El Hédi Arouri",
+            "Frédèric Teulon"
+          ],
+          "citation_label": "Tiwari et al. (2015)",
+          "journal": "Economic Modelling",
+          "citation_count": 56,
+          "openalex_url": "https://openalex.org/W2104249109",
+          "url": "https://doi.org/10.1016/j.econmod.2014.12.043"
         },
         {
           "paper_id": "W1585814524__gpt5mini_low",
@@ -3179,7 +4079,16 @@
           "edge_src": "FG3C000035",
           "edge_dst": "FG3C000002",
           "edge_src_display_label": "stock returns",
-          "edge_dst_display_label": "inflation"
+          "edge_dst_display_label": "inflation",
+          "authors": [
+            "Jacob Boudoukh",
+            "Matthew Richardson"
+          ],
+          "citation_label": "Boudoukh and Richardson (1993)",
+          "journal": "American Economic Review",
+          "citation_count": 427,
+          "openalex_url": "https://openalex.org/W1585814524",
+          "url": "https://www.jstor.org/stable/pdfplus/2117566.pdf"
         },
         {
           "paper_id": "W1985471384__gpt5mini_low",
@@ -3188,7 +4097,16 @@
           "edge_src": "FG3C000035",
           "edge_dst": "FG3C000002",
           "edge_src_display_label": "stock returns",
-          "edge_dst_display_label": "inflation"
+          "edge_dst_display_label": "inflation",
+          "authors": [
+            "Sangbae Kim",
+            "Francis In"
+          ],
+          "citation_label": "Kim and In (2005)",
+          "journal": "Journal of Empirical Finance",
+          "citation_count": 198,
+          "openalex_url": "https://openalex.org/W1985471384",
+          "url": "https://doi.org/10.1016/j.jempfin.2004.04.008"
         }
       ],
       "question_family": "actual-inflation-inflation",
@@ -3275,7 +4193,15 @@
           "edge_src": "FG3C000652",
           "edge_dst": "FG3C000011",
           "edge_src_display_label": "exchange rate changes",
-          "edge_dst_display_label": "output"
+          "edge_dst_display_label": "output",
+          "authors": [
+            "Manuel Guitián"
+          ],
+          "citation_label": "Guitián (1976)",
+          "journal": "Journal of International Economics",
+          "citation_count": 73,
+          "openalex_url": "https://openalex.org/W2007165909",
+          "url": "https://doi.org/10.1016/0022-1996(76)90023-4"
         },
         {
           "paper_id": "W2012188687__gpt5mini_low",
@@ -3284,7 +4210,15 @@
           "edge_src": "FG3C005637",
           "edge_dst": "FG3C000019",
           "edge_src_display_label": "expected output",
-          "edge_dst_display_label": "investment"
+          "edge_dst_display_label": "investment",
+          "authors": [
+            "Fabio Schiantarelli"
+          ],
+          "citation_label": "Schiantarelli (1983)",
+          "journal": "International Economic Review",
+          "citation_count": 13,
+          "openalex_url": "https://openalex.org/W2012188687",
+          "url": "https://doi.org/10.2307/2648747"
         },
         {
           "paper_id": "W3121993932__gpt5mini_low",
@@ -3293,7 +4227,16 @@
           "edge_src": "FG3C000019",
           "edge_dst": "FG3C000011",
           "edge_src_display_label": "investment",
-          "edge_dst_display_label": "output"
+          "edge_dst_display_label": "output",
+          "authors": [
+            "Grey Gordon",
+            "Pablo Guerrón-Quintana"
+          ],
+          "citation_label": "Gordon and Guerrón-Quintana (2017)",
+          "journal": "Review of Economic Dynamics",
+          "citation_count": 41,
+          "openalex_url": "https://openalex.org/W3121993932",
+          "url": "https://doi.org/10.1016/j.red.2017.07.007"
         }
       ],
       "question_family": "expected-output-output",
@@ -3369,12 +4312,21 @@
       "representative_papers": [
         {
           "paper_id": "W4200357935__gpt5mini_low",
-          "title": "The nonlinear causal relationship between short\u2010 and long\u2010term interest rates: An empirical assessment of the United States, the United Kingdom, and Japan",
+          "title": "The nonlinear causal relationship between short‐ and long‐term interest rates: An empirical assessment of the United States, the United Kingdom, and Japan",
           "year": 2021,
           "edge_src": "FG3C000404",
           "edge_dst": "FG3C000455",
           "edge_src_display_label": "short-term interest rate",
-          "edge_dst_display_label": "long-term interest rate"
+          "edge_dst_display_label": "long-term interest rate",
+          "authors": [
+            "Huiqing Li",
+            "Yang Su"
+          ],
+          "citation_label": "Li and Su (2021)",
+          "journal": "International Finance",
+          "citation_count": 7,
+          "openalex_url": "https://openalex.org/W4200357935",
+          "url": "https://doi.org/10.1111/infi.12400"
         },
         {
           "paper_id": "W2236554471__gpt5mini_low",
@@ -3383,7 +4335,16 @@
           "edge_src": "FG3C001755",
           "edge_dst": "FG3C003315",
           "edge_src_display_label": "bond prices",
-          "edge_dst_display_label": "short rate"
+          "edge_dst_display_label": "short rate",
+          "authors": [
+            "Tao Zou",
+            "Song Xi Chen"
+          ],
+          "citation_label": "Zou and Chen (2015)",
+          "journal": "Journal of Business and Economic Statistics",
+          "citation_count": 2,
+          "openalex_url": "https://openalex.org/W2236554471",
+          "url": "https://doi.org/10.1080/07350015.2015.1089773"
         },
         {
           "paper_id": "W2552511774__gpt5mini_low",
@@ -3392,7 +4353,16 @@
           "edge_src": "FG3C000404",
           "edge_dst": "FG3C000455",
           "edge_src_display_label": "short-term interest rate",
-          "edge_dst_display_label": "long-term interest rate"
+          "edge_dst_display_label": "long-term interest rate",
+          "authors": [
+            "Tanweer Akram",
+            "Huiqing Li"
+          ],
+          "citation_label": "Akram and Li (2016)",
+          "journal": "Economic Modelling",
+          "citation_count": 33,
+          "openalex_url": "https://openalex.org/W2552511774",
+          "url": "https://doi.org/10.1016/j.econmod.2016.09.017"
         }
       ],
       "question_family": "short-term-interest-rate-short-rate",
@@ -3475,7 +4445,16 @@
           "edge_src": "FG3C001347",
           "edge_dst": "FG3C001547",
           "edge_src_display_label": "health care reform",
-          "edge_dst_display_label": "comparative effectiveness research"
+          "edge_dst_display_label": "comparative effectiveness research",
+          "authors": [
+            "Alvin I. Mushlin",
+            "Hassan Ghomrawi"
+          ],
+          "citation_label": "Mushlin and Ghomrawi (2010)",
+          "journal": "New England Journal of Medicine",
+          "citation_count": 61,
+          "openalex_url": "https://openalex.org/W2038391185",
+          "url": "https://doi.org/10.1056/nejmp0912651"
         },
         {
           "paper_id": "W1989067006__gpt5mini_low",
@@ -3484,7 +4463,15 @@
           "edge_src": "FG3C001347",
           "edge_dst": "FG3C000300",
           "edge_src_display_label": "health care reform",
-          "edge_dst_display_label": "health care costs"
+          "edge_dst_display_label": "health care costs",
+          "authors": [
+            "Jennifer Fisher Wilson"
+          ],
+          "citation_label": "Wilson (2009)",
+          "journal": "Annals of Internal Medicine",
+          "citation_count": 3,
+          "openalex_url": "https://openalex.org/W1989067006",
+          "url": "https://doi.org/10.7326/0003-4819-150-2-200901200-00024"
         },
         {
           "paper_id": "W2061821850__gpt5mini_low",
@@ -3493,7 +4480,15 @@
           "edge_src": "FG3C001347",
           "edge_dst": "FG3C000300",
           "edge_src_display_label": "health care reform",
-          "edge_dst_display_label": "health care costs"
+          "edge_dst_display_label": "health care costs",
+          "authors": [
+            "Wyck A. Knox"
+          ],
+          "citation_label": "Knox (1993)",
+          "journal": "Cancer",
+          "citation_count": 2,
+          "openalex_url": "https://openalex.org/W2061821850",
+          "url": "https://doi.org/10.1002/1097-0142(19931101)72:9+<2850::aid-cncr2820721516>3.0.co;2-h"
         }
       ],
       "question_family": "health-care-reform-health-care",
@@ -3577,7 +4572,16 @@
           "edge_src": "FG3C000042",
           "edge_dst": "FG3C000035",
           "edge_src_display_label": "trading volume",
-          "edge_dst_display_label": "stock returns"
+          "edge_dst_display_label": "stock returns",
+          "authors": [
+            "Geoffrey Ngene",
+            "Ann Nduati Mungai"
+          ],
+          "citation_label": "Ngene and Mungai (2022)",
+          "journal": "International Review of Financial Analysis",
+          "citation_count": 19,
+          "openalex_url": "https://openalex.org/W4224653639",
+          "url": "https://doi.org/10.1016/j.irfa.2022.102176"
         },
         {
           "paper_id": "W2803653306__gpt5mini_low",
@@ -3586,7 +4590,17 @@
           "edge_src": "FG3C006109",
           "edge_dst": "FG3C000035",
           "edge_src_display_label": "day-of-the-week effect",
-          "edge_dst_display_label": "stock returns"
+          "edge_dst_display_label": "stock returns",
+          "authors": [
+            "Ercan Balaban",
+            "Tolga Özgen",
+            "Mehmet Sencer Girgin"
+          ],
+          "citation_label": "Balaban et al. (2018)",
+          "journal": "Physica A Statistical Mechanics and its Applications",
+          "citation_count": 3,
+          "openalex_url": "https://openalex.org/W2803653306",
+          "url": "https://doi.org/10.1016/j.physa.2018.05.019"
         },
         {
           "paper_id": "W2764245194__gpt5mini_low",
@@ -3595,7 +4609,17 @@
           "edge_src": "FG3C000042",
           "edge_dst": "FG3C000035",
           "edge_src_display_label": "trading volume",
-          "edge_dst_display_label": "stock returns"
+          "edge_dst_display_label": "stock returns",
+          "authors": [
+            "Zijun Wang",
+            "Yan Qian",
+            "Jian Wang"
+          ],
+          "citation_label": "Wang et al. (2017)",
+          "journal": "International Review of Financial Analysis",
+          "citation_count": 15,
+          "openalex_url": "https://openalex.org/W2764245194",
+          "url": "https://doi.org/10.1016/j.irfa.2017.10.003"
         }
       ],
       "question_family": "market-return-stock-returns",
@@ -3682,7 +4706,15 @@
           "edge_src": "FG3C000684",
           "edge_dst": "FG3C002369",
           "edge_src_display_label": "economics",
-          "edge_dst_display_label": "policy analysis"
+          "edge_dst_display_label": "policy analysis",
+          "authors": [
+            "Robert Farrow"
+          ],
+          "citation_label": "Farrow (1991)",
+          "journal": "The Review of Economics and Statistics",
+          "citation_count": 6,
+          "openalex_url": "https://openalex.org/W2137293206",
+          "url": "https://econpapers.repec.org/RePEc:tpr:restat:v:73:y:1991:i:1:p:172-76"
         },
         {
           "paper_id": "W3140731589__gpt5mini_low",
@@ -3691,7 +4723,15 @@
           "edge_src": "FG3C000684",
           "edge_dst": "FG3C002369",
           "edge_src_display_label": "economics",
-          "edge_dst_display_label": "policy analysis"
+          "edge_dst_display_label": "policy analysis",
+          "authors": [
+            "Scott Farrow"
+          ],
+          "citation_label": "Farrow (1991)",
+          "journal": "The Review of Economics and Statistics",
+          "citation_count": 6,
+          "openalex_url": "https://openalex.org/W3140731589",
+          "url": "https://doi.org/10.2307/2109702"
         },
         {
           "paper_id": "W4207024755__gpt5mini_low",
@@ -3700,7 +4740,13 @@
           "edge_src": "FG3C001408",
           "edge_dst": "FG3C000684",
           "edge_src_display_label": "policy",
-          "edge_dst_display_label": "economics"
+          "edge_dst_display_label": "economics",
+          "authors": [],
+          "citation_label": "2021",
+          "journal": "Journal of Economic Literature",
+          "citation_count": 0,
+          "openalex_url": "https://openalex.org/W4207024755",
+          "url": "https://doi.org/10.1257/jel.59.3.1039"
         }
       ],
       "question_family": "policy-policy-analysis",
@@ -3781,7 +4827,17 @@
           "edge_src": "FG3C004791",
           "edge_dst": "FG3C001711",
           "edge_src_display_label": "carbon emissions reduction",
-          "edge_dst_display_label": "return on equity (ROE)"
+          "edge_dst_display_label": "return on equity (ROE)",
+          "authors": [
+            "Robin van Emous",
+            "Rytis Krušinskas",
+            "Wim Westerman"
+          ],
+          "citation_label": "Emous et al. (2021)",
+          "journal": "Energies",
+          "citation_count": 22,
+          "openalex_url": "https://openalex.org/W3201329971",
+          "url": "https://doi.org/10.3390/en14196029"
         },
         {
           "paper_id": "W4393989550__gpt5mini_low",
@@ -3790,7 +4846,17 @@
           "edge_src": "FG3C000026",
           "edge_dst": "FG3C000010",
           "edge_src_display_label": "economic development",
-          "edge_dst_display_label": "carbon emissions"
+          "edge_dst_display_label": "carbon emissions",
+          "authors": [
+            "Qiang Wang",
+            "Siqi Zhang",
+            "Rongrong Li"
+          ],
+          "citation_label": "Wang et al. (2024)",
+          "journal": "Energy & Environment",
+          "citation_count": 4,
+          "openalex_url": "https://openalex.org/W4393989550",
+          "url": "https://doi.org/10.1177/0958305x241230623"
         },
         {
           "paper_id": "W4322503097__gpt5mini_low",
@@ -3799,7 +4865,18 @@
           "edge_src": "FG3C001711",
           "edge_dst": "FG3C000010",
           "edge_src_display_label": "return on equity (ROE)",
-          "edge_dst_display_label": "carbon emissions"
+          "edge_dst_display_label": "carbon emissions",
+          "authors": [
+            "Paul Adjei Kwakwa",
+            "Solomon Aboagye",
+            "Vera Acheampong",
+            "Abigail Achaamah"
+          ],
+          "citation_label": "Kwakwa et al. (2023)",
+          "journal": "International Journal of Energy Sector Management",
+          "citation_count": 8,
+          "openalex_url": "https://openalex.org/W4322503097",
+          "url": "https://doi.org/10.1108/ijesm-02-2022-0001"
         }
       ],
       "question_family": "carbon-emissions-reduction-carbon-emissions",
@@ -3879,16 +4956,35 @@
           "edge_src": "FG3C000031",
           "edge_dst": "FG3C001154",
           "edge_src_display_label": "transaction costs",
-          "edge_dst_display_label": "emissions trading"
+          "edge_dst_display_label": "emissions trading",
+          "authors": [
+            "Edwin Woerdman"
+          ],
+          "citation_label": "Woerdman (2001)",
+          "journal": "Ecological Economics",
+          "citation_count": 60,
+          "openalex_url": "https://openalex.org/W2137322689",
+          "url": "https://doi.org/10.1016/s0921-8009(01)00169-0"
         },
         {
           "paper_id": "W1708730847__gpt5mini_low",
-          "title": "The energy price equivalence of carbon taxes and emissions trading\u2014Theory and evidence",
+          "title": "The energy price equivalence of carbon taxes and emissions trading—Theory and evidence",
           "year": 2015,
           "edge_src": "FG3C000152",
           "edge_dst": "FG3C001154",
           "edge_src_display_label": "carbon tax",
-          "edge_dst_display_label": "emissions trading"
+          "edge_dst_display_label": "emissions trading",
+          "authors": [
+            "Fan-Ping Chiu",
+            "Hsiao-I Kuo",
+            "Chi‐Chung Chen",
+            "Chia-Sheng Hsu"
+          ],
+          "citation_label": "Chiu et al. (2015)",
+          "journal": "Applied Energy",
+          "citation_count": 74,
+          "openalex_url": "https://openalex.org/W1708730847",
+          "url": "https://doi.org/10.1016/j.apenergy.2015.09.022"
         },
         {
           "paper_id": "W2886282539__gpt5mini_low",
@@ -3897,7 +4993,19 @@
           "edge_src": "FG3C003006",
           "edge_dst": "FG3C000152",
           "edge_src_display_label": "emissions trading system",
-          "edge_dst_display_label": "carbon tax"
+          "edge_dst_display_label": "carbon tax",
+          "authors": [
+            "Camila Barragán-Beaud",
+            "Amalia Rosa Pizarro Alonso",
+            "Maria Xylia",
+            "Sanna Syri",
+            "Semida Silveira"
+          ],
+          "citation_label": "Barragán-Beaud et al. (2018)",
+          "journal": "Energy Policy",
+          "citation_count": 63,
+          "openalex_url": "https://openalex.org/W2886282539",
+          "url": "https://doi.org/10.1016/j.enpol.2018.07.010"
         }
       ],
       "question_family": "emissions-trading-system-emissions-trading",
@@ -3983,16 +5091,35 @@
           "edge_src": "FG3C000009",
           "edge_dst": "FG3C001178",
           "edge_src_display_label": "unemployment",
-          "edge_dst_display_label": "wage rigidity"
+          "edge_dst_display_label": "wage rigidity",
+          "authors": [
+            "Yakir Plessner",
+            "Shlomo Yitzhaki"
+          ],
+          "citation_label": "Plessner and Yitzhaki (1983)",
+          "journal": "Oxford Economic Papers",
+          "citation_count": 4,
+          "openalex_url": "https://openalex.org/W1773422498",
+          "url": "https://doi.org/10.1093/oxfordjournals.oep.a041590"
         },
         {
           "paper_id": "W1491634788__gpt5mini_low",
-          "title": "UNEMPLOYMENT, DURATION AND WAGE DETERMINATION IN THE UK: EVIDENCE FROM THE FES 1980\u201386",
+          "title": "UNEMPLOYMENT, DURATION AND WAGE DETERMINATION IN THE UK: EVIDENCE FROM THE FES 1980–86",
           "year": 1991,
           "edge_src": "FG3C000009",
           "edge_dst": "FG3C002052",
           "edge_src_display_label": "unemployment",
-          "edge_dst_display_label": "wage rates"
+          "edge_dst_display_label": "wage rates",
+          "authors": [
+            "David Blackaby",
+            "Robin Bladen‐Hovell",
+            "Elizabeth Symons"
+          ],
+          "citation_label": "Blackaby et al. (1991)",
+          "journal": "Oxford Bulletin of Economics and Statistics",
+          "citation_count": 14,
+          "openalex_url": "https://openalex.org/W1491634788",
+          "url": "https://doi.org/10.1111/j.1468-0084.1991.mp53004003.x"
         },
         {
           "paper_id": "W2158805186__gpt5mini_low",
@@ -4001,7 +5128,18 @@
           "edge_src": "FG3C000009",
           "edge_dst": "FG3C004434",
           "edge_src_display_label": "unemployment",
-          "edge_dst_display_label": "job-finding rate"
+          "edge_dst_display_label": "job-finding rate",
+          "authors": [
+            "Martin Ellison",
+            "Godfrey Keller",
+            "Kevin Roberts",
+            "Margaret Stevens"
+          ],
+          "citation_label": "Ellison et al. (2013)",
+          "journal": "The Economic Journal",
+          "citation_count": 6,
+          "openalex_url": "https://openalex.org/W2158805186",
+          "url": "https://doi.org/10.1111/ecoj.12043"
         }
       ],
       "question_family": "unemployment-unemployment-fluctuations",
@@ -4088,7 +5226,16 @@
           "edge_src": "FG3C005010",
           "edge_dst": "FG3C000508",
           "edge_src_display_label": "forward exchange rates",
-          "edge_dst_display_label": "purchasing power parity (PPP)"
+          "edge_dst_display_label": "purchasing power parity (PPP)",
+          "authors": [
+            "Robert C. Feenstra",
+            "Jon D Kendall"
+          ],
+          "citation_label": "Feenstra and Kendall (1997)",
+          "journal": "Journal of International Economics",
+          "citation_count": 104,
+          "openalex_url": "https://openalex.org/W2072012617",
+          "url": "https://doi.org/10.1016/s0022-1996(96)01473-0"
         },
         {
           "paper_id": "W2893771140__gpt5mini_low",
@@ -4097,7 +5244,16 @@
           "edge_src": "FG3C000544",
           "edge_dst": "FG3C000072",
           "edge_src_display_label": "economic fundamentals",
-          "edge_dst_display_label": "exchange rates"
+          "edge_dst_display_label": "exchange rates",
+          "authors": [
+            "Zixiong Xie",
+            "Shyh‐Wei Chen"
+          ],
+          "citation_label": "Xie and Chen (2018)",
+          "journal": "Economic Modelling",
+          "citation_count": 14,
+          "openalex_url": "https://openalex.org/W2893771140",
+          "url": "https://doi.org/10.1016/j.econmod.2018.09.021"
         },
         {
           "paper_id": "W1972403027__gpt5mini_low",
@@ -4106,7 +5262,16 @@
           "edge_src": "FG3C000544",
           "edge_dst": "FG3C000072",
           "edge_src_display_label": "economic fundamentals",
-          "edge_dst_display_label": "exchange rates"
+          "edge_dst_display_label": "exchange rates",
+          "authors": [
+            "Lucio Sarno",
+            "Giorgio Valente"
+          ],
+          "citation_label": "Sarno and Valente (2009)",
+          "journal": "Journal of the European Economic Association",
+          "citation_count": 148,
+          "openalex_url": "https://openalex.org/W1972403027",
+          "url": "https://doi.org/10.1162/jeea.2009.7.4.786"
         }
       ],
       "question_family": "forward-exchange-rates-exchange-rates",
@@ -4191,7 +5356,17 @@
           "edge_src": "FG3C001438",
           "edge_dst": "FG3C006667",
           "edge_src_display_label": "market risk premium",
-          "edge_dst_display_label": "cross-section of expected returns"
+          "edge_dst_display_label": "cross-section of expected returns",
+          "authors": [
+            "Mariano Gonzalez Sánchez",
+            "Juan M. Nave",
+            "Gonzalo Rubio"
+          ],
+          "citation_label": "Sánchez et al. (2011)",
+          "journal": "Journal of Financial and Quantitative Analysis",
+          "citation_count": 17,
+          "openalex_url": "https://openalex.org/W2067265866",
+          "url": "https://doi.org/10.1017/s0022109011000603"
         },
         {
           "paper_id": "W3124971662__gpt5mini_low",
@@ -4200,16 +5375,33 @@
           "edge_src": "FG3C000020",
           "edge_dst": "FG3C006667",
           "edge_src_display_label": "firm size",
-          "edge_dst_display_label": "cross-section of expected returns"
+          "edge_dst_display_label": "cross-section of expected returns",
+          "authors": [
+            "Kewei Hou",
+            "Mathijs A. van Dijk"
+          ],
+          "citation_label": "Hou and Dijk (2018)",
+          "journal": "Review of Financial Studies",
+          "citation_count": 58,
+          "openalex_url": "https://openalex.org/W3124971662",
+          "url": "https://doi.org/10.1093/rfs/hhy104"
         },
         {
           "paper_id": "W2012637053__gpt5mini_low",
-          "title": "The Errors in the Variables Problem in the Cross\u2010Section of Expected Stock Returns",
+          "title": "The Errors in the Variables Problem in the Cross‐Section of Expected Stock Returns",
           "year": 1995,
           "edge_src": "FG3C000020",
           "edge_dst": "FG3C006667",
           "edge_src_display_label": "firm size",
-          "edge_dst_display_label": "cross-section of expected returns"
+          "edge_dst_display_label": "cross-section of expected returns",
+          "authors": [
+            "Dongcheol Kim"
+          ],
+          "citation_label": "Kim (1995)",
+          "journal": "The Journal of Finance",
+          "citation_count": 174,
+          "openalex_url": "https://openalex.org/W2012637053",
+          "url": "https://doi.org/10.1111/j.1540-6261.1995.tb05190.x"
         }
       ],
       "question_family": "cross-sectional-stock-returns-cross-section-of-expected-returns",
@@ -4291,7 +5483,16 @@
           "edge_src": "FG3C000176",
           "edge_dst": "FG3C000009",
           "edge_src_display_label": "real wages",
-          "edge_dst_display_label": "unemployment"
+          "edge_dst_display_label": "unemployment",
+          "authors": [
+            "Massimiliano Marcellino",
+            "Grayham E. Mizon"
+          ],
+          "citation_label": "Marcellino and Mizon (2001)",
+          "journal": "Journal of Applied Econometrics",
+          "citation_count": 36,
+          "openalex_url": "https://openalex.org/W1999717132",
+          "url": "https://doi.org/10.1002/jae.610"
         },
         {
           "paper_id": "W2120472049__gpt5mini_low",
@@ -4300,7 +5501,17 @@
           "edge_src": "FG3C000176",
           "edge_dst": "FG3C000009",
           "edge_src_display_label": "real wages",
-          "edge_dst_display_label": "unemployment"
+          "edge_dst_display_label": "unemployment",
+          "authors": [
+            "Tor Jacobson",
+            "Anders Vredin",
+            "Anders Warne"
+          ],
+          "citation_label": "Jacobson et al. (1998)",
+          "journal": "Economica",
+          "citation_count": 44,
+          "openalex_url": "https://openalex.org/W2120472049",
+          "url": "https://doi.org/10.1111/1468-0335.00114"
         },
         {
           "paper_id": "W2039207742__gpt5mini_low",
@@ -4309,7 +5520,16 @@
           "edge_src": "FG3C003467",
           "edge_dst": "FG3C000009",
           "edge_src_display_label": "regional unemployment rates",
-          "edge_dst_display_label": "unemployment"
+          "edge_dst_display_label": "unemployment",
+          "authors": [
+            "Richard Tiller",
+            "Robert W. Bednarzik"
+          ],
+          "citation_label": "Tiller and Bednarzik (1983)",
+          "journal": "Journal of Regional Science",
+          "citation_count": 14,
+          "openalex_url": "https://openalex.org/W2039207742",
+          "url": "https://doi.org/10.1111/j.1467-9787.1983.tb01005.x"
         }
       ],
       "question_family": "local-unemployment-rates-unemployment",
