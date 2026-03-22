@@ -1167,17 +1167,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   };
   const edgeArrowMode = (edge) => {
     const summary = edgePairSummary(edge);
-    if (summary?.arrow_mode && summary.arrow_mode !== "none") return summary.arrow_mode;
-    const directionMix = Array.isArray(edge?.directionality_mix) ? edge.directionality_mix : [];
-    if (!directionMix.length) return summary?.arrow_mode || "none";
-    const directedCount = directionMix
-      .filter((item) => normalizeText(mixItemValue(item)).includes("directed"))
-      .reduce((sum, item) => sum + safeNumber(mixItemCount(item)), 0);
-    const undirectedCount = directionMix
-      .filter((item) => normalizeText(mixItemValue(item)).includes("undirected") || normalizeText(mixItemValue(item)).includes("context"))
-      .reduce((sum, item) => sum + safeNumber(mixItemCount(item)), 0);
-    if (directedCount || undirectedCount) return "both";
-    return summary?.arrow_mode || "none";
+    if (summary?.arrow_mode === "forward" || summary?.arrow_mode === "reverse") return summary.arrow_mode;
+    return "none";
   };
 
   const fetchJson = async (path) => {
@@ -3342,6 +3333,56 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       const layerKey = scopeLayerKey(scopeTypeForEntity(item));
       return layerKey && layerState[layerKey];
     });
+    const displayRadiusForNode = (node) => {
+      const isRoot = node.id === renderRootId;
+      const isSelected = node.id === renderSelectedId && node.id !== renderRootId;
+      const isQuestionTarget = Boolean(counterpartId) && node.id === counterpartId;
+      const isMediator = mediatorIds.has(node.id);
+      const isFirstRing = firstRing.has(node.id);
+      const isSecondRing = secondRing.has(node.id);
+      const isThirdRing = thirdRing.has(node.id);
+      const clusterId = clusterLookup.get(node.id);
+      const cluster = clusterById.get(clusterId);
+      const isClusterTopNode = Boolean(cluster && cluster.topNodeId === node.id);
+      const prominence = Math.max(
+        safeNumber(node.distinct_paper_support),
+        safeNumber(node.weighted_degree) * 0.2,
+      );
+      return globalModeActive
+        ? globalNodeRadius(node, {
+            maxVisiblePaperSupport,
+            isRoot,
+            isSelected,
+            isClusterTopNode: isClusterTopNode && (!clusterFocusActive || clusterId === activeClusterFocusId),
+          })
+        : focusedActive
+          ? isRoot
+            ? 26
+            : isSelected
+              ? 20
+              : isQuestionTarget
+                ? 21
+                : isMediator
+                  ? 17
+                  : isFirstRing
+                    ? Math.max(13, Math.min(22, 11.8 + Math.log10(prominence + 1) * 2.8))
+                    : isSecondRing
+                      ? Math.max(10, Math.min(16, 9.8 + Math.log10(prominence + 1) * 1.55))
+                      : isThirdRing
+                        ? 5.7
+                        : Math.max(8.5, Math.min(13.5, 8.8 + Math.log10(prominence + 1) * 1.2))
+          : Math.max(2.8, Math.min(24, 2.8 + Math.log10(prominence + 1) * 4.4));
+    };
+    const clipEdgeEndpoint = (fromPoint, toPoint, radius, extraGap = 2) => {
+      const dx = toPoint.x - fromPoint.x;
+      const dy = toPoint.y - fromPoint.y;
+      const distance = Math.hypot(dx, dy) || 1;
+      const offset = Math.min(radius + extraGap, Math.max(distance / 2 - 1, 0));
+      return {
+        x: fromPoint.x + (dx / distance) * offset,
+        y: fromPoint.y + (dy / distance) * offset,
+      };
+    };
 
     if (renderMode === "global") {
       for (const cluster of globalClusters) {
@@ -3374,6 +3415,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       if (!source || !target) continue;
       const sourceRender = nodeRenderState(source, renderPositionMap);
       const targetRender = nodeRenderState(target, renderPositionMap);
+      const sourceRadius = displayRadiusForNode(source) * (sourceRender.scaleMultiplier || 1);
+      const targetRadius = displayRadiusForNode(target) * (targetRender.scaleMultiplier || 1);
       const summary = edgePairSummary(edge);
       const dominantCountries = (summary?.dominant_countries || edge.dominant_countries || []).filter(Boolean);
       const dominantUnits = (summary?.dominant_units || edge.dominant_units || []).filter(Boolean);
@@ -3400,11 +3443,13 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       const hasContext = layerState.context && Boolean(dominantCountries.length || dominantUnits.length || dominantYears.length);
       const markerStart = arrowMode === "reverse" || arrowMode === "both" ? ` marker-start="url(#literature-arrow-start)"` : "";
       const markerEnd = arrowMode === "forward" || arrowMode === "both" ? ` marker-end="url(#literature-arrow-end)"` : "";
+      const clippedStart = clipEdgeEndpoint(sourceRender, targetRender, sourceRadius, markerStart ? 3 : 1);
+      const clippedEnd = clipEdgeEndpoint(targetRender, sourceRender, targetRadius, markerEnd ? 7 : 1);
       const edgeSupport = scaleSupportCount(edge.support_count, maxVisibleSupport);
       const edgeStrength = clamp(Math.max(safeNumber(edge.strength) || 0, edgeSupport), 0.08, 1);
       const paperLayerActive = layerState.papers && safeNumber(edge.support_count) > 0;
       edgeMarkup.push(
-        `<line class="graph-edge${globalModeActive ? " is-global" : ""}${isRootEdge ? " is-selected" : ""}${isSelectedEdge ? " is-selected-edge" : ""}${isPathEdge ? " is-focused" : ""}${isQuestionRoute ? " is-question-route" : ""}${scopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${layerState.direction && arrowMode !== "none" ? " is-directional" : ""}${paperLayerActive ? " is-paper-layer" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edgeStrength}; --edge-support:${edgeSupport}; opacity:${edgeOpacityMap.get(edge.id) ?? 1};" data-edge-id="${escapeHtml(edge.id)}" x1="${sourceRender.x}" y1="${sourceRender.y}" x2="${targetRender.x}" y2="${targetRender.y}"${markerStart}${markerEnd}></line>`,
+        `<line class="graph-edge${globalModeActive ? " is-global" : ""}${isRootEdge ? " is-selected" : ""}${isSelectedEdge ? " is-selected-edge" : ""}${isPathEdge ? " is-focused" : ""}${isQuestionRoute ? " is-question-route" : ""}${scopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${layerState.direction && arrowMode !== "none" ? " is-directional" : ""}${paperLayerActive ? " is-paper-layer" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edgeStrength}; --edge-support:${edgeSupport}; opacity:${edgeOpacityMap.get(edge.id) ?? 1};" data-edge-id="${escapeHtml(edge.id)}" x1="${clippedStart.x}" y1="${clippedStart.y}" x2="${clippedEnd.x}" y2="${clippedEnd.y}"${markerStart}${markerEnd}></line>`,
       );
     }
 
@@ -3427,35 +3472,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         (clusterFocusDimmed && !isRoot && !isSelected && !isQuestionTarget && !isMediator) ||
         (scopeFilteringActive && !isScopeMatch && !isRoot && !isSelected && !isQuestionTarget && !isMediator);
       const renderState = nodeRenderState(node, renderPositionMap);
-      const prominence = Math.max(
-        safeNumber(node.distinct_paper_support),
-        safeNumber(node.weighted_degree) * 0.2,
-      );
       const paperSupport = scaleSupportCount(node.distinct_paper_support, maxVisiblePaperSupport);
-      const baseRadius = globalModeActive
-        ? globalNodeRadius(node, {
-            maxVisiblePaperSupport,
-            isRoot,
-            isSelected,
-            isClusterTopNode: isClusterTopNode && (!clusterFocusActive || clusterId === activeClusterFocusId),
-          })
-        : focusedActive
-          ? isRoot
-            ? 26
-            : isSelected
-              ? 20
-              : isQuestionTarget
-                ? 21
-                : isMediator
-                  ? 17
-                  : isFirstRing
-                    ? Math.max(13, Math.min(22, 11.8 + Math.log10(prominence + 1) * 2.8))
-                    : isSecondRing
-                      ? Math.max(10, Math.min(16, 9.8 + Math.log10(prominence + 1) * 1.55))
-                      : isThirdRing
-                        ? 5.7
-                        : Math.max(8.5, Math.min(13.5, 8.8 + Math.log10(prominence + 1) * 1.2))
-          : Math.max(2.8, Math.min(24, 2.8 + Math.log10(prominence + 1) * 4.4));
+      const baseRadius = displayRadiusForNode(node);
       const radius = baseRadius * (renderState.scaleMultiplier || 1);
       const showLabel = globalModeActive
         ? globalLabelIds.has(node.id)
