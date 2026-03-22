@@ -2425,6 +2425,10 @@ h3 {
   gap: 0.45rem;
 }
 
+.literature-summary-stats-edge {
+  gap: 0.36rem;
+}
+
 .literature-summary-actions {
   margin-top: 0;
 }
@@ -2473,6 +2477,10 @@ h3 {
 .literature-paper-stack {
   display: grid;
   gap: 0.7rem;
+}
+
+.literature-panel-stack-edge {
+  gap: 0.55rem;
 }
 
 .literature-sheet-button {
@@ -2609,6 +2617,10 @@ h3 {
 .literature-compact-panel,
 .literature-compact-head {
   gap: 0.55rem;
+}
+
+.literature-panel-note {
+  margin: 0;
 }
 
 .literature-compact-panel h3,
@@ -2870,6 +2882,39 @@ h3 {
   border-radius: 1rem;
 }
 
+.literature-edge-strip-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.literature-edge-strip {
+  display: grid;
+  gap: 0.38rem;
+  padding: 0.62rem 0.72rem;
+  border: 1px solid rgba(84, 108, 132, 0.11);
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.46);
+}
+
+.literature-edge-strip-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+}
+
+.literature-edge-strip-head strong {
+  font-size: 0.94rem;
+  line-height: 1.2;
+}
+
+.literature-edge-pill-row,
+.literature-edge-context-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
 .graph-toolbar {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -3083,9 +3128,9 @@ h3 {
 }
 
 .graph-edge {
-  stroke: rgba(99, 119, 145, 0.75);
-  stroke-opacity: calc(0.05 + (var(--edge-strength, 0.3) * 0.15));
-  stroke-width: calc(1.25px + (var(--edge-strength, 0.3) * 1.75px));
+  stroke: rgba(96, 116, 145, 0.82);
+  stroke-opacity: calc(0.08 + (var(--edge-support, 0.2) * 0.44));
+  stroke-width: calc(0.9px + (var(--edge-support, 0.2) * 3.6px));
   stroke-linecap: round;
   pointer-events: stroke;
   transition: stroke 120ms ease, opacity 120ms ease, stroke-width 120ms ease;
@@ -3093,33 +3138,33 @@ h3 {
 
 .graph-edge.is-selected {
   stroke: rgba(224, 176, 79, 0.96);
-  stroke-opacity: 0.72;
-  stroke-width: calc(1.8px + (var(--edge-strength, 0.3) * 2.15px));
+  stroke-opacity: calc(0.32 + (var(--edge-support, 0.2) * 0.46));
+  stroke-width: calc(1.45px + (var(--edge-support, 0.2) * 3.9px));
 }
 
 .graph-edge.is-focused {
-  stroke-opacity: calc(0.12 + (var(--edge-strength, 0.3) * 0.28));
-  stroke-width: calc(1.4px + (var(--edge-strength, 0.3) * 2.25px));
+  stroke-opacity: calc(0.16 + (var(--edge-support, 0.2) * 0.5));
+  stroke-width: calc(1.2px + (var(--edge-support, 0.2) * 4.1px));
 }
 
 .graph-edge.is-question-route {
   stroke: rgba(193, 138, 39, 0.9);
-  stroke-opacity: calc(0.18 + (var(--edge-strength, 0.3) * 0.28));
+  stroke-opacity: calc(0.22 + (var(--edge-support, 0.2) * 0.46));
 }
 
 .graph-edge.is-selected-edge {
   stroke: rgba(31, 50, 72, 0.94);
-  stroke-opacity: 0.88;
-  stroke-width: calc(2px + (var(--edge-strength, 0.3) * 2.5px));
+  stroke-opacity: calc(0.34 + (var(--edge-support, 0.2) * 0.54));
+  stroke-width: calc(1.9px + (var(--edge-support, 0.2) * 4.35px));
 }
 
 .graph-edge.is-directional {
   stroke: rgba(31, 50, 72, 0.82);
-  stroke-opacity: calc(0.16 + (var(--edge-strength, 0.3) * 0.34));
+  stroke-opacity: calc(0.18 + (var(--edge-support, 0.2) * 0.5));
 }
 
 .graph-edge.is-scope-match {
-  stroke-opacity: calc(0.14 + (var(--edge-strength, 0.3) * 0.3));
+  stroke-opacity: calc(0.16 + (var(--edge-support, 0.2) * 0.42));
 }
 
 .graph-edge.has-context {
@@ -3515,6 +3560,13 @@ h3 {
   min-height: 1.85rem;
   padding: 0.1rem 0.62rem;
   font-size: 0.87rem;
+}
+
+.graph-topic-stat-compact {
+  min-height: 1.6rem;
+  padding: 0.08rem 0.54rem;
+  font-size: 0.78rem;
+  line-height: 1.2;
 }
 
 .graph-question-row {

@@ -358,6 +358,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     if (value === "dataset") return "datasets";
     return "";
   };
+  const mixItemValue = (item) => (Array.isArray(item) ? item[0] : item?.value || "");
+  const mixItemCount = (item) => (Array.isArray(item) ? item[1] : item?.count || 0);
   const edgeDirectionSummary = (edge) => {
     const summary = edgePairSummary(edge);
     if (!summary) {
@@ -365,7 +367,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       if (!directionMix.length) return "No direction summary";
       return `Direction mix led by ${directionMix
         .slice(0, 2)
-        .map((item) => `${item.value} ${formatNumber(safeNumber(item.count))}`)
+        .map((item) => `${humanizeValue(mixItemValue(item))} ${formatNumber(safeNumber(mixItemCount(item)))}`)
         .join(", ")}`;
     }
     if (summary.arrow_mode === "forward") return "Mostly reported in this direction";
@@ -377,6 +379,76 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const numeric = Number(value);
     if (!Number.isFinite(numeric)) return "";
     return numeric > 0 ? `+${numeric.toFixed(2)}` : numeric.toFixed(2);
+  };
+  const humanizeValue = (value) =>
+    String(value ?? "")
+      .replaceAll("_", " ")
+      .replaceAll("-", " ")
+      .replace(/([a-z])([A-Z])/g, "$1 $2")
+      .replace(/\s+/g, " ")
+      .trim();
+  const dominantMixValue = (items) => {
+    const top = (Array.isArray(items) ? items : []).slice().sort((left, right) => safeNumber(mixItemCount(right)) - safeNumber(mixItemCount(left)))[0];
+    return mixItemValue(top) ? humanizeValue(mixItemValue(top)) : "";
+  };
+  const compactMixSummary = (items, limit = 2) =>
+    (Array.isArray(items) ? items : [])
+      .slice(0, limit)
+      .map((item) => `${humanizeValue(mixItemValue(item))} ${formatNumber(safeNumber(mixItemCount(item)))}`)
+      .filter(Boolean)
+      .join(" · ");
+  const edgeDirectionBadge = (edge) => {
+    const arrowMode = edgeArrowMode(edge);
+    if (arrowMode === "forward") return "forward direction";
+    if (arrowMode === "reverse") return "reverse direction";
+    if (arrowMode === "both") return "mixed direction";
+    const directionMix = Array.isArray(edge?.directionality_mix) ? edge.directionality_mix : [];
+    const directed = directionMix.find((item) => normalizeText(mixItemValue(item)) === "directed");
+    const undirected = directionMix.find((item) => normalizeText(mixItemValue(item)) === "undirected");
+    const directedCount = safeNumber(mixItemCount(directed));
+    const undirectedCount = safeNumber(mixItemCount(undirected));
+    if (directedCount && undirectedCount) return "directed + contextual";
+    if (directedCount) return "mostly directed";
+    return "undirected/context";
+  };
+  const edgeRelationshipBadge = (edge) => {
+    const top = dominantMixValue(edge?.relationship_type_mix);
+    if (!top) return "";
+    return top.includes(" ") ? top : `${top.toLowerCase()}-heavy`;
+  };
+  const edgeRoleBadge = (edge) => dominantMixValue(edge?.edge_role_mix);
+  const signBreakdown = (bucket) => {
+    const totals = { positive: 0, negative: 0, zero: 0, ambiguous: 0 };
+    for (const item of Array.isArray(bucket?.sign_mix) ? bucket.sign_mix : []) {
+      const label = normalizeText(mixItemValue(item));
+      const count = safeNumber(mixItemCount(item));
+      if (!count) continue;
+      if (label.includes("positive")) totals.positive += count;
+      else if (label.includes("negative")) totals.negative += count;
+      else if (label.includes("zero") || label.includes("no effect") || label.includes("null") || label === "none") totals.zero += count;
+      else totals.ambiguous += count;
+    }
+    return totals;
+  };
+  const signBreakdownLabel = (bucket) => {
+    const totals = signBreakdown(bucket);
+    const parts = [`+${totals.positive}`, `-${totals.negative}`, `${totals.zero} zero`];
+    if (totals.ambiguous) parts.push(`?${totals.ambiguous}`);
+    return parts.join(" / ");
+  };
+  const edgeTitle = (edge) => {
+    if (!edge) return "";
+    const sourceLabel = conceptLabel(edge.source, edge.source);
+    const targetLabel = conceptLabel(edge.target, edge.target);
+    const arrowMode = edgeArrowMode(edge);
+    const symbol = arrowMode === "forward" ? "→" : arrowMode === "reverse" ? "←" : "↔";
+    return `${sourceLabel} ${symbol} ${targetLabel}`;
+  };
+  const scaleSupportCount = (supportCount, maxSupportCount) => {
+    const support = Math.max(0, safeNumber(supportCount));
+    const maxSupport = Math.max(1, safeNumber(maxSupportCount));
+    if (!support) return 0;
+    return clamp(Math.log1p(support) / Math.log1p(maxSupport), 0, 1);
   };
   const dominantPairBucket = (summary) => {
     if (!summary) return null;
@@ -1113,6 +1185,21 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
   };
 
+  const updatePanelTabLabels = () => {
+    const selectedEdge = currentVisibleEdge();
+    const paperCount = selectedEdge ? safeNumber(selectedEdge.support_count) : 0;
+    for (const button of panelTabButtons) {
+      const tab = button.dataset.tab || "";
+      if (tab === "papers") {
+        button.textContent = selectedEdge && paperCount ? `Papers (${formatNumber(paperCount)})` : "Papers";
+      } else if (tab === "paths") {
+        button.textContent = "Paths";
+      } else {
+        button.textContent = "Overview";
+      }
+    }
+  };
+
   const restoreStatus = () => {
     if (!(hoverCard instanceof HTMLElement)) return;
     const concept = rootConceptId ? conceptMap.get(rootConceptId) : null;
@@ -1307,6 +1394,34 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
 
     if (detailSheetState.kind === "paths") {
+      const selectedEdge = currentVisibleEdge();
+      if (selectedEdge) {
+        const summary = edgePairSummary(selectedEdge);
+        const exampleTexts = [
+          ...((summary?.x_to_y?.examples || []).map((item) => item.claim_text || item.evidence_text || item.title)),
+          ...((summary?.y_to_x?.examples || []).map((item) => item.claim_text || item.evidence_text || item.title)),
+          ...((summary?.undirected?.examples || []).map((item) => item.claim_text || item.evidence_text || item.title)),
+          ...((selectedEdge.examples || []).map((item) => item.claim_text || item.evidence_text || item.title)),
+        ].filter(Boolean);
+        detailSheetTitle.textContent = "Edge evidence";
+        detailSheetBody.innerHTML = exampleTexts.length
+          ? `
+            <div class="literature-detail-list">
+              ${exampleTexts
+                .map(
+                  (text, index) => `
+                    <article class="literature-paper-card">
+                      <span class="tiny-label">Evidence ${index + 1}</span>
+                      <p class="mini-copy">${escapeHtml(text)}</p>
+                    </article>
+                  `,
+                )
+                .join("")}
+            </div>
+          `
+          : `<p class="card-copy">No example claims were exported for this edge.</p>`;
+        return;
+      }
       detailSheetTitle.textContent = "Nearby paths";
       detailSheetBody.innerHTML = currentOpportunities.length
         ? `
@@ -1370,61 +1485,19 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     if (!(selectedConcept instanceof HTMLElement)) return;
     const selectedEdge = currentVisibleEdge();
     if (selectedEdge) {
-      const pairSummary = edgePairSummary(selectedEdge);
-      const sourceLabel = conceptLabel(selectedEdge.source, selectedEdge.source);
-      const targetLabel = conceptLabel(selectedEdge.target, selectedEdge.target);
-      const bucketCard = (title, bucket) => `
-        <article class="literature-edge-card">
-          <span class="tiny-label">${escapeHtml(title)}</span>
-          <div class="graph-question-meta graph-question-meta-tight">
-            <span>${formatNumber(safeNumber(bucket?.support_count))} records</span>
-            ${bucket?.net_sign !== null && bucket?.net_sign !== undefined ? `<span>Net sign ${escapeHtml(String(bucket.net_sign))}</span>` : ""}
-          </div>
-          <div class="graph-question-meta graph-question-meta-tight">
-            ${(bucket?.sign_mix || []).slice(0, 3).map((item) => `<span>${escapeHtml(item.value)} ${formatNumber(safeNumber(item.count))}</span>`).join("")}
-          </div>
-          <div class="graph-question-meta graph-question-meta-tight">
-            ${(bucket?.method_mix || []).slice(0, 2).map((item) => `<span>${escapeHtml(item.value)} ${formatNumber(safeNumber(item.count))}</span>`).join("")}
-          </div>
-          <div class="graph-question-meta graph-question-meta-tight">
-            ${(bucket?.claim_status_mix || []).slice(0, 2).map((item) => `<span>${escapeHtml(item.value)} ${formatNumber(safeNumber(item.count))}</span>`).join("")}
-          </div>
-        </article>
-      `;
-      const fallbackCard = (title, items) => `
-        <article class="literature-edge-card">
-          <span class="tiny-label">${escapeHtml(title)}</span>
-          <div class="graph-question-meta graph-question-meta-tight">
-            ${(items || []).slice(0, 4).map((item) => `<span>${escapeHtml(item.value)} ${formatNumber(safeNumber(item.count))}</span>`).join("")}
-          </div>
-        </article>
-      `;
       selectedConcept.innerHTML = `
         <div class="literature-summary">
           <div class="literature-summary-copy">
             <span class="tiny-label">Selected edge</span>
-            <h2>${escapeHtml(sourceLabel)} → ${escapeHtml(targetLabel)}</h2>
-            <p class="mini-copy literature-root-note">Inspecting the reported relationship summary for this pair.</p>
+            <h2>${escapeHtml(edgeTitle(selectedEdge))}</h2>
+            <p class="mini-copy literature-root-note">${escapeHtml(edgeDirectionSummary(selectedEdge))} within the current local neighborhood.</p>
           </div>
-          <div class="literature-summary-stats">
+          <div class="literature-summary-stats literature-summary-stats-edge">
             <span class="graph-topic-stat">${formatNumber(safeNumber(selectedEdge.support_count))} papers</span>
-            <span class="graph-topic-stat">${escapeHtml(edgeArrowMode(selectedEdge))} arrows</span>
-            ${pairSummary?.x_to_y?.net_sign !== null && pairSummary?.x_to_y?.net_sign !== undefined ? `<span class="graph-topic-stat">Net sign ${escapeHtml(String(pairSummary.x_to_y.net_sign))}</span>` : ""}
-          </div>
-          <div class="literature-panel-stack">
-            ${
-              pairSummary
-                ? `
-                  ${bucketCard(`${sourceLabel} → ${targetLabel}`, pairSummary?.x_to_y)}
-                  ${bucketCard(`${targetLabel} → ${sourceLabel}`, pairSummary?.y_to_x)}
-                  ${bucketCard(`${sourceLabel} ↔ ${targetLabel}`, pairSummary?.undirected)}
-                `
-                : `
-                  ${fallbackCard("Direction mix", selectedEdge.directionality_mix)}
-                  ${fallbackCard("Relationship mix", selectedEdge.relationship_type_mix)}
-                  ${fallbackCard("Edge role mix", selectedEdge.edge_role_mix)}
-                `
-            }
+            <span class="graph-topic-stat">${escapeHtml(edgeDirectionBadge(selectedEdge))}</span>
+            ${edgeSignBadge(selectedEdge) ? `<span class="graph-topic-stat">${escapeHtml(edgeSignBadge(selectedEdge).replace("Net sign", "reported sign"))}</span>` : ""}
+            ${edgeRelationshipBadge(selectedEdge) ? `<span class="graph-topic-stat">${escapeHtml(edgeRelationshipBadge(selectedEdge))}</span>` : ""}
+            ${edgeRoleBadge(selectedEdge) ? `<span class="graph-topic-stat">${escapeHtml(edgeRoleBadge(selectedEdge))}</span>` : ""}
           </div>
         </div>
       `;
@@ -1489,18 +1562,61 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       const dominantCountries = summary?.dominant_countries || selectedEdge.dominant_countries || [];
       const dominantUnits = summary?.dominant_units || selectedEdge.dominant_units || [];
       const dominantYears = summary?.dominant_years || selectedEdge.dominant_years || [];
+      const sourceLabel = conceptLabel(selectedEdge.source, selectedEdge.source);
+      const targetLabel = conceptLabel(selectedEdge.target, selectedEdge.target);
+      const bucketStrip = (title, bucket) => {
+        if (!bucket || !safeNumber(bucket.support_count)) return "";
+        return `
+          <article class="literature-edge-strip">
+            <div class="literature-edge-strip-head">
+              <strong>${escapeHtml(title)}</strong>
+              <span class="graph-topic-stat graph-topic-stat-compact">${formatNumber(safeNumber(bucket.support_count))} papers</span>
+            </div>
+            <div class="literature-edge-pill-row">
+              <span class="graph-topic-stat graph-topic-stat-compact">${escapeHtml(signBreakdownLabel(bucket))}</span>
+              ${bucket?.net_sign !== null && bucket?.net_sign !== undefined ? `<span class="graph-topic-stat graph-topic-stat-compact">reported sign ${escapeHtml(formatNetSign(bucket.net_sign))}</span>` : ""}
+              ${compactMixSummary(bucket?.method_mix, 2) ? `<span class="graph-topic-stat graph-topic-stat-compact">${escapeHtml(compactMixSummary(bucket.method_mix, 2))}</span>` : ""}
+              ${compactMixSummary(bucket?.claim_status_mix, 2) ? `<span class="graph-topic-stat graph-topic-stat-compact">${escapeHtml(compactMixSummary(bucket.claim_status_mix, 2))}</span>` : ""}
+            </div>
+          </article>
+        `;
+      };
+      const fallbackMixes = [
+        compactMixSummary(selectedEdge.directionality_mix, 3),
+        compactMixSummary(selectedEdge.relationship_type_mix, 3),
+        compactMixSummary(selectedEdge.edge_role_mix, 3),
+      ].filter(Boolean);
       selectedNeighborhood.innerHTML = `
-        <div class="literature-panel-stack">
+        <div class="literature-panel-stack literature-panel-stack-edge">
           <section class="question-detail-panel literature-compact-panel">
-            <h3>Edge context</h3>
-            <details class="literature-collapsible">
-              <summary>Show context</summary>
-              <div class="graph-question-meta">
-                ${dominantCountries.slice(0, 3).map((item) => `<span>${escapeHtml(item.value || item)} ${formatNumber(safeNumber(item.count || 0))}</span>`).join("")}
-                ${dominantUnits.slice(0, 3).map((item) => `<span>${escapeHtml(item.value || item)} ${formatNumber(safeNumber(item.count || 0))}</span>`).join("")}
-                ${dominantYears.slice(0, 3).map((item) => `<span>${escapeHtml(item.value || item)} ${formatNumber(safeNumber(item.count || 0))}</span>`).join("")}
-              </div>
-            </details>
+            <h3>Relationship summary</h3>
+            <p class="mini-copy literature-panel-note">${escapeHtml(edgeDirectionSummary(selectedEdge))}</p>
+            ${
+              summary
+                ? `
+                  <div class="literature-edge-strip-list">
+                    ${bucketStrip(`${sourceLabel} → ${targetLabel}`, summary?.x_to_y)}
+                    ${bucketStrip(`${targetLabel} → ${sourceLabel}`, summary?.y_to_x)}
+                    ${bucketStrip(`${sourceLabel} ↔ ${targetLabel}`, summary?.undirected)}
+                  </div>
+                `
+                : `
+                  <div class="literature-edge-pill-row">
+                    ${fallbackMixes.map((value) => `<span class="graph-topic-stat graph-topic-stat-compact">${escapeHtml(value)}</span>`).join("")}
+                  </div>
+                `
+            }
+            ${
+              dominantCountries.length || dominantUnits.length || dominantYears.length
+                ? `
+                  <div class="literature-edge-context-row">
+                    ${dominantCountries.length ? `<span class="graph-topic-stat graph-topic-stat-compact">Countries: ${escapeHtml(dominantCountries.slice(0, 3).map((item) => item.value || item).join(", "))}</span>` : ""}
+                    ${dominantUnits.length ? `<span class="graph-topic-stat graph-topic-stat-compact">Units: ${escapeHtml(dominantUnits.slice(0, 3).map((item) => item.value || item).join(", "))}</span>` : ""}
+                    ${dominantYears.length ? `<span class="graph-topic-stat graph-topic-stat-compact">Years: ${escapeHtml(dominantYears.slice(0, 3).map((item) => item.value || item).join(", "))}</span>` : ""}
+                  </div>
+                `
+                : ""
+            }
           </section>
         </div>
       `;
@@ -1582,10 +1698,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       ].filter(Boolean).slice(0, 6);
       selectedQuestion.innerHTML = `
         <article class="graph-question-focus-card literature-path-focus-card literature-compact-panel">
-          <h3>Reported pathways</h3>
+          <h3>Evidence preview</h3>
           <div class="graph-question-meta">
             <span>${formatNumber(safeNumber(selectedEdge.support_count))} supporting records</span>
-            <span>${escapeHtml(edgeArrowMode(selectedEdge))} arrows</span>
+            <span>${escapeHtml(edgeDirectionBadge(selectedEdge))}</span>
           </div>
         </article>
       `;
@@ -1593,9 +1709,13 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         ? `
           <div class="literature-panel-stack">
             ${exampleTexts.slice(0, PANEL_PREVIEW_LIMIT).map((text) => `<article class="literature-paper-card"><p class="mini-copy">${escapeHtml(text)}</p></article>`).join("")}
+            ${exampleTexts.length > PANEL_PREVIEW_LIMIT ? `<button class="button-tertiary literature-sheet-button" type="button" data-open-sheet="paths">Open full evidence</button>` : ""}
           </div>
         `
         : `<p class="card-copy">No example claims were exported for this edge.</p>`;
+      for (const button of selectedOpportunities.querySelectorAll("[data-open-sheet]")) {
+        button.addEventListener("click", () => openDetailSheet(button.dataset.openSheet));
+      }
       return;
     }
     const concept = selectedId ? conceptMap.get(selectedId) : null;
@@ -1962,6 +2082,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     } = visibleState;
     const visibleNodeMap = new Map(visibleNodes.map((node) => [node.id, node]));
     const edgeLookup = new Map(visibleEdges.map((edge) => [edge.id, edge]));
+    const maxVisibleSupport = Math.max(1, ...visibleEdges.map((edge) => safeNumber(edge.support_count)));
     const scopeFilteringActive = scopeState.some((item) => {
       const layerKey = scopeLayerKey(scopeTypeForEntity(item));
       return layerKey && layerState[layerKey];
@@ -1994,8 +2115,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       const hasContext = layerState.context && Boolean(dominantCountries.length || dominantUnits.length || dominantYears.length);
       const markerStart = arrowMode === "reverse" || arrowMode === "both" ? ` marker-start="url(#literature-arrow-start)"` : "";
       const markerEnd = arrowMode === "forward" || arrowMode === "both" ? ` marker-end="url(#literature-arrow-end)"` : "";
+      const edgeSupport = scaleSupportCount(edge.support_count, maxVisibleSupport);
+      const edgeStrength = clamp(Math.max(safeNumber(edge.strength) || 0, edgeSupport), 0.08, 1);
       edgeMarkup.push(
-        `<line class="graph-edge${isRootEdge ? " is-selected" : ""}${isSelectedEdge ? " is-selected-edge" : ""}${isPathEdge ? " is-focused" : ""}${isQuestionRoute ? " is-question-route" : ""}${scopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${layerState.direction && arrowMode !== "none" ? " is-directional" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edge.strength || 0.3}; opacity:${edgeOpacityMap.get(edge.id) ?? 1};" data-edge-id="${escapeHtml(edge.id)}" x1="${sourceRender.x}" y1="${sourceRender.y}" x2="${targetRender.x}" y2="${targetRender.y}"${markerStart}${markerEnd}></line>`,
+        `<line class="graph-edge${isRootEdge ? " is-selected" : ""}${isSelectedEdge ? " is-selected-edge" : ""}${isPathEdge ? " is-focused" : ""}${isQuestionRoute ? " is-question-route" : ""}${scopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}${layerState.direction && arrowMode !== "none" ? " is-directional" : ""}${isDimmed ? " is-dimmed" : ""}" style="--edge-strength:${edgeStrength}; --edge-support:${edgeSupport}; opacity:${edgeOpacityMap.get(edge.id) ?? 1};" data-edge-id="${escapeHtml(edge.id)}" x1="${sourceRender.x}" y1="${sourceRender.y}" x2="${targetRender.x}" y2="${targetRender.y}"${markerStart}${markerEnd}></line>`,
       );
     }
 
@@ -2183,6 +2306,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   const renderAllPanels = () => {
     const concept = selectedId ? conceptMap.get(selectedId) : null;
     if (!concept) return;
+    updatePanelTabLabels();
     renderSelectedConcept(concept);
     renderOverview();
     renderPaths();
