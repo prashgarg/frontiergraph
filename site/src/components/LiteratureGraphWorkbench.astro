@@ -308,7 +308,9 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   };
   const tokenize = (value) => Array.from(new Set(normalizeText(value).split(" ").filter(Boolean).map(singularizeToken)));
   const normalizeForSearch = (value) => tokenize(value).join(" ");
-  const estimateChipWidth = (label) => clamp(58 + String(label || "").length * 5.45, 72, 210);
+  const LABEL_CHIP_HEIGHT = 26;
+  const LABEL_CHIP_TEXT_BASELINE = 17;
+  const estimateChipWidth = (label) => clamp(34 + String(label || "").length * 3.85, 56, 178);
   const isInBackbone = (conceptId) => Boolean(graph?.nodeMap?.has(conceptId));
   const rootIsInBackbone = () => Boolean(rootConceptId && isInBackbone(rootConceptId));
   const conceptTitle = (concept) => concept?.plain_label || concept?.label || "";
@@ -1246,8 +1248,8 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     });
     const maxAbsX = Math.max(1, ...deltas.map((item) => Math.abs(item.dx)));
     const maxAbsY = Math.max(1, ...deltas.map((item) => Math.abs(item.dy)));
-    const scaleX = Math.min(760 / maxAbsX, 2.8);
-    const scaleY = Math.min(520 / maxAbsY, 2.8);
+    const scaleX = Math.min(860 / maxAbsX, 3.05);
+    const scaleY = Math.min(620 / maxAbsY, 3.05);
 
     for (const item of deltas) {
       if (item.id === rootId) {
@@ -1398,17 +1400,17 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   };
 
   const createLabelCandidates = (position, profile) => {
-    const labelHeight = 28;
-    const gap = profile.isThirdRing ? 10 : profile.isSecondRing ? 13 : 16;
+    const labelHeight = LABEL_CHIP_HEIGHT;
+    const gap = profile.isThirdRing ? 7 : profile.isSecondRing ? 9 : 11;
     const candidates = [
       { name: "top", dx: 0, dy: -(profile.radius + gap + labelHeight / 2), bias: 0 },
-      { name: "bottom", dx: 0, dy: profile.radius + gap + labelHeight / 2, bias: 1.1 },
-      { name: "right", dx: profile.radius + gap + profile.labelWidth / 2, dy: 0, bias: 1.9 },
-      { name: "left", dx: -(profile.radius + gap + profile.labelWidth / 2), dy: 0, bias: 2.2 },
-      { name: "top-right", dx: profile.radius + gap + profile.labelWidth * 0.34, dy: -(profile.radius + gap + labelHeight * 0.6), bias: 2.7 },
-      { name: "top-left", dx: -(profile.radius + gap + profile.labelWidth * 0.34), dy: -(profile.radius + gap + labelHeight * 0.6), bias: 2.9 },
-      { name: "bottom-right", dx: profile.radius + gap + profile.labelWidth * 0.34, dy: profile.radius + gap + labelHeight * 0.6, bias: 3.2 },
-      { name: "bottom-left", dx: -(profile.radius + gap + profile.labelWidth * 0.34), dy: profile.radius + gap + labelHeight * 0.6, bias: 3.35 },
+      { name: "bottom", dx: 0, dy: profile.radius + gap + labelHeight / 2, bias: 0.65 },
+      { name: "right", dx: profile.radius + gap + profile.labelWidth / 2, dy: 0, bias: 1.8 },
+      { name: "left", dx: -(profile.radius + gap + profile.labelWidth / 2), dy: 0, bias: 2.05 },
+      { name: "top-right", dx: profile.radius + gap + profile.labelWidth * 0.3, dy: -(profile.radius + gap + labelHeight * 0.52), bias: 3.05 },
+      { name: "top-left", dx: -(profile.radius + gap + profile.labelWidth * 0.3), dy: -(profile.radius + gap + labelHeight * 0.52), bias: 3.2 },
+      { name: "bottom-right", dx: profile.radius + gap + profile.labelWidth * 0.3, dy: profile.radius + gap + labelHeight * 0.52, bias: 3.35 },
+      { name: "bottom-left", dx: -(profile.radius + gap + profile.labelWidth * 0.3), dy: profile.radius + gap + labelHeight * 0.52, bias: 3.5 },
     ];
     return candidates.map((candidate) => {
       const centerX = position.x + candidate.dx;
@@ -1419,7 +1421,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         ...candidate,
         centerX,
         centerY,
-        textY: rectY + 18,
+        textY: rectY + LABEL_CHIP_TEXT_BASELINE,
         rect: {
           left: rectX,
           top: rectY,
@@ -1441,7 +1443,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     const next = new Map(Array.from(original.entries()).map(([nodeId, position]) => [nodeId, { ...position }]));
     const ids = visibleNodes.map((node) => node.id);
 
-    for (let iteration = 0; iteration < 56; iteration += 1) {
+    for (let iteration = 0; iteration < 68; iteration += 1) {
       const displacement = new Map(ids.map((nodeId) => [nodeId, { x: 0, y: 0 }]));
 
       for (let i = 0; i < ids.length; i += 1) {
@@ -1460,11 +1462,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           const desiredDistance =
             leftProfile.radius +
             rightProfile.radius +
-            (leftProfile.showLabel || rightProfile.showLabel ? 36 : 18) +
-            (leftProfile.isFirstRing || rightProfile.isFirstRing ? 8 : 0);
+            (leftProfile.showLabel || rightProfile.showLabel ? 46 : 18) +
+            (leftProfile.isFirstRing || rightProfile.isFirstRing ? 12 : 0);
           if (distance >= desiredDistance) continue;
           const overlap = desiredDistance - distance;
-          const push = overlap * 0.24;
+          const push = overlap * 0.29;
           const ux = dx / distance;
           const uy = dy / distance;
           const leftDisplacement = displacement.get(leftId);
@@ -1530,10 +1532,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           score += Math.max(0, candidate.rect.right - (GRAPH_WIDTH - 18)) * 0.45;
           score += Math.max(0, 18 - candidate.rect.top) * 0.52;
           score += Math.max(0, candidate.rect.bottom - (GRAPH_HEIGHT - 18)) * 0.52;
-          for (const placed of placedRects) score += rectOverlapArea(candidate.rect, placed) * 0.06;
+          for (const placed of placedRects) score += rectOverlapArea(candidate.rect, placed) * 0.085;
           for (const circle of nodeCircles) {
             if (circle.id === node.id) continue;
-            score += rectCircleOverlapArea(candidate.rect, circle) * 0.28;
+            score += rectCircleOverlapArea(candidate.rect, circle) * 0.36;
           }
           if (score < bestScore) {
             bestScore = score;
@@ -1547,7 +1549,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
             rectX: bestCandidate.rect.left,
             rectY: bestCandidate.rect.top,
             width: profile.labelWidth,
-            height: 28,
+            height: LABEL_CHIP_HEIGHT,
           };
           placedRects.push(bestCandidate.rect);
         }
@@ -2822,7 +2824,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         : focusedActive
           ? renderState.y + (labelAbove ? -(radius + 18) : radius + 28)
           : renderState.y - (radius + (isRoot || isSelected ? 16 : 8));
-      const chipY = labelPlacement ? labelPlacement.rectY : labelAbove ? labelY - 20 : labelY - 18;
+      const chipY = labelPlacement ? labelPlacement.rectY : labelY - LABEL_CHIP_TEXT_BASELINE;
       const chipX = labelPlacement ? labelPlacement.rectX : renderState.x - labelWidth / 2;
       const labelX = labelPlacement ? labelPlacement.centerX : renderState.x;
       const paperLayerActive = layerState.papers && paperSupport > 0;
@@ -2834,7 +2836,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
             showLabel
               ? focusedActive
                 ? `<g class="graph-label-chip${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}">
-                    <rect x="${chipX}" y="${chipY}" width="${labelWidth}" height="28" rx="14" ry="14"></rect>
+                    <rect x="${chipX}" y="${chipY}" width="${labelWidth}" height="${LABEL_CHIP_HEIGHT}" rx="${LABEL_CHIP_HEIGHT / 2}" ry="${LABEL_CHIP_HEIGHT / 2}"></rect>
                     <text class="graph-label graph-label-chip-text${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}${isMediator ? " is-mediator" : ""}${isFirstRing ? " is-neighbor" : ""}${isSecondRing ? " is-second-ring" : ""}${isThirdRing ? " is-third-ring" : ""}${isScopeMatch ? " is-scope-match" : ""}${hasContext ? " has-context" : ""}" x="${labelX}" y="${labelY}">${escapeHtml(label)}</text>
                   </g>`
                 : `<text class="graph-label${isRoot ? " is-root" : ""}${isSelected ? " is-selected-node" : ""}${isQuestionTarget ? " is-question-target" : ""}" x="${renderState.x}" y="${labelY}">${escapeHtml(label)}</text>`

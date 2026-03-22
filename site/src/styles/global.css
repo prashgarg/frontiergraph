@@ -3485,53 +3485,53 @@ h3 {
 }
 
 .graph-label-chip rect {
-  fill: rgba(255, 253, 248, 0.76);
-  stroke: rgba(24, 38, 58, 0.09);
+  fill: rgba(255, 253, 248, 0.54);
+  stroke: rgba(24, 38, 58, 0.07);
   stroke-width: 1px;
 }
 
 .graph-label-chip.is-neighbor rect {
-  fill: rgba(243, 249, 247, 0.8);
+  fill: rgba(243, 249, 247, 0.58);
 }
 
 .graph-label-chip.is-question-target rect {
-  fill: rgba(242, 245, 248, 0.78);
-  stroke: rgba(31, 50, 72, 0.13);
+  fill: rgba(242, 245, 248, 0.58);
+  stroke: rgba(31, 50, 72, 0.1);
 }
 
 .graph-label-chip.is-mediator rect {
-  fill: rgba(233, 248, 245, 0.76);
-  stroke: rgba(53, 101, 101, 0.13);
+  fill: rgba(233, 248, 245, 0.56);
+  stroke: rgba(53, 101, 101, 0.11);
 }
 
 .graph-label-chip.is-second-ring rect {
-  fill: rgba(248, 250, 252, 0.72);
-  stroke: rgba(80, 101, 126, 0.1);
+  fill: rgba(248, 250, 252, 0.5);
+  stroke: rgba(80, 101, 126, 0.08);
 }
 
 .graph-label-chip.is-third-ring rect {
-  fill: rgba(250, 252, 254, 0.66);
-  stroke: rgba(80, 101, 126, 0.07);
+  fill: rgba(250, 252, 254, 0.42);
+  stroke: rgba(80, 101, 126, 0.06);
 }
 
 .graph-label-chip.is-root rect {
-  fill: rgba(255, 247, 227, 0.84);
-  stroke: rgba(212, 146, 42, 0.2);
+  fill: rgba(255, 247, 227, 0.64);
+  stroke: rgba(212, 146, 42, 0.15);
 }
 
 .graph-label-chip.is-selected-node rect {
-  fill: rgba(242, 245, 248, 0.8);
-  stroke: rgba(31, 50, 72, 0.13);
+  fill: rgba(242, 245, 248, 0.58);
+  stroke: rgba(31, 50, 72, 0.1);
 }
 
 .graph-label-chip.is-selected rect {
-  fill: rgba(255, 247, 227, 0.84);
-  stroke: rgba(212, 146, 42, 0.2);
+  fill: rgba(255, 247, 227, 0.64);
+  stroke: rgba(212, 146, 42, 0.15);
 }
 
 .graph-label-chip.is-scope-match rect {
-  fill: rgba(243, 248, 255, 0.8);
-  stroke: rgba(58, 105, 170, 0.14);
+  fill: rgba(243, 248, 255, 0.58);
+  stroke: rgba(58, 105, 170, 0.11);
 }
 
 .graph-label-chip.has-context rect {
