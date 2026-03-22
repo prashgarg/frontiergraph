@@ -143,18 +143,6 @@ a {
   width: min(1600px, calc(100vw - 1.4rem));
 }
 
-.literature-route-shell {
-  width: 100%;
-}
-
-.literature-shell-breakout {
-  width: 100vw;
-  max-width: none;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  padding-inline: 0.75rem;
-}
-
 .site-header,
 .site-footer {
   display: flex;
@@ -2329,7 +2317,6 @@ h3 {
 
 .literature-stage {
   display: grid;
-  width: 100%;
 }
 
 .literature-map-card,
@@ -2342,7 +2329,6 @@ h3 {
   min-height: calc(100vh - 8.9rem);
   padding: 0;
   overflow: hidden;
-  box-shadow: none;
 }
 
 .literature-map-toolbar {
