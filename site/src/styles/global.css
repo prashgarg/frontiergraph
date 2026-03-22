@@ -2306,7 +2306,7 @@ h3 {
   top: 1rem;
   left: 1rem;
   z-index: 4;
-  width: min(19rem, calc(100% - 2rem));
+  width: min(17.5rem, calc(100% - 2rem));
   display: grid;
   gap: 0.35rem;
   align-content: start;
@@ -2346,7 +2346,7 @@ h3 {
   left: 1rem;
   top: 5.7rem;
   z-index: 4;
-  width: min(19rem, calc(100% - 2rem));
+  width: min(17.5rem, calc(100% - 2rem));
   display: grid;
   gap: 0.7rem;
   align-content: start;
