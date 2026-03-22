@@ -61,26 +61,33 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         </div>
 
         <div class="literature-panel-tabs" role="tablist" aria-label="Literature graph panel">
-          <button class="literature-tab-button is-active" type="button" data-role="panel-tab" data-tab="paths" aria-selected="true">Routes</button>
+          <button class="literature-tab-button" type="button" data-role="panel-tab" data-tab="paths" aria-selected="false">Routes</button>
           <button class="literature-tab-button" type="button" data-role="panel-tab" data-tab="papers" aria-selected="false">Papers</button>
         </div>
+      </aside>
 
-        <section class="literature-panel-static" hidden>
-          <div data-role="selected-neighborhood"></div>
-        </section>
+      <button class="literature-panel-popout-scrim" type="button" data-role="panel-popout-scrim" hidden aria-label="Close detail panel"></button>
+      <aside class="literature-panel-popout" data-role="panel-popout" hidden aria-live="polite">
+        <div class="literature-panel-popout-head">
+          <div>
+            <span class="tiny-label">Detail</span>
+            <h3 data-role="panel-popout-title">Routes</h3>
+          </div>
+          <button class="feedback-close literature-panel-popout-close" type="button" data-role="panel-popout-close" aria-label="Close detail panel">×</button>
+        </div>
 
         <section class="literature-panel-section" data-role="panel-section" data-panel="paths">
           <div data-role="selected-question">
-            <p class="card-copy">Once you choose a topic, this panel will show the strongest nearby question-shaped paths and bridges.</p>
+            <p class="card-copy">Choose a topic to see the strongest nearby routes and bridge ideas.</p>
           </div>
           <div data-role="selected-opportunities">
-            <p class="card-copy">Candidate paths will appear here.</p>
+            <p class="card-copy">Route details will appear here.</p>
           </div>
         </section>
 
         <section class="literature-panel-section" data-role="panel-section" data-panel="papers" hidden>
           <div data-role="selected-papers">
-            <p class="card-copy">Anchor papers will appear here once a topic is selected.</p>
+            <p class="card-copy">Paper details will appear here once a topic is selected.</p>
           </div>
         </section>
       </aside>
@@ -190,6 +197,10 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   const selectedConcept = root.querySelector('[data-role="selected-concept"]');
   const selectedNeighborhood = root.querySelector('[data-role="selected-neighborhood"]');
   const selectedNeighborhoodShell = selectedNeighborhood?.closest(".literature-panel-static");
+  const panelPopout = root.querySelector('[data-role="panel-popout"]');
+  const panelPopoutTitle = root.querySelector('[data-role="panel-popout-title"]');
+  const panelPopoutScrim = root.querySelector('[data-role="panel-popout-scrim"]');
+  const panelPopoutClose = root.querySelector('[data-role="panel-popout-close"]');
   const selectedQuestion = root.querySelector('[data-role="selected-question"]');
   const selectedOpportunities = root.querySelector('[data-role="selected-opportunities"]');
   const selectedPapers = root.querySelector('[data-role="selected-papers"]');
@@ -234,6 +245,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   let mapMode = "local";
   let hopDepth = DEFAULT_HOP_DEPTH;
   let panelTab = "paths";
+  let panelPopoutOpen = false;
   let interaction = null;
   let viewState = { scale: 1, translateX: 0, translateY: 0 };
   let detailSheetState = { open: false, kind: null };
@@ -1844,30 +1856,56 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     toggleMapMode.disabled = false;
   };
 
-  const setPanelTab = (nextTab) => {
-    panelTab = nextTab;
+  const syncPanelPopoutUi = () => {
+    const selectedEdge = currentVisibleEdge();
+    const title =
+      panelTab === "papers"
+        ? "Papers"
+        : selectedEdge
+          ? "Evidence"
+          : "Routes";
+    if (panelPopoutTitle instanceof HTMLElement) panelPopoutTitle.textContent = title;
+    if (panelPopout instanceof HTMLElement) panelPopout.hidden = !panelPopoutOpen;
+    if (panelPopoutScrim instanceof HTMLElement) panelPopoutScrim.hidden = !panelPopoutOpen;
     for (const button of panelTabButtons) {
-      const isActive = button.dataset.tab === nextTab;
+      const isActive = panelPopoutOpen && button.dataset.tab === panelTab;
       button.classList.toggle("is-active", isActive);
       button.setAttribute("aria-selected", isActive ? "true" : "false");
     }
     for (const section of panelSections) {
-      section.hidden = section.dataset.panel !== nextTab;
+      section.hidden = section.dataset.panel !== panelTab;
     }
+  };
+
+  const closePanelPopout = () => {
+    panelPopoutOpen = false;
+    syncPanelPopoutUi();
+  };
+
+  const setPanelTab = (nextTab, { open = true } = {}) => {
+    panelTab = nextTab;
+    panelPopoutOpen = open;
+    syncPanelPopoutUi();
   };
 
   const updatePanelTabLabels = () => {
     const selectedEdge = currentVisibleEdge();
-    const paperCount = selectedEdge ? safeNumber(selectedEdge.support_count) : 0;
+    const selectedConceptRecord = selectedId ? conceptMap.get(selectedId) : null;
+    const paperCount = selectedEdge
+      ? safeNumber(selectedEdge.support_count)
+      : safeNumber(selectedConceptRecord?.distinct_paper_support);
     const pathCount = currentOpportunities.length;
     for (const button of panelTabButtons) {
       const tab = button.dataset.tab || "";
       if (tab === "papers") {
-        button.textContent = selectedEdge && paperCount ? `Papers (${formatNumber(paperCount)})` : "Papers";
+        button.textContent = paperCount ? `Papers (${formatNumber(paperCount)})` : "Papers";
+      } else if (selectedEdge) {
+        button.textContent = "Evidence";
       } else {
         button.textContent = pathCount ? `Routes (${formatNumber(pathCount)})` : "Routes";
       }
     }
+    syncPanelPopoutUi();
   };
 
   const restoreStatus = () => {
@@ -2152,7 +2190,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           : `<p class="card-copy">No example claims were exported for this edge.</p>`;
         return;
       }
-      detailSheetTitle.textContent = "Nearby paths";
+      detailSheetTitle.textContent = "Nearby routes";
       detailSheetBody.innerHTML = currentOpportunities.length
         ? `
           <div class="literature-detail-list">
@@ -2173,7 +2211,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
               .join("")}
           </div>
         `
-        : `<p class="card-copy">No path candidates are available for this topic.</p>`;
+        : `<p class="card-copy">No route ideas are available for this topic.</p>`;
       for (const button of detailSheetBody.querySelectorAll("[data-sheet-pair-key]")) {
         button.addEventListener("click", () => {
           activeQuestionPairKey = button.dataset.sheetPairKey || null;
@@ -2214,7 +2252,6 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
             <p class="mini-copy literature-root-note">${escapeHtml(edgeDirectionSummary(selectedEdge))}</p>
           </div>
           <div class="literature-summary-stats literature-summary-stats-edge">
-            <span class="graph-topic-stat">${formatNumber(safeNumber(selectedEdge.support_count))} papers</span>
             <span class="graph-topic-stat">${escapeHtml(edgeDirectionBadge(selectedEdge))}</span>
             ${edgeSignBadge(selectedEdge) ? `<span class="graph-topic-stat">${escapeHtml(edgeSignBadge(selectedEdge).replace("Net sign", "reported sign"))}</span>` : ""}
             ${edgeRelationshipBadge(selectedEdge) ? `<span class="graph-topic-stat">${escapeHtml(edgeRelationshipBadge(selectedEdge))}</span>` : ""}
@@ -2250,9 +2287,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
           }
         </div>
         <div class="literature-summary-stats">
-          <span class="graph-topic-stat">${formatNumber(safeNumber(concept.distinct_paper_support))} papers</span>
-          <span class="graph-topic-stat">${formatNumber(currentOpportunities.length)} route ideas</span>
-          <span class="graph-topic-stat">${formatNumber(safeNumber(concept.weighted_degree))} weighted links</span>
+          <span class="graph-topic-stat">${formatNumber(safeNumber(concept.weighted_degree))} links</span>
         </div>
         ${!isMapRoot ? `<div class="button-row literature-summary-actions"><button class="button-secondary" type="button" data-role="rebuild-map-here">Rebuild map here</button></div>` : ""}
       </div>
@@ -2385,7 +2420,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     }
 
     if (!currentOpportunities.length) {
-      selectedQuestion.innerHTML = `<p class="card-copy">No nearby path candidates are available for this topic.</p>`;
+      selectedQuestion.innerHTML = `<p class="card-copy">No nearby route ideas are available for this topic.</p>`;
       selectedOpportunities.innerHTML = "";
       return;
     }
@@ -2469,7 +2504,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
             `;
           })
           .join("")}
-        ${currentOpportunities.length > PANEL_PREVIEW_LIMIT ? `<button class="button-tertiary literature-sheet-button" type="button" data-open-sheet="paths">Open full paths</button>` : ""}
+        ${currentOpportunities.length > PANEL_PREVIEW_LIMIT ? `<button class="button-tertiary literature-sheet-button" type="button" data-open-sheet="paths">Open full routes</button>` : ""}
       </div>
     `;
 
@@ -2869,7 +2904,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
         if (!node) return;
         const context = nodeContext(node.id);
         const backboneDetail = isInBackbone(node.id)
-          ? `${formatNumber(context.weightedDegree)} weighted links in the backbone.`
+          ? `${formatNumber(context.weightedDegree)} links in the backbone.`
           : "Searchable topic outside the backbone.";
         const entityTags = [];
         if (context.entity?.badge) entityTags.push(context.entity.badge);
@@ -3060,7 +3095,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
     currentOpportunities = [];
     activeQuestionPairKey = null;
     if (switchToOverview) {
-      setPanelTab("paths");
+      setPanelTab("paths", { open: false });
     }
     if (selectedConcept instanceof HTMLElement) {
       selectedConcept.innerHTML = `<p class="card-copy">Loading topic context...</p>`;
@@ -3075,7 +3110,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
       selectedQuestion.innerHTML = `<p class="card-copy">Loading nearby paths...</p>`;
     }
     if (selectedOpportunities instanceof HTMLElement) {
-      selectedOpportunities.innerHTML = `<p class="card-copy">Loading path candidates...</p>`;
+      selectedOpportunities.innerHTML = `<p class="card-copy">Loading route ideas...</p>`;
     }
     if (selectedPapers instanceof HTMLElement) {
       selectedPapers.innerHTML = `<p class="card-copy">Loading anchor papers...</p>`;
@@ -3271,7 +3306,12 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   panelTabButtons.forEach((button) => {
     button.addEventListener("click", () => {
       closeDetailSheet();
-      setPanelTab(button.dataset.tab || "paths");
+      const nextTab = button.dataset.tab || "paths";
+      if (panelPopoutOpen && panelTab === nextTab) {
+        closePanelPopout();
+        return;
+      }
+      setPanelTab(nextTab);
     });
   });
 
@@ -3444,6 +3484,11 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
   });
   detailSheet?.addEventListener("click", (event) => {
     if (event.target === detailSheet) closeDetailSheet();
+  });
+  panelPopoutClose?.addEventListener("click", closePanelPopout);
+  panelPopoutScrim?.addEventListener("click", closePanelPopout);
+  root.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && panelPopoutOpen) closePanelPopout();
   });
 
   bootstrap().catch((error) => {
