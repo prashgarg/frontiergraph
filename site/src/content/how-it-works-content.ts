@@ -11,7 +11,7 @@ type HowItWorksTheme = {
   questions: HowItWorksQuestion[];
 };
 
-export function buildHowItWorksContent(appUrl: string): {
+export function buildHowItWorksContent(): {
   foundationHtml: string[];
   railItems: string[];
   themes: HowItWorksTheme[];
@@ -101,7 +101,7 @@ export function buildHowItWorksContent(appUrl: string): {
           {
             question: "What should I do after opening one card?",
             answerHtml: [
-              `Check close synonyms, read the papers to start with, inspect the related ideas, and decide whether the question looks like a mechanism, outcome, or setting question. If you want papers, tables, and export, use <a href="${appUrl}">Open the app workspace</a>.`,
+              "Check close synonyms, read the papers to start with, inspect the related ideas, and decide whether the question looks like a mechanism, outcome, or setting question. If you want structured evidence and exports, use the question, graph, and downloads surfaces together.",
             ],
           },
         ],

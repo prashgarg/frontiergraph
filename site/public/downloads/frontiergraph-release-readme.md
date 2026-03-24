@@ -22,12 +22,12 @@ Frontier Graph is a public browser for suggested research questions in economics
 
 ## What each file is for
 
-- `top_questions.csv`: one row per suggested question, with display labels, nearby support, path counts, starter papers, and explorer link.
+- `top_questions.csv`: one row per suggested question, with display labels, nearby support, path counts, starter papers, and site links.
 - `central_concepts.csv`: one row per central topic, with baseline labels, display labels, and graph prominence measures.
 - `curated_questions.json`: the hand-curated site questions shown in featured shelves.
 - `hybrid_corpus_manifest.json`: release counts for the broader benchmark corpus.
 - `graph_backbone.json`: the lightweight literature map used on the public site.
-- `concept_index.json`: searchable concept records with aliases, support, and app links.
+- `concept_index.json`: searchable concept records with aliases, support, and literature-view links.
 - `concept_neighborhoods_index.json`: index into the concept-neighborhood shard files.
 - `concept_opportunities_index.json`: index into the concept-opportunity shard files.
 - `opportunity_slices.json`: grouped question slices used for the public question page.
@@ -44,5 +44,4 @@ Frontier Graph is a public browser for suggested research questions in economics
 ## Public surfaces
 
 - Site: https://frontiergraph.com
-- Explorer: https://frontiergraph.com/explorer/
 - Repository: https://github.com/prashgarg/frontiergraph

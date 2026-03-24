@@ -9,8 +9,6 @@ interface Props {
   description: string;
   shellClass?: string;
   navPrefix?: string;
-  appUrl?: string;
-  appLabel?: string;
   variantLabel?: string;
   links?: { href: string; label: string; emphasis?: boolean }[];
   currentPath?: string;
@@ -21,8 +19,6 @@ const {
   description,
   shellClass = "site-shell",
   navPrefix = "",
-  appUrl,
-  appLabel,
   variantLabel = "",
   links,
   currentPath = Astro.url.pathname,
@@ -79,7 +75,7 @@ const socialImageUrl = new URL("/og-card.png", siteOrigin).toString();
     <div class="site-bg"></div>
     <div class="site-grid"></div>
     <div class={shellClass}>
-      <Header navPrefix={navPrefix} appUrl={appUrl} appLabel={appLabel} variantLabel={variantLabel} links={links} currentPath={currentPath} />
+      <Header navPrefix={navPrefix} variantLabel={variantLabel} links={links} currentPath={currentPath} />
       <slot />
       <FeedbackWidget surfaceLabel={pageTitle} />
       <Footer navPrefix={navPrefix} />

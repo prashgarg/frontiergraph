@@ -18,6 +18,10 @@ const {
 } = Astro.props;
 
 const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
+const questionHrefBase =
+  Astro.url.pathname.startsWith("/broad/") ? "/broad/questions/" : Astro.url.pathname.startsWith("/fine-preview/")
+    ? "/fine-preview/questions/"
+    : "/questions/";
 ---
 
 <section
@@ -820,7 +824,7 @@ const rootId = `graph-workbench-${Math.random().toString(36).slice(2, 10)}`;
         </div>
         <p class="mini-copy focus-step"><strong>What to inspect first:</strong> ${escapeHtml(question.recommended_move || "Start with the nearby literature and pin down the concrete empirical setting.")}</p>
         <div class="graph-question-actions">
-          <a class="button-secondary" href="${escapeAttr(question.app_link)}" target="_blank" rel="noopener noreferrer">Open Explorer</a>
+          <a class="button-secondary" href="${escapeAttr(`${questionHrefBase}#${question.pair_key}`)}">See question</a>
         </div>
       </article>
       <div class="graph-question-subgrid">

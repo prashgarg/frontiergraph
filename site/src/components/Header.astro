@@ -1,10 +1,6 @@
 ---
-import { data } from "../lib/site-data";
-
 interface Props {
   navPrefix?: string;
-  appUrl?: string;
-  appLabel?: string;
   brandHref?: string;
   variantLabel?: string;
   links?: { href: string; label: string; emphasis?: boolean }[];
@@ -13,8 +9,6 @@ interface Props {
 
 const {
   navPrefix = "",
-  appUrl = data.app_url,
-  appLabel = "Explorer",
   brandHref = navPrefix ? `${navPrefix}/` : "/",
   variantLabel = "",
   links = [
@@ -69,8 +63,5 @@ const isActiveLink = (href: string) => {
         </a>
       ))}
     </nav>
-    <div class="site-nav-actions">
-      <a href={appUrl} class="header-cta" target="_blank" rel="noopener noreferrer">{appLabel}</a>
-    </div>
   </div>
 </header>

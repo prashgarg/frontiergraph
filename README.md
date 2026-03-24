@@ -3,12 +3,11 @@
 Frontier Graph is an open-source research tool for browsing suggested questions in economics from a literature graph.
 
 - Website: [frontiergraph.com](https://frontiergraph.com)
-- Explorer: [frontiergraph.com/explorer/](https://frontiergraph.com/explorer/)
 - Working paper: [frontiergraph.com/paper/](https://frontiergraph.com/paper/)
 - Downloads: [frontiergraph.com/downloads/](https://frontiergraph.com/downloads/)
 - Repository: [github.com/prashgarg/frontiergraph](https://github.com/prashgarg/frontiergraph)
 
-> Public beta. This repository powers the public website, the Explorer, the release bundle, and the working paper. The maintained public surfaces are `site/`, `app/`, and the release/export pipeline. Some analysis scripts remain exploratory research code rather than stable public APIs.
+> Public beta. This repository powers the public website, the release bundle, and the working paper. The maintained public surfaces are `site/` and the release/export pipeline. The legacy Streamlit app in `app/` is kept in the repo as deprecated code for possible revival later. Some analysis scripts remain exploratory research code rather than stable public APIs.
 
 ## What Frontier Graph does
 
@@ -17,7 +16,7 @@ Frontier Graph surfaces plausible next questions from missing links in the liter
 This repository contains:
 
 - the public Astro website in `site/`
-- the Streamlit Explorer in `app/`
+- the deprecated Streamlit app in `app/`
 - the ranking and data logic in `src/`
 - release and export scripts in `scripts/`
 - the paper sources in `paper/`
@@ -40,7 +39,7 @@ npm --prefix site install
 npm --prefix site run dev
 ```
 
-### Run the Explorer locally
+### Run the deprecated app locally
 
 If you already have the public SQLite bundle in `data/production/frontiergraph_public_release/frontiergraph-economics-public.db`, this is enough:
 
@@ -56,7 +55,7 @@ frontiergraph --db /path/to/frontiergraph-economics-public.db --headless
 
 ## Public release workflow
 
-The public website and the Explorer share one canonical public release bundle. A typical refresh sequence is:
+The public website and the archived app share one canonical public release bundle. A typical refresh sequence is:
 
 ```bash
 PYTHONPATH=. python scripts/export_site_data_v2.py
@@ -66,20 +65,20 @@ PYTHONPATH=. python scripts/export_site_data_v2.py
 
 This updates the generated site data, paper assets, and public download metadata.
 
-If you want the website to point at a live public database mirror and branded Explorer handoff, set:
+If you want the website to point at a live public database mirror, set:
 
 ```bash
 export FRONTIERGRAPH_PUBLIC_DB_URL="https://..."
-export FRONTIERGRAPH_PUBLIC_APP_URL="https://frontiergraph.com/explorer/"
 ```
 
 before running the export.
 
 ## Reproducibility and scope
 
-Frontier Graph is a research codebase, not a polished library package. The public repository is intended to make the method, release pipeline, website, Explorer, and paper inspectable.
+Frontier Graph is a research codebase, not a polished library package. The public repository is intended to make the method, release pipeline, website, deprecated app code, and paper inspectable.
 
-- The public site and Explorer can be reproduced from this repo plus the public release bundle.
+- The public site can be reproduced from this repo plus the public release bundle.
+- The deprecated app can still be run locally from this repo if you want to inspect the old workflow.
 - The demo path is reproducible from the repo alone.
 - Full economics rebuilds depend on external corpora, API access, and deployment infrastructure that are not all bundled into Git.
 

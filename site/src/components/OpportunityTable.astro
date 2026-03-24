@@ -8,6 +8,11 @@ interface Props {
 }
 
 const { items, title, caption } = Astro.props;
+const questionHrefBase = Astro.url.pathname.startsWith("/broad/")
+  ? "/broad/questions/"
+  : Astro.url.pathname.startsWith("/fine-preview/")
+    ? "/fine-preview/questions/"
+    : "/questions/";
 ---
 
 <section class="table-section">
@@ -36,7 +41,7 @@ const { items, title, caption } = Astro.props;
             <td>{item.priority.toFixed(3)}</td>
             <td>{item.target_field_name}</td>
             <td>{item.mediators}</td>
-            <td><a href={item.app_link} target="_blank" rel="noopener noreferrer">Open in Explorer</a></td>
+            <td><a href={`${questionHrefBase}#${item.pair_key}`}>See question</a></td>
           </tr>
         ))}
       </tbody>

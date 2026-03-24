@@ -39,11 +39,8 @@ LITERATURE_SEARCH_INDEX_PATH = PUBLIC_DATA_DIR / "literature_search_index.json"
 REPO_URL = "https://github.com/prashgarg/frontiergraph"
 DB_FILENAME = "frontiergraph-economics-public.db"
 SITE_GRAPH_URL = os.environ.get("FRONTIERGRAPH_SITE_GRAPH_URL", "/graph/")
-PUBLIC_APP_URL = os.environ.get(
-    "FRONTIERGRAPH_PUBLIC_APP_URL",
-    "https://frontiergraph.com/explorer/",
-)
 QUESTION_URL = os.environ.get("FRONTIERGRAPH_QUESTION_URL", "/questions/")
+LITERATURE_URL = os.environ.get("FRONTIERGRAPH_LITERATURE_URL", "/literature/")
 PUBLIC_DB_URL = os.environ.get(
     "FRONTIERGRAPH_PUBLIC_DB_URL",
     "https://storage.googleapis.com/frontiergraph-public-downloads-1058669339361/frontiergraph-economics-public.db",
@@ -658,16 +655,20 @@ def build_graph_link(query: Any) -> str:
 
 
 def build_app_question_link(pair_key: Any) -> str:
-    return append_query_value(PUBLIC_APP_URL, {"view": "question", "pair": pair_key})
+    return build_question_link(pair_key)
 
 
-def build_app_concept_link(concept_id: Any) -> str:
-    return append_query_value(PUBLIC_APP_URL, {"view": "concept", "concept": concept_id})
+def build_literature_link(query: Any) -> str:
+    return append_query_value(LITERATURE_URL, {"q": query})
+
+
+def build_app_concept_link(query: Any) -> str:
+    return build_literature_link(query)
 
 
 def build_app_compare_link(pair_keys: list[str]) -> str:
     cleaned = [clean_public_text(value) for value in pair_keys if clean_public_text(value)]
-    return append_query_value(PUBLIC_APP_URL, {"view": "compare", "pairs": ",".join(cleaned)})
+    return build_question_link(cleaned[0]) if cleaned else QUESTION_URL
 
 
 def normalize_context_value(value: Any) -> str:
@@ -2119,7 +2120,7 @@ def build_search_index(
                 "top_countries": top_values(getattr(row, "top_countries", None), limit=3),
                 "top_units": top_values(getattr(row, "top_units", None), limit=3),
                 "search_terms": search_terms,
-                "app_link": build_app_concept_link(row.concept_id),
+                "app_link": build_app_concept_link(public_label["plain_label"] or row.preferred_label),
             }
         )
     records.sort(key=lambda item: (item["weighted_degree"], item["instance_support"]), reverse=True)
@@ -3458,7 +3459,7 @@ def write_public_db_release_assets(db_path: Path) -> dict[str, Any]:
     return manifest
 
 
-def build_release_readme_markdown(metrics: dict[str, Any], app_url: str) -> str:
+def build_release_readme_markdown(metrics: dict[str, Any]) -> str:
     return f"""# Frontier Graph public release README
 
 Frontier Graph is a public browser for suggested research questions in economics. This release starts from {metrics["papers"]:,} papers screened from 1976 to 2026 and packages the public question tables, graph assets, and SQLite bundle that sit behind the site.
@@ -3483,8 +3484,8 @@ Frontier Graph is a public browser for suggested research questions in economics
 
 ## What each file is for
 
-- `top_questions.csv`: one row per suggested question, with display labels, nearby support, path counts, starter papers, and explorer link.
-- `central_concepts.csv`: one row per central topic, with baseline labels, display labels, and graph prominence measures.
+- `top_questions.csv`: one row per suggested question, with display labels, nearby support, path counts, starter papers, and site links.
+- `central_concepts.csv`: one row per central topic, with baseline labels, display labels, graph prominence measures, and literature-view links.
 - `curated_questions.json`: the hand-curated site questions shown in featured shelves.
 - `hybrid_corpus_manifest.json`: release counts for the broader benchmark corpus.
 - `graph_backbone.json`: the lightweight literature map used on the public site.
@@ -3505,7 +3506,6 @@ Frontier Graph is a public browser for suggested research questions in economics
 ## Public surfaces
 
 - Site: https://frontiergraph.com
-- Explorer: {app_url}
 - Repository: {REPO_URL}
 """
 
@@ -3556,7 +3556,7 @@ This guide summarizes the main fields in the public download files. If you want 
 | `top_countries_source`, `top_countries_target` | JSON lists of common settings for each side of the pair. |
 | `source_context_summary`, `target_context_summary` | Short context summaries for each side. |
 | `common_contexts` | Plain-language summary of overlapping settings. |
-| `app_link` | Deep link into the public explorer. |
+| `app_link` | Link into the maintained public site for that question. |
 
 ## `central_concepts.csv`
 
@@ -3578,7 +3578,7 @@ This guide summarizes the main fields in the public download files. If you want 
 | `in_degree`, `out_degree` | Directed degree counts in the graph tables. |
 | `neighbor_count` | Number of distinct neighboring concepts. |
 | `top_countries`, `top_units` | JSON lists of common settings and units. |
-| `app_link` | Deep link into the public explorer. |
+| `app_link` | Link into the maintained public literature view for that concept. |
 
 ## Structured JSON assets
 
@@ -3710,7 +3710,7 @@ def main() -> None:
                 "neighbor_count": int(row.neighbor_count),
                 "top_countries": top_values(row.top_countries, limit=3),
                 "top_units": top_values(row.top_units, limit=3),
-                "app_link": build_app_concept_link(row.concept_id),
+                "app_link": build_app_concept_link(public_label["plain_label"] or row.preferred_label),
             }
         )
 
@@ -3888,7 +3888,6 @@ def main() -> None:
                 "native_concepts": int(hybrid_manifest["unique_concepts_in_hybrid_corpus"]),
                 "visible_public_questions": int(candidates_df["pair_key"].astype(str).nunique()) if "pair_key" in candidates_df.columns else int(len(candidates_df)),
             },
-            PUBLIC_APP_URL,
         ),
     )
     data_dictionary_path = write_public_download_text(
@@ -3942,7 +3941,7 @@ def main() -> None:
 
     site_data = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "app_url": PUBLIC_APP_URL,
+        "app_url": QUESTION_URL,
         "repo_url": REPO_URL,
         "public_label_glossary": public_label_glossary,
         "metrics": {

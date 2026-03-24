@@ -179,11 +179,11 @@ def current_site_meta() -> dict[str, str]:
         payload = read_json(GENERATED_SITE_DATA)
     except Exception:
         return {
-            "app_url": os.environ.get("FRONTIERGRAPH_PUBLIC_APP_URL", "https://frontiergraph-app-1058669339361.us-central1.run.app"),
+            "app_url": os.environ.get("FRONTIERGRAPH_BROAD_QUESTION_URL", "/broad/questions/"),
             "repo_url": "https://github.com/prashantg/frontiergraph",
         }
     return {
-        "app_url": str(payload.get("app_url") or os.environ.get("FRONTIERGRAPH_PUBLIC_APP_URL") or "https://frontiergraph-app-1058669339361.us-central1.run.app"),
+        "app_url": str(payload.get("app_url") or os.environ.get("FRONTIERGRAPH_BROAD_QUESTION_URL") or "/broad/questions/"),
         "repo_url": str(payload.get("repo_url") or "https://github.com/prashantg/frontiergraph"),
     }
 
@@ -193,15 +193,15 @@ def preview_app_base_url() -> str:
 
 
 def preview_app_url() -> str:
-    return add_query_params(preview_app_base_url(), variant="broad")
+    return preview_app_base_url()
 
 
 def question_app_link(pair_key: str) -> str:
-    return add_query_params(preview_app_base_url(), variant="broad", view="question", pair=pair_key)
+    return f"{preview_app_base_url()}#{pair_key}"
 
 
 def concept_app_link(concept_id: str) -> str:
-    return add_query_params(preview_app_base_url(), variant="broad", view="concept", concept=concept_id)
+    return "/broad/graph/"
 
 
 def mirror_key(u: str, v: str) -> str:

@@ -1,6 +1,6 @@
 {
   "generated_at": "2026-03-17T12:33:29.494422+00:00",
-  "app_url": "https://frontiergraph.com/explorer/",
+  "app_url": "/questions/",
   "repo_url": "https://github.com/prashgarg/frontiergraph",
   "public_label_glossary": {
     "FG3C001307": {
@@ -160,7 +160,7 @@
         "target_context_summary": "Sweden, United States, and related settings",
         "common_contexts": "EQ-5D index score studies are common in China, United States, and related settings; choice data studies are common in Sweden, United States, and related settings.",
         "public_specificity_score": 12.3018,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C005515__FG3C005999",
+        "app_link": "/questions/#FG3C005515__FG3C005999",
         "editorial_question_title": ""
       },
       {
@@ -291,7 +291,7 @@
         "target_context_summary": "China, United States, and related settings",
         "common_contexts": "Special economic zones studies are common in China and India; income inequality studies are common in China, United States, and related settings.",
         "public_specificity_score": 7.6028,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000025__FG3C002438",
+        "app_link": "/questions/#FG3C000025__FG3C002438",
         "editorial_question_title": ""
       },
       {
@@ -420,7 +420,7 @@
         "target_context_summary": "China, Ethiopia, and related settings",
         "common_contexts": "high-deductible health plans studies are common in United States, Germany, and related settings; essential medicines studies are common in China, Ethiopia, and related settings.",
         "public_specificity_score": 12.303,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C003577__FG3C006085",
+        "app_link": "/questions/#FG3C003577__FG3C006085",
         "editorial_question_title": ""
       },
       {
@@ -550,7 +550,7 @@
         "target_context_summary": "China and OECD",
         "common_contexts": "R&D investment studies are common in China and Korea; green total factor productivity (GTFP) studies are common in China and OECD.",
         "public_specificity_score": 8.641,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000089__FG3C000215",
+        "app_link": "/questions/#FG3C000089__FG3C000215",
         "editorial_question_title": ""
       },
       {
@@ -683,7 +683,7 @@
         "target_context_summary": "China, India, and related settings",
         "common_contexts": "renewable energy consumption studies are common in China, India, and related settings; energy consumption studies are common in China, India, and related settings.",
         "public_specificity_score": 9.5,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C000018",
+        "app_link": "/questions/#FG3C000014__FG3C000018",
         "editorial_question_title": ""
       },
       {
@@ -818,7 +818,7 @@
         "target_context_summary": "China and India",
         "common_contexts": "CO2 emissions studies are common in China and India; carbon emissions studies are common in China and India.",
         "public_specificity_score": 6.9809,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000003__FG3C000010",
+        "app_link": "/questions/#FG3C000003__FG3C000010",
         "editorial_question_title": ""
       }
     ],
@@ -952,7 +952,7 @@
         "target_context_summary": "China and India",
         "common_contexts": "public debt studies are common in United States, Africa, and related settings; CO2 emissions studies are common in China and India.",
         "public_specificity_score": -5.1516,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000003__FG3C000208",
+        "app_link": "/questions/#FG3C000003__FG3C000208",
         "editorial_question_title": "How does public debt shape CO2 emissions?",
         "question_title": "How does public debt shape CO2 emissions?",
         "short_why": "Debt can reshape public investment, energy pricing, and fiscal space, but those channels rarely get studied together as an emissions question.",
@@ -1101,7 +1101,7 @@
         "target_context_summary": "United States, China, and related settings",
         "common_contexts": "urbanization studies are common in China and India; output growth studies are common in United States, China, and related settings.",
         "public_specificity_score": -8.1201,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000012__FG3C000110",
+        "app_link": "/questions/#FG3C000012__FG3C000110",
         "editorial_question_title": "When does urbanization translate into output growth?",
         "question_title": "When does urbanization translate into output growth?",
         "short_why": "Urbanization is central to development stories, but it is often treated as background change rather than a testable growth question.",
@@ -1248,7 +1248,7 @@
         "target_context_summary": "United States, China, and related settings",
         "common_contexts": "monetary policy studies are common in United States and China; consumer demand studies are common in United States, China, and related settings.",
         "public_specificity_score": -16.5982,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000024__FG3C001672",
+        "app_link": "/questions/#FG3C000024__FG3C001672",
         "editorial_question_title": "How does monetary policy reshape consumer demand?",
         "question_title": "How does monetary policy reshape consumer demand?",
         "short_why": "Consumption is a core transmission channel, but many monetary papers stop at aggregate output rather than the structure of consumer demand.",
@@ -1298,7 +1298,7 @@
           "region",
           "location"
         ],
-        "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000001"
+        "app_link": "/literature/"
       },
       {
         "concept_id": "FG3C000003",
@@ -1330,7 +1330,7 @@
           "region",
           "location"
         ],
-        "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000003"
+        "app_link": "/literature/"
       },
       {
         "concept_id": "FG3C000010",
@@ -1362,7 +1362,7 @@
           "region",
           "location"
         ],
-        "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000010"
+        "app_link": "/literature/"
       },
       {
         "concept_id": "FG3C000018",
@@ -1395,7 +1395,7 @@
           "region",
           "other"
         ],
-        "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000018"
+        "app_link": "/literature/"
       },
       {
         "concept_id": "FG3C000014",
@@ -1428,7 +1428,7 @@
           "region",
           "location"
         ],
-        "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000014"
+        "app_link": "/literature/"
       },
       {
         "concept_id": "FG3C000006",
@@ -1461,7 +1461,7 @@
           "region",
           "location"
         ],
-        "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000006"
+        "app_link": "/literature/"
       },
       {
         "concept_id": "FG3C000064",
@@ -1494,7 +1494,7 @@
           "region",
           "location"
         ],
-        "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000064"
+        "app_link": "/literature/"
       },
       {
         "concept_id": "FG3C000002",
@@ -1526,7 +1526,7 @@
           "other",
           "region"
         ],
-        "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000002"
+        "app_link": "/literature/"
       }
     ],
     "graph_snapshot": {
@@ -1676,7 +1676,7 @@
         "target_context_summary": "China and India",
         "common_contexts": "public debt studies are common in United States, Africa, and related settings; CO2 emissions studies are common in China and India.",
         "public_specificity_score": -5.1516,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000003__FG3C000208",
+        "app_link": "/questions/#FG3C000003__FG3C000208",
         "editorial_question_title": "How does public debt shape CO2 emissions?",
         "question_title": "How does public debt shape CO2 emissions?",
         "short_why": "Debt can reshape public investment, energy pricing, and fiscal space, but those channels rarely get studied together as an emissions question.",
@@ -1825,7 +1825,7 @@
         "target_context_summary": "United States, China, and related settings",
         "common_contexts": "urbanization studies are common in China and India; output growth studies are common in United States, China, and related settings.",
         "public_specificity_score": -8.1201,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000012__FG3C000110",
+        "app_link": "/questions/#FG3C000012__FG3C000110",
         "editorial_question_title": "When does urbanization translate into output growth?",
         "question_title": "When does urbanization translate into output growth?",
         "short_why": "Urbanization is central to development stories, but it is often treated as background change rather than a testable growth question.",
@@ -1972,7 +1972,7 @@
         "target_context_summary": "China, India, and related settings",
         "common_contexts": "monetary policy studies are common in United States and China; energy consumption studies are common in China, India, and related settings.",
         "public_specificity_score": -6.3772,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C000024",
+        "app_link": "/questions/#FG3C000014__FG3C000024",
         "editorial_question_title": "Does monetary policy have an energy-demand channel?",
         "question_title": "Does monetary policy have an energy-demand channel?",
         "short_why": "Rate shocks move durables, construction, and industrial borrowing, yet energy demand is rarely the main outcome of monetary papers.",
@@ -2122,7 +2122,7 @@
         "target_context_summary": "China and India",
         "common_contexts": "investment studies are common in China and United States; carbon emissions studies are common in China and India.",
         "public_specificity_score": -6.059,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000010__FG3C000019",
+        "app_link": "/questions/#FG3C000010__FG3C000019",
         "editorial_question_title": "Which kinds of investment raise carbon emissions?",
         "question_title": "Which kinds of investment raise carbon emissions?",
         "short_why": "Capital deepening can raise or lower emissions depending on what gets financed, but investment is too often treated as one undifferentiated block.",
@@ -2271,7 +2271,7 @@
         "target_context_summary": "China, India, and related settings",
         "common_contexts": "trade liberalisation studies are common in India, Nepal, and related settings; energy consumption studies are common in China, India, and related settings.",
         "public_specificity_score": -5.2734,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C001221",
+        "app_link": "/questions/#FG3C000014__FG3C001221",
         "editorial_question_title": "How does trade liberalisation change energy consumption?",
         "question_title": "How does trade liberalisation change energy consumption?",
         "short_why": "Trade reforms can change production patterns and freight demand, but energy use is usually treated as a side effect rather than the main outcome.",
@@ -2421,7 +2421,7 @@
         "target_context_summary": "India, Brazil, and related settings",
         "common_contexts": "green innovation studies are common in China and OECD; ecological carrying capacity studies are common in India, Brazil, and related settings.",
         "public_specificity_score": 11.2237,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000053__FG3C001307",
+        "app_link": "/questions/#FG3C000053__FG3C001307",
         "editorial_question_title": "Does green innovation improve ecological carrying capacity?",
         "question_title": "Does green innovation improve ecological carrying capacity?",
         "short_why": "Green innovation papers often stop at emissions, while broader measures of ecological resilience are usually studied elsewhere.",
@@ -2574,7 +2574,7 @@
             "target_context_summary": "China and India",
             "common_contexts": "public debt studies are common in United States, Africa, and related settings; CO2 emissions studies are common in China and India.",
             "public_specificity_score": -5.1516,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000003__FG3C000208",
+            "app_link": "/questions/#FG3C000003__FG3C000208",
             "editorial_question_title": "How does public debt shape CO2 emissions?",
             "question_title": "How does public debt shape CO2 emissions?",
             "short_why": "Debt can reshape public investment, energy pricing, and fiscal space, but those channels rarely get studied together as an emissions question.",
@@ -2721,7 +2721,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "monetary policy studies are common in United States and China; energy consumption studies are common in China, India, and related settings.",
             "public_specificity_score": -6.3772,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C000024",
+            "app_link": "/questions/#FG3C000014__FG3C000024",
             "editorial_question_title": "Does monetary policy have an energy-demand channel?",
             "question_title": "Does monetary policy have an energy-demand channel?",
             "short_why": "Rate shocks move durables, construction, and industrial borrowing, yet energy demand is rarely the main outcome of monetary papers.",
@@ -2868,7 +2868,7 @@
             "target_context_summary": "United States, China, and related settings",
             "common_contexts": "monetary policy studies are common in United States and China; consumer demand studies are common in United States, China, and related settings.",
             "public_specificity_score": -16.5982,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000024__FG3C001672",
+            "app_link": "/questions/#FG3C000024__FG3C001672",
             "editorial_question_title": "How does monetary policy reshape consumer demand?",
             "question_title": "How does monetary policy reshape consumer demand?",
             "short_why": "Consumption is a core transmission channel, but many monetary papers stop at aggregate output rather than the structure of consumer demand.",
@@ -3022,7 +3022,7 @@
             "target_context_summary": "United States, China, and related settings",
             "common_contexts": "urbanization studies are common in China and India; output growth studies are common in United States, China, and related settings.",
             "public_specificity_score": -8.1201,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000012__FG3C000110",
+            "app_link": "/questions/#FG3C000012__FG3C000110",
             "editorial_question_title": "When does urbanization translate into output growth?",
             "question_title": "When does urbanization translate into output growth?",
             "short_why": "Urbanization is central to development stories, but it is often treated as background change rather than a testable growth question.",
@@ -3172,7 +3172,7 @@
             "target_context_summary": "China and India",
             "common_contexts": "investment studies are common in China and United States; carbon emissions studies are common in China and India.",
             "public_specificity_score": -6.059,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000010__FG3C000019",
+            "app_link": "/questions/#FG3C000010__FG3C000019",
             "editorial_question_title": "Which kinds of investment raise carbon emissions?",
             "question_title": "Which kinds of investment raise carbon emissions?",
             "short_why": "Capital deepening can raise or lower emissions depending on what gets financed, but investment is too often treated as one undifferentiated block.",
@@ -3317,7 +3317,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "urbanization studies are common in China and India; catastrophic health expenditures studies are common in China, India, and related settings.",
             "public_specificity_score": 5.804,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000012__FG3C001452",
+            "app_link": "/questions/#FG3C000012__FG3C001452",
             "editorial_question_title": "When does urbanization reduce catastrophic health spending?",
             "question_title": "When does urbanization reduce catastrophic health spending?",
             "short_why": "The closest route runs through household size, household income, and per-capita income, which makes this feel more like a concrete urban-service question than a generic development pairing.",
@@ -3473,7 +3473,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "trade liberalisation studies are common in India, Nepal, and related settings; energy consumption studies are common in China, India, and related settings.",
             "public_specificity_score": -5.2734,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C001221",
+            "app_link": "/questions/#FG3C000014__FG3C001221",
             "editorial_question_title": "How does trade liberalisation change energy consumption?",
             "question_title": "How does trade liberalisation change energy consumption?",
             "short_why": "Trade reforms can change production patterns and freight demand, but energy use is usually treated as a side effect rather than the main outcome.",
@@ -3623,7 +3623,7 @@
             "target_context_summary": "China and Germany",
             "common_contexts": "exports studies are common in China and United States; environmental pollution studies are common in China and Germany.",
             "public_specificity_score": -6.3165,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000046__FG3C000203",
+            "app_link": "/questions/#FG3C000046__FG3C000203",
             "editorial_question_title": "How does export growth change environmental pollution?",
             "question_title": "How does export growth change environmental pollution?",
             "short_why": "Export expansion can alter sector mix and where environmental costs show up, but pollution outcomes are often buried inside broader trade debates.",
@@ -3770,7 +3770,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "trade liberalization studies are common in China and Brazil; catastrophic health expenditures studies are common in China, India, and related settings.",
             "public_specificity_score": 3.4015,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000083__FG3C001452",
+            "app_link": "/questions/#FG3C000083__FG3C001452",
             "editorial_question_title": "How do trade reforms change catastrophic health spending?",
             "question_title": "How do trade reforms change catastrophic health spending?",
             "short_why": "The nearest route runs through poverty, poor countries, and income inequality, which gives this a clearer mechanism than a generic trade-and-health headline.",
@@ -3922,7 +3922,7 @@
             "target_context_summary": "China and India",
             "common_contexts": "public debt studies are common in United States, Africa, and related settings; CO2 emissions studies are common in China and India.",
             "public_specificity_score": -5.1516,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000003__FG3C000208",
+            "app_link": "/questions/#FG3C000003__FG3C000208",
             "editorial_question_title": "How does public debt shape CO2 emissions?",
             "question_title": "How does public debt shape CO2 emissions?",
             "short_why": "Debt can reshape public investment, energy pricing, and fiscal space, but those channels rarely get studied together as an emissions question.",
@@ -4069,7 +4069,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "monetary policy studies are common in United States and China; energy consumption studies are common in China, India, and related settings.",
             "public_specificity_score": -6.3772,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C000024",
+            "app_link": "/questions/#FG3C000014__FG3C000024",
             "editorial_question_title": "Does monetary policy have an energy-demand channel?",
             "question_title": "Does monetary policy have an energy-demand channel?",
             "short_why": "Rate shocks move durables, construction, and industrial borrowing, yet energy demand is rarely the main outcome of monetary papers.",
@@ -4220,7 +4220,7 @@
             "target_context_summary": "India, Brazil, and related settings",
             "common_contexts": "green innovation studies are common in China and OECD; ecological carrying capacity studies are common in India, Brazil, and related settings.",
             "public_specificity_score": 11.2237,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000053__FG3C001307",
+            "app_link": "/questions/#FG3C000053__FG3C001307",
             "editorial_question_title": "Does green innovation improve ecological carrying capacity?",
             "question_title": "Does green innovation improve ecological carrying capacity?",
             "short_why": "Green innovation papers often stop at emissions, while broader measures of ecological resilience are usually studied elsewhere.",
@@ -4375,7 +4375,7 @@
             "target_context_summary": "India, Brazil, and related settings",
             "common_contexts": "green innovation studies are common in China and OECD; ecological carrying capacity studies are common in India, Brazil, and related settings.",
             "public_specificity_score": 11.2237,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000053__FG3C001307",
+            "app_link": "/questions/#FG3C000053__FG3C001307",
             "editorial_question_title": "Does green innovation improve ecological carrying capacity?",
             "question_title": "Does green innovation improve ecological carrying capacity?",
             "short_why": "Green innovation papers often stop at emissions, while broader measures of ecological resilience are usually studied elsewhere.",
@@ -4518,7 +4518,7 @@
             "target_context_summary": "China, Italy, and related settings",
             "common_contexts": "green credit policy studies are common in China and Brazil; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
             "public_specificity_score": 3.2063,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000061__FG3C001431",
+            "app_link": "/questions/#FG3C000061__FG3C001431",
             "editorial_question_title": "When does green credit policy raise total factor productivity?",
             "question_title": "When does green credit policy raise total factor productivity?",
             "short_why": "The strongest nearby route runs through state-owned enterprises, firm productivity, and R&D investment, which makes this look like a policy-channel question rather than a generic green-finance pairing.",
@@ -4662,7 +4662,7 @@
             "target_context_summary": "China, United States, and related settings",
             "common_contexts": "green innovation studies are common in China and OECD; productivity studies are common in China, United States, and related settings.",
             "public_specificity_score": -8.7921,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000021__FG3C000053",
+            "app_link": "/questions/#FG3C000021__FG3C000053",
             "editorial_question_title": "Does green innovation translate into productivity gains?",
             "question_title": "Does green innovation translate into productivity gains?",
             "short_why": "Green innovation is often justified on environmental grounds, but its productivity payoff is still not usually the paper's main outcome.",
@@ -4818,7 +4818,7 @@
             "target_context_summary": "China and India",
             "common_contexts": "public debt studies are common in United States, Africa, and related settings; CO2 emissions studies are common in China and India.",
             "public_specificity_score": -5.1516,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000003__FG3C000208",
+            "app_link": "/questions/#FG3C000003__FG3C000208",
             "editorial_question_title": "How does public debt shape CO2 emissions?",
             "question_title": "How does public debt shape CO2 emissions?",
             "short_why": "Debt can reshape public investment, energy pricing, and fiscal space, but those channels rarely get studied together as an emissions question.",
@@ -4965,7 +4965,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "monetary policy studies are common in United States and China; energy consumption studies are common in China, India, and related settings.",
             "public_specificity_score": -6.3772,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C000024",
+            "app_link": "/questions/#FG3C000014__FG3C000024",
             "editorial_question_title": "Does monetary policy have an energy-demand channel?",
             "question_title": "Does monetary policy have an energy-demand channel?",
             "short_why": "Rate shocks move durables, construction, and industrial borrowing, yet energy demand is rarely the main outcome of monetary papers.",
@@ -5115,7 +5115,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "trade liberalisation studies are common in India, Nepal, and related settings; energy consumption studies are common in China, India, and related settings.",
             "public_specificity_score": -5.2734,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C001221",
+            "app_link": "/questions/#FG3C000014__FG3C001221",
             "editorial_question_title": "How does trade liberalisation change energy consumption?",
             "question_title": "How does trade liberalisation change energy consumption?",
             "short_why": "Trade reforms can change production patterns and freight demand, but energy use is usually treated as a side effect rather than the main outcome.",
@@ -5270,7 +5270,7 @@
             "target_context_summary": "United States, China, and related settings",
             "common_contexts": "urbanization studies are common in China and India; output growth studies are common in United States, China, and related settings.",
             "public_specificity_score": -8.1201,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000012__FG3C000110",
+            "app_link": "/questions/#FG3C000012__FG3C000110",
             "editorial_question_title": "When does urbanization translate into output growth?",
             "question_title": "When does urbanization translate into output growth?",
             "short_why": "Urbanization is central to development stories, but it is often treated as background change rather than a testable growth question.",
@@ -5416,7 +5416,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "urbanization studies are common in China and India; catastrophic health expenditures studies are common in China, India, and related settings.",
             "public_specificity_score": 5.804,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000012__FG3C001452",
+            "app_link": "/questions/#FG3C000012__FG3C001452",
             "editorial_question_title": "When does urbanization reduce catastrophic health spending?",
             "question_title": "When does urbanization reduce catastrophic health spending?",
             "short_why": "The closest route runs through household size, household income, and per-capita income, which makes this feel more like a concrete urban-service question than a generic development pairing.",
@@ -5563,7 +5563,7 @@
             "target_context_summary": "China, United States, and related settings",
             "common_contexts": "green innovation studies are common in China and OECD; productivity studies are common in China, United States, and related settings.",
             "public_specificity_score": -8.7921,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000021__FG3C000053",
+            "app_link": "/questions/#FG3C000021__FG3C000053",
             "editorial_question_title": "Does green innovation translate into productivity gains?",
             "question_title": "Does green innovation translate into productivity gains?",
             "short_why": "Green innovation is often justified on environmental grounds, but its productivity payoff is still not usually the paper's main outcome.",
@@ -5717,7 +5717,7 @@
             "target_context_summary": "China and India",
             "common_contexts": "public debt studies are common in United States, Africa, and related settings; CO2 emissions studies are common in China and India.",
             "public_specificity_score": -5.1516,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000003__FG3C000208",
+            "app_link": "/questions/#FG3C000003__FG3C000208",
             "editorial_question_title": "How does public debt shape CO2 emissions?",
             "question_title": "How does public debt shape CO2 emissions?",
             "short_why": "Debt can reshape public investment, energy pricing, and fiscal space, but those channels rarely get studied together as an emissions question.",
@@ -5864,7 +5864,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "monetary policy studies are common in United States and China; energy consumption studies are common in China, India, and related settings.",
             "public_specificity_score": -6.3772,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C000024",
+            "app_link": "/questions/#FG3C000014__FG3C000024",
             "editorial_question_title": "Does monetary policy have an energy-demand channel?",
             "question_title": "Does monetary policy have an energy-demand channel?",
             "short_why": "Rate shocks move durables, construction, and industrial borrowing, yet energy demand is rarely the main outcome of monetary papers.",
@@ -6014,7 +6014,7 @@
             "target_context_summary": "China and India",
             "common_contexts": "investment studies are common in China and United States; carbon emissions studies are common in China and India.",
             "public_specificity_score": -6.059,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000010__FG3C000019",
+            "app_link": "/questions/#FG3C000010__FG3C000019",
             "editorial_question_title": "Which kinds of investment raise carbon emissions?",
             "question_title": "Which kinds of investment raise carbon emissions?",
             "short_why": "Capital deepening can raise or lower emissions depending on what gets financed, but investment is too often treated as one undifferentiated block.",
@@ -6169,7 +6169,7 @@
             "target_context_summary": "United States, China, and related settings",
             "common_contexts": "urbanization studies are common in China and India; output growth studies are common in United States, China, and related settings.",
             "public_specificity_score": -8.1201,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000012__FG3C000110",
+            "app_link": "/questions/#FG3C000012__FG3C000110",
             "editorial_question_title": "When does urbanization translate into output growth?",
             "question_title": "When does urbanization translate into output growth?",
             "short_why": "Urbanization is central to development stories, but it is often treated as background change rather than a testable growth question.",
@@ -6319,7 +6319,7 @@
             "target_context_summary": "China and India",
             "common_contexts": "investment studies are common in China and United States; carbon emissions studies are common in China and India.",
             "public_specificity_score": -6.059,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000010__FG3C000019",
+            "app_link": "/questions/#FG3C000010__FG3C000019",
             "editorial_question_title": "Which kinds of investment raise carbon emissions?",
             "question_title": "Which kinds of investment raise carbon emissions?",
             "short_why": "Capital deepening can raise or lower emissions depending on what gets financed, but investment is too often treated as one undifferentiated block.",
@@ -6465,7 +6465,7 @@
             "target_context_summary": "United States, China, and related settings",
             "common_contexts": "monetary policy studies are common in United States and China; consumer demand studies are common in United States, China, and related settings.",
             "public_specificity_score": -16.5982,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000024__FG3C001672",
+            "app_link": "/questions/#FG3C000024__FG3C001672",
             "editorial_question_title": "How does monetary policy reshape consumer demand?",
             "question_title": "How does monetary policy reshape consumer demand?",
             "short_why": "Consumption is a core transmission channel, but many monetary papers stop at aggregate output rather than the structure of consumer demand.",
@@ -6619,7 +6619,7 @@
             "target_context_summary": "United States, China, and related settings",
             "common_contexts": "urbanization studies are common in China and India; output growth studies are common in United States, China, and related settings.",
             "public_specificity_score": -8.1201,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000012__FG3C000110",
+            "app_link": "/questions/#FG3C000012__FG3C000110",
             "editorial_question_title": "When does urbanization translate into output growth?",
             "question_title": "When does urbanization translate into output growth?",
             "short_why": "Urbanization is central to development stories, but it is often treated as background change rather than a testable growth question.",
@@ -6769,7 +6769,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "trade liberalisation studies are common in India, Nepal, and related settings; energy consumption studies are common in China, India, and related settings.",
             "public_specificity_score": -5.2734,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C001221",
+            "app_link": "/questions/#FG3C000014__FG3C001221",
             "editorial_question_title": "How does trade liberalisation change energy consumption?",
             "question_title": "How does trade liberalisation change energy consumption?",
             "short_why": "Trade reforms can change production patterns and freight demand, but energy use is usually treated as a side effect rather than the main outcome.",
@@ -6914,7 +6914,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "urbanization studies are common in China and India; catastrophic health expenditures studies are common in China, India, and related settings.",
             "public_specificity_score": 5.804,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000012__FG3C001452",
+            "app_link": "/questions/#FG3C000012__FG3C001452",
             "editorial_question_title": "When does urbanization reduce catastrophic health spending?",
             "question_title": "When does urbanization reduce catastrophic health spending?",
             "short_why": "The closest route runs through household size, household income, and per-capita income, which makes this feel more like a concrete urban-service question than a generic development pairing.",
@@ -7069,7 +7069,7 @@
             "target_context_summary": "United States, China, and related settings",
             "common_contexts": "monetary policy studies are common in United States and China; consumer demand studies are common in United States, China, and related settings.",
             "public_specificity_score": -16.5982,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000024__FG3C001672",
+            "app_link": "/questions/#FG3C000024__FG3C001672",
             "editorial_question_title": "How does monetary policy reshape consumer demand?",
             "display_title": "How does monetary policy reshape consumer demand?",
             "display_why": "Consumption is a core transmission channel, but many monetary papers stop at aggregate output rather than the structure of consumer demand.",
@@ -7203,7 +7203,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "monetary policy studies are common in United States and China; energy consumption studies are common in China, India, and related settings.",
             "public_specificity_score": -6.3772,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C000024",
+            "app_link": "/questions/#FG3C000014__FG3C000024",
             "editorial_question_title": "Does monetary policy have an energy-demand channel?",
             "display_title": "Does monetary policy have an energy-demand channel?",
             "display_why": "Rate shocks move durables, construction, and industrial borrowing, yet energy demand is rarely the main outcome of monetary papers.",
@@ -7339,7 +7339,7 @@
             "target_context_summary": "China and India",
             "common_contexts": "public debt studies are common in United States, Africa, and related settings; CO2 emissions studies are common in China and India.",
             "public_specificity_score": -5.1516,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000003__FG3C000208",
+            "app_link": "/questions/#FG3C000003__FG3C000208",
             "editorial_question_title": "How does public debt shape CO2 emissions?",
             "display_title": "How does public debt shape CO2 emissions?",
             "display_why": "Debt can reshape public investment, energy pricing, and fiscal space, but those channels rarely get studied together as an emissions question.",
@@ -7475,7 +7475,7 @@
             "target_context_summary": "United States and China",
             "common_contexts": "central bank communication studies are common in China, Sweden, and related settings; welfare studies are common in United States and China.",
             "public_specificity_score": 0.1032,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000004__FG3C001986",
+            "app_link": "/questions/#FG3C000004__FG3C001986",
             "editorial_question_title": "",
             "display_title": "How does central bank communication shape welfare?",
             "display_why": "Linked nearby through financial markets, bank risk-taking, and expectations.",
@@ -7613,7 +7613,7 @@
             "target_context_summary": "China, United States, and related settings",
             "common_contexts": "green technology innovation studies are common in China and India; cost of debt studies are common in China, United States, and related settings.",
             "public_specificity_score": -1.5982,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000094__FG3C001436",
+            "app_link": "/questions/#FG3C000094__FG3C001436",
             "editorial_question_title": "",
             "display_title": "Does cheaper debt accelerate green technology adoption?",
             "display_why": "Linked nearby through carbon intensity, ESG ratings, and cost of equity capital.",
@@ -7745,7 +7745,7 @@
             "target_context_summary": "China, Pakistan, and related settings",
             "common_contexts": "economic policy uncertainty studies are common in China and United States; net interest margin studies are common in China, Pakistan, and related settings.",
             "public_specificity_score": -1.5974,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000071__FG3C002924",
+            "app_link": "/questions/#FG3C000071__FG3C002924",
             "editorial_question_title": "",
             "display_title": "When does policy uncertainty squeeze bank net interest margins?",
             "display_why": "Linked nearby through inflation, default risk, and market concentration.",
@@ -7878,7 +7878,7 @@
             "target_context_summary": "United States and China",
             "common_contexts": "oil price volatility studies are common in China and United States; interest rates studies are common in United States and China.",
             "public_specificity_score": -0.4941,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000027__FG3C000279",
+            "app_link": "/questions/#FG3C000027__FG3C000279",
             "editorial_question_title": "",
             "display_title": "How do interest-rate shifts change oil price volatility?",
             "display_why": "Linked nearby through inflation, oil prices, and gold prices.",
@@ -8012,7 +8012,7 @@
             "target_context_summary": "China and Korea",
             "common_contexts": "real interest rate studies are common in United States and China; R&D investment studies are common in China and Korea.",
             "public_specificity_score": -0.9979,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000089__FG3C000200",
+            "app_link": "/questions/#FG3C000089__FG3C000200",
             "editorial_question_title": "",
             "display_title": "How do real interest rates change R&D investment?",
             "display_why": "Linked nearby through corruption, political instability, and foreign direct investment (FDI) inflow.",
@@ -8145,7 +8145,7 @@
             "target_context_summary": "United States and China",
             "common_contexts": "central bank independence studies are common in OECD, United Kingdom, and related settings; welfare studies are common in United States and China.",
             "public_specificity_score": -0.4717,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000004__FG3C000283",
+            "app_link": "/questions/#FG3C000004__FG3C000283",
             "editorial_question_title": "",
             "display_title": "How does central bank independence shape welfare?",
             "display_why": "Linked nearby through inflation, flexible exchange rate regime, and unemployment.",
@@ -8280,7 +8280,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "monetary policy shocks studies are common in United States and euro area; natural gas consumption studies are common in China, India, and related settings.",
             "public_specificity_score": -0.3969,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000159__FG3C000423",
+            "app_link": "/questions/#FG3C000159__FG3C000423",
             "editorial_question_title": "",
             "display_title": "Do monetary shocks move natural gas demand?",
             "display_why": "Linked nearby through inflation, real GDP, and exchange rate.",
@@ -8423,7 +8423,7 @@
             "target_context_summary": "United States, China, and related settings",
             "common_contexts": "urbanization studies are common in China and India; output growth studies are common in United States, China, and related settings.",
             "public_specificity_score": -8.1201,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000012__FG3C000110",
+            "app_link": "/questions/#FG3C000012__FG3C000110",
             "editorial_question_title": "When does urbanization translate into output growth?",
             "display_title": "When does urbanization translate into output growth?",
             "display_why": "Urbanization is central to development stories, but it is often treated as background change rather than a testable growth question.",
@@ -8556,7 +8556,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "urbanization studies are common in China and India; catastrophic health expenditures studies are common in China, India, and related settings.",
             "public_specificity_score": 5.804,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000012__FG3C001452",
+            "app_link": "/questions/#FG3C000012__FG3C001452",
             "editorial_question_title": "When does urbanization reduce catastrophic health spending?",
             "display_title": "When does urbanization reduce catastrophic health spending?",
             "display_why": "The closest route runs through household size, household income, and per-capita income, which makes this feel more like a concrete urban-service question than a generic development pairing.",
@@ -8691,7 +8691,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "microfinance studies are common in Bangladesh, India, and related settings; catastrophic health expenditures studies are common in China, India, and related settings.",
             "public_specificity_score": 4.6014,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001452__FG3C002172",
+            "app_link": "/questions/#FG3C001452__FG3C002172",
             "editorial_question_title": "",
             "display_title": "Can microfinance reduce catastrophic health spending?",
             "display_why": "Linked nearby through poor countries, gender (male vs female), and poverty.",
@@ -8827,7 +8827,7 @@
             "target_context_summary": "China, Côte d’Ivoire, and related settings",
             "common_contexts": "foreign direct investments studies are common in China and India; subjective well-being studies are common in China, Côte d’Ivoire, and related settings.",
             "public_specificity_score": 0.2062,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C003298",
+            "app_link": "/questions/#FG3C000015__FG3C003298",
             "editorial_question_title": "",
             "display_title": "How does foreign direct investment reshape subjective well-being?",
             "display_why": "Linked nearby through renewable energy consumption, environmental quality, and ecological footprints.",
@@ -8960,7 +8960,7 @@
             "target_context_summary": "United States and China",
             "common_contexts": "high-speed rail studies are common in China and Spain; wages studies are common in United States and China.",
             "public_specificity_score": 2.505,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000022__FG3C000753",
+            "app_link": "/questions/#FG3C000022__FG3C000753",
             "editorial_question_title": "",
             "display_title": "How does high-speed rail reshape wages?",
             "display_why": "Linked nearby through housing prices, travel time, and accessibility.",
@@ -9098,7 +9098,7 @@
             "target_context_summary": "China, Ethiopia, and related settings",
             "common_contexts": "market concentration studies are common in China, United States, and related settings; essential medicines studies are common in China, Ethiopia, and related settings.",
             "public_specificity_score": 0.9015,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000114__FG3C003577",
+            "app_link": "/questions/#FG3C000114__FG3C003577",
             "editorial_question_title": "",
             "display_title": "How does market concentration change access to essential medicines?",
             "display_why": "Linked nearby through health care utilization, retail prices, and for-profit hospitals.",
@@ -9230,7 +9230,7 @@
             "target_context_summary": "China and European Union",
             "common_contexts": "inward foreign direct investment (FDI) studies are common in China and European Union; regional economic growth studies are common in China and European Union.",
             "public_specificity_score": -0.3973,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000236__FG3C001758",
+            "app_link": "/questions/#FG3C000236__FG3C001758",
             "editorial_question_title": "",
             "display_title": "When does inward FDI lift regional growth?",
             "display_why": "Linked nearby through environmental regulations, energy consumption, and technology transfer.",
@@ -9360,7 +9360,7 @@
             "target_context_summary": "China, United States, and related settings",
             "common_contexts": "school quality studies are common in United States and China; housing stock studies are common in China, United States, and related settings.",
             "public_specificity_score": -7.1981,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C003412__FG3C004138",
+            "app_link": "/questions/#FG3C003412__FG3C004138",
             "editorial_question_title": "",
             "display_title": "How does school quality reshape housing stock?",
             "display_why": "Closest route runs through house prices and housing prices.",
@@ -9496,7 +9496,7 @@
             "target_context_summary": "United States and United Kingdom",
             "common_contexts": "Special economic zones studies are common in China and India; unemployment studies are common in United States and United Kingdom.",
             "public_specificity_score": 5.8018,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000009__FG3C002438",
+            "app_link": "/questions/#FG3C000009__FG3C002438",
             "editorial_question_title": "",
             "display_title": "Do Special economic zones reduce unemployment?",
             "display_why": "Linked nearby through structural changes, investment, and productivity growth.",
@@ -9630,7 +9630,7 @@
             "target_context_summary": "United States and India",
             "common_contexts": "Special economic zones studies are common in China and India; wage inequality studies are common in United States and India.",
             "public_specificity_score": 5.2015,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000194__FG3C002438",
+            "app_link": "/questions/#FG3C000194__FG3C002438",
             "editorial_question_title": "",
             "display_title": "How do Special economic zones reshape wage inequality?",
             "display_why": "Linked nearby through technological progress, manufacturing employment, and migration.",
@@ -9770,7 +9770,7 @@
             "target_context_summary": "China and United States",
             "common_contexts": "free trade agreements studies are common in United States, Mexico, and related settings; profitability studies are common in China and United States.",
             "public_specificity_score": 5.2014,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000067__FG3C002487",
+            "app_link": "/questions/#FG3C000067__FG3C002487",
             "editorial_question_title": "",
             "display_title": "When do free trade agreements raise firm profitability?",
             "display_why": "Linked nearby through transaction costs, Non-fungible tokens (NFTs), and industry structure.",
@@ -9907,7 +9907,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "trade liberalisation studies are common in India, Nepal, and related settings; energy consumption studies are common in China, India, and related settings.",
             "public_specificity_score": -5.2734,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C001221",
+            "app_link": "/questions/#FG3C000014__FG3C001221",
             "editorial_question_title": "How does trade liberalisation change energy consumption?",
             "display_title": "How does trade liberalisation change energy consumption?",
             "display_why": "Trade reforms can change production patterns and freight demand, but energy use is usually treated as a side effect rather than the main outcome.",
@@ -10045,7 +10045,7 @@
             "target_context_summary": "China and Germany",
             "common_contexts": "exports studies are common in China and United States; environmental pollution studies are common in China and Germany.",
             "public_specificity_score": -6.3165,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000046__FG3C000203",
+            "app_link": "/questions/#FG3C000046__FG3C000203",
             "editorial_question_title": "How does export growth change environmental pollution?",
             "display_title": "How does export growth change environmental pollution?",
             "display_why": "Export expansion can alter sector mix and where environmental costs show up, but pollution outcomes are often buried inside broader trade debates.",
@@ -10182,7 +10182,7 @@
             "target_context_summary": "China and United States",
             "common_contexts": "high-tech industry studies are common in China and United States; export product quality studies are common in China and United States.",
             "public_specificity_score": 7.1013,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001635__FG3C001922",
+            "app_link": "/questions/#FG3C001635__FG3C001922",
             "editorial_question_title": "",
             "display_title": "Does export upgrading pull firms into high-tech production?",
             "display_why": "Linked nearby through innovation, firm productivity, and innovation performance.",
@@ -10311,7 +10311,7 @@
             "target_context_summary": "China, United States, and related settings",
             "common_contexts": "voluntary export restraints (VERs) studies are common in Japan; pattern of trade studies are common in China, United States, and related settings.",
             "public_specificity_score": -0.9989,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C003008__FG3C004938",
+            "app_link": "/questions/#FG3C003008__FG3C004938",
             "editorial_question_title": "",
             "display_title": "How do voluntary export restraints reshape trade patterns?",
             "display_why": "Linked nearby through tariff, firm size (small vs large), and tariffs.",
@@ -10448,7 +10448,7 @@
             "target_context_summary": "United States and China",
             "common_contexts": "free trade agreements studies are common in United States, Mexico, and related settings; wages studies are common in United States and China.",
             "public_specificity_score": 5.2042,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000022__FG3C002487",
+            "app_link": "/questions/#FG3C000022__FG3C002487",
             "editorial_question_title": "",
             "display_title": "How do free trade agreements reshape wages?",
             "display_why": "Linked nearby through productivity, trade liberalization, and international trade (trade flows).",
@@ -10581,7 +10581,7 @@
             "target_context_summary": "China, United States, and related settings",
             "common_contexts": "technology studies are common in China and India; international trade (trade flows) studies are common in China, United States, and related settings.",
             "public_specificity_score": 0.9011,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000141__FG3C004338",
+            "app_link": "/questions/#FG3C000141__FG3C004338",
             "editorial_question_title": "",
             "display_title": "How does international trade reshape technology upgrading?",
             "display_why": "Linked nearby through comparative advantage, trade, and wage distribution.",
@@ -10717,7 +10717,7 @@
             "target_context_summary": "China, developing countries, and related settings",
             "common_contexts": "economic complexity studies are common in China, G7, and related settings; international trade studies are common in China, developing countries, and related settings.",
             "public_specificity_score": -2.3871,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000078__FG3C000199",
+            "app_link": "/questions/#FG3C000078__FG3C000199",
             "editorial_question_title": "",
             "display_title": "When does trade deepen economic complexity?",
             "display_why": "Linked nearby through economic growth, CO2 emissions, and renewable energy consumption.",
@@ -10850,7 +10850,7 @@
             "target_context_summary": "China, United States, and related settings",
             "common_contexts": "exchange rates studies are common in China and United States; international trade (trade flows) studies are common in China, United States, and related settings.",
             "public_specificity_score": 1.5015,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000072__FG3C004338",
+            "app_link": "/questions/#FG3C000072__FG3C004338",
             "editorial_question_title": "",
             "display_title": "How do exchange-rate swings reshape trade flows?",
             "display_why": "Linked nearby through trade, capital flows, and investment level.",
@@ -10987,7 +10987,7 @@
             "target_context_summary": "China and Japan",
             "common_contexts": "trade liberalization studies are common in China and Brazil; urban-rural income gap studies are common in China and Japan.",
             "public_specificity_score": -1.6982,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000083__FG3C000869",
+            "app_link": "/questions/#FG3C000083__FG3C000869",
             "editorial_question_title": "",
             "display_title": "How does trade liberalization reshape the urban-rural income gap?",
             "display_why": "Linked nearby through financial development, transport infrastructure, and regional heterogeneity.",
@@ -11133,7 +11133,7 @@
             "target_context_summary": "China and OECD",
             "common_contexts": "oil prices studies are common in United States and China; carbon dioxide (CO2) emission studies are common in China and OECD.",
             "public_specificity_score": 13.7232,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000034__FG3C000167",
+            "app_link": "/questions/#FG3C000034__FG3C000167",
             "editorial_question_title": "",
             "display_title": "How do oil price shocks feed into CO2 emissions?",
             "display_why": "Linked nearby through economic growth, renewable energy consumption, and energy consumption.",
@@ -11268,7 +11268,7 @@
             "target_context_summary": "China and India",
             "common_contexts": "emissions trading system studies are common in China and European Union; environmental quality studies are common in China and India.",
             "public_specificity_score": 13.6415,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000081__FG3C003006",
+            "app_link": "/questions/#FG3C000081__FG3C003006",
             "editorial_question_title": "",
             "display_title": "Does emissions trading improve environmental quality?",
             "display_why": "Linked nearby through technological innovation, energy consumption, and carbon emissions.",
@@ -11403,7 +11403,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "low-carbon city pilot policy studies are common in China; renewable energy consumption studies are common in China, India, and related settings.",
             "public_specificity_score": 6.2671,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000018__FG3C002978",
+            "app_link": "/questions/#FG3C000018__FG3C002978",
             "editorial_question_title": "",
             "display_title": "Do low-carbon city pilots raise renewable energy use?",
             "display_why": "Linked nearby through technological innovation, carbon emissions, and financial development.",
@@ -11540,7 +11540,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "low-carbon city pilot policy studies are common in China; ecological footprint studies are common in China, India, and related settings.",
             "public_specificity_score": 6.198,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000064__FG3C002978",
+            "app_link": "/questions/#FG3C000064__FG3C002978",
             "editorial_question_title": "",
             "display_title": "How do low-carbon city pilots change ecological footprints?",
             "display_why": "Linked nearby through technological innovation, energy consumption, and financial development.",
@@ -11677,7 +11677,7 @@
             "target_context_summary": "India, Brazil, and related settings",
             "common_contexts": "carbon tax studies are common in China, United States, and related settings; ecological carrying capacity studies are common in India, Brazil, and related settings.",
             "public_specificity_score": 8.8065,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000152__FG3C001307",
+            "app_link": "/questions/#FG3C000152__FG3C001307",
             "editorial_question_title": "",
             "display_title": "How does a carbon tax change ecological carrying capacity?",
             "display_why": "Linked nearby through GDP, technological innovation, and economic growth (GDP).",
@@ -11818,7 +11818,7 @@
             "target_context_summary": "China and United States",
             "common_contexts": "oil prices studies are common in United States and China; air quality studies are common in China and United States.",
             "public_specificity_score": -5.9967,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000034__FG3C000721",
+            "app_link": "/questions/#FG3C000034__FG3C000721",
             "editorial_question_title": "",
             "display_title": "How do oil prices reshape air quality?",
             "display_why": "Linked nearby through energy consumption, financial development, and renewable energy investments.",
@@ -11961,7 +11961,7 @@
             "target_context_summary": "China and United States",
             "common_contexts": "government subsidies studies are common in China and Taiwan; air quality studies are common in China and United States.",
             "public_specificity_score": -5.9987,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000164__FG3C000721",
+            "app_link": "/questions/#FG3C000164__FG3C000721",
             "editorial_question_title": "",
             "display_title": "How do government subsidies reshape air quality?",
             "display_why": "Linked nearby through green investments, research and development (R&D), and R&D intensity.",
@@ -12099,7 +12099,7 @@
             "target_context_summary": "United States and China",
             "common_contexts": "financial development studies are common in China, India, and related settings; electricity demand studies are common in United States and China.",
             "public_specificity_score": -15.3863,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000006__FG3C001831",
+            "app_link": "/questions/#FG3C000006__FG3C001831",
             "editorial_question_title": "",
             "display_title": "How does financial development change electricity demand?",
             "display_why": "Linked nearby through carbon emissions, information and communication technology (ICT), and energy price.",
@@ -12238,7 +12238,7 @@
             "target_context_summary": "United States and China",
             "common_contexts": "institutional quality studies are common in China, India, and related settings; electricity demand studies are common in United States and China.",
             "public_specificity_score": -15.9971,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000036__FG3C001831",
+            "app_link": "/questions/#FG3C000036__FG3C001831",
             "editorial_question_title": "",
             "display_title": "How does institutional quality change electricity demand?",
             "display_why": "Linked nearby through carbon emissions, stock market development, and information and communication technology (ICT).",
@@ -12378,7 +12378,7 @@
             "target_context_summary": "China, India, and related settings",
             "common_contexts": "exchange rate studies are common in United States, Nigeria, and related settings; renewable energy consumption studies are common in China, India, and related settings.",
             "public_specificity_score": 5.535,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000018__FG3C000056",
+            "app_link": "/questions/#FG3C000018__FG3C000056",
             "editorial_question_title": "",
             "display_title": "How do exchange-rate swings reshape renewable energy use?",
             "display_why": "Linked nearby through inflation, economic growth (GDP), and GDP (economic growth).",
@@ -12518,7 +12518,7 @@
             "target_context_summary": "China, Italy, and related settings",
             "common_contexts": "green credit policy studies are common in China and Brazil; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
             "public_specificity_score": 3.2063,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000061__FG3C001431",
+            "app_link": "/questions/#FG3C000061__FG3C001431",
             "editorial_question_title": "When does green credit policy raise total factor productivity?",
             "display_title": "When does green credit policy raise total factor productivity?",
             "display_why": "The strongest nearby route runs through state-owned enterprises, firm productivity, and R&D investment, which makes this look like a policy-channel question rather than a generic green-finance pairing.",
@@ -12653,7 +12653,7 @@
             "target_context_summary": "China, United States, and related settings",
             "common_contexts": "green innovation studies are common in China and OECD; productivity studies are common in China, United States, and related settings.",
             "public_specificity_score": -8.7921,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000021__FG3C000053",
+            "app_link": "/questions/#FG3C000021__FG3C000053",
             "editorial_question_title": "Does green innovation translate into productivity gains?",
             "display_title": "Does green innovation translate into productivity gains?",
             "display_why": "Green innovation is often justified on environmental grounds, but its productivity payoff is still not usually the paper's main outcome.",
@@ -12789,7 +12789,7 @@
             "target_context_summary": "China and OECD",
             "common_contexts": "small and medium-sized firms studies are common in China and United States; green innovation studies are common in China and OECD.",
             "public_specificity_score": 3.4021,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000053__FG3C005175",
+            "app_link": "/questions/#FG3C000053__FG3C005175",
             "editorial_question_title": "",
             "display_title": "Do small and medium-sized firms adopt green innovation differently?",
             "display_why": "Linked nearby through R&D investment, competition, and capital investment.",
@@ -12926,7 +12926,7 @@
             "target_context_summary": "China, Italy, and related settings",
             "common_contexts": "digital economy studies are common in China and G7; firm performance studies are common in China, Italy, and related settings.",
             "public_specificity_score": 3.6229,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000068__FG3C000113",
+            "app_link": "/questions/#FG3C000068__FG3C000113",
             "editorial_question_title": "",
             "display_title": "When does the digital economy lift firm performance?",
             "display_why": "Linked nearby through technological innovation, green technology innovation, and technology innovation.",
@@ -13061,7 +13061,7 @@
             "target_context_summary": "China and OECD",
             "common_contexts": "political connections studies are common in China and India; innovation outcomes studies are common in China and OECD.",
             "public_specificity_score": 2.7032,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001735__FG3C006136",
+            "app_link": "/questions/#FG3C001735__FG3C006136",
             "editorial_question_title": "",
             "display_title": "How do political connections shape innovation outcomes?",
             "display_why": "Linked nearby through government subsidies, government financial support, and environmental regulation intensity.",
@@ -13192,7 +13192,7 @@
             "target_context_summary": "China and OECD",
             "common_contexts": "patent citations studies are common in United States and China; innovation outcomes studies are common in China and OECD.",
             "public_specificity_score": 1.5013,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C004911__FG3C006136",
+            "app_link": "/questions/#FG3C004911__FG3C006136",
             "editorial_question_title": "",
             "display_title": "Do patent spillovers show up in later innovation outcomes?",
             "display_why": "Linked nearby through knowledge spillovers, absorptive capacity, and firm size.",
@@ -13325,7 +13325,7 @@
             "target_context_summary": "China, United States, and related settings",
             "common_contexts": "enterprise digital transformation studies are common in China and sub-Saharan Africa; cost of capital studies are common in China, United States, and related settings.",
             "public_specificity_score": -1.5972,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000247__FG3C001821",
+            "app_link": "/questions/#FG3C000247__FG3C001821",
             "editorial_question_title": "",
             "display_title": "Does cheaper capital accelerate enterprise digital transformation?",
             "display_why": "Linked nearby through information asymmetry, cost of debt, and ownership type.",
@@ -13454,7 +13454,7 @@
             "target_context_summary": "China",
             "common_contexts": "economic policy uncertainty studies are common in China and United States; corporate digital transformation studies are common in China.",
             "public_specificity_score": -0.397,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000071__FG3C002031",
+            "app_link": "/questions/#FG3C000071__FG3C002031",
             "editorial_question_title": "",
             "display_title": "Does policy uncertainty slow corporate digital transformation?",
             "display_why": "Linked nearby through ESG ratings, corporate innovation, and non-state-owned enterprises.",
@@ -13589,7 +13589,7 @@
             "target_context_summary": "China and India",
             "common_contexts": "intellectual property rights (IPR) protection studies are common in China, Eastern European transition countries, and related settings; technological innovation studies are common in China and India.",
             "public_specificity_score": 4.0012,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000013__FG3C005708",
+            "app_link": "/questions/#FG3C000013__FG3C005708",
             "editorial_question_title": "",
             "display_title": "How do stronger intellectual property rights shape technological innovation?",
             "display_why": "Linked nearby through foreign direct investments, technology spillover, and research and development (R&D).",
@@ -13724,7 +13724,7 @@
             "target_context_summary": "China and United States",
             "common_contexts": "innovation studies are common in China and Italy; profitability studies are common in China and United States.",
             "public_specificity_score": -11.7941,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000030__FG3C000067",
+            "app_link": "/questions/#FG3C000030__FG3C000067",
             "editorial_question_title": "",
             "display_title": "How does innovation translate into profitability?",
             "display_why": "Linked nearby through productivity, productivity growth, and market concentration.",
@@ -13866,7 +13866,7 @@
             "target_context_summary": "United States and China",
             "common_contexts": "labour market reforms studies are common in 25 OECD countries, Chile, and related settings; consumption studies are common in United States and China.",
             "public_specificity_score": -11.0972,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000033__FG3C004508",
+            "app_link": "/questions/#FG3C000033__FG3C004508",
             "editorial_question_title": "",
             "display_title": "How do labor market reforms reshape household consumption?",
             "display_why": "The clearest nearby routes run through employment, unemployment, and productivity shocks.",
@@ -14000,7 +14000,7 @@
             "target_context_summary": "United States, United Kingdom, and related settings",
             "common_contexts": "product innovation studies are common in Italy, Spain, and related settings; real wages studies are common in United States, United Kingdom, and related settings.",
             "public_specificity_score": -15.3946,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000176__FG3C000195",
+            "app_link": "/questions/#FG3C000176__FG3C000195",
             "editorial_question_title": "",
             "display_title": "When does product innovation translate into real wage gains?",
             "display_why": "Nearby papers connect innovation to pay through employment, productivity, and labor productivity.",
@@ -14138,7 +14138,7 @@
             "target_context_summary": "United States, Italy, and related settings",
             "common_contexts": "artificial intelligence (AI) studies are common in China and United States; gender wage gap studies are common in United States, Italy, and related settings.",
             "public_specificity_score": -2.298,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000393__FG3C000449",
+            "app_link": "/questions/#FG3C000393__FG3C000449",
             "editorial_question_title": "",
             "display_title": "How might AI widen or narrow the gender wage gap?",
             "display_why": "The closest local routes run through wage distribution, productivity, and uneven AI adoption across jobs.",
@@ -14275,7 +14275,7 @@
             "target_context_summary": "United States and Sweden",
             "common_contexts": "national health insurance studies are common in United States, Taiwan, and related settings; earnings studies are common in United States and Sweden.",
             "public_specificity_score": -3.499,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000157__FG3C005641",
+            "app_link": "/questions/#FG3C000157__FG3C005641",
             "editorial_question_title": "",
             "display_title": "When does national health insurance change earnings?",
             "display_why": "Nearby papers connect insurance to earnings through place of residence, hours worked, and education.",
@@ -14411,7 +14411,7 @@
             "target_context_summary": "United States and China",
             "common_contexts": "fiscal rules studies are common in Italy and Switzerland; employment studies are common in United States and China.",
             "public_specificity_score": -12.3968,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000007__FG3C000993",
+            "app_link": "/questions/#FG3C000007__FG3C000993",
             "editorial_question_title": "",
             "display_title": "When do fiscal rules start to bite in employment?",
             "display_why": "The strongest nearby routes run through fiscal policy, fiscal consolidation, and government spending.",
@@ -14545,7 +14545,7 @@
             "target_context_summary": "United States, Spain, and related settings",
             "common_contexts": "tariffs studies are common in United States, China, and related settings; demand for labor studies are common in United States, Spain, and related settings.",
             "public_specificity_score": -2.2981,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000207__FG3C003456",
+            "app_link": "/questions/#FG3C000207__FG3C003456",
             "editorial_question_title": "",
             "display_title": "How do tariffs change demand for labor?",
             "display_why": "Nearby papers already connect tariffs to labor demand through domestic prices and adjustment costs.",
@@ -14678,7 +14678,7 @@
             "target_context_summary": "China, United States, and related settings",
             "common_contexts": "firing costs studies are common in high-income countries, Chile, and related settings; income inequality studies are common in China, United States, and related settings.",
             "public_specificity_score": -5.9988,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000025__FG3C002071",
+            "app_link": "/questions/#FG3C000025__FG3C002071",
             "editorial_question_title": "",
             "display_title": "When do firing costs widen income inequality?",
             "display_why": "The local routes run through wage inequality, unemployment, and employment churn.",
@@ -14835,7 +14835,7 @@
             "target_context_summary": "United States, China, and related settings",
             "common_contexts": "fiscal policy studies are common in United States, China, and related settings; health-related quality of life studies are common in United States, China, and related settings.",
             "public_specificity_score": -17.4985,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000087__FG3C000548",
+            "app_link": "/questions/#FG3C000087__FG3C000548",
             "editorial_question_title": "",
             "display_title": "How does fiscal policy show up in health-related quality of life?",
             "display_why": "Nearby papers connect fiscal policy to quality of life through unemployment, economic activity, and income.",
@@ -14972,7 +14972,7 @@
             "target_context_summary": "Italy, Mexico, and related settings",
             "common_contexts": "inflation studies are common in United States and China; wage dispersion studies are common in Italy, Mexico, and related settings.",
             "public_specificity_score": -13.5978,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000002__FG3C001355",
+            "app_link": "/questions/#FG3C000002__FG3C001355",
             "editorial_question_title": "",
             "display_title": "How does inflation reshape wage dispersion?",
             "display_why": "The clearest nearby routes run through unemployment, labor productivity, and tax incidence.",
@@ -15107,7 +15107,7 @@
             "target_context_summary": "China, Italy, and related settings",
             "common_contexts": "R&D activities studies are common in China and United States; labour productivity studies are common in China, Italy, and related settings.",
             "public_specificity_score": -2.2977,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000251__FG3C001258",
+            "app_link": "/questions/#FG3C000251__FG3C001258",
             "editorial_question_title": "",
             "display_title": "When do R&D efforts translate into labor productivity?",
             "display_why": "Nearby papers link R&D to labor productivity through product innovation, technical change, and firm-level efficiency.",
@@ -15249,7 +15249,7 @@
             "target_context_summary": "China, Ethiopia, and related settings",
             "common_contexts": "high-deductible health plans studies are common in United States, Germany, and related settings; essential medicines studies are common in China, Ethiopia, and related settings.",
             "public_specificity_score": 12.303,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C003577__FG3C006085",
+            "app_link": "/questions/#FG3C003577__FG3C006085",
             "editorial_question_title": "",
             "display_title": "Do high-deductible plans restrict access to essential medicines?",
             "display_why": "Closest route runs through health care utilization and medication adherence.",
@@ -15387,7 +15387,7 @@
             "target_context_summary": "China and Japan",
             "common_contexts": "foreign direct investments studies are common in China and India; urban-rural income gap studies are common in China and Japan.",
             "public_specificity_score": 2.0105,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C000869",
+            "app_link": "/questions/#FG3C000015__FG3C000869",
             "editorial_question_title": "",
             "display_title": "How does foreign direct investment change the urban-rural income gap?",
             "display_why": "Linked nearby through urbanization, human capital, and green total factor productivity (GTFP).",
@@ -15517,7 +15517,7 @@
             "target_context_summary": "United States and China",
             "common_contexts": "product innovations studies are common in Germany, Italy, and related settings; consumption studies are common in United States and China.",
             "public_specificity_score": -16.599,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000033__FG3C002544",
+            "app_link": "/questions/#FG3C000033__FG3C002544",
             "editorial_question_title": "",
             "display_title": "How do product innovations reshape consumption?",
             "display_why": "Linked nearby through employment, total employment, and prices.",
@@ -15659,7 +15659,7 @@
             "target_context_summary": "China and Germany",
             "common_contexts": "ICT development studies are common in China, EU, and related settings; environmental pollution studies are common in China and Germany.",
             "public_specificity_score": -5.3934,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000203__FG3C005634",
+            "app_link": "/questions/#FG3C000203__FG3C005634",
             "editorial_question_title": "",
             "display_title": "How does ICT development reshape environmental pollution?",
             "display_why": "Linked nearby through trade openness, financial development, and CO2 emissions.",
@@ -15790,7 +15790,7 @@
             "target_context_summary": "China and United States",
             "common_contexts": "import tariff studies are common in United States; exports studies are common in China and United States.",
             "public_specificity_score": -15.9973,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000046__FG3C003771",
+            "app_link": "/questions/#FG3C000046__FG3C003771",
             "editorial_question_title": "",
             "display_title": "How do import tariffs reshape exports?",
             "display_why": "Linked nearby through imports, foreign direct investments, and inward foreign direct investment (FDI).",
@@ -15930,7 +15930,7 @@
             "target_context_summary": "China, Côte d’Ivoire, and related settings",
             "common_contexts": "trade openness studies are common in China, India, and related settings; subjective well-being studies are common in China, Côte d’Ivoire, and related settings.",
             "public_specificity_score": -12.2904,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000017__FG3C003298",
+            "app_link": "/questions/#FG3C000017__FG3C003298",
             "editorial_question_title": "",
             "display_title": "How does trade openness reshape subjective well-being?",
             "display_why": "Linked nearby through renewable energy consumption, environmental quality, and ecological footprints.",
@@ -16066,7 +16066,7 @@
             "target_context_summary": "United States, United Kingdom, and related settings",
             "common_contexts": "private R&D investment studies are common in China, OECD countries, and related settings; real wages studies are common in United States, United Kingdom, and related settings.",
             "public_specificity_score": -4.0985,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000176__FG3C005122",
+            "app_link": "/questions/#FG3C000176__FG3C005122",
             "editorial_question_title": "",
             "display_title": "When does private R&D investment raise real wages?",
             "display_why": "Linked nearby through productivity, productivity growth, and exports.",
@@ -16195,7 +16195,7 @@
             "target_context_summary": "China and United States",
             "common_contexts": "inflation targeting studies are common in developing countries, Latin America, and related settings; housing prices studies are common in China and United States.",
             "public_specificity_score": -7.1987,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000050__FG3C000303",
+            "app_link": "/questions/#FG3C000050__FG3C000303",
             "editorial_question_title": "",
             "display_title": "How does inflation targeting change housing prices?",
             "display_why": "Closest route runs through monetary policy and interest rates.",
@@ -16330,7 +16330,7 @@
             "target_context_summary": "China and United States",
             "common_contexts": "cooperative banks studies are common in Italy, India, and related settings; housing prices studies are common in China and United States.",
             "public_specificity_score": -5.9984,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000050__FG3C004124",
+            "app_link": "/questions/#FG3C000050__FG3C004124",
             "editorial_question_title": "",
             "display_title": "How do cooperative banks reshape housing prices?",
             "display_why": "Linked nearby through income, household income, and loan supply.",
@@ -16466,7 +16466,7 @@
             "target_context_summary": "China and India",
             "common_contexts": "deposit insurance studies are common in United States, Russia, and related settings; technological innovation studies are common in China and India.",
             "public_specificity_score": -7.1993,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000013__FG3C000531",
+            "app_link": "/questions/#FG3C000013__FG3C000531",
             "editorial_question_title": "",
             "display_title": "How does deposit insurance change technological innovation?",
             "display_why": "Closest route runs through stock market development and financial inclusion.",
@@ -16609,7 +16609,7 @@
             "target_context_summary": "China and India",
             "common_contexts": "import competition studies are common in China, United States, and related settings; economic growth studies are common in China and India.",
             "public_specificity_score": -8.782,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000001__FG3C000963",
+            "app_link": "/questions/#FG3C000001__FG3C000963",
             "editorial_question_title": "",
             "display_title": "How does import competition reshape growth?",
             "display_why": "Linked nearby through foreign direct investments, exports, and R&D.",
@@ -16744,7 +16744,7 @@
             "target_context_summary": "China and India",
             "common_contexts": "import competition studies are common in China, United States, and related settings; export quality studies are common in China and India.",
             "public_specificity_score": -5.3988,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000963__FG3C002399",
+            "app_link": "/questions/#FG3C000963__FG3C002399",
             "editorial_question_title": "",
             "display_title": "How does import competition reshape export quality?",
             "display_why": "Linked nearby through R&D, pattern of trade, and labor inputs.",
@@ -16875,7 +16875,7 @@
             "target_context_summary": "United Kingdom, Germany, and related settings",
             "common_contexts": "trade liberalization studies are common in China and Brazil; gender pay gap studies are common in United Kingdom, Germany, and related settings.",
             "public_specificity_score": -2.8981,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000083__FG3C001721",
+            "app_link": "/questions/#FG3C000083__FG3C001721",
             "editorial_question_title": "",
             "display_title": "How does trade liberalization reshape the gender pay gap?",
             "display_why": "Linked nearby through product market competition, labour markets, and firm size.",
@@ -17012,7 +17012,7 @@
             "target_context_summary": "China and United States",
             "common_contexts": "intellectual property rights studies are common in MENA, Latin American countries (sample of 18), and related settings; export product quality studies are common in China and United States.",
             "public_specificity_score": -1.598,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001922__FG3C003131",
+            "app_link": "/questions/#FG3C001922__FG3C003131",
             "editorial_question_title": "",
             "display_title": "How do stronger intellectual property rights raise export quality?",
             "display_why": "Linked nearby through innovation, entrepreneurship, and enterprise performance.",
@@ -17152,7 +17152,7 @@
             "target_context_summary": "China, United States, and related settings",
             "common_contexts": "economic complexity studies are common in China, G7, and related settings; environmental quality studies are common in China, United States, and related settings.",
             "public_specificity_score": 3.6749,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000199__FG3C001420",
+            "app_link": "/questions/#FG3C000199__FG3C001420",
             "editorial_question_title": "",
             "display_title": "When does economic complexity improve environmental quality?",
             "display_why": "Linked nearby through economic growth, renewable energy consumption, and financial development.",
@@ -17291,7 +17291,7 @@
             "target_context_summary": "China, OECD, and related settings",
             "common_contexts": "private R&D investment studies are common in China, OECD countries, and related settings; energy transition studies are common in China, OECD, and related settings.",
             "public_specificity_score": -2.8983,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000267__FG3C005122",
+            "app_link": "/questions/#FG3C000267__FG3C005122",
             "editorial_question_title": "",
             "display_title": "How does private R&D investment speed the energy transition?",
             "display_why": "Linked nearby through energy intensity, total factor productivity (TFP), and renewable energy technology innovation.",
@@ -17427,7 +17427,7 @@
             "target_context_summary": "China, United States, and related settings",
             "common_contexts": "information and communication technology (ICT) studies are common in China, United Kingdom, and related settings; income inequality studies are common in China, United States, and related settings.",
             "public_specificity_score": 6.156,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000025__FG3C000384",
+            "app_link": "/questions/#FG3C000025__FG3C000384",
             "editorial_question_title": "",
             "display_title": "How does ICT reshape income inequality?",
             "display_why": "Linked nearby through economic growth, CO2 emissions, and financial development.",
@@ -17569,7 +17569,7 @@
             "target_context_summary": "OECD economies (61 economies), China, and related settings",
             "common_contexts": "income studies are common in China and United States; participation in global value chains studies are common in OECD economies (61 economies), China, and related settings.",
             "public_specificity_score": 4.0039,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000008__FG3C005909",
+            "app_link": "/questions/#FG3C000008__FG3C005909",
             "editorial_question_title": "",
             "display_title": "How does income shape participation in global value chains?",
             "display_why": "Linked nearby through renewable energy consumption, carbon dioxide (CO2) emission, and per capita CO2 emissions.",
@@ -17697,7 +17697,7 @@
             "target_context_summary": "India, United Kingdom, and related settings",
             "common_contexts": "central bank independence studies are common in OECD, United Kingdom, and related settings; markups studies are common in India, United Kingdom, and related settings.",
             "public_specificity_score": -5.2944,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000283__FG3C000496",
+            "app_link": "/questions/#FG3C000283__FG3C000496",
             "editorial_question_title": "",
             "display_title": "How does central bank independence reshape markups?",
             "display_why": "Closest route runs through inflation.",
@@ -17832,7 +17832,7 @@
             "target_context_summary": "India, United Kingdom, and related settings",
             "common_contexts": "fiscal policy studies are common in United States, China, and related settings; markups studies are common in India, United Kingdom, and related settings.",
             "public_specificity_score": -7.1963,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000087__FG3C000496",
+            "app_link": "/questions/#FG3C000087__FG3C000496",
             "editorial_question_title": "",
             "display_title": "How does fiscal policy reshape markups?",
             "display_why": "Closest route runs through inflation and firm entry.",
@@ -17968,7 +17968,7 @@
             "target_context_summary": "United States and United Kingdom",
             "common_contexts": "open market operations studies are common in United States, Japan, and related settings; inflation expectations studies are common in United States and United Kingdom.",
             "public_specificity_score": -4.098,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000174__FG3C004125",
+            "app_link": "/questions/#FG3C000174__FG3C004125",
             "editorial_question_title": "",
             "display_title": "How do open market operations change inflation expectations?",
             "display_why": "Linked nearby through money supply, interest rates, and quantitative easing.",
@@ -18099,7 +18099,7 @@
             "target_context_summary": "China and France",
             "common_contexts": "digital transformation studies are common in China and ten Asian countries with significant pollution; firm exports studies are common in China and France.",
             "public_specificity_score": -5.9984,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000226__FG3C003487",
+            "app_link": "/questions/#FG3C000226__FG3C003487",
             "editorial_question_title": "",
             "display_title": "How does digital transformation reshape firm exports?",
             "display_why": "Linked nearby through environmental information disclosure, production efficiency, and innovative activity.",
@@ -18234,7 +18234,7 @@
             "target_context_summary": "Italy, United States, and related settings",
             "common_contexts": "economic policy uncertainty (EPU) studies are common in China and United States; firm investment decisions studies are common in Italy, United States, and related settings.",
             "public_specificity_score": 6.5023,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000074__FG3C003563",
+            "app_link": "/questions/#FG3C000074__FG3C003563",
             "editorial_question_title": "",
             "display_title": "How does economic policy uncertainty shape firm investment decisions?",
             "display_why": "Linked nearby through investment level, cost of capital, and debt financing.",
@@ -18365,7 +18365,7 @@
             "target_context_summary": "United States and China",
             "common_contexts": "enterprise digital transformation studies are common in China and sub-Saharan Africa; bid-ask spread studies are common in United States and China.",
             "public_specificity_score": -1.5956,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000190__FG3C001821",
+            "app_link": "/questions/#FG3C000190__FG3C001821",
             "editorial_question_title": "",
             "display_title": "Does enterprise digital transformation narrow bid-ask spreads?",
             "display_why": "Linked nearby through information asymmetry, informed trading, and media coverage.",
@@ -18500,7 +18500,7 @@
             "target_context_summary": "United States and China",
             "common_contexts": "information and communication technology (ICT) studies are common in China, United Kingdom, and related settings; U.S. economic policy uncertainty studies are common in United States and China.",
             "public_specificity_score": 5.3018,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000384__FG3C002623",
+            "app_link": "/questions/#FG3C000384__FG3C002623",
             "editorial_question_title": "",
             "display_title": "How does U.S. policy uncertainty change ICT investment?",
             "display_why": "Closest route runs through carbon dioxide (CO2) emission and social interactions.",
@@ -18632,7 +18632,7 @@
             "target_context_summary": "United States and China",
             "common_contexts": "foreign direct investment (FDI) inflow studies are common in China, India, and related settings; U.S. economic policy uncertainty studies are common in United States and China.",
             "public_specificity_score": 5.3009,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000681__FG3C002623",
+            "app_link": "/questions/#FG3C000681__FG3C002623",
             "editorial_question_title": "",
             "display_title": "How does U.S. policy uncertainty change FDI inflows?",
             "display_why": "Closest route runs through carbon dioxide (CO2) emission and international spillovers.",
@@ -18769,7 +18769,7 @@
             "target_context_summary": "Italy, United States, and related settings",
             "common_contexts": "government subsidies studies are common in China and Taiwan; firm investment decisions studies are common in Italy, United States, and related settings.",
             "public_specificity_score": 3.4018,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000164__FG3C003563",
+            "app_link": "/questions/#FG3C000164__FG3C003563",
             "editorial_question_title": "",
             "display_title": "How do government subsidies shape firm investment decisions?",
             "display_why": "Linked nearby through financial constraints, debt financing, and credit rationing.",
@@ -18907,7 +18907,7 @@
             "target_context_summary": "United States, Italy, and related settings",
             "common_contexts": "employment studies are common in United States and China; gender wage gap studies are common in United States, Italy, and related settings.",
             "public_specificity_score": -13.4991,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000007__FG3C000393",
+            "app_link": "/questions/#FG3C000007__FG3C000393",
             "editorial_question_title": "",
             "display_title": "How does employment reshape the gender wage gap?",
             "display_why": "Linked nearby through productivity, industry, and wage inequality.",
@@ -19045,7 +19045,7 @@
             "target_context_summary": "China, Netherlands, and related settings",
             "common_contexts": "institutional quality studies are common in China, India, and related settings; female employment studies are common in China, Netherlands, and related settings.",
             "public_specificity_score": -16.596,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000036__FG3C003209",
+            "app_link": "/questions/#FG3C000036__FG3C003209",
             "editorial_question_title": "",
             "display_title": "How does institutional quality reshape female employment?",
             "display_why": "Linked nearby through ecological footprint, public spending, and human capital accumulation.",
@@ -19176,7 +19176,7 @@
             "target_context_summary": "United States and China",
             "common_contexts": "monetary policy shocks studies are common in United States and euro area; consumer welfare studies are common in United States and China.",
             "public_specificity_score": -4.0982,
-            "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000125__FG3C000159",
+            "app_link": "/questions/#FG3C000125__FG3C000159",
             "editorial_question_title": "",
             "display_title": "How do monetary policy shocks reshape consumer welfare?",
             "display_why": "Linked nearby through house prices, prices, and consumer prices.",
@@ -19314,7 +19314,7 @@
         "target_context_summary": "China and Korea",
         "common_contexts": "free trade agreements studies are common in United States, Mexico, and related settings; R&D investment studies are common in China and Korea.",
         "public_specificity_score": 7.1017,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000089__FG3C002487",
+        "app_link": "/questions/#FG3C000089__FG3C002487",
         "editorial_question_title": ""
       },
       {
@@ -19444,7 +19444,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "exchange-rate regime studies are common in Latin America and the Caribbean, Latin America, and related settings; welfare studies are common in United States and China.",
         "public_specificity_score": 7.0022,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000004__FG3C001619",
+        "app_link": "/questions/#FG3C000004__FG3C001619",
         "editorial_question_title": ""
       },
       {
@@ -19578,7 +19578,7 @@
         "target_context_summary": "China, Bangladesh, and related settings",
         "common_contexts": "income studies are common in China and United States; out-of-pocket payment studies are common in China, Bangladesh, and related settings.",
         "public_specificity_score": 4.6016,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000008__FG3C002465",
+        "app_link": "/questions/#FG3C000008__FG3C002465",
         "editorial_question_title": ""
       },
       {
@@ -19711,7 +19711,7 @@
         "target_context_summary": "United States, United Kingdom, and related settings",
         "common_contexts": "free trade agreements studies are common in United States, Mexico, and related settings; real wages studies are common in United States, United Kingdom, and related settings.",
         "public_specificity_score": 4.6013,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000176__FG3C002487",
+        "app_link": "/questions/#FG3C000176__FG3C002487",
         "editorial_question_title": ""
       },
       {
@@ -19846,7 +19846,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "information and communication technology (ICT) studies are common in China, United Kingdom, and related settings; welfare studies are common in United States and China.",
         "public_specificity_score": 6.1067,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000004__FG3C000384",
+        "app_link": "/questions/#FG3C000004__FG3C000384",
         "editorial_question_title": ""
       },
       {
@@ -19975,7 +19975,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "precautionary saving motives studies are common in China, Sweden, and related settings; output studies are common in United States and China.",
         "public_specificity_score": 4.0009,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000011__FG3C004608",
+        "app_link": "/questions/#FG3C000011__FG3C004608",
         "editorial_question_title": ""
       },
       {
@@ -20107,7 +20107,7 @@
         "target_context_summary": "China, United States, and related settings",
         "common_contexts": "intellectual property rights (IPR) protection studies are common in China, Eastern European transition countries, and related settings; income inequality studies are common in China, United States, and related settings.",
         "public_specificity_score": 3.4027,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000025__FG3C005708",
+        "app_link": "/questions/#FG3C000025__FG3C005708",
         "editorial_question_title": ""
       },
       {
@@ -20237,7 +20237,7 @@
         "target_context_summary": "China and Japan",
         "common_contexts": "technological innovation studies are common in China and India; urban-rural income gap studies are common in China and Japan.",
         "public_specificity_score": 4.3181,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000013__FG3C000869",
+        "app_link": "/questions/#FG3C000013__FG3C000869",
         "editorial_question_title": ""
       },
       {
@@ -20370,7 +20370,7 @@
         "target_context_summary": "China and OECD",
         "common_contexts": "geopolitical risk studies are common in China, India, and related settings; green growth studies are common in China and OECD.",
         "public_specificity_score": 3.6318,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000165__FG3C000246",
+        "app_link": "/questions/#FG3C000165__FG3C000246",
         "editorial_question_title": ""
       },
       {
@@ -20502,7 +20502,7 @@
         "target_context_summary": "China, United States, and related settings",
         "common_contexts": "high-speed rail studies are common in China and Spain; income inequality studies are common in China, United States, and related settings.",
         "public_specificity_score": 3.107,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000025__FG3C000753",
+        "app_link": "/questions/#FG3C000025__FG3C000753",
         "editorial_question_title": ""
       },
       {
@@ -20640,7 +20640,7 @@
         "target_context_summary": "United States, Africa, and related settings",
         "common_contexts": "foreign direct investments studies are common in China and India; life expectancy studies are common in United States, Africa, and related settings.",
         "public_specificity_score": 2.5899,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C000271",
+        "app_link": "/questions/#FG3C000015__FG3C000271",
         "editorial_question_title": ""
       },
       {
@@ -20774,7 +20774,7 @@
         "target_context_summary": "China and OECD",
         "common_contexts": "international trade (trade flows) studies are common in China, United States, and related settings; green growth studies are common in China and OECD.",
         "public_specificity_score": 0.9029,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000246__FG3C004338",
+        "app_link": "/questions/#FG3C000246__FG3C004338",
         "editorial_question_title": ""
       },
       {
@@ -20903,7 +20903,7 @@
         "target_context_summary": "China and India",
         "common_contexts": "corruption studies are common in China and Pakistan; technological innovation studies are common in China and India.",
         "public_specificity_score": 2.4196,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000013__FG3C000172",
+        "app_link": "/questions/#FG3C000013__FG3C000172",
         "editorial_question_title": ""
       },
       {
@@ -21033,7 +21033,7 @@
         "target_context_summary": "China and United States",
         "common_contexts": "monetary policy shocks studies are common in United States and euro area; non-performing loans studies are common in China and United States.",
         "public_specificity_score": 2.0069,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000159__FG3C001067",
+        "app_link": "/questions/#FG3C000159__FG3C001067",
         "editorial_question_title": ""
       },
       {
@@ -21161,7 +21161,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "technological innovation studies are common in China and India; output studies are common in United States and China.",
         "public_specificity_score": 1.8312,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000011__FG3C000013",
+        "app_link": "/questions/#FG3C000011__FG3C000013",
         "editorial_question_title": ""
       },
       {
@@ -21295,7 +21295,7 @@
         "target_context_summary": "China, United States, and related settings",
         "common_contexts": "economic policy uncertainty studies are common in China and United States; bond yield spreads studies are common in China, United States, and related settings.",
         "public_specificity_score": 1.4035,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000071__FG3C002742",
+        "app_link": "/questions/#FG3C000071__FG3C002742",
         "editorial_question_title": ""
       },
       {
@@ -21428,7 +21428,7 @@
         "target_context_summary": "China and United States",
         "common_contexts": "COVID-19 outbreak studies are common in China, United States, and related settings; non-performing loans studies are common in China and United States.",
         "public_specificity_score": 1.4023,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000269__FG3C001067",
+        "app_link": "/questions/#FG3C000269__FG3C001067",
         "editorial_question_title": ""
       },
       {
@@ -21564,7 +21564,7 @@
         "target_context_summary": "China, United States, and related settings",
         "common_contexts": "foreign direct investments studies are common in China and India; social welfare studies are common in China, United States, and related settings.",
         "public_specificity_score": 1.3113,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C000023",
+        "app_link": "/questions/#FG3C000015__FG3C000023",
         "editorial_question_title": ""
       },
       {
@@ -21698,7 +21698,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "high-speed rail studies are common in China and Spain; house prices studies are common in United States and China.",
         "public_specificity_score": 1.306,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000051__FG3C000753",
+        "app_link": "/questions/#FG3C000051__FG3C000753",
         "editorial_question_title": ""
       },
       {
@@ -21829,7 +21829,7 @@
         "target_context_summary": "United States and United Kingdom",
         "common_contexts": "government spending shocks studies are common in China and United States; real interest rates studies are common in United States and United Kingdom.",
         "public_specificity_score": 0.8035,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000254__FG3C001210",
+        "app_link": "/questions/#FG3C000254__FG3C001210",
         "editorial_question_title": ""
       },
       {
@@ -21960,7 +21960,7 @@
         "target_context_summary": "United States, China, and related settings",
         "common_contexts": "foreign direct investment studies are common in China and India; poverty studies are common in United States, China, and related settings.",
         "public_specificity_score": 0.7564,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000048__FG3C000149",
+        "app_link": "/questions/#FG3C000048__FG3C000149",
         "editorial_question_title": ""
       },
       {
@@ -22089,7 +22089,7 @@
         "target_context_summary": "China and India",
         "common_contexts": "rule of law studies are common in China, Poland, and related settings; technological innovation studies are common in China and India.",
         "public_specificity_score": 0.7132,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000013__FG3C000567",
+        "app_link": "/questions/#FG3C000013__FG3C000567",
         "editorial_question_title": ""
       },
       {
@@ -22219,7 +22219,7 @@
         "target_context_summary": "China and United States",
         "common_contexts": "economic policy uncertainty studies are common in China and United States; firm value studies are common in China and United States.",
         "public_specificity_score": 0.704,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000071__FG3C000193",
+        "app_link": "/questions/#FG3C000071__FG3C000193",
         "editorial_question_title": ""
       },
       {
@@ -22352,7 +22352,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "Preferred provider organizations (PPOs) studies are common in United States, New Zealand, and related settings; quality of care studies are common in United States and China.",
         "public_specificity_score": 0.2019,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000109__FG3C003532",
+        "app_link": "/questions/#FG3C000109__FG3C003532",
         "editorial_question_title": ""
       },
       {
@@ -22486,7 +22486,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "Massachusetts health care reform studies are common in United States and Massachusetts; length of stay studies are common in United States and China.",
         "public_specificity_score": 7.1017,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000309__FG3C004045",
+        "app_link": "/questions/#FG3C000309__FG3C004045",
         "editorial_question_title": ""
       },
       {
@@ -22618,7 +22618,7 @@
         "target_context_summary": "United States and Canada",
         "common_contexts": "health maintenance organization (HMO) studies are common in United States and Democratic Republic of Congo; 30-day mortality studies are common in United States and Canada.",
         "public_specificity_score": 6.5032,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000843__FG3C002591",
+        "app_link": "/questions/#FG3C000843__FG3C002591",
         "editorial_question_title": ""
       },
       {
@@ -22750,7 +22750,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "Massachusetts health care reform studies are common in United States and Massachusetts; mortality studies are common in United States and China.",
         "public_specificity_score": 5.2021,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000264__FG3C004045",
+        "app_link": "/questions/#FG3C000264__FG3C004045",
         "editorial_question_title": ""
       },
       {
@@ -22881,7 +22881,7 @@
         "target_context_summary": "United States, China, and related settings",
         "common_contexts": "Massachusetts health care reform studies are common in United States and Massachusetts; hospitalization rates studies are common in United States, China, and related settings.",
         "public_specificity_score": 4.602,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C004045__FG3C005027",
+        "app_link": "/questions/#FG3C004045__FG3C005027",
         "editorial_question_title": ""
       },
       {
@@ -23012,7 +23012,7 @@
         "target_context_summary": "Italy, United States, and related settings",
         "common_contexts": "investor sentiment studies are common in China and United States; firm investment decisions studies are common in Italy, United States, and related settings.",
         "public_specificity_score": 4.0012,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000100__FG3C003563",
+        "app_link": "/questions/#FG3C000100__FG3C003563",
         "editorial_question_title": ""
       },
       {
@@ -23146,7 +23146,7 @@
         "target_context_summary": "China and Russia",
         "common_contexts": "free trade agreements studies are common in United States, Mexico, and related settings; green investment studies are common in China and Russia.",
         "public_specificity_score": 4.0017,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000437__FG3C002487",
+        "app_link": "/questions/#FG3C000437__FG3C002487",
         "editorial_question_title": ""
       },
       {
@@ -23277,7 +23277,7 @@
         "target_context_summary": "Mexico, Brazil, and related settings",
         "common_contexts": "free trade agreements studies are common in United States, Mexico, and related settings; wage differentials studies are common in Mexico, Brazil, and related settings.",
         "public_specificity_score": 4.0011,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C002487__FG3C002571",
+        "app_link": "/questions/#FG3C002487__FG3C002571",
         "editorial_question_title": ""
       },
       {
@@ -23404,7 +23404,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "health maintenance organization (HMO) studies are common in United States and Democratic Republic of Congo; welfare studies are common in United States and China.",
         "public_specificity_score": 4.0008,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000004__FG3C000843",
+        "app_link": "/questions/#FG3C000004__FG3C000843",
         "editorial_question_title": ""
       },
       {
@@ -23535,7 +23535,7 @@
         "target_context_summary": "China, United States, and related settings",
         "common_contexts": "free trade agreements studies are common in United States, Mexico, and related settings; skill premium studies are common in China, United States, and related settings.",
         "public_specificity_score": 3.4032,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000499__FG3C002487",
+        "app_link": "/questions/#FG3C000499__FG3C002487",
         "editorial_question_title": ""
       },
       {
@@ -23665,7 +23665,7 @@
         "target_context_summary": "China, India, and related settings",
         "common_contexts": "free trade agreements studies are common in United States, Mexico, and related settings; urban concentration studies are common in China, India, and related settings.",
         "public_specificity_score": 3.4017,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C002487__FG3C004651",
+        "app_link": "/questions/#FG3C002487__FG3C004651",
         "editorial_question_title": ""
       },
       {
@@ -23792,7 +23792,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "urban size studies are common in China and United States; welfare studies are common in United States and China.",
         "public_specificity_score": 2.701,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000004__FG3C005412",
+        "app_link": "/questions/#FG3C000004__FG3C005412",
         "editorial_question_title": ""
       },
       {
@@ -23924,7 +23924,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "urbanization studies are common in China and India; welfare studies are common in United States and China.",
         "public_specificity_score": 3.6084,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000004__FG3C000012",
+        "app_link": "/questions/#FG3C000004__FG3C000012",
         "editorial_question_title": ""
       },
       {
@@ -24058,7 +24058,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "high-speed rail studies are common in China and Spain; welfare studies are common in United States and China.",
         "public_specificity_score": 1.9053,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000004__FG3C000753",
+        "app_link": "/questions/#FG3C000004__FG3C000753",
         "editorial_question_title": ""
       },
       {
@@ -24188,7 +24188,7 @@
         "target_context_summary": "China, Italy, and related settings",
         "common_contexts": "foreign direct investments studies are common in China and India; firm performance studies are common in China, Italy, and related settings.",
         "public_specificity_score": 1.3054,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C000113",
+        "app_link": "/questions/#FG3C000015__FG3C000113",
         "editorial_question_title": ""
       },
       {
@@ -24324,7 +24324,7 @@
         "target_context_summary": "United States and OECD",
         "common_contexts": "foreign direct investments studies are common in China and India; output per worker studies are common in United States and OECD.",
         "public_specificity_score": 0.8117,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C001866",
+        "app_link": "/questions/#FG3C000015__FG3C001866",
         "editorial_question_title": ""
       },
       {
@@ -24459,7 +24459,7 @@
         "target_context_summary": "China and Anhui Province, China",
         "common_contexts": "foreign direct investments studies are common in China and India; new-type urbanization studies are common in China and Anhui Province, China.",
         "public_specificity_score": 0.8098,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C003490",
+        "app_link": "/questions/#FG3C000015__FG3C003490",
         "editorial_question_title": ""
       },
       {
@@ -24593,7 +24593,7 @@
         "target_context_summary": "China and India",
         "common_contexts": "high-speed rail studies are common in China and Spain; foreign direct investments studies are common in China and India.",
         "public_specificity_score": 0.8027,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C000753",
+        "app_link": "/questions/#FG3C000015__FG3C000753",
         "editorial_question_title": ""
       },
       {
@@ -24723,7 +24723,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "money growth rate studies are common in United States, China, and related settings; welfare studies are common in United States and China.",
         "public_specificity_score": 0.7151,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000004__FG3C006498",
+        "app_link": "/questions/#FG3C000004__FG3C006498",
         "editorial_question_title": ""
       },
       {
@@ -24855,7 +24855,7 @@
         "target_context_summary": "United States, United Kingdom, and related settings",
         "common_contexts": "foreign direct investments studies are common in China and India; real wages studies are common in United States, United Kingdom, and related settings.",
         "public_specificity_score": 0.707,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C000176",
+        "app_link": "/questions/#FG3C000015__FG3C000176",
         "editorial_question_title": ""
       },
       {
@@ -24984,7 +24984,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "foreign exchange intervention studies are common in JPN, United States, and related settings; output studies are common in United States and China.",
         "public_specificity_score": 0.7041,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000011__FG3C003025",
+        "app_link": "/questions/#FG3C000011__FG3C003025",
         "editorial_question_title": ""
       },
       {
@@ -25120,7 +25120,7 @@
         "target_context_summary": "China, Yangtze River Delta, and related settings",
         "common_contexts": "foreign direct investments studies are common in China and India; PM2.5 concentration studies are common in China, Yangtze River Delta, and related settings.",
         "public_specificity_score": 0.2136,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C001615",
+        "app_link": "/questions/#FG3C000015__FG3C001615",
         "editorial_question_title": ""
       },
       {
@@ -25251,7 +25251,7 @@
         "target_context_summary": "China",
         "common_contexts": "foreign direct investments studies are common in China and India; regional green development studies are common in China.",
         "public_specificity_score": 0.2045,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C006008",
+        "app_link": "/questions/#FG3C000015__FG3C006008",
         "editorial_question_title": ""
       },
       {
@@ -25381,7 +25381,7 @@
         "target_context_summary": "China",
         "common_contexts": "foreign direct investments studies are common in China and India; green technological progress studies are common in China.",
         "public_specificity_score": 0.2033,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C002078",
+        "app_link": "/questions/#FG3C000015__FG3C002078",
         "editorial_question_title": ""
       },
       {
@@ -25516,7 +25516,7 @@
         "target_context_summary": "China, Yangtze River Delta, and related settings",
         "common_contexts": "high-speed rail studies are common in China and Spain; PM2.5 concentration studies are common in China, Yangtze River Delta, and related settings.",
         "public_specificity_score": 0.2014,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000753__FG3C001615",
+        "app_link": "/questions/#FG3C000753__FG3C001615",
         "editorial_question_title": ""
       },
       {
@@ -25651,7 +25651,7 @@
         "target_context_summary": "Sweden, United States, and related settings",
         "common_contexts": "EQ-5D index score studies are common in China, United States, and related settings; choice data studies are common in Sweden, United States, and related settings.",
         "public_specificity_score": 12.3018,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C005515__FG3C005999",
+        "app_link": "/questions/#FG3C005515__FG3C005999",
         "editorial_question_title": ""
       },
       {
@@ -25778,7 +25778,7 @@
         "target_context_summary": "China, Italy, and related settings",
         "common_contexts": "intellectual property rights (IPR) protection studies are common in China, Eastern European transition countries, and related settings; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
         "public_specificity_score": 7.702,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000061__FG3C005708",
+        "app_link": "/questions/#FG3C000061__FG3C005708",
         "editorial_question_title": ""
       },
       {
@@ -25909,7 +25909,7 @@
         "target_context_summary": "China, United States, and related settings",
         "common_contexts": "Special economic zones studies are common in China and India; income inequality studies are common in China, United States, and related settings.",
         "public_specificity_score": 7.6028,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000025__FG3C002438",
+        "app_link": "/questions/#FG3C000025__FG3C002438",
         "editorial_question_title": ""
       },
       {
@@ -26039,7 +26039,7 @@
         "target_context_summary": "China and OECD",
         "common_contexts": "R&D investment studies are common in China and Korea; green total factor productivity (GTFP) studies are common in China and OECD.",
         "public_specificity_score": 8.641,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000089__FG3C000215",
+        "app_link": "/questions/#FG3C000089__FG3C000215",
         "editorial_question_title": ""
       },
       {
@@ -26169,7 +26169,7 @@
         "target_context_summary": "China and OECD",
         "common_contexts": "high-speed rail studies are common in China and Spain; green total factor productivity (GTFP) studies are common in China and OECD.",
         "public_specificity_score": 8.6235,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000215__FG3C000753",
+        "app_link": "/questions/#FG3C000215__FG3C000753",
         "editorial_question_title": ""
       },
       {
@@ -26304,7 +26304,7 @@
         "target_context_summary": "China and OECD",
         "common_contexts": "economic policy uncertainty studies are common in China and United States; green total factor productivity (GTFP) studies are common in China and OECD.",
         "public_specificity_score": 8.612,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000071__FG3C000215",
+        "app_link": "/questions/#FG3C000071__FG3C000215",
         "editorial_question_title": ""
       },
       {
@@ -26430,7 +26430,7 @@
         "target_context_summary": "China and United States",
         "common_contexts": "high frequency traders studies are common in India, KOR, and related settings; expected stock returns studies are common in China and United States.",
         "public_specificity_score": 7.1018,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000811__FG3C003802",
+        "app_link": "/questions/#FG3C000811__FG3C003802",
         "editorial_question_title": ""
       },
       {
@@ -26558,7 +26558,7 @@
         "target_context_summary": "United States and Belgium",
         "common_contexts": "foreign direct investments studies are common in China and India; price-cost margin studies are common in United States and Belgium.",
         "public_specificity_score": 7.1013,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C001717",
+        "app_link": "/questions/#FG3C000015__FG3C001717",
         "editorial_question_title": ""
       },
       {
@@ -26695,7 +26695,7 @@
         "target_context_summary": "China and Italy",
         "common_contexts": "COVID-19 pandemic studies are common in China and United States; green technology innovations studies are common in China and Italy.",
         "public_specificity_score": 6.5051,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000005__FG3C001741",
+        "app_link": "/questions/#FG3C000005__FG3C001741",
         "editorial_question_title": ""
       },
       {
@@ -26827,7 +26827,7 @@
         "target_context_summary": "China, Italy, and related settings",
         "common_contexts": "Special economic zones studies are common in China and India; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
         "public_specificity_score": 6.5024,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000061__FG3C002438",
+        "app_link": "/questions/#FG3C000061__FG3C002438",
         "editorial_question_title": ""
       },
       {
@@ -26960,7 +26960,7 @@
         "target_context_summary": "China",
         "common_contexts": "Special economic zones studies are common in China and India; green total factor productivity studies are common in China.",
         "public_specificity_score": 6.5023,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000797__FG3C002438",
+        "app_link": "/questions/#FG3C000797__FG3C002438",
         "editorial_question_title": ""
       },
       {
@@ -27096,7 +27096,7 @@
         "target_context_summary": "China, India, and related settings",
         "common_contexts": "COVID-19 pandemic studies are common in China and United States; catastrophic health expenditures studies are common in China, India, and related settings.",
         "public_specificity_score": 6.502,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000005__FG3C001452",
+        "app_link": "/questions/#FG3C000005__FG3C001452",
         "editorial_question_title": ""
       },
       {
@@ -27221,7 +27221,7 @@
         "target_context_summary": "China and India",
         "common_contexts": "intellectual property rights (IPR) protection studies are common in China, Eastern European transition countries, and related settings; green economic growth studies are common in China and India.",
         "public_specificity_score": 6.502,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000611__FG3C005708",
+        "app_link": "/questions/#FG3C000611__FG3C005708",
         "editorial_question_title": ""
       },
       {
@@ -27352,7 +27352,7 @@
         "target_context_summary": "China, United States, and related settings",
         "common_contexts": "high-frequency trading studies are common in Turkey, France, and related settings; cost of capital studies are common in China, United States, and related settings.",
         "public_specificity_score": 6.5011,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000247__FG3C004458",
+        "app_link": "/questions/#FG3C000247__FG3C004458",
         "editorial_question_title": ""
       },
       {
@@ -27482,7 +27482,7 @@
         "target_context_summary": "United States, China, and related settings",
         "common_contexts": "Special economic zones studies are common in China and India; terms of trade studies are common in United States, China, and related settings.",
         "public_specificity_score": 6.5008,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000162__FG3C002438",
+        "app_link": "/questions/#FG3C000162__FG3C002438",
         "editorial_question_title": ""
       },
       {
@@ -27612,7 +27612,7 @@
         "target_context_summary": "China, India, and related settings",
         "common_contexts": "Medicaid eligibility expansions studies are common in United States; catastrophic health expenditures studies are common in China, India, and related settings.",
         "public_specificity_score": 5.903,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001452__FG3C005647",
+        "app_link": "/questions/#FG3C001452__FG3C005647",
         "editorial_question_title": ""
       },
       {
@@ -27741,7 +27741,7 @@
         "target_context_summary": "China and OECD",
         "common_contexts": "intellectual property rights (IPR) protection studies are common in China, Eastern European transition countries, and related settings; green total factor productivity (GTFP) studies are common in China and OECD.",
         "public_specificity_score": 5.9024,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000215__FG3C005708",
+        "app_link": "/questions/#FG3C000215__FG3C005708",
         "editorial_question_title": ""
       },
       {
@@ -27872,7 +27872,7 @@
         "target_context_summary": "China, United States, and related settings",
         "common_contexts": "trade liberalization studies are common in China and Brazil; level of debt studies are common in China, United States, and related settings.",
         "public_specificity_score": 5.802,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000083__FG3C006303",
+        "app_link": "/questions/#FG3C000083__FG3C006303",
         "editorial_question_title": ""
       },
       {
@@ -28007,7 +28007,7 @@
         "target_context_summary": "China and OECD",
         "common_contexts": "digital financial inclusion studies are common in China and Asia; green total factor productivity (GTFP) studies are common in China and OECD.",
         "public_specificity_score": 6.8134,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000215__FG3C000717",
+        "app_link": "/questions/#FG3C000215__FG3C000717",
         "editorial_question_title": ""
       },
       {
@@ -28136,7 +28136,7 @@
         "target_context_summary": "China, Italy, and related settings",
         "common_contexts": "digital inclusive finance studies are common in China and Gulf countries; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
         "public_specificity_score": 6.8086,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000061__FG3C000425",
+        "app_link": "/questions/#FG3C000061__FG3C000425",
         "editorial_question_title": ""
       },
       {
@@ -28270,7 +28270,7 @@
         "target_context_summary": "China and OECD",
         "common_contexts": "information and communication technology (ICT) studies are common in China, United Kingdom, and related settings; green total factor productivity (GTFP) studies are common in China and OECD.",
         "public_specificity_score": 6.8081,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000215__FG3C000384",
+        "app_link": "/questions/#FG3C000215__FG3C000384",
         "editorial_question_title": ""
       },
       {
@@ -28402,7 +28402,7 @@
         "target_context_summary": "China and India",
         "common_contexts": "free trade agreements studies are common in United States, Mexico, and related settings; green technology innovation studies are common in China and India.",
         "public_specificity_score": 5.3029,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000094__FG3C002487",
+        "app_link": "/questions/#FG3C000094__FG3C002487",
         "editorial_question_title": ""
       },
       {
@@ -28533,7 +28533,7 @@
         "target_context_summary": "China, India, and related settings",
         "common_contexts": "foreign direct investments studies are common in China and India; catastrophic health expenditures studies are common in China, India, and related settings.",
         "public_specificity_score": 5.3025,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C001452",
+        "app_link": "/questions/#FG3C000015__FG3C001452",
         "editorial_question_title": ""
       },
       {
@@ -28665,7 +28665,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "gross domestic product (GDP) studies are common in China, United States, and related settings; U.S. economic policy uncertainty studies are common in United States and China.",
         "public_specificity_score": 5.3014,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000085__FG3C002623",
+        "app_link": "/questions/#FG3C000085__FG3C002623",
         "editorial_question_title": ""
       },
       {
@@ -28800,7 +28800,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "Special economic zones studies are common in China and India; wages studies are common in United States and China.",
         "public_specificity_score": 5.2025,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000022__FG3C002438",
+        "app_link": "/questions/#FG3C000022__FG3C002438",
         "editorial_question_title": ""
       },
       {
@@ -28931,7 +28931,7 @@
         "target_context_summary": "United States and Belgium",
         "common_contexts": "interest rates studies are common in United States and China; price-cost margin studies are common in United States and Belgium.",
         "public_specificity_score": 4.6026,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000027__FG3C001717",
+        "app_link": "/questions/#FG3C000027__FG3C001717",
         "editorial_question_title": ""
       },
       {
@@ -29065,7 +29065,7 @@
         "target_context_summary": "China and European Union",
         "common_contexts": "U.S. economic policy uncertainty studies are common in United States and China; sustainable development studies are common in China and European Union.",
         "public_specificity_score": 4.6018,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000065__FG3C002623",
+        "app_link": "/questions/#FG3C000065__FG3C002623",
         "editorial_question_title": ""
       },
       {
@@ -29195,7 +29195,7 @@
         "target_context_summary": "China, India, and related settings",
         "common_contexts": "globalization studies are common in China, India, and related settings; catastrophic health expenditures studies are common in China, India, and related settings.",
         "public_specificity_score": 4.6014,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000039__FG3C001452",
+        "app_link": "/questions/#FG3C000039__FG3C001452",
         "editorial_question_title": ""
       },
       {
@@ -29320,7 +29320,7 @@
         "target_context_summary": "United States and Italy",
         "common_contexts": "Special economic zones studies are common in China and India; inequality studies are common in United States and Italy.",
         "public_specificity_score": 4.6008,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000132__FG3C002438",
+        "app_link": "/questions/#FG3C000132__FG3C002438",
         "editorial_question_title": ""
       },
       {
@@ -29453,7 +29453,7 @@
         "target_context_summary": "China, United States, and related settings",
         "common_contexts": "Special economic zones studies are common in China and India; transaction costs studies are common in China, United States, and related settings.",
         "public_specificity_score": 4.6008,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000031__FG3C002438",
+        "app_link": "/questions/#FG3C000031__FG3C002438",
         "editorial_question_title": ""
       },
       {
@@ -29584,7 +29584,7 @@
         "target_context_summary": "China, United States, and related settings",
         "common_contexts": "Special economic zones studies are common in China and India; land rents studies are common in China, United States, and related settings.",
         "public_specificity_score": 4.6008,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C002438__FG3C006191",
+        "app_link": "/questions/#FG3C002438__FG3C006191",
         "editorial_question_title": ""
       },
       {
@@ -29715,7 +29715,7 @@
         "target_context_summary": "China and United States",
         "common_contexts": "Special economic zones studies are common in China and India; production studies are common in China and United States.",
         "public_specificity_score": 4.6008,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000255__FG3C002438",
+        "app_link": "/questions/#FG3C000255__FG3C002438",
         "editorial_question_title": ""
       },
       {
@@ -29846,7 +29846,7 @@
         "target_context_summary": "China, Italy, and related settings",
         "common_contexts": "digital economy studies are common in China and G7; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
         "public_specificity_score": 6.1637,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000061__FG3C000068",
+        "app_link": "/questions/#FG3C000061__FG3C000068",
         "editorial_question_title": ""
       },
       {
@@ -29975,7 +29975,7 @@
         "target_context_summary": "China and OECD",
         "common_contexts": "digitalization studies are common in China and India; green total factor productivity (GTFP) studies are common in China and OECD.",
         "public_specificity_score": 6.1331,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000215__FG3C000335",
+        "app_link": "/questions/#FG3C000215__FG3C000335",
         "editorial_question_title": ""
       },
       {
@@ -30105,7 +30105,7 @@
         "target_context_summary": "United States, China, and related settings",
         "common_contexts": "COVID-19 pandemic studies are common in China and United States; aggregate demand studies are common in United States, China, and related settings.",
         "public_specificity_score": 6.1063,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000005__FG3C000166",
+        "app_link": "/questions/#FG3C000005__FG3C000166",
         "editorial_question_title": ""
       },
       {
@@ -30238,7 +30238,7 @@
         "target_context_summary": "China and India",
         "common_contexts": "economic policy uncertainty (EPU) studies are common in China and United States; green technology innovation studies are common in China and India.",
         "public_specificity_score": 5.6229,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000074__FG3C000094",
+        "app_link": "/questions/#FG3C000074__FG3C000094",
         "editorial_question_title": ""
       },
       {
@@ -30373,7 +30373,7 @@
         "target_context_summary": "China",
         "common_contexts": "high-speed rail studies are common in China and Spain; urban green total factor productivity (GTFP) studies are common in China.",
         "public_specificity_score": 5.6075,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000753__FG3C003177",
+        "app_link": "/questions/#FG3C000753__FG3C003177",
         "editorial_question_title": ""
       },
       {
@@ -30507,7 +30507,7 @@
         "target_context_summary": "China and United States",
         "common_contexts": "COVID-19 pandemic studies are common in China and United States; firm total factor productivity (TFP) studies are common in China and United States.",
         "public_specificity_score": 5.6075,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000005__FG3C002284",
+        "app_link": "/questions/#FG3C000005__FG3C002284",
         "editorial_question_title": ""
       },
       {
@@ -30641,7 +30641,7 @@
         "target_context_summary": "China and India",
         "common_contexts": "high-speed rail studies are common in China and Spain; green technology innovation studies are common in China and India.",
         "public_specificity_score": 5.6071,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000094__FG3C000753",
+        "app_link": "/questions/#FG3C000094__FG3C000753",
         "editorial_question_title": ""
       },
       {
@@ -30771,7 +30771,7 @@
         "target_context_summary": "China and United States",
         "common_contexts": "negative news sentiment studies are common in China, United States, and related settings; trading volume studies are common in China and United States.",
         "public_specificity_score": 4.0038,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000042__FG3C005928",
+        "app_link": "/questions/#FG3C000042__FG3C005928",
         "editorial_question_title": ""
       },
       {
@@ -30901,7 +30901,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "Special economic zones studies are common in China and India; output studies are common in United States and China.",
         "public_specificity_score": 4.0026,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000011__FG3C002438",
+        "app_link": "/questions/#FG3C000011__FG3C002438",
         "editorial_question_title": ""
       },
       {
@@ -31034,7 +31034,7 @@
         "target_context_summary": "China and United States",
         "common_contexts": "U.S. economic policy uncertainty studies are common in United States and China; market efficiency studies are common in China and United States.",
         "public_specificity_score": 4.0018,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000088__FG3C002623",
+        "app_link": "/questions/#FG3C000088__FG3C002623",
         "editorial_question_title": ""
       },
       {
@@ -31165,7 +31165,7 @@
         "target_context_summary": "China and United States",
         "common_contexts": "U.S. economic policy uncertainty studies are common in United States and China; trading volume studies are common in China and United States.",
         "public_specificity_score": 4.0016,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000042__FG3C002623",
+        "app_link": "/questions/#FG3C000042__FG3C002623",
         "editorial_question_title": ""
       },
       {
@@ -31294,7 +31294,7 @@
         "target_context_summary": "China, CEE and SEE stock markets, and related settings",
         "common_contexts": "separability studies are common in United States; optimal investment strategy studies are common in China, CEE and SEE stock markets, and related settings.",
         "public_specificity_score": 4.0015,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C004769__FG3C004959",
+        "app_link": "/questions/#FG3C004769__FG3C004959",
         "editorial_question_title": ""
       },
       {
@@ -31423,7 +31423,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "high-frequency trading studies are common in Turkey, France, and related settings; prices studies are common in United States and China.",
         "public_specificity_score": 4.0014,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000028__FG3C004458",
+        "app_link": "/questions/#FG3C000028__FG3C004458",
         "editorial_question_title": ""
       },
       {
@@ -31551,7 +31551,7 @@
         "target_context_summary": "China and India",
         "common_contexts": "U.S. economic policy uncertainty studies are common in United States and China; technological innovation studies are common in China and India.",
         "public_specificity_score": 4.0014,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000013__FG3C002623",
+        "app_link": "/questions/#FG3C000013__FG3C002623",
         "editorial_question_title": ""
       },
       {
@@ -31680,7 +31680,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "high-frequency trading studies are common in Turkey, France, and related settings; herding behavior studies are common in United States and China.",
         "public_specificity_score": 4.0013,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000705__FG3C004458",
+        "app_link": "/questions/#FG3C000705__FG3C004458",
         "editorial_question_title": ""
       },
       {
@@ -31807,7 +31807,7 @@
         "target_context_summary": "China and United States",
         "common_contexts": "high-frequency trading studies are common in Turkey, France, and related settings; investor sentiment studies are common in China and United States.",
         "public_specificity_score": 4.0012,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000100__FG3C004458",
+        "app_link": "/questions/#FG3C000100__FG3C004458",
         "editorial_question_title": ""
       },
       {
@@ -31938,7 +31938,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "negative news sentiment studies are common in China, United States, and related settings; welfare studies are common in United States and China.",
         "public_specificity_score": 4.0012,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000004__FG3C005928",
+        "app_link": "/questions/#FG3C000004__FG3C005928",
         "editorial_question_title": ""
       },
       {
@@ -32070,7 +32070,7 @@
         "target_context_summary": "United States and United Kingdom",
         "common_contexts": "TVP-SV-VAR model studies are common in China, Turkey, and related settings; unemployment studies are common in United States and United Kingdom.",
         "public_specificity_score": 4.0012,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000009__FG3C004663",
+        "app_link": "/questions/#FG3C000009__FG3C004663",
         "editorial_question_title": ""
       },
       {
@@ -32203,7 +32203,7 @@
         "target_context_summary": "China and Pakistan",
         "common_contexts": "Special economic zones studies are common in China and India; industrial transformation studies are common in China and Pakistan.",
         "public_specificity_score": 4.0011,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C002438__FG3C004143",
+        "app_link": "/questions/#FG3C002438__FG3C004143",
         "editorial_question_title": ""
       },
       {
@@ -32338,7 +32338,7 @@
         "target_context_summary": "China and OECD",
         "common_contexts": "natural resource dependence studies are common in China and India; green total factor productivity (GTFP) studies are common in China and OECD.",
         "public_specificity_score": 5.0206,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000215__FG3C001052",
+        "app_link": "/questions/#FG3C000215__FG3C001052",
         "editorial_question_title": ""
       },
       {
@@ -32470,7 +32470,7 @@
         "target_context_summary": "China",
         "common_contexts": "R&D investment studies are common in China and Korea; green total factor productivity studies are common in China.",
         "public_specificity_score": 5.0149,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000089__FG3C000797",
+        "app_link": "/questions/#FG3C000089__FG3C000797",
         "editorial_question_title": ""
       },
       {
@@ -32605,7 +32605,7 @@
         "target_context_summary": "China and India",
         "common_contexts": "COVID-19 pandemic studies are common in China and United States; green technology innovation studies are common in China and India.",
         "public_specificity_score": 5.0046,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000005__FG3C000094",
+        "app_link": "/questions/#FG3C000005__FG3C000094",
         "editorial_question_title": ""
       },
       {
@@ -32740,7 +32740,7 @@
         "target_context_summary": "China and United States",
         "common_contexts": "digital finance studies are common in China and Malaysia; firm total factor productivity (TFP) studies are common in China and United States.",
         "public_specificity_score": 4.9259,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000242__FG3C002284",
+        "app_link": "/questions/#FG3C000242__FG3C002284",
         "editorial_question_title": ""
       },
       {
@@ -32869,7 +32869,7 @@
         "target_context_summary": "China, Europe, and related settings",
         "common_contexts": "green technology innovation studies are common in China and India; ESG investments studies are common in China, Europe, and related settings.",
         "public_specificity_score": 3.4037,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000094__FG3C005535",
+        "app_link": "/questions/#FG3C000094__FG3C005535",
         "editorial_question_title": ""
       },
       {
@@ -32999,7 +32999,7 @@
         "target_context_summary": "China and United States",
         "common_contexts": "negative news sentiment studies are common in China, United States, and related settings; market efficiency studies are common in China and United States.",
         "public_specificity_score": 3.403,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000088__FG3C005928",
+        "app_link": "/questions/#FG3C000088__FG3C005928",
         "editorial_question_title": ""
       },
       {
@@ -33127,7 +33127,7 @@
         "target_context_summary": "China and United States",
         "common_contexts": "high-frequency trading studies are common in Turkey, France, and related settings; market efficiency studies are common in China and United States.",
         "public_specificity_score": 3.4026,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000088__FG3C004458",
+        "app_link": "/questions/#FG3C000088__FG3C004458",
         "editorial_question_title": ""
       },
       {
@@ -33262,7 +33262,7 @@
         "target_context_summary": "China and OECD",
         "common_contexts": "free trade agreements studies are common in United States, Mexico, and related settings; green innovation studies are common in China and OECD.",
         "public_specificity_score": 3.4022,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000053__FG3C002487",
+        "app_link": "/questions/#FG3C000053__FG3C002487",
         "editorial_question_title": ""
       },
       {
@@ -33390,7 +33390,7 @@
         "target_context_summary": "United States, Netherlands, and related settings",
         "common_contexts": "monetary policy shocks studies are common in United States and euro area; cyclical component studies are common in United States, Netherlands, and related settings.",
         "public_specificity_score": 3.4021,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000159__FG3C005155",
+        "app_link": "/questions/#FG3C000159__FG3C005155",
         "editorial_question_title": ""
       },
       {
@@ -33519,7 +33519,7 @@
         "target_context_summary": "China and OECD",
         "common_contexts": "renewable portfolio standards studies are common in China, United States, and related settings; green innovation studies are common in China and OECD.",
         "public_specificity_score": 3.4018,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000053__FG3C002799",
+        "app_link": "/questions/#FG3C000053__FG3C002799",
         "editorial_question_title": ""
       },
       {
@@ -33658,7 +33658,7 @@
         "target_context_summary": "China, India, and related settings",
         "common_contexts": "marital status studies are common in China, United States, and related settings; catastrophic health expenditures studies are common in China, India, and related settings.",
         "public_specificity_score": 3.4017,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000642__FG3C001452",
+        "app_link": "/questions/#FG3C000642__FG3C001452",
         "editorial_question_title": ""
       },
       {
@@ -33787,7 +33787,7 @@
         "target_context_summary": "United States and Belgium",
         "common_contexts": "economic fundamentals studies are common in China and United States; price-cost margin studies are common in United States and Belgium.",
         "public_specificity_score": 3.4017,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000544__FG3C001717",
+        "app_link": "/questions/#FG3C000544__FG3C001717",
         "editorial_question_title": ""
       },
       {
@@ -33924,7 +33924,7 @@
         "target_context_summary": "China, India, and related settings",
         "common_contexts": "race/ethnicity studies are common in United States and Brazil; catastrophic health expenditures studies are common in China, India, and related settings.",
         "public_specificity_score": 3.4017,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001452__FG3C002075",
+        "app_link": "/questions/#FG3C001452__FG3C002075",
         "editorial_question_title": ""
       },
       {
@@ -34055,7 +34055,7 @@
         "target_context_summary": "China and India",
         "common_contexts": "renewable portfolio standards studies are common in China, United States, and related settings; technological innovation studies are common in China and India.",
         "public_specificity_score": 3.4016,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000013__FG3C002799",
+        "app_link": "/questions/#FG3C000013__FG3C002799",
         "editorial_question_title": ""
       },
       {
@@ -34187,7 +34187,7 @@
         "target_context_summary": "United States, China, and related settings",
         "common_contexts": "TVP-SV-VAR model studies are common in China, Turkey, and related settings; food prices studies are common in United States, China, and related settings.",
         "public_specificity_score": 3.4015,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000600__FG3C004663",
+        "app_link": "/questions/#FG3C000600__FG3C004663",
         "editorial_question_title": ""
       },
       {
@@ -34315,7 +34315,7 @@
         "target_context_summary": "China, United States, and related settings",
         "common_contexts": "property taxes studies are common in United States and Democratic Republic of the Congo; price-to-rent ratio studies are common in China, United States, and related settings.",
         "public_specificity_score": 3.4014,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001621__FG3C005649",
+        "app_link": "/questions/#FG3C001621__FG3C005649",
         "editorial_question_title": ""
       },
       {
@@ -34449,7 +34449,7 @@
         "target_context_summary": "China, United States, and related settings",
         "common_contexts": "negative news sentiment studies are common in China, United States, and related settings; price discovery studies are common in China, United States, and related settings.",
         "public_specificity_score": 3.4014,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000371__FG3C005928",
+        "app_link": "/questions/#FG3C000371__FG3C005928",
         "editorial_question_title": ""
       },
       {
@@ -34580,7 +34580,7 @@
         "target_context_summary": "United States and China",
         "common_contexts": "free trade agreements studies are common in United States, Mexico, and related settings; welfare level studies are common in United States and China.",
         "public_specificity_score": 3.4013,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C002487__FG3C005256",
+        "app_link": "/questions/#FG3C002487__FG3C005256",
         "editorial_question_title": ""
       },
       {
@@ -34711,7 +34711,7 @@
         "target_context_summary": "China and United States",
         "common_contexts": "wage setting studies are common in United States, Canada, and related settings; non-performing loans studies are common in China and United States.",
         "public_specificity_score": 3.4012,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001067__FG3C005391",
+        "app_link": "/questions/#FG3C001067__FG3C005391",
         "editorial_question_title": ""
       },
       {
@@ -34844,7 +34844,7 @@
         "target_context_summary": "China, United Arab Emirates, and related settings",
         "common_contexts": "ESG investments studies are common in China, Europe, and related settings; sustainable development goals studies are common in China, United Arab Emirates, and related settings.",
         "public_specificity_score": 3.4011,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000515__FG3C005535",
+        "app_link": "/questions/#FG3C000515__FG3C005535",
         "editorial_question_title": ""
       },
       {
@@ -34977,7 +34977,7 @@
         "target_context_summary": "China, United States, and related settings",
         "common_contexts": "level of debt studies are common in China, United States, and related settings; efficiency studies are common in China, United States, and related settings.",
         "public_specificity_score": 3.401,
-        "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000062__FG3C006303",
+        "app_link": "/questions/#FG3C000062__FG3C006303",
         "editorial_question_title": ""
       }
     ],
@@ -35109,7 +35109,7 @@
           "target_context_summary": "China, Ethiopia, and related settings",
           "common_contexts": "high-deductible health plans studies are common in United States, Germany, and related settings; essential medicines studies are common in China, Ethiopia, and related settings.",
           "public_specificity_score": 12.303,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C003577__FG3C006085",
+          "app_link": "/questions/#FG3C003577__FG3C006085",
           "editorial_question_title": ""
         },
         {
@@ -35239,7 +35239,7 @@
           "target_context_summary": "China and OECD",
           "common_contexts": "R&D investment studies are common in China and Korea; green total factor productivity (GTFP) studies are common in China and OECD.",
           "public_specificity_score": 8.641,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000089__FG3C000215",
+          "app_link": "/questions/#FG3C000089__FG3C000215",
           "editorial_question_title": ""
         },
         {
@@ -35369,7 +35369,7 @@
           "target_context_summary": "China and OECD",
           "common_contexts": "high-speed rail studies are common in China and Spain; green total factor productivity (GTFP) studies are common in China and OECD.",
           "public_specificity_score": 8.6235,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000215__FG3C000753",
+          "app_link": "/questions/#FG3C000215__FG3C000753",
           "editorial_question_title": ""
         },
         {
@@ -35504,7 +35504,7 @@
           "target_context_summary": "China and OECD",
           "common_contexts": "economic policy uncertainty studies are common in China and United States; green total factor productivity (GTFP) studies are common in China and OECD.",
           "public_specificity_score": 8.612,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000071__FG3C000215",
+          "app_link": "/questions/#FG3C000071__FG3C000215",
           "editorial_question_title": ""
         },
         {
@@ -35630,7 +35630,7 @@
           "target_context_summary": "China and United States",
           "common_contexts": "high frequency traders studies are common in India, KOR, and related settings; expected stock returns studies are common in China and United States.",
           "public_specificity_score": 7.1018,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000811__FG3C003802",
+          "app_link": "/questions/#FG3C000811__FG3C003802",
           "editorial_question_title": ""
         },
         {
@@ -35763,7 +35763,7 @@
           "target_context_summary": "China and United States",
           "common_contexts": "high-tech industry studies are common in China and United States; export product quality studies are common in China and United States.",
           "public_specificity_score": 7.1013,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001635__FG3C001922",
+          "app_link": "/questions/#FG3C001635__FG3C001922",
           "editorial_question_title": ""
         },
         {
@@ -35891,7 +35891,7 @@
           "target_context_summary": "United States and Belgium",
           "common_contexts": "foreign direct investments studies are common in China and India; price-cost margin studies are common in United States and Belgium.",
           "public_specificity_score": 7.1013,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C001717",
+          "app_link": "/questions/#FG3C000015__FG3C001717",
           "editorial_question_title": ""
         },
         {
@@ -36021,7 +36021,7 @@
           "target_context_summary": "United States and China",
           "common_contexts": "exchange-rate regime studies are common in Latin America and the Caribbean, Latin America, and related settings; welfare studies are common in United States and China.",
           "public_specificity_score": 7.0022,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000004__FG3C001619",
+          "app_link": "/questions/#FG3C000004__FG3C001619",
           "editorial_question_title": ""
         },
         {
@@ -36153,7 +36153,7 @@
           "target_context_summary": "China, Italy, and related settings",
           "common_contexts": "Special economic zones studies are common in China and India; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
           "public_specificity_score": 6.5024,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000061__FG3C002438",
+          "app_link": "/questions/#FG3C000061__FG3C002438",
           "editorial_question_title": ""
         },
         {
@@ -36284,7 +36284,7 @@
           "target_context_summary": "China, United States, and related settings",
           "common_contexts": "high-frequency trading studies are common in Turkey, France, and related settings; cost of capital studies are common in China, United States, and related settings.",
           "public_specificity_score": 6.5011,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000247__FG3C004458",
+          "app_link": "/questions/#FG3C000247__FG3C004458",
           "editorial_question_title": ""
         },
         {
@@ -36414,7 +36414,7 @@
           "target_context_summary": "China, India, and related settings",
           "common_contexts": "Medicaid eligibility expansions studies are common in United States; catastrophic health expenditures studies are common in China, India, and related settings.",
           "public_specificity_score": 5.903,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001452__FG3C005647",
+          "app_link": "/questions/#FG3C001452__FG3C005647",
           "editorial_question_title": ""
         },
         {
@@ -36543,7 +36543,7 @@
           "target_context_summary": "China and OECD",
           "common_contexts": "intellectual property rights (IPR) protection studies are common in China, Eastern European transition countries, and related settings; green total factor productivity (GTFP) studies are common in China and OECD.",
           "public_specificity_score": 5.9024,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000215__FG3C005708",
+          "app_link": "/questions/#FG3C000215__FG3C005708",
           "editorial_question_title": ""
         }
       ],
@@ -36680,7 +36680,7 @@
           "target_context_summary": "Sweden, United States, and related settings",
           "common_contexts": "EQ-5D index score studies are common in China, United States, and related settings; choice data studies are common in Sweden, United States, and related settings.",
           "public_specificity_score": 12.3018,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C005515__FG3C005999",
+          "app_link": "/questions/#FG3C005515__FG3C005999",
           "editorial_question_title": ""
         },
         {
@@ -36811,7 +36811,7 @@
           "target_context_summary": "China, United States, and related settings",
           "common_contexts": "Special economic zones studies are common in China and India; income inequality studies are common in China, United States, and related settings.",
           "public_specificity_score": 7.6028,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000025__FG3C002438",
+          "app_link": "/questions/#FG3C000025__FG3C002438",
           "editorial_question_title": ""
         },
         {
@@ -36946,7 +36946,7 @@
           "target_context_summary": "China and OECD",
           "common_contexts": "economic policy uncertainty studies are common in China and United States; green total factor productivity (GTFP) studies are common in China and OECD.",
           "public_specificity_score": 8.612,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000071__FG3C000215",
+          "app_link": "/questions/#FG3C000071__FG3C000215",
           "editorial_question_title": ""
         },
         {
@@ -37076,7 +37076,7 @@
           "target_context_summary": "China and Korea",
           "common_contexts": "free trade agreements studies are common in United States, Mexico, and related settings; R&D investment studies are common in China and Korea.",
           "public_specificity_score": 7.1017,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000089__FG3C002487",
+          "app_link": "/questions/#FG3C000089__FG3C002487",
           "editorial_question_title": ""
         },
         {
@@ -37209,7 +37209,7 @@
           "target_context_summary": "China and United States",
           "common_contexts": "high-tech industry studies are common in China and United States; export product quality studies are common in China and United States.",
           "public_specificity_score": 7.1013,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001635__FG3C001922",
+          "app_link": "/questions/#FG3C001635__FG3C001922",
           "editorial_question_title": ""
         },
         {
@@ -37337,7 +37337,7 @@
           "target_context_summary": "United States and Belgium",
           "common_contexts": "foreign direct investments studies are common in China and India; price-cost margin studies are common in United States and Belgium.",
           "public_specificity_score": 7.1013,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C001717",
+          "app_link": "/questions/#FG3C000015__FG3C001717",
           "editorial_question_title": ""
         },
         {
@@ -37469,7 +37469,7 @@
           "target_context_summary": "China, Italy, and related settings",
           "common_contexts": "Special economic zones studies are common in China and India; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
           "public_specificity_score": 6.5024,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000061__FG3C002438",
+          "app_link": "/questions/#FG3C000061__FG3C002438",
           "editorial_question_title": ""
         },
         {
@@ -37594,7 +37594,7 @@
           "target_context_summary": "China and India",
           "common_contexts": "intellectual property rights (IPR) protection studies are common in China, Eastern European transition countries, and related settings; green economic growth studies are common in China and India.",
           "public_specificity_score": 6.502,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000611__FG3C005708",
+          "app_link": "/questions/#FG3C000611__FG3C005708",
           "editorial_question_title": ""
         },
         {
@@ -37724,7 +37724,7 @@
           "target_context_summary": "United States, China, and related settings",
           "common_contexts": "Special economic zones studies are common in China and India; terms of trade studies are common in United States, China, and related settings.",
           "public_specificity_score": 6.5008,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000162__FG3C002438",
+          "app_link": "/questions/#FG3C000162__FG3C002438",
           "editorial_question_title": ""
         },
         {
@@ -37853,7 +37853,7 @@
           "target_context_summary": "China and OECD",
           "common_contexts": "intellectual property rights (IPR) protection studies are common in China, Eastern European transition countries, and related settings; green total factor productivity (GTFP) studies are common in China and OECD.",
           "public_specificity_score": 5.9024,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000215__FG3C005708",
+          "app_link": "/questions/#FG3C000215__FG3C005708",
           "editorial_question_title": ""
         },
         {
@@ -37985,7 +37985,7 @@
           "target_context_summary": "United States and United Kingdom",
           "common_contexts": "Special economic zones studies are common in China and India; unemployment studies are common in United States and United Kingdom.",
           "public_specificity_score": 5.8018,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000009__FG3C002438",
+          "app_link": "/questions/#FG3C000009__FG3C002438",
           "editorial_question_title": ""
         },
         {
@@ -38114,7 +38114,7 @@
           "target_context_summary": "China, Italy, and related settings",
           "common_contexts": "digital inclusive finance studies are common in China and Gulf countries; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
           "public_specificity_score": 6.8086,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000061__FG3C000425",
+          "app_link": "/questions/#FG3C000061__FG3C000425",
           "editorial_question_title": ""
         }
       ],
@@ -38245,7 +38245,7 @@
           "target_context_summary": "China, Ethiopia, and related settings",
           "common_contexts": "high-deductible health plans studies are common in United States, Germany, and related settings; essential medicines studies are common in China, Ethiopia, and related settings.",
           "public_specificity_score": 12.303,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C003577__FG3C006085",
+          "app_link": "/questions/#FG3C003577__FG3C006085",
           "editorial_question_title": ""
         },
         {
@@ -38375,7 +38375,7 @@
           "target_context_summary": "China and OECD",
           "common_contexts": "R&D investment studies are common in China and Korea; green total factor productivity (GTFP) studies are common in China and OECD.",
           "public_specificity_score": 8.641,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000089__FG3C000215",
+          "app_link": "/questions/#FG3C000089__FG3C000215",
           "editorial_question_title": ""
         },
         {
@@ -38505,7 +38505,7 @@
           "target_context_summary": "China and OECD",
           "common_contexts": "high-speed rail studies are common in China and Spain; green total factor productivity (GTFP) studies are common in China and OECD.",
           "public_specificity_score": 8.6235,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000215__FG3C000753",
+          "app_link": "/questions/#FG3C000215__FG3C000753",
           "editorial_question_title": ""
         },
         {
@@ -38640,7 +38640,7 @@
           "target_context_summary": "China and OECD",
           "common_contexts": "economic policy uncertainty studies are common in China and United States; green total factor productivity (GTFP) studies are common in China and OECD.",
           "public_specificity_score": 8.612,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000071__FG3C000215",
+          "app_link": "/questions/#FG3C000071__FG3C000215",
           "editorial_question_title": ""
         },
         {
@@ -38766,7 +38766,7 @@
           "target_context_summary": "China and United States",
           "common_contexts": "high frequency traders studies are common in India, KOR, and related settings; expected stock returns studies are common in China and United States.",
           "public_specificity_score": 7.1018,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000811__FG3C003802",
+          "app_link": "/questions/#FG3C000811__FG3C003802",
           "editorial_question_title": ""
         },
         {
@@ -38899,7 +38899,7 @@
           "target_context_summary": "China and United States",
           "common_contexts": "high-tech industry studies are common in China and United States; export product quality studies are common in China and United States.",
           "public_specificity_score": 7.1013,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001635__FG3C001922",
+          "app_link": "/questions/#FG3C001635__FG3C001922",
           "editorial_question_title": ""
         },
         {
@@ -39027,7 +39027,7 @@
           "target_context_summary": "United States and Belgium",
           "common_contexts": "foreign direct investments studies are common in China and India; price-cost margin studies are common in United States and Belgium.",
           "public_specificity_score": 7.1013,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C001717",
+          "app_link": "/questions/#FG3C000015__FG3C001717",
           "editorial_question_title": ""
         },
         {
@@ -39157,7 +39157,7 @@
           "target_context_summary": "United States and China",
           "common_contexts": "exchange-rate regime studies are common in Latin America and the Caribbean, Latin America, and related settings; welfare studies are common in United States and China.",
           "public_specificity_score": 7.0022,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000004__FG3C001619",
+          "app_link": "/questions/#FG3C000004__FG3C001619",
           "editorial_question_title": ""
         },
         {
@@ -39289,7 +39289,7 @@
           "target_context_summary": "China, Italy, and related settings",
           "common_contexts": "Special economic zones studies are common in China and India; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
           "public_specificity_score": 6.5024,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000061__FG3C002438",
+          "app_link": "/questions/#FG3C000061__FG3C002438",
           "editorial_question_title": ""
         },
         {
@@ -39420,7 +39420,7 @@
           "target_context_summary": "China, United States, and related settings",
           "common_contexts": "high-frequency trading studies are common in Turkey, France, and related settings; cost of capital studies are common in China, United States, and related settings.",
           "public_specificity_score": 6.5011,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000247__FG3C004458",
+          "app_link": "/questions/#FG3C000247__FG3C004458",
           "editorial_question_title": ""
         },
         {
@@ -39550,7 +39550,7 @@
           "target_context_summary": "China, India, and related settings",
           "common_contexts": "Medicaid eligibility expansions studies are common in United States; catastrophic health expenditures studies are common in China, India, and related settings.",
           "public_specificity_score": 5.903,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001452__FG3C005647",
+          "app_link": "/questions/#FG3C001452__FG3C005647",
           "editorial_question_title": ""
         },
         {
@@ -39679,7 +39679,7 @@
           "target_context_summary": "China and OECD",
           "common_contexts": "intellectual property rights (IPR) protection studies are common in China, Eastern European transition countries, and related settings; green total factor productivity (GTFP) studies are common in China and OECD.",
           "public_specificity_score": 5.9024,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000215__FG3C005708",
+          "app_link": "/questions/#FG3C000215__FG3C005708",
           "editorial_question_title": ""
         }
       ],
@@ -39814,7 +39814,7 @@
           "target_context_summary": "China, India, and related settings",
           "common_contexts": "renewable energy consumption studies are common in China, India, and related settings; energy consumption studies are common in China, India, and related settings.",
           "public_specificity_score": 9.5,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C000018",
+          "app_link": "/questions/#FG3C000014__FG3C000018",
           "editorial_question_title": ""
         },
         {
@@ -39949,7 +39949,7 @@
           "target_context_summary": "China and India",
           "common_contexts": "CO2 emissions studies are common in China and India; carbon emissions studies are common in China and India.",
           "public_specificity_score": 6.9809,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000003__FG3C000010",
+          "app_link": "/questions/#FG3C000003__FG3C000010",
           "editorial_question_title": ""
         }
       ],
@@ -40080,7 +40080,7 @@
           "target_context_summary": "China, Ethiopia, and related settings",
           "common_contexts": "high-deductible health plans studies are common in United States, Germany, and related settings; essential medicines studies are common in China, Ethiopia, and related settings.",
           "public_specificity_score": 12.303,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C003577__FG3C006085",
+          "app_link": "/questions/#FG3C003577__FG3C006085",
           "editorial_question_title": ""
         },
         {
@@ -40210,7 +40210,7 @@
           "target_context_summary": "China and OECD",
           "common_contexts": "R&D investment studies are common in China and Korea; green total factor productivity (GTFP) studies are common in China and OECD.",
           "public_specificity_score": 8.641,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000089__FG3C000215",
+          "app_link": "/questions/#FG3C000089__FG3C000215",
           "editorial_question_title": ""
         },
         {
@@ -40340,7 +40340,7 @@
           "target_context_summary": "China and OECD",
           "common_contexts": "high-speed rail studies are common in China and Spain; green total factor productivity (GTFP) studies are common in China and OECD.",
           "public_specificity_score": 8.6235,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000215__FG3C000753",
+          "app_link": "/questions/#FG3C000215__FG3C000753",
           "editorial_question_title": ""
         },
         {
@@ -40475,7 +40475,7 @@
           "target_context_summary": "China and OECD",
           "common_contexts": "economic policy uncertainty studies are common in China and United States; green total factor productivity (GTFP) studies are common in China and OECD.",
           "public_specificity_score": 8.612,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000071__FG3C000215",
+          "app_link": "/questions/#FG3C000071__FG3C000215",
           "editorial_question_title": ""
         },
         {
@@ -40601,7 +40601,7 @@
           "target_context_summary": "China and United States",
           "common_contexts": "high frequency traders studies are common in India, KOR, and related settings; expected stock returns studies are common in China and United States.",
           "public_specificity_score": 7.1018,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000811__FG3C003802",
+          "app_link": "/questions/#FG3C000811__FG3C003802",
           "editorial_question_title": ""
         },
         {
@@ -40734,7 +40734,7 @@
           "target_context_summary": "China and United States",
           "common_contexts": "high-tech industry studies are common in China and United States; export product quality studies are common in China and United States.",
           "public_specificity_score": 7.1013,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001635__FG3C001922",
+          "app_link": "/questions/#FG3C001635__FG3C001922",
           "editorial_question_title": ""
         },
         {
@@ -40862,7 +40862,7 @@
           "target_context_summary": "United States and Belgium",
           "common_contexts": "foreign direct investments studies are common in China and India; price-cost margin studies are common in United States and Belgium.",
           "public_specificity_score": 7.1013,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000015__FG3C001717",
+          "app_link": "/questions/#FG3C000015__FG3C001717",
           "editorial_question_title": ""
         },
         {
@@ -40992,7 +40992,7 @@
           "target_context_summary": "United States and China",
           "common_contexts": "exchange-rate regime studies are common in Latin America and the Caribbean, Latin America, and related settings; welfare studies are common in United States and China.",
           "public_specificity_score": 7.0022,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000004__FG3C001619",
+          "app_link": "/questions/#FG3C000004__FG3C001619",
           "editorial_question_title": ""
         },
         {
@@ -41124,7 +41124,7 @@
           "target_context_summary": "China, Italy, and related settings",
           "common_contexts": "Special economic zones studies are common in China and India; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
           "public_specificity_score": 6.5024,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000061__FG3C002438",
+          "app_link": "/questions/#FG3C000061__FG3C002438",
           "editorial_question_title": ""
         },
         {
@@ -41255,7 +41255,7 @@
           "target_context_summary": "China, United States, and related settings",
           "common_contexts": "high-frequency trading studies are common in Turkey, France, and related settings; cost of capital studies are common in China, United States, and related settings.",
           "public_specificity_score": 6.5011,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000247__FG3C004458",
+          "app_link": "/questions/#FG3C000247__FG3C004458",
           "editorial_question_title": ""
         },
         {
@@ -41385,7 +41385,7 @@
           "target_context_summary": "China, India, and related settings",
           "common_contexts": "Medicaid eligibility expansions studies are common in United States; catastrophic health expenditures studies are common in China, India, and related settings.",
           "public_specificity_score": 5.903,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C001452__FG3C005647",
+          "app_link": "/questions/#FG3C001452__FG3C005647",
           "editorial_question_title": ""
         },
         {
@@ -41514,7 +41514,7 @@
           "target_context_summary": "China and OECD",
           "common_contexts": "intellectual property rights (IPR) protection studies are common in China, Eastern European transition countries, and related settings; green total factor productivity (GTFP) studies are common in China and OECD.",
           "public_specificity_score": 5.9024,
-          "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000215__FG3C005708",
+          "app_link": "/questions/#FG3C000215__FG3C005708",
           "editorial_question_title": ""
         }
       ]

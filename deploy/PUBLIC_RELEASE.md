@@ -3,8 +3,8 @@
 ## Surfaces
 
 - `frontiergraph.com`: Astro site on Cloudflare Pages
-- `https://frontiergraph.com/explorer/`: branded public Explorer route backed by Streamlit on Cloud Run
 - public database mirror: SQLite hosted from Google Cloud Storage
+- archived app code: `app/` in this repository, no longer deployed publicly
 
 ## Site deployment
 
@@ -29,15 +29,15 @@ export FRONTIERGRAPH_PUBLIC_DB_URL="https://..."
 PYTHONPATH=. python scripts/export_site_data_v2.py
 ```
 
-## App deployment
+## Archived app
 
-The public deeper app deploys to Cloud Run and should read the canonical public bundle.
+The old Streamlit app is kept in `app/` as deprecated code. It is no longer part of the public deployment and should not be redeployed automatically.
 
-- `Dockerfile` builds the Streamlit app image
-- `src/run_ranker.py` starts the app
-- `ECON_OPPORTUNITY_DB` should point to the mounted `frontiergraph-economics-public.db` file
+- `Dockerfile` still captures the old container path if you ever want to revive it
+- `src/run_ranker.py` still starts the archived app locally
+- if revived locally, `ECON_OPPORTUNITY_DB` should point to the mounted `frontiergraph-economics-public.db` file
 
-The app expects the mounted database path:
+The archived app expects the mounted database path:
 
 ```bash
 /mnt/ranker-data/frontiergraph-economics-public.db
@@ -50,7 +50,7 @@ The repository now ships:
 - checksum file at `site/public/downloads/frontiergraph-economics-public.sha256.txt`
 - manifest file at `site/public/downloads/frontiergraph-economics-public.manifest.json`
 
-The public DB itself should be hosted as a public GCS object or another public blob store. The site export script reads `FRONTIERGRAPH_PUBLIC_DB_URL` to wire the download link. The site export also reads `FRONTIERGRAPH_PUBLIC_APP_URL` to wire the Explorer links. For the public website, this should normally be set to `https://frontiergraph.com/explorer/`.
+The public DB itself should be hosted as a public GCS object or another public blob store. The site export script reads `FRONTIERGRAPH_PUBLIC_DB_URL` to wire the download link.
 
 ## Analytics and feedback
 
@@ -58,7 +58,7 @@ For launch, the cleanest stack is:
 
 - `Cloudflare Web Analytics` for aggregate traffic and performance on the Astro site
 - `PostHog Cloud EU` for product events and anonymous feedback
-- `Give feedback` surfaces on both the site and app
+- `Give feedback` surfaces on the site
 
 Cloudflare Web Analytics is enabled in the Cloudflare Pages dashboard. It does not need repo changes.
 
@@ -69,12 +69,6 @@ For the site on Cloudflare Pages, set:
 - `PUBLIC_FEEDBACK_EMAIL=prashant.garg@imperial.ac.uk`
 
 For the Cloud Run app, set these in `deploy/public_release.env` before deploy:
-
-- `FRONTIERGRAPH_POSTHOG_KEY`
-- `FRONTIERGRAPH_POSTHOG_HOST=https://eu.i.posthog.com`
-- `FRONTIERGRAPH_FEEDBACK_EMAIL=prashant.garg@imperial.ac.uk`
-
-The current implementation is anonymous by default and does not depend on session replay.
 
 ## Refresh workflow
 

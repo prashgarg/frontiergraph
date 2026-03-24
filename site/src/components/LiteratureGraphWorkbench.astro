@@ -18,6 +18,10 @@ const {
 } = Astro.props;
 
 const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
+const questionHrefBase =
+  Astro.url.pathname.startsWith("/broad/") ? "/broad/questions/" : Astro.url.pathname.startsWith("/fine-preview/")
+    ? "/fine-preview/questions/"
+    : "/questions/";
 ---
 
 <section
@@ -3023,7 +3027,7 @@ const rootId = `literature-graph-${Math.random().toString(36).slice(2, 10)}`;
             : ""
         }
         <div class="graph-question-actions">
-          <a class="button-secondary" href="${escapeAttr(activeQuestion.app_link)}" target="_blank" rel="noopener noreferrer">Open Explorer</a>
+          <a class="button-secondary" href="${escapeAttr(`${questionHrefBase}#${activeQuestion.pair_key}`)}">See question</a>
         </div>
       </article>
     `;

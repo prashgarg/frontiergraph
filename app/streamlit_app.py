@@ -1817,7 +1817,7 @@ def render_advanced_evidence(db_path: str, questions: pd.DataFrame, concepts: pd
 
 
 def main() -> None:
-    st.set_page_config(page_title="Frontier Graph | Explorer", layout="wide", initial_sidebar_state="expanded")
+    st.set_page_config(page_title="Frontier Graph | Deprecated App", layout="wide", initial_sidebar_state="expanded")
     inject_css()
 
     db_path = choose_db_path()
@@ -1840,13 +1840,13 @@ def main() -> None:
     st.markdown(
         f"""
         <div class="hero-shell">
-            <div class="eyebrow">Frontier Graph Explorer</div>
-            <h1 class="hero-title">Read one question or topic at a time.</h1>
+            <div class="eyebrow">Deprecated Frontier Graph app</div>
+            <h1 class="hero-title">Archived single-object workspace.</h1>
             <p class="hero-copy">
-                Start with a question or a topic below. Search and pick one object first; filters and technical tables stay out of the way until you need them.
+                This older Streamlit workflow is preserved here for inspection and possible later revival. The maintained public experience now lives on the website.
             </p>
             <p class="hero-copy" style="margin-top: 0.2rem;">
-                The public app can take 5 to 10 seconds to load the first time.
+                If you are only trying to browse public questions or literature structure, use the site links above instead.
             </p>
         </div>
         """,

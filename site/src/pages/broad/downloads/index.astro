@@ -16,8 +16,6 @@ const broadLinks = [
   title="Broad Preview Downloads | FrontierGraph"
   description="Download the broad preview SQLite bundle and supporting files."
   navPrefix="/broad"
-  appUrl={data.app_url}
-  appLabel="Broad app preview"
   variantLabel="Broad preview"
   links={broadLinks}
 >
@@ -44,7 +42,7 @@ const broadLinks = [
       <article class="download-panel">
         <span class="eyebrow">SQLite bundle</span>
         <h2>{publicDb.filename}</h2>
-        <p class="download-copy">Use this when you want the broad preview app-equivalent evidence tables locally.</p>
+        <p class="download-copy">Use this when you want the broad preview evidence tables locally.</p>
         <div class="download-tier-meta">
           <span>{formatBytes(publicDb.db_size_bytes)}</span>
           <span>{publicDb.public_url || "Upload path pending"}</span>

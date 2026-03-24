@@ -5,16 +5,16 @@ Frontier Graph is designed to be inspectable and partially reproducible from the
 ## What is reproducible from the public repo alone
 
 - the website code in `site/`
-- the Explorer code in `app/`
+- the deprecated app code in `app/`
 - the paper source in `paper/`
 - the demo-data path in `data/demo/`
 - the release/export logic in `scripts/`
 
 ## What depends on the public release bundle
 
-To reproduce the public website and Explorer against the current release, you should use the public SQLite bundle and generated release artifacts linked from the downloads page.
+To reproduce the public website against the current release, you should use the public SQLite bundle and generated release artifacts linked from the downloads page.
 
-That is the intended reproduction path for the current public release.
+That is the intended reproduction path for the current public release. The deprecated app can also be pointed at that same bundle if you want to inspect the archived workflow locally.
 
 ## What is only partially reproducible
 
@@ -34,6 +34,6 @@ The full economics build is broader and closer to the public release, but it is 
 
 Treat the public repo as:
 
-- the source for the website, Explorer, paper, and release pipeline
+- the source for the website, deprecated app code, paper, and release pipeline
 - a transparent companion to the public release bundle
 - a research codebase whose maintained public surfaces are narrower than its full experimental history

@@ -1,9 +1,6 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import audit from "../../../generated/regime-audit.json";
-import broadData from "../../../generated/site-data-broad.json";
-
-const broad = broadData as { app_url: string };
 const payload = audit as {
   summary: {
     current_topics: number;
@@ -36,8 +33,6 @@ const fmt = (value: number) => new Intl.NumberFormat("en-GB").format(value);
   title="Broad Preview Audit | FrontierGraph"
   description="Side-by-side audit of the current FrontierGraph release and the broader 16.5k-topic preview."
   navPrefix="/broad"
-  appUrl={broad.app_url}
-  appLabel="Broad app preview"
   variantLabel="Broad preview"
   links={broadLinks}
 >

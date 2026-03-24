@@ -43,7 +43,7 @@ This guide summarizes the main fields in the public download files. If you want 
 | `top_countries_source`, `top_countries_target` | JSON lists of common settings for each side of the pair. |
 | `source_context_summary`, `target_context_summary` | Short context summaries for each side. |
 | `common_contexts` | Plain-language summary of overlapping settings. |
-| `app_link` | Deep link into the public explorer. |
+| `app_link` | Link into the maintained public site for that question. |
 
 ## `central_concepts.csv`
 
@@ -65,7 +65,7 @@ This guide summarizes the main fields in the public download files. If you want 
 | `in_degree`, `out_degree` | Directed degree counts in the graph tables. |
 | `neighbor_count` | Number of distinct neighboring concepts. |
 | `top_countries`, `top_units` | JSON lists of common settings and units. |
-| `app_link` | Deep link into the public explorer. |
+| `app_link` | Link into the maintained public literature view for that concept. |
 
 ## Structured JSON assets
 
@@ -87,7 +87,7 @@ This guide summarizes the main fields in the public download files. If you want 
 | `top_questions` | one row per released top question | Lightweight question surface mirrored into SQLite. |
 | `questions` | one row per released question | Full public question table. |
 | `central_concepts` | one row per central concept | Central concept table mirrored from CSV. |
-| `concept_index` | one row per concept | Searchable concept records with aliases and app links. |
+| `concept_index` | one row per concept | Searchable concept records with aliases and literature-view links. |
 | `graph_nodes`, `graph_edges` | one row per map node/edge | Lightweight public graph backbone. |
 | `opportunity_slices` | one row per pair in a named slice | Slice membership plus JSON payload. |
 | `concept_opportunities` | one row per concept-question pairing | Top nearby questions for each concept. |

@@ -73,7 +73,7 @@ async function main() {
   assert((await nav.getByRole("link", { name: /How it works/i }).count()) === 0, "How it works should not remain in nav");
   assert((await nav.getByRole("link", { name: /^Method$/ }).count()) === 0, "Method should not remain in nav");
   assert(await page.getByRole("link", { name: /^Browse questions$/ }).first().isVisible(), "Homepage CTA missing");
-  assert(await page.getByRole("link", { name: /^Explorer$/ }).first().isVisible(), "Homepage explorer CTA missing");
+  assert(await page.getByRole("link", { name: /^Literature Graph$/ }).first().isVisible(), "Homepage literature CTA missing");
   assert(await page.getByRole("link", { name: /^Working paper$/ }).first().isVisible(), "Homepage paper CTA missing");
   assert(await page.getByRole("link", { name: /^Download data$/ }).first().isVisible(), "Homepage data CTA missing");
   assert(await page.getByText(/^What$/).first().isVisible(), "Homepage what card missing");
@@ -237,13 +237,13 @@ async function main() {
   await page.waitForSelector("h1");
   assert(await page.getByRole("heading", { name: /Broad preview: finer topic vocabulary\./i }).isVisible(), "Broad home hero missing");
   assert(await page.getByText(/16\.5k-topic regime/i).isVisible(), "Broad home should explain the broader regime");
-  assert(await page.getByRole("link", { name: /Broad app preview/i }).first().isVisible(), "Broad home app CTA missing");
+  assert((await page.getByRole("link", { name: /Broad app preview/i }).count()) === 0, "Broad home should not show retired workspace CTA");
 
   await page.goto(`${baseUrl}/broad/questions/`, { waitUntil: "networkidle" });
   await page.waitForSelector("h1");
   assert(await page.getByRole("heading", { name: /Browse questions from the broad preview\./i }).isVisible(), "Broad questions hero missing");
   assert(await page.getByText(/broader 16\.5k-topic regime directly/i).isVisible(), "Broad questions should explain the regime swap");
-  assert(await page.getByRole("link", { name: /Open in Explorer/i }).first().isVisible(), "Broad questions should expose explorer links");
+  assert(await page.getByRole("link", { name: /See question/i }).first().isVisible(), "Broad questions should expose question links");
 
   await page.goto(`${baseUrl}/broad/graph/`, { waitUntil: "networkidle" });
   await page.waitForSelector('[data-role="search-input"]');

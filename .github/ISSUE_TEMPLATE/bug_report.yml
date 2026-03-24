@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a bug in the website, Explorer, release pipeline, or repository.
+description: Report a bug in the website, downloads, release pipeline, or repository.
 title: "[Bug]: "
 labels:
   - bug
@@ -17,7 +17,6 @@ body:
       label: Where did you see it?
       options:
         - Website
-        - Explorer
         - Downloads
         - Paper page
         - Repository / docs
