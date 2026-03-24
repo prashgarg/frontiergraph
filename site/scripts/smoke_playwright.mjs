@@ -66,7 +66,7 @@ async function main() {
   const nav = page.getByRole("navigation");
   assert(await nav.getByRole("link", { name: /^Home$/ }).isVisible(), "Home nav missing");
   assert(await nav.getByRole("link", { name: /^Questions$/ }).isVisible(), "Questions nav missing");
-  assert(await nav.getByRole("link", { name: /^Graph$/ }).isVisible(), "Graph nav missing");
+  assert(await nav.getByRole("link", { name: /^Explorer$/ }).isVisible(), "Explorer nav missing");
   assert(await nav.getByRole("link", { name: /^Paper$/ }).isVisible(), "Paper nav missing");
   assert(await nav.getByRole("link", { name: /^Downloads$/ }).isVisible(), "Downloads nav missing");
   assert((await page.getByRole("button", { name: /Dark mode/i }).count()) === 0, "Dark mode toggle should be removed");

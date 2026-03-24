@@ -12,7 +12,7 @@ const {
   neighborhoodsIndexPath,
   opportunitiesIndexPath,
   title = "Search the topic map",
-  caption = "Look up one topic by name or close variant, inspect its nearby questions and connections, and move into the graph or literature view when you want more detail.",
+  caption = "Look up one topic by name or close variant, inspect its nearby questions and connections, and move into the Explorer or literature view when you want more detail.",
 } = Astro.props;
 
 const rootId = `concept-lookup-${Math.random().toString(36).slice(2, 10)}`;
@@ -43,7 +43,7 @@ const questionHrefBase = Astro.url.pathname.startsWith("/broad/") ? "/broad/ques
         <div class="search-results" data-role="search-results"></div>
       </label>
       <div class="lookup-actions">
-        <a class="button-secondary" href={graphHrefBase}>Open graph</a>
+        <a class="button-secondary" href={graphHrefBase}>Open Explorer</a>
         <a class="button-primary" data-role="open-literature" href={literatureHrefBase}>Literature Graph</a>
       </div>
     </div>

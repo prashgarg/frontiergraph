@@ -12,7 +12,7 @@ const literatureHrefBase = "/literature/";
 <section id={rootId} class="quick-search-card" data-concept-index-path={conceptIndexPath}>
   <h3>Start with one concept you already care about.</h3>
   <p class="card-copy">
-    Search by topic name or a close variant, then jump into questions, the graph, or the literature view with that topic preloaded.
+    Search by topic name or a close variant, then jump into questions, the Explorer, or the literature view with that topic preloaded.
   </p>
   <label class="search-shell">
     <span>Find a topic</span>
@@ -24,7 +24,7 @@ const literatureHrefBase = "/literature/";
   </div>
   <div class="button-row">
     <a class="button-secondary" href="/questions/">Browse questions</a>
-    <a class="button-tertiary" href={graphHrefBase}>Open graph</a>
+    <a class="button-tertiary" href={graphHrefBase}>Open Explorer</a>
     <a class="button-tertiary" href={literatureHrefBase}>Literature Graph</a>
   </div>
 </section>
@@ -128,7 +128,7 @@ const literatureHrefBase = "/literature/";
       <p class="mini-copy">Study settings: ${escapeHtml(listText((concept.top_countries || []).slice(0, 3), "No dominant study setting in the current public release"))}</p>
       <div class="button-row">
         <a class="button-primary" href="/questions/">See nearby questions</a>
-        <a class="button-secondary" href="${escapeHtml(`${graphHrefBase}?q=${labelQuery}`)}">Open this graph</a>
+        <a class="button-secondary" href="${escapeHtml(`${graphHrefBase}?q=${labelQuery}`)}">Open this Explorer</a>
         <a class="button-tertiary" href="${escapeHtml(`${literatureHrefBase}?q=${labelQuery}`)}">Open literature graph</a>
       </div>
     `;
