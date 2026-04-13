@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "bash ../scripts/build_frontiergraph_site_locally.sh",
     "preview": "astro preview"
   },
   "dependencies": {
