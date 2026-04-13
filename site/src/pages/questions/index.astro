@@ -3,10 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import MechanismEditorialCarousel from "../../components/MechanismEditorialCarousel.astro";
 import MechanismQuestionCards from "../../components/MechanismQuestionCards.astro";
 import { data } from "../../lib/site-data";
+import mechanismEditorialSource from "../../content/mechanism-editorial-opportunities.json";
 import mechanismCarouselGroupsSource from "../../content/mechanism-carousel-groups.json";
 import mechanismArchiveSource from "../../content/mechanism-archive-generated.json";
 
-const mechanismCurated = data.questions.mechanism_curated_set;
+const mechanismCurated = Object.values((data.questions?.mechanism_curated_set ?? mechanismEditorialSource) as Record<string, any>);
 const mechanismByKey = new Map(mechanismCurated.map((item) => [item.pair_key, item]));
 const mechanismGroups = mechanismCarouselGroupsSource as {
   front: { title: string; caption: string; items: string[] };
