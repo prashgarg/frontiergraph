@@ -1,0 +1,39 @@
+paths:
+  external_dir: data/external
+  demo_dir: data/demo
+  processed_dir: data/processed
+  outputs_dir: outputs
+
+scoring:
+  alpha: 0.31926044796885217
+  beta: 0.41985333015818155
+  gamma: 0.2608862218729662
+  delta: 0.19001630111811024
+
+filters:
+  causal_only: false
+  min_stability: null
+  candidate_kind: causal_claim
+  candidate_family_mode: path_to_direct
+
+features:
+  tau: 3
+  max_path_len: 2
+  max_neighbors_per_mediator: 10
+  top_k_mediators: 5
+  top_k_paths: 5
+  top_k_supporting_papers_per_edge: 3
+
+backtest:
+  horizons: [5, 10, 15]
+  k_values: [50, 100, 500, 1000]
+
+llm:
+  model: gpt-5-nano
+  max_budget_usd: 20
+  key_path: ../key/openai_api_key.txt
+  openalex_key_path: ../key/openalex_api_key.txt
+  pricing_per_million_tokens:
+    input_usd: 0.20
+    output_usd: 0.80
+  output_to_input_token_ratio: 0.25

@@ -1,0 +1,104 @@
+# Cross-Source Canonicalization Candidates
+
+These are obvious cross-source duplicates identified by normalized label identity.
+
+- `adjustable rate mortgage`: canonical `Adjustable Rate Mortgage` (jel) <- `Adjustable-rate mortgage` (wikipedia), cosine `0.963`
+- `art project`: canonical `art project` (wikidata) <- `Art & Project` (wikipedia), cosine `0.777`
+- `asean cable system`: canonical `ASEAN cable system` (wikidata) <- `ASEAN (cable system)` (wikipedia), cosine `0.962`
+- `bank`: canonical `Bank` (jel) <- `.bank` (wikipedia), cosine `0.852`
+- `broker dealer`: canonical `Broker Dealer` (jel) <- `Broker-dealer` (openalex_keyword), cosine `0.865`
+- `cost benefit analysis`: canonical `Cost Benefit Analysis` (jel) <- `Cost–benefit analysis` (openalex_keyword), cosine `0.876`
+- `decision making`: canonical `Decision Making` (jel) <- `Decision-making` (openalex_keyword), cosine `0.920`
+- `dissent`: canonical `Dissent` (openalex_keyword) <- `Dissent!` (wikipedia), cosine `0.813`
+- `download`: canonical `Download` (openalex_keyword) <- `Download!` (wikipedia), cosine `0.653`
+- `eco efficiency`: canonical `Eco Efficiency` (jel) <- `Eco-efficiency` (openalex_keyword), cosine `0.937`
+- `efficient market hypothesis`: canonical `Efficient Market Hypothesis` (jel) <- `Efficient-market hypothesis` (openalex_keyword), cosine `0.941`
+- `epic`: canonical `EPIC` (openalex_keyword) <- `Epic!` (wikipedia), cosine `0.765`
+- `exchange rate regime`: canonical `Exchange Rate Regime` (jel) <- `Exchange-rate regime` (openalex_keyword), cosine `0.933`
+- `extensive form game`: canonical `Extensive Form Game` (jel) <- `Extensive-form game` (openalex_keyword), cosine `0.933`
+- `f test`: canonical `F Test` (jel) <- `F-test` (openalex_keyword), cosine `0.856`
+- `financial management`: canonical `Financial Management.` (jel) <- `Financial management` (openalex_keyword), cosine `0.887`
+- `five year plan`: canonical `Five year plan` (openalex_keyword) <- `Five-year plan` (wikipedia), cosine `0.981`
+- `fixed rate mortgage`: canonical `Fixed Rate Mortgage` (jel) <- `Fixed-rate mortgage` (wikipedia), cosine `0.931`
+- `foreign exchange reserves`: canonical `Foreign Exchange Reserves` (jel) <- `Foreign-exchange reserves` (openalex_keyword), cosine `0.914`
+- `free rider problem`: canonical `Free rider problem` (openalex_keyword) <- `Free-rider problem` (wikipedia), cosine `0.922`
+- `health data`: canonical `Health Data.` (jel) <- `Health data` (openalex_keyword), cosine `0.862`
+- `heterodox economics`: canonical `Heterodox Economics.` (jel) <- `Heterodox economics` (openalex_keyword), cosine `0.945`
+- `hold up problem`: canonical `Hold Up Problem` (jel) <- `Hold-up problem` (wikipedia), cosine `0.869`
+- `household`: canonical `Household.` (jel) <- `Household` (wikipedia), cosine `0.895`
+- `incomplete markets`: canonical `Incomplete Markets.` (jel) <- `Incomplete markets` (openalex_keyword), cosine `0.905`
+- `industry economics`: canonical `industry economics` (wikidata) <- `Industry (economics)` (wikipedia), cosine `0.742`
+- `input output`: canonical `Input Output` (jel) <- `Input Output.` (jel), cosine `0.944`
+- `input output`: canonical `Input Output` (jel) <- `Input/output` (openalex_keyword), cosine `0.839`
+- `is lm model`: canonical `IS LM Model` (jel) <- `IS–LM model` (wikipedia), cosine `0.833`
+- `is mp model`: canonical `IS MP Model` (jel) <- `IS/MP model` (wikipedia), cosine `0.888`
+- `laissez faire`: canonical `Laissez Faire` (jel) <- `Laissez-faire` (openalex_keyword), cosine `0.932`
+- `land use land use change and forestry`: canonical `Land use, land-use change and forestry` (openalex_keyword) <- `Land use, land-use change, and forestry` (wikipedia), cosine `0.953`
+- `learning by doing`: canonical `Learning by Doing` (jel) <- `Learning-by-doing` (openalex_keyword), cosine `0.895`
+- `loan guarantee`: canonical `Loan Guarantee.` (jel) <- `Loan guarantee` (wikipedia), cosine `0.913`
+- `macroeconomic model`: canonical `Macroeconomic Model.` (jel) <- `Macroeconomic model` (openalex_keyword), cosine `0.924`
+- `mass gathering medicine`: canonical `mass-gathering medicine` (wikidata) <- `Mass gathering medicine` (wikipedia), cosine `0.856`
+- `meat packing industry`: canonical `Meat packing industry` (openalex_keyword) <- `Meat-packing industry` (wikipedia), cosine `0.971`
+- `mundell fleming model`: canonical `Mundell Fleming Model` (jel) <- `Mundell–Fleming model` (wikipedia), cosine `0.849`
+- `museum`: canonical `Museum` (jel) <- `.museum` (wikipedia), cosine `0.857`
+- `network formation`: canonical `Network Formation.` (jel) <- `Network formation` (openalex_keyword), cosine `0.925`
+- `nfl`: canonical `NFL` (jel) <- `NFL+` (wikipedia), cosine `0.708`
+- `on the job training`: canonical `On the Job Training` (jel) <- `On-the-job training` (openalex_keyword), cosine `0.889`
+- `one child policy`: canonical `One Child Policy` (jel) <- `One-child policy` (wikipedia), cosine `0.910`
+- `open notebook science`: canonical `open notebook science` (wikidata) <- `Open-notebook science` (wikipedia), cosine `0.872`
+- `open source`: canonical `Open Source.` (jel) <- `Open source` (openalex_keyword), cosine `0.848`
+- `open source software`: canonical `Open Source Software` (jel) <- `Open-source software` (wikipedia), cosine `0.925`
+- `opera company`: canonical `opera company` (wikidata) <- `Opera (company)` (wikipedia), cosine `0.781`
+- `peer effects`: canonical `Peer Effects.` (jel) <- `Peer effects` (openalex_keyword), cosine `0.902`
+- `pharmacy`: canonical `Pharmacy` (openalex_keyword) <- `.pharmacy` (wikipedia), cosine `0.908`
+- `positive economics`: canonical `Positive Economics.` (jel) <- `positive economics` (wikidata), cosine `0.860`
+- `post earnings announcement drift`: canonical `Post-earnings-announcement drift` (openalex_keyword) <- `Post–earnings-announcement drift` (wikipedia), cosine `0.988`
+- `postcolonialism`: canonical `Postcolonialism.` (jel) <- `Postcolonialism` (wikipedia), cosine `0.925`
+- `price index`: canonical `Price Index.` (jel) <- `Price index` (openalex_keyword), cosine `0.885`
+- `private equity secondary market`: canonical `Private equity secondary market` (openalex_keyword) <- `Private-equity secondary market` (wikipedia), cosine `0.946`
+- `process engineering`: canonical `Process engineering` (openalex_keyword) <- `Process (engineering)` (wikipedia), cosine `0.738`
+- `protectionism`: canonical `Protectionism.` (jel) <- `Protectionism` (openalex_keyword), cosine `0.912`
+- `quality adjusted life year`: canonical `Quality Adjusted Life Year` (jel) <- `Quality-adjusted life year` (openalex_keyword), cosine `0.909`
+- `real world economics`: canonical `Real World Economics.` (jel) <- `Real-world economics` (wikipedia), cosine `0.860`
+- `regional policy`: canonical `Regional Policy.` (jel) <- `Regional policy` (openalex_keyword), cosine `0.906`
+- `rent seeking`: canonical `Rent Seeking` (jel) <- `rent-seeking` (wikidata), cosine `0.729`
+- `residential real estate`: canonical `Residential Real Estate.` (jel) <- `Residential real estate` (openalex_keyword), cosine `0.895`
+- `rule of law`: canonical `Rule of Law.` (jel) <- `Rule of law` (openalex_keyword), cosine `0.891`
+- `sacubitril valsartan`: canonical `Sacubitril, Valsartan` (openalex_keyword) <- `Sacubitril/valsartan` (wikipedia), cosine `0.934`
+- `secession`: canonical `Secession.` (jel) <- `Secession` (openalex_keyword), cosine `0.953`
+- `securitization`: canonical `Securitization.` (jel) <- `Securitization` (openalex_keyword), cosine `0.945`
+- `self employment`: canonical `Self Employment.` (jel) <- `Self-employment` (openalex_keyword), cosine `0.854`
+- `shale`: canonical `Shale.` (jel) <- `Shale` (wikipedia), cosine `0.947`
+- `small open economy`: canonical `Small Open Economy.` (jel) <- `Small open economy` (openalex_keyword), cosine `0.906`
+- `social accounting matrix`: canonical `Social Accounting Matrix.` (jel) <- `Social accounting matrix` (openalex_keyword), cosine `0.937`
+- `social desirability bias`: canonical `Social desirability bias` (openalex_keyword) <- `Social-desirability bias` (wikipedia), cosine `0.973`
+- `social innovation`: canonical `Social Innovation.` (jel) <- `Social innovation` (openalex_keyword), cosine `0.912`
+- `social mobility`: canonical `Social Mobility.` (jel) <- `Social mobility` (openalex_keyword), cosine `0.919`
+- `sociology`: canonical `Sociology.` (jel) <- `Sociology` (openalex_keyword), cosine `0.877`
+- `spoke hub distribution paradigm`: canonical `Spoke-hub distribution paradigm` (openalex_keyword) <- `Spoke–hub distribution paradigm` (wikipedia), cosine `0.954`
+- `spot market`: canonical `Spot Market.` (jel) <- `spot market` (wikidata), cosine `0.872`
+- `spouse`: canonical `Spouse.` (jel) <- `Spouse` (openalex_keyword), cosine `0.895`
+- `standardization`: canonical `Standardization.` (jel) <- `Standardization` (openalex_keyword), cosine `0.921`
+- `start up`: canonical `Start Up.` (jel) <- `Start up` (openalex_keyword), cosine `0.831`
+- `state government`: canonical `State Government.` (jel) <- `State government` (openalex_keyword), cosine `0.866`
+- `state owned enterprise`: canonical `State Owned Enterprise.` (jel) <- `State-owned enterprise` (wikipedia), cosine `0.894`
+- `statistics`: canonical `Statistics.` (jel) <- `Statistics` (openalex_keyword), cosine `0.747`
+- `stock market crash`: canonical `Stock Market Crash.` (jel) <- `Stock market crash` (openalex_keyword), cosine `0.887`
+- `strategy`: canonical `Strategy` (openalex_keyword) <- `Strategy&` (wikipedia), cosine `0.742`
+- `super app`: canonical `super-app` (wikidata) <- `Super app` (wikipedia), cosine `0.802`
+- `supreme court`: canonical `Supreme Court.` (jel) <- `Supreme court` (openalex_keyword), cosine `0.805`
+- `sustainable agriculture`: canonical `Sustainable Agriculture.` (jel) <- `Sustainable agriculture` (openalex_keyword), cosine `0.913`
+- `tar`: canonical `tarì` (wikidata) <- `Tar` (wikipedia), cosine `0.488`
+- `teacher`: canonical `Teacher.` (jel) <- `Teacher` (wikipedia), cosine `0.709`
+- `teacher quality`: canonical `Teacher Quality.` (jel) <- `Teacher quality` (openalex_keyword), cosine `0.894`
+- `technological innovation`: canonical `Technological Innovation.` (jel) <- `Technological innovation` (wikipedia), cosine `0.908`
+- `technology policy`: canonical `Technology Policy.` (jel) <- `Technology policy` (openalex_keyword), cosine `0.893`
+- `text messaging`: canonical `Text Messaging.` (jel) <- `Text messaging` (wikipedia), cosine `0.900`
+- `thatcherism`: canonical `Thatcherism.` (jel) <- `Thatcherism` (wikipedia), cosine `0.951`
+- `tillage`: canonical `Tillage.` (jel) <- `tillage` (wikidata), cosine `0.876`
+- `time preference`: canonical `Time Preference.` (jel) <- `Time preference` (openalex_keyword), cosine `0.839`
+- `time trade off`: canonical `Time-trade-off` (openalex_keyword) <- `Time trade-off` (wikipedia), cosine `0.939`
+- `tin`: canonical `Tin.` (jel) <- `Tin` (openalex_keyword), cosine `0.902`
+- `tourist tax`: canonical `Tourist Tax.` (jel) <- `Tourist tax` (wikipedia), cosine `0.892`
+- `trade finance`: canonical `Trade finance` (openalex_keyword) <- `Trade (finance)` (wikipedia), cosine `0.749`
+- `trade name`: canonical `Trade Name.` (jel) <- `Trade name` (wikipedia), cosine `0.893`

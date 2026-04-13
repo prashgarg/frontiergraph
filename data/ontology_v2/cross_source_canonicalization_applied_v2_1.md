@@ -1,0 +1,81 @@
+# Applied Cross-Source Canonicalization
+
+These pairs passed the conservative application filter: normalized-label duplicate, cosine >= 0.90, and non-family sources.
+
+- `willingness to pay`: canonical `Willingness to Pay.` (jel) <- `Willingness to pay` (openalex_keyword), cosine `0.932`, member support `2,950`
+- `uncertainty`: canonical `Uncertainty.` (jel) <- `Uncertainty` (openalex_keyword), cosine `0.904`, member support `2,537`
+- `technological innovation`: canonical `Technological Innovation.` (jel) <- `Technological innovation` (wikipedia), cosine `0.908`, member support `1,875`
+- `decision making`: canonical `Decision Making` (jel) <- `Decision-making` (openalex_keyword), cosine `0.920`, member support `596`
+- `incomplete markets`: canonical `Incomplete Markets.` (jel) <- `Incomplete markets` (openalex_keyword), cosine `0.905`, member support `580`
+- `trade volume`: canonical `Trade Volume.` (jel) <- `Trade volume` (openalex_keyword), cosine `0.921`, member support `556`
+- `exchange rate regime`: canonical `Exchange Rate Regime` (jel) <- `Exchange-rate regime` (openalex_keyword), cosine `0.933`, member support `484`
+- `small open economy`: canonical `Small Open Economy.` (jel) <- `Small open economy` (openalex_keyword), cosine `0.906`, member support `468`
+- `turnover`: canonical `Turnover.` (jel) <- `Turnover` (openalex_keyword), cosine `0.929`, member support `397`
+- `macroeconomic model`: canonical `Macroeconomic Model.` (jel) <- `Macroeconomic model` (openalex_keyword), cosine `0.924`, member support `392`
+- `welfare economics`: canonical `Welfare Economics.` (jel) <- `Welfare economics` (openalex_keyword), cosine `0.924`, member support `372`
+- `quality adjusted life year`: canonical `Quality Adjusted Life Year` (jel) <- `Quality-adjusted life year` (openalex_keyword), cosine `0.909`, member support `336`
+- `wealth distribution`: canonical `Wealth Distribution.` (jel) <- `Wealth distribution` (openalex_keyword), cosine `0.916`, member support `282`
+- `time trade off`: canonical `Time-trade-off` (openalex_keyword) <- `Time trade-off` (wikipedia), cosine `0.939`, member support `270`
+- `securitization`: canonical `Securitization.` (jel) <- `Securitization` (openalex_keyword), cosine `0.945`, member support `251`
+- `uniqueness`: canonical `Uniqueness.` (jel) <- `Uniqueness` (openalex_keyword), cosine `0.930`, member support `224`
+- `efficient market hypothesis`: canonical `Efficient Market Hypothesis` (jel) <- `Efficient-market hypothesis` (openalex_keyword), cosine `0.941`, member support `200`
+- `zoning`: canonical `Zoning.` (jel) <- `Zoning` (openalex_keyword), cosine `0.931`, member support `200`
+- `regional policy`: canonical `Regional Policy.` (jel) <- `Regional policy` (openalex_keyword), cosine `0.906`, member support `166`
+- `eco efficiency`: canonical `Eco Efficiency` (jel) <- `Eco-efficiency` (openalex_keyword), cosine `0.937`, member support `154`
+- `post earnings announcement drift`: canonical `Post-earnings-announcement drift` (openalex_keyword) <- `Post–earnings-announcement drift` (wikipedia), cosine `0.988`, member support `143`
+- `foreign exchange reserves`: canonical `Foreign Exchange Reserves` (jel) <- `Foreign-exchange reserves` (openalex_keyword), cosine `0.914`, member support `128`
+- `fixed rate mortgage`: canonical `Fixed Rate Mortgage` (jel) <- `Fixed-rate mortgage` (wikipedia), cosine `0.931`, member support `115`
+- `vocational education`: canonical `Vocational Education.` (jel) <- `Vocational education` (openalex_keyword), cosine `0.900`, member support `108`
+- `protectionism`: canonical `Protectionism.` (jel) <- `Protectionism` (openalex_keyword), cosine `0.912`, member support `105`
+- `velocity of money`: canonical `Velocity of Money.` (jel) <- `Velocity of money` (openalex_keyword), cosine `0.937`, member support `102`
+- `welfare state`: canonical `Welfare State.` (jel) <- `Welfare state` (openalex_keyword), cosine `0.910`, member support `100`
+- `adjustable rate mortgage`: canonical `Adjustable Rate Mortgage` (jel) <- `Adjustable-rate mortgage` (wikipedia), cosine `0.963`, member support `94`
+- `standardization`: canonical `Standardization.` (jel) <- `Standardization` (openalex_keyword), cosine `0.921`, member support `89`
+- `value added tax`: canonical `Value Added Tax.` (jel) <- `Value-added tax` (openalex_keyword), cosine `0.912`, member support `87`
+- `loan guarantee`: canonical `Loan Guarantee.` (jel) <- `Loan guarantee` (wikipedia), cosine `0.913`, member support `86`
+- `free rider problem`: canonical `Free rider problem` (openalex_keyword) <- `Free-rider problem` (wikipedia), cosine `0.922`, member support `78`
+- `peer effects`: canonical `Peer Effects.` (jel) <- `Peer effects` (openalex_keyword), cosine `0.902`, member support `78`
+- `venture capital`: canonical `Venture Capital.` (jel) <- `Venture capital` (openalex_keyword), cosine `0.905`, member support `78`
+- `transportation industry`: canonical `Transportation Industry.` (jel) <- `Transportation industry` (openalex_keyword), cosine `0.907`, member support `73`
+- `two sided matching`: canonical `Two Sided Matching` (jel) <- `Two-Sided Matching` (wikipedia), cosine `0.939`, member support `72`
+- `heterodox economics`: canonical `Heterodox Economics.` (jel) <- `Heterodox economics` (openalex_keyword), cosine `0.945`, member support `72`
+- `transfer problem`: canonical `Transfer Problem.` (jel) <- `Transfer problem` (openalex_keyword), cosine `0.910`, member support `71`
+- `laissez faire`: canonical `Laissez Faire` (jel) <- `Laissez-faire` (openalex_keyword), cosine `0.932`, member support `68`
+- `sustainable agriculture`: canonical `Sustainable Agriculture.` (jel) <- `Sustainable agriculture` (openalex_keyword), cosine `0.913`, member support `57`
+- `spoke hub distribution paradigm`: canonical `Spoke-hub distribution paradigm` (openalex_keyword) <- `Spoke–hub distribution paradigm` (wikipedia), cosine `0.954`, member support `56`
+- `transfer pricing`: canonical `Transfer Pricing.` (jel) <- `Transfer pricing` (openalex_keyword), cosine `0.921`, member support `41`
+- `social accounting matrix`: canonical `Social Accounting Matrix.` (jel) <- `Social accounting matrix` (openalex_keyword), cosine `0.937`, member support `40`
+- `voucher`: canonical `Voucher.` (jel) <- `Voucher` (openalex_keyword), cosine `0.930`, member support `32`
+- `trade regulation`: canonical `Trade Regulation.` (jel) <- `Trade regulation` (wikipedia), cosine `0.904`, member support `31`
+- `social mobility`: canonical `Social Mobility.` (jel) <- `Social mobility` (openalex_keyword), cosine `0.919`, member support `31`
+- `five year plan`: canonical `Five year plan` (openalex_keyword) <- `Five-year plan` (wikipedia), cosine `0.981`, member support `27`
+- `social innovation`: canonical `Social Innovation.` (jel) <- `Social innovation` (openalex_keyword), cosine `0.912`, member support `26`
+- `pharmacy`: canonical `Pharmacy` (openalex_keyword) <- `.pharmacy` (wikipedia), cosine `0.908`, member support `24`
+- `extensive form game`: canonical `Extensive Form Game` (jel) <- `Extensive-form game` (openalex_keyword), cosine `0.933`, member support `21`
+- `secession`: canonical `Secession.` (jel) <- `Secession` (openalex_keyword), cosine `0.953`, member support `21`
+- `utility theory`: canonical `Utility Theory.` (jel) <- `Utility theory` (openalex_keyword), cosine `0.928`, member support `21`
+- `network formation`: canonical `Network Formation.` (jel) <- `Network formation` (openalex_keyword), cosine `0.925`, member support `20`
+- `shale`: canonical `Shale.` (jel) <- `Shale` (wikipedia), cosine `0.947`, member support `20`
+- `private equity secondary market`: canonical `Private equity secondary market` (openalex_keyword) <- `Private-equity secondary market` (wikipedia), cosine `0.946`, member support `16`
+- `woodland`: canonical `Woodland.` (jel) <- `Woodland` (openalex_keyword), cosine `0.926`, member support `16`
+- `ultimatum game`: canonical `Ultimatum Game.` (jel) <- `Ultimatum game` (openalex_keyword), cosine `0.961`, member support `15`
+- `wagner s law`: canonical `Wagner's Law.` (jel) <- `Wagner's law` (wikipedia), cosine `0.923`, member support `15`
+- `tin`: canonical `Tin.` (jel) <- `Tin` (openalex_keyword), cosine `0.902`, member support `14`
+- `wildlife`: canonical `Wildlife.` (jel) <- `Wildlife` (openalex_keyword), cosine `0.907`, member support `12`
+- `work life balance`: canonical `Work-Life Balance` (jel) <- `Work–life balance` (openalex_keyword), cosine `0.915`, member support `10`
+- `land use land use change and forestry`: canonical `Land use, land-use change and forestry` (openalex_keyword) <- `Land use, land-use change, and forestry` (wikipedia), cosine `0.953`, member support `9`
+- `postcolonialism`: canonical `Postcolonialism.` (jel) <- `Postcolonialism` (wikipedia), cosine `0.925`, member support `9`
+- `input output`: canonical `Input Output` (jel) <- `Input Output.` (jel), cosine `0.944`, member support `7`
+- `wood processing`: canonical `Wood Processing.` (jel) <- `Wood processing` (openalex_keyword), cosine `0.930`, member support `7`
+- `thatcherism`: canonical `Thatcherism.` (jel) <- `Thatcherism` (wikipedia), cosine `0.951`, member support `6`
+- `one child policy`: canonical `One Child Policy` (jel) <- `One-child policy` (wikipedia), cosine `0.910`, member support `5`
+- `open source software`: canonical `Open Source Software` (jel) <- `Open-source software` (wikipedia), cosine `0.925`, member support `5`
+- `sacubitril valsartan`: canonical `Sacubitril, Valsartan` (openalex_keyword) <- `Sacubitril/valsartan` (wikipedia), cosine `0.934`, member support `5`
+- `wool`: canonical `Wool.` (jel) <- `Wool` (openalex_keyword), cosine `0.913`, member support `5`
+- `united states postal service`: canonical `United States Postal Service.` (jel) <- `United States Postal Service` (wikipedia), cosine `0.916`, member support `3`
+- `social desirability bias`: canonical `Social desirability bias` (openalex_keyword) <- `Social-desirability bias` (wikipedia), cosine `0.973`, member support `2`
+- `meat packing industry`: canonical `Meat packing industry` (openalex_keyword) <- `Meat-packing industry` (wikipedia), cosine `0.971`, member support `2`
+- `weed control`: canonical `Weed Control.` (jel) <- `Weed control` (wikipedia), cosine `0.927`, member support `2`
+- `urban studies`: canonical `Urban Studies.` (jel) <- `Urban studies` (openalex_keyword), cosine `0.909`, member support `2`
+- `asean cable system`: canonical `ASEAN cable system` (wikidata) <- `ASEAN (cable system)` (wikipedia), cosine `0.962`, member support `0`
+- `viral marketing`: canonical `Viral Marketing.` (jel) <- `Viral marketing` (wikipedia), cosine `0.942`, member support `0`

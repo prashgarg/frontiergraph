@@ -1,0 +1,37 @@
+{
+  "baseline_name": "ontology_v2_3_frozen_baseline",
+  "frozen_on": "2026-04-09",
+  "status": "frozen_for_method_v2",
+  "freeze_policy": "factual_errata_only",
+  "summary": {
+    "ontology_rows": 154359,
+    "display_label_changes": 602,
+    "ambiguous_containers": 4,
+    "allowed_roots": 22,
+    "duplicate_merges_applied": 2,
+    "promoted_intermediate_groups": 0,
+    "effective_parent_coverage": 13820,
+    "direct_0_75_labels": 316292,
+    "direct_0_75_occurrences": 553015
+  },
+  "artifacts": {
+    "ontology_json": "data/ontology_v2/ontology_v2_3_candidate.json",
+    "mapping_parquet": "data/ontology_v2/extraction_label_mapping_v2_3_candidate.parquet",
+    "sqlite": "data/production/frontiergraph_ontology_v2_3_candidate/ontology_v2_3_candidate.sqlite",
+    "policy_note": "next_steps/v2_3_ontology_policy.md",
+    "evaluation_note": "data/ontology_v2/ontology_v2_3_evaluation.md",
+    "evaluation_metrics": "data/ontology_v2/ontology_v2_3_evaluation_metrics.json",
+    "freeze_note": "data/ontology_v2/ontology_v2_3_freeze_note.md",
+    "label_policy_sidecar": "data/ontology_v2/ontology_v2_3_label_policy.parquet",
+    "duplicate_resolution_sidecar": "data/ontology_v2/ontology_v2_3_duplicate_resolution.parquet",
+    "intermediate_review_sidecar": "data/ontology_v2/ontology_v2_3_intermediate_review.parquet"
+  },
+  "interpretation": {
+    "raw_source_provenance_immutable": true,
+    "display_label_is_cleanup_not_source_rewrite": true,
+    "effective_fields_are_reviewed_hierarchy_overlay": true,
+    "broad_roots_allowed": true,
+    "ambiguous_containers_explicit": true,
+    "no_new_intermediate_promotions_in_pause1": true
+  }
+}

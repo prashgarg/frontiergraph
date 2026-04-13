@@ -1,0 +1,45 @@
+# Final Grounding Review Results run1
+
+- model: `gpt-5.4-mini (reasoning=low)`
+- reviewed items: `11,569`
+- batches: `851`
+- prompt tokens: `2,078,226`
+- completion tokens: `1,039,643`
+
+## Decisions
+- `accept_existing_broad`: `5,234`
+- `promote_new_concept_family`: `4,181`
+- `accept_existing_alias`: `1,151`
+- `reject_match_keep_raw`: `674`
+- `keep_unresolved`: `308`
+- `unclear`: `21`
+
+## Confidence
+- `high`: `8,040`
+- `medium`: `3,052`
+- `low`: `477`
+
+## Sample rows
+
+| review_item_type   | label                 | effective_score_band   | effective_proposed_action   | decision                   | canonical_target_label   | new_concept_family_label                   | confidence   | reason                                                                                                           |
+|:-------------------|:----------------------|:-----------------------|:----------------------------|:---------------------------|:-------------------------|:-------------------------------------------|:-------------|:-----------------------------------------------------------------------------------------------------------------|
+| cluster_medoid     | gdp per capita        | candidate              | attach_existing_broad       | accept_existing_broad      | GDP                      |                                            | high         | These labels are variations of GDP measured per capita or in growth terms.                                       |
+| cluster_medoid     | institutional quality | candidate              | add_alias_to_existing       | promote_new_concept_family |                          | Institutional Quality                      | high         | The cluster centers on institutional quality, not reform, and recurs as a distinct research concept.             |
+| cluster_medoid     | firm characteristics  | rescue                 | propose_new_concept_family  | promote_new_concept_family |                          | Characteristics                            | high         | The cluster spans firm, household, individual, and country characteristics as a broad analytic descriptor.       |
+| cluster_medoid     | financial constraints | rescue                 | add_alias_to_existing       | promote_new_concept_family |                          | Financial Constraints                      | high         | The labels consistently refer to financing constraints rather than financial distress.                           |
+| cluster_medoid     | covid-19 crisis       | candidate              | attach_existing_broad       | accept_existing_broad      | COVID-19                 |                                            | high         | These are all period and shock variants of the COVID-19 pandemic.                                                |
+| cluster_medoid     | policy implications   | candidate              | add_alias_to_existing       | accept_existing_alias      | Policy Issues            |                                            | high         | The cluster is mostly wording variants of policy implications.                                                   |
+| cluster_medoid     | economic fundamentals | candidate              | propose_new_concept_family  | promote_new_concept_family |                          | Economic Fundamentals                      | high         | This cluster captures fundamentals as a recurring concept family, broader than basic economics.                  |
+| cluster_medoid     | medicaid expansion    | candidate              | attach_existing_broad       | accept_existing_broad      | Medicaid                 |                                            | high         | These labels are all Medicaid expansion or eligibility variants.                                                 |
+| cluster_medoid     | monetary shocks       | candidate              | propose_new_concept_family  | promote_new_concept_family |                          | monetary shocks and monetary policy shocks | high         | Cluster centers on monetary policy shock variants, a recurring concept family beyond general monetary economics. |
+| cluster_medoid     | inflation persistence | candidate              | propose_new_concept_family  | promote_new_concept_family |                          | persistence                                | medium       | Labels span inflation and other persistence notions, forming a broader recurring concept family.                 |
+| cluster_medoid     | small firms           | candidate              | add_alias_to_existing       | accept_existing_alias      | Small business           |                                            | high         | These labels are straightforward wording variants of small business.                                             |
+| cluster_medoid     | equilibrium price     | candidate              | propose_new_concept_family  | accept_existing_broad      | Equilibrium              |                                            | high         | The cluster is broadly about equilibrium concepts across different economic contexts.                            |
+
+## Micro retry details
+
+- pending before micro retry: `16`
+- recovered on micro retry: `16`
+- remaining missing after micro retry: `0`
+- micro retry batch sizes: row=`1`, cluster=`1`, unresolved=`1`
+- micro retry concurrency: `8`
