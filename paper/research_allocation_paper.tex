@@ -45,9 +45,8 @@
   citecolor=blue!50!black
 }
 
-\newcommand{\repoURL}{\nolinkurl{https://github.com/prashgarg/frontiergraph}}
+\newcommand{\repoURL}{\href{https://github.com/prashgarg/frontiergraph}{github.com/prashgarg/frontiergraph}}
 \newcommand{\fignotes}[1]{\caption*{\textit{Notes.} #1}}
-\newcommand{\pendingnote}[1]{\par\medskip\noindent\textcolor{red}{\textbf{Pending today.} #1}\par\medskip}
 \newtcolorbox{promptbox}{
   enhanced,
   breakable,
@@ -621,15 +620,15 @@ real test in this setting because research attention is path-dependent. Visible 
 familiar data, and established methods tend to attract still more work. If that
 cumulative-advantage process does most of the work, a popularity rule should already rank
 future questions well. It does not. In both historical families, the transparent graph
-score beats preferential attachment, and the adopted reranker improves further.
+score beats preferential attachment, and the learned reranker improves further.
 
 The two families then diverge in a useful way. Direct-to-path yields denser shortlists. In
 plain language, a larger share of the top 100 suggestions later becomes part of the
-published record. At \(h=5\), the adopted reranker surfaces about 16.0 future links per 100
+published record. At \(h=5\), the learned reranker surfaces about 16.0 future links per 100
 suggestions in direct-to-path, versus 10.5 in path-to-direct, which is equivalent to a
 16.0\% versus 10.5\% shortlist hit rate. At \(h=10\), the comparison is 31.3 versus 20.7.
 At \(h=15\), it is 45.6 versus 26.4. Path-to-direct instead captures more of the
-later-realized stock and ranks it earlier on average. The adopted reranker reaches
+later-realized stock and ranks it earlier on average. The learned reranker reaches
 Recall@100 of 13.8, 13.9, and 15.4 across \(h=5,10,15\), versus 7.6, 10.0, and 8.7 in
 direct-to-path (Figure~\ref{fig:main-benchmark} and
 Table~\ref{tab:benchmark-summary-main}).
@@ -639,7 +638,7 @@ Table~\ref{tab:benchmark-summary-main}).
   \label{fig:main-benchmark}
   \centering
   \includegraphics[width=0.92\linewidth]{../outputs/paper/149_dual_family_main_pairing/dual_family_main_benchmark.pdf}
-  \fignotes{Each row is one historical family and each column is one shortlist metric. Path-to-direct asks whether a locally supported direct relation later appears. Direct-to-path asks whether an existing direct relation later acquires a supporting path. Within each family, the transparent score beats preferential attachment and the adopted reranker improves further. Across families, the comparison is not one-dimensional: direct-to-path delivers more later realizations per 100 suggestions, while path-to-direct has higher Recall@100 and MRR.}
+  \fignotes{Each row is one historical family and each column is one shortlist metric. Path-to-direct asks whether a locally supported direct relation later appears. Direct-to-path asks whether an existing direct relation later acquires a supporting path. Within each family, the transparent score beats preferential attachment and the learned reranker improves further. Across families, the comparison is not one-dimensional: direct-to-path delivers more later realizations per 100 suggestions, while path-to-direct has higher Recall@100 and MRR.}
 \end{figure}
 
 This is a severe screening problem in both families. The top-100 shortlist is being asked to
@@ -743,7 +742,7 @@ summarizes the paired comparison.
   \centering
   \scriptsize
   \input{../outputs/paper/149_dual_family_main_pairing/dual_family_main_benchmark_table.tex}
-  \fignotes{Each row reports one family-model combination averaged across the 1990--2015 cutoff grid. Columns are grouped by metric, with the three main horizons nested underneath. Future links per 100 suggestions is the shortlist hit rate, that is, Precision@100 expressed in percent. Recall@100 is the share of all later realizations in that family captured in the top 100. Mean reciprocal rank rewards putting later realizations nearer the top. The table shows the same pattern as Figure~\ref{fig:main-benchmark}: the graph beats preferential attachment in both families, the adopted reranker improves further, and the two families remain substantively different rather than collapsing to one ranking problem.}
+  \fignotes{Each row reports one family-model combination averaged across the 1990--2015 cutoff grid. Columns are grouped by metric, with the three main horizons nested underneath. Future links per 100 suggestions is the shortlist hit rate, that is, Precision@100 expressed in percent. Recall@100 is the share of all later realizations in that family captured in the top 100. Mean reciprocal rank rewards putting later realizations nearer the top. The table shows the same pattern as Figure~\ref{fig:main-benchmark}: the graph beats preferential attachment in both families, the learned reranker improves further, and the two families remain substantively different rather than collapsing to one ranking problem.}
 \end{table}
 
 The paired shortlist comparison already shows that graph structure adds screening value
@@ -754,8 +753,7 @@ claim (Appendix~\ref{app:paired-family-extensions} and
 Appendix~\ref{app:paired-budget-extensions}). The paired budget comparison adds one
 practical lesson: path-to-direct is sharper when the reader wants a very short shortlist,
 while direct-to-path becomes more useful once the reader is willing to inspect a broader
-set of candidates (Appendix~\ref{app:paired-budget-extensions}). The separate path-length
-axis is useful, but it is parked off-paper until the main draft is settled.
+set of candidates (Appendix~\ref{app:paired-budget-extensions}).
 
 \section{Discussion and Extensions}
 
@@ -1016,7 +1014,7 @@ The model returns a paper-local graph with \texttt{nodes} and \texttt{edges}. Th
 
 \paragraph{Separating claim status, explicitness, tentativeness, and edge role.} These fields overlap in plain language but do different jobs downstream. Claim status records whether a finding is present, absent, mixed, or only posed as a question. Explicitness records whether the relation is stated as a result, a question, background, or only implied. Tentativeness records how strongly the paper speaks. Edge role records whether the relation is the main effect, a mechanism, heterogeneity, or something else. The benchmark and public tool both become much less legible if these distinctions are collapsed into one generic confidence flag.
 
-\paragraph{Reproducibility.} The prompts, schema files, extraction scripts, ontology pipeline, and paper-generation code will be released at \repoURL. The manuscript uses placeholder repository text because the repository will be made public at release time.
+\paragraph{Reproducibility.} The prompts, schema files, extraction scripts, ontology pipeline, and paper-generation code are available at \repoURL.
 
 \section{Normalization and Ontology}
 \label{app:node-normalization}
@@ -1252,7 +1250,7 @@ text. The family-specific model detail stays here.
     \(h=15\) & Late (2000--2015) & 3 & 268.0 & 0.141 & 18.5 & 0.323 \\
     \bottomrule
   \end{tabular}
-  \fignotes{Early means the 1990 and 1995 cutoffs; late means 2000 through 2015 where the horizon is valid. Mean eval positives is the average number of realized positives in the cutoff-year cell. Winner R@100 uses the horizon-specific adopted reranker winner from Table~\ref{tab:expanded-reranker-benchmark}. Support age and endpoint recent share are computed on that winner's surfaced top-100. The early cells are smaller and more recent-surge-like.}
+  \fignotes{Early means the 1990 and 1995 cutoffs; late means 2000 through 2015 where the horizon is valid. Mean eval positives is the average number of realized positives in the cutoff-year cell. Winner R@100 uses the horizon-specific learned reranker winner from Table~\ref{tab:expanded-reranker-benchmark}. Support age and endpoint recent share are computed on that winner's surfaced top-100. The early cells are smaller and more recent-surge-like.}
 \end{table}
 
 Table~\ref{tab:early-late-regime} makes the timing issue concrete. At every main horizon, the early cells contain far fewer realized positives and the surfaced top-100 draws on much younger support. The endpoint recent-share measures are also systematically higher in the early era. The later benchmark therefore should not be read as the same environment with less noise. It is a different graph regime with thicker and older local structure.
@@ -1550,8 +1548,6 @@ usefulness checks ask whether the rendered question looks useful and intelligibl
 current reader. They speak to presentation quality and semantic coherence, not to
 historical forecasting. They remain in the appendix because they assess the surfaced
 question, not because they replace the benchmark.
-
-\pendingnote{The paired-family LLM usefulness screen at the current baseline path setting is now complete off-paper. Once the parked path-length axis has identified the best longer-path setting, this appendix section should be refreshed to report the paired-family comparison and then one selective length comparison between `max\_path\_len = 2` and the best longer-path contender, rather than all four path-length settings.}
 
 The human exercise uses a small blinded pack built from the path-to-direct frontier. It
 compares 12 graph-selected items with 12 preferential-attachment-selected items drawn from
