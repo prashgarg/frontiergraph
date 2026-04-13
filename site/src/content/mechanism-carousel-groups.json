@@ -1,7 +1,7 @@
 {
   "front": {
     "title": "Mechanism questions",
-    "caption": "These are the strongest channel-focused questions we currently want on the public page.",
+    "caption": "",
     "items": [
       "https://openalex.org/keywords/environmental-quality__jel:O11:GDP",
       "https://openalex.org/keywords/r-d-intensity__jel:F62:Economic Growth",
@@ -21,7 +21,7 @@
     {
       "slug": "macro-finance-mechanisms",
       "title": "Macro and finance",
-      "caption": "Questions about monetary transmission, leverage, lending, and market behavior.",
+      "caption": "",
       "items": [
         "https://openalex.org/keywords/volatility__https://openalex.org/keywords/investor-behavior",
         "https://openalex.org/keywords/macroprudential-regulation__jel:G32:Leverage",
@@ -33,7 +33,7 @@
     {
       "slug": "climate-energy-mechanisms",
       "title": "Climate and energy",
-      "caption": "Questions where the support graph points to specific climate-policy and energy-market channels.",
+      "caption": "",
       "items": [
         "wp:15532928__https://openalex.org/keywords/electricity-price",
         "https://openalex.org/keywords/environmental-quality__jel:O11:GDP",
@@ -45,7 +45,7 @@
     {
       "slug": "innovation-productivity-mechanisms",
       "title": "Innovation and productivity",
-      "caption": "Questions about how technology, R&D, and green innovation map into firm performance and growth.",
+      "caption": "",
       "items": [
         "https://openalex.org/keywords/digital-transformation__jel:D24:Productivity",
         "https://openalex.org/keywords/green-innovation__jel:D24:Productivity",
@@ -57,7 +57,7 @@
     {
       "slug": "labor-household-mechanisms",
       "title": "Labor and household",
-      "caption": "Questions where wages, care-payment design, and productivity connect through concrete margins.",
+      "caption": "",
       "items": [
         "jel:O32:R&D__jel:E25:Wage",
         "jel:E25:Wage__jel:D24:Productivity",
@@ -69,7 +69,7 @@
     {
       "slug": "longer-horizon-project-ideas",
       "title": "Longer-horizon project ideas",
-      "caption": "These are richer mechanism questions that look promising but likely need more design work than the front stack.",
+      "caption": "",
       "items": [
         "jel:O32:R&D__jel:L25:Firm Size",
         "https://openalex.org/keywords/feed-in-tariff__wp:216474",

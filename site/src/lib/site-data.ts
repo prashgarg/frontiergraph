@@ -1,5 +1,6 @@
 import siteData from "../generated/site-data.json";
 import editorialSource from "../content/editorial-opportunities.json";
+import mechanismEditorialSource from "../content/mechanism-editorial-opportunities.json";
 import questionsCarouselAssignmentsSource from "../content/questions-carousel-assignments.json";
 import publicLabelGlossarySource from "../content/public-label-glossary.json";
 
@@ -109,6 +110,24 @@ export type EditorialQuestion = {
 
 export type CuratedQuestion = Opportunity & EditorialQuestion;
 
+export type MechanismEditorialQuestion = {
+  pair_key: string;
+  question_title: string;
+  short_why: string;
+  first_next_step: string;
+  who_its_for: string;
+  display_order: number;
+  field_shelves: string[];
+  collection_tags: string[];
+  question_family: string;
+  graph_query: string;
+  graph_family: string;
+  source_label: string;
+  target_label: string;
+  channel_labels: string[];
+  route_family: string;
+};
+
 export type CuratedQuestionGroup = {
   slug: string;
   title: string;
@@ -193,10 +212,24 @@ export type DownloadFile = {
   size_bytes: number;
 };
 
+export type BuildInputFile = {
+  path: string;
+  filename: string;
+  size_bytes: number;
+  modified_at: string;
+};
+
 export type SiteData = {
   generated_at: string;
   app_url: string;
   repo_url: string;
+  build_inputs?: {
+    public_source_db: BuildInputFile;
+    public_graph_db: BuildInputFile;
+    extraction_db: BuildInputFile;
+    openalex_enriched_db: BuildInputFile;
+    public_release_source_db?: BuildInputFile;
+  };
   public_label_glossary: Record<string, PublicLabelGloss>;
   metrics: MetricBundle;
   home: {
@@ -220,6 +253,7 @@ export type SiteData = {
   questions: {
     slices_path: string;
     concept_opportunities_index_path: string;
+    mechanism_curated_set: MechanismEditorialQuestion[];
     curated_front_set: CuratedQuestion[];
     field_shelves: CuratedQuestionGroup[];
     collections: CuratedQuestionGroup[];
@@ -250,6 +284,26 @@ export type SiteData = {
     artifact_details: Record<string, DownloadFile>;
   };
 };
+
+const MECHANISM_EDITORIAL_REQUIRED_FIELDS = (
+  [
+    "pair_key",
+    "question_title",
+    "short_why",
+    "first_next_step",
+    "who_its_for",
+    "display_order",
+    "field_shelves",
+    "collection_tags",
+    "question_family",
+    "graph_query",
+    "graph_family",
+    "source_label",
+    "target_label",
+    "channel_labels",
+    "route_family",
+  ] as const
+);
 
 function invariant(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -287,6 +341,21 @@ function normalizeQuestionsCarouselAssignmentsSource(): {
     field_carousels: payload.field_carousels,
     use_case_carousels: payload.use_case_carousels,
   };
+}
+
+function normalizeMechanismEditorialSource(): MechanismEditorialQuestion[] {
+  const payload = mechanismEditorialSource as Record<string, MechanismEditorialQuestion>;
+  const items = Object.values(payload);
+  invariant(items.length > 0, "Mechanism editorial opportunities source is empty");
+  for (const item of items) {
+    const missing = MECHANISM_EDITORIAL_REQUIRED_FIELDS.filter((field) => !(field in item));
+    invariant(missing.length === 0, `Mechanism editorial entry ${item.pair_key} is missing required fields: ${missing.join(", ")}`);
+    invariant(Boolean(item.pair_key), "Mechanism editorial entries must include pair_key");
+    invariant(Boolean(item.question_title), `Mechanism editorial entry ${item.pair_key} must include question_title`);
+    invariant(Boolean(item.graph_query), `Mechanism editorial entry ${item.pair_key} must include graph_query`);
+    invariant(Array.isArray(item.channel_labels), `Mechanism editorial entry ${item.pair_key} must include channel_labels array`);
+  }
+  return items.sort((left, right) => left.display_order - right.display_order);
 }
 
 function validateCuratedSet(
@@ -366,6 +435,7 @@ function invariantGlobalCarouselUniqueness(groups: QuestionCarouselGroup[]): voi
 function buildSiteData(): SiteData {
   const payload = siteData as SiteData;
   const editorialItems = normalizeEditorialSource();
+  const mechanismEditorialItems = normalizeMechanismEditorialSource();
   const carouselAssignments = normalizeQuestionsCarouselAssignmentsSource();
   const glossarySource = normalizePublicLabelGlossarySource();
   const questionPayload = payload.questions;
@@ -436,6 +506,7 @@ function buildSiteData(): SiteData {
     },
     questions: {
       ...(questionPayload ?? {}),
+      mechanism_curated_set: mechanismEditorialItems,
       curated_front_set: validateCuratedSet(
         questionPayload?.curated_front_set ?? [],
         expectedQuestions,
