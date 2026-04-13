@@ -1,0 +1,199 @@
+---
+import { type MechanismEditorialQuestion } from "../lib/site-data";
+
+interface Props {
+  items: MechanismEditorialQuestion[];
+  title?: string;
+  caption?: string;
+  sectionId?: string;
+  groupLabel?: string;
+}
+
+const {
+  items,
+  title,
+  caption,
+  sectionId = "mechanism-editorial-carousel",
+  groupLabel = "Mechanism",
+} = Astro.props;
+
+const rootId = `mechanism-carousel-${Math.random().toString(36).slice(2, 10)}`;
+const graphHrefBase = Astro.url.pathname.startsWith("/broad/") ? "/broad/graph/" : "/graph/";
+const channelPreview = (item: MechanismEditorialQuestion) => (item.channel_labels || []).slice(0, 4).join(", ");
+---
+
+<section id={rootId} class="editorial-carousel editorial-carousel-module card" data-role={sectionId}>
+  <div class="editorial-carousel-head">
+    <div class="editorial-carousel-title-block">
+      {groupLabel && <span class="tiny-label">{groupLabel}</span>}
+      {title && <h2>{title}</h2>}
+      {caption && <p class="section-copy">{caption}</p>}
+    </div>
+    <div class="editorial-carousel-controls" aria-label={`${title || "Mechanism"} controls`}>
+      <button class="button-tertiary editorial-carousel-button" type="button" data-role="carousel-prev" aria-label="Previous question">
+        <span aria-hidden="true">‹</span>
+      </button>
+      <button class="button-tertiary editorial-carousel-button" type="button" data-role="carousel-next" aria-label="Next question">
+        <span aria-hidden="true">›</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="editorial-carousel-slides">
+    {items.map((item, index) => {
+      const query = encodeURIComponent(item.graph_query || item.source_label);
+      const pair = encodeURIComponent(item.pair_key);
+      const family = encodeURIComponent(item.graph_family || "mechanism");
+      const inspectHref = `${graphHrefBase}?q=${query}&pair=${pair}&family=${family}`;
+      return (
+        <article
+          class="editorial-carousel-slide"
+          data-role="editorial-carousel-slide"
+          data-pair-key={item.pair_key}
+          data-active={index === 0 ? "true" : "false"}
+          aria-hidden={index === 0 ? "false" : "true"}
+          hidden={index !== 0}
+        >
+          <div class="editorial-carousel-copy">
+            <span class="editorial-carousel-tag">Mechanism question</span>
+            <h3>{item.question_title}</h3>
+            <p class="card-copy">{item.short_why}</p>
+            <div class="editorial-carousel-footer">
+              <div class="editorial-carousel-evidence">
+                <button
+                  class="editorial-evidence-chip"
+                  type="button"
+                  data-role="evidence-chip"
+                  data-preview-open="false"
+                  aria-expanded="false"
+                  aria-label={channelPreview(item) || `${item.channel_labels.length} candidate channels`}
+                >
+                  <span>{item.channel_labels.length} candidate channels</span>
+                  {channelPreview(item) && <span class="editorial-evidence-preview">{channelPreview(item)}</span>}
+                </button>
+              </div>
+              <p class="mini-copy">
+                <strong>First step:</strong> {item.first_next_step}
+              </p>
+              <div class="button-row editorial-carousel-actions">
+                <a class="text-link" href={inspectHref}>Inspect local graph</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+
+  <div class="editorial-carousel-dots" data-role="carousel-dots" role="tablist" aria-label={`${title || "Mechanism"} dots`}></div>
+</section>
+
+<script is:inline define:vars={{ rootId }} type="module">
+  const root = document.getElementById(rootId);
+  if (!(root instanceof HTMLElement)) throw new Error("Mechanism carousel root missing");
+
+  const slides = Array.from(root.querySelectorAll('[data-role="editorial-carousel-slide"]'));
+  const slidesRoot = root.querySelector('.editorial-carousel-slides');
+  const dotsRoot = root.querySelector('[data-role="carousel-dots"]');
+  const prev = root.querySelector('[data-role="carousel-prev"]');
+  const next = root.querySelector('[data-role="carousel-next"]');
+  const evidenceChips = Array.from(root.querySelectorAll('[data-role="evidence-chip"]'));
+  let position = 0;
+
+  const renderDots = () => {
+    if (!(dotsRoot instanceof HTMLElement)) return;
+    dotsRoot.innerHTML = slides
+      .map(
+        (_slide, index) => `
+          <button
+            class="editorial-carousel-dot${index === position ? " is-active" : ""}"
+            type="button"
+            role="tab"
+            aria-selected="${String(index === position)}"
+            data-role="carousel-dot"
+            data-position="${String(index)}"
+          ></button>
+        `,
+      )
+      .join("");
+    for (const dot of dotsRoot.querySelectorAll('[data-role="carousel-dot"]')) {
+      dot.addEventListener("click", () => {
+        position = Number(dot.dataset.position || "0");
+        render();
+      });
+    }
+  };
+
+  const syncTrackHeight = () => {
+    if (!(slidesRoot instanceof HTMLElement)) return;
+    let maxHeight = 0;
+    for (const slide of slides) {
+      const previousHidden = slide.hidden;
+      const previousPosition = slide.style.position;
+      const previousVisibility = slide.style.visibility;
+      const previousPointerEvents = slide.style.pointerEvents;
+
+      slide.hidden = false;
+      slide.style.position = "absolute";
+      slide.style.visibility = "hidden";
+      slide.style.pointerEvents = "none";
+
+      maxHeight = Math.max(maxHeight, slide.offsetHeight);
+
+      slide.hidden = previousHidden;
+      slide.style.position = previousPosition;
+      slide.style.visibility = previousVisibility;
+      slide.style.pointerEvents = previousPointerEvents;
+    }
+
+    if (maxHeight > 0) {
+      slidesRoot.style.minHeight = `${maxHeight}px`;
+    }
+  };
+
+  const closeAllEvidencePreviews = () => {
+    for (const chip of evidenceChips) {
+      chip.setAttribute("data-preview-open", "false");
+      chip.setAttribute("aria-expanded", "false");
+    }
+  };
+
+  const toggleEvidencePreview = (chip) => {
+    const shouldOpen = chip.getAttribute("data-preview-open") !== "true";
+    closeAllEvidencePreviews();
+    if (shouldOpen) {
+      chip.setAttribute("data-preview-open", "true");
+      chip.setAttribute("aria-expanded", "true");
+      if (typeof chip.focus === "function") chip.focus();
+    }
+  };
+
+  const render = () => {
+    closeAllEvidencePreviews();
+    slides.forEach((slide, index) => {
+      const active = index === position;
+      slide.setAttribute("data-active", String(active));
+      slide.setAttribute("aria-hidden", String(!active));
+      slide.toggleAttribute("hidden", !active);
+    });
+    renderDots();
+    syncTrackHeight();
+  };
+
+  prev?.addEventListener("click", () => {
+    position = (position - 1 + slides.length) % slides.length;
+    render();
+  });
+
+  next?.addEventListener("click", () => {
+    position = (position + 1) % slides.length;
+    render();
+  });
+
+  for (const chip of evidenceChips) {
+    chip.addEventListener("click", () => toggleEvidencePreview(chip));
+    chip.addEventListener("mouseleave", closeAllEvidencePreviews);
+  }
+
+  render();
+</script>

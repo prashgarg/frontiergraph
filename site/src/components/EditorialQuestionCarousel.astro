@@ -24,11 +24,6 @@ const {
 } = Astro.props;
 
 const rootId = `editorial-carousel-${Math.random().toString(36).slice(2, 10)}`;
-const questionHrefBase = Astro.url.pathname.startsWith("/broad/")
-  ? "/broad/questions/"
-  : Astro.url.pathname.startsWith("/fine-preview/")
-    ? "/fine-preview/questions/"
-    : "/questions/";
 
 const joinPreview = (values: string[]) => values.filter(Boolean).join(", ");
 const nearbyTopicsPreview = (item: Opportunity) => joinPreview((item.top_mediator_labels || []).slice(0, 4));
@@ -123,9 +118,6 @@ const areaPreview = (item: Opportunity) =>
                 <strong>First step:</strong> {item.display_first_step}
               </p>
             )}
-            <div class="button-row editorial-carousel-actions">
-              <a class="text-link" href={`${questionHrefBase}#${item.pair_key}`}>See question</a>
-            </div>
           </div>
         </div>
       </article>

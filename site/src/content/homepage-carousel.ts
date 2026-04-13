@@ -18,7 +18,7 @@ export const homepageCarouselSlides: HomepageCarouselSlide[] = [
     diagramVariant: "candidateDebt",
     kindLabel: "Missing direct question",
     questionTitle: "Public debt and CO2 emissions",
-    why: "Public debt already sits near public investment, energy pricing, and emissions in the released graph. The missing direct study is the open question.",
+    why: "Public debt already sits near public investment, energy pricing, and emissions in the public release. The missing direct study is the open question.",
     detailPrefix: "One way in:",
     detail: "Track debt stress episodes through public investment, energy policy, and later emissions.",
   },

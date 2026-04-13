@@ -7,6 +7,7 @@ import os
 import shutil
 import sqlite3
 import tempfile
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -19,12 +20,13 @@ GENERATED_SITE_DATA_PATH = SITE_ROOT / "src" / "generated" / "site-data.json"
 DEFAULT_OUTPUT_DB_PATH = Path("/tmp/frontiergraph-economics-public.db")
 OUTPUT_DB_PATH = Path(os.environ.get("FRONTIERGRAPH_PUBLIC_RELEASE_DB", str(DEFAULT_OUTPUT_DB_PATH)))
 PUBLIC_DB_FILENAME = os.environ.get("FRONTIERGRAPH_PUBLIC_DB_FILENAME", OUTPUT_DB_PATH.name)
-SOURCE_DB_PATH = Path(
-    os.environ.get(
-        "FRONTIERGRAPH_PUBLIC_SOURCE_DB",
-        ROOT / "data" / "production" / "frontiergraph_concept_public" / "concept_exploratory_app.sqlite",
+SOURCE_DB_ENV = os.environ.get("FRONTIERGRAPH_PUBLIC_SOURCE_DB")
+if not SOURCE_DB_ENV:
+    raise RuntimeError(
+        "FRONTIERGRAPH_PUBLIC_SOURCE_DB must be set explicitly before building the public release bundle. "
+        "This guardrail prevents accidental rebuilds from the stale March public-app database."
     )
-)
+SOURCE_DB_PATH = Path(SOURCE_DB_ENV).expanduser().resolve()
 MANIFEST_PATH = PUBLIC_DOWNLOADS_DIR / "frontiergraph-economics-public.manifest.json"
 CHECKSUM_PATH = PUBLIC_DOWNLOADS_DIR / "frontiergraph-economics-public.sha256.txt"
 DEFAULT_PUBLIC_URL = "https://storage.googleapis.com/frontiergraph-public-downloads-1058669339361/frontiergraph-economics-public.db"
@@ -92,6 +94,19 @@ PUBLIC_METHOD_TOPIC_PHRASES = (
 def read_json(path: Path) -> Any:
     with path.open(encoding="utf-8") as handle:
         return json.load(handle)
+
+
+def file_metadata(path: Path) -> dict[str, Any]:
+    resolved = path.expanduser().resolve()
+    if not resolved.exists():
+        raise FileNotFoundError(f"Expected input file does not exist: {resolved}")
+    stat = resolved.stat()
+    return {
+        "path": str(resolved),
+        "filename": resolved.name,
+        "size_bytes": int(stat.st_size),
+        "modified_at": datetime.fromtimestamp(stat.st_mtime, tz=timezone.utc).isoformat(),
+    }
 
 
 def load_csv_rows(path: Path) -> list[dict[str, str]]:
@@ -680,7 +695,7 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
         "repo_url": site_data["repo_url"],
         "app_url": site_data["app_url"],
         "working_paper_pdf": site_data["downloads"]["artifacts"]["working_paper_pdf"],
-        "extended_abstract_pdf": site_data["downloads"]["artifacts"]["extended_abstract_pdf"],
+        "extended_abstract_pdf": site_data["downloads"]["artifacts"].get("extended_abstract_pdf", ""),
         "benchmark_manifest_json": site_data["downloads"]["artifacts"]["benchmark_manifest_json"],
         "graph_backbone_json": site_data["downloads"]["artifacts"]["graph_backbone_json"],
         "top_questions_csv": site_data["downloads"]["artifacts"]["top_questions_csv"],
@@ -1106,7 +1121,7 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
             "common_contexts": clean_public_text(public_row.get("common_contexts"))
             or f"Source-side settings most often mention {source_context_summary}. Target-side settings most often mention {target_context_summary}.",
             "public_specificity_score": specificity_score,
-            "app_link": clean_public_text(public_row.get("app_link")) or f"{site_data['app_url']}?view=question&pair={pair_key}",
+            "app_link": clean_public_text(public_row.get("app_link")) or f"{site_data['app_url']}#{pair_key}",
         }
         existing = full_question_rows.get(prepared["pair_key"])
         if existing is None or prepared["score"] > existing["score"]:
@@ -1146,7 +1161,7 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
             for row in source_conn.execute(
                 """
                 SELECT
-                    c.pair_key AS pair_key,
+                    (c.u || '__' || c.v) AS pair_key,
                     cm.rank AS rank,
                     cm.mediator AS mediator_concept_id,
                     COALESCE(nd.preferred_label, n.label, cm.mediator) AS mediator_label,
@@ -1168,7 +1183,7 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
     for row in source_conn.execute(
         """
         SELECT
-            c.pair_key AS pair_key,
+            (c.u || '__' || c.v) AS pair_key,
             cp.rank AS rank,
             cp.path_len AS path_len,
             cp.path_score AS path_score,
@@ -1222,7 +1237,7 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
             for row in source_conn.execute(
                 """
                 SELECT
-                    c.pair_key AS pair_key,
+                    (c.u || '__' || c.v) AS pair_key,
                     cp.path_rank AS path_rank,
                     cp.paper_rank AS paper_rank,
                     cp.paper_id AS paper_id,
@@ -1252,7 +1267,7 @@ def build_sqlite_bundle_at_path(output_path: Path, source_db_path: Path) -> tupl
             for row in source_conn.execute(
                 """
                 SELECT
-                    c.pair_key AS pair_key,
+                    (c.u || '__' || c.v) AS pair_key,
                     cn.top_out_neighbors_u_json AS top_out_neighbors_u_json,
                     cn.top_in_neighbors_v_json AS top_in_neighbors_v_json
                 FROM candidate_neighborhoods cn
@@ -1291,6 +1306,7 @@ def build_release_bundle(output_path: Path, source_db_path: Path) -> tuple[int, 
 
 def update_release_artifacts(size_bytes: int, sha256: str, public_url: str) -> None:
     PUBLIC_DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
+    source_metadata = file_metadata(SOURCE_DB_PATH)
     manifest = {
         "filename": PUBLIC_DB_FILENAME,
         "db_size_bytes": size_bytes,
@@ -1298,6 +1314,7 @@ def update_release_artifacts(size_bytes: int, sha256: str, public_url: str) -> N
         "sha256": sha256,
         "public_url": public_url,
         "published_at": read_json(GENERATED_SITE_DATA_PATH)["generated_at"],
+        "source_db": source_metadata,
     }
     MANIFEST_PATH.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     CHECKSUM_PATH.write_text(f"{sha256}  {PUBLIC_DB_FILENAME}\n", encoding="utf-8")
@@ -1309,6 +1326,8 @@ def update_release_artifacts(size_bytes: int, sha256: str, public_url: str) -> N
         "sha256": sha256,
         "db_size_gb": round(size_bytes / (1024**3), 2),
     }
+    site_data.setdefault("build_inputs", {})
+    site_data["build_inputs"]["public_release_source_db"] = source_metadata
     GENERATED_SITE_DATA_PATH.write_text(json.dumps(site_data, indent=2) + "\n", encoding="utf-8")
 
 

@@ -3,7 +3,7 @@ title: "What Frontier Graph Finds"
 description: "A web-first overview of the Frontier Graph paper and public release."
 eyebrow: "Web overview"
 author: "Prashant Garg"
-date: "15 March 2026"
+date: "12 April 2026"
 ---
 
 # What Frontier Graph Finds

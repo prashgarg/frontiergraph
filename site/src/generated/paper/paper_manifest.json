@@ -1,7 +1,7 @@
 {
   "full": {
     "title": "What Should Economics Ask Next?",
-    "eyebrow": "Working paper",
+    "eyebrow": "Paper",
     "headings": [
       {
         "level": 2,
@@ -40,13 +40,13 @@
       },
       {
         "level": 2,
-        "text": "4. Candidate Questions and Evaluation Design",
-        "id": "4-candidate-questions-and-evaluation-design"
+        "text": "4. Direct-Edge Retrieval Anchors, Surfaced Questions, and Evaluation Design",
+        "id": "4-direct-edge-retrieval-anchors-surfaced-questions-and-evaluation-design"
       },
       {
         "level": 3,
-        "text": "4.1 Missing links as candidate questions",
-        "id": "4-1-missing-links-as-candidate-questions"
+        "text": "4.1 Missing links as retrieval anchors",
+        "id": "4-1-missing-links-as-retrieval-anchors"
       },
       {
         "level": 3,
@@ -90,8 +90,8 @@
       },
       {
         "level": 3,
-        "text": "5.5 Path development beyond direct-link closure",
-        "id": "5-5-path-development-beyond-direct-link-closure"
+        "text": "5.5 Path development and the richer surfaced object",
+        "id": "5-5-path-development-and-the-richer-surfaced-object"
       },
       {
         "level": 2,
@@ -125,8 +125,8 @@
       },
       {
         "level": 3,
-        "text": "Why a native ontology is needed here",
-        "id": "why-a-native-ontology-is-needed-here"
+        "text": "Why a frozen open-world ontology is needed here",
+        "id": "why-a-frozen-open-world-ontology-is-needed-here"
       },
       {
         "level": 3,
@@ -167,6 +167,21 @@
         "level": 2,
         "text": "Appendix F. Path-evolution extensions",
         "id": "appendix-f-path-evolution-extensions"
+      },
+      {
+        "level": 2,
+        "text": "Display appendix",
+        "id": "display-appendix"
+      },
+      {
+        "level": 3,
+        "text": "Remaining figures",
+        "id": "remaining-figures"
+      },
+      {
+        "level": 3,
+        "text": "Tables",
+        "id": "tables"
       },
       {
         "level": 2,

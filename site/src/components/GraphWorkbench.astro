@@ -35,9 +35,9 @@ const questionHrefBase =
 >
   <div class="graph-toolbar">
     <div class="graph-toolbar-copy">
-      <h2>Choose a topic and start with the questions around it.</h2>
+      <h2>Pick a topic and inspect why a surfaced question appears nearby.</h2>
       <p class="card-copy">
-        Choose one topic, then read the strongest nearby questions. Each question is grounded in nearby paths, intermediate topics, and papers.
+        This page is the inspection layer behind the public questions surface. Choose one topic, then open a nearby question to see the local support graph and starter papers.
       </p>
       <label class="search-shell graph-search-shell">
         <span>Search topic</span>
@@ -62,8 +62,8 @@ const questionHrefBase =
         <aside class="graph-chooser-rail">
           <section class="sidebar-card inspector-card graph-question-shell">
             <div class="inspector-head">
-              <h3>Questions touching this topic</h3>
-              <p class="mini-copy">Choose one. The right side shows why it surfaced, which intermediate topics already connect it, and where to start reading.</p>
+              <h3>Surfaced questions around this topic</h3>
+              <p class="mini-copy">Choose one. The right side shows why it surfaced, what already connects it locally, and where to start reading.</p>
             </div>
             <div data-role="selected-opportunities">
               <p class="card-copy">The strongest question candidates touching the selected topic will appear here.</p>
@@ -83,7 +83,7 @@ const questionHrefBase =
         <div class="graph-detail-workspace">
           <section class="sidebar-card inspector-card graph-question-focus">
             <div class="inspector-head">
-              <h3>Selected question</h3>
+              <h3>Why this question surfaced</h3>
             </div>
             <div data-role="selected-question">
               <p class="card-copy">Choose a topic, then choose a question to see the strongest paths and starter papers here.</p>
@@ -112,7 +112,7 @@ const questionHrefBase =
                 <div class="graph-tooltip" data-role="graph-tooltip" hidden></div>
               </div>
               <div class="graph-help-row">
-                <span class="mini-copy">Use the graph to inspect the local neighborhood around the selected question or switch topic.</span>
+                <span class="mini-copy">Use the graph to inspect the local support around the selected question or switch to a nearby topic.</span>
               </div>
             </section>
           </details>
@@ -122,7 +122,7 @@ const questionHrefBase =
   </div>
 </section>
 
-<script is:inline define:vars={{ rootId, contextLabel }} type="module">
+<script is:inline define:vars={{ rootId, contextLabel, questionHrefBase }} type="module">
   const root = document.getElementById(rootId);
   if (!(root instanceof HTMLElement)) throw new Error("Graph workbench root missing");
 
@@ -183,6 +183,8 @@ const questionHrefBase =
   let currentNeighborhood = null;
   let currentOpportunities = [];
   let activeQuestionPairKey = null;
+  let requestedPairKey = null;
+  let requestedFamily = "";
   let layoutMode = false;
   let mapMode = "focused";
   let interaction = null;
@@ -792,20 +794,19 @@ const questionHrefBase =
       ? mediatorLabels
           .map((label, index) => {
             const mediatorId = resolveMediatorConceptId(label);
-            const control = mediatorId
-              ? `<button class="button-tertiary path-strip-action" type="button" data-mediator-id="${escapeAttr(mediatorId)}">Open topic</button>`
-              : "";
+            const mediatorChip = mediatorId
+              ? `<button class="path-node-chip path-node-chip-button is-mediator" type="button" data-mediator-id="${escapeAttr(mediatorId)}">${escapeHtml(label)}</button>`
+              : `<span class="path-node-chip is-mediator">${escapeHtml(label)}</span>`;
             return `
               <article class="path-strip-card">
                 <span class="tiny-label">Path ${index + 1}</span>
                 <div class="path-strip">
                   <span class="path-node-chip is-anchor">${escapeHtml(sourceLabel)}</span>
                   <span class="path-strip-arrow" aria-hidden="true">→</span>
-                  <span class="path-node-chip is-mediator">${escapeHtml(label)}</span>
+                  ${mediatorChip}
                   <span class="path-strip-arrow" aria-hidden="true">→</span>
                   <span class="path-node-chip is-anchor">${escapeHtml(targetLabel)}</span>
                 </div>
-                ${control}
               </article>
             `;
           })
@@ -823,9 +824,6 @@ const questionHrefBase =
           <span>${escapeHtml(questionProjectShapeLabel(question))}</span>
         </div>
         <p class="mini-copy focus-step"><strong>What to inspect first:</strong> ${escapeHtml(question.recommended_move || "Start with the nearby literature and pin down the concrete empirical setting.")}</p>
-        <div class="graph-question-actions">
-          <a class="button-secondary" href="${escapeAttr(`${questionHrefBase}#${question.pair_key}`)}">See question</a>
-        </div>
       </article>
       <div class="graph-question-subgrid">
         <section class="question-detail-panel">
@@ -1089,9 +1087,14 @@ const questionHrefBase =
       renderQuestionDetail();
       return;
     }
-    activeQuestionPairKey = opportunities.some((item) => item.pair_key === activeQuestionPairKey)
-      ? activeQuestionPairKey
-      : opportunities[0]?.pair_key || null;
+    if (requestedPairKey && opportunities.some((item) => item.pair_key === requestedPairKey)) {
+      activeQuestionPairKey = requestedPairKey;
+      requestedPairKey = null;
+    } else {
+      activeQuestionPairKey = opportunities.some((item) => item.pair_key === activeQuestionPairKey)
+        ? activeQuestionPairKey
+        : opportunities[0]?.pair_key || null;
+    }
 
     const paintOpportunities = () => {
       selectedOpportunities.innerHTML = opportunities
@@ -1221,6 +1224,14 @@ const questionHrefBase =
     updateLayoutModeButton();
     updateMapModeButton();
     const params = new URLSearchParams(window.location.search);
+    requestedPairKey = params.get("pair");
+    requestedFamily = params.get("family") || "";
+    if (requestedFamily === "mechanism") {
+      const focusHeading = root.querySelector(".graph-question-focus .inspector-head h3");
+      if (focusHeading instanceof HTMLElement) {
+        focusHeading.textContent = "Why this mechanism question surfaced";
+      }
+    }
     const query = params.get("q");
     const selected = query ? searchConcepts(query)[0] : null;
     const defaultTopic = concepts.find(

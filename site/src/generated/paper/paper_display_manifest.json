@@ -1,0 +1,279 @@
+{
+  "figures": [
+    {
+      "number": 1,
+      "label": "fig:extraction-flow",
+      "caption": "A paper excerpt and its local graph",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-01-fig-extraction-flow.png"
+    },
+    {
+      "number": 2,
+      "label": "fig:shared-candidate-formation",
+      "caption": "Cross-paper matching reveals a shared candidate neighborhood",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-02-fig-shared-candidate-formation.png"
+    },
+    {
+      "number": 3,
+      "label": "fig:real-neighborhood",
+      "caption": "A local neighborhood from the live graph",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-03-fig-real-neighborhood.png"
+    },
+    {
+      "number": 4,
+      "label": "fig:candidate-schematic",
+      "caption": "The benchmark anchor is narrower than the surfaced question",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-04-fig-candidate-schematic.png"
+    },
+    {
+      "number": 5,
+      "label": "fig:gap-boundary",
+      "caption": "Gap and boundary questions are different local graph patterns",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-05-fig-gap-boundary.png"
+    },
+    {
+      "number": 6,
+      "label": "fig:score-components",
+      "caption": "The transparent score rewards supported but still undercompleted pairs",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-06-fig-score-components.png"
+    },
+    {
+      "number": 7,
+      "label": "fig:evaluation-design",
+      "caption": "Walk-forward evaluation keeps scoring vintage-correct",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-07-fig-evaluation-design.png"
+    },
+    {
+      "number": 8,
+      "label": "fig:main-benchmark",
+      "caption": "The two historical families are informative in different ways",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-08-fig-main-benchmark.png"
+    },
+    {
+      "number": 9,
+      "label": "fig:path-evolution",
+      "caption": "Mechanism thickening is more common than direct closure",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-09-fig-path-evolution.png"
+    },
+    {
+      "number": 10,
+      "label": "fig:path-source-mix",
+      "caption": "Adjacent journals close more path-implied links, but direct-to-path still dominates",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-10-fig-path-source-mix.png"
+    },
+    {
+      "number": 11,
+      "label": "fig:temporal-generalization-main",
+      "caption": "The reranker generalizes forward in time",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-11-fig-temporal-generalization-main.png"
+    },
+    {
+      "number": 12,
+      "label": "fig:normalization-flow",
+      "caption": "Node normalization and concept matching",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-12-fig-normalization-flow.png"
+    },
+    {
+      "number": 13,
+      "label": "fig:feature-importance-bars",
+      "caption": "Single-feature importance by family (h=5)",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-13-fig-feature-importance-bars.png"
+    },
+    {
+      "number": 14,
+      "label": "fig:grouped-shap",
+      "caption": "Group-level importance after resolving multicollinearity",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-14-fig-grouped-shap.png"
+    },
+    {
+      "number": 15,
+      "label": "fig:grouped-multi-model",
+      "caption": "Model comparison on grouped feature families",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-15-fig-grouped-multi-model.png"
+    },
+    {
+      "number": 16,
+      "label": "fig:grouped-beeswarm",
+      "caption": "Grouped SHAP beeswarm",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-16-fig-grouped-beeswarm.png"
+    },
+    {
+      "number": 17,
+      "label": "fig:vif-comparison",
+      "caption": "Variance inflation factors before and after feature grouping",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-17-fig-vif-comparison.png"
+    },
+    {
+      "number": 18,
+      "label": "fig:grouped-correlation",
+      "caption": "Correlations across grouped feature families",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-18-fig-grouped-correlation.png"
+    },
+    {
+      "number": 19,
+      "label": "fig:regime-split-refresh",
+      "caption": "The transparent score helps more in dense neighborhoods",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-19-fig-regime-split-refresh.png"
+    },
+    {
+      "number": 20,
+      "label": "fig:auxiliary-horizon-refresh",
+      "caption": "Longer horizons raise hit rates, but the graph remains a screening layer",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/figure-20-fig-auxiliary-horizon-refresh.png"
+    }
+  ],
+  "tables": [
+    {
+      "number": 1,
+      "label": "tab:notation",
+      "caption": "Core notation used in the paper",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-01-tab-notation.png"
+    },
+    {
+      "number": 2,
+      "label": "tab:benchmark-summary-main",
+      "caption": "Paired benchmark summary for the two historical families",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-02-tab-benchmark-summary-main.png"
+    },
+    {
+      "number": 3,
+      "label": "tab:positioning",
+      "caption": "Positioning relative to closest comparable work",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-03-tab-positioning.png"
+    },
+    {
+      "number": 4,
+      "label": "tab:node-schema",
+      "caption": "Schema for paper-local nodes",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-04-tab-node-schema.png"
+    },
+    {
+      "number": 5,
+      "label": "tab:edge-schema",
+      "caption": "Schema for paper-local edges",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-05-tab-edge-schema.png"
+    },
+    {
+      "number": 6,
+      "label": "tab:mapping-stages",
+      "caption": "Stages of the ontology pipeline",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-06-tab-mapping-stages.png"
+    },
+    {
+      "number": 7,
+      "label": "tab:corpus-summary",
+      "caption": "Corpus and normalization summary",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-07-tab-corpus-summary.png"
+    },
+    {
+      "number": 8,
+      "label": "tab:strict-main-benchmark",
+      "caption": "Continuity benchmark on the identified-causal-claim layer",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-08-tab-strict-main-benchmark.png"
+    },
+    {
+      "number": 9,
+      "label": "tab:strict-significance",
+      "caption": "Paired bootstrap continuity comparison: graph-based score minus preferential attachment",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-09-tab-strict-significance.png"
+    },
+    {
+      "number": 10,
+      "label": "tab:expanded-reranker-benchmark",
+      "caption": "Expanded reranker results for the main family",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-10-tab-expanded-reranker-benchmark.png"
+    },
+    {
+      "number": 11,
+      "label": "tab:early-late-regime",
+      "caption": "Early and late benchmark cells are different benchmark regimes",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-11-tab-early-late-regime.png"
+    },
+    {
+      "number": 12,
+      "label": "tab:benchmark-inventory",
+      "caption": "Benchmark model inventory",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-12-tab-benchmark-inventory.png"
+    },
+    {
+      "number": 13,
+      "label": "tab:feature-families",
+      "caption": "Feature families in the learned reranker",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-13-tab-feature-families.png"
+    },
+    {
+      "number": 14,
+      "label": "tab:single-feature-top10",
+      "caption": "Top 10 single features",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-14-tab-single-feature-top10.png"
+    },
+    {
+      "number": 15,
+      "label": "tab:failure-modes",
+      "caption": "Failure modes in the reranker's top 100 (h=5)",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-15-tab-failure-modes.png"
+    },
+    {
+      "number": 16,
+      "label": "tab:temporal-generalization",
+      "caption": "Held-out temporal generalization",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-16-tab-temporal-generalization.png"
+    },
+    {
+      "number": 17,
+      "label": "tab:credibility-edge-kind",
+      "caption": "Credibility audit by edge kind",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-17-tab-credibility-edge-kind.png"
+    },
+    {
+      "number": 18,
+      "label": "tab:credibility-by-evidence-type",
+      "caption": "Directed-causal credibility audit by evidence type",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-18-tab-credibility-by-evidence-type.png"
+    },
+    {
+      "number": 19,
+      "label": "tab:credibility-stability-band",
+      "caption": "Stability bands by edge kind",
+      "note": "",
+      "public_path": "/paper-assets/paper-display/table-19-tab-credibility-stability-band.png"
+    }
+  ]
+}

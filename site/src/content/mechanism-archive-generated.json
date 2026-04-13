@@ -1,0 +1,498 @@
+{
+  "wp:67198376__jel:D24:Productivity": {
+    "pair_key": "wp:67198376__jel:D24:Productivity",
+    "question_title": "Which mechanisms most plausibly connect Research and Development Tax Incentive to Productivity?",
+    "short_why": "The leading candidate mechanisms are R&D and Product innovation.",
+    "first_next_step": "Start by testing which candidate mechanism carries the relation.",
+    "who_its_for": "innovation and productivity economists",
+    "display_order": 1,
+    "field_shelves": [
+      "innovation-productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "cross-area-mechanism",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-archive-1",
+    "graph_query": "Research and Development Tax Incentive",
+    "graph_family": "mechanism",
+    "source_label": "Research and Development Tax Incentive",
+    "target_label": "Productivity",
+    "channel_labels": [
+      "R&D",
+      "Product innovation"
+    ],
+    "route_family": "mediator_question"
+  },
+  "wp:37671470__jel:E31:Inflation": {
+    "pair_key": "wp:37671470__jel:E31:Inflation",
+    "question_title": "What nearby pathways could connect Policy uncertainty to Inflation?",
+    "short_why": "Nearby work points to Oil price, Uncertainty., and 1990 oil price shock as plausible connecting pathways.",
+    "first_next_step": "Start with a short review of the nearest mediating topics, then test which pathway looks most credible.",
+    "who_its_for": "macro and finance economists",
+    "display_order": 2,
+    "field_shelves": [
+      "macro-finance"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "cross-area-mechanism"
+    ],
+    "question_family": "mechanism-archive-2",
+    "graph_query": "Policy uncertainty",
+    "graph_family": "mechanism",
+    "source_label": "Policy uncertainty",
+    "target_label": "Inflation",
+    "channel_labels": [
+      "Oil price",
+      "Uncertainty.",
+      "1990 oil price shock"
+    ],
+    "route_family": "path_question"
+  },
+  "Q18391886__https://openalex.org/keywords/green-innovation": {
+    "pair_key": "Q18391886__https://openalex.org/keywords/green-innovation",
+    "question_title": "Which mechanisms most plausibly connect economic evaluation to Green innovation?",
+    "short_why": "The leading candidate mechanisms are LCRS and Green funds.",
+    "first_next_step": "Start by testing which candidate mechanism carries the relation.",
+    "who_its_for": "innovation and productivity, climate and energy economists",
+    "display_order": 3,
+    "field_shelves": [
+      "innovation-productivity",
+      "climate-energy"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "cross-area-mechanism"
+    ],
+    "question_family": "mechanism-archive-3",
+    "graph_query": "economic evaluation",
+    "graph_family": "mechanism",
+    "source_label": "economic evaluation",
+    "target_label": "Green innovation",
+    "channel_labels": [
+      "LCRS",
+      "Green funds"
+    ],
+    "route_family": "mediator_question"
+  },
+  "jel:D24:Productivity__jel:D31:Wage Inequality": {
+    "pair_key": "jel:D24:Productivity__jel:D31:Wage Inequality",
+    "question_title": "What nearby pathways could connect Productivity to Wage Inequality?",
+    "short_why": "Nearby work points to Technological Change, Offshoring, and Labor Demand as plausible connecting pathways.",
+    "first_next_step": "Start with a short review of the nearest mediating topics, then test which pathway looks most credible.",
+    "who_its_for": "innovation and productivity, labor and household economists",
+    "display_order": 4,
+    "field_shelves": [
+      "innovation-productivity",
+      "labor-household-outcomes"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "cross-area-mechanism",
+      "open-little-direct"
+    ],
+    "question_family": "mechanism-archive-4",
+    "graph_query": "Productivity",
+    "graph_family": "mechanism",
+    "source_label": "Productivity",
+    "target_label": "Wage Inequality",
+    "channel_labels": [
+      "Technological Change",
+      "Offshoring",
+      "Labor Demand"
+    ],
+    "route_family": "path_question"
+  },
+  "jel:R12:Urbanization__FGV21FAM:industrial-structure-upgrading:2362834deb": {
+    "pair_key": "jel:R12:Urbanization__FGV21FAM:industrial-structure-upgrading:2362834deb",
+    "question_title": "Which mechanisms most plausibly connect Urbanization to industrial structure upgrading?",
+    "short_why": "The leading candidate mechanisms are PQASSO and Regional Migration Policy.",
+    "first_next_step": "Start by testing which candidate mechanism carries the relation.",
+    "who_its_for": "development and urban economists",
+    "display_order": 5,
+    "field_shelves": [
+      "development-urban"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-archive-5",
+    "graph_query": "Urbanization",
+    "graph_family": "mechanism",
+    "source_label": "Urbanization",
+    "target_label": "industrial structure upgrading",
+    "channel_labels": [
+      "PQASSO",
+      "Regional Migration Policy"
+    ],
+    "route_family": "mediator_question"
+  },
+  "jel:O24:Trade Liberalization__jel:O:Innovation": {
+    "pair_key": "jel:O24:Trade Liberalization__jel:O:Innovation",
+    "question_title": "What nearby pathways could connect Trade Liberalization to Innovation?",
+    "short_why": "Nearby work points to Productivity, Export performance, and Market competition as plausible connecting pathways.",
+    "first_next_step": "Start with a short review of the nearest mediating topics, then test which pathway looks most credible.",
+    "who_its_for": "trade and globalization, innovation and productivity economists",
+    "display_order": 6,
+    "field_shelves": [
+      "trade-globalization",
+      "innovation-productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "cross-area-mechanism",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-archive-6",
+    "graph_query": "Trade Liberalization",
+    "graph_family": "mechanism",
+    "source_label": "Trade Liberalization",
+    "target_label": "Innovation",
+    "channel_labels": [
+      "Productivity",
+      "Export performance",
+      "Market competition"
+    ],
+    "route_family": "path_question"
+  },
+  "https://openalex.org/keywords/production-efficiency__jel:O:Innovation": {
+    "pair_key": "https://openalex.org/keywords/production-efficiency__jel:O:Innovation",
+    "question_title": "Which mechanisms most plausibly connect Production efficiency to Innovation?",
+    "short_why": "The leading candidate mechanisms are Total factor productivity, Subsidies, and Export performance.",
+    "first_next_step": "Start by testing which candidate mechanism carries the relation.",
+    "who_its_for": "innovation and productivity economists",
+    "display_order": 7,
+    "field_shelves": [
+      "innovation-productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "cross-area-mechanism",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-archive-7",
+    "graph_query": "Production efficiency",
+    "graph_family": "mechanism",
+    "source_label": "Production efficiency",
+    "target_label": "Innovation",
+    "channel_labels": [
+      "Total factor productivity",
+      "Subsidies",
+      "Export performance"
+    ],
+    "route_family": "mediator_question"
+  },
+  "https://openalex.org/keywords/energy-intensity__jel:O32:R&D": {
+    "pair_key": "https://openalex.org/keywords/energy-intensity__jel:O32:R&D",
+    "question_title": "Which mechanisms most plausibly connect Energy intensity to R&D?",
+    "short_why": "The leading candidate mechanisms are Technical progress, Efficiency, and low-carbon city pilot policy.",
+    "first_next_step": "Start by testing which candidate mechanism carries the relation.",
+    "who_its_for": "climate and energy, innovation and productivity economists",
+    "display_order": 8,
+    "field_shelves": [
+      "climate-energy",
+      "innovation-productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "cross-area-mechanism",
+      "strong-nearby-evidence",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-archive-8",
+    "graph_query": "Energy intensity",
+    "graph_family": "mechanism",
+    "source_label": "Energy intensity",
+    "target_label": "R&D",
+    "channel_labels": [
+      "Technical progress",
+      "Efficiency",
+      "low-carbon city pilot policy"
+    ],
+    "route_family": "mediator_question"
+  },
+  "jel:O:Innovation__FGV21FAM:digital-inclusive-finance:3438805b45": {
+    "pair_key": "jel:O:Innovation__FGV21FAM:digital-inclusive-finance:3438805b45",
+    "question_title": "Which mechanisms most plausibly connect Innovation to digital inclusive finance?",
+    "short_why": "The leading candidate mechanisms are Entrepreneurship, Common prosperity, and Urban vitality.",
+    "first_next_step": "Start by testing which candidate mechanism carries the relation.",
+    "who_its_for": "innovation and productivity economists",
+    "display_order": 9,
+    "field_shelves": [
+      "innovation-productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "phd-topic",
+      "open-little-direct",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-archive-9",
+    "graph_query": "Innovation",
+    "graph_family": "mechanism",
+    "source_label": "Innovation",
+    "target_label": "digital inclusive finance",
+    "channel_labels": [
+      "Entrepreneurship",
+      "Common prosperity",
+      "Urban vitality"
+    ],
+    "route_family": "mediator_question"
+  },
+  "https://openalex.org/keywords/stock-market-volatility__jel:O32:R&D": {
+    "pair_key": "https://openalex.org/keywords/stock-market-volatility__jel:O32:R&D",
+    "question_title": "What nearby pathways could connect Stock market volatility to R&D?",
+    "short_why": "Nearby work points to Spillovers, Uncertainty., and Climate policy uncertainty as plausible connecting pathways.",
+    "first_next_step": "Start with a short review of the nearest mediating topics, then test which pathway looks most credible.",
+    "who_its_for": "macro and finance, innovation and productivity economists",
+    "display_order": 10,
+    "field_shelves": [
+      "macro-finance",
+      "innovation-productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "cross-area-mechanism",
+      "phd-topic",
+      "open-little-direct"
+    ],
+    "question_family": "mechanism-archive-10",
+    "graph_query": "Stock market volatility",
+    "graph_family": "mechanism",
+    "source_label": "Stock market volatility",
+    "target_label": "R&D",
+    "channel_labels": [
+      "Spillovers",
+      "Uncertainty.",
+      "Climate policy uncertainty"
+    ],
+    "route_family": "path_question"
+  },
+  "jel:Q58:Environmental Regulation__jel:R12:Regional Inequality": {
+    "pair_key": "jel:Q58:Environmental Regulation__jel:R12:Regional Inequality",
+    "question_title": "What nearby pathways could connect Environmental Regulation to Regional Inequality?",
+    "short_why": "Nearby work points to Coupling, Regional variation, and provincial administrative organization as plausible connecting pathways.",
+    "first_next_step": "Start with a short review of the nearest mediating topics, then test which pathway looks most credible.",
+    "who_its_for": "climate and energy economists",
+    "display_order": 11,
+    "field_shelves": [
+      "climate-energy"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "cross-area-mechanism",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-archive-11",
+    "graph_query": "Environmental Regulation",
+    "graph_family": "mechanism",
+    "source_label": "Environmental Regulation",
+    "target_label": "Regional Inequality",
+    "channel_labels": [
+      "Coupling",
+      "Regional variation",
+      "provincial administrative organization"
+    ],
+    "route_family": "path_question"
+  },
+  "jel:O:Innovation__jel:E25:Wage": {
+    "pair_key": "jel:O:Innovation__jel:E25:Wage",
+    "question_title": "What nearby pathways could connect Innovation to Wage?",
+    "short_why": "Nearby work points to Productivity, Firm Size, and Competition as plausible connecting pathways.",
+    "first_next_step": "Start with a short review of the nearest mediating topics, then test which pathway looks most credible.",
+    "who_its_for": "innovation and productivity, labor and household economists",
+    "display_order": 12,
+    "field_shelves": [
+      "innovation-productivity",
+      "labor-household-outcomes"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "cross-area-mechanism"
+    ],
+    "question_family": "mechanism-archive-12",
+    "graph_query": "Innovation",
+    "graph_family": "mechanism",
+    "source_label": "Innovation",
+    "target_label": "Wage",
+    "channel_labels": [
+      "Productivity",
+      "Firm Size",
+      "Competition"
+    ],
+    "route_family": "path_question"
+  },
+  "jel:F13:Subsidies__jel:F62:Economic Growth": {
+    "pair_key": "jel:F13:Subsidies__jel:F62:Economic Growth",
+    "question_title": "What nearby pathways could connect Subsidies to Economic Growth?",
+    "short_why": "Nearby work points to R&D, Innovation, and Investment as plausible connecting pathways.",
+    "first_next_step": "Start with a short review of the nearest mediating topics, then test which pathway looks most credible.",
+    "who_its_for": "innovation and productivity, macro and finance economists",
+    "display_order": 13,
+    "field_shelves": [
+      "innovation-productivity",
+      "macro-finance"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "cross-area-mechanism"
+    ],
+    "question_family": "mechanism-archive-13",
+    "graph_query": "Subsidies",
+    "graph_family": "mechanism",
+    "source_label": "Subsidies",
+    "target_label": "Economic Growth",
+    "channel_labels": [
+      "R&D",
+      "Innovation",
+      "Investment"
+    ],
+    "route_family": "path_question"
+  },
+  "jel:Q53:Environmental Degradation__jel:O11:GDP": {
+    "pair_key": "jel:Q53:Environmental Degradation__jel:O11:GDP",
+    "question_title": "What nearby pathways could connect Environmental Degradation to GDP?",
+    "short_why": "Nearby work points to Renewable Energy, Energy Consumption, and Environmental Kuznets Curve as plausible connecting pathways.",
+    "first_next_step": "Start with a short review of the nearest mediating topics, then test which pathway looks most credible.",
+    "who_its_for": "climate and energy economists",
+    "display_order": 14,
+    "field_shelves": [
+      "climate-energy"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "cross-area-mechanism",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-archive-14",
+    "graph_query": "Environmental Degradation",
+    "graph_family": "mechanism",
+    "source_label": "Environmental Degradation",
+    "target_label": "GDP",
+    "channel_labels": [
+      "Renewable Energy",
+      "Energy Consumption",
+      "Environmental Kuznets Curve"
+    ],
+    "route_family": "path_question"
+  },
+  "jel:G52:Medicaid__https://openalex.org/keywords/health-related-quality-of-life": {
+    "pair_key": "jel:G52:Medicaid__https://openalex.org/keywords/health-related-quality-of-life",
+    "question_title": "What nearby pathways could connect Medicaid to Health related quality of life?",
+    "short_why": "Nearby work points to Cancer stage, Body mass index, and Hypertension treatment as plausible connecting pathways.",
+    "first_next_step": "Start with a short review of the nearest mediating topics, then test which pathway looks most credible.",
+    "who_its_for": "labor and household economists",
+    "display_order": 15,
+    "field_shelves": [
+      "labor-household-outcomes"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "open-little-direct"
+    ],
+    "question_family": "mechanism-archive-15",
+    "graph_query": "Medicaid",
+    "graph_family": "mechanism",
+    "source_label": "Medicaid",
+    "target_label": "Health related quality of life",
+    "channel_labels": [
+      "Cancer stage",
+      "Body mass index",
+      "Hypertension treatment"
+    ],
+    "route_family": "path_question"
+  },
+  "jel:D31:Income__jel:R31:Housing Prices": {
+    "pair_key": "jel:D31:Income__jel:R31:Housing Prices",
+    "question_title": "What nearby pathways could connect Income to Housing Prices?",
+    "short_why": "Nearby work points to Education Quality, Transportation, and City centre as plausible connecting pathways.",
+    "first_next_step": "Start with a short review of the nearest mediating topics, then test which pathway looks most credible.",
+    "who_its_for": "development and urban economists",
+    "display_order": 16,
+    "field_shelves": [
+      "development-urban"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "cross-area-mechanism"
+    ],
+    "question_family": "mechanism-archive-16",
+    "graph_query": "Income",
+    "graph_family": "mechanism",
+    "source_label": "Income",
+    "target_label": "Housing Prices",
+    "channel_labels": [
+      "Education Quality",
+      "Transportation",
+      "City centre"
+    ],
+    "route_family": "path_question"
+  },
+  "jel:O24:Trade Liberalization__https://openalex.org/keywords/exportation": {
+    "pair_key": "jel:O24:Trade Liberalization__https://openalex.org/keywords/exportation",
+    "question_title": "Which mechanisms most plausibly connect Trade Liberalization to Exportation?",
+    "short_why": "The leading candidate mechanisms are Productivity, Export performance, and Tax exporting.",
+    "first_next_step": "Start by testing which candidate mechanism carries the relation.",
+    "who_its_for": "trade and globalization economists",
+    "display_order": 17,
+    "field_shelves": [
+      "trade-globalization"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "cross-area-mechanism"
+    ],
+    "question_family": "mechanism-archive-17",
+    "graph_query": "Trade Liberalization",
+    "graph_family": "mechanism",
+    "source_label": "Trade Liberalization",
+    "target_label": "Exportation",
+    "channel_labels": [
+      "Productivity",
+      "Export performance",
+      "Tax exporting"
+    ],
+    "route_family": "mediator_question"
+  },
+  "https://openalex.org/keywords/investor-behavior__jel:Q54:Emissions": {
+    "pair_key": "https://openalex.org/keywords/investor-behavior__jel:Q54:Emissions",
+    "question_title": "Which mechanisms most plausibly connect Investor behavior to Emissions?",
+    "short_why": "The leading candidate mechanisms are Fossil-fuel industry and Jurisdictional arbitrage.",
+    "first_next_step": "Start by testing which candidate mechanism carries the relation.",
+    "who_its_for": "climate and energy economists",
+    "display_order": 18,
+    "field_shelves": [
+      "climate-energy"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "open-little-direct",
+      "cross-area-mechanism",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-archive-18",
+    "graph_query": "Investor behavior",
+    "graph_family": "mechanism",
+    "source_label": "Investor behavior",
+    "target_label": "Emissions",
+    "channel_labels": [
+      "Fossil-fuel industry",
+      "Jurisdictional arbitrage"
+    ],
+    "route_family": "mediator_question"
+  }
+}
