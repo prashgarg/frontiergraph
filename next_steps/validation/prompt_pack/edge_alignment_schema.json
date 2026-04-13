@@ -1,0 +1,101 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "benchmark_id": {
+      "type": "string"
+    },
+    "gold_edge_alignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "gold_edge": {
+            "type": "string"
+          },
+          "best_predicted_edge": {
+            "type": "string"
+          },
+          "edge_overlap_class": {
+            "type": "string",
+            "enum": [
+              "exact_edge_match",
+              "same_direction_broader_nodes",
+              "same_direction_partial_nodes",
+              "same_relation_different_graph_resolution",
+              "reversed_direction",
+              "context_or_method_edge",
+              "no_match",
+              "not_recoverable_from_abstract"
+            ]
+          },
+          "gold_edge_recoverable_from_abstract": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "partly",
+              "no"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "gold_edge",
+          "best_predicted_edge",
+          "edge_overlap_class",
+          "gold_edge_recoverable_from_abstract",
+          "notes"
+        ]
+      }
+    },
+    "predicted_edge_alignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "predicted_edge": {
+            "type": "string"
+          },
+          "best_gold_edge": {
+            "type": "string"
+          },
+          "edge_overlap_class": {
+            "type": "string",
+            "enum": [
+              "exact_edge_match",
+              "same_direction_broader_nodes",
+              "same_direction_partial_nodes",
+              "same_relation_different_graph_resolution",
+              "reversed_direction",
+              "context_or_method_edge",
+              "no_match",
+              "not_recoverable_from_abstract"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "predicted_edge",
+          "best_gold_edge",
+          "edge_overlap_class",
+          "notes"
+        ]
+      }
+    },
+    "overall_notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "benchmark_id",
+    "gold_edge_alignments",
+    "predicted_edge_alignments",
+    "overall_notes"
+  ]
+}

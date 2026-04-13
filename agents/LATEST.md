@@ -1,64 +1,70 @@
-# Latest
+# Latest — Updated 2026-04-08
 
-## Live Product
-- Site: [frontiergraph.com](https://frontiergraph.com)
-- App: [economics-opportunity-ranker-beta-1058669339361.us-central1.run.app](https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app)
-- Public default: `Baseline exploratory`
-- Live app DB: `concept_exploratory_suppressed_top100k_app_20260309.sqlite`
-- Legacy JEL should not be public-facing.
+## Current Branch
+`paper-incubation-v2ontology` (all four local branches — main, paper-incubation,
+paper-incubation-v2ontology — share the same HEAD commit `f40d87a`; all work is
+uncommitted in the working tree)
 
-## Current Canonical Position
-- FrontierGraph is a concept-graph product, not a JEL-browser product.
-- AI is used to extract graph structure from paper text.
-- Ontology comparison exists, but `Baseline exploratory` is the default product view.
-- Duplicate suppression is part of the recommendation-cleanup layer, not a new scientific measurement model.
+## What Is Currently Uncommitted (working tree)
+Two distinct work streams are both uncommitted:
 
-## Current Main Artifacts
-- Extraction corpus:
-  - [fwci_core150_adj150_extractions.sqlite](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/data/production/frontiergraph_extraction_v2/fwci_core150_adj150/merged/fwci_core150_adj150_extractions.sqlite)
-- Enriched paper metadata:
-  - [openalex_published_enriched.sqlite](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/data/processed/openalex/published_enriched/openalex_published_enriched.sqlite)
-- Ontology compare outputs:
-  - [frontiergraph_ontology_compare_v1](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/data/production/frontiergraph_ontology_compare_v1)
-- Concept compare outputs:
-  - [frontiergraph_concept_compare_v1](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/data/production/frontiergraph_concept_compare_v1)
-- Suppressed baseline app DB:
-  - [concept_exploratory_suppressed_top100k_app.sqlite](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/data/production/frontiergraph_concept_compare_v1/baseline/suppression/concept_exploratory_suppressed_top100k_app.sqlite)
+### Stream 1 — paper-incubation work (tracked modified files)
+These were edited as part of the paper-incubation agent work:
+- `paper/research_allocation_paper.tex` — heavily revised (see PAPER_INCUBATION.md)
+- `paper/slides_research_allocation.tex`
+- `paper/slides_research_allocation_notes.md`
+- Several `src/analysis/*.py` files (learned_reranker, gap_boundary, etc.)
+- Several new scripts for paper analyses (SHAP, hypothesis discovery, etc.)
 
-## Current Counts
-- Papers: `242,595`
-- Extracted node instances: `1,762,898`
-- Extracted edges: `1,443,407`
-- Baseline head concepts: `6,752`
-- Baseline soft-mapped instances: `471,149`
-- Baseline suppressed candidate slice: `100,000`
-- Hard-suppressed duplicate-family rows in the top slice: `373`
+### Stream 2 — v2 ontology build (untracked `??` files)
+- `data/ontology_v2/` — entire directory (ontology_v2_final.json, extraction_label_mapping_v2.parquet, embeddings, etc.)
+- `next_steps/` — all working notes
+- `scripts/build_ontology_v2.py`, `scripts/map_extraction_labels_to_ontology_v2.py`,
+  `scripts/patch_sf_exact_matches.py`, `scripts/crawl_wikipedia_economics.py`,
+  and ~40 other new scripts
 
-## Most Important Decisions
-- Source-selected published corpus: `core top 150 + adjacent top 150` by mean FWCI.
-- Extraction model: `gpt-5-mini`, low reasoning.
-- Ontology regimes:
-  - Broad: `5 papers / 3 journals`
-  - Baseline: `10 papers / 3 journals`
-  - Conservative: `15 papers / 3 journals`
-- Product default: `Baseline exploratory`
-- Best strict comparison view: `Broad strict`
-- Public graph/product should not foreground JEL.
+## Current V2 Ontology State
+Built and mapped — see ONTOLOGY_V2_BUILD.md and LABEL_MAPPING_V2.md for full detail.
 
-## Immediate Next Work
-- Simplify and improve the public UX, not the backend.
-- Focus on:
-  - homepage density
-  - graph page aesthetics and usability
-  - opportunities page simplification
-  - method page progressive disclosure
-  - compare page as advanced, not mandatory
-- Keep Broad/Conservative available, but secondary.
+Key artifacts:
+- `data/ontology_v2/ontology_v2_final.json` — 153,800 concepts (JEL, Wikidata,
+  OpenAlex topics, OpenAlex keywords, Wikipedia)
+- `data/ontology_v2/extraction_label_mapping_v2.parquet` — 1,389,907 labels mapped
+- `data/ontology_v2/ontology_design_decisions.md` — full methodology log
 
-## Decision Log
-- Last major deployment state:
-  - Site live on simplified concept-graph framing with the page-by-page polish pass on homepage, graph, opportunities, method, and compare
-  - App live on suppressed baseline DB
-- Last major product decision:
-  - baseline exploratory is the product
-  - compare regimes are advanced options
+## Open Decision (immediate next work)
+The label mapping has a 77.2% unmatched rate by label count (68.6% by occurrence).
+This is a structural gap (ontology = formal concept names; extraction = compound
+operationalisation phrases). Three options:
+1. Lower soft threshold to ~0.65 (more recall, less precision)
+2. Accept gap, use 31.4% matched occurrences as-is
+3. Targeted enrichment of top-N unmatched compound terms into ontology
+
+This decision gates the paper's Section on node normalization/ontology rewrite.
+
+## Paper State
+`research_allocation_paper.tex` is 1,405 lines. The paper-incubation agent:
+- Added full "What the reranker learns" section (line 1135, appendix)
+- Added SHAP grouped feature decomposition paragraph to Section 5.2 (line 607)
+- Added SHAP robustness figures (graphicspath updated)
+- Did many other rewrites throughout
+
+Still uses FG3C-era ontology description in Appendix (lines 881–947):
+- References `FG3C...` concept IDs
+- Describes old head-pool / force-map / pending-label pipeline
+- This is the main paper section that needs to be rewritten for v2 ontology
+
+## Immediate Next Steps
+1. Decide unmatched threshold treatment (owner: user decision)
+2. Rewrite paper Appendix "Node normalization and ontology construction" (lines 881–947)
+   to describe the v2 ontology pipeline instead of the FG3C pipeline
+3. Update paper Section 3.3 "Node normalization and concept identity" (line 267)
+   to reference v2 ontology counts rather than FG3C counts
+4. Commit v2 ontology work on paper-incubation-v2ontology
+
+## Site and App
+Still live on FG3C-era data (unchanged since March 2026):
+- Site: frontiergraph.com (Cloudflare Pages)
+- App: economics-opportunity-ranker-beta-1058669339361.us-central1.run.app (Cloud Run)
+- Live DB: `concept_exploratory_suppressed_top100k_app_20260309.sqlite`
+Refreshing the live product with v2 ontology data is downstream of resolving the paper.

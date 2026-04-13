@@ -1,0 +1,2 @@
+source_concept_id,target_concept_id,relation_semantic_type,relation_semantic_confidence,relation_semantic_reason,resolution_source
+FG3C000002,FG3C000009,macro_tradeoff_relation,0.75,manual_review_macro_tradeoff,manual_review

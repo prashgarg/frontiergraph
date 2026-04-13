@@ -1,0 +1,56 @@
+{
+  "rows": 120,
+  "route_counts": {
+    "downrank_path_question": 29,
+    "promote_path_question": 81,
+    "downrank_mediator_question": 2,
+    "promote_mediator_question": 7,
+    "keep_direct_edge": 1
+  },
+  "route_shares": {
+    "downrank_path_question": 0.24166666666666667,
+    "promote_path_question": 0.675,
+    "downrank_mediator_question": 0.016666666666666666,
+    "promote_mediator_question": 0.058333333333333334,
+    "keep_direct_edge": 0.008333333333333333
+  },
+  "object_family_counts": {
+    "path_question": 110,
+    "mediator_question": 9,
+    "direct_edge_question": 1
+  },
+  "route_counts_first_100": {
+    "downrank_path_question": 26,
+    "promote_path_question": 66,
+    "downrank_mediator_question": 2,
+    "promote_mediator_question": 5,
+    "keep_direct_edge": 1
+  },
+  "route_counts_remaining_20": {
+    "promote_path_question": 15,
+    "downrank_path_question": 3,
+    "promote_mediator_question": 2
+  },
+  "top10_promoted_path_pair_keys": [
+    "FG3C000246__FG3C004338",
+    "FG3C000028__FG3C004458",
+    "FG3C000015__FG3C001452",
+    "FG3C000247__FG3C004458",
+    "FG3C000013__FG3C002623",
+    "FG3C000061__FG3C000425",
+    "FG3C000015__FG3C000176",
+    "FG3C000132__FG3C002438",
+    "FG3C000100__FG3C004458",
+    "FG3C000089__FG3C000215"
+  ],
+  "top5_promoted_mediator_pair_keys": [
+    "FG3C000015__FG3C000271",
+    "FG3C000004__FG3C005928",
+    "FG3C000039__FG3C001452",
+    "FG3C002438__FG3C006191",
+    "FG3C002487__FG3C005256"
+  ],
+  "direct_edge_pair_keys": [
+    "FG3C000159__FG3C005155"
+  ]
+}

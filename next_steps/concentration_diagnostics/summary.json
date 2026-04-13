@@ -1,0 +1,31 @@
+{
+  "recent_start_year": 2016,
+  "top_k": 100,
+  "environment_climate_shares": {
+    "corpus_all": 0.030507531781711294,
+    "corpus_recent_2016": 0.057033387876091,
+    "h5_transparent_top100": 0.08,
+    "h5_reranker_top100": 0.17,
+    "h5_surface_top100": 0.61,
+    "h5_shortlist_top100": 0.505,
+    "h10_transparent_top100": 0.08,
+    "h10_reranker_top100": 0.175,
+    "h10_surface_top100": 0.58,
+    "h10_shortlist_top100": 0.485
+  },
+  "tracked_families": [
+    "carbon emissions",
+    "digital economy",
+    "energy consumption",
+    "environmental pollution",
+    "environmental quality",
+    "financial development",
+    "green innovation",
+    "income tax rate",
+    "price changes",
+    "renewable energy consumption",
+    "state of the business cycle",
+    "technological innovation",
+    "willingness to pay"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "input_jsonl": "next_steps/validation/data/dagverse/frontiergraph_arxiv_abstract_true_benchmark.jsonl",
+  "output_jsonl": "next_steps/validation/data/dagverse/frontiergraph_arxiv_abstract_true_benchmark_curated5.jsonl",
+  "selection_type": "manual_curated_natural_language_subset",
+  "benchmark_ids": [
+    "arxiv_2205_01057_0",
+    "arxiv_2208_04144_0",
+    "arxiv_2306_05066_0",
+    "arxiv_2002_06746_0",
+    "arxiv_2112_05695_0"
+  ],
+  "rationale": [
+    "Prefer rows whose semantic DAG aliases are closer to natural-language variables or concepts.",
+    "Avoid rows dominated by instantiation labels like A=a1 or generic placeholders like X1, X2 where possible.",
+    "Keep a mix of domains while staying closer to the FrontierGraph abstract-level graph object."
+  ],
+  "semantic_counts": {
+    "arxiv_2205_01057_0": {
+      "nodes": 25,
+      "edges": 27,
+      "title": "Causal Discovery on the Effect of Antipsychotic Drugs on Delirium Patients in the ICU using Large EHR Dataset"
+    },
+    "arxiv_2208_04144_0": {
+      "nodes": 9,
+      "edges": 13,
+      "title": "An Urban Population Health Observatory for Disease Causal Pathway Analysis and Decision Support: Underlying Explainable Artificial Intelligence Model"
+    },
+    "arxiv_2306_05066_0": {
+      "nodes": 5,
+      "edges": 11,
+      "title": "Causal Fairness for Outcome Control"
+    },
+    "arxiv_2002_06746_0": {
+      "nodes": 5,
+      "edges": 11,
+      "title": "Learning Individually Fair Classifier with Path-Specific Causal-Effect Constraint"
+    },
+    "arxiv_2112_05695_0": {
+      "nodes": 5,
+      "edges": 5,
+      "title": "Causal Knowledge Guided Societal Event Forecasting"
+    }
+  }
+}

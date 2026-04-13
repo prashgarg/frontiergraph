@@ -1,0 +1,151 @@
+family,count,share,stage
+fg3c006644,73420,0.02888917918845881,corpus_all
+fg3c004419,20983,0.008256355855508461,corpus_all
+carbon emissions,16584,0.006525444669863809,corpus_all
+fg3c001572,12362,0.004864179149110975,corpus_all
+fg3c005379,12285,0.004833881317491371,corpus_all
+fg3c006446,12277,0.004830733490829594,corpus_all
+fg3c006328,9879,0.0038871724489619253,corpus_all
+fg3c001629,9264,0.0036451832743378152,corpus_all
+fg3c000411,8906,0.003504318031223293,corpus_all
+economic growth,7986,0.0031423179651189326,corpus_all
+fg3c005161,7973,0.003137202746793545,corpus_all
+fg3c006079,7484,0.002944791842092423,corpus_all
+willingness to pay,7053,0.002775202680689185,corpus_all
+fg3c001408,6643,0.0026138765642731115,corpus_all
+fg3c001065,6463,0.002543050464383128,corpus_all
+fg3c006644,30862,0.02704398437404156,corpus_recent_2016
+carbon emissions,13943,0.012218076408763576,corpus_recent_2016
+fg3c004419,7337,0.006429321280291067,corpus_recent_2016
+economic growth,5420,0.004749478170802452,corpus_recent_2016
+fg3c001572,5396,0.004728447271153142,corpus_recent_2016
+fg3c006446,4598,0.004029169857813593,corpus_recent_2016
+fg3c005379,4136,0.00362432503956438,corpus_recent_2016
+fg3c001629,3910,0.003426284067866713,corpus_recent_2016
+willingness to pay,3789,0.0033202532821347765,corpus_recent_2016
+fg3c000269,3451,0.003024068112073664,corpus_recent_2016
+fg3c005161,3439,0.003013552662249009,corpus_recent_2016
+fg3c006328,3413,0.002990769187628924,corpus_recent_2016
+environmental quality,3206,0.002809377678153627,corpus_recent_2016
+fg3c004019,2821,0.002472006996279283,corpus_recent_2016
+fg3c000411,2784,0.002439584359319931,corpus_recent_2016
+method of moments quantile regression,25,0.125,h5_transparent_top100
+fg3c006259,22,0.11,h5_transparent_top100
+fg3c004868,18,0.09,h5_transparent_top100
+fg3c004419,17,0.085,h5_transparent_top100
+model parameters,15,0.075,h5_transparent_top100
+fg3c005379,14,0.07,h5_transparent_top100
+fg3c002170,11,0.055,h5_transparent_top100
+fg3c005672,9,0.045,h5_transparent_top100
+fg3c001572,8,0.04,h5_transparent_top100
+number of agents,8,0.04,h5_transparent_top100
+fg3c004114,5,0.025,h5_transparent_top100
+fg3c006079,5,0.025,h5_transparent_top100
+fg3c005628,4,0.02,h5_transparent_top100
+place of residence,4,0.02,h5_transparent_top100
+carbon emissions,3,0.015,h5_transparent_top100
+method of moments quantile regression,55,0.275,h5_reranker_top100
+carbon emissions,23,0.115,h5_reranker_top100
+economic growth,11,0.055,h5_reranker_top100
+green innovation,4,0.02,h5_reranker_top100
+willingness to pay,4,0.02,h5_reranker_top100
+environmental quality,3,0.015,h5_reranker_top100
+fg3c001570,3,0.015,h5_reranker_top100
+fg3c001572,3,0.015,h5_reranker_top100
+energy consumption,2,0.01,h5_reranker_top100
+fg3c000213,2,0.01,h5_reranker_top100
+fg3c000971,2,0.01,h5_reranker_top100
+fg3c002865,2,0.01,h5_reranker_top100
+fg3c004019,2,0.01,h5_reranker_top100
+fg3c004419,2,0.01,h5_reranker_top100
+financial development,2,0.01,h5_reranker_top100
+carbon emissions,51,0.255,h5_surface_top100
+green innovation,11,0.055,h5_surface_top100
+willingness to pay,9,0.045,h5_surface_top100
+energy consumption,8,0.04,h5_surface_top100
+state of the business cycle,8,0.04,h5_surface_top100
+environmental quality,7,0.035,h5_surface_top100
+financial development,6,0.03,h5_surface_top100
+renewable energy consumption,5,0.025,h5_surface_top100
+environmental pollution,4,0.02,h5_surface_top100
+income tax rate,4,0.02,h5_surface_top100
+price changes,4,0.02,h5_surface_top100
+technological innovation,4,0.02,h5_surface_top100
+environmental sustainability,3,0.015,h5_surface_top100
+rate of growth,3,0.015,h5_surface_top100
+renewable energy,3,0.015,h5_surface_top100
+carbon emissions,25,0.125,h5_shortlist_top100
+state of the business cycle,13,0.065,h5_shortlist_top100
+willingness to pay,13,0.065,h5_shortlist_top100
+green innovation,10,0.05,h5_shortlist_top100
+financial development,9,0.045,h5_shortlist_top100
+environmental quality,7,0.035,h5_shortlist_top100
+income tax rate,7,0.035,h5_shortlist_top100
+technological innovation,6,0.03,h5_shortlist_top100
+urbanization,6,0.03,h5_shortlist_top100
+digital economy,5,0.025,h5_shortlist_top100
+price changes,5,0.025,h5_shortlist_top100
+energy consumption,4,0.02,h5_shortlist_top100
+environmental pollution,4,0.02,h5_shortlist_top100
+environmental regulation,4,0.02,h5_shortlist_top100
+exports,4,0.02,h5_shortlist_top100
+method of moments quantile regression,25,0.125,h10_transparent_top100
+fg3c006259,22,0.11,h10_transparent_top100
+fg3c004868,18,0.09,h10_transparent_top100
+fg3c004419,17,0.085,h10_transparent_top100
+model parameters,15,0.075,h10_transparent_top100
+fg3c005379,14,0.07,h10_transparent_top100
+fg3c002170,11,0.055,h10_transparent_top100
+fg3c005672,9,0.045,h10_transparent_top100
+fg3c001572,8,0.04,h10_transparent_top100
+number of agents,8,0.04,h10_transparent_top100
+fg3c004114,5,0.025,h10_transparent_top100
+fg3c006079,5,0.025,h10_transparent_top100
+fg3c005628,4,0.02,h10_transparent_top100
+place of residence,4,0.02,h10_transparent_top100
+carbon emissions,3,0.015,h10_transparent_top100
+method of moments quantile regression,59,0.295,h10_reranker_top100
+carbon emissions,20,0.1,h10_reranker_top100
+economic growth,9,0.045,h10_reranker_top100
+fg3c001572,4,0.02,h10_reranker_top100
+green innovation,4,0.02,h10_reranker_top100
+willingness to pay,4,0.02,h10_reranker_top100
+environmental quality,3,0.015,h10_reranker_top100
+fg3c001570,3,0.015,h10_reranker_top100
+place of residence,3,0.015,h10_reranker_top100
+energy consumption,2,0.01,h10_reranker_top100
+fg3c000971,2,0.01,h10_reranker_top100
+fg3c002865,2,0.01,h10_reranker_top100
+fg3c004019,2,0.01,h10_reranker_top100
+fg3c004419,2,0.01,h10_reranker_top100
+financial development,2,0.01,h10_reranker_top100
+carbon emissions,42,0.21,h10_surface_top100
+green innovation,13,0.065,h10_surface_top100
+state of the business cycle,9,0.045,h10_surface_top100
+energy consumption,8,0.04,h10_surface_top100
+willingness to pay,8,0.04,h10_surface_top100
+financial development,7,0.035,h10_surface_top100
+environmental quality,6,0.03,h10_surface_top100
+renewable energy consumption,6,0.03,h10_surface_top100
+technological innovation,6,0.03,h10_surface_top100
+price changes,5,0.025,h10_surface_top100
+digital economy,4,0.02,h10_surface_top100
+environmental pollution,4,0.02,h10_surface_top100
+environmental regulation,4,0.02,h10_surface_top100
+income tax rate,4,0.02,h10_surface_top100
+rate of growth,4,0.02,h10_surface_top100
+carbon emissions,25,0.125,h10_shortlist_top100
+green innovation,12,0.06,h10_shortlist_top100
+state of the business cycle,12,0.06,h10_shortlist_top100
+willingness to pay,11,0.055,h10_shortlist_top100
+financial development,9,0.045,h10_shortlist_top100
+technological innovation,8,0.04,h10_shortlist_top100
+income tax rate,7,0.035,h10_shortlist_top100
+environmental quality,6,0.03,h10_shortlist_top100
+price changes,6,0.03,h10_shortlist_top100
+urbanization,6,0.03,h10_shortlist_top100
+digital economy,5,0.025,h10_shortlist_top100
+energy consumption,5,0.025,h10_shortlist_top100
+environmental pollution,4,0.02,h10_shortlist_top100
+environmental regulation,4,0.02,h10_shortlist_top100
+foreign direct investments,4,0.02,h10_shortlist_top100

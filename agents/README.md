@@ -1,38 +1,65 @@
 # Agents Handoff Pack
 
-This folder is the canonical handoff pack for FrontierGraph. A new Codex thread should start here instead of trying to reconstruct the project from long chat history.
+This folder is the canonical handoff pack for FrontierGraph. A new thread should
+start here rather than trying to reconstruct the project from chat history.
 
 ## Start Here
-- Read [LATEST.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/LATEST.md) for the current live state and immediate next work.
-- Read [FULL_HANDOFF_2026-03-11.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/FULL_HANDOFF_2026-03-11.md) for the complete compact handoff to a fresh thread.
-- Read [NEW_THREAD_BRIEF.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/NEW_THREAD_BRIEF.md) to bootstrap a new thread fast.
-- Use [THREAD_START_TEMPLATE.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/THREAD_START_TEMPLATE.md) if you want a ready-made first message for a new thread.
+- **[LATEST.md](LATEST.md)** — current live state, uncommitted work, immediate next steps
+- **[FULL_HANDOFF_2026-04-08.md](FULL_HANDOFF_2026-04-08.md)** — complete compact handoff for a fresh thread
+- [NEW_THREAD_BRIEF.md](NEW_THREAD_BRIEF.md) — quick bootstrap for a new thread
+- [THREAD_START_TEMPLATE.md](THREAD_START_TEMPLATE.md) — ready-made first message template
 
 ## Core State
-- [PROJECT_STATE.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/PROJECT_STATE.md): current system, live product state, canonical defaults, main artifacts.
-- [NEXT_STEPS.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/NEXT_STEPS.md): ordered work queue.
-- [DECISION_LOG.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/DECISION_LOG.md): major decisions and why they were made.
+- [PROJECT_STATE.md](PROJECT_STATE.md) — system state, live product, canonical artifacts
+- [NEXT_STEPS.md](NEXT_STEPS.md) — ordered work queue
+- [DECISION_LOG.md](DECISION_LOG.md) — major decisions and rationale
+
+## Paper Work
+- [PAPER_INCUBATION.md](PAPER_INCUBATION.md) — branch `paper-incubation`, what was done,
+  pending plan files, how to resume
+- [PAPER_INCUBATION_V2ONTOLOGY.md](PAPER_INCUBATION_V2ONTOLOGY.md) — branch
+  `paper-incubation-v2ontology`, v2 ontology build state, open threshold decision,
+  paper rewrite plan
+
+## V2 Ontology
+- [ONTOLOGY_V2_BUILD.md](ONTOLOGY_V2_BUILD.md) — 153,800-concept ontology, sources,
+  build decisions, canonical artifacts
+- [LABEL_MAPPING_V2.md](LABEL_MAPPING_V2.md) — 1.4M label mapping, FAISS pipeline,
+  thresholds, unmatched rate interpretation
+- [ONTOLOGY_AND_CONCEPTS.md](ONTOLOGY_AND_CONCEPTS.md) — full history (FG3C era → v2)
 
 ## Data And Corpus
-- [CORPUS_AND_RETRIEVAL.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/CORPUS_AND_RETRIEVAL.md): OpenAlex retrieval, source selection, counts, retained corpora, key DBs.
+- [CORPUS_AND_RETRIEVAL.md](CORPUS_AND_RETRIEVAL.md) — OpenAlex retrieval, source
+  selection, counts, retained corpora
 
 ## Extraction And Measurement
-- [PROMPT_AND_EXTRACTION.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/PROMPT_AND_EXTRACTION.md): extraction prompt design, schema, model choices, batch strategy.
-- [MEASUREMENT_AND_EVALUATION.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/MEASUREMENT_AND_EVALUATION.md): how the graph is built and what ranking signals exist.
+- [PROMPT_AND_EXTRACTION.md](PROMPT_AND_EXTRACTION.md) — extraction prompt design,
+  schema, model choices, batch strategy
+- [MEASUREMENT_AND_EVALUATION.md](MEASUREMENT_AND_EVALUATION.md) — graph build,
+  ranking signals, evaluation
 
-## Ontology And Ranking
-- [ONTOLOGY_AND_CONCEPTS.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/ONTOLOGY_AND_CONCEPTS.md): v1/v2/v3 history, compare regimes, current baseline.
-- [RANKING_AND_SUPPRESSION.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/RANKING_AND_SUPPRESSION.md): baseline exploratory, duplicate suppression, current recommendation surface.
+## Ranking And Cleanup
+- [RANKING_AND_SUPPRESSION.md](RANKING_AND_SUPPRESSION.md) — baseline exploratory,
+  duplicate suppression, recommendation surface
 
 ## Product And Deployment
-- [WEBSITE_AND_PRODUCT.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/WEBSITE_AND_PRODUCT.md): site/app narrative, live UX, current weaknesses, product defaults.
-- [DEPLOYMENT_AND_STORAGE.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/DEPLOYMENT_AND_STORAGE.md): Cloudflare, Cloud Run, buckets, active runtime DBs, cleanup state.
+- [WEBSITE_AND_PRODUCT.md](WEBSITE_AND_PRODUCT.md) — site/app narrative, live UX,
+  product defaults
+- [DEPLOYMENT_AND_STORAGE.md](DEPLOYMENT_AND_STORAGE.md) — Cloudflare, Cloud Run,
+  buckets, runtime DBs
 
 ## Archival
-- [SESSION_HANDOFF_2026-03-01.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/agents/SESSION_HANDOFF_2026-03-01.md): old handoff, preserved only as historical context.
+- [FULL_HANDOFF_2026-03-11_ARCHIVED.md](FULL_HANDOFF_2026-03-11_ARCHIVED.md) — old
+  handoff, FG3C era (pre-v2 ontology)
+- [SESSION_HANDOFF_2026-03-01.md](SESSION_HANDOFF_2026-03-01.md) — older session
+  handoff, historical only
 
 ## Rules For Future Threads
-- Treat the files in this folder as the current memory of the project.
-- Prefer the current production artifacts and manifests over chat recollection.
-- If a choice conflicts with old beta/JEL-era framing, use the current concept-graph framing.
+- Treat files in this folder as the current memory of the project.
+- Prefer current production artifacts over chat recollection.
+- **FG3C must not appear in v2 analysis.** `FG3C` concept IDs or
+  `frontiergraph_concept_compare_v1` in a v2 context = contamination error.
+- The correct v2 ontology is always `data/ontology_v2/ontology_v2_final.json`.
+- All current work is uncommitted on branch `paper-incubation-v2ontology`. Check
+  LATEST.md for the full list before starting new work.
 - Update these files whenever a major decision, deployment, or measurement change happens.

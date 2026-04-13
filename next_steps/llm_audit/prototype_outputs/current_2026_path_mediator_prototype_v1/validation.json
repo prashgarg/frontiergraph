@@ -1,0 +1,7 @@
+{
+  "rows": 120,
+  "all_required_fields_present": true,
+  "allowed_route_labels_only": true,
+  "allowed_object_families_only": true,
+  "non_direct_titles_use_new_templates": true
+}

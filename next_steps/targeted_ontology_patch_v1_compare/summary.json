@@ -1,0 +1,12 @@
+{
+  "baseline_frontier_flagged_top100_h5": 0.0,
+  "patched_frontier_flagged_top100_h5": 0.0,
+  "baseline_frontier_flagged_top100_h10": 0.0,
+  "patched_frontier_flagged_top100_h10": 0.0,
+  "baseline_noisy_string_hits": 43,
+  "patched_noisy_string_hits": 0,
+  "baseline_env_share_h5_shortlist": 0.505,
+  "patched_env_share_h5_shortlist": 0.35,
+  "baseline_env_share_h10_shortlist": 0.485,
+  "patched_env_share_h10_shortlist": 0.355
+}

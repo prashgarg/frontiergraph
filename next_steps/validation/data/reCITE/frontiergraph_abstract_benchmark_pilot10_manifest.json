@@ -1,0 +1,42 @@
+{
+  "input_jsonl": "next_steps/validation/data/reCITE/frontiergraph_abstract_benchmark.jsonl",
+  "output_jsonl": "next_steps/validation/data/reCITE/frontiergraph_abstract_benchmark_pilot10.jsonl",
+  "sample_size": 10,
+  "selection_rule": "Evenly spaced over the sorted gold edge-count distribution.",
+  "benchmark_ids": [
+    90,
+    233,
+    48,
+    203,
+    258,
+    218,
+    149,
+    40,
+    265,
+    231
+  ],
+  "gold_num_edges": [
+    6,
+    15,
+    20,
+    25,
+    30,
+    35,
+    41,
+    47,
+    65,
+    205
+  ],
+  "gold_num_nodes": [
+    5,
+    14,
+    21,
+    8,
+    20,
+    21,
+    21,
+    40,
+    35,
+    140
+  ]
+}

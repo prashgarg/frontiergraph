@@ -1,0 +1,19 @@
+{
+  "dataset": "dagverse",
+  "input_parquet": "/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant Garg/GraphDir/next_steps/validation/data/dagverse/train.parquet",
+  "output_jsonl": "/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant Garg/GraphDir/next_steps/validation/data/dagverse/frontiergraph_arxiv_abstract_true_benchmark.jsonl",
+  "filter": {
+    "source": "arxiv",
+    "abstract": true,
+    "limit": null
+  },
+  "requested_rows": 25,
+  "materialized_rows": 25,
+  "errors": [],
+  "mean_input_tokens_rough": 341.92,
+  "total_input_tokens_rough": 8548,
+  "notes": [
+    "This benchmark uses the ArXiv-backed abstract-level subset only.",
+    "It is the cleanest DAGverse slice for the current title + abstract FrontierGraph prompt."
+  ]
+}

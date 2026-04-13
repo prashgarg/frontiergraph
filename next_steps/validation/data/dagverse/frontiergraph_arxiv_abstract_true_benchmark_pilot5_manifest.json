@@ -1,0 +1,27 @@
+{
+  "input_jsonl": "next_steps/validation/data/dagverse/frontiergraph_arxiv_abstract_true_benchmark.jsonl",
+  "output_jsonl": "next_steps/validation/data/dagverse/frontiergraph_arxiv_abstract_true_benchmark_pilot5.jsonl",
+  "sample_size": 5,
+  "selection_rule": "Evenly spaced over semantic DAG edge-count distribution.",
+  "benchmark_ids": [
+    "arxiv_2203_02016_0",
+    "arxiv_2006_10742_0",
+    "arxiv_2306_05059_0",
+    "arxiv_2303_04339_0",
+    "arxiv_2205_01057_0"
+  ],
+  "semantic_nodes": [
+    2,
+    4,
+    4,
+    13,
+    25
+  ],
+  "semantic_edges": [
+    1,
+    4,
+    6,
+    9,
+    27
+  ]
+}

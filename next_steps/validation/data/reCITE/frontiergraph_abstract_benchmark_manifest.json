@@ -1,0 +1,14 @@
+{
+  "dataset": "reCITE",
+  "input_parquet": "/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant Garg/GraphDir/next_steps/validation/data/reCITE/test.parquet",
+  "output_jsonl": "/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant Garg/GraphDir/next_steps/validation/data/reCITE/frontiergraph_abstract_benchmark.jsonl",
+  "row_count": 292,
+  "mean_gold_nodes": 24.99,
+  "mean_gold_edges": 37.37,
+  "mean_input_tokens_rough": 402.17,
+  "total_input_tokens_rough": 117435,
+  "notes": [
+    "This benchmark uses title + abstract only.",
+    "This is the clean first match to the current FrontierGraph extraction prompt."
+  ]
+}

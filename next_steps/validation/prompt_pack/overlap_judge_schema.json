@@ -1,0 +1,175 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "benchmark_id": {
+      "type": "string"
+    },
+    "comparability_class": {
+      "type": "string",
+      "enum": [
+        "fair_abstract_level_comparison",
+        "partly_fair_but_resolution_mismatch",
+        "mostly_unfair_for_abstract_extraction"
+      ]
+    },
+    "gold_graph_recoverable_from_abstract": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "partly",
+        "no"
+      ]
+    },
+    "node_overlap_score": {
+      "type": "number"
+    },
+    "edge_overlap_score": {
+      "type": "number"
+    },
+    "main_mismatch_modes": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "string",
+        "enum": [
+          "label_wording_only",
+          "broader_vs_narrower_concepts",
+          "paper_summary_vs_variable_graph",
+          "method_or_dataset_nodes_added",
+          "symbolic_or_state_variable_gold_graph",
+          "gold_not_recoverable_from_abstract",
+          "direction_mismatch",
+          "little_meaningful_overlap"
+        ]
+      }
+    },
+    "summary": {
+      "type": "string"
+    },
+    "predicted_node_mappings": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "predicted_node": {
+            "type": "string"
+          },
+          "matched_gold_node": {
+            "type": "string"
+          },
+          "match_type": {
+            "type": "string",
+            "enum": [
+              "exact_match",
+              "near_synonym",
+              "broader_than_gold",
+              "narrower_than_gold",
+              "partial_overlap",
+              "context_only",
+              "no_match"
+            ]
+          },
+          "confidence": {
+            "type": "number"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "predicted_node",
+          "matched_gold_node",
+          "match_type",
+          "confidence",
+          "reason"
+        ]
+      }
+    },
+    "gold_nodes_without_good_match": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "gold_node": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "covered",
+              "partial_only",
+              "missed",
+              "not_recoverable_from_abstract"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "gold_node",
+          "status",
+          "reason"
+        ]
+      }
+    },
+    "predicted_edge_judgments": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "predicted_edge": {
+            "type": "string"
+          },
+          "matched_gold_edge": {
+            "type": "string"
+          },
+          "match_type": {
+            "type": "string",
+            "enum": [
+              "exact_edge_match",
+              "same_direction_broader_nodes",
+              "same_direction_partial_nodes",
+              "same_relation_different_graph_resolution",
+              "reversed_direction",
+              "context_or_method_edge",
+              "no_match"
+            ]
+          },
+          "confidence": {
+            "type": "number"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "predicted_edge",
+          "matched_gold_edge",
+          "match_type",
+          "confidence",
+          "reason"
+        ]
+      }
+    }
+  },
+  "required": [
+    "benchmark_id",
+    "comparability_class",
+    "gold_graph_recoverable_from_abstract",
+    "node_overlap_score",
+    "edge_overlap_score",
+    "main_mismatch_modes",
+    "summary",
+    "predicted_node_mappings",
+    "gold_nodes_without_good_match",
+    "predicted_edge_judgments"
+  ]
+}

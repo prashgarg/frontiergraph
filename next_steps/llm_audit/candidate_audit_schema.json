@@ -1,0 +1,109 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "decision": {
+      "type": "string",
+      "enum": ["keep", "downrank", "drop"]
+    },
+    "main_reason": {
+      "type": "string",
+      "enum": [
+        "promising_as_is",
+        "already_saturated",
+        "too_generic_or_hub_driven",
+        "weak_mechanism_support",
+        "ontology_merge_problem",
+        "should_be_path_level_not_direct_edge",
+        "should_be_mediator_expansion",
+        "requires_new_node_or_new_concept",
+        "not_paper_shaped",
+        "unclear_directionality",
+        "insufficient_local_support"
+      ]
+    },
+    "secondary_reason": {
+      "type": "string",
+      "enum": [
+        "none",
+        "promising_as_is",
+        "already_saturated",
+        "too_generic_or_hub_driven",
+        "weak_mechanism_support",
+        "ontology_merge_problem",
+        "should_be_path_level_not_direct_edge",
+        "should_be_mediator_expansion",
+        "requires_new_node_or_new_concept",
+        "not_paper_shaped",
+        "unclear_directionality",
+        "insufficient_local_support"
+      ]
+    },
+    "better_formulation": {
+      "type": "string",
+      "enum": [
+        "keep_direct_edge",
+        "reframe_as_path_question",
+        "reframe_as_mediator_question",
+        "split_endpoint_concepts",
+        "introduce_new_node",
+        "drop_entirely",
+        "unclear"
+      ]
+    },
+    "candidate_quality_score": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "paper_shapedness_score": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "mechanism_support_score": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "genericity_score": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "likely_useful_for_current_2026_shortlist": {
+      "type": "string",
+      "enum": ["yes", "maybe", "no"]
+    },
+    "brief_rationale": {
+      "type": "string"
+    },
+    "deterministic_implication": {
+      "type": "string",
+      "enum": [
+        "strengthen_hub_penalty",
+        "require_more_path_support",
+        "require_more_mediator_diversity",
+        "split_nodes_in_ontology",
+        "add_path_level_candidate_object",
+        "add_mediator_expansion_object",
+        "add_new_node_detection",
+        "leave_current_rule_as_is",
+        "unclear"
+      ]
+    }
+  },
+  "required": [
+    "decision",
+    "main_reason",
+    "secondary_reason",
+    "better_formulation",
+    "candidate_quality_score",
+    "paper_shapedness_score",
+    "mechanism_support_score",
+    "genericity_score",
+    "likely_useful_for_current_2026_shortlist",
+    "brief_rationale",
+    "deterministic_implication"
+  ]
+}

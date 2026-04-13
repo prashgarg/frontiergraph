@@ -1,0 +1,139 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "benchmark_id": {
+      "type": "string"
+    },
+    "gold_node_alignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "gold_node": {
+            "type": "string"
+          },
+          "best_predicted_node": {
+            "type": "string"
+          },
+          "overlap_class": {
+            "type": "string",
+            "enum": [
+              "exact_match",
+              "near_synonym",
+              "broader_than_gold",
+              "narrower_than_gold",
+              "partial_overlap",
+              "context_only",
+              "no_match"
+            ]
+          },
+          "abstraction_relation": {
+            "type": "string",
+            "enum": [
+              "same_level",
+              "gold_more_specific",
+              "pred_more_specific",
+              "different_graph_object"
+            ]
+          },
+          "causal_role_relation": {
+            "type": "string",
+            "enum": [
+              "same_role",
+              "compatible_role",
+              "different_role",
+              "contextual_only"
+            ]
+          },
+          "gold_recoverable_from_abstract": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "partly",
+              "no"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "gold_node",
+          "best_predicted_node",
+          "overlap_class",
+          "abstraction_relation",
+          "causal_role_relation",
+          "gold_recoverable_from_abstract",
+          "notes"
+        ]
+      }
+    },
+    "predicted_node_alignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "predicted_node": {
+            "type": "string"
+          },
+          "best_gold_node": {
+            "type": "string"
+          },
+          "overlap_class": {
+            "type": "string",
+            "enum": [
+              "exact_match",
+              "near_synonym",
+              "broader_than_gold",
+              "narrower_than_gold",
+              "partial_overlap",
+              "context_only",
+              "no_match"
+            ]
+          },
+          "abstraction_relation": {
+            "type": "string",
+            "enum": [
+              "same_level",
+              "gold_more_specific",
+              "pred_more_specific",
+              "different_graph_object"
+            ]
+          },
+          "causal_role_relation": {
+            "type": "string",
+            "enum": [
+              "same_role",
+              "compatible_role",
+              "different_role",
+              "contextual_only"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "predicted_node",
+          "best_gold_node",
+          "overlap_class",
+          "abstraction_relation",
+          "causal_role_relation",
+          "notes"
+        ]
+      }
+    },
+    "overall_notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "benchmark_id",
+    "gold_node_alignments",
+    "predicted_node_alignments",
+    "overall_notes"
+  ]
+}

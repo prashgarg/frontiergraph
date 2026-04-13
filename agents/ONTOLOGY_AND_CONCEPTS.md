@@ -1,78 +1,92 @@
 # Ontology And Concepts
 
-## Why Ontology Was Needed
-Raw extracted labels were too local and too messy to use directly for the product.
-We needed reusable concept layers.
+## Version History
 
-## Ontology History
-### v1
-- deterministic seed ontology
-- conservative
-- good infrastructure, low coverage
+### Era 1 — FG3C (v1 canonical concepts) — ARCHIVED
+- 6,752 canonical concepts, IDs like `FG3C000001`
+- Built by `build_frontiergraph_concept_v3.py` using support-gated head rules
+- Produced `frontiergraph_concept_compare_v1` and `frontiergraph_ontology_compare_v1`
+- Used for: live product DB (`concept_exploratory_suppressed_top100k_app_20260309.sqlite`)
+  and old paper ontology appendix (lines 881–947 of current .tex — needs rewrite)
+- Status: **ARCHIVED**. All FG3C artifacts moved to `data/ontology_v2/_v1_artifacts/`
+  and `scripts/_v1_archive/`. Must not appear in v2 analysis.
 
-### v2
-- reviewed ontology with manual adjudication and embeddings
-- produced a working reviewed seed
-- still conservative and low-coverage
+Why FG3C was retired: narrow (6,752 concepts), JEL-biased, misses most domain concepts
+from economics literature. The 1.4M raw extraction labels had only ~15% match rate.
 
-### v3
-- coverage-based head-rule experiment
-- failed because it effectively promoted too many labels into heads
-- kept only as a lesson, not as production basis
+### Era 2 — Ontology V2.3 (frozen baseline, 2026-04-09) — FROZEN FOR METHOD V2
+154,359 concepts from 5 structured source families plus reviewed family rows, frozen for
+the next method pass. Governing artifacts:
+- `data/ontology_v2/ontology_v2_3_candidate.json`
+- `data/ontology_v2/extraction_label_mapping_v2_3_candidate.parquet`
+- `data/production/frontiergraph_ontology_v2_3_candidate/ontology_v2_3_candidate.sqlite`
+- `data/ontology_v2/ontology_v2_3_freeze_note.md`
+- `data/ontology_v2/ontology_v2_3_baseline_manifest.json`
+- `next_steps/v2_3_ontology_policy.md`
 
-### compare_v1
-The current production comparison basis.
+## Current Frozen Ontology Summary
+- File: `data/ontology_v2/ontology_v2_3_candidate.json`
+- 154,359 rows:
+  - Wikipedia `129,032`
+  - OpenAlex keywords `9,271`
+  - Wikidata `8,383`
+  - JEL `5,001`
+  - OpenAlex topics `1,876`
+  - reviewed family rows `796`
+- Extra paper-facing layer:
+  - `display_label` for conservative cleanup
+  - reviewed `effective_parent_*` / `effective_root_*` hierarchy overlay
+- Pause 1 freeze metrics:
+  - display-label changes `602`
+  - allowed roots `22`
+  - ambiguous containers `4`
+  - duplicate merges applied `2`
+  - promoted intermediate groups `0`
+  - effective-parent coverage `13,820`
 
-Frozen support-gated regimes:
-- Broad: `distinct_papers >= 5` and `distinct_journals >= 3`
-- Baseline: `distinct_papers >= 10` and `distinct_journals >= 3`
-- Conservative: `distinct_papers >= 15` and `distinct_journals >= 3`
+## Current Mapping State
+**`data/ontology_v2/extraction_label_mapping_v2_3_candidate.parquet`:**
+- 1,389,907 unique normalized extracted labels
+- score bands:
+  - linked `92,249`
+  - soft `224,043`
+  - candidate `524,551`
+  - rescue `539,120`
+  - unresolved `9,944`
+- direct grounding at `0.75`:
+  - labels `316,292`
+  - occurrences `553,015`
 
-## Current Regime Summary
-From:
-- [regime_summary.csv](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/data/production/frontiergraph_ontology_compare_v1/analysis/regime_summary.csv)
+The ontology baseline is frozen. Ranking and benchmark refresh work now happens
+downstream of that baseline rather than by continuing to move ontology policy.
 
-### Broad
-- heads: `16,505`
-- hard mapped instances: `308,222`
-- soft mapped instances: `470,225`
+## Old Compare Regimes (FG3C era — still live in product)
+These still power the live site and app but will be superseded when v2 is used:
 
-### Baseline
-- heads: `6,752`
-- hard mapped instances: `242,086`
-- soft mapped instances: `471,149`
+Frozen support-gated regimes (papers/journals thresholds):
+- Broad: `≥5 papers, ≥3 journals` → 16,505 heads
+- Baseline: `≥10 papers, ≥3 journals` → 6,752 heads  ← current live default
+- Conservative: `≥15 papers, ≥3 journals` → 4,025 heads
 
-### Conservative
-- heads: `4,025`
-- hard mapped instances: `207,430`
-- soft mapped instances: `475,564`
+Canonical compare artifacts (FG3C era):
+- `data/production/frontiergraph_ontology_compare_v1/`
+- `data/production/frontiergraph_concept_compare_v1/`
 
-## Current Product Judgment
-- Default product ontology: `Baseline`
-- Default product mapping: `Exploratory`
-- Best strict comparison view: `Broad strict`
+These remain the production data for now. They will be rebuilt against v2 once
+the paper's ontology section is finalized and the mapping threshold is decided.
 
-## Important Distinction
-### Strict
-- conservative identity mapping only
-- high precision
+## Important Distinction (applies to v2 too)
+### Strict mapping
+Conservative identity mapping only — high precision.
 
-### Exploratory
-- includes strict mapping and soft nearest-head assignment
-- better for product exploration
-
-## Main Artifacts
-- ontology compare:
-  - [frontiergraph_ontology_compare_v1](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/data/production/frontiergraph_ontology_compare_v1)
-- concept compare:
-  - [frontiergraph_concept_compare_v1](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/data/production/frontiergraph_concept_compare_v1)
-
-## Important Protocol Notes
-- [frontiergraph_ontology_protocol_v1.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/paper/frontiergraph_ontology_protocol_v1.md)
-- [frontiergraph_head_gate_deliberation.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/paper/frontiergraph_head_gate_deliberation.md)
-- [frontiergraph_ontology_compare_protocol_v1.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/paper/frontiergraph_ontology_compare_protocol_v1.md)
+### Exploratory / soft mapping
+Includes strict + soft nearest-match assignment — better coverage for product.
 
 ## Decision Log
-- The product should not present ontology choice as mandatory.
-- Baseline exploratory is the main public concept substrate.
-- Broad and Conservative remain useful sensitivity and comparison views.
+- FG3C retired 2026-04 in favor of v2 (153,800 concept) ontology.
+- FG3C artifacts archived (not deleted) — needed to reproduce old results.
+- Ontology v2.3 frozen on 2026-04-09 for the next method-v2 pass.
+- Raw source provenance remains immutable; `display_label` is cleanup only.
+- Reviewed hierarchy now lives in `effective_parent_*` / `effective_root_*`.
+- Broad roots and ambiguous containers are explicit policy states.
+- Paper-facing ontology appendix rewritten around the v2.3 freeze baseline.
