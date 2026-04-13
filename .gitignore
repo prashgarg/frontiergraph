@@ -16,6 +16,8 @@ site/node_modules/
 site/dist/
 site/.astro/
 slides/frontiergraph_2026/workspace/node_modules/
+slides/frontiergraph_2026/workspace/rendered_full/
+slides/frontiergraph_2026/workspace/rendered_short/
 slides/frontiergraph_2026/.DS_Store
 data/pilots/
 data/production/
