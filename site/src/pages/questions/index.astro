@@ -1,61 +1,74 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import EditorialQuestionCarousel from "../../components/EditorialQuestionCarousel.astro";
-import OpportunityCards from "../../components/OpportunityCards.astro";
+import MechanismEditorialCarousel from "../../components/MechanismEditorialCarousel.astro";
+import MechanismQuestionCards from "../../components/MechanismQuestionCards.astro";
 import { data } from "../../lib/site-data";
+import mechanismCarouselGroupsSource from "../../content/mechanism-carousel-groups.json";
+import mechanismArchiveSource from "../../content/mechanism-archive-generated.json";
 
-const questions = data.questions.ranked_questions;
+const mechanismCurated = data.questions.mechanism_curated_set;
+const mechanismByKey = new Map(mechanismCurated.map((item) => [item.pair_key, item]));
+const mechanismGroups = mechanismCarouselGroupsSource as {
+  front: { title: string; caption: string; items: string[] };
+  field_shelves: { slug: string; title: string; caption: string; items: string[] }[];
+  use_case_shelves: { slug: string; title: string; caption: string; items: string[] }[];
+};
+
+function buildMechanismGroup(group) {
+  return {
+    ...group,
+    items: group.items.map((pairKey) => mechanismByKey.get(pairKey)).filter(Boolean),
+  };
+}
+
+const mechanismFront = buildMechanismGroup(mechanismGroups.front);
+const fieldShelves = mechanismGroups.field_shelves.map(buildMechanismGroup).filter((group) => group.items.length > 0);
+const useCaseShelves = mechanismGroups.use_case_shelves.map(buildMechanismGroup).filter((group) => group.items.length > 0);
+const shelfBySlug = new Map([...fieldShelves, ...useCaseShelves].map((group) => [group.slug, group]));
+const mechanismGrid = [
+  mechanismFront,
+  shelfBySlug.get("innovation-productivity-mechanisms"),
+  shelfBySlug.get("macro-finance-mechanisms"),
+  shelfBySlug.get("labor-household-mechanisms"),
+  shelfBySlug.get("climate-energy-mechanisms"),
+  shelfBySlug.get("longer-horizon-project-ideas"),
+].filter(Boolean);
+const mechanismArchive = Object.values(mechanismArchiveSource);
 ---
 
 <BaseLayout
   title="Questions | FrontierGraph"
-  description="Browse suggested research questions surfaced from missing links in a literature graph."
+  description="Start with a tighter mechanism front stack, then browse mechanism shelves by field and project type before dropping into the larger public archive."
 >
   <main>
     <section class="page-hero">
-      <h1>Browse suggested questions by field.</h1>
+      <h1>Curated research questions.</h1>
       <p class="lede">
-        Start with the part of economics you care about, then widen to the broader public list when you want more range.
+        Start with a tighter front stack of mechanism questions, then browse smaller mechanism shelves by field and project type. The larger archive below is there when you want the broader public release set rather than the tighter editorial pass.
       </p>
     </section>
 
     <section class="section">
       <div class="editorial-carousel-grid editorial-carousel-grid-fields">
-        {data.questions.field_carousels.map((group, index) => (
-          <div id={group.slug}>
-            <EditorialQuestionCarousel
+        {mechanismGrid.map((group, index) => (
+          <div id={index === 0 ? "mechanism-front-carousel" : group.slug}>
+            <MechanismEditorialCarousel
               items={group.items}
               title={group.title}
-              groupLabel="Field"
-              sectionId={`field-carousel-${group.slug}`}
-              initialDelayMs={index * 700}
+              caption={group.caption}
+              groupLabel={index === 0 ? "Mechanism" : index === 5 ? "Use case" : "Field"}
+              sectionId={index === 0 ? "mechanism-front-carousel" : index === 5 ? `use-case-carousel-${group.slug}` : `field-carousel-${group.slug}`}
             />
           </div>
         ))}
       </div>
     </section>
 
-    <section class="section">
-      <div class="editorial-carousel-grid editorial-carousel-grid-use-cases">
-        {data.questions.use_case_carousels.map((group, index) => (
-          <EditorialQuestionCarousel
-            items={group.items}
-            title={group.title}
-            groupLabel="Use case"
-            sectionId={`use-case-carousel-${group.slug}`}
-            initialDelayMs={(index + data.questions.field_carousels.length) * 700}
-          />
-        ))}
-      </div>
-    </section>
-
-    <OpportunityCards
-      items={questions}
-      title="More suggested questions"
-      caption="These questions are surfaced because nearby topics and papers already suggest short mechanism routes between the two sides."
+    <MechanismQuestionCards
+      items={mechanismArchive}
+      title="Broader mechanism archive"
+      caption="This archive is drawn from the wider new mechanism pass, not the older public direct-link set."
       sectionId="overall-ranked-questions"
-      enableFilters={true}
-      initialVisibleCount={24}
     />
   </main>
 </BaseLayout>

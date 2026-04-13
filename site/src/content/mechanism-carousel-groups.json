@@ -1,0 +1,82 @@
+{
+  "front": {
+    "title": "Mechanism questions",
+    "caption": "These are the strongest channel-focused questions we currently want on the public page.",
+    "items": [
+      "https://openalex.org/keywords/environmental-quality__jel:O11:GDP",
+      "https://openalex.org/keywords/r-d-intensity__jel:F62:Economic Growth",
+      "https://openalex.org/keywords/digital-transformation__jel:D24:Productivity",
+      "jel:E25:Wage__jel:D24:Productivity",
+      "wp:15532928__https://openalex.org/keywords/electricity-price",
+      "jel:O32:R&D__jel:E25:Wage",
+      "https://openalex.org/keywords/volatility__https://openalex.org/keywords/investor-behavior",
+      "https://openalex.org/keywords/macroprudential-regulation__jel:G32:Leverage",
+      "jel:F20:Foreign Direct Investment__jel:Z33:Tourism Development",
+      "https://openalex.org/keywords/fee-for-service__https://openalex.org/keywords/health-care-quality",
+      "jel:O32:R&D__jel:L25:Firm Size",
+      "https://openalex.org/keywords/feed-in-tariff__wp:216474"
+    ]
+  },
+  "field_shelves": [
+    {
+      "slug": "macro-finance-mechanisms",
+      "title": "Macro and finance",
+      "caption": "Questions about monetary transmission, leverage, lending, and market behavior.",
+      "items": [
+        "https://openalex.org/keywords/volatility__https://openalex.org/keywords/investor-behavior",
+        "https://openalex.org/keywords/macroprudential-regulation__jel:G32:Leverage",
+        "jel:E43:Interest Rates__jel:E23:Output",
+        "jel:G01:Global Financial Crisis__https://openalex.org/keywords/volatility",
+        "jel:G21:Lending__https://openalex.org/keywords/systemic-risk"
+      ]
+    },
+    {
+      "slug": "climate-energy-mechanisms",
+      "title": "Climate and energy",
+      "caption": "Questions where the support graph points to specific climate-policy and energy-market channels.",
+      "items": [
+        "wp:15532928__https://openalex.org/keywords/electricity-price",
+        "https://openalex.org/keywords/environmental-quality__jel:O11:GDP",
+        "https://openalex.org/keywords/artificial-intelligence__jel:Q42:Renewable Energy",
+        "https://openalex.org/keywords/carbon-tax__https://openalex.org/keywords/wind-power",
+        "https://openalex.org/keywords/feed-in-tariff__wp:216474"
+      ]
+    },
+    {
+      "slug": "innovation-productivity-mechanisms",
+      "title": "Innovation and productivity",
+      "caption": "Questions about how technology, R&D, and green innovation map into firm performance and growth.",
+      "items": [
+        "https://openalex.org/keywords/digital-transformation__jel:D24:Productivity",
+        "https://openalex.org/keywords/green-innovation__jel:D24:Productivity",
+        "https://openalex.org/keywords/r-d-intensity__jel:F62:Economic Growth",
+        "jel:O32:R&D__jel:L25:Firm Size",
+        "jel:O32:R&D__jel:E25:Wage"
+      ]
+    },
+    {
+      "slug": "labor-household-mechanisms",
+      "title": "Labor and household",
+      "caption": "Questions where wages, care-payment design, and productivity connect through concrete margins.",
+      "items": [
+        "jel:O32:R&D__jel:E25:Wage",
+        "jel:E25:Wage__jel:D24:Productivity",
+        "https://openalex.org/keywords/fee-for-service__https://openalex.org/keywords/health-care-quality"
+      ]
+    }
+  ],
+  "use_case_shelves": [
+    {
+      "slug": "longer-horizon-project-ideas",
+      "title": "Longer-horizon project ideas",
+      "caption": "These are richer mechanism questions that look promising but likely need more design work than the front stack.",
+      "items": [
+        "jel:O32:R&D__jel:L25:Firm Size",
+        "https://openalex.org/keywords/feed-in-tariff__wp:216474",
+        "https://openalex.org/keywords/artificial-intelligence__jel:Q42:Renewable Energy",
+        "jel:E43:Interest Rates__jel:E23:Output",
+        "jel:G21:Lending__https://openalex.org/keywords/systemic-risk"
+      ]
+    }
+  ]
+}

@@ -47,12 +47,13 @@ PUBLIC_DB_URL = os.environ.get(
 )
 PUBLIC_RELEASE_DIR = ROOT / "data" / "production" / "frontiergraph_public_release"
 DEFAULT_PUBLIC_RELEASE_DB_PATH = Path(os.environ.get("FRONTIERGRAPH_PUBLIC_RELEASE_DB", f"/tmp/{DB_FILENAME}"))
-SOURCE_PUBLIC_APP_DB_PATH = Path(
-    os.environ.get(
-        "FRONTIERGRAPH_PUBLIC_SOURCE_DB",
-        ROOT / "data" / "production" / "frontiergraph_concept_public" / "concept_exploratory_app.sqlite",
+SOURCE_PUBLIC_APP_DB_ENV = os.environ.get("FRONTIERGRAPH_PUBLIC_SOURCE_DB")
+if not SOURCE_PUBLIC_APP_DB_ENV:
+    raise RuntimeError(
+        "FRONTIERGRAPH_PUBLIC_SOURCE_DB must be set explicitly before exporting site data. "
+        "This guardrail prevents accidental rebuilds from the stale March public-app database."
     )
-)
+SOURCE_PUBLIC_APP_DB_PATH = Path(SOURCE_PUBLIC_APP_DB_ENV).expanduser().resolve()
 PUBLIC_RELEASE_DB_PATH = DEFAULT_PUBLIC_RELEASE_DB_PATH
 PUBLIC_GRAPH_DB_PATH = Path(
     os.environ.get(
@@ -101,7 +102,6 @@ HYBRID_CORPUS_MANIFEST_PATH = (
     / "hybrid_corpus_manifest.json"
 )
 WORKING_PAPER_PDF_PATH = ROOT / "paper" / "research_allocation_paper.pdf"
-EXTENDED_ABSTRACT_PDF_PATH = ROOT / "paper" / "extended_abstract_research_allocation.pdf"
 
 BACKBONE_NODE_LIMIT = 650
 BACKBONE_EDGE_LIMIT = 2200
@@ -459,6 +459,19 @@ SEARCH_SCOPE_ORDER = ("geography", "method", "dataset")
 def read_json(path: Path) -> dict[str, Any]:
     with path.open() as handle:
         return json.load(handle)
+
+
+def file_metadata(path: Path) -> dict[str, Any]:
+    resolved = path.expanduser().resolve()
+    if not resolved.exists():
+        raise FileNotFoundError(f"Expected input file does not exist: {resolved}")
+    stat = resolved.stat()
+    return {
+        "path": str(resolved),
+        "filename": resolved.name,
+        "size_bytes": int(stat.st_size),
+        "modified_at": datetime.fromtimestamp(stat.st_mtime, tz=timezone.utc).isoformat(),
+    }
 
 
 def ensure_display_refinement_artifact() -> Path:
@@ -3462,14 +3475,14 @@ def write_public_db_release_assets(db_path: Path) -> dict[str, Any]:
 def build_release_readme_markdown(metrics: dict[str, Any]) -> str:
     return f"""# Frontier Graph public release README
 
-Frontier Graph is a public browser for suggested research questions in economics. This release starts from {metrics["papers"]:,} papers screened from 1976 to 2026 and packages the public question tables, graph assets, and SQLite bundle that sit behind the site.
+Frontier Graph is a public browser for suggested research questions in economics. This release starts from {metrics["papers"]:,} papers screened from 1976 to 2026 and packages the public question tables and graph assets that sit behind the site.
 
 ## Start here
 
 - If you want a spreadsheet-friendly entry point, start with `top_questions.csv`.
 - If you want topic search and summary statistics, add `central_concepts.csv`.
 - If you want the same JSON and shard files the public site uses, download Tier 2.
-- If you want the full local evidence tables in one file, download `frontiergraph-economics-public.db`.
+- The SQLite bundle is being rebuilt separately and is not part of this release pass.
 
 ## Stable identifiers
 
@@ -3480,20 +3493,18 @@ Frontier Graph is a public browser for suggested research questions in economics
 
 - **Tier 1: lightweight exports**. Use these if you want spreadsheet-friendly question tables, shortlist reviews, or quick concept summaries.
 - **Tier 2: structured graph assets**. Use these if you want the same literature map, concept index, neighborhoods, opportunity shards, and slice files the public site uses.
-- **Tier 3: SQLite bundle**. Use this if you want the full local evidence tables in one file for Python, R, or DB Browser for SQLite.
 
 ## What each file is for
 
 - `top_questions.csv`: one row per suggested question, with display labels, nearby support, path counts, starter papers, and site links.
 - `central_concepts.csv`: one row per central topic, with baseline labels, display labels, graph prominence measures, and literature-view links.
-- `curated_questions.json`: the hand-curated site questions shown in featured shelves.
+- `curated_questions.json`: curated public question records released alongside the site.
 - `hybrid_corpus_manifest.json`: release counts for the broader benchmark corpus.
 - `graph_backbone.json`: the lightweight literature map used on the public site.
 - `concept_index.json`: searchable concept records with aliases, support, and app links.
 - `concept_neighborhoods_index.json`: index into the concept-neighborhood shard files.
 - `concept_opportunities_index.json`: index into the concept-opportunity shard files.
 - `opportunity_slices.json`: grouped question slices used for the public question page.
-- `frontiergraph-economics-public.db`: the full public SQLite bundle.
 
 ## How to read the release
 
@@ -3501,7 +3512,6 @@ Frontier Graph is a public browser for suggested research questions in economics
 - Topic links in the graph are ordered topic-to-topic relations extracted from titles and abstracts. They help organize the literature, but they are not final causal judgments.
 - CSV files are the easiest entry point for spreadsheets and quick scripts.
 - Several CSV columns store lists as JSON strings so the same fields can survive spreadsheet export.
-- The SQLite bundle is the most complete public package. It includes question-level tables such as `question_mediators`, `question_paths`, and `question_papers`, plus both baseline and public display labels.
 
 ## Public surfaces
 
@@ -3513,7 +3523,7 @@ Frontier Graph is a public browser for suggested research questions in economics
 def build_data_dictionary_markdown() -> str:
     return """# Frontier Graph data dictionary
 
-This guide summarizes the main fields in the public download files. If you want one row per suggested question, start with `top_questions.csv`. If you want the full local evidence tables, use the SQLite bundle.
+This guide summarizes the main fields in the public download files. If you want one row per suggested question, start with `top_questions.csv`.
 
 ## Shared identifiers
 
@@ -3589,26 +3599,7 @@ This guide summarizes the main fields in the public download files. If you want 
 | `concept_neighborhoods_index.json` | `{concept_id: shard_path}` | Lookup map from concept ID to neighborhood shard file. |
 | `concept_opportunities_index.json` | `{concept_id: shard_path}` | Lookup map from concept ID to concept-opportunity shard file. |
 | `opportunity_slices.json` | slice arrays | Public question slices such as overall, cross-area, frontier, and fast-follow. |
-| `curated_questions.json` | curated records | Hand-curated questions used in the public site surfaces. |
-
-## SQLite bundle tables
-
-| Table | Grain | Description |
-| --- | --- | --- |
-| `release_meta` | key-value | Release metadata and artifact paths. |
-| `release_metrics` | key-value | Corpus and graph counts for the public release. |
-| `top_questions` | one row per released top question | Lightweight question surface mirrored into SQLite. |
-| `questions` | one row per released question | Full public question table. |
-| `central_concepts` | one row per central concept | Central concept table mirrored from CSV. |
-| `concept_index` | one row per concept | Searchable concept records with aliases and app links. |
-| `graph_nodes`, `graph_edges` | one row per map node/edge | Lightweight public graph backbone. |
-| `opportunity_slices` | one row per pair in a named slice | Slice membership plus JSON payload. |
-| `concept_opportunities` | one row per concept-question pairing | Top nearby questions for each concept. |
-| `concept_neighborhoods` | one row per concept-neighbor relation | Incoming, outgoing, and top-neighbor records. |
-| `question_mediators` | one row per mediator within a question | Ranked mediator concepts for each question. |
-| `question_paths` | one row per supporting path | Ranked supporting paths and labels. |
-| `question_papers` | one row per paper within a path | Papers connected to a path. |
-| `question_neighborhoods` | one row per question | Cached source/target neighborhood JSON. |
+| `curated_questions.json` | curated records | Curated public question records released alongside the site. |
 """
 
 
@@ -3784,6 +3775,21 @@ def main() -> None:
         editorial_fallback_rows=ranked_editorial_fallback_rows,
         limit=PUBLIC_RANKED_WINDOW_LIMIT,
     )
+    public_visible_question_pair_keys = {
+        str(item["pair_key"])
+        for item in ranked_questions
+    } | {
+        str(item["pair_key"])
+        for item in curated_front_set
+    } | {
+        str(item["pair_key"])
+        for item in home_curated_questions
+    } | {
+        str(item["pair_key"])
+        for group in field_carousels + use_case_carousels
+        for item in group["items"]
+    }
+    visible_public_questions = len(public_visible_question_pair_keys)
 
     write_json(PUBLIC_DATA_DIR / "graph_backbone.json", backbone_payload)
     write_json(PUBLIC_DATA_DIR / "concept_index.json", search_index)
@@ -3874,10 +3880,6 @@ def main() -> None:
     )
 
     working_paper_download = copy_public_download(WORKING_PAPER_PDF_PATH, "frontiergraph-working-paper.pdf")
-    extended_abstract_download = copy_public_download(
-        EXTENDED_ABSTRACT_PDF_PATH,
-        "frontiergraph-extended-abstract.pdf",
-    )
     db_manifest = write_public_db_release_assets(PUBLIC_RELEASE_DB_PATH)
     release_readme_path = write_public_download_text(
         "frontiergraph-release-readme.md",
@@ -3886,7 +3888,7 @@ def main() -> None:
                 "papers": int(extraction_summary["records"]),
                 "normalized_links": int(hybrid_manifest["normalized_hybrid_rows"]),
                 "native_concepts": int(hybrid_manifest["unique_concepts_in_hybrid_corpus"]),
-                "visible_public_questions": int(candidates_df["pair_key"].astype(str).nunique()) if "pair_key" in candidates_df.columns else int(len(candidates_df)),
+                "visible_public_questions": visible_public_questions,
             },
         ),
     )
@@ -3924,7 +3926,6 @@ def main() -> None:
 
     artifact_details = {
         "working_paper_pdf": build_download_file_entry(working_paper_download),
-        "extended_abstract_pdf": build_download_file_entry(extended_abstract_download),
         "benchmark_manifest_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/hybrid_corpus_manifest.json"),
         "top_questions_csv": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/top_questions.csv"),
         "curated_questions_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/curated_questions.json"),
@@ -3943,6 +3944,12 @@ def main() -> None:
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "app_url": QUESTION_URL,
         "repo_url": REPO_URL,
+        "build_inputs": {
+            "public_source_db": file_metadata(SOURCE_PUBLIC_APP_DB_PATH),
+            "public_graph_db": file_metadata(PUBLIC_GRAPH_DB_PATH),
+            "extraction_db": file_metadata(EXTRACTION_DB_PATH),
+            "openalex_enriched_db": file_metadata(OPENALEX_ENRICHED_DB_PATH),
+        },
         "public_label_glossary": public_label_glossary,
         "metrics": {
             "papers": int(extraction_summary["records"]),
@@ -3954,7 +3961,7 @@ def main() -> None:
             "normalized_directed_links": int(hybrid_manifest["normalized_directed_rows"]),
             "normalized_undirected_links": int(hybrid_manifest["normalized_undirected_rows"]),
             "native_concepts": int(hybrid_manifest["unique_concepts_in_hybrid_corpus"]),
-            "visible_public_questions": int(candidates_df["pair_key"].astype(str).nunique()) if "pair_key" in candidates_df.columns else int(len(candidates_df)),
+            "visible_public_questions": visible_public_questions,
         },
         "home": {
             "featured_questions": featured_opportunities[:6],
@@ -4011,7 +4018,6 @@ def main() -> None:
             },
             "artifacts": {
                 "working_paper_pdf": working_paper_download,
-                "extended_abstract_pdf": extended_abstract_download,
                 "benchmark_manifest_json": f"{PUBLIC_DATA_URL_PREFIX}/hybrid_corpus_manifest.json",
                 "top_questions_csv": f"{PUBLIC_DATA_URL_PREFIX}/top_questions.csv",
                 "curated_questions_json": f"{PUBLIC_DATA_URL_PREFIX}/curated_questions.json",

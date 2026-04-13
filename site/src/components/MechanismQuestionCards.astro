@@ -1,0 +1,57 @@
+---
+import { type MechanismEditorialQuestion } from "../lib/site-data";
+
+interface Props {
+  items: MechanismEditorialQuestion[];
+  title?: string;
+  caption?: string;
+  sectionId?: string;
+  standalone?: boolean;
+}
+
+const {
+  items,
+  title,
+  caption,
+  sectionId = "mechanism-question-cards",
+  standalone = true,
+} = Astro.props;
+
+const graphHrefBase = Astro.url.pathname.startsWith("/broad/") ? "/broad/graph/" : "/graph/";
+---
+
+<section class:list={[standalone && "section"]} data-role={sectionId}>
+  {title && (
+    <div class:list={["section-heading", !standalone && "section-heading-compact"]}>
+      <div>
+        <h2>{title}</h2>
+      </div>
+      {caption && <p class="section-copy">{caption}</p>}
+    </div>
+  )}
+  <div class="opportunity-cards">
+    {items.map((item) => {
+      const query = encodeURIComponent(item.graph_query || item.source_label);
+      const pair = encodeURIComponent(item.pair_key);
+      const family = encodeURIComponent(item.graph_family || "mechanism");
+      const inspectHref = `${graphHrefBase}?q=${query}&pair=${pair}&family=${family}`;
+      return (
+        <article class="opportunity-card curated-opportunity-card curated-opportunity-card-compact" id={item.pair_key}>
+          <div class="opportunity-kicker">
+            <span>Mechanism question</span>
+            <span>{item.channel_labels.length} candidate channels</span>
+          </div>
+          <h3>{item.question_title}</h3>
+          <p class="card-copy">{item.short_why}</p>
+          <p class="mini-copy">
+            <strong>Candidate channels:</strong> {item.channel_labels.join(", ")}
+          </p>
+          <p class="mini-copy">
+            <strong>A useful first step:</strong> {item.first_next_step}
+          </p>
+          <a class="text-link" href={inspectHref}>Inspect local graph</a>
+        </article>
+      );
+    })}
+  </div>
+</section>

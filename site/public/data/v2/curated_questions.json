@@ -1,1765 +1,502 @@
 [
   {
-    "pair_key": "FG3C000003__FG3C000208",
-    "source_id": "FG3C000208",
-    "target_id": "FG3C000003",
-    "source_label": "public debt",
-    "target_label": "CO2 emissions",
-    "source_display_label": "public debt",
-    "target_display_label": "CO2 emissions",
-    "source_display_concept_id": "FG3C000208",
-    "target_display_concept_id": "FG3C000003",
-    "source_display_refined": false,
-    "target_display_refined": false,
-    "display_refinement_confidence": 0.0,
-    "source_alternate_display_labels": [
-      "public debt (debt-to-GDP ratio)",
-      "government debt level",
-      "federal debt"
-    ],
-    "target_alternate_display_labels": [
-      "closed economies",
-      "combined forecasts",
-      "carbon emissions (CO2 emissions)"
-    ],
-    "source_bucket": "core",
-    "target_bucket": "adjacent",
-    "cross_field": true,
-    "score": 0.220927,
-    "base_score": 0.327948,
-    "duplicate_penalty": 0.107021,
-    "path_support_norm": 0.249676,
-    "gap_bonus": 1.0,
-    "mediator_count": 23,
-    "motif_count": 23,
-    "cooc_count": 0,
-    "direct_link_status": "No direct papers yet",
-    "supporting_path_count": 23,
-    "why_now": "public debt and CO2 emissions are already linked by 23 nearby intermediate topics.",
-    "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
-    "slice_label": "Missing direct link",
-    "public_pair_label": "public debt and CO2 emissions",
-    "display_question_title": "",
-    "representative_papers": [
-      {
-        "paper_id": "W4387030205__gpt5mini_low",
-        "title": "What role public debt plays to moderate the influence of natural resources on financial development? Appraising Resource-Curse Hypothesis in MENA Region",
-        "year": 2023,
-        "edge_src": "FG3C000208",
-        "edge_dst": "FG3C000006",
-        "edge_src_display_label": "public debt",
-        "edge_dst_display_label": "financial development",
-        "authors": [
-          "Duan Chengyonghui",
-          "Soh Wei Ni",
-          "Tze San Ong",
-          "Norhuda BT Abdul Rahim"
-        ],
-        "citation_label": "Chengyonghui et al. (2023)",
-        "journal": "Resources Policy",
-        "citation_count": 0,
-        "openalex_url": "https://openalex.org/W4387030205",
-        "url": "https://doi.org/10.1016/j.resourpol.2023.104192"
-      },
-      {
-        "paper_id": "W3130642389__gpt5mini_low",
-        "title": "Unpacking the role of public debt in renewable energy consumption: New insights from the emerging countries",
-        "year": 2021,
-        "edge_src": "FG3C000208",
-        "edge_dst": "FG3C000018",
-        "edge_src_display_label": "public debt",
-        "edge_dst_display_label": "renewable energy consumption",
-        "authors": [
-          "Ali Hashemizadeh",
-          "Quocviet Bui",
-          "Nattapan Kongbuamai"
-        ],
-        "citation_label": "Hashemizadeh et al. (2021)",
-        "journal": "Energy",
-        "citation_count": 69,
-        "openalex_url": "https://openalex.org/W3130642389",
-        "url": "https://doi.org/10.1016/j.energy.2021.120187"
-      },
-      {
-        "paper_id": "W2018005751__gpt5mini_low",
-        "title": "Public debt and financial development",
-        "year": 2008,
-        "edge_src": "FG3C000208",
-        "edge_dst": "FG3C000006",
-        "edge_src_display_label": "public debt",
-        "edge_dst_display_label": "financial development",
-        "authors": [
-          "David Hauner"
-        ],
-        "citation_label": "Hauner (2008)",
-        "journal": "Journal of Development Economics",
-        "citation_count": 123,
-        "openalex_url": "https://openalex.org/W2018005751",
-        "url": "https://doi.org/10.1016/j.jdeveco.2008.02.004"
-      }
-    ],
-    "question_family": "debt-climate",
-    "suppress_from_public_ranked_window": false,
-    "top_mediator_display_labels": [
-      "economic growth",
-      "financial development",
-      "renewable energy consumption"
-    ],
-    "top_mediator_labels": [
-      "economic growth",
-      "financial development",
-      "renewable energy consumption"
-    ],
-    "top_mediator_baseline_labels": [
-      "economic growth",
-      "financial development",
-      "renewable energy consumption"
-    ],
-    "top_countries_source": [
-      "United States",
-      "Africa",
-      "China"
-    ],
-    "top_countries_target": [
-      "China",
-      "India"
-    ],
-    "source_context_summary": "United States, Africa, and related settings",
-    "target_context_summary": "China and India",
-    "common_contexts": "public debt studies are common in United States, Africa, and related settings; CO2 emissions studies are common in China and India.",
-    "public_specificity_score": -5.1516,
-    "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000003__FG3C000208",
-    "editorial_question_title": "How does public debt shape CO2 emissions?",
-    "question_title": "How does public debt shape CO2 emissions?",
-    "short_why": "Debt can reshape public investment, energy pricing, and fiscal space, but those channels rarely get studied together as an emissions question.",
-    "first_next_step": "Start with debt overhang, austerity, or refinancing episodes and track public investment, energy use, and emissions after them.",
-    "who_its_for": "Public finance, macro, and climate researchers.",
-    "homepage_featured": true,
-    "questions_featured": true,
+    "pair_key": "https://openalex.org/keywords/environmental-quality__jel:O11:GDP",
+    "question_title": "Does environmental quality matter for GDP through energy use or renewable adoption?",
+    "short_why": "The nearest support graph keeps returning renewable energy, energy use, and the environmental Kuznets channel as the main routes linking environmental quality to output.",
+    "first_next_step": "Start with papers that jointly study environmental quality, GDP, and one of the candidate channels, then check which channel is treated as an intermediate outcome rather than a parallel correlate.",
+    "who_its_for": "environmental, energy, and development economists",
     "display_order": 1,
-    "homepage_role": "lead",
     "field_shelves": [
-      "macro-finance",
-      "climate-energy"
+      "climate and energy"
     ],
     "collection_tags": [
-      "cross-field",
-      "strong-nearby-evidence"
-    ],
-    "editorial_strength": "flagship"
-  },
-  {
-    "pair_key": "FG3C000012__FG3C000110",
-    "source_id": "FG3C000012",
-    "target_id": "FG3C000110",
-    "source_label": "urbanization",
-    "target_label": "output growth",
-    "source_display_label": "urbanization",
-    "target_display_label": "output growth",
-    "source_display_concept_id": "FG3C000012",
-    "target_display_concept_id": "FG3C000110",
-    "source_display_refined": false,
-    "target_display_refined": false,
-    "display_refinement_confidence": 0.0,
-    "source_alternate_display_labels": [
-      "urbanization (urban population)",
-      "rapid urbanization",
-      "urban size"
-    ],
-    "target_alternate_display_labels": [
-      "slower economic growth",
-      "growth rate of output",
-      "future output growth"
-    ],
-    "source_bucket": "adjacent",
-    "target_bucket": "core",
-    "cross_field": true,
-    "score": 0.199147,
-    "base_score": 0.222935,
-    "duplicate_penalty": 0.023787,
-    "path_support_norm": 0.015976,
-    "gap_bonus": 1.0,
-    "mediator_count": 17,
-    "motif_count": 17,
-    "cooc_count": 0,
-    "direct_link_status": "No direct papers yet",
-    "supporting_path_count": 17,
-    "why_now": "urbanization and output growth are already linked by 17 nearby intermediate topics.",
-    "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
-    "slice_label": "Missing direct link",
-    "public_pair_label": "output growth and urbanization",
-    "display_question_title": "",
-    "representative_papers": [
-      {
-        "paper_id": "W4378895327__gpt5mini_low",
-        "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
-        "year": 2023,
-        "edge_src": "FG3C000012",
-        "edge_dst": "FG3C000173",
-        "edge_src_display_label": "urbanization",
-        "edge_dst_display_label": "energy use",
-        "authors": [
-          "Ramesh Chandra Das",
-          "Tonmoy Chatterjee",
-          "Enrico Ivaldi"
-        ],
-        "citation_label": "Das et al. (2023)",
-        "journal": "Ecological Indicators",
-        "citation_count": 9,
-        "openalex_url": "https://openalex.org/W4378895327",
-        "url": "https://doi.org/10.1016/j.ecolind.2023.110381"
-      },
-      {
-        "paper_id": "W4402599747__gpt5mini_low",
-        "title": "Impacts of Urbanization on Energy Consumption in the South Asian Association for Regional Cooperation Zone",
-        "year": 2024,
-        "edge_src": "FG3C000012",
-        "edge_dst": "FG3C000014",
-        "edge_src_display_label": "urbanization",
-        "edge_dst_display_label": "energy consumption",
-        "authors": [
-          "Tithy Dev",
-          "Morteza Haghiri",
-          "Gabriela Sabau"
-        ],
-        "citation_label": "Dev et al. (2024)",
-        "journal": "Sustainability",
-        "citation_count": 8,
-        "openalex_url": "https://openalex.org/W4402599747",
-        "url": "https://doi.org/10.3390/su16188141"
-      },
-      {
-        "paper_id": "W1986959413__gpt5mini_low",
-        "title": "Energy use and output growth in Canada: a multivariate cointegration analysis",
-        "year": 2003,
-        "edge_src": "FG3C000173",
-        "edge_dst": "FG3C000110",
-        "edge_src_display_label": "energy use",
-        "edge_dst_display_label": "output growth",
-        "authors": [
-          "Khalifa H. Ghali",
-          "Mohammed El-Sakka"
-        ],
-        "citation_label": "Ghali and El-Sakka (2003)",
-        "journal": "Energy Economics",
-        "citation_count": 599,
-        "openalex_url": "https://openalex.org/W1986959413",
-        "url": "https://doi.org/10.1016/s0140-9883(03)00056-2"
-      }
-    ],
-    "question_family": "urban-growth",
-    "suppress_from_public_ranked_window": false,
-    "top_mediator_display_labels": [
-      "CO2 emissions",
-      "energy consumption",
-      "energy use"
-    ],
-    "top_mediator_labels": [
-      "CO2 emissions",
-      "energy consumption",
-      "energy use"
-    ],
-    "top_mediator_baseline_labels": [
-      "CO2 emissions",
-      "energy consumption",
-      "energy use"
-    ],
-    "top_countries_source": [
-      "China",
-      "India"
-    ],
-    "top_countries_target": [
-      "United States",
-      "China",
-      "United Kingdom"
-    ],
-    "source_context_summary": "China and India",
-    "target_context_summary": "United States, China, and related settings",
-    "common_contexts": "urbanization studies are common in China and India; output growth studies are common in United States, China, and related settings.",
-    "public_specificity_score": -8.1201,
-    "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000012__FG3C000110",
-    "editorial_question_title": "When does urbanization translate into output growth?",
-    "question_title": "When does urbanization translate into output growth?",
-    "short_why": "Urbanization is central to development stories, but it is often treated as background change rather than a testable growth question.",
-    "first_next_step": "Use city expansion or regional urban concentration changes to test when denser settlement begins to raise output growth.",
-    "who_its_for": "Development, urban, and regional economists.",
-    "homepage_featured": true,
-    "questions_featured": true,
-    "display_order": 2,
-    "homepage_role": "supporting",
-    "field_shelves": [
-      "development-urban"
-    ],
-    "collection_tags": [
-      "open-little-direct",
-      "paper-ready",
-      "phd-topic"
-    ],
-    "editorial_strength": "flagship"
-  },
-  {
-    "pair_key": "FG3C000014__FG3C000024",
-    "source_id": "FG3C000024",
-    "target_id": "FG3C000014",
-    "source_label": "monetary policy",
-    "target_label": "energy consumption",
-    "source_display_label": "monetary policy",
-    "target_display_label": "energy consumption",
-    "source_display_concept_id": "FG3C000024",
-    "target_display_concept_id": "FG3C000014",
-    "source_display_refined": false,
-    "target_display_refined": false,
-    "display_refinement_confidence": 0.0,
-    "source_alternate_display_labels": [
-      "monetary policy (interest rate)",
-      "monetary policy framework",
-      "Federal Reserve monetary policy"
-    ],
-    "target_alternate_display_labels": [
-      "disaggregated energy consumption",
-      "resource consumption",
-      "energy consumption / energy use"
-    ],
-    "source_bucket": "core",
-    "target_bucket": "adjacent",
-    "cross_field": true,
-    "score": 0.200003,
-    "base_score": 0.218595,
-    "duplicate_penalty": 0.018592,
-    "path_support_norm": 0.004562,
-    "gap_bonus": 1.0,
-    "mediator_count": 23,
-    "motif_count": 23,
-    "cooc_count": 0,
-    "direct_link_status": "No direct papers yet",
-    "supporting_path_count": 23,
-    "why_now": "monetary policy and energy consumption are already linked by 23 nearby intermediate topics.",
-    "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
-    "slice_label": "Missing direct link",
-    "public_pair_label": "monetary policy and energy consumption",
-    "display_question_title": "",
-    "representative_papers": [
-      {
-        "paper_id": "W4392592084__gpt5mini_low",
-        "title": "Nonparametric analysis of the relationship between income inequality and energy consumption in African countries",
-        "year": 2024,
-        "edge_src": "FG3C000025",
-        "edge_dst": "FG3C000014",
-        "edge_src_display_label": "income inequality",
-        "edge_dst_display_label": "energy consumption",
-        "authors": [
-          "Lamia Beldi",
-          "Tarek Ghazouani"
-        ],
-        "citation_label": "Beldi and Ghazouani (2024)",
-        "journal": "Natural Resources Forum",
-        "citation_count": 15,
-        "openalex_url": "https://openalex.org/W4392592084",
-        "url": "https://doi.org/10.1111/1477-8947.12451"
-      },
-      {
-        "paper_id": "W2029680849__gpt5mini_low",
-        "title": "Energy consumption and output: Evidence from a panel of 14 oil-exporting countries",
-        "year": 2013,
-        "edge_src": "FG3C000011",
-        "edge_dst": "FG3C000014",
-        "edge_src_display_label": "output",
-        "edge_dst_display_label": "energy consumption",
-        "authors": [
-          "Hassan Mohammadi",
-          "Shahrokh Parvaresh"
-        ],
-        "citation_label": "Mohammadi and Parvaresh (2013)",
-        "journal": "Energy Economics",
-        "citation_count": 75,
-        "openalex_url": "https://openalex.org/W2029680849",
-        "url": "https://doi.org/10.1016/j.eneco.2013.11.002"
-      },
-      {
-        "paper_id": "W4414569316__gpt5mini_low",
-        "title": "Inequality and transmission channels of monetary policy in a macro agent-based model",
-        "year": 2025,
-        "edge_src": "FG3C000024",
-        "edge_dst": "FG3C000025",
-        "edge_src_display_label": "monetary policy",
-        "edge_dst_display_label": "income inequality",
-        "authors": [
-          "Samantha Coccia",
-          "Alberto Russo"
-        ],
-        "citation_label": "Coccia and Russo (2025)",
-        "journal": "Economic Modelling",
-        "citation_count": 1,
-        "openalex_url": "https://openalex.org/W4414569316",
-        "url": "https://doi.org/10.1016/j.econmod.2025.107316"
-      }
-    ],
-    "question_family": "monetary-energy",
-    "suppress_from_public_ranked_window": false,
-    "top_mediator_display_labels": [
-      "income",
-      "output",
-      "income inequality"
-    ],
-    "top_mediator_labels": [
-      "income",
-      "output",
-      "income inequality"
-    ],
-    "top_mediator_baseline_labels": [
-      "income",
-      "output",
-      "income inequality"
-    ],
-    "top_countries_source": [
-      "United States",
-      "China"
-    ],
-    "top_countries_target": [
-      "China",
-      "India",
-      "Pakistan"
-    ],
-    "source_context_summary": "United States and China",
-    "target_context_summary": "China, India, and related settings",
-    "common_contexts": "monetary policy studies are common in United States and China; energy consumption studies are common in China, India, and related settings.",
-    "public_specificity_score": -6.3772,
-    "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C000024",
-    "editorial_question_title": "Does monetary policy have an energy-demand channel?",
-    "question_title": "Does monetary policy have an energy-demand channel?",
-    "short_why": "Rate shocks move durables, construction, and industrial borrowing, yet energy demand is rarely the main outcome of monetary papers.",
-    "first_next_step": "Trace monetary shocks through durables, construction, and sector energy demand instead of stopping at output or inflation.",
-    "who_its_for": "Macro, monetary, and energy researchers.",
-    "homepage_featured": false,
-    "questions_featured": true,
-    "display_order": 3,
-    "homepage_role": "none",
-    "field_shelves": [
-      "macro-finance",
-      "climate-energy"
-    ],
-    "collection_tags": [
-      "cross-field",
-      "strong-nearby-evidence"
-    ],
-    "editorial_strength": "flagship"
-  },
-  {
-    "pair_key": "FG3C000010__FG3C000019",
-    "source_id": "FG3C000019",
-    "target_id": "FG3C000010",
-    "source_label": "investment",
-    "target_label": "carbon emissions",
-    "source_display_label": "investment",
-    "target_display_label": "carbon emissions",
-    "source_display_concept_id": "FG3C000019",
-    "target_display_concept_id": "FG3C000010",
-    "source_display_refined": false,
-    "target_display_refined": false,
-    "display_refinement_confidence": 0.0,
-    "source_alternate_display_labels": [
-      "time-varying investment opportunities",
-      "investment (aggregate)",
-      "investment in risky assets"
-    ],
-    "target_alternate_display_labels": [
-      "transport CO2 emissions",
-      "overall carbon emissions",
-      "cap-and-trade policy"
-    ],
-    "source_bucket": "core",
-    "target_bucket": "adjacent",
-    "cross_field": true,
-    "score": 0.240703,
-    "base_score": 0.266432,
-    "duplicate_penalty": 0.025729,
-    "path_support_norm": 0.068198,
-    "gap_bonus": 1.0,
-    "mediator_count": 38,
-    "motif_count": 36,
-    "cooc_count": 0,
-    "direct_link_status": "No direct papers yet",
-    "supporting_path_count": 38,
-    "why_now": "investment and carbon emissions are already linked by 38 nearby intermediate topics.",
-    "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
-    "slice_label": "Missing direct link",
-    "public_pair_label": "investment and carbon emissions",
-    "display_question_title": "",
-    "representative_papers": [
-      {
-        "paper_id": "W4409293498__gpt5mini_low",
-        "title": "Carbon Emissions and Innovation Cities: A SHAP-Model-Based Study on Decoupling Trends and Policy Implications in Coastal China",
-        "year": 2025,
-        "edge_src": "FG3C000013",
-        "edge_dst": "FG3C000010",
-        "edge_src_display_label": "technological innovation",
-        "edge_dst_display_label": "carbon emissions",
-        "authors": [
-          "Xiaoyu Fang",
-          "Lin Ding",
-          "Meng Gao"
-        ],
-        "citation_label": "Fang et al. (2025)",
-        "journal": "Sustainability",
-        "citation_count": 4,
-        "openalex_url": "https://openalex.org/W4409293498",
-        "url": "https://doi.org/10.3390/su17083344"
-      },
-      {
-        "paper_id": "W7125495636__gpt5mini_low",
-        "title": "Green Governance and Energy Transition: A Quantile-on-Quantile Analysis of Renewable Energy, Policy, and Innovation Effects on Carbon Emissions",
-        "year": 2026,
-        "edge_src": "FG3C000001",
-        "edge_dst": "FG3C000010",
-        "edge_src_display_label": "economic growth",
-        "edge_dst_display_label": "carbon emissions",
-        "authors": [
-          "Fatma Türüç",
-          "Ata Pervar",
-          "Süheyla Üçışık-Erbilen",
-          "Mehdi Seraj"
-        ],
-        "citation_label": "Türüç et al. (2026)",
-        "journal": "Sustainability",
-        "citation_count": 0,
-        "openalex_url": "https://openalex.org/W7125495636",
-        "url": "https://doi.org/10.3390/su18021127"
-      },
-      {
-        "paper_id": "W4393989550__gpt5mini_low",
-        "title": "Does emerging country's urbanization redefine the environmental Kuznets hypothesis for carbon emissions? A novel perspective on national and subnational differences",
-        "year": 2024,
-        "edge_src": "FG3C000026",
-        "edge_dst": "FG3C000010",
-        "edge_src_display_label": "economic development",
-        "edge_dst_display_label": "carbon emissions",
-        "authors": [
-          "Qiang Wang",
-          "Siqi Zhang",
-          "Rongrong Li"
-        ],
-        "citation_label": "Wang et al. (2024)",
-        "journal": "Energy & Environment",
-        "citation_count": 4,
-        "openalex_url": "https://openalex.org/W4393989550",
-        "url": "https://doi.org/10.1177/0958305x241230623"
-      }
-    ],
-    "question_family": "investment-climate",
-    "suppress_from_public_ranked_window": false,
-    "top_mediator_display_labels": [
-      "economic growth",
-      "technological innovation",
-      "economic development"
-    ],
-    "top_mediator_labels": [
-      "economic growth",
-      "technological innovation",
-      "economic development"
-    ],
-    "top_mediator_baseline_labels": [
-      "economic growth",
-      "technological innovation",
-      "economic development"
-    ],
-    "top_countries_source": [
-      "China",
-      "United States"
-    ],
-    "top_countries_target": [
-      "China",
-      "India"
-    ],
-    "source_context_summary": "China and United States",
-    "target_context_summary": "China and India",
-    "common_contexts": "investment studies are common in China and United States; carbon emissions studies are common in China and India.",
-    "public_specificity_score": -6.059,
-    "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000010__FG3C000019",
-    "editorial_question_title": "Which kinds of investment raise carbon emissions?",
-    "question_title": "Which kinds of investment raise carbon emissions?",
-    "short_why": "Capital deepening can raise or lower emissions depending on what gets financed, but investment is too often treated as one undifferentiated block.",
-    "first_next_step": "Split infrastructure, private fixed investment, and foreign-financed capital formation before testing carbon effects.",
-    "who_its_for": "Applied macro, development, and climate researchers.",
-    "homepage_featured": false,
-    "questions_featured": true,
-    "display_order": 4,
-    "homepage_role": "none",
-    "field_shelves": [
-      "development-urban"
-    ],
-    "collection_tags": [
+      "mechanism",
       "strong-nearby-evidence",
       "paper-ready"
     ],
-    "editorial_strength": "flagship"
+    "question_family": "mechanism-environmental-quality-gdp-energy-use-renewables",
+    "graph_query": "environmental quality",
+    "graph_family": "mechanism",
+    "source_label": "Environmental quality",
+    "target_label": "GDP",
+    "channel_labels": [
+      "renewable energy",
+      "energy use",
+      "environmental Kuznets curve"
+    ],
+    "route_family": "mediator_question",
+    "app_link": "https://frontiergraph.com/questions/#https://openalex.org/keywords/environmental-quality__jel:O11:GDP"
   },
   {
-    "pair_key": "FG3C000014__FG3C001221",
-    "source_id": "FG3C001221",
-    "target_id": "FG3C000014",
-    "source_label": "trade liberalisation",
-    "target_label": "energy consumption",
-    "source_display_label": "trade liberalisation",
-    "target_display_label": "energy consumption",
-    "source_display_concept_id": "FG3C001221",
-    "target_display_concept_id": "FG3C000014",
-    "source_display_refined": false,
-    "target_display_refined": false,
-    "display_refinement_confidence": 0.0,
-    "source_alternate_display_labels": [
-      "international trade / trade liberalization",
-      "liberalisation",
-      "unilateral trade liberalization"
-    ],
-    "target_alternate_display_labels": [
-      "disaggregated energy consumption",
-      "resource consumption",
-      "energy consumption / energy use"
-    ],
-    "source_bucket": "core",
-    "target_bucket": "adjacent",
-    "cross_field": true,
-    "score": 0.20594,
-    "base_score": 0.220632,
-    "duplicate_penalty": 0.014691,
-    "path_support_norm": 0.02533,
-    "gap_bonus": 1.0,
-    "mediator_count": 5,
-    "motif_count": 4,
-    "cooc_count": 0,
-    "direct_link_status": "No direct papers yet",
-    "supporting_path_count": 5,
-    "why_now": "trade liberalisation and energy consumption are already linked by 5 nearby intermediate topics.",
-    "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
-    "slice_label": "Missing direct link",
-    "public_pair_label": "trade liberalisation and energy consumption",
-    "display_question_title": "",
-    "representative_papers": [
-      {
-        "paper_id": "W2347056154__gpt5mini_low",
-        "title": "Trade liberalisation and economic growth link: The case of Southern African Custom Union countries",
-        "year": 2016,
-        "edge_src": "FG3C001221",
-        "edge_dst": "FG3C000001",
-        "edge_src_display_label": "trade liberalisation",
-        "edge_dst_display_label": "economic growth",
-        "authors": [
-          "Farai Manwa",
-          "Albert Wijeweera"
-        ],
-        "citation_label": "Manwa and Wijeweera (2016)",
-        "journal": "Economic Analysis and Policy",
-        "citation_count": 39,
-        "openalex_url": "https://openalex.org/W2347056154",
-        "url": "https://doi.org/10.1016/j.eap.2016.05.001"
-      },
-      {
-        "paper_id": "W4400358233__gpt5mini_low",
-        "title": "The Relationship Between Energy Consumption and Economic Growth: Panel Data Analysis by Country Groups",
-        "year": 2024,
-        "edge_src": "FG3C000001",
-        "edge_dst": "FG3C000014",
-        "edge_src_display_label": "economic growth",
-        "edge_dst_display_label": "energy consumption",
-        "authors": [
-          "Okyay Uçan",
-          "Ecem Turgut",
-          "Ayberk Nuri Berkman"
-        ],
-        "citation_label": "Uçan et al. (2024)",
-        "journal": "Journal of the Knowledge Economy",
-        "citation_count": 5,
-        "openalex_url": "https://openalex.org/W4400358233",
-        "url": "https://doi.org/10.1007/s13132-024-02137-y"
-      },
-      {
-        "paper_id": "W4393851717__gpt5mini_low",
-        "title": "Exploring non-linear causal nexus between economic growth and energy consumption across various R&amp;D regimes: Cross-country evidence from a PSTR model",
-        "year": 2024,
-        "edge_src": "FG3C000001",
-        "edge_dst": "FG3C000014",
-        "edge_src_display_label": "economic growth",
-        "edge_dst_display_label": "energy consumption",
-        "authors": [
-          "Mohsen Khezri",
-          "Jamal Mamkhezri",
-          "Almas Heshmati"
-        ],
-        "citation_label": "Khezri et al. (2024)",
-        "journal": "Energy Economics",
-        "citation_count": 13,
-        "openalex_url": "https://openalex.org/W4393851717",
-        "url": "https://doi.org/10.1016/j.eneco.2024.107519"
-      }
-    ],
-    "question_family": "trade-energy",
-    "suppress_from_public_ranked_window": false,
-    "top_mediator_display_labels": [
-      "economic growth",
-      "foreign direct investments",
-      "trade liberalization"
-    ],
-    "top_mediator_labels": [
-      "economic growth",
-      "foreign direct investments",
-      "trade liberalization"
-    ],
-    "top_mediator_baseline_labels": [
-      "economic growth",
-      "foreign direct investments",
-      "trade liberalization"
-    ],
-    "top_countries_source": [
-      "India",
-      "Nepal",
-      "developing countries"
-    ],
-    "top_countries_target": [
-      "China",
-      "India",
-      "Pakistan"
-    ],
-    "source_context_summary": "India, Nepal, and related settings",
-    "target_context_summary": "China, India, and related settings",
-    "common_contexts": "trade liberalisation studies are common in India, Nepal, and related settings; energy consumption studies are common in China, India, and related settings.",
-    "public_specificity_score": -5.2734,
-    "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000014__FG3C001221",
-    "editorial_question_title": "How does trade liberalisation change energy consumption?",
-    "question_title": "How does trade liberalisation change energy consumption?",
-    "short_why": "Trade reforms can change production patterns and freight demand, but energy use is usually treated as a side effect rather than the main outcome.",
-    "first_next_step": "Start with sectors most exposed to tariff or quota changes and test whether energy intensity moved with the trade mix.",
-    "who_its_for": "Trade, energy, and globalization researchers.",
-    "homepage_featured": false,
-    "questions_featured": true,
-    "display_order": 5,
-    "homepage_role": "none",
+    "pair_key": "https://openalex.org/keywords/r-d-intensity__jel:F62:Economic Growth",
+    "question_title": "Does R&D intensity raise growth through innovation effort, high-tech exports, or tax policy?",
+    "short_why": "This card is strongest when the mechanism is treated as how research intensity becomes growth, not just whether the two move together.",
+    "first_next_step": "Separate papers that use innovation effort, high-tech export exposure, or tax policy as the intermediate margin, then ask which one survives in a common empirical frame.",
+    "who_its_for": "innovation, macro, and growth economists",
+    "display_order": 2,
     "field_shelves": [
-      "trade-globalization"
+      "innovation and productivity"
     ],
     "collection_tags": [
-      "cross-field",
-      "phd-topic"
-    ],
-    "editorial_strength": "flagship"
-  },
-  {
-    "pair_key": "FG3C000053__FG3C001307",
-    "source_id": "FG3C000053",
-    "target_id": "FG3C001307",
-    "source_label": "green innovation",
-    "target_label": "load capacity factor (LCF)",
-    "source_display_label": "green innovation",
-    "target_display_label": "ecological carrying capacity",
-    "source_display_concept_id": "FG3C000053",
-    "target_display_concept_id": "FG3C001306",
-    "source_display_refined": false,
-    "target_display_refined": true,
-    "display_refinement_confidence": 0.4084,
-    "source_alternate_display_labels": [
-      "green enterprises",
-      "firms' green innovation",
-      "green R&D investment"
-    ],
-    "target_alternate_display_labels": [
-      "Environmental sustainability (Load Capacity Factor, LCF)",
-      "load capacity factor (environmental quality)"
-    ],
-    "source_bucket": "adjacent",
-    "target_bucket": "adjacent",
-    "cross_field": false,
-    "score": 0.199088,
-    "base_score": 0.217871,
-    "duplicate_penalty": 0.018783,
-    "path_support_norm": 0.004732,
-    "gap_bonus": 1.0,
-    "mediator_count": 16,
-    "motif_count": 17,
-    "cooc_count": 0,
-    "direct_link_status": "No direct papers yet",
-    "supporting_path_count": 16,
-    "why_now": "green innovation and ecological carrying capacity are already linked by 16 nearby intermediate topics.",
-    "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
-    "slice_label": "Missing direct link",
-    "public_pair_label": "ecological carrying capacity and green innovation",
-    "display_question_title": "",
-    "representative_papers": [
-      {
-        "paper_id": "W4381621026__gpt5mini_low",
-        "title": "The effects of green innovation, environmental taxes, and financial development on renewable energy consumption in OECD countries",
-        "year": 2023,
-        "edge_src": "FG3C000053",
-        "edge_dst": "FG3C000018",
-        "edge_src_display_label": "green innovation",
-        "edge_dst_display_label": "renewable energy consumption",
-        "authors": [
-          "Mücahit Aydın",
-          "Oğuzhan Bozatli"
-        ],
-        "citation_label": "Aydın and Bozatli (2023)",
-        "journal": "Energy",
-        "citation_count": 35,
-        "openalex_url": "https://openalex.org/W4381621026",
-        "url": "https://doi.org/10.1016/j.energy.2023.128105"
-      },
-      {
-        "paper_id": "W4415370404__gpt5mini_low",
-        "title": "Impact of Supply Chain Management on Energy Transition and Environmental Sustainability: The Role of Knowledge Management and Green Innovations",
-        "year": 2025,
-        "edge_src": "FG3C000053",
-        "edge_dst": "FG3C000267",
-        "edge_src_display_label": "green innovation",
-        "edge_dst_display_label": "energy transition",
-        "authors": [
-          "Salem Younes",
-          "Muri Wole Adedokun",
-          "Ahmad Alzubi",
-          "Hasan Yousef Aljuhmani"
-        ],
-        "citation_label": "Younes et al. (2025)",
-        "journal": "Sustainability",
-        "citation_count": 4,
-        "openalex_url": "https://openalex.org/W4415370404",
-        "url": "https://doi.org/10.3390/su17209249"
-      },
-      {
-        "paper_id": "W4410436254__gpt5mini_low",
-        "title": "Balancing Growth and Sustainability: Can Green Innovation Curb the Ecological Impact of Resource-Rich Economies?",
-        "year": 2025,
-        "edge_src": "FG3C000053",
-        "edge_dst": "FG3C000249",
-        "edge_src_display_label": "green innovation",
-        "edge_dst_display_label": "natural resource rents",
-        "authors": [
-          "Abul Hassan",
-          "Ridwan Lanre Ibrahim",
-          "Lukman Raimi",
-          "Olatunde Julius Omokanmi",
-          "Abdul Rahman bin S Senathirajah"
-        ],
-        "citation_label": "Hassan et al. (2025)",
-        "journal": "Sustainability",
-        "citation_count": 13,
-        "openalex_url": "https://openalex.org/W4410436254",
-        "url": "https://doi.org/10.3390/su17104579"
-      }
-    ],
-    "question_family": "innovation-environment",
-    "suppress_from_public_ranked_window": true,
-    "top_mediator_display_labels": [
-      "renewable energy consumption",
-      "natural resource rents",
-      "energy transition"
-    ],
-    "top_mediator_labels": [
-      "renewable energy consumption",
-      "natural resource rents",
-      "energy transition"
-    ],
-    "top_mediator_baseline_labels": [
-      "renewable energy consumption",
-      "natural resource rents",
-      "energy transition"
-    ],
-    "top_countries_source": [
-      "China",
-      "OECD"
-    ],
-    "top_countries_target": [
-      "India",
-      "Brazil",
-      "China"
-    ],
-    "source_context_summary": "China and OECD",
-    "target_context_summary": "India, Brazil, and related settings",
-    "common_contexts": "green innovation studies are common in China and OECD; ecological carrying capacity studies are common in India, Brazil, and related settings.",
-    "public_specificity_score": 11.2237,
-    "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000053__FG3C001307",
-    "editorial_question_title": "Does green innovation improve ecological carrying capacity?",
-    "question_title": "Does green innovation improve ecological carrying capacity?",
-    "short_why": "Green innovation papers often stop at emissions, while broader measures of ecological resilience are usually studied elsewhere.",
-    "first_next_step": "Pair green patents or green R&D with ecological-capacity measures instead of stopping at emissions alone.",
-    "who_its_for": "Climate innovation researchers.",
-    "homepage_featured": false,
-    "questions_featured": true,
-    "display_order": 6,
-    "homepage_role": "none",
-    "field_shelves": [
-      "climate-energy",
-      "innovation-productivity"
-    ],
-    "collection_tags": [],
-    "editorial_strength": "flagship"
-  },
-  {
-    "pair_key": "FG3C000061__FG3C001431",
-    "source_id": "FG3C001431",
-    "target_id": "FG3C000061",
-    "source_label": "green credit policy",
-    "target_label": "total factor productivity (TFP)",
-    "source_display_label": "green credit policy",
-    "target_display_label": "total factor productivity (TFP)",
-    "source_display_concept_id": "FG3C001431",
-    "target_display_concept_id": "FG3C000061",
-    "source_display_refined": false,
-    "target_display_refined": false,
-    "display_refinement_confidence": 0.0,
-    "source_alternate_display_labels": [
-      "Green credit policy (Green Credit Guidelines)"
-    ],
-    "target_alternate_display_labels": [
-      "productivity (TFP)"
-    ],
-    "source_bucket": "adjacent",
-    "target_bucket": "core",
-    "cross_field": true,
-    "score": 0.118789,
-    "base_score": 0.205624,
-    "duplicate_penalty": 0.086836,
-    "path_support_norm": 0.001264,
-    "gap_bonus": 1.0,
-    "mediator_count": 11,
-    "motif_count": 10,
-    "cooc_count": 0,
-    "direct_link_status": "No direct papers yet",
-    "supporting_path_count": 11,
-    "why_now": "green credit policy and total factor productivity (TFP) are already linked by 11 nearby intermediate topics.",
-    "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
-    "slice_label": "Missing direct link",
-    "public_pair_label": "total factor productivity (TFP) and green credit policy",
-    "display_question_title": "",
-    "representative_papers": [
-      {
-        "paper_id": "W2534466090__gpt5mini_low",
-        "title": "The UK productivity puzzle, 2008–2012: evidence using plant-level estimates of total factor productivity",
-        "year": 2016,
-        "edge_src": "FG3C002284",
-        "edge_dst": "FG3C000061",
-        "edge_src_display_label": "firm total factor productivity (TFP)",
-        "edge_dst_display_label": "total factor productivity (TFP)",
-        "authors": [
-          "Richard Harris",
-          "John Moffat"
-        ],
-        "citation_label": "Harris and Moffat (2016)",
-        "journal": "Oxford Economic Papers",
-        "citation_count": 27,
-        "openalex_url": "https://openalex.org/W2534466090",
-        "url": "https://doi.org/10.1093/oep/gpw057"
-      },
-      {
-        "paper_id": "W4412017035__gpt5mini_low",
-        "title": "Green Innovation, Export Synergy, and Total Factor Productivity: Evidence from China’s Marine Enterprises",
-        "year": 2025,
-        "edge_src": "FG3C000181",
-        "edge_dst": "FG3C000061",
-        "edge_src_display_label": "state-owned enterprises",
-        "edge_dst_display_label": "total factor productivity (TFP)",
-        "authors": [
-          "Peng Tian",
-          "Haofeng Sun",
-          "Yang Yang",
-          "Xu‐Guang Guo"
-        ],
-        "citation_label": "Tian et al. (2025)",
-        "journal": "Sustainability",
-        "citation_count": 1,
-        "openalex_url": "https://openalex.org/W4412017035",
-        "url": "https://doi.org/10.3390/su17136140"
-      },
-      {
-        "paper_id": "W4377091670__gpt5mini_low",
-        "title": "Green Credit Policy, Environmental Investment, and Green Innovation: Quasi-Natural Experimental Evidence from China",
-        "year": 2023,
-        "edge_src": "FG3C001431",
-        "edge_dst": "FG3C000053",
-        "edge_src_display_label": "green credit policy",
-        "edge_dst_display_label": "green innovation",
-        "authors": [
-          "Zhiliang Xu",
-          "Changxin Xu",
-          "Yun Li"
-        ],
-        "citation_label": "Xu et al. (2023)",
-        "journal": "Sustainability",
-        "citation_count": 3,
-        "openalex_url": "https://openalex.org/W4377091670",
-        "url": "https://doi.org/10.3390/su15108290"
-      }
-    ],
-    "question_family": "green-credit-policy-total-factor-productivity",
-    "suppress_from_public_ranked_window": true,
-    "top_mediator_display_labels": [
-      "state-owned enterprises",
-      "firm total factor productivity (TFP)",
-      "R&D investment"
-    ],
-    "top_mediator_labels": [
-      "state-owned enterprises",
-      "firm total factor productivity (TFP)",
-      "R&D investment"
-    ],
-    "top_mediator_baseline_labels": [
-      "state-owned enterprises",
-      "firm total factor productivity (TFP)",
-      "R&D investment"
-    ],
-    "top_countries_source": [
-      "China",
-      "Brazil"
-    ],
-    "top_countries_target": [
-      "China",
-      "Italy",
-      "United States"
-    ],
-    "source_context_summary": "China and Brazil",
-    "target_context_summary": "China, Italy, and related settings",
-    "common_contexts": "green credit policy studies are common in China and Brazil; total factor productivity (TFP) studies are common in China, Italy, and related settings.",
-    "public_specificity_score": 3.2063,
-    "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000061__FG3C001431",
-    "editorial_question_title": "When does green credit policy raise total factor productivity?",
-    "question_title": "When does green credit policy raise total factor productivity?",
-    "short_why": "The strongest nearby route runs through state-owned enterprises, firm productivity, and R&D investment, which makes this look like a policy-channel question rather than a generic green-finance pairing.",
-    "first_next_step": "Start with green-credit eligibility or policy shocks, then trace firm productivity through financing conditions, R&D spending, and state exposure.",
-    "who_its_for": "Productivity, industrial policy, and green-finance researchers.",
-    "homepage_featured": false,
-    "questions_featured": false,
-    "display_order": 7,
-    "homepage_role": "none",
-    "field_shelves": [
-      "innovation-productivity"
-    ],
-    "collection_tags": [],
-    "editorial_strength": "field"
-  },
-  {
-    "pair_key": "FG3C000012__FG3C001452",
-    "source_id": "FG3C000012",
-    "target_id": "FG3C001452",
-    "source_label": "urbanization",
-    "target_label": "Catastrophic health expenditure (CHE)",
-    "source_display_label": "urbanization",
-    "target_display_label": "catastrophic health expenditures",
-    "source_display_concept_id": "FG3C000012",
-    "target_display_concept_id": "FG3C001449",
-    "source_display_refined": false,
-    "target_display_refined": true,
-    "display_refinement_confidence": 0.4273,
-    "source_alternate_display_labels": [
-      "urbanization (urban population)",
-      "rapid urbanization",
-      "urban size"
-    ],
-    "target_alternate_display_labels": [
-      "catastrophic health spending"
-    ],
-    "source_bucket": "adjacent",
-    "target_bucket": "adjacent",
-    "cross_field": false,
-    "score": 0.106641,
-    "base_score": 0.204152,
-    "duplicate_penalty": 0.097511,
-    "path_support_norm": 0.000807,
-    "gap_bonus": 1.0,
-    "mediator_count": 7,
-    "motif_count": 7,
-    "cooc_count": 0,
-    "direct_link_status": "No direct papers yet",
-    "supporting_path_count": 7,
-    "why_now": "urbanization and catastrophic health expenditures are already linked by 7 nearby intermediate topics.",
-    "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
-    "slice_label": "Missing direct link",
-    "public_pair_label": "catastrophic health expenditures and urbanization",
-    "display_question_title": "",
-    "representative_papers": [
-      {
-        "paper_id": "W2100111087__gpt5mini_low",
-        "title": "Catastrophic health expenditures and its inequality in elderly households with chronic disease patients in China",
-        "year": 2015,
-        "edge_src": "FG3C000098",
-        "edge_dst": "FG3C001452",
-        "edge_src_display_label": "per capita income",
-        "edge_dst_display_label": "catastrophic health expenditures",
-        "authors": [
-          "Zhonghua Wang",
-          "Xiangjun Li",
-          "Mingsheng Chen"
-        ],
-        "citation_label": "Wang et al. (2015)",
-        "journal": "International Journal for Equity in Health",
-        "citation_count": 162,
-        "openalex_url": "https://openalex.org/W2100111087",
-        "url": "https://doi.org/10.1186/s12939-015-0134-6"
-      },
-      {
-        "paper_id": "W4214722161__gpt5mini_low",
-        "title": "Assessing progress towards Sustainable Development Goal 3.8.2 and determinants of catastrophic health expenditures in Malaysia",
-        "year": 2022,
-        "edge_src": "FG3C000612",
-        "edge_dst": "FG3C001452",
-        "edge_src_display_label": "household size",
-        "edge_dst_display_label": "catastrophic health expenditures",
-        "authors": [
-          "Muaz Sayuti",
-          "Surianti Sukeri"
-        ],
-        "citation_label": "Sayuti and Sukeri (2022)",
-        "journal": "PLoS ONE",
-        "citation_count": 8,
-        "openalex_url": "https://openalex.org/W4214722161",
-        "url": "https://doi.org/10.1371/journal.pone.0264422"
-      },
-      {
-        "paper_id": "W2978899606__gpt5mini_low",
-        "title": "Urbanization and Income in Bangladesh: An Empirical Analysis",
-        "year": 2019,
-        "edge_src": "FG3C000012",
-        "edge_dst": "FG3C000098",
-        "edge_src_display_label": "urbanization",
-        "edge_dst_display_label": "per capita income",
-        "authors": [
-          "Anowara Khanam",
-          "Md. Shariful Islam"
-        ],
-        "citation_label": "Khanam and Islam (2019)",
-        "journal": "The Journal of Business",
-        "citation_count": 0,
-        "openalex_url": "https://openalex.org/W2978899606",
-        "url": "https://journalofbusiness.us/index.php/site/article/download/122/40"
-      }
-    ],
-    "question_family": "urban-health-spending",
-    "suppress_from_public_ranked_window": true,
-    "top_mediator_display_labels": [
-      "household size",
-      "per capita income",
-      "household income"
-    ],
-    "top_mediator_labels": [
-      "household size",
-      "per capita income",
-      "household income"
-    ],
-    "top_mediator_baseline_labels": [
-      "household size",
-      "per capita income",
-      "household income"
-    ],
-    "top_countries_source": [
-      "China",
-      "India"
-    ],
-    "top_countries_target": [
-      "China",
-      "India",
-      "Kenya"
-    ],
-    "source_context_summary": "China and India",
-    "target_context_summary": "China, India, and related settings",
-    "common_contexts": "urbanization studies are common in China and India; catastrophic health expenditures studies are common in China, India, and related settings.",
-    "public_specificity_score": 5.804,
-    "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000012__FG3C001452",
-    "editorial_question_title": "When does urbanization reduce catastrophic health spending?",
-    "question_title": "When does urbanization reduce catastrophic health spending?",
-    "short_why": "The closest route runs through household size, household income, and per-capita income, which makes this feel more like a concrete urban-service question than a generic development pairing.",
-    "first_next_step": "Use city expansion, migration, or service-access changes to test when urbanization starts lowering catastrophic out-of-pocket health spending.",
-    "who_its_for": "Development, urban, and health economists.",
-    "homepage_featured": false,
-    "questions_featured": false,
-    "display_order": 8,
-    "homepage_role": "none",
-    "field_shelves": [
-      "development-urban"
-    ],
-    "collection_tags": [
-      "open-little-direct",
-      "phd-topic"
-    ],
-    "editorial_strength": "field"
-  },
-  {
-    "pair_key": "FG3C000024__FG3C001672",
-    "source_id": "FG3C000024",
-    "target_id": "FG3C001672",
-    "source_label": "monetary policy",
-    "target_label": "consumer demand",
-    "source_display_label": "monetary policy",
-    "target_display_label": "consumer demand",
-    "source_display_concept_id": "FG3C000024",
-    "target_display_concept_id": "FG3C001672",
-    "source_display_refined": false,
-    "target_display_refined": false,
-    "display_refinement_confidence": 0.0,
-    "source_alternate_display_labels": [
-      "monetary policy (interest rate)",
-      "monetary policy framework",
-      "Federal Reserve monetary policy"
-    ],
-    "target_alternate_display_labels": [
-      "demand function",
-      "commodity demand",
-      "demand curves"
-    ],
-    "source_bucket": "core",
-    "target_bucket": "core",
-    "cross_field": false,
-    "score": 0.186755,
-    "base_score": 0.202237,
-    "duplicate_penalty": 0.015482,
-    "path_support_norm": 0.000362,
-    "gap_bonus": 1.0,
-    "mediator_count": 3,
-    "motif_count": 3,
-    "cooc_count": 0,
-    "direct_link_status": "No direct papers yet",
-    "supporting_path_count": 3,
-    "why_now": "monetary policy and consumer demand are already linked by 3 nearby intermediate topics.",
-    "recommended_move": "A short synthesis or pilot design looks like the sensible first move.",
-    "slice_label": "Missing direct link",
-    "public_pair_label": "consumer demand and monetary policy",
-    "display_question_title": "",
-    "representative_papers": [
-      {
-        "paper_id": "W2026422102__gpt5mini_low",
-        "title": "Does money matter in the CIS? Effects of monetary policy on output and prices",
-        "year": 2005,
-        "edge_src": "FG3C000024",
-        "edge_dst": "FG3C000028",
-        "edge_src_display_label": "monetary policy",
-        "edge_dst_display_label": "prices",
-        "authors": [
-          "Martha Starr"
-        ],
-        "citation_label": "Starr (2005)",
-        "journal": "Journal of Comparative Economics",
-        "citation_count": 89,
-        "openalex_url": "https://openalex.org/W2026422102",
-        "url": "https://doi.org/10.1016/j.jce.2005.05.006"
-      },
-      {
-        "paper_id": "W4400119938__gpt5mini_low",
-        "title": "MPC Heterogeneity and the Dynamic Response of Consumption to Monetary Policy",
-        "year": 2024,
-        "edge_src": "FG3C000024",
-        "edge_dst": "FG3C000008",
-        "edge_src_display_label": "monetary policy",
-        "edge_dst_display_label": "income",
-        "authors": [
-          "Miguel Ampudia",
-          "Russell Cooper",
-          "Julia Le Blanc",
-          "Guozhong Zhu"
-        ],
-        "citation_label": "Ampudia et al. (2024)",
-        "journal": "American Economic Journal Macroeconomics",
-        "citation_count": 5,
-        "openalex_url": "https://openalex.org/W4400119938",
-        "url": "https://doi.org/10.1257/mac.20210277"
-      },
-      {
-        "paper_id": "W2107710318__gpt5mini_low",
-        "title": "Monetary policy and distribution",
-        "year": 2008,
-        "edge_src": "FG3C000024",
-        "edge_dst": "FG3C000027",
-        "edge_src_display_label": "monetary policy",
-        "edge_dst_display_label": "interest rates",
-        "authors": [
-          "Stephen D. Williamson"
-        ],
-        "citation_label": "Williamson (2008)",
-        "journal": "Journal of Monetary Economics",
-        "citation_count": 90,
-        "openalex_url": "https://openalex.org/W2107710318",
-        "url": "https://doi.org/10.1016/j.jmoneco.2008.07.001"
-      }
-    ],
-    "question_family": "monetary-demand",
-    "suppress_from_public_ranked_window": true,
-    "top_mediator_display_labels": [
-      "prices",
-      "interest rates",
-      "income"
-    ],
-    "top_mediator_labels": [
-      "prices",
-      "interest rates",
-      "income"
-    ],
-    "top_mediator_baseline_labels": [
-      "prices",
-      "interest rates",
-      "income"
-    ],
-    "top_countries_source": [
-      "United States",
-      "China"
-    ],
-    "top_countries_target": [
-      "United States",
-      "China",
-      "Massachusetts"
-    ],
-    "source_context_summary": "United States and China",
-    "target_context_summary": "United States, China, and related settings",
-    "common_contexts": "monetary policy studies are common in United States and China; consumer demand studies are common in United States, China, and related settings.",
-    "public_specificity_score": -16.5982,
-    "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000024__FG3C001672",
-    "editorial_question_title": "How does monetary policy reshape consumer demand?",
-    "question_title": "How does monetary policy reshape consumer demand?",
-    "short_why": "Consumption is a core transmission channel, but many monetary papers stop at aggregate output rather than the structure of consumer demand.",
-    "first_next_step": "Track rate shocks through durable demand, nondurables, and household heterogeneity before collapsing everything into total consumption.",
-    "who_its_for": "Macro and household-finance researchers.",
-    "homepage_featured": true,
-    "questions_featured": false,
-    "display_order": 9,
-    "homepage_role": "supporting",
-    "field_shelves": [
-      "macro-finance"
-    ],
-    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
       "paper-ready"
     ],
-    "editorial_strength": "field"
+    "question_family": "mechanism-rd-intensity-growth-innovation-exports-tax",
+    "graph_query": "R&D intensity",
+    "graph_family": "mechanism",
+    "source_label": "R&D intensity",
+    "target_label": "Economic Growth",
+    "channel_labels": [
+      "innovation effort",
+      "high-tech exports",
+      "tax policy"
+    ],
+    "route_family": "mediator_question",
+    "app_link": "https://frontiergraph.com/questions/#https://openalex.org/keywords/r-d-intensity__jel:F62:Economic Growth"
   },
   {
-    "pair_key": "FG3C000021__FG3C000053",
-    "source_id": "FG3C000053",
-    "target_id": "FG3C000021",
-    "source_label": "green innovation",
-    "target_label": "productivity",
-    "source_display_label": "green innovation",
-    "target_display_label": "productivity",
-    "source_display_concept_id": "FG3C000053",
-    "target_display_concept_id": "FG3C000021",
-    "source_display_refined": false,
-    "target_display_refined": false,
-    "display_refinement_confidence": 0.0,
-    "source_alternate_display_labels": [
-      "green enterprises",
-      "firms' green innovation",
-      "green R&D investment"
-    ],
-    "target_alternate_display_labels": [
-      "long-run productivity growth",
-      "firm productivity / performance",
-      "domestic productivity"
-    ],
-    "source_bucket": "adjacent",
-    "target_bucket": "core",
-    "cross_field": true,
-    "score": 0.188042,
-    "base_score": 0.211468,
-    "duplicate_penalty": 0.023427,
-    "path_support_norm": 0.001577,
-    "gap_bonus": 1.0,
-    "mediator_count": 16,
-    "motif_count": 18,
-    "cooc_count": 0,
-    "direct_link_status": "No direct papers yet",
-    "supporting_path_count": 16,
-    "why_now": "green innovation and productivity are already linked by 16 nearby intermediate topics.",
-    "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
-    "slice_label": "Missing direct link",
-    "public_pair_label": "productivity and green innovation",
-    "display_question_title": "",
-    "representative_papers": [
-      {
-        "paper_id": "W2795275313__gpt5mini_low",
-        "title": "Energy efficiency, productivity and exporting: Firm-level evidence in Latin America",
-        "year": 2018,
-        "edge_src": "FG3C000038",
-        "edge_dst": "FG3C000021",
-        "edge_src_display_label": "energy efficiency",
-        "edge_dst_display_label": "productivity",
-        "authors": [
-          "Pierluigi Montalbano",
-          "Silvia Nenci"
-        ],
-        "citation_label": "Montalbano and Nenci (2018)",
-        "journal": "Energy Economics",
-        "citation_count": 84,
-        "openalex_url": "https://openalex.org/W2795275313",
-        "url": "https://doi.org/10.1016/j.eneco.2018.03.033"
-      },
-      {
-        "paper_id": "W4367052915__gpt5mini_low",
-        "title": "Impact of Innovation and Exports on Productivity: Are There Complementary Effects?",
-        "year": 2023,
-        "edge_src": "FG3C000046",
-        "edge_dst": "FG3C000021",
-        "edge_src_display_label": "exports",
-        "edge_dst_display_label": "productivity",
-        "authors": [
-          "Saša Petković",
-          "Jelica Rastoka",
-          "Dragana Radičić"
-        ],
-        "citation_label": "Petković et al. (2023)",
-        "journal": "Sustainability",
-        "citation_count": 1,
-        "openalex_url": "https://openalex.org/W4367052915",
-        "url": "https://doi.org/10.3390/su15097174"
-      },
-      {
-        "paper_id": "W4389342597__gpt5mini_low",
-        "title": "Nexus between foreign direct investment and ecological footprint in BRICS and Next-11: the moderating role of green innovation",
-        "year": 2023,
-        "edge_src": "FG3C000053",
-        "edge_dst": "FG3C000015",
-        "edge_src_display_label": "green innovation",
-        "edge_dst_display_label": "foreign direct investments",
-        "authors": [
-          "Lakshmana Padhan",
-          "Savita Bhat"
-        ],
-        "citation_label": "Padhan and Bhat (2023)",
-        "journal": "Management of Environmental Quality An International Journal",
-        "citation_count": 5,
-        "openalex_url": "https://openalex.org/W4389342597",
-        "url": "https://doi.org/10.1108/meq-07-2023-0204"
-      }
-    ],
-    "question_family": "innovation-productivity",
-    "suppress_from_public_ranked_window": true,
-    "top_mediator_display_labels": [
-      "foreign direct investments",
-      "energy efficiency",
-      "exports"
-    ],
-    "top_mediator_labels": [
-      "foreign direct investments",
-      "energy efficiency",
-      "exports"
-    ],
-    "top_mediator_baseline_labels": [
-      "foreign direct investments",
-      "energy efficiency",
-      "exports"
-    ],
-    "top_countries_source": [
-      "China",
-      "OECD"
-    ],
-    "top_countries_target": [
-      "China",
-      "United States",
-      "United Kingdom"
-    ],
-    "source_context_summary": "China and OECD",
-    "target_context_summary": "China, United States, and related settings",
-    "common_contexts": "green innovation studies are common in China and OECD; productivity studies are common in China, United States, and related settings.",
-    "public_specificity_score": -8.7921,
-    "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000021__FG3C000053",
-    "editorial_question_title": "Does green innovation translate into productivity gains?",
-    "question_title": "Does green innovation translate into productivity gains?",
-    "short_why": "Green innovation is often justified on environmental grounds, but its productivity payoff is still not usually the paper's main outcome.",
-    "first_next_step": "Separate green innovation measures from broader innovation intensity and test whether productivity gains arrive alongside environmental benefits.",
-    "who_its_for": "Innovation, productivity, and climate researchers.",
-    "homepage_featured": false,
-    "questions_featured": false,
-    "display_order": 10,
-    "homepage_role": "none",
+    "pair_key": "https://openalex.org/keywords/digital-transformation__jel:D24:Productivity",
+    "question_title": "Does digital transformation raise productivity through innovation, product quality, or absorptive capacity?",
+    "short_why": "The local graph points to a tight mechanism story: digital adoption seems to matter when it changes firms' innovation margins, quality, or ability to absorb new technology.",
+    "first_next_step": "Start with firm-level papers that measure digital adoption and at least one of the three channels, then compare whether the productivity effect attenuates once the channel is included.",
+    "who_its_for": "productivity, industrial-organization, and firm-dynamics economists",
+    "display_order": 3,
     "field_shelves": [
-      "innovation-productivity"
+      "innovation and productivity"
     ],
     "collection_tags": [
-      "open-little-direct"
+      "mechanism",
+      "strong-nearby-evidence",
+      "paper-ready"
     ],
-    "editorial_strength": "field"
+    "question_family": "mechanism-digital-transformation-productivity-innovation-quality-absorption",
+    "graph_query": "digital transformation",
+    "graph_family": "mechanism",
+    "source_label": "Digital transformation",
+    "target_label": "Productivity",
+    "channel_labels": [
+      "innovation",
+      "product quality",
+      "absorptive capacity"
+    ],
+    "route_family": "mediator_question",
+    "app_link": "https://frontiergraph.com/questions/#https://openalex.org/keywords/digital-transformation__jel:D24:Productivity"
   },
   {
-    "pair_key": "FG3C000046__FG3C000203",
-    "source_id": "FG3C000046",
-    "target_id": "FG3C000203",
-    "source_label": "exports",
-    "target_label": "environmental pollution",
-    "source_display_label": "exports",
-    "target_display_label": "environmental pollution",
-    "source_display_concept_id": "FG3C000046",
-    "target_display_concept_id": "FG3C000203",
-    "source_display_refined": false,
-    "target_display_refined": false,
-    "display_refinement_confidence": 0.0,
-    "source_alternate_display_labels": [
-      "aggregate exports",
-      "U.S. exports",
-      "exports and imports"
+    "pair_key": "jel:E25:Wage__jel:D24:Productivity",
+    "question_title": "Do wages raise productivity through employment margins, firm scale, or offshoring responses?",
+    "short_why": "This is richer than a simple wage-productivity link because the nearby literature suggests distinct adjustment margins rather than one reduced-form effect.",
+    "first_next_step": "Map the nearby papers by whether they treat employment, firm scale, or offshoring as the intermediate margin, then test which mechanism has the cleanest identification strategy.",
+    "who_its_for": "labor, industrial-organization, and productivity economists",
+    "display_order": 4,
+    "field_shelves": [
+      "labor and household",
+      "innovation and productivity"
     ],
-    "target_alternate_display_labels": [
-      "pollution level",
-      "environmental quality / pollution",
-      "environmental pollution / environmental quality"
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "paper-ready"
     ],
-    "source_bucket": "core",
-    "target_bucket": "adjacent",
-    "cross_field": true,
-    "score": 0.198215,
-    "base_score": 0.227569,
-    "duplicate_penalty": 0.029354,
-    "path_support_norm": 0.016699,
-    "gap_bonus": 1.0,
-    "mediator_count": 24,
-    "motif_count": 22,
-    "cooc_count": 0,
-    "direct_link_status": "No direct papers yet",
-    "supporting_path_count": 24,
-    "why_now": "exports and environmental pollution are already linked by 24 nearby intermediate topics.",
-    "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
-    "slice_label": "Missing direct link",
-    "public_pair_label": "exports and environmental pollution",
-    "display_question_title": "",
-    "representative_papers": [
-      {
-        "paper_id": "W3190922725__gpt5mini_low",
-        "title": "The impact of energy consumption and merchandise exports on CO<sub>2</sub>emission in the United Nations geoscheme regions",
-        "year": 2021,
-        "edge_src": "FG3C000046",
-        "edge_dst": "FG3C000014",
-        "edge_src_display_label": "exports",
-        "edge_dst_display_label": "energy consumption",
-        "authors": [
-          "Chamil W. Senarathne",
-          "Prabhath Jayasinghe"
-        ],
-        "citation_label": "Senarathne and Jayasinghe (2021)",
-        "journal": "International Journal of Energy Sector Management",
-        "citation_count": 5,
-        "openalex_url": "https://openalex.org/W3190922725",
-        "url": "https://doi.org/10.1108/ijesm-11-2020-0001"
-      },
-      {
-        "paper_id": "W4387365162__gpt5mini_low",
-        "title": "Do Green Information and Communication Technologies (ICT) and Smart Urbanization Reduce Environmental Pollution in China?",
-        "year": 2023,
-        "edge_src": "FG3C000012",
-        "edge_dst": "FG3C000203",
-        "edge_src_display_label": "urbanization",
-        "edge_dst_display_label": "environmental pollution",
-        "authors": [
-          "Xu Shiping",
-          "Lili Wang"
-        ],
-        "citation_label": "Shiping and Wang (2023)",
-        "journal": "Sustainability",
-        "citation_count": 0,
-        "openalex_url": "https://openalex.org/W4387365162",
-        "url": "https://doi.org/10.3390/su151914492"
-      },
-      {
-        "paper_id": "W4378648078__gpt5mini_low",
-        "title": "Exploring the nexus link of environmental technology innovation, urbanization, financial development, and energy consumption on environmental pollution: Evidence from 27 emerging economies",
-        "year": 2023,
-        "edge_src": "FG3C000014",
-        "edge_dst": "FG3C000203",
-        "edge_src_display_label": "energy consumption",
-        "edge_dst_display_label": "environmental pollution",
-        "authors": [
-          "Fredrick Oteng Agyeman",
-          "Emmanuel Adu Gyamfi Kedjanyi",
-          "Agyemang Akwasi Sampene",
-          "Malcom Frimpong Dapaah",
-          "Abdul Razak Monto",
-          "Paul Buabeng",
-          "Guy Carlos Guimatsie Samekong"
-        ],
-        "citation_label": "Agyeman et al. (2023)",
-        "journal": "Heliyon",
-        "citation_count": 16,
-        "openalex_url": "https://openalex.org/W4378648078",
-        "url": "https://doi.org/10.1016/j.heliyon.2023.e16423"
-      }
+    "question_family": "mechanism-wages-productivity-employment-scale-offshoring",
+    "graph_query": "wage",
+    "graph_family": "mechanism",
+    "source_label": "Wage",
+    "target_label": "Productivity",
+    "channel_labels": [
+      "employment",
+      "firm scale",
+      "offshoring"
     ],
-    "question_family": "trade-environment",
-    "suppress_from_public_ranked_window": true,
-    "top_mediator_display_labels": [
-      "economic growth",
-      "energy consumption",
-      "urbanization"
+    "route_family": "path_question",
+    "app_link": "https://frontiergraph.com/questions/#jel:E25:Wage__jel:D24:Productivity"
+  },
+  {
+    "pair_key": "wp:15532928__https://openalex.org/keywords/electricity-price",
+    "question_title": "Does carbon trading move electricity prices through carbon costs, generation mix, or renewable standards?",
+    "short_why": "This is one of the cleanest climate mechanism cards in the set because the nearby channels are specific and already tied to market design.",
+    "first_next_step": "Start with power-market studies that jointly observe carbon pricing, wholesale prices, and the generation margin, then compare which intermediate channel carries the pass-through.",
+    "who_its_for": "energy, environmental, and industrial economists",
+    "display_order": 5,
+    "field_shelves": [
+      "climate and energy"
     ],
-    "top_mediator_labels": [
-      "economic growth",
-      "energy consumption",
-      "urbanization"
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "paper-ready"
     ],
-    "top_mediator_baseline_labels": [
-      "economic growth",
-      "energy consumption",
-      "urbanization"
+    "question_family": "mechanism-carbon-trading-electricity-price-pass-through",
+    "graph_query": "carbon emission trading",
+    "graph_family": "mechanism",
+    "source_label": "Carbon emission trading",
+    "target_label": "Electricity price",
+    "channel_labels": [
+      "carbon costs",
+      "generation mix",
+      "renewable standards"
     ],
-    "top_countries_source": [
-      "China",
-      "United States"
+    "route_family": "mediator_question",
+    "app_link": "https://frontiergraph.com/questions/#wp:15532928__https://openalex.org/keywords/electricity-price"
+  },
+  {
+    "pair_key": "jel:O32:R&D__jel:E25:Wage",
+    "question_title": "Does R&D raise wages through productivity gains, firm scale, or skill demand?",
+    "short_why": "The local support graph suggests a classic but still usable wage mechanism question: research spending may matter only when it changes productivity, scale, or the demand for skilled labor.",
+    "first_next_step": "Group the nearby papers by whether they emphasize productivity, firm growth, or skill composition, then test which channel best explains the wage response.",
+    "who_its_for": "innovation, labor, and productivity economists",
+    "display_order": 6,
+    "field_shelves": [
+      "labor and household",
+      "innovation and productivity"
     ],
-    "top_countries_target": [
-      "China",
-      "Germany"
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "paper-ready"
     ],
-    "source_context_summary": "China and United States",
-    "target_context_summary": "China and Germany",
-    "common_contexts": "exports studies are common in China and United States; environmental pollution studies are common in China and Germany.",
-    "public_specificity_score": -6.3165,
-    "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000046__FG3C000203",
-    "editorial_question_title": "How does export growth change environmental pollution?",
-    "question_title": "How does export growth change environmental pollution?",
-    "short_why": "Export expansion can alter sector mix and where environmental costs show up, but pollution outcomes are often buried inside broader trade debates.",
-    "first_next_step": "Compare pollution-intensive export booms with export growth driven by cleaner sectors.",
-    "who_its_for": "Trade and environment researchers.",
-    "homepage_featured": false,
-    "questions_featured": false,
+    "question_family": "mechanism-rd-wages-productivity-scale-skills",
+    "graph_query": "R&D",
+    "graph_family": "mechanism",
+    "source_label": "R&D",
+    "target_label": "Wage",
+    "channel_labels": [
+      "productivity",
+      "firm scale",
+      "skill demand"
+    ],
+    "route_family": "mediator_question",
+    "app_link": "https://frontiergraph.com/questions/#jel:O32:R&D__jel:E25:Wage"
+  },
+  {
+    "pair_key": "https://openalex.org/keywords/volatility__https://openalex.org/keywords/investor-behavior",
+    "question_title": "Does volatility change investor behavior through trading volume, announcements, or herding?",
+    "short_why": "This is a strong finance card because the nearby channels are concrete market behaviors rather than generic sentiment language.",
+    "first_next_step": "Start with event-level or market-microstructure papers that jointly track volatility and one candidate channel, then compare which channel predicts the behavioral response.",
+    "who_its_for": "finance, behavioral, and macro-finance economists",
+    "display_order": 7,
+    "field_shelves": [
+      "macro and finance"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-volatility-investor-behavior-volume-announcements-herding",
+    "graph_query": "volatility",
+    "graph_family": "mechanism",
+    "source_label": "Volatility (finance)",
+    "target_label": "Investor behavior",
+    "channel_labels": [
+      "trading volume",
+      "announcements",
+      "herding"
+    ],
+    "route_family": "mediator_question",
+    "app_link": "https://frontiergraph.com/questions/#https://openalex.org/keywords/volatility__https://openalex.org/keywords/investor-behavior"
+  },
+  {
+    "pair_key": "https://openalex.org/keywords/macroprudential-regulation__jel:G32:Leverage",
+    "question_title": "Does macroprudential regulation curb leverage by reducing financial fragility?",
+    "short_why": "The graph keeps this question narrow: the main nearby route is balance-sheet fragility, which makes it more credible than a generic policy-to-leverage card.",
+    "first_next_step": "Start with papers that observe macroprudential tightening, leverage, and a fragility measure in the same setting, then test whether the leverage effect attenuates once fragility is accounted for.",
+    "who_its_for": "macro-finance and banking economists",
+    "display_order": 8,
+    "field_shelves": [
+      "macro and finance"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-macroprudential-regulation-leverage-fragility",
+    "graph_query": "macroprudential regulation",
+    "graph_family": "mechanism",
+    "source_label": "Macroprudential regulation",
+    "target_label": "Leverage",
+    "channel_labels": [
+      "financial fragility"
+    ],
+    "route_family": "mediator_question",
+    "app_link": "https://frontiergraph.com/questions/#https://openalex.org/keywords/macroprudential-regulation__jel:G32:Leverage"
+  },
+  {
+    "pair_key": "jel:F20:Foreign Direct Investment__jel:Z33:Tourism Development",
+    "question_title": "Does foreign direct investment support tourism development through infrastructure or sustainable tourism?",
+    "short_why": "This card survives because the route is specific enough to inspect: capital inflows may matter for tourism only when they improve infrastructure or shift the tourism mix.",
+    "first_next_step": "Start with papers that jointly cover FDI, tourism outcomes, and infrastructure or sustainability measures, then see which intermediate margin is actually observed.",
+    "who_its_for": "development, urban, and international economists",
+    "display_order": 9,
+    "field_shelves": [
+      "development and urban"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "cross-area",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-fdi-tourism-infrastructure-sustainability",
+    "graph_query": "foreign direct investment",
+    "graph_family": "mechanism",
+    "source_label": "Foreign Direct Investment",
+    "target_label": "Tourism Development",
+    "channel_labels": [
+      "infrastructure",
+      "sustainable tourism"
+    ],
+    "route_family": "mediator_question",
+    "app_link": "https://frontiergraph.com/questions/#jel:F20:Foreign Direct Investment__jel:Z33:Tourism Development"
+  },
+  {
+    "pair_key": "https://openalex.org/keywords/fee-for-service__https://openalex.org/keywords/health-care-quality",
+    "question_title": "Does fee-for-service care change quality through payment design, managed-care substitution, or specialty mix?",
+    "short_why": "The nearby support is concrete enough to make this a usable health-economics mechanism card rather than a generic payment-quality debate.",
+    "first_next_step": "Separate papers by whether they study bundled-payment substitution, managed-care exposure, or specialty composition, then ask which channel changes measured quality.",
+    "who_its_for": "health and public economists",
+    "display_order": 10,
+    "field_shelves": [
+      "labor and household"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "open-little-direct",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-fee-for-service-quality-payment-design-managed-care",
+    "graph_query": "fee-for-service",
+    "graph_family": "mechanism",
+    "source_label": "Fee-for-service",
+    "target_label": "Health care quality",
+    "channel_labels": [
+      "bundled payment",
+      "managed care",
+      "specialty mix"
+    ],
+    "route_family": "mediator_question",
+    "app_link": "https://frontiergraph.com/questions/#https://openalex.org/keywords/fee-for-service__https://openalex.org/keywords/health-care-quality"
+  },
+  {
+    "pair_key": "jel:O32:R&D__jel:L25:Firm Size",
+    "question_title": "Does R&D increase firm size through product innovation, patents, or firm growth?",
+    "short_why": "This is a good mechanism card because the nearby literature points to a clear chain from research activity into innovation outputs and then scale.",
+    "first_next_step": "Start with papers that measure R&D and at least one of product innovation, patenting, or firm growth, then test which intermediate margin best explains later size differences.",
+    "who_its_for": "innovation, industrial-organization, and firm-dynamics economists",
     "display_order": 11,
-    "homepage_role": "none",
     "field_shelves": [
-      "trade-globalization"
+      "innovation and productivity"
     ],
-    "collection_tags": [],
-    "editorial_strength": "field"
+    "collection_tags": [
+      "mechanism",
+      "phd-topic",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-rd-firm-size-innovation-patents-growth",
+    "graph_query": "R&D",
+    "graph_family": "mechanism",
+    "source_label": "R&D",
+    "target_label": "Firm Size",
+    "channel_labels": [
+      "product innovation",
+      "patents",
+      "firm growth"
+    ],
+    "route_family": "path_question",
+    "app_link": "https://frontiergraph.com/questions/#jel:O32:R&D__jel:L25:Firm Size"
   },
   {
-    "pair_key": "FG3C000083__FG3C001452",
-    "source_id": "FG3C000083",
-    "target_id": "FG3C001452",
-    "source_label": "trade liberalization",
-    "target_label": "Catastrophic health expenditure (CHE)",
-    "source_display_label": "trade liberalization",
-    "target_display_label": "catastrophic health expenditures",
-    "source_display_concept_id": "FG3C000083",
-    "target_display_concept_id": "FG3C001449",
-    "source_display_refined": false,
-    "target_display_refined": true,
-    "display_refinement_confidence": 0.4273,
-    "source_alternate_display_labels": [
-      "multilateral trade liberalization",
-      "international trade / trade liberalization",
-      "trade liberalization policies"
-    ],
-    "target_alternate_display_labels": [
-      "catastrophic health spending"
-    ],
-    "source_bucket": "core",
-    "target_bucket": "adjacent",
-    "cross_field": true,
-    "score": 0.119229,
-    "base_score": 0.201903,
-    "duplicate_penalty": 0.082674,
-    "path_support_norm": 0.000309,
-    "gap_bonus": 1.0,
-    "mediator_count": 3,
-    "motif_count": 3,
-    "cooc_count": 0,
-    "direct_link_status": "No direct papers yet",
-    "supporting_path_count": 3,
-    "why_now": "trade liberalization and catastrophic health expenditures are already linked by 3 nearby intermediate topics.",
-    "recommended_move": "Start with a short review or pilot study that follows the nearest mediating topics.",
-    "slice_label": "Missing direct link",
-    "public_pair_label": "trade liberalization and catastrophic health expenditures",
-    "display_question_title": "",
-    "representative_papers": [
-      {
-        "paper_id": "W1977162143__gpt5mini_low",
-        "title": "Trade Liberalization and Poverty: The Evidence So Far",
-        "year": 2004,
-        "edge_src": "FG3C000083",
-        "edge_dst": "FG3C000149",
-        "edge_src_display_label": "trade liberalization",
-        "edge_dst_display_label": "poverty",
-        "authors": [
-          "L. Alan Winters",
-          "Neil McCulloch",
-          "Andy McKay"
-        ],
-        "citation_label": "Winters et al. (2004)",
-        "journal": "Journal of Economic Literature",
-        "citation_count": 1040,
-        "openalex_url": "https://openalex.org/W1977162143",
-        "url": "https://doi.org/10.1257/002205104773558056"
-      },
-      {
-        "paper_id": "W2092083630__gpt5mini_low",
-        "title": "Short‐ versus Long‐Run Implications of Trade Liberalization for Poverty in Three Developing Countries",
-        "year": 2003,
-        "edge_src": "FG3C000083",
-        "edge_dst": "FG3C000149",
-        "edge_src_display_label": "trade liberalization",
-        "edge_dst_display_label": "poverty",
-        "authors": [
-          "Thomas W. Hertel",
-          "Maros Ivanic",
-          "Paul V. Preckel",
-          "John Cranfield",
-          "Will Martín"
-        ],
-        "citation_label": "Hertel et al. (2003)",
-        "journal": "American Journal of Agricultural Economics",
-        "citation_count": 18,
-        "openalex_url": "https://openalex.org/W2092083630",
-        "url": "https://doi.org/10.1111/j.0092-5853.2003.00546.x"
-      },
-      {
-        "paper_id": "W3107215790__gpt5mini_low",
-        "title": "Measurement and determinants of catastrophic health expenditure among elderly households in China using longitudinal data from the CHARLS",
-        "year": 2021,
-        "edge_src": "FG3C005728",
-        "edge_dst": "FG3C001452",
-        "edge_src_display_label": "poor countries",
-        "edge_dst_display_label": "catastrophic health expenditures",
-        "authors": [
-          "Shiai Liu",
-          "Peter C. Coyte",
-          "Mingqi Fu",
-          "Qilin Zhang"
-        ],
-        "citation_label": "Liu et al. (2021)",
-        "journal": "International Journal for Equity in Health",
-        "citation_count": 25,
-        "openalex_url": "https://openalex.org/W3107215790",
-        "url": "https://doi.org/10.1186/s12939-020-01336-8"
-      }
-    ],
-    "question_family": "trade-health-spending",
-    "suppress_from_public_ranked_window": true,
-    "top_mediator_display_labels": [
-      "poverty",
-      "poor countries",
-      "income inequality"
-    ],
-    "top_mediator_labels": [
-      "poverty",
-      "poor countries",
-      "income inequality"
-    ],
-    "top_mediator_baseline_labels": [
-      "poverty",
-      "poor countries",
-      "income inequality"
-    ],
-    "top_countries_source": [
-      "China",
-      "Brazil"
-    ],
-    "top_countries_target": [
-      "China",
-      "India",
-      "Kenya"
-    ],
-    "source_context_summary": "China and Brazil",
-    "target_context_summary": "China, India, and related settings",
-    "common_contexts": "trade liberalization studies are common in China and Brazil; catastrophic health expenditures studies are common in China, India, and related settings.",
-    "public_specificity_score": 3.4015,
-    "app_link": "https://frontiergraph.com/explorer/?view=question&pair=FG3C000083__FG3C001452",
-    "editorial_question_title": "How do trade reforms change catastrophic health spending?",
-    "question_title": "How do trade reforms change catastrophic health spending?",
-    "short_why": "The nearest route runs through poverty, poor countries, and income inequality, which gives this a clearer mechanism than a generic trade-and-health headline.",
-    "first_next_step": "Start with tariff or quota changes, then trace household health spending through income shocks and poverty exposure.",
-    "who_its_for": "Trade, development, and health economists.",
-    "homepage_featured": false,
-    "questions_featured": false,
+    "pair_key": "https://openalex.org/keywords/feed-in-tariff__wp:216474",
+    "question_title": "Do feed-in tariffs change investment timing through net present value, photovoltaic adoption, or real-option incentives?",
+    "short_why": "This is one of the more focused climate-investment cards because the nearby channels are all about the investment margin rather than broad green-growth language.",
+    "first_next_step": "Start with studies of feed-in tariffs and project timing, then compare whether NPV shifts, photovoltaic deployment, or explicit real-option reasoning does the explanatory work.",
+    "who_its_for": "energy, environmental, and investment economists",
     "display_order": 12,
-    "homepage_role": "none",
     "field_shelves": [
-      "trade-globalization"
+      "climate and energy"
     ],
-    "collection_tags": [],
-    "editorial_strength": "field"
+    "collection_tags": [
+      "mechanism",
+      "phd-topic",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-feed-in-tariff-real-options-npv-photovoltaic",
+    "graph_query": "feed-in tariff",
+    "graph_family": "mechanism",
+    "source_label": "Feed-in tariff",
+    "target_label": "Real options valuation",
+    "channel_labels": [
+      "net present value",
+      "photovoltaic adoption",
+      "investment timing"
+    ],
+    "route_family": "path_question",
+    "app_link": "https://frontiergraph.com/questions/#https://openalex.org/keywords/feed-in-tariff__wp:216474"
+  },
+  {
+    "pair_key": "https://openalex.org/keywords/artificial-intelligence__jel:Q42:Renewable Energy",
+    "question_title": "Can AI expand renewable energy through transition planning, labor adjustment, or deployment decisions?",
+    "short_why": "The nearby support points to operational channels rather than a vague tech-to-green story: planning the transition, reallocating labor, and improving deployment decisions.",
+    "first_next_step": "Start with papers that jointly study AI adoption and renewable deployment, then separate channels that operate through system planning, labor adjustment, or project siting and timing.",
+    "who_its_for": "energy, innovation, and environmental economists",
+    "display_order": 13,
+    "field_shelves": [
+      "climate and energy",
+      "innovation and productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "cross-area-mechanism",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-ai-renewables-planning-labor-deployment",
+    "graph_query": "artificial intelligence",
+    "graph_family": "mechanism",
+    "source_label": "Artificial intelligence",
+    "target_label": "Renewable Energy",
+    "channel_labels": [
+      "energy transition",
+      "employment",
+      "deployment planning"
+    ],
+    "route_family": "path_question",
+    "app_link": "https://frontiergraph.com/questions/#https://openalex.org/keywords/artificial-intelligence__jel:Q42:Renewable Energy"
+  },
+  {
+    "pair_key": "https://openalex.org/keywords/carbon-tax__https://openalex.org/keywords/wind-power",
+    "question_title": "Do carbon taxes expand wind power by shifting relative electricity prices?",
+    "short_why": "This is a narrow climate mechanism card. The nearby support says the route runs through electricity-price pass-through, not a broad green-growth narrative.",
+    "first_next_step": "Start with market-level studies that observe carbon taxes, power prices, and wind deployment in the same setting, then test whether price pass-through explains the investment response.",
+    "who_its_for": "energy, environmental, and public-finance economists",
+    "display_order": 14,
+    "field_shelves": [
+      "climate and energy"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "cross-area-mechanism",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-carbon-tax-wind-power-electricity-price",
+    "graph_query": "carbon tax",
+    "graph_family": "mechanism",
+    "source_label": "Carbon tax",
+    "target_label": "Wind power",
+    "channel_labels": [
+      "electricity prices"
+    ],
+    "route_family": "mediator_question",
+    "app_link": "https://frontiergraph.com/questions/#https://openalex.org/keywords/carbon-tax__https://openalex.org/keywords/wind-power"
+  },
+  {
+    "pair_key": "https://openalex.org/keywords/green-innovation__jel:D24:Productivity",
+    "question_title": "Does green innovation raise productivity through R&D, firm upgrading, or labor reallocation?",
+    "short_why": "This card is useful because the local support points to concrete margins inside the firm rather than a generic claim that greener firms perform better.",
+    "first_next_step": "Start with firm-level studies that observe green innovation and at least one candidate channel, then test whether productivity gains survive once R&D, upgrading, or labor reallocation is measured directly.",
+    "who_its_for": "innovation, productivity, and industrial-organization economists",
+    "display_order": 15,
+    "field_shelves": [
+      "innovation and productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-green-innovation-productivity-rd-upgrading-labor",
+    "graph_query": "green innovation",
+    "graph_family": "mechanism",
+    "source_label": "Green innovation",
+    "target_label": "Productivity",
+    "channel_labels": [
+      "R&D",
+      "firm upgrading",
+      "employment"
+    ],
+    "route_family": "mediator_question",
+    "app_link": "https://frontiergraph.com/questions/#https://openalex.org/keywords/green-innovation__jel:D24:Productivity"
+  },
+  {
+    "pair_key": "jel:E43:Interest Rates__jel:E23:Output",
+    "question_title": "Do interest rates move output through quantitative easing, monetary shocks, or fiscal imbalance?",
+    "short_why": "The nearby graph suggests that the output response is not one mechanism. It passes through specific policy transmission channels that can be separated empirically.",
+    "first_next_step": "Start with papers that jointly identify interest-rate changes and one candidate transmission channel, then compare whether the output effect attenuates once that channel is measured.",
+    "who_its_for": "macro, monetary, and macro-finance economists",
+    "display_order": 16,
+    "field_shelves": [
+      "macro and finance"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "paper-ready",
+      "cross-area-mechanism"
+    ],
+    "question_family": "mechanism-interest-rates-output-qe-shocks-fiscal",
+    "graph_query": "interest rates",
+    "graph_family": "mechanism",
+    "source_label": "Interest Rates",
+    "target_label": "Output",
+    "channel_labels": [
+      "quantitative easing",
+      "monetary policy shocks",
+      "fiscal imbalance"
+    ],
+    "route_family": "path_question",
+    "app_link": "https://frontiergraph.com/questions/#jel:E43:Interest Rates__jel:E23:Output"
+  },
+  {
+    "pair_key": "jel:G01:Global Financial Crisis__https://openalex.org/keywords/volatility",
+    "question_title": "Did crisis exposure amplify volatility through contagion, emerging-market stress, or persistence?",
+    "short_why": "The support graph points to a crisis-propagation question rather than a simple before-versus-after comparison of volatility.",
+    "first_next_step": "Start with papers that track crisis exposure alongside volatility and one candidate channel, then compare whether contagion, emerging-market stress, or persistence best explains the response.",
+    "who_its_for": "macro-finance, international-finance, and financial-economics researchers",
+    "display_order": 17,
+    "field_shelves": [
+      "macro and finance"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "paper-ready",
+      "cross-area-mechanism"
+    ],
+    "question_family": "mechanism-global-financial-crisis-volatility-contagion-persistence",
+    "graph_query": "global financial crisis",
+    "graph_family": "mechanism",
+    "source_label": "Global Financial Crisis",
+    "target_label": "Volatility (finance)",
+    "channel_labels": [
+      "contagion",
+      "emerging-market stress",
+      "volatility persistence"
+    ],
+    "route_family": "path_question",
+    "app_link": "https://frontiergraph.com/questions/#jel:G01:Global Financial Crisis__https://openalex.org/keywords/volatility"
+  },
+  {
+    "pair_key": "jel:G21:Lending__https://openalex.org/keywords/systemic-risk",
+    "question_title": "Does lending feed systemic risk through bank balance sheets and commercial-bank exposure?",
+    "short_why": "This is a usable banking mechanism card because the nearby channels are balance-sheet objects, not abstract instability language.",
+    "first_next_step": "Start with papers that jointly study lending growth, systemic-risk measures, and bank balance-sheet conditions, then test whether the risk effect survives once bank exposure is accounted for.",
+    "who_its_for": "banking, macro-finance, and financial-stability economists",
+    "display_order": 18,
+    "field_shelves": [
+      "macro and finance"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "paper-ready",
+      "cross-area-mechanism"
+    ],
+    "question_family": "mechanism-lending-systemic-risk-bank-balance-sheets",
+    "graph_query": "lending",
+    "graph_family": "mechanism",
+    "source_label": "Lending",
+    "target_label": "Systemic risk",
+    "channel_labels": [
+      "banks",
+      "commercial-bank exposure",
+      "balance sheets"
+    ],
+    "route_family": "path_question",
+    "app_link": "https://frontiergraph.com/questions/#jel:G21:Lending__https://openalex.org/keywords/systemic-risk"
   }
 ]

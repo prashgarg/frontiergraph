@@ -1,6 +1,6 @@
 # Frontier Graph data dictionary
 
-This guide summarizes the main fields in the public download files. If you want one row per suggested question, start with `top_questions.csv`. If you want the full local evidence tables, use the SQLite bundle.
+This guide summarizes the main fields in the public download files. If you want one row per suggested question, start with `top_questions.csv`.
 
 ## Shared identifiers
 
@@ -76,23 +76,4 @@ This guide summarizes the main fields in the public download files. If you want 
 | `concept_neighborhoods_index.json` | `{concept_id: shard_path}` | Lookup map from concept ID to neighborhood shard file. |
 | `concept_opportunities_index.json` | `{concept_id: shard_path}` | Lookup map from concept ID to concept-opportunity shard file. |
 | `opportunity_slices.json` | slice arrays | Public question slices such as overall, cross-area, frontier, and fast-follow. |
-| `curated_questions.json` | curated records | Hand-curated questions used in the public site surfaces. |
-
-## SQLite bundle tables
-
-| Table | Grain | Description |
-| --- | --- | --- |
-| `release_meta` | key-value | Release metadata and artifact paths. |
-| `release_metrics` | key-value | Corpus and graph counts for the public release. |
-| `top_questions` | one row per released top question | Lightweight question surface mirrored into SQLite. |
-| `questions` | one row per released question | Full public question table. |
-| `central_concepts` | one row per central concept | Central concept table mirrored from CSV. |
-| `concept_index` | one row per concept | Searchable concept records with aliases and literature-view links. |
-| `graph_nodes`, `graph_edges` | one row per map node/edge | Lightweight public graph backbone. |
-| `opportunity_slices` | one row per pair in a named slice | Slice membership plus JSON payload. |
-| `concept_opportunities` | one row per concept-question pairing | Top nearby questions for each concept. |
-| `concept_neighborhoods` | one row per concept-neighbor relation | Incoming, outgoing, and top-neighbor records. |
-| `question_mediators` | one row per mediator within a question | Ranked mediator concepts for each question. |
-| `question_paths` | one row per supporting path | Ranked supporting paths and labels. |
-| `question_papers` | one row per paper within a path | Papers connected to a path. |
-| `question_neighborhoods` | one row per question | Cached source/target neighborhood JSON. |
+| `curated_questions.json` | curated records | Curated public question records released alongside the site. |

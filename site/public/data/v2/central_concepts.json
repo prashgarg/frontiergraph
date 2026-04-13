@@ -29,7 +29,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000001"
+    "app_link": "https://frontiergraph.com/literature/?q=economic+growth"
   },
   {
     "concept_id": "FG3C000003",
@@ -61,7 +61,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000003"
+    "app_link": "https://frontiergraph.com/literature/?q=CO2+emissions"
   },
   {
     "concept_id": "FG3C000010",
@@ -93,7 +93,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000010"
+    "app_link": "https://frontiergraph.com/literature/?q=carbon+emissions"
   },
   {
     "concept_id": "FG3C000018",
@@ -126,7 +126,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000018"
+    "app_link": "https://frontiergraph.com/literature/?q=renewable+energy+consumption"
   },
   {
     "concept_id": "FG3C000014",
@@ -159,7 +159,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000014"
+    "app_link": "https://frontiergraph.com/literature/?q=energy+consumption"
   },
   {
     "concept_id": "FG3C000006",
@@ -192,7 +192,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000006"
+    "app_link": "https://frontiergraph.com/literature/?q=financial+development"
   },
   {
     "concept_id": "FG3C000064",
@@ -225,7 +225,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000064"
+    "app_link": "https://frontiergraph.com/literature/?q=ecological+footprint"
   },
   {
     "concept_id": "FG3C000002",
@@ -257,7 +257,7 @@
       "other",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000002"
+    "app_link": "https://frontiergraph.com/literature/?q=inflation"
   },
   {
     "concept_id": "FG3C000017",
@@ -289,7 +289,7 @@
       "region",
       "industry"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000017"
+    "app_link": "https://frontiergraph.com/literature/?q=trade+openness"
   },
   {
     "concept_id": "FG3C000012",
@@ -321,7 +321,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000012"
+    "app_link": "https://frontiergraph.com/literature/?q=urbanization"
   },
   {
     "concept_id": "FG3C000013",
@@ -353,7 +353,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000013"
+    "app_link": "https://frontiergraph.com/literature/?q=technological+innovation"
   },
   {
     "concept_id": "FG3C000015",
@@ -385,7 +385,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000015"
+    "app_link": "https://frontiergraph.com/literature/?q=foreign+direct+investments"
   },
   {
     "concept_id": "FG3C006644",
@@ -417,7 +417,7 @@
       "country",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C006644"
+    "app_link": "https://frontiergraph.com/literature/?q=Method+of+Moments+Quantile+Regression+%28MMQR%29"
   },
   {
     "concept_id": "FG3C000068",
@@ -448,7 +448,7 @@
       "location",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000068"
+    "app_link": "https://frontiergraph.com/literature/?q=digital+economy"
   },
   {
     "concept_id": "FG3C000053",
@@ -480,7 +480,7 @@
       "country",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000053"
+    "app_link": "https://frontiergraph.com/literature/?q=green+innovation"
   },
   {
     "concept_id": "FG3C004594",
@@ -512,7 +512,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C004594"
+    "app_link": "https://frontiergraph.com/literature/?q=carbon+emissions+%28CO2+emissions%29"
   },
   {
     "concept_id": "FG3C000038",
@@ -544,7 +544,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000038"
+    "app_link": "https://frontiergraph.com/literature/?q=energy+efficiency"
   },
   {
     "concept_id": "FG3C000011",
@@ -576,7 +576,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000011"
+    "app_link": "https://frontiergraph.com/literature/?q=output"
   },
   {
     "concept_id": "FG3C000059",
@@ -609,7 +609,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000059"
+    "app_link": "https://frontiergraph.com/literature/?q=renewable+energy"
   },
   {
     "concept_id": "FG3C000009",
@@ -641,7 +641,7 @@
       "individual",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000009"
+    "app_link": "https://frontiergraph.com/literature/?q=unemployment"
   },
   {
     "concept_id": "FG3C000091",
@@ -674,7 +674,7 @@
       "region",
       "industry"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000091"
+    "app_link": "https://frontiergraph.com/literature/?q=economic+growth+%28GDP%29"
   },
   {
     "concept_id": "FG3C000016",
@@ -706,7 +706,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000016"
+    "app_link": "https://frontiergraph.com/literature/?q=human+capital"
   },
   {
     "concept_id": "FG3C000063",
@@ -738,7 +738,7 @@
       "country",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000063"
+    "app_link": "https://frontiergraph.com/literature/?q=green+finance"
   },
   {
     "concept_id": "FG3C000025",
@@ -771,7 +771,7 @@
       "region",
       "household"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000025"
+    "app_link": "https://frontiergraph.com/literature/?q=income+inequality"
   },
   {
     "concept_id": "FG3C000041",
@@ -803,7 +803,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000041"
+    "app_link": "https://frontiergraph.com/literature/?q=energy+intensity"
   },
   {
     "concept_id": "FG3C000004",
@@ -835,7 +835,7 @@
       "household",
       "individual"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000004"
+    "app_link": "https://frontiergraph.com/literature/?q=welfare"
   },
   {
     "concept_id": "FG3C000019",
@@ -867,7 +867,7 @@
       "firm",
       "industry"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000019"
+    "app_link": "https://frontiergraph.com/literature/?q=investment"
   },
   {
     "concept_id": "FG3C000007",
@@ -899,7 +899,7 @@
       "firm",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000007"
+    "app_link": "https://frontiergraph.com/literature/?q=employment"
   },
   {
     "concept_id": "FG3C000021",
@@ -932,7 +932,7 @@
       "country",
       "industry"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000021"
+    "app_link": "https://frontiergraph.com/literature/?q=productivity"
   },
   {
     "concept_id": "FG3C000040",
@@ -964,7 +964,7 @@
       "location",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000040"
+    "app_link": "https://frontiergraph.com/literature/?q=environmental+regulation"
   },
   {
     "concept_id": "FG3C000005",
@@ -996,7 +996,7 @@
       "individual",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000005"
+    "app_link": "https://frontiergraph.com/literature/?q=COVID-19+pandemic"
   },
   {
     "concept_id": "FG3C000024",
@@ -1028,7 +1028,7 @@
       "policy_unit",
       "organization"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000024"
+    "app_link": "https://frontiergraph.com/literature/?q=monetary+policy"
   },
   {
     "concept_id": "FG3C000081",
@@ -1060,7 +1060,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000081"
+    "app_link": "https://frontiergraph.com/literature/?q=environmental+quality"
   },
   {
     "concept_id": "FG3C000035",
@@ -1092,7 +1092,7 @@
       "market",
       "product"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000035"
+    "app_link": "https://frontiergraph.com/literature/?q=stock+returns"
   },
   {
     "concept_id": "FG3C000134",
@@ -1125,7 +1125,7 @@
       "firm",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000134"
+    "app_link": "https://frontiergraph.com/literature/?q=environmental+sustainability"
   },
   {
     "concept_id": "FG3C000167",
@@ -1157,7 +1157,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000167"
+    "app_link": "https://frontiergraph.com/literature/?q=carbon+dioxide+%28CO2%29+emission"
   },
   {
     "concept_id": "FG3C000030",
@@ -1189,7 +1189,7 @@
       "country",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000030"
+    "app_link": "https://frontiergraph.com/literature/?q=innovation"
   },
   {
     "concept_id": "FG3C001420",
@@ -1222,7 +1222,7 @@
       "location",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C001420"
+    "app_link": "https://frontiergraph.com/literature/?q=environmental+quality"
   },
   {
     "concept_id": "FG3C000022",
@@ -1254,7 +1254,7 @@
       "firm",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000022"
+    "app_link": "https://frontiergraph.com/literature/?q=wages"
   },
   {
     "concept_id": "FG3C000034",
@@ -1286,7 +1286,7 @@
       "market",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000034"
+    "app_link": "https://frontiergraph.com/literature/?q=oil+prices"
   },
   {
     "concept_id": "FG3C000046",
@@ -1318,7 +1318,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000046"
+    "app_link": "https://frontiergraph.com/literature/?q=exports"
   },
   {
     "concept_id": "FG3C000036",
@@ -1351,7 +1351,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000036"
+    "app_link": "https://frontiergraph.com/literature/?q=institutional+quality"
   },
   {
     "concept_id": "FG3C000008",
@@ -1383,7 +1383,7 @@
       "country",
       "household"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000008"
+    "app_link": "https://frontiergraph.com/literature/?q=income"
   },
   {
     "concept_id": "FG3C000094",
@@ -1415,7 +1415,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000094"
+    "app_link": "https://frontiergraph.com/literature/?q=green+technology+innovation"
   },
   {
     "concept_id": "FG3C000065",
@@ -1447,7 +1447,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000065"
+    "app_link": "https://frontiergraph.com/literature/?q=sustainable+development"
   },
   {
     "concept_id": "FG3C000026",
@@ -1479,7 +1479,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000026"
+    "app_link": "https://frontiergraph.com/literature/?q=economic+development"
   },
   {
     "concept_id": "FG3C000039",
@@ -1511,7 +1511,7 @@
       "other",
       "industry"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000039"
+    "app_link": "https://frontiergraph.com/literature/?q=globalization"
   },
   {
     "concept_id": "FG3C000124",
@@ -1543,7 +1543,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000124"
+    "app_link": "https://frontiergraph.com/literature/?q=natural+resources"
   },
   {
     "concept_id": "FG3C000130",
@@ -1572,7 +1572,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000130"
+    "app_link": "https://frontiergraph.com/literature/?q=environmental+degradation"
   },
   {
     "concept_id": "FG3C000033",
@@ -1604,7 +1604,7 @@
       "country",
       "individual"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000033"
+    "app_link": "https://frontiergraph.com/literature/?q=consumption"
   },
   {
     "concept_id": "FG3C000160",
@@ -1634,7 +1634,7 @@
       "region",
       "household"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000160"
+    "app_link": "https://frontiergraph.com/literature/?q=electricity+consumption"
   },
   {
     "concept_id": "FG3C000096",
@@ -1666,7 +1666,7 @@
       "firm",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000096"
+    "app_link": "https://frontiergraph.com/literature/?q=stock+prices"
   },
   {
     "concept_id": "FG3C000203",
@@ -1698,7 +1698,7 @@
       "country",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000203"
+    "app_link": "https://frontiergraph.com/literature/?q=environmental+pollution"
   },
   {
     "concept_id": "FG3C000103",
@@ -1730,7 +1730,7 @@
       "region",
       "household"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000103"
+    "app_link": "https://frontiergraph.com/literature/?q=financial+inclusion"
   },
   {
     "concept_id": "FG3C000048",
@@ -1760,7 +1760,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000048"
+    "app_link": "https://frontiergraph.com/literature/?q=foreign+direct+investment"
   },
   {
     "concept_id": "FG3C000215",
@@ -1792,7 +1792,7 @@
       "location",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000215"
+    "app_link": "https://frontiergraph.com/literature/?q=green+total+factor+productivity+%28GTFP%29"
   },
   {
     "concept_id": "FG3C000072",
@@ -1824,7 +1824,7 @@
       "market",
       "country_pair"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000072"
+    "app_link": "https://frontiergraph.com/literature/?q=exchange+rates"
   },
   {
     "concept_id": "FG3C000055",
@@ -1857,7 +1857,7 @@
       "country_pair",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000055"
+    "app_link": "https://frontiergraph.com/literature/?q=trade"
   },
   {
     "concept_id": "FG3C000323",
@@ -1890,7 +1890,7 @@
       "household",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000323"
+    "app_link": "https://frontiergraph.com/literature/?q=willingness+to+pay+%28WTP%29"
   },
   {
     "concept_id": "FG3C000110",
@@ -1923,7 +1923,7 @@
       "industry",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000110"
+    "app_link": "https://frontiergraph.com/literature/?q=output+growth"
   },
   {
     "concept_id": "FG3C000037",
@@ -1956,7 +1956,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000037"
+    "app_link": "https://frontiergraph.com/literature/?q=GDP"
   },
   {
     "concept_id": "FG3C000411",
@@ -1988,7 +1988,7 @@
       "region",
       "market"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000411"
+    "app_link": "https://frontiergraph.com/literature/?q=model+parameters"
   },
   {
     "concept_id": "FG3C000074",
@@ -2018,7 +2018,7 @@
       "firm",
       "organization"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000074"
+    "app_link": "https://frontiergraph.com/literature/?q=economic+policy+uncertainty+%28EPU%29"
   },
   {
     "concept_id": "FG3C000097",
@@ -2049,7 +2049,7 @@
       "location",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000097"
+    "app_link": "https://frontiergraph.com/literature/?q=industrial+structure+upgrading"
   },
   {
     "concept_id": "FG3C000020",
@@ -2082,7 +2082,7 @@
       "organization",
       "establishment"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000020"
+    "app_link": "https://frontiergraph.com/literature/?q=firm+size"
   },
   {
     "concept_id": "FG3C000044",
@@ -2114,7 +2114,7 @@
       "location",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000044"
+    "app_link": "https://frontiergraph.com/literature/?q=industrial+structure"
   },
   {
     "concept_id": "FG3C000027",
@@ -2146,7 +2146,7 @@
       "market",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000027"
+    "app_link": "https://frontiergraph.com/literature/?q=interest+rates"
   },
   {
     "concept_id": "FG3C000060",
@@ -2179,7 +2179,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000060"
+    "app_link": "https://frontiergraph.com/literature/?q=GDP+per+capita"
   },
   {
     "concept_id": "FG3C000117",
@@ -2211,7 +2211,7 @@
       "market",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000117"
+    "app_link": "https://frontiergraph.com/literature/?q=oil+price"
   },
   {
     "concept_id": "FG3C000071",
@@ -2243,7 +2243,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000071"
+    "app_link": "https://frontiergraph.com/literature/?q=economic+policy+uncertainty"
   },
   {
     "concept_id": "FG3C000045",
@@ -2275,7 +2275,7 @@
       "country",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000045"
+    "app_link": "https://frontiergraph.com/literature/?q=technological+progress"
   },
   {
     "concept_id": "FG3C000070",
@@ -2307,7 +2307,7 @@
       "firm",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000070"
+    "app_link": "https://frontiergraph.com/literature/?q=productivity+growth"
   },
   {
     "concept_id": "FG3C000249",
@@ -2340,7 +2340,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000249"
+    "app_link": "https://frontiergraph.com/literature/?q=natural+resource+rents"
   },
   {
     "concept_id": "FG3C000246",
@@ -2372,7 +2372,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000246"
+    "app_link": "https://frontiergraph.com/literature/?q=green+growth"
   },
   {
     "concept_id": "FG3C000123",
@@ -2404,7 +2404,7 @@
       "market",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000123"
+    "app_link": "https://frontiergraph.com/literature/?q=oil+price+shocks"
   },
   {
     "concept_id": "FG3C000121",
@@ -2437,7 +2437,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000121"
+    "app_link": "https://frontiergraph.com/literature/?q=greenhouse+gas+emissions"
   },
   {
     "concept_id": "FG3C000029",
@@ -2469,7 +2469,7 @@
       "country",
       "household"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000029"
+    "app_link": "https://frontiergraph.com/literature/?q=education"
   },
   {
     "concept_id": "FG3C000042",
@@ -2501,7 +2501,7 @@
       "firm",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000042"
+    "app_link": "https://frontiergraph.com/literature/?q=trading+volume"
   },
   {
     "concept_id": "FG3C002284",
@@ -2533,7 +2533,7 @@
       "country",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C002284"
+    "app_link": "https://frontiergraph.com/literature/?q=firm+total+factor+productivity+%28TFP%29"
   },
   {
     "concept_id": "FG3C000028",
@@ -2565,7 +2565,7 @@
       "market",
       "industry"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000028"
+    "app_link": "https://frontiergraph.com/literature/?q=prices"
   },
   {
     "concept_id": "FG3C000232",
@@ -2598,7 +2598,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000232"
+    "app_link": "https://frontiergraph.com/literature/?q=non-renewable+energy+consumption"
   },
   {
     "concept_id": "FG3C000173",
@@ -2631,7 +2631,7 @@
       "individual",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000173"
+    "app_link": "https://frontiergraph.com/literature/?q=energy+use"
   },
   {
     "concept_id": "FG3C000061",
@@ -2662,7 +2662,7 @@
       "country",
       "industry"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000061"
+    "app_link": "https://frontiergraph.com/literature/?q=total+factor+productivity+%28TFP%29"
   },
   {
     "concept_id": "FG3C000384",
@@ -2695,7 +2695,7 @@
       "firm",
       "industry"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000384"
+    "app_link": "https://frontiergraph.com/literature/?q=information+and+communication+technology+%28ICT%29"
   },
   {
     "concept_id": "FG3C000089",
@@ -2727,7 +2727,7 @@
       "region",
       "organization"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000089"
+    "app_link": "https://frontiergraph.com/literature/?q=R%26D+investment"
   },
   {
     "concept_id": "FG3C000051",
@@ -2759,7 +2759,7 @@
       "household",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000051"
+    "app_link": "https://frontiergraph.com/literature/?q=house+prices"
   },
   {
     "concept_id": "FG3C000050",
@@ -2791,7 +2791,7 @@
       "other",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000050"
+    "app_link": "https://frontiergraph.com/literature/?q=housing+prices"
   },
   {
     "concept_id": "FG3C000202",
@@ -2823,7 +2823,7 @@
       "firm",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000202"
+    "app_link": "https://frontiergraph.com/literature/?q=green+bonds"
   },
   {
     "concept_id": "FG3C000242",
@@ -2855,7 +2855,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000242"
+    "app_link": "https://frontiergraph.com/literature/?q=digital+finance"
   },
   {
     "concept_id": "FG3C000267",
@@ -2888,7 +2888,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000267"
+    "app_link": "https://frontiergraph.com/literature/?q=energy+transition"
   },
   {
     "concept_id": "FG3C000043",
@@ -2920,7 +2920,7 @@
       "firm",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000043"
+    "app_link": "https://frontiergraph.com/literature/?q=volatility"
   },
   {
     "concept_id": "FG3C004120",
@@ -2952,7 +2952,7 @@
       "country",
       "individual"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C004120"
+    "app_link": "https://frontiergraph.com/literature/?q=uncertainty+measures"
   },
   {
     "concept_id": "FG3C000101",
@@ -2985,7 +2985,7 @@
       "product",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000101"
+    "app_link": "https://frontiergraph.com/literature/?q=gold"
   },
   {
     "concept_id": "FG3C000491",
@@ -3017,7 +3017,7 @@
       "country",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000491"
+    "app_link": "https://frontiergraph.com/literature/?q=environmental+efficiency"
   },
   {
     "concept_id": "FG3C001218",
@@ -3046,7 +3046,7 @@
       "other",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C001218"
+    "app_link": "https://frontiergraph.com/literature/?q=ecological+footprints"
   },
   {
     "concept_id": "FG3C000085",
@@ -3079,7 +3079,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000085"
+    "app_link": "https://frontiergraph.com/literature/?q=gross+domestic+product+%28GDP%29"
   },
   {
     "concept_id": "FG3C003006",
@@ -3111,7 +3111,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C003006"
+    "app_link": "https://frontiergraph.com/literature/?q=emissions+trading+system"
   },
   {
     "concept_id": "FG3C000090",
@@ -3143,7 +3143,7 @@
       "organization",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000090"
+    "app_link": "https://frontiergraph.com/literature/?q=financing+constraints"
   },
   {
     "concept_id": "FG3C000226",
@@ -3173,7 +3173,7 @@
       "organization",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000226"
+    "app_link": "https://frontiergraph.com/literature/?q=digital+transformation"
   },
   {
     "concept_id": "FG3C000056",
@@ -3202,7 +3202,7 @@
       "market",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000056"
+    "app_link": "https://frontiergraph.com/literature/?q=exchange+rate"
   },
   {
     "concept_id": "FG3C000184",
@@ -3234,7 +3234,7 @@
       "country",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000184"
+    "app_link": "https://frontiergraph.com/literature/?q=carbon+intensity"
   },
   {
     "concept_id": "FG3C000120",
@@ -3266,7 +3266,7 @@
       "country",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000120"
+    "app_link": "https://frontiergraph.com/literature/?q=environmental+regulations"
   },
   {
     "concept_id": "FG3C000140",
@@ -3298,7 +3298,7 @@
       "individual",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000140"
+    "app_link": "https://frontiergraph.com/literature/?q=income+distribution"
   },
   {
     "concept_id": "FG3C000347",
@@ -3330,7 +3330,7 @@
       "location",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000347"
+    "app_link": "https://frontiergraph.com/literature/?q=carbon+emission+intensity"
   },
   {
     "concept_id": "FG3C000126",
@@ -3363,7 +3363,7 @@
       "industry",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000126"
+    "app_link": "https://frontiergraph.com/literature/?q=imports"
   },
   {
     "concept_id": "FG3C000054",
@@ -3396,7 +3396,7 @@
       "location",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000054"
+    "app_link": "https://frontiergraph.com/literature/?q=population+growth"
   },
   {
     "concept_id": "FG3C005161",
@@ -3428,7 +3428,7 @@
       "country",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C005161"
+    "app_link": "https://frontiergraph.com/literature/?q=state+of+the+business+cycle"
   },
   {
     "concept_id": "FG3C000292",
@@ -3461,7 +3461,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000292"
+    "app_link": "https://frontiergraph.com/literature/?q=coal+consumption"
   },
   {
     "concept_id": "FG3C000156",
@@ -3493,7 +3493,7 @@
       "market",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000156"
+    "app_link": "https://frontiergraph.com/literature/?q=crude+oil+prices"
   },
   {
     "concept_id": "FG3C000227",
@@ -3525,7 +3525,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000227"
+    "app_link": "https://frontiergraph.com/literature/?q=green+technological+innovation"
   },
   {
     "concept_id": "FG3C000069",
@@ -3558,7 +3558,7 @@
       "industry",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000069"
+    "app_link": "https://frontiergraph.com/literature/?q=competition"
   },
   {
     "concept_id": "FG3C000199",
@@ -3591,7 +3591,7 @@
       "region",
       "industry"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000199"
+    "app_link": "https://frontiergraph.com/literature/?q=economic+complexity"
   },
   {
     "concept_id": "FG3C000164",
@@ -3623,7 +3623,7 @@
       "organization",
       "policy_unit"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000164"
+    "app_link": "https://frontiergraph.com/literature/?q=government+subsidies"
   },
   {
     "concept_id": "FG3C000753",
@@ -3655,7 +3655,7 @@
       "other",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000753"
+    "app_link": "https://frontiergraph.com/literature/?q=high-speed+rail"
   },
   {
     "concept_id": "FG3C005776",
@@ -3687,7 +3687,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C005776"
+    "app_link": "https://frontiergraph.com/literature/?q=rate+of+growth"
   },
   {
     "concept_id": "FG3C000058",
@@ -3719,7 +3719,7 @@
       "location",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000058"
+    "app_link": "https://frontiergraph.com/literature/?q=population"
   },
   {
     "concept_id": "FG3C000436",
@@ -3752,7 +3752,7 @@
       "other",
       "market"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000436"
+    "app_link": "https://frontiergraph.com/literature/?q=geopolitical+risks"
   },
   {
     "concept_id": "FG3C001408",
@@ -3785,7 +3785,7 @@
       "policy_unit",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C001408"
+    "app_link": "https://frontiergraph.com/literature/?q=policy"
   },
   {
     "concept_id": "FG3C000087",
@@ -3818,7 +3818,7 @@
       "policy_unit",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000087"
+    "app_link": "https://frontiergraph.com/literature/?q=fiscal+policy"
   },
   {
     "concept_id": "FG3C000118",
@@ -3849,7 +3849,7 @@
       "location",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000118"
+    "app_link": "https://frontiergraph.com/literature/?q=industrialization"
   },
   {
     "concept_id": "FG3C000067",
@@ -3881,7 +3881,7 @@
       "organization",
       "industry"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000067"
+    "app_link": "https://frontiergraph.com/literature/?q=profitability"
   },
   {
     "concept_id": "FG3C000144",
@@ -3914,7 +3914,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000144"
+    "app_link": "https://frontiergraph.com/literature/?q=economic+performance"
   },
   {
     "concept_id": "FG3C000078",
@@ -3947,7 +3947,7 @@
       "region",
       "industry"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000078"
+    "app_link": "https://frontiergraph.com/literature/?q=international+trade"
   },
   {
     "concept_id": "FG3C000168",
@@ -3979,7 +3979,7 @@
       "country",
       "industry"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000168"
+    "app_link": "https://frontiergraph.com/literature/?q=stock+market+returns"
   },
   {
     "concept_id": "FG3C000674",
@@ -4012,7 +4012,7 @@
       "market",
       "individual"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000674"
+    "app_link": "https://frontiergraph.com/literature/?q=price+changes"
   },
   {
     "concept_id": "FG3C000599",
@@ -4044,7 +4044,7 @@
       "country",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000599"
+    "app_link": "https://frontiergraph.com/literature/?q=US+stock+market"
   },
   {
     "concept_id": "FG3C000083",
@@ -4076,7 +4076,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000083"
+    "app_link": "https://frontiergraph.com/literature/?q=trade+liberalization"
   },
   {
     "concept_id": "FG3C000098",
@@ -4109,7 +4109,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000098"
+    "app_link": "https://frontiergraph.com/literature/?q=per+capita+income"
   },
   {
     "concept_id": "FG3C000023",
@@ -4142,7 +4142,7 @@
       "market",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000023"
+    "app_link": "https://frontiergraph.com/literature/?q=social+welfare"
   },
   {
     "concept_id": "FG3C000104",
@@ -4175,7 +4175,7 @@
       "firm",
       "industry"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000104"
+    "app_link": "https://frontiergraph.com/literature/?q=capital"
   },
   {
     "concept_id": "FG3C000494",
@@ -4206,7 +4206,7 @@
       "location",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000494"
+    "app_link": "https://frontiergraph.com/literature/?q=digital+economy+development"
   },
   {
     "concept_id": "FG3C006328",
@@ -4239,7 +4239,7 @@
       "firm",
       "organization"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C006328"
+    "app_link": "https://frontiergraph.com/literature/?q=number+of+agents"
   },
   {
     "concept_id": "FG3C000138",
@@ -4272,7 +4272,7 @@
       "organization",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000138"
+    "app_link": "https://frontiergraph.com/literature/?q=systemic+risk"
   },
   {
     "concept_id": "FG3C000052",
@@ -4304,7 +4304,7 @@
       "region",
       "individual"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000052"
+    "app_link": "https://frontiergraph.com/literature/?q=unemployment+rate"
   },
   {
     "concept_id": "FG3C001033",
@@ -4335,7 +4335,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C001033"
+    "app_link": "https://frontiergraph.com/literature/?q=environmental+degradation+%28CO2+emissions%29"
   },
   {
     "concept_id": "FG3C000112",
@@ -4367,7 +4367,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000112"
+    "app_link": "https://frontiergraph.com/literature/?q=inflation+rate"
   },
   {
     "concept_id": "FG3C000100",
@@ -4399,7 +4399,7 @@
       "firm",
       "individual"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000100"
+    "app_link": "https://frontiergraph.com/literature/?q=investor+sentiment"
   },
   {
     "concept_id": "FG3C000165",
@@ -4432,7 +4432,7 @@
       "market",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000165"
+    "app_link": "https://frontiergraph.com/literature/?q=geopolitical+risk"
   },
   {
     "concept_id": "FG3C001307",
@@ -4463,7 +4463,7 @@
       "country",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C001307"
+    "app_link": "https://frontiergraph.com/literature/?q=ecological+carrying+capacity"
   },
   {
     "concept_id": "FG3C005346",
@@ -4495,7 +4495,7 @@
       "individual",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C005346"
+    "app_link": "https://frontiergraph.com/literature/?q=income+tax+rate"
   },
   {
     "concept_id": "FG3C000467",
@@ -4528,7 +4528,7 @@
       "individual",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000467"
+    "app_link": "https://frontiergraph.com/literature/?q=CO2+emissions+per+capita"
   },
   {
     "concept_id": "FG3C000128",
@@ -4560,7 +4560,7 @@
       "country",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000128"
+    "app_link": "https://frontiergraph.com/literature/?q=total+factor+productivity"
   },
   {
     "concept_id": "FG3C000730",
@@ -4592,7 +4592,7 @@
       "country",
       "household"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000730"
+    "app_link": "https://frontiergraph.com/literature/?q=health"
   },
   {
     "concept_id": "FG3C000077",
@@ -4624,7 +4624,7 @@
       "market",
       "global"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000077"
+    "app_link": "https://frontiergraph.com/literature/?q=financial+stability"
   },
   {
     "concept_id": "FG3C000057",
@@ -4656,7 +4656,7 @@
       "market",
       "organization"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000057"
+    "app_link": "https://frontiergraph.com/literature/?q=liquidity"
   },
   {
     "concept_id": "FG3C000423",
@@ -4688,7 +4688,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000423"
+    "app_link": "https://frontiergraph.com/literature/?q=natural+gas+consumption"
   },
   {
     "concept_id": "FG3C000206",
@@ -4720,7 +4720,7 @@
       "other",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000206"
+    "app_link": "https://frontiergraph.com/literature/?q=government+spending"
   },
   {
     "concept_id": "FG3C000149",
@@ -4753,7 +4753,7 @@
       "country",
       "individual"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000149"
+    "app_link": "https://frontiergraph.com/literature/?q=poverty"
   },
   {
     "concept_id": "FG3C000209",
@@ -4786,7 +4786,7 @@
       "product",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000209"
+    "app_link": "https://frontiergraph.com/literature/?q=Bitcoin"
   },
   {
     "concept_id": "FG3C000211",
@@ -4818,7 +4818,7 @@
       "region",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000211"
+    "app_link": "https://frontiergraph.com/literature/?q=air+pollution"
   },
   {
     "concept_id": "FG3C002978",
@@ -4849,7 +4849,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C002978"
+    "app_link": "https://frontiergraph.com/literature/?q=low-carbon+city+pilot+policy"
   },
   {
     "concept_id": "FG3C000092",
@@ -4881,7 +4881,7 @@
       "individual",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000092"
+    "app_link": "https://frontiergraph.com/literature/?q=economic+activity"
   },
   {
     "concept_id": "FG3C000084",
@@ -4914,7 +4914,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000084"
+    "app_link": "https://frontiergraph.com/literature/?q=capital+accumulation"
   },
   {
     "concept_id": "FG3C000031",
@@ -4947,7 +4947,7 @@
       "individual",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000031"
+    "app_link": "https://frontiergraph.com/literature/?q=transaction+costs"
   },
   {
     "concept_id": "FG3C000629",
@@ -4980,7 +4980,7 @@
       "region",
       "establishment"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000629"
+    "app_link": "https://frontiergraph.com/literature/?q=CO2+emission"
   },
   {
     "concept_id": "FG3C006136",
@@ -5012,7 +5012,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C006136"
+    "app_link": "https://frontiergraph.com/literature/?q=innovation+outcomes"
   },
   {
     "concept_id": "FG3C001814",
@@ -5044,7 +5044,7 @@
       "individual",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C001814"
+    "app_link": "https://frontiergraph.com/literature/?q=consumption-based+carbon+emissions"
   },
   {
     "concept_id": "FG3C000422",
@@ -5076,7 +5076,7 @@
       "organization",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000422"
+    "app_link": "https://frontiergraph.com/literature/?q=ESG+performance"
   },
   {
     "concept_id": "FG3C000076",
@@ -5109,7 +5109,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000076"
+    "app_link": "https://frontiergraph.com/literature/?q=climate+change"
   },
   {
     "concept_id": "FG3C000727",
@@ -5142,7 +5142,7 @@
       "other",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000727"
+    "app_link": "https://frontiergraph.com/literature/?q=tourism"
   },
   {
     "concept_id": "FG3C000591",
@@ -5174,7 +5174,7 @@
       "location",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000591"
+    "app_link": "https://frontiergraph.com/literature/?q=per+capita+CO2+emissions"
   },
   {
     "concept_id": "FG3C000219",
@@ -5207,7 +5207,7 @@
       "market",
       "product"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000219"
+    "app_link": "https://frontiergraph.com/literature/?q=price+level"
   },
   {
     "concept_id": "FG3C000360",
@@ -5240,7 +5240,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000360"
+    "app_link": "https://frontiergraph.com/literature/?q=environmental+taxes"
   },
   {
     "concept_id": "FG3C000623",
@@ -5271,7 +5271,7 @@
       "location",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000623"
+    "app_link": "https://frontiergraph.com/literature/?q=high-quality+economic+development"
   },
   {
     "concept_id": "FG3C000113",
@@ -5303,7 +5303,7 @@
       "organization",
       "individual"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000113"
+    "app_link": "https://frontiergraph.com/literature/?q=firm+performance"
   },
   {
     "concept_id": "FG3C000472",
@@ -5335,7 +5335,7 @@
       "region",
       "organization"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000472"
+    "app_link": "https://frontiergraph.com/literature/?q=oil+consumption"
   },
   {
     "concept_id": "FG3C000678",
@@ -5367,7 +5367,7 @@
       "country",
       "product"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000678"
+    "app_link": "https://frontiergraph.com/literature/?q=implied+volatility"
   },
   {
     "concept_id": "FG3C000208",
@@ -5400,7 +5400,7 @@
       "other",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000208"
+    "app_link": "https://frontiergraph.com/literature/?q=public+debt"
   },
   {
     "concept_id": "FG3C000106",
@@ -5432,7 +5432,7 @@
       "organization",
       "individual"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000106"
+    "app_link": "https://frontiergraph.com/literature/?q=financial+constraints"
   },
   {
     "concept_id": "FG3C000425",
@@ -5462,7 +5462,7 @@
       "location",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000425"
+    "app_link": "https://frontiergraph.com/literature/?q=digital+inclusive+finance"
   },
   {
     "concept_id": "FG3C000073",
@@ -5494,7 +5494,7 @@
       "establishment",
       "industry"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000073"
+    "app_link": "https://frontiergraph.com/literature/?q=firm+productivity"
   },
   {
     "concept_id": "FG3C000177",
@@ -5526,7 +5526,7 @@
       "region",
       "individual"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000177"
+    "app_link": "https://frontiergraph.com/literature/?q=United+States"
   },
   {
     "concept_id": "FG3C000095",
@@ -5558,7 +5558,7 @@
       "individual",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000095"
+    "app_link": "https://frontiergraph.com/literature/?q=household+income"
   },
   {
     "concept_id": "FG3C000437",
@@ -5590,7 +5590,7 @@
       "country",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000437"
+    "app_link": "https://frontiergraph.com/literature/?q=green+investment"
   },
   {
     "concept_id": "FG3C000449",
@@ -5622,7 +5622,7 @@
       "firm",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000449"
+    "app_link": "https://frontiergraph.com/literature/?q=artificial+intelligence+%28AI%29"
   },
   {
     "concept_id": "FG3C006446",
@@ -5654,7 +5654,7 @@
       "location",
       "household"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C006446"
+    "app_link": "https://frontiergraph.com/literature/?q=place+of+residence"
   },
   {
     "concept_id": "FG3C000159",
@@ -5686,7 +5686,7 @@
       "other",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000159"
+    "app_link": "https://frontiergraph.com/literature/?q=monetary+policy+shocks"
   },
   {
     "concept_id": "FG3C000643",
@@ -5718,7 +5718,7 @@
       "firm",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000643"
+    "app_link": "https://frontiergraph.com/literature/?q=equity+returns"
   },
   {
     "concept_id": "FG3C000093",
@@ -5750,7 +5750,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000093"
+    "app_link": "https://frontiergraph.com/literature/?q=GDP+growth"
   },
   {
     "concept_id": "FG3C000222",
@@ -5783,7 +5783,7 @@
       "global",
       "organization"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000222"
+    "app_link": "https://frontiergraph.com/literature/?q=money+supply"
   },
   {
     "concept_id": "FG3C000047",
@@ -5815,7 +5815,7 @@
       "country",
       "household"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000047"
+    "app_link": "https://frontiergraph.com/literature/?q=uncertainty"
   },
   {
     "concept_id": "FG3C000403",
@@ -5848,7 +5848,7 @@
       "individual",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000403"
+    "app_link": "https://frontiergraph.com/literature/?q=human+development"
   },
   {
     "concept_id": "FG3C000080",
@@ -5881,7 +5881,7 @@
       "country",
       "product"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000080"
+    "app_link": "https://frontiergraph.com/literature/?q=asset+prices"
   },
   {
     "concept_id": "FG3C000335",
@@ -5912,7 +5912,7 @@
       "firm",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000335"
+    "app_link": "https://frontiergraph.com/literature/?q=digitalization"
   },
   {
     "concept_id": "FG3C000122",
@@ -5943,7 +5943,7 @@
       "country_pair",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000122"
+    "app_link": "https://frontiergraph.com/literature/?q=real+exchange+rate"
   },
   {
     "concept_id": "FG3C000475",
@@ -5976,7 +5976,7 @@
       "region",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000475"
+    "app_link": "https://frontiergraph.com/literature/?q=technological+innovations"
   },
   {
     "concept_id": "FG3C000225",
@@ -6008,7 +6008,7 @@
       "region",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000225"
+    "app_link": "https://frontiergraph.com/literature/?q=industrial+agglomeration"
   },
   {
     "concept_id": "FG3C000620",
@@ -6037,7 +6037,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000620"
+    "app_link": "https://frontiergraph.com/literature/?q=renewable+energy+consumption+%28REC%29"
   },
   {
     "concept_id": "FG3C000150",
@@ -6070,7 +6070,7 @@
       "region",
       "market"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000150"
+    "app_link": "https://frontiergraph.com/literature/?q=energy+prices"
   },
   {
     "concept_id": "FG3C000722",
@@ -6102,7 +6102,7 @@
       "firm",
       "organization"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000722"
+    "app_link": "https://frontiergraph.com/literature/?q=green+credit"
   },
   {
     "concept_id": "FG3C000259",
@@ -6134,7 +6134,7 @@
       "firm",
       "country"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000259"
+    "app_link": "https://frontiergraph.com/literature/?q=bank+profitability"
   },
   {
     "concept_id": "FG3C000152",
@@ -6166,7 +6166,7 @@
       "region",
       "policy_unit"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000152"
+    "app_link": "https://frontiergraph.com/literature/?q=carbon+tax"
   },
   {
     "concept_id": "FG3C000158",
@@ -6199,7 +6199,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000158"
+    "app_link": "https://frontiergraph.com/literature/?q=employment+growth"
   },
   {
     "concept_id": "FG3C000190",
@@ -6231,7 +6231,7 @@
       "firm",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000190"
+    "app_link": "https://frontiergraph.com/literature/?q=bid-ask+spread"
   },
   {
     "concept_id": "FG3C000547",
@@ -6261,7 +6261,7 @@
       "region",
       "location"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000547"
+    "app_link": "https://frontiergraph.com/literature/?q=renewable+energy+development"
   },
   {
     "concept_id": "FG3C000318",
@@ -6294,7 +6294,7 @@
       "firm",
       "organization"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000318"
+    "app_link": "https://frontiergraph.com/literature/?q=greenhouse+gas+%28GHG%29+emissions"
   },
   {
     "concept_id": "FG3C000114",
@@ -6327,7 +6327,7 @@
       "industry",
       "firm"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000114"
+    "app_link": "https://frontiergraph.com/literature/?q=market+concentration"
   },
   {
     "concept_id": "FG3C000325",
@@ -6360,7 +6360,7 @@
       "country_pair",
       "other"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000325"
+    "app_link": "https://frontiergraph.com/literature/?q=real+exchange+rates"
   },
   {
     "concept_id": "FG3C000362",
@@ -6391,7 +6391,7 @@
       "other",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000362"
+    "app_link": "https://frontiergraph.com/literature/?q=renewable+energy+use"
   },
   {
     "concept_id": "FG3C000162",
@@ -6424,6 +6424,6 @@
       "country_pair",
       "region"
     ],
-    "app_link": "https://frontiergraph.com/explorer/?view=concept&concept=FG3C000162"
+    "app_link": "https://frontiergraph.com/literature/?q=terms+of+trade"
   }
 ]

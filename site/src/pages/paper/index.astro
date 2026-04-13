@@ -4,21 +4,29 @@ import FullPaper from "../../generated/paper/research_allocation_paper_full.md";
 import manifest from "../../generated/paper/paper_manifest.json";
 import { data } from "../../lib/site-data";
 
-const toc = manifest.full.headings;
+const toc = manifest.full.headings.filter(
+  (entry) =>
+    entry.level === 2 &&
+    !entry.text.startsWith("Appendix") &&
+    entry.text !== "References",
+);
 ---
 
 <PaperLayout
   title="What Should Economics Ask Next?"
-  subtitle="A graph-based screening benchmark for candidate questions in economics"
-  description="Full HTML manuscript for the Frontier Graph working paper."
-  eyebrow="Working paper"
+  description="Full HTML manuscript for the current Frontier Graph paper."
+  eyebrow="Paper"
   toc={toc}
   pdfUrl={data.downloads.artifacts.working_paper_pdf}
+  deck="The PDF is the reference version. The HTML manuscript below tracks the current paper structure and is intended for web reading."
   author="Prashant Garg"
   authorUrl="https://www.prashantgarg.org/"
   affiliation="Imperial College London"
-  draftLabel="Draft for comments. Please do not cite without permission."
-  lastUpdated="17 March 2026"
+  draftLabel="Preliminary and Incomplete"
+  lastUpdated="12 April 2026"
 >
+  <p class="lede">
+    Use the PDF on this page for citation, page-stable figures, and exact table references. Use the HTML version for easier browsing and linking.
+  </p>
   <FullPaper />
 </PaperLayout>

@@ -1,0 +1,484 @@
+{
+  "https://openalex.org/keywords/environmental-quality__jel:O11:GDP": {
+    "pair_key": "https://openalex.org/keywords/environmental-quality__jel:O11:GDP",
+    "question_title": "Does environmental quality matter for GDP through energy use or renewable adoption?",
+    "short_why": "The nearest support graph keeps returning renewable energy, energy use, and the environmental Kuznets channel as the main routes linking environmental quality to output.",
+    "first_next_step": "Start with papers that jointly study environmental quality, GDP, and one of the candidate channels, then check which channel is treated as an intermediate outcome rather than a parallel correlate.",
+    "who_its_for": "environmental, energy, and development economists",
+    "display_order": 1,
+    "field_shelves": [
+      "climate and energy"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-environmental-quality-gdp-energy-use-renewables",
+    "graph_query": "environmental quality",
+    "graph_family": "mechanism",
+    "source_label": "Environmental quality",
+    "target_label": "GDP",
+    "channel_labels": [
+      "renewable energy",
+      "energy use",
+      "environmental Kuznets curve"
+    ],
+    "route_family": "mediator_question"
+  },
+  "https://openalex.org/keywords/r-d-intensity__jel:F62:Economic Growth": {
+    "pair_key": "https://openalex.org/keywords/r-d-intensity__jel:F62:Economic Growth",
+    "question_title": "Does R&D intensity raise growth through innovation effort, high-tech exports, or tax policy?",
+    "short_why": "This card is strongest when the mechanism is treated as how research intensity becomes growth, not just whether the two move together.",
+    "first_next_step": "Separate papers that use innovation effort, high-tech export exposure, or tax policy as the intermediate margin, then ask which one survives in a common empirical frame.",
+    "who_its_for": "innovation, macro, and growth economists",
+    "display_order": 2,
+    "field_shelves": [
+      "innovation and productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-rd-intensity-growth-innovation-exports-tax",
+    "graph_query": "R&D intensity",
+    "graph_family": "mechanism",
+    "source_label": "R&D intensity",
+    "target_label": "Economic Growth",
+    "channel_labels": [
+      "innovation effort",
+      "high-tech exports",
+      "tax policy"
+    ],
+    "route_family": "mediator_question"
+  },
+  "https://openalex.org/keywords/digital-transformation__jel:D24:Productivity": {
+    "pair_key": "https://openalex.org/keywords/digital-transformation__jel:D24:Productivity",
+    "question_title": "Does digital transformation raise productivity through innovation, product quality, or absorptive capacity?",
+    "short_why": "The local graph points to a tight mechanism story: digital adoption seems to matter when it changes firms' innovation margins, quality, or ability to absorb new technology.",
+    "first_next_step": "Start with firm-level papers that measure digital adoption and at least one of the three channels, then compare whether the productivity effect attenuates once the channel is included.",
+    "who_its_for": "productivity, industrial-organization, and firm-dynamics economists",
+    "display_order": 3,
+    "field_shelves": [
+      "innovation and productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-digital-transformation-productivity-innovation-quality-absorption",
+    "graph_query": "digital transformation",
+    "graph_family": "mechanism",
+    "source_label": "Digital transformation",
+    "target_label": "Productivity",
+    "channel_labels": [
+      "innovation",
+      "product quality",
+      "absorptive capacity"
+    ],
+    "route_family": "mediator_question"
+  },
+  "jel:E25:Wage__jel:D24:Productivity": {
+    "pair_key": "jel:E25:Wage__jel:D24:Productivity",
+    "question_title": "Do wages raise productivity through employment margins, firm scale, or offshoring responses?",
+    "short_why": "This is richer than a simple wage-productivity link because the nearby literature suggests distinct adjustment margins rather than one reduced-form effect.",
+    "first_next_step": "Map the nearby papers by whether they treat employment, firm scale, or offshoring as the intermediate margin, then test which mechanism has the cleanest identification strategy.",
+    "who_its_for": "labor, industrial-organization, and productivity economists",
+    "display_order": 4,
+    "field_shelves": [
+      "labor and household",
+      "innovation and productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-wages-productivity-employment-scale-offshoring",
+    "graph_query": "wage",
+    "graph_family": "mechanism",
+    "source_label": "Wage",
+    "target_label": "Productivity",
+    "channel_labels": [
+      "employment",
+      "firm scale",
+      "offshoring"
+    ],
+    "route_family": "path_question"
+  },
+  "wp:15532928__https://openalex.org/keywords/electricity-price": {
+    "pair_key": "wp:15532928__https://openalex.org/keywords/electricity-price",
+    "question_title": "Does carbon trading move electricity prices through carbon costs, generation mix, or renewable standards?",
+    "short_why": "This is one of the cleanest climate mechanism cards in the set because the nearby channels are specific and already tied to market design.",
+    "first_next_step": "Start with power-market studies that jointly observe carbon pricing, wholesale prices, and the generation margin, then compare which intermediate channel carries the pass-through.",
+    "who_its_for": "energy, environmental, and industrial economists",
+    "display_order": 5,
+    "field_shelves": [
+      "climate and energy"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-carbon-trading-electricity-price-pass-through",
+    "graph_query": "carbon emission trading",
+    "graph_family": "mechanism",
+    "source_label": "Carbon emission trading",
+    "target_label": "Electricity price",
+    "channel_labels": [
+      "carbon costs",
+      "generation mix",
+      "renewable standards"
+    ],
+    "route_family": "mediator_question"
+  },
+  "jel:O32:R&D__jel:E25:Wage": {
+    "pair_key": "jel:O32:R&D__jel:E25:Wage",
+    "question_title": "Does R&D raise wages through productivity gains, firm scale, or skill demand?",
+    "short_why": "The local support graph suggests a classic but still usable wage mechanism question: research spending may matter only when it changes productivity, scale, or the demand for skilled labor.",
+    "first_next_step": "Group the nearby papers by whether they emphasize productivity, firm growth, or skill composition, then test which channel best explains the wage response.",
+    "who_its_for": "innovation, labor, and productivity economists",
+    "display_order": 6,
+    "field_shelves": [
+      "labor and household",
+      "innovation and productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-rd-wages-productivity-scale-skills",
+    "graph_query": "R&D",
+    "graph_family": "mechanism",
+    "source_label": "R&D",
+    "target_label": "Wage",
+    "channel_labels": [
+      "productivity",
+      "firm scale",
+      "skill demand"
+    ],
+    "route_family": "mediator_question"
+  },
+  "https://openalex.org/keywords/volatility__https://openalex.org/keywords/investor-behavior": {
+    "pair_key": "https://openalex.org/keywords/volatility__https://openalex.org/keywords/investor-behavior",
+    "question_title": "Does volatility change investor behavior through trading volume, announcements, or herding?",
+    "short_why": "This is a strong finance card because the nearby channels are concrete market behaviors rather than generic sentiment language.",
+    "first_next_step": "Start with event-level or market-microstructure papers that jointly track volatility and one candidate channel, then compare which channel predicts the behavioral response.",
+    "who_its_for": "finance, behavioral, and macro-finance economists",
+    "display_order": 7,
+    "field_shelves": [
+      "macro and finance"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-volatility-investor-behavior-volume-announcements-herding",
+    "graph_query": "volatility",
+    "graph_family": "mechanism",
+    "source_label": "Volatility (finance)",
+    "target_label": "Investor behavior",
+    "channel_labels": [
+      "trading volume",
+      "announcements",
+      "herding"
+    ],
+    "route_family": "mediator_question"
+  },
+  "https://openalex.org/keywords/macroprudential-regulation__jel:G32:Leverage": {
+    "pair_key": "https://openalex.org/keywords/macroprudential-regulation__jel:G32:Leverage",
+    "question_title": "Does macroprudential regulation curb leverage by reducing financial fragility?",
+    "short_why": "The graph keeps this question narrow: the main nearby route is balance-sheet fragility, which makes it more credible than a generic policy-to-leverage card.",
+    "first_next_step": "Start with papers that observe macroprudential tightening, leverage, and a fragility measure in the same setting, then test whether the leverage effect attenuates once fragility is accounted for.",
+    "who_its_for": "macro-finance and banking economists",
+    "display_order": 8,
+    "field_shelves": [
+      "macro and finance"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-macroprudential-regulation-leverage-fragility",
+    "graph_query": "macroprudential regulation",
+    "graph_family": "mechanism",
+    "source_label": "Macroprudential regulation",
+    "target_label": "Leverage",
+    "channel_labels": [
+      "financial fragility"
+    ],
+    "route_family": "mediator_question"
+  },
+  "jel:F20:Foreign Direct Investment__jel:Z33:Tourism Development": {
+    "pair_key": "jel:F20:Foreign Direct Investment__jel:Z33:Tourism Development",
+    "question_title": "Does foreign direct investment support tourism development through infrastructure or sustainable tourism?",
+    "short_why": "This card survives because the route is specific enough to inspect: capital inflows may matter for tourism only when they improve infrastructure or shift the tourism mix.",
+    "first_next_step": "Start with papers that jointly cover FDI, tourism outcomes, and infrastructure or sustainability measures, then see which intermediate margin is actually observed.",
+    "who_its_for": "development, urban, and international economists",
+    "display_order": 9,
+    "field_shelves": [
+      "development and urban"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "cross-area",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-fdi-tourism-infrastructure-sustainability",
+    "graph_query": "foreign direct investment",
+    "graph_family": "mechanism",
+    "source_label": "Foreign Direct Investment",
+    "target_label": "Tourism Development",
+    "channel_labels": [
+      "infrastructure",
+      "sustainable tourism"
+    ],
+    "route_family": "mediator_question"
+  },
+  "https://openalex.org/keywords/fee-for-service__https://openalex.org/keywords/health-care-quality": {
+    "pair_key": "https://openalex.org/keywords/fee-for-service__https://openalex.org/keywords/health-care-quality",
+    "question_title": "Does fee-for-service care change quality through payment design, managed-care substitution, or specialty mix?",
+    "short_why": "The nearby support is concrete enough to make this a usable health-economics mechanism card rather than a generic payment-quality debate.",
+    "first_next_step": "Separate papers by whether they study bundled-payment substitution, managed-care exposure, or specialty composition, then ask which channel changes measured quality.",
+    "who_its_for": "health and public economists",
+    "display_order": 10,
+    "field_shelves": [
+      "labor and household"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "open-little-direct",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-fee-for-service-quality-payment-design-managed-care",
+    "graph_query": "fee-for-service",
+    "graph_family": "mechanism",
+    "source_label": "Fee-for-service",
+    "target_label": "Health care quality",
+    "channel_labels": [
+      "bundled payment",
+      "managed care",
+      "specialty mix"
+    ],
+    "route_family": "mediator_question"
+  },
+  "jel:O32:R&D__jel:L25:Firm Size": {
+    "pair_key": "jel:O32:R&D__jel:L25:Firm Size",
+    "question_title": "Does R&D increase firm size through product innovation, patents, or firm growth?",
+    "short_why": "This is a good mechanism card because the nearby literature points to a clear chain from research activity into innovation outputs and then scale.",
+    "first_next_step": "Start with papers that measure R&D and at least one of product innovation, patenting, or firm growth, then test which intermediate margin best explains later size differences.",
+    "who_its_for": "innovation, industrial-organization, and firm-dynamics economists",
+    "display_order": 11,
+    "field_shelves": [
+      "innovation and productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "phd-topic",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-rd-firm-size-innovation-patents-growth",
+    "graph_query": "R&D",
+    "graph_family": "mechanism",
+    "source_label": "R&D",
+    "target_label": "Firm Size",
+    "channel_labels": [
+      "product innovation",
+      "patents",
+      "firm growth"
+    ],
+    "route_family": "path_question"
+  },
+  "https://openalex.org/keywords/feed-in-tariff__wp:216474": {
+    "pair_key": "https://openalex.org/keywords/feed-in-tariff__wp:216474",
+    "question_title": "Do feed-in tariffs change investment timing through net present value, photovoltaic adoption, or real-option incentives?",
+    "short_why": "This is one of the more focused climate-investment cards because the nearby channels are all about the investment margin rather than broad green-growth language.",
+    "first_next_step": "Start with studies of feed-in tariffs and project timing, then compare whether NPV shifts, photovoltaic deployment, or explicit real-option reasoning does the explanatory work.",
+    "who_its_for": "energy, environmental, and investment economists",
+    "display_order": 12,
+    "field_shelves": [
+      "climate and energy"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "phd-topic",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-feed-in-tariff-real-options-npv-photovoltaic",
+    "graph_query": "feed-in tariff",
+    "graph_family": "mechanism",
+    "source_label": "Feed-in tariff",
+    "target_label": "Real options valuation",
+    "channel_labels": [
+      "net present value",
+      "photovoltaic adoption",
+      "investment timing"
+    ],
+    "route_family": "path_question"
+  },
+  "https://openalex.org/keywords/artificial-intelligence__jel:Q42:Renewable Energy": {
+    "pair_key": "https://openalex.org/keywords/artificial-intelligence__jel:Q42:Renewable Energy",
+    "question_title": "Can AI expand renewable energy through transition planning, labor adjustment, or deployment decisions?",
+    "short_why": "The nearby support points to operational channels rather than a vague tech-to-green story: planning the transition, reallocating labor, and improving deployment decisions.",
+    "first_next_step": "Start with papers that jointly study AI adoption and renewable deployment, then separate channels that operate through system planning, labor adjustment, or project siting and timing.",
+    "who_its_for": "energy, innovation, and environmental economists",
+    "display_order": 13,
+    "field_shelves": [
+      "climate and energy",
+      "innovation and productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "cross-area-mechanism",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-ai-renewables-planning-labor-deployment",
+    "graph_query": "artificial intelligence",
+    "graph_family": "mechanism",
+    "source_label": "Artificial intelligence",
+    "target_label": "Renewable Energy",
+    "channel_labels": [
+      "energy transition",
+      "employment",
+      "deployment planning"
+    ],
+    "route_family": "path_question"
+  },
+  "https://openalex.org/keywords/carbon-tax__https://openalex.org/keywords/wind-power": {
+    "pair_key": "https://openalex.org/keywords/carbon-tax__https://openalex.org/keywords/wind-power",
+    "question_title": "Do carbon taxes expand wind power by shifting relative electricity prices?",
+    "short_why": "This is a narrow climate mechanism card. The nearby support says the route runs through electricity-price pass-through, not a broad green-growth narrative.",
+    "first_next_step": "Start with market-level studies that observe carbon taxes, power prices, and wind deployment in the same setting, then test whether price pass-through explains the investment response.",
+    "who_its_for": "energy, environmental, and public-finance economists",
+    "display_order": 14,
+    "field_shelves": [
+      "climate and energy"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "cross-area-mechanism",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-carbon-tax-wind-power-electricity-price",
+    "graph_query": "carbon tax",
+    "graph_family": "mechanism",
+    "source_label": "Carbon tax",
+    "target_label": "Wind power",
+    "channel_labels": [
+      "electricity prices"
+    ],
+    "route_family": "mediator_question"
+  },
+  "https://openalex.org/keywords/green-innovation__jel:D24:Productivity": {
+    "pair_key": "https://openalex.org/keywords/green-innovation__jel:D24:Productivity",
+    "question_title": "Does green innovation raise productivity through R&D, firm upgrading, or labor reallocation?",
+    "short_why": "This card is useful because the local support points to concrete margins inside the firm rather than a generic claim that greener firms perform better.",
+    "first_next_step": "Start with firm-level studies that observe green innovation and at least one candidate channel, then test whether productivity gains survive once R&D, upgrading, or labor reallocation is measured directly.",
+    "who_its_for": "innovation, productivity, and industrial-organization economists",
+    "display_order": 15,
+    "field_shelves": [
+      "innovation and productivity"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "strong-nearby-evidence",
+      "paper-ready"
+    ],
+    "question_family": "mechanism-green-innovation-productivity-rd-upgrading-labor",
+    "graph_query": "green innovation",
+    "graph_family": "mechanism",
+    "source_label": "Green innovation",
+    "target_label": "Productivity",
+    "channel_labels": [
+      "R&D",
+      "firm upgrading",
+      "employment"
+    ],
+    "route_family": "mediator_question"
+  },
+  "jel:E43:Interest Rates__jel:E23:Output": {
+    "pair_key": "jel:E43:Interest Rates__jel:E23:Output",
+    "question_title": "Do interest rates move output through quantitative easing, monetary shocks, or fiscal imbalance?",
+    "short_why": "The nearby graph suggests that the output response is not one mechanism. It passes through specific policy transmission channels that can be separated empirically.",
+    "first_next_step": "Start with papers that jointly identify interest-rate changes and one candidate transmission channel, then compare whether the output effect attenuates once that channel is measured.",
+    "who_its_for": "macro, monetary, and macro-finance economists",
+    "display_order": 16,
+    "field_shelves": [
+      "macro and finance"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "paper-ready",
+      "cross-area-mechanism"
+    ],
+    "question_family": "mechanism-interest-rates-output-qe-shocks-fiscal",
+    "graph_query": "interest rates",
+    "graph_family": "mechanism",
+    "source_label": "Interest Rates",
+    "target_label": "Output",
+    "channel_labels": [
+      "quantitative easing",
+      "monetary policy shocks",
+      "fiscal imbalance"
+    ],
+    "route_family": "path_question"
+  },
+  "jel:G01:Global Financial Crisis__https://openalex.org/keywords/volatility": {
+    "pair_key": "jel:G01:Global Financial Crisis__https://openalex.org/keywords/volatility",
+    "question_title": "Did crisis exposure amplify volatility through contagion, emerging-market stress, or persistence?",
+    "short_why": "The support graph points to a crisis-propagation question rather than a simple before-versus-after comparison of volatility.",
+    "first_next_step": "Start with papers that track crisis exposure alongside volatility and one candidate channel, then compare whether contagion, emerging-market stress, or persistence best explains the response.",
+    "who_its_for": "macro-finance, international-finance, and financial-economics researchers",
+    "display_order": 17,
+    "field_shelves": [
+      "macro and finance"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "paper-ready",
+      "cross-area-mechanism"
+    ],
+    "question_family": "mechanism-global-financial-crisis-volatility-contagion-persistence",
+    "graph_query": "global financial crisis",
+    "graph_family": "mechanism",
+    "source_label": "Global Financial Crisis",
+    "target_label": "Volatility (finance)",
+    "channel_labels": [
+      "contagion",
+      "emerging-market stress",
+      "volatility persistence"
+    ],
+    "route_family": "path_question"
+  },
+  "jel:G21:Lending__https://openalex.org/keywords/systemic-risk": {
+    "pair_key": "jel:G21:Lending__https://openalex.org/keywords/systemic-risk",
+    "question_title": "Does lending feed systemic risk through bank balance sheets and commercial-bank exposure?",
+    "short_why": "This is a usable banking mechanism card because the nearby channels are balance-sheet objects, not abstract instability language.",
+    "first_next_step": "Start with papers that jointly study lending growth, systemic-risk measures, and bank balance-sheet conditions, then test whether the risk effect survives once bank exposure is accounted for.",
+    "who_its_for": "banking, macro-finance, and financial-stability economists",
+    "display_order": 18,
+    "field_shelves": [
+      "macro and finance"
+    ],
+    "collection_tags": [
+      "mechanism",
+      "paper-ready",
+      "cross-area-mechanism"
+    ],
+    "question_family": "mechanism-lending-systemic-risk-bank-balance-sheets",
+    "graph_query": "lending",
+    "graph_family": "mechanism",
+    "source_label": "Lending",
+    "target_label": "Systemic risk",
+    "channel_labels": [
+      "banks",
+      "commercial-bank exposure",
+      "balance sheets"
+    ],
+    "route_family": "path_question"
+  }
+}

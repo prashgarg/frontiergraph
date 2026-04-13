@@ -2,20 +2,14 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { data, formatBytes, formatCompact } from "../../lib/site-data";
 
-const publicDb = data.downloads.public_db;
 const artifacts = data.downloads.artifacts;
 const artifactDetails = data.downloads.artifact_details;
 const guides = data.downloads.guides;
 const tierBundles = data.downloads.tier_bundles;
 const docs = [
+  { title: "Current paper PDF", path: artifacts.working_paper_pdf, size: artifactDetails.working_paper_pdf.size_bytes },
   { title: "Release guide", path: guides.readme.path, size: guides.readme.size_bytes },
   { title: "Data dictionary", path: guides.data_dictionary.path, size: guides.data_dictionary.size_bytes },
-  { title: "Working paper PDF", path: artifacts.working_paper_pdf, size: artifactDetails.working_paper_pdf.size_bytes },
-  {
-    title: "Extended abstract PDF",
-    path: artifacts.extended_abstract_pdf,
-    size: artifactDetails.extended_abstract_pdf.size_bytes,
-  },
   {
     title: "Repository / source code",
     path: data.repo_url,
@@ -69,22 +63,20 @@ const tier2Files = [
   { title: "Concept opportunities index", path: artifacts.concept_opportunities_index_json, size: artifactDetails.concept_opportunities_index_json.size_bytes },
 ];
 
-const tier3Files = [
-  { title: publicDb.filename, path: publicDb.public_url, size: publicDb.db_size_bytes },
-  { title: "Manifest", path: data.downloads.manifest_path, size: artifactDetails.manifest_json.size_bytes },
-  { title: "Checksum", path: data.downloads.checksum_path, size: artifactDetails.checksum_txt.size_bytes },
-];
 ---
 
 <BaseLayout
   title="Downloads | Frontier Graph"
-  description="Download Frontier Graph tables, graph assets, release guides, and the SQLite bundle."
+  description="Download Frontier Graph tables, graph assets, release guides, and the current paper."
 >
   <main>
     <section class="page-hero">
-      <h1>Download the released files.</h1>
+      <h1>Download the current paper and released files.</h1>
       <p class="lede">
-        Start with the small tables if you want spreadsheet-friendly files. Use the SQLite bundle if you want the full local evidence tables.
+        Start with the paper PDF if you want the current manuscript. Use the lightweight tables for spreadsheet-friendly review, or the structured JSON bundle for the same graph assets that power the public site.
+      </p>
+      <p class="lede">
+        The PDF is the current reference version. The HTML paper page is provisional while it is being refreshed against the 12 April 2026 manuscript. Database-style release files are being rebuilt separately and are not part of this local release pass.
       </p>
     </section>
 
@@ -146,29 +138,6 @@ const tier3Files = [
           </details>
         </article>
 
-        <article class="download-panel download-tier-tile">
-          <span class="eyebrow">Tier 3</span>
-          <h2>SQLite bundle</h2>
-          <p class="download-copy">Best if you want the full local evidence tables in one SQLite file for Python, R, or DB Browser.</p>
-          <div class="download-tier-meta">
-            <span>{formatBytes(publicDb.db_size_bytes)}</span>
-            <span>{publicDb.filename}</span>
-          </div>
-          <div class="button-row">
-            <a class="button-primary" href={publicDb.public_url}>Download database</a>
-          </div>
-          <details class="download-tier-detail">
-            <summary>What’s inside</summary>
-            <ul class="download-tier-list">
-              {tier3Files.map((file) => (
-                <li>
-                  <a href={file.path}>{file.title}</a>
-                  <span>{formatBytes(file.size)}</span>
-                </li>
-              ))}
-            </ul>
-          </details>
-        </article>
       </div>
 
       <details class="download-guidance">

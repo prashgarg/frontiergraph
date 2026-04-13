@@ -1,10 +1,10 @@
 {
   "generated_at": "2026-03-16T17:17:52.306948+00:00",
-  "comparison_note": "The current public site is the filtered baseline release. The broad preview is a separate broad-regime top-window preview.",
+  "comparison_note": "The current public site tracks the main release. The broad preview is a separate broad-regime top-window preview under local review.",
   "summary": {
     "current_topics": 6752,
     "broad_topics": 16505,
-    "current_visible_questions": 92663,
+    "current_visible_questions": 212,
     "broad_visible_questions": 100,
     "top80_overlap_after_mirror_dedupe": 0,
     "current_top": {
