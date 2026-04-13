@@ -39,3 +39,6 @@ paper/*
 
 deploy/public_beta.env
 deploy/public_release.env
+
+# Local-only private handoff and secrets vault.
+.local_agent_vault/
