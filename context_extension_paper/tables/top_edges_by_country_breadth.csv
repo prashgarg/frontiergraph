@@ -1,0 +1,11 @@
+Edge,Unique countries,Supporting instances
+economic growth -> CO2 emissions,161,330
+economic growth -> carbon emissions,101,202
+energy consumption -> economic growth,101,173
+renewable energy consumption -> economic growth,99,183
+economic growth -> renewable energy consumption,94,104
+renewable energy consumption -> CO2 emissions,89,161
+economic growth -> energy consumption,85,133
+energy consumption -> CO2 emissions,84,158
+financial development -> CO2 emissions,74,128
+economic growth -> ecological footprint,73,123
