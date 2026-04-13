@@ -60,18 +60,18 @@ def build_external_dataset_options() -> pd.DataFrame:
 def build_horizon_options() -> pd.DataFrame:
     rows = [
         {
-            "horizon_set": "1/3/5",
-            "field_rationale": "Fast-moving fields or broad STEM transfer checks",
-            "pros": "Quick feedback loop, more cutoffs",
-            "risks": "May undercount slow economics diffusion",
-            "recommended_use": "Sensitivity check only for economics",
+            "horizon_set": "3/5/10",
+            "field_rationale": "Economics publication and diffusion cycles are slower than short-horizon hype cycles",
+            "pros": "Matches paper benchmark and realistic shortlist updating windows",
+            "risks": "Still too short for some very slow-moving field adoption",
+            "recommended_use": "Primary economics specification",
         },
         {
-            "horizon_set": "3/5/10/15",
-            "field_rationale": "Economics publication and diffusion cycles are slower",
-            "pros": "Closer to substantive timing of field adoption",
+            "horizon_set": "5/10/15",
+            "field_rationale": "Longer diffusion windows for transfer settings with slower publication or adoption pipelines",
+            "pros": "Closer to substantive timing of field adoption in slower external corpora",
             "risks": "Fewer eligible cutoffs at long horizons",
-            "recommended_use": "Primary economics specification",
+            "recommended_use": "External-transfer robustness extension",
         },
     ]
     return pd.DataFrame(rows)
@@ -158,7 +158,7 @@ def write_protocol_markdown(
         "",
         "## Testable Hypotheses",
         "1. Main model preserves positive lift vs preferential attachment in at least one external economics corpus.",
-        "2. Transfer performance is stronger at longer horizons (3/5/10/15) for economics.",
+        "2. Transfer performance is strongest at medium-to-long horizons (3/5/10) for economics.",
         "3. Patent-transfer setting can reveal boundary links whose demand appears only later (supply-creates-demand).",
         "",
         "## Dataset Options",
@@ -193,11 +193,6 @@ def main() -> None:
     options_df = build_external_dataset_options()
     horizon_df = build_horizon_options()
     power_df = transfer_power_calibration(backtest_df)
-    power_fig = out_dir / "transfer_power_targets.png"
-    plot_power_requirements(power_df, power_fig)
-    protocol_md = out_dir / "protocol.md"
-    write_protocol_markdown(options_df, horizon_df, power_df, protocol_md)
-
     options_csv = out_dir / "external_dataset_options.csv"
     horizon_csv = out_dir / "horizon_design_options.csv"
     power_csv = out_dir / "transfer_power_calibration.csv"
@@ -205,6 +200,15 @@ def main() -> None:
     options_df.to_csv(options_csv, index=False)
     horizon_df.to_csv(horizon_csv, index=False)
     power_df.to_csv(power_csv, index=False)
+
+    protocol_md = out_dir / "protocol.md"
+    write_protocol_markdown(options_df, horizon_df, power_df, protocol_md)
+
+    power_fig = out_dir / "transfer_power_targets.png"
+    try:
+        plot_power_requirements(power_df, power_fig)
+    except Exception as exc:
+        print(f"Warning: failed to render transfer power figure: {exc}")
 
     print(f"Wrote: {options_csv}")
     print(f"Wrote: {horizon_csv}")

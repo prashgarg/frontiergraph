@@ -9,14 +9,13 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from src.analysis.common import ensure_output_dir, first_appearance_map
+from src.analysis.common import ensure_output_dir, first_appearance_map, restrict_positive_set_for_family
 from src.analysis.ranking_utils import (
     candidate_cfg_from_config,
-    build_all_pairs,
     evaluate_binary_ranking,
     main_ranking_for_cutoff,
     parse_horizons,
-    pref_attach_ranking,
+    pref_attach_ranking_from_universe,
 )
 from src.utils import load_config, load_corpus
 
@@ -89,10 +88,12 @@ def build_retrospective_scoreboard(
     horizons: list[int],
     k_values: list[int],
 ) -> pd.DataFrame:
-    first_year = first_appearance_map(corpus_df)
-    all_nodes = sorted(set(corpus_df["src_code"].astype(str)) | set(corpus_df["dst_code"].astype(str)))
-    all_pairs = build_all_pairs(all_nodes)
     candidate_cfg = candidate_cfg_from_config(cfg)
+    first_year = first_appearance_map(
+        corpus_df,
+        candidate_kind=candidate_cfg.candidate_kind,
+        candidate_family_mode=candidate_cfg.candidate_family_mode,
+    )
     min_y = int(corpus_df["year"].min())
     max_y = int(corpus_df["year"].max())
 
@@ -111,8 +112,15 @@ def build_retrospective_scoreboard(
             if not positives:
                 continue
             main_rank = main_ranking_for_cutoff(train, cutoff_t=int(t), cfg=candidate_cfg)
-            pref_rank = pref_attach_ranking(train, all_pairs_df=all_pairs)
+            pref_rank = pref_attach_ranking_from_universe(train, candidate_pairs_df=main_rank[["u", "v"]])
             if main_rank.empty or pref_rank.empty:
+                continue
+            positives = restrict_positive_set_for_family(
+                positives,
+                candidate_pairs_df=main_rank,
+                candidate_family_mode=candidate_cfg.candidate_family_mode,
+            )
+            if not positives:
                 continue
             main_m = evaluate_binary_ranking(main_rank, positives=positives, k_values=k_values)
             pref_m = evaluate_binary_ranking(pref_rank, positives=positives, k_values=k_values)

@@ -7,15 +7,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from src.analysis.common import ensure_output_dir, first_appearance_map
+from src.analysis.common import ensure_output_dir, first_appearance_map, restrict_positive_set_for_family
 from src.analysis.ranking_utils import (
     candidate_cfg_from_config,
-    build_all_pairs,
-    cooc_gap_ranking,
+    comparison_rankings_for_cutoff,
     main_ranking_for_cutoff,
     parse_cutoff_years,
     parse_horizons,
-    pref_attach_ranking,
 )
 from src.utils import load_config, load_corpus
 
@@ -48,24 +46,28 @@ def compute_gap_boundary_panel(
 ) -> pd.DataFrame:
     if corpus_df.empty:
         return pd.DataFrame()
-    first_year = first_appearance_map(corpus_df)
     tau = int(cfg.get("features", {}).get("tau", 2))
     candidate_cfg = candidate_cfg_from_config(cfg)
-    all_nodes = sorted(set(corpus_df["src_code"].astype(str)) | set(corpus_df["dst_code"].astype(str)))
-    all_pairs = build_all_pairs(all_nodes)
+    first_year = first_appearance_map(
+        corpus_df,
+        candidate_kind=candidate_cfg.candidate_kind,
+        candidate_family_mode=candidate_cfg.candidate_family_mode,
+    )
 
     rows: list[dict] = []
     for t in cutoff_years:
         train = corpus_df[corpus_df["year"] <= (int(t) - 1)]
         if train.empty:
             continue
-        rankings = {
-            "main": main_ranking_for_cutoff(train, cutoff_t=int(t), cfg=candidate_cfg),
-            "cooc_gap": cooc_gap_ranking(train, tau=tau, all_pairs_df=all_pairs),
-            "pref_attach": pref_attach_ranking(train, all_pairs_df=all_pairs),
-        }
+        rankings = comparison_rankings_for_cutoff(train, cutoff_t=int(t), cfg=candidate_cfg, tau=tau)
+        main_universe = rankings.get("main", pd.DataFrame(columns=["u", "v"]))
         for h in horizons:
             positives = _future_positive_set(first_year, cutoff_t=int(t), horizon_h=int(h))
+            positives = restrict_positive_set_for_family(
+                positives,
+                candidate_pairs_df=main_universe,
+                candidate_family_mode=candidate_cfg.candidate_family_mode,
+            )
             for model, ranking in rankings.items():
                 if ranking.empty:
                     continue
@@ -229,7 +231,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", default="config/config_causalclaims.yaml", dest="config_path")
     parser.add_argument("--best_config", default="outputs/paper/03_model_search/best_config.yaml", dest="best_config_path")
     parser.add_argument("--years", type=int, nargs="*", default=None)
-    parser.add_argument("--horizons", default="3,5,10,15")
+    parser.add_argument("--horizons", default="3,5,10")
     parser.add_argument("--max_k", type=int, default=1000)
     parser.add_argument("--k_values", type=int, nargs="+", default=[100, 500, 1000])
     parser.add_argument("--out", required=True, dest="out_dir")
@@ -255,7 +257,7 @@ def main() -> None:
     cfg["filters"]["causal_only"] = bool(candidate_cfg.causal_only)
     cfg["filters"]["min_stability"] = candidate_cfg.min_stability
 
-    horizons = parse_horizons(args.horizons, default=[3, 5, 10, 15])
+    horizons = parse_horizons(args.horizons, default=[3, 5, 10])
     min_y, max_y = int(corpus_df["year"].min()), int(corpus_df["year"].max())
     years = parse_cutoff_years(args.years, min_year=min_y, max_year=max_y, max_h=max(horizons), step=1)
     if not years:
@@ -270,10 +272,6 @@ def main() -> None:
     )
     summary, mix = summarize_gap_boundary(panel, k_values=args.k_values)
     cmp_df = compare_main_vs_pref(summary)
-    figs = plot_novelty_mix(mix, out_dir=out_dir)
-    brief = out_dir / "hypotheses_and_tasks.md"
-    write_hypothesis_brief(summary, cmp_df, brief)
-
     panel_pq = out_dir / "gap_boundary_panel.parquet"
     panel_csv = out_dir / "gap_boundary_panel.csv"
     sum_pq = out_dir / "gap_boundary_summary.parquet"
@@ -292,6 +290,18 @@ def main() -> None:
     cmp_df.to_parquet(cmp_pq, index=False)
     cmp_df.to_csv(cmp_csv, index=False)
 
+    figs: list[Path] = []
+    try:
+        figs = plot_novelty_mix(mix, out_dir=out_dir)
+    except Exception as exc:
+        print(f"Warning: failed to render gap-boundary figures: {exc}")
+
+    brief = out_dir / "hypotheses_and_tasks.md"
+    try:
+        write_hypothesis_brief(summary, cmp_df, brief)
+    except Exception as exc:
+        print(f"Warning: failed to write gap-boundary brief: {exc}")
+
     print(f"Wrote: {panel_pq}")
     print(f"Wrote: {panel_csv}")
     print(f"Wrote: {sum_pq}")
@@ -300,7 +310,8 @@ def main() -> None:
     print(f"Wrote: {mix_csv}")
     print(f"Wrote: {cmp_pq}")
     print(f"Wrote: {cmp_csv}")
-    print(f"Wrote: {brief}")
+    if brief.exists():
+        print(f"Wrote: {brief}")
     for f in figs:
         print(f"Wrote figure: {f}")
 

@@ -172,6 +172,19 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Field/decade/causal heterogeneity analysis for paper outputs.")
     parser.add_argument("--corpus", required=True, dest="corpus_path")
     parser.add_argument("--candidates", required=True, dest="candidates_path")
+    parser.add_argument(
+        "--candidate-kind",
+        default="directed_causal",
+        choices=[
+            "directed_causal",
+            "undirected_noncausal",
+            "contextual_pair",
+            "ordered_claim",
+            "causal_claim",
+            "identified_causal_claim",
+        ],
+    )
+    parser.add_argument("--candidate-family-mode", default="path_to_direct", choices=["path_to_direct", "direct_to_path"])
     parser.add_argument("--out", required=True, dest="out_dir")
     return parser.parse_args()
 
@@ -181,7 +194,11 @@ def main() -> None:
     out_dir = ensure_output_dir(args.out_dir)
     corpus = load_corpus(args.corpus_path)
     candidates = pd.read_parquet(args.candidates_path)
-    first_year = first_appearance_map(corpus)
+    first_year = first_appearance_map(
+        corpus,
+        candidate_kind=str(args.candidate_kind),
+        candidate_family_mode=str(args.candidate_family_mode),
+    )
 
     panel = _load_vintage_panel(out_dir=out_dir, candidates_df=candidates, first_year=first_year)
     first_causal = _edge_first_causal_flag(corpus)

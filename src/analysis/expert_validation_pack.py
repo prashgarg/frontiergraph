@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 from src.analysis.common import ensure_output_dir
-from src.analysis.ranking_utils import build_all_pairs, missing_pairs, pref_attach_ranking
+from src.analysis.ranking_utils import pref_attach_ranking_from_universe
 from src.utils import load_corpus
 
 
@@ -95,12 +95,10 @@ def build_expert_pack(
     rng = np.random.default_rng(seed)
     label_map = _node_label_map(corpus_df)
     out_map, in_map, paper_lookup = _build_support_lookups(corpus_df)
-    nodes = sorted(set(corpus_df["src_code"].astype(str)) | set(corpus_df["dst_code"].astype(str)))
-    all_pairs = build_all_pairs(nodes)
-    pref = pref_attach_ranking(corpus_df, all_pairs_df=all_pairs)
-    missing = missing_pairs(corpus_df, all_pairs_df=all_pairs)
 
     main = candidates_df[["u", "v", "score"]].sort_values("score", ascending=False).reset_index(drop=True)
+    universe = main[["u", "v"]].drop_duplicates().copy()
+    pref = pref_attach_ranking_from_universe(corpus_df, candidate_pairs_df=universe)
     if "score" not in pref.columns:
         pref["score"] = 0.0
 
@@ -108,7 +106,7 @@ def build_expert_pack(
     main_pick = _pick_unique_edges(main, n=n_per_arm, seen=seen)
     pref_pick = _pick_unique_edges(pref[["u", "v", "score"]], n=n_per_arm, seen=seen)
 
-    remaining = missing.copy()
+    remaining = universe.copy()
     if not remaining.empty:
         remaining["edge"] = list(zip(remaining["u"].astype(str), remaining["v"].astype(str)))
         remaining = remaining[~remaining["edge"].isin(seen)][["u", "v"]].reset_index(drop=True)

@@ -17,6 +17,18 @@ def _clip_top(items: list[dict], top_k: int) -> list[dict]:
     return sorted(items, key=lambda x: float(x.get("score", 0.0)), reverse=True)[:top_k]
 
 
+def _candidate_slot(candidates: dict[tuple[str, str], dict], key: tuple[str, str]) -> dict:
+    return candidates.setdefault(
+        key,
+        {
+            "path_support_raw": 0.0,
+            "hub_penalty": 0.0,
+            "mediators": defaultdict(float),
+            "paths": [],
+        },
+    )
+
+
 def _aggregate_edges(corpus_df: pd.DataFrame) -> pd.DataFrame:
     if corpus_df.empty:
         return pd.DataFrame(columns=["src_code", "dst_code", "edge_weight", "edge_count"])
@@ -80,49 +92,60 @@ def compute_path_features(
                 support = contrib * hub_discount
                 penalty = contrib * (1.0 - hub_discount)
                 key = (u, v)
-                slot = candidates.setdefault(
-                    key,
-                    {
-                        "path_support_raw": 0.0,
-                        "hub_penalty": 0.0,
-                        "mediators": defaultdict(float),
-                        "paths": [],
-                    },
-                )
+                slot = _candidate_slot(candidates, key)
                 slot["path_support_raw"] += support
                 slot["hub_penalty"] += penalty
                 slot["mediators"][w] += support
                 slot["paths"].append({"path": [u, w, v], "score": support, "len": 2})
 
-    # Optional length-3 path support.
+    # Optional longer path support. Length-3 was the original extension; lengths
+    # 4 and 5 use the same bounded DFS with tighter neighbor caps.
     if max_len >= 3:
-        l3_cap = min(max_neighbors_per_mediator, 30)
-        out_limited = {src: sorted(targets, key=lambda t: t[1], reverse=True)[:l3_cap] for src, targets in out_map.items()}
+        if max_len == 3:
+            neighbor_cap = min(max_neighbors_per_mediator, 30)
+        elif max_len == 4:
+            neighbor_cap = min(max_neighbors_per_mediator, 14)
+        else:
+            neighbor_cap = min(max_neighbors_per_mediator, 10)
+        out_limited = {
+            src: sorted(targets, key=lambda t: t[1], reverse=True)[:neighbor_cap]
+            for src, targets in out_map.items()
+        }
+
+        def _record_path(path_nodes: list[str], contrib: float, hub_discount: float) -> None:
+            u = path_nodes[0]
+            v = path_nodes[-1]
+            if u == v or (u, v) in edge_set:
+                return
+            support = contrib * hub_discount
+            penalty = contrib - support
+            slot = _candidate_slot(candidates, (u, v))
+            slot["path_support_raw"] += support
+            slot["hub_penalty"] += penalty
+            slot["paths"].append({"path": list(path_nodes), "score": support, "len": len(path_nodes) - 1})
+            if len(slot["paths"]) > top_k_paths * 4:
+                slot["paths"] = _clip_top(slot["paths"], top_k_paths * 2)
+
+        def _dfs(path_nodes: list[str], weight_prod: float, hub_discount_prod: float) -> None:
+            path_len = len(path_nodes) - 1
+            current = path_nodes[-1]
+            if path_len >= 3:
+                _record_path(path_nodes, weight_prod, hub_discount_prod)
+            if path_len >= max_len:
+                return
+            for nxt, edge_w in out_limited.get(current, []):
+                if nxt in path_nodes:
+                    continue
+                next_weight = float(weight_prod * edge_w)
+                next_hub_discount = float(hub_discount_prod)
+                # The current node becomes an internal node once the path is extended.
+                if len(path_nodes) >= 2:
+                    next_hub_discount *= 1.0 / (1.0 + np.log1p(float(deg_map.get(current, 0))))
+                _dfs(path_nodes + [nxt], next_weight, next_hub_discount)
+
         for u, uv_targets in out_limited.items():
             for w1, u_w1 in uv_targets:
-                for w2, w1_w2 in out_limited.get(w1, []):
-                    for v, w2_v in out_limited.get(w2, []):
-                        if u == v or (u, v) in edge_set:
-                            continue
-                        hub1 = 1.0 + np.log1p(float(deg_map.get(w1, 0)))
-                        hub2 = 1.0 + np.log1p(float(deg_map.get(w2, 0)))
-                        hub_discount = 1.0 / (hub1 * hub2)
-                        contrib = float(u_w1 * w1_w2 * w2_v)
-                        support = contrib * hub_discount
-                        penalty = contrib * (1.0 - hub_discount)
-                        key = (u, v)
-                        slot = candidates.setdefault(
-                            key,
-                            {
-                                "path_support_raw": 0.0,
-                                "hub_penalty": 0.0,
-                                "mediators": defaultdict(float),
-                                "paths": [],
-                            },
-                        )
-                        slot["path_support_raw"] += support
-                        slot["hub_penalty"] += penalty
-                        slot["paths"].append({"path": [u, w1, w2, v], "score": support, "len": 3})
+                _dfs([u, w1], float(u_w1), 1.0)
 
     rows = []
     for (u, v), payload in candidates.items():
@@ -162,7 +185,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Compute path-implied missing edge features.")
     parser.add_argument("--in", required=True, dest="in_path", help="Input corpus parquet")
     parser.add_argument("--out", required=True, dest="out_path", help="Output path features parquet")
-    parser.add_argument("--max_len", type=int, default=2, choices=[2, 3], help="Max path length")
+    parser.add_argument("--max_len", type=int, default=2, choices=[2, 3, 4, 5], help="Max path length")
     parser.add_argument("--cutoff_year", type=int, default=None)
     parser.add_argument("--top_k_paths", type=int, default=10)
     parser.add_argument("--top_k_mediators", type=int, default=10)

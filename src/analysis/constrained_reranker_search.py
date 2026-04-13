@@ -8,7 +8,15 @@ import numpy as np
 import pandas as pd
 import yaml
 
-from src.analysis.common import CandidateBuildConfig, build_candidate_table, ensure_output_dir, first_appearance_map
+from src.analysis.common import (
+    CandidateBuildConfig,
+    build_candidate_table,
+    ensure_output_dir,
+    first_appearance_map,
+    restrict_positive_set_for_family,
+    score_with_transparent_component_params,
+    transparent_score_param_dict,
+)
 from src.analysis.ranking_utils import (
     apply_boundary_rerank,
     build_all_pairs,
@@ -17,6 +25,7 @@ from src.analysis.ranking_utils import (
     parse_cutoff_years,
     parse_horizons,
     pref_attach_ranking,
+    pref_attach_ranking_from_universe,
 )
 from src.utils import load_config, load_corpus, pair_key
 
@@ -67,20 +76,9 @@ def _boundary_set(
 
 
 def _score_from_params(feature_df: pd.DataFrame, p: dict[str, float]) -> pd.DataFrame:
-    g = feature_df.copy()
+    g = score_with_transparent_component_params(feature_df, params=p)
     if g.empty:
         return pd.DataFrame(columns=["u", "v", "score", "rank", "cooc_count"])
-    for col in ["cooc_trend_norm", "field_same_group", "hub_penalty", "path_support_norm", "gap_bonus", "motif_bonus_norm"]:
-        if col not in g.columns:
-            g[col] = 0.0
-    g["score"] = (
-        float(p["alpha"]) * g["path_support_norm"].astype(float)
-        + float(p["beta"]) * g["gap_bonus"].astype(float)
-        + float(p["gamma"]) * g["motif_bonus_norm"].astype(float)
-        - float(p["delta"]) * g["hub_penalty"].astype(float)
-        + float(p["cooc_trend_coef"]) * g["cooc_trend_norm"].astype(float)
-        - float(p["field_hub_penalty_scale"]) * g["hub_penalty"].astype(float) * g["field_same_group"].astype(float)
-    )
     out = g[
         [c for c in ["u", "v", "score", "cooc_count", "path_support_norm", "motif_bonus_norm", "gap_bonus", "hub_penalty"] if c in g.columns]
     ].copy()
@@ -110,6 +108,7 @@ def _eval_panel(
     future_map: dict[tuple[int, int], set[tuple[str, str]]],
     boundary_map: dict[tuple[int, int], set[tuple[str, str]]],
     quota_max_rank: int,
+    candidate_family_mode: str,
 ) -> pd.DataFrame:
     rows: list[dict] = []
     for t in years:
@@ -127,9 +126,19 @@ def _eval_panel(
             continue
         for h in horizons:
             pos = future_map.get((int(t), int(h)), set())
+            pos = restrict_positive_set_for_family(
+                pos,
+                candidate_pairs_df=ranked,
+                candidate_family_mode=candidate_family_mode,
+            )
             if not pos:
                 continue
             bpos = boundary_map.get((int(t), int(h)), set())
+            bpos = restrict_positive_set_for_family(
+                bpos,
+                candidate_pairs_df=ranked,
+                candidate_family_mode=candidate_family_mode,
+            )
             main_m = evaluate_binary_ranking(ranked, positives=pos, k_values=[int(k_ref)])
             pref_m = evaluate_binary_ranking(pref_ranked, positives=pos, k_values=[int(k_ref)])
             row = {
@@ -202,50 +211,47 @@ def _load_weight_trials(
     top_n: int,
     seed: int,
 ) -> list[dict[str, float]]:
-    cols = ["alpha", "beta", "gamma", "delta", "cooc_trend_coef", "field_hub_penalty_scale"]
+    weight_names = [
+        "transparent_weight_support_strength",
+        "transparent_weight_opportunity",
+        "transparent_weight_specificity",
+        "transparent_weight_resolution",
+        "transparent_weight_mediator_specificity",
+        "transparent_weight_provenance",
+        "transparent_weight_topology",
+    ]
+    bonus_names = [
+        "transparent_bonus_fully_open_frontier",
+        "transparent_bonus_contextual_to_ordered",
+        "transparent_bonus_ordered_to_causal",
+        "transparent_bonus_causal_to_identified",
+        "transparent_bonus_ordered_direct_to_path",
+        "transparent_bonus_causal_direct_to_path",
+        "transparent_bonus_identified_direct_to_path",
+    ]
     trials: list[dict[str, float]] = []
     if targeted_trials_path and Path(targeted_trials_path).exists():
         df = pd.read_csv(targeted_trials_path).sort_values("tune_objective", ascending=False).head(int(top_n))
-        for r in df.itertuples(index=False):
-            trials.append(
-                {
-                    "alpha": float(r.alpha),
-                    "beta": float(r.beta),
-                    "gamma": float(r.gamma),
-                    "delta": float(r.delta),
-                    "cooc_trend_coef": float(r.cooc_trend_coef),
-                    "field_hub_penalty_scale": float(r.field_hub_penalty_scale),
-                }
-            )
+        if set(weight_names + bonus_names).issubset(df.columns):
+            for r in df.itertuples(index=False):
+                payload = {name: float(getattr(r, name)) for name in weight_names + bonus_names}
+                trials.append(payload)
     if trials:
         return trials
 
     rng = np.random.default_rng(seed)
-    base = np.array([max(float(base_cfg.alpha), 1e-4), max(float(base_cfg.beta), 1e-4), max(float(base_cfg.gamma), 1e-4)])
-    base = base / base.sum()
-    conc = np.maximum(base * 35.0, 0.5)
-    trials.append(
-        {
-            "alpha": float(base_cfg.alpha),
-            "beta": float(base_cfg.beta),
-            "gamma": float(base_cfg.gamma),
-            "delta": float(base_cfg.delta),
-            "cooc_trend_coef": float(base_cfg.cooc_trend_coef),
-            "field_hub_penalty_scale": float(base_cfg.field_hub_penalty_scale),
-        }
-    )
+    base = transparent_score_param_dict(base_cfg, family_mode=base_cfg.candidate_family_mode)
+    base_w = np.array([max(float(base.get(name, 0.0)), 1e-4) for name in weight_names], dtype=float)
+    base_w = base_w / base_w.sum()
+    conc = np.maximum(base_w * 35.0, 0.5)
+    trials.append({name: float(base.get(name, 0.0)) for name in weight_names + bonus_names})
     for _ in range(max(0, int(top_n) - 1)):
-        w = rng.dirichlet(conc)
-        trials.append(
-            {
-                "alpha": float(w[0]),
-                "beta": float(w[1]),
-                "gamma": float(w[2]),
-                "delta": float(np.clip(rng.normal(float(base_cfg.delta), 0.05), 0.01, 0.60)),
-                "cooc_trend_coef": float(np.clip(rng.normal(float(base_cfg.cooc_trend_coef), 0.05), 0.0, 0.80)),
-                "field_hub_penalty_scale": float(np.clip(rng.normal(float(base_cfg.field_hub_penalty_scale), 0.05), 0.0, 0.80)),
-            }
-        )
+        w = rng.dirichlet(np.maximum(base_w * 35.0, 0.5))
+        payload = {name: float(w[i]) for i, name in enumerate(weight_names)}
+        for name in bonus_names:
+            center = float(base.get(name, 0.0))
+            payload[name] = float(np.clip(rng.normal(center, 0.05), -0.30, 0.30))
+        trials.append(payload)
     return trials
 
 
@@ -293,7 +299,11 @@ def main() -> None:
         seed=int(args.seed),
     )
 
-    first_year = first_appearance_map(corpus_df)
+    first_year = first_appearance_map(
+        corpus_df,
+        candidate_kind=base_cfg.candidate_kind,
+        candidate_family_mode=base_cfg.candidate_family_mode,
+    )
     all_nodes = sorted(set(corpus_df["src_code"].astype(str)) | set(corpus_df["dst_code"].astype(str)))
     all_pairs = build_all_pairs(all_nodes)
     feature_cache: dict[int, pd.DataFrame] = {}
@@ -302,7 +312,13 @@ def main() -> None:
     for t in years:
         train = corpus_df[corpus_df["year"] <= (int(t) - 1)]
         feature_cache[int(t)] = build_candidate_table(train, cutoff_t=int(t), cfg=base_cfg)
-        pref_cache[int(t)] = pref_attach_ranking(train, all_pairs_df=all_pairs)
+        if "edge_kind" in train.columns:
+            pref_cache[int(t)] = pref_attach_ranking_from_universe(
+                train,
+                candidate_pairs_df=feature_cache[int(t)],
+            )
+        else:
+            pref_cache[int(t)] = pref_attach_ranking(train, all_pairs_df=all_pairs)
         cooc_pairs_cache[int(t)] = _cooc_positive_pair_set(train)
 
     future_map: dict[tuple[int, int], set[tuple[str, str]]] = {}
@@ -336,6 +352,7 @@ def main() -> None:
                     future_map=future_map,
                     boundary_map=boundary_map,
                     quota_max_rank=int(args.quota_max_rank),
+                    candidate_family_mode=base_cfg.candidate_family_mode,
                 )
                 eval_panel = _eval_panel(
                     wp,
@@ -349,6 +366,7 @@ def main() -> None:
                     future_map=future_map,
                     boundary_map=boundary_map,
                     quota_max_rank=int(args.quota_max_rank),
+                    candidate_family_mode=base_cfg.candidate_family_mode,
                 )
                 tune_agg = _agg(tune_panel)
                 eval_agg = _agg(eval_panel)
@@ -392,7 +410,25 @@ def main() -> None:
 
     if best_feasible is None:
         # Recompute eval panel for fallback pick.
-        wp = {k: float(chosen[k]) for k in ["alpha", "beta", "gamma", "delta", "cooc_trend_coef", "field_hub_penalty_scale"]}
+        wp = {
+            k: float(chosen[k])
+            for k in [
+                "transparent_weight_support_strength",
+                "transparent_weight_opportunity",
+                "transparent_weight_specificity",
+                "transparent_weight_resolution",
+                "transparent_weight_mediator_specificity",
+                "transparent_weight_provenance",
+                "transparent_weight_topology",
+                "transparent_bonus_fully_open_frontier",
+                "transparent_bonus_contextual_to_ordered",
+                "transparent_bonus_ordered_to_causal",
+                "transparent_bonus_causal_to_identified",
+                "transparent_bonus_ordered_direct_to_path",
+                "transparent_bonus_causal_direct_to_path",
+                "transparent_bonus_identified_direct_to_path",
+            ]
+        }
         best_eval_panel = _eval_panel(
             wp,
             boundary_bonus=float(chosen["boundary_bonus"]),
@@ -405,6 +441,7 @@ def main() -> None:
             future_map=future_map,
             boundary_map=boundary_map,
             quota_max_rank=int(args.quota_max_rank),
+            candidate_family_mode=base_cfg.candidate_family_mode,
         )
 
     eval_summary = _agg(best_eval_panel)
@@ -419,7 +456,22 @@ def main() -> None:
     )
 
     best_cfg = CandidateBuildConfig(**asdict(base_cfg))
-    for k in ["alpha", "beta", "gamma", "delta", "cooc_trend_coef", "field_hub_penalty_scale"]:
+    for k in [
+        "transparent_weight_support_strength",
+        "transparent_weight_opportunity",
+        "transparent_weight_specificity",
+        "transparent_weight_resolution",
+        "transparent_weight_mediator_specificity",
+        "transparent_weight_provenance",
+        "transparent_weight_topology",
+        "transparent_bonus_fully_open_frontier",
+        "transparent_bonus_contextual_to_ordered",
+        "transparent_bonus_ordered_to_causal",
+        "transparent_bonus_causal_to_identified",
+        "transparent_bonus_ordered_direct_to_path",
+        "transparent_bonus_causal_direct_to_path",
+        "transparent_bonus_identified_direct_to_path",
+    ]:
         setattr(best_cfg, k, float(chosen[k]))
     best_cfg.boundary_bonus = float(chosen["boundary_bonus"])
     best_cfg.boundary_quota = float(chosen["boundary_quota"])

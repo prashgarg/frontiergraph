@@ -22,6 +22,7 @@ def _load_candidate_config(config_path: str, best_config_path: str | None) -> Ca
     cfg = load_config(config_path)
     feature_cfg = cfg.get("features", {})
     score_cfg = cfg.get("scoring", {})
+    filters_cfg = cfg.get("filters", {})
     out = CandidateBuildConfig(
         tau=int(feature_cfg.get("tau", 2)),
         max_path_len=int(feature_cfg.get("max_path_len", 2)),
@@ -30,6 +31,8 @@ def _load_candidate_config(config_path: str, best_config_path: str | None) -> Ca
         beta=float(score_cfg.get("beta", 0.2)),
         gamma=float(score_cfg.get("gamma", 0.3)),
         delta=float(score_cfg.get("delta", 0.2)),
+        candidate_kind=str(filters_cfg.get("candidate_kind", "directed_causal")),
+        candidate_family_mode=str(filters_cfg.get("candidate_family_mode", "path_to_direct")),
     )
     if best_config_path and Path(best_config_path).exists():
         payload = yaml.safe_load(Path(best_config_path).read_text(encoding="utf-8")) or {}
@@ -46,7 +49,11 @@ def build_vintage_tables(
     k_values: list[int],
     cfg: CandidateBuildConfig,
 ) -> tuple[pd.DataFrame, pd.DataFrame, str]:
-    first_year = first_appearance_map(corpus_df)
+    first_year = first_appearance_map(
+        corpus_df,
+        candidate_kind=cfg.candidate_kind,
+        candidate_family_mode=cfg.candidate_family_mode,
+    )
     max_k = max(k_values)
     pred_rows: list[pd.DataFrame] = []
     real_rows: list[dict] = []
@@ -54,7 +61,14 @@ def build_vintage_tables(
 
     for t in years:
         train = corpus_df[corpus_df["year"] <= (t - 1)]
-        no_leak = check_no_leakage(corpus_df, cutoff_t=t, horizon_h=horizon_h, first_year_map=first_year)
+        no_leak = check_no_leakage(
+            corpus_df,
+            cutoff_t=t,
+            horizon_h=horizon_h,
+            candidate_kind=cfg.candidate_kind,
+            candidate_family_mode=cfg.candidate_family_mode,
+            first_year_map=first_year,
+        )
         leakage_lines.append(f"- anchor {t}, h={horizon_h}, no_leakage={no_leak}")
         cand = build_candidate_table(train, cutoff_t=t, cfg=cfg)
         if cand.empty:
@@ -199,17 +213,24 @@ def main() -> None:
     pred.to_csv(p_csv, index=False)
     real.to_parquet(r_pq, index=False)
     real.to_csv(r_csv, index=False)
-    plot_time_to_fill(real, horizon_h=args.horizon_h, out_path=fig)
-    write_case_studies(real, cases, k_values=args.k_values, leakage_text=leakage_text)
+    try:
+        plot_time_to_fill(real, horizon_h=args.horizon_h, out_path=fig)
+    except Exception as exc:  # noqa: BLE001
+        print(f"Warning: failed to plot vintage time-to-fill curves: {exc}")
+    try:
+        write_case_studies(real, cases, k_values=args.k_values, leakage_text=leakage_text)
+    except Exception as exc:  # noqa: BLE001
+        print(f"Warning: failed to write vintage case studies: {exc}")
 
     print(f"Wrote: {p_pq}")
     print(f"Wrote: {p_csv}")
     print(f"Wrote: {r_pq}")
     print(f"Wrote: {r_csv}")
-    print(f"Wrote: {fig}")
-    print(f"Wrote: {cases}")
+    if fig.exists():
+        print(f"Wrote: {fig}")
+    if cases.exists():
+        print(f"Wrote: {cases}")
 
 
 if __name__ == "__main__":
     main()
-

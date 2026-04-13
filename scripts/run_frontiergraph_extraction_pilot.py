@@ -6,6 +6,7 @@ import json
 import socket
 import sys
 import time
+import traceback
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
@@ -266,9 +267,9 @@ async def async_main() -> None:
                                 "condition_id": condition["condition_id"],
                                 "model": condition["model"],
                                 "reasoning_effort": condition["reasoning_effort"],
-                                "publication_year": row["publication_year"],
-                                "bucket": row["bucket"],
-                                "source_name": row.get("source_name") or row.get("source_display_name", ""),
+                                "publication_year": row.get("publication_year"),
+                                "bucket": row.get("bucket", row.get("benchmark_dataset", "NA")),
+                                "source_name": row.get("source_name") or row.get("source_display_name") or row.get("source", ""),
                                 "abstract_quality": row.get("abstract_quality", "NA"),
                                 "response_id": response_json.get("id"),
                                 "output": parsed_output,
@@ -276,14 +277,7 @@ async def async_main() -> None:
                         )
                     status = "ok"
                     error_payload = None
-            except (
-                urllib.error.HTTPError,
-                urllib.error.URLError,
-                TimeoutError,
-                socket.timeout,
-                json.JSONDecodeError,
-                ValueError,
-            ) as exc:
+            except Exception as exc:  # noqa: BLE001
                 status = "fail"
                 error_payload = {
                     "custom_id": custom_id,
@@ -291,6 +285,7 @@ async def async_main() -> None:
                     "condition_id": condition["condition_id"],
                     "error_type": exc.__class__.__name__,
                     "error_message": str(exc),
+                    "traceback": traceback.format_exc(),
                 }
                 if isinstance(exc, urllib.error.HTTPError):
                     try:

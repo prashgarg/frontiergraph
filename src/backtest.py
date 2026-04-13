@@ -9,14 +9,27 @@ import numpy as np
 import pandas as pd
 
 from src.explain import build_explanation_tables
+from src.research_allocation_v2 import first_candidate_event_year_map_v2, future_edges_for_v2
 from src.features_motifs import compute_motif_features
 from src.features_pairs import compute_underexplored_pairs
 from src.features_paths import compute_path_features
 from src.scoring import compute_candidate_scores
+from src.analysis.ranking_utils import comparison_rankings_for_cutoff
+from src.analysis.common import CandidateBuildConfig, restrict_positive_set_for_family
 from src.utils import ensure_dir, ensure_parent_dir, load_config, load_corpus, pair_key
 
 
-def _first_appearance_year(corpus_df: pd.DataFrame) -> dict[tuple[str, str], int]:
+def _first_appearance_year(
+    corpus_df: pd.DataFrame,
+    candidate_kind: str = "directed_causal",
+    candidate_family_mode: str = "path_to_direct",
+) -> dict[tuple[str, str], int]:
+    if "edge_kind" in corpus_df.columns:
+        return first_candidate_event_year_map_v2(
+            corpus_df,
+            candidate_kind=candidate_kind,
+            candidate_family_mode=candidate_family_mode,
+        )
     grouped = corpus_df.groupby(["src_code", "dst_code"], as_index=False).agg(first_year=("year", "min"))
     return {(str(r.src_code), str(r.dst_code)): int(r.first_year) for r in grouped.itertuples(index=False)}
 
@@ -109,25 +122,41 @@ def run_backtest(
     existing_metrics_df: pd.DataFrame | None = None,
     checkpoint_path: Path | None = None,
     verbose: bool = False,
+    cutoff_years: list[int] | None = None,
 ) -> pd.DataFrame:
     backtest_cfg = config.get("backtest", {})
     features_cfg = config.get("features", {})
     scoring_cfg = config.get("scoring", {})
-    horizons = [int(x) for x in backtest_cfg.get("horizons", [1, 3, 5])]
+    horizons = [int(x) for x in backtest_cfg.get("horizons", [3, 5, 10])]
     k_values = [int(x) for x in backtest_cfg.get("k_values", [50, 100, 500, 1000])]
     tau = int(features_cfg.get("tau", 2))
     max_len = int(features_cfg.get("max_path_len", 2))
     max_neighbors_per_mediator = int(features_cfg.get("max_neighbors_per_mediator", 120))
+    max_h = max(horizons) if horizons else 1
+    filters_cfg = config.get("filters", {})
+    candidate_cfg = CandidateBuildConfig(
+        tau=tau,
+        max_path_len=max_len,
+        max_neighbors_per_mediator=max_neighbors_per_mediator,
+        alpha=float(scoring_cfg.get("alpha", 0.5)),
+        beta=float(scoring_cfg.get("beta", 0.2)),
+        gamma=float(scoring_cfg.get("gamma", 0.3)),
+        delta=float(scoring_cfg.get("delta", 0.2)),
+        causal_only=bool(filters_cfg.get("causal_only", False)),
+        min_stability=filters_cfg.get("min_stability"),
+        candidate_kind=str(filters_cfg.get("candidate_kind", "directed_causal")),
+        candidate_family_mode=str(filters_cfg.get("candidate_family_mode", "path_to_direct")),
+    )
 
     min_year = int(corpus_df["year"].min())
     max_year = int(corpus_df["year"].max())
-    first_year_map = _first_appearance_year(corpus_df)
-    edges_by_first_year: dict[int, set[tuple[str, str]]] = {}
-    for edge, first_year in first_year_map.items():
-        edges_by_first_year.setdefault(int(first_year), set()).add(edge)
-    all_nodes = sorted(set(corpus_df["src_code"].astype(str)) | set(corpus_df["dst_code"].astype(str)))
-    all_pairs_df = _build_all_pairs(all_nodes)
-
+    candidate_kind = str(filters_cfg.get("candidate_kind", "directed_causal"))
+    candidate_family_mode = str(filters_cfg.get("candidate_family_mode", "path_to_direct"))
+    first_year_map = _first_appearance_year(
+        corpus_df,
+        candidate_kind=candidate_kind,
+        candidate_family_mode=candidate_family_mode,
+    )
     rows: list[dict] = []
     done_keys: set[tuple[str, int, int]] = set()
     if existing_metrics_df is not None and not existing_metrics_df.empty:
@@ -136,37 +165,64 @@ def run_backtest(
             (str(r.model), int(r.horizon), int(r.cutoff_year_t))
             for r in existing_metrics_df[["model", "horizon", "cutoff_year_t"]].itertuples(index=False)
         }
-    total_needed = sum(max(0, (max_year - h) - (min_year + 1) + 1) for h in horizons) * 3
+    requested_cutoffs = [
+        int(t)
+        for t in (cutoff_years or [])
+        if (min_year + 1) <= int(t) <= (max_year - max_h)
+    ]
+    cutoff_iter = requested_cutoffs or list(range(min_year + 1, max_year))
+    total_needed = sum(1 for t in cutoff_iter for h in horizons if t <= (max_year - h)) * 3
     if verbose:
         print(f"Backtest total target rows (models*horizons*cutoffs): {total_needed}")
         print(f"Already completed rows: {len(done_keys)}")
 
-    max_h = max(horizons) if horizons else 1
-    for t in range(min_year + 1, max_year):
+    for t in cutoff_iter:
         if verbose:
             print(f"Processing cutoff year t={t}...")
         train_df = corpus_df[corpus_df["year"] <= (t - 1)]
         if train_df.empty:
             continue
 
-        model_rankings = {
-            "main": _main_model_ranking(
+        main_ranking = _main_model_ranking(
+            train_df,
+            tau=tau,
+            max_len=max_len,
+            max_neighbors_per_mediator=max_neighbors_per_mediator,
+            scoring_cfg=scoring_cfg,
+        )
+        if "edge_kind" in train_df.columns:
+            model_rankings = comparison_rankings_for_cutoff(
                 train_df,
+                cutoff_t=t,
+                cfg=candidate_cfg,
                 tau=tau,
-                max_len=max_len,
-                max_neighbors_per_mediator=max_neighbors_per_mediator,
-                scoring_cfg=scoring_cfg,
-            ),
-            "cooc_gap": _cooc_baseline(train_df, tau=tau, all_pairs_df=all_pairs_df),
-            "pref_attach": _pref_attachment_baseline(train_df, all_pairs_df=all_pairs_df),
-        }
+            )
+        else:
+            all_nodes = sorted(set(corpus_df["src_code"].astype(str)) | set(corpus_df["dst_code"].astype(str)))
+            all_pairs_df = _build_all_pairs(all_nodes)
+            model_rankings = {
+                "main": main_ranking,
+                "cooc_gap": _cooc_baseline(train_df, tau=tau, all_pairs_df=all_pairs_df),
+                "pref_attach": _pref_attachment_baseline(train_df, all_pairs_df=all_pairs_df),
+            }
+        main_universe = model_rankings.get("main", pd.DataFrame(columns=["u", "v"]))
 
         for h in horizons:
             if t > (max_year - h):
                 continue
-            future_edges: set[tuple[str, str]] = set()
-            for year in range(t, t + h + 1):
-                future_edges.update(edges_by_first_year.get(year, set()))
+            if "edge_kind" in corpus_df.columns:
+                future_edges = future_edges_for_v2(first_year_map, cutoff_t=t, horizon_h=h)
+            else:
+                future_edges = {
+                    edge
+                    for edge, year in first_year_map.items()
+                    if int(t) <= int(year) <= int(t + h)
+                }
+            future_edges = restrict_positive_set_for_family(
+                future_edges,
+                candidate_pairs_df=main_universe,
+                candidate_family_mode=candidate_family_mode,
+            )
             if not future_edges:
                 continue
 
@@ -233,19 +289,35 @@ def _plot_backtest(metrics_df: pd.DataFrame, figdir: Path) -> list[Path]:
 def _build_top_examples(corpus_df: pd.DataFrame, config: dict, top_n: int = 8) -> pd.DataFrame:
     tau = int(config.get("features", {}).get("tau", 2))
     max_len = int(config.get("features", {}).get("max_path_len", 2))
+    max_neighbors_per_mediator = int(config.get("features", {}).get("max_neighbors_per_mediator", 120))
     scoring_cfg = config.get("scoring", {})
-    pairs = compute_underexplored_pairs(corpus_df, tau=tau)
-    paths = compute_path_features(corpus_df, max_len=max_len)
-    motifs = compute_motif_features(corpus_df)
-    cands = compute_candidate_scores(
-        pairs_df=pairs,
-        paths_df=paths,
-        motifs_df=motifs,
-        alpha=float(scoring_cfg.get("alpha", 0.5)),
-        beta=float(scoring_cfg.get("beta", 0.2)),
-        gamma=float(scoring_cfg.get("gamma", 0.3)),
-        delta=float(scoring_cfg.get("delta", 0.2)),
-    )
+    filters_cfg = config.get("filters", {})
+    if "edge_kind" in corpus_df.columns:
+        cfg = CandidateBuildConfig(
+            tau=tau,
+            max_path_len=max_len,
+            max_neighbors_per_mediator=max_neighbors_per_mediator,
+            alpha=float(scoring_cfg.get("alpha", 0.5)),
+            beta=float(scoring_cfg.get("beta", 0.2)),
+            gamma=float(scoring_cfg.get("gamma", 0.3)),
+            delta=float(scoring_cfg.get("delta", 0.2)),
+            candidate_kind=str(filters_cfg.get("candidate_kind", "directed_causal")),
+        )
+        cutoff_t = int(corpus_df["year"].max()) + 1
+        cands = comparison_rankings_for_cutoff(corpus_df, cutoff_t=cutoff_t, cfg=cfg, tau=tau)["main"]
+    else:
+        pairs = compute_underexplored_pairs(corpus_df, tau=tau)
+        paths = compute_path_features(corpus_df, max_len=max_len)
+        motifs = compute_motif_features(corpus_df)
+        cands = compute_candidate_scores(
+            pairs_df=pairs,
+            paths_df=paths,
+            motifs_df=motifs,
+            alpha=float(scoring_cfg.get("alpha", 0.5)),
+            beta=float(scoring_cfg.get("beta", 0.2)),
+            gamma=float(scoring_cfg.get("gamma", 0.3)),
+            delta=float(scoring_cfg.get("delta", 0.2)),
+        )
     return cands.head(top_n)
 
 
@@ -339,6 +411,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", default="config/config.yaml", dest="config_path")
     parser.add_argument("--resume", action="store_true", help="Resume from existing --out table if present")
     parser.add_argument("--verbose", action="store_true", help="Print per-cutoff progress")
+    parser.add_argument("--years", type=int, nargs="*", default=None, help="Optional explicit cutoff years to evaluate")
     return parser.parse_args()
 
 
@@ -361,6 +434,7 @@ def main() -> None:
         existing_metrics_df=existing_df,
         checkpoint_path=out_path,
         verbose=args.verbose,
+        cutoff_years=args.years,
     )
 
     ensure_parent_dir(out_path)
@@ -368,22 +442,29 @@ def main() -> None:
     print(f"Wrote backtest table: {out_path} ({len(metrics_df)} rows)")
 
     figdir = Path(args.figdir)
-    fig_paths = _plot_backtest(metrics_df, figdir=figdir)
-    for fp in fig_paths:
-        print(f"Wrote figure: {fp}")
+    fig_paths: list[Path] = []
+    try:
+        fig_paths = _plot_backtest(metrics_df, figdir=figdir)
+        for fp in fig_paths:
+            print(f"Wrote figure: {fp}")
+    except Exception as exc:  # noqa: BLE001
+        print(f"Warning: failed to render backtest figures: {exc}")
 
-    top_examples = _build_top_examples(corpus_df, config=config, top_n=8)
-    report_path = out_path.parent.parent / "report.md"
-    ingest_log_path = Path(args.corpus_path).with_name("ingest_log.json")
-    _write_report(
-        report_path=report_path,
-        corpus_df=corpus_df,
-        metrics_df=metrics_df,
-        fig_paths=fig_paths,
-        top_examples=top_examples,
-        ingest_log_path=ingest_log_path if ingest_log_path.exists() else None,
-    )
-    print(f"Wrote report: {report_path}")
+    try:
+        top_examples = _build_top_examples(corpus_df, config=config, top_n=8)
+        report_path = out_path.parent.parent / "report.md"
+        ingest_log_path = Path(args.corpus_path).with_name("ingest_log.json")
+        _write_report(
+            report_path=report_path,
+            corpus_df=corpus_df,
+            metrics_df=metrics_df,
+            fig_paths=fig_paths,
+            top_examples=top_examples,
+            ingest_log_path=ingest_log_path if ingest_log_path.exists() else None,
+        )
+        print(f"Wrote report: {report_path}")
+    except Exception as exc:  # noqa: BLE001
+        print(f"Warning: failed to write backtest report bundle: {exc}")
 
 
 if __name__ == "__main__":

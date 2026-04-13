@@ -10,6 +10,7 @@ import yaml
 
 from src.analysis.common import CandidateBuildConfig, build_candidate_table
 from src.features_pairs import compute_underexplored_pairs
+from src.research_allocation_v2 import candidate_layer_mask, normalize_candidate_kind
 from src.utils import pair_key
 
 
@@ -30,6 +31,66 @@ def candidate_cfg_from_config(
         delta=float(scoring_cfg.get("delta", 0.2)),
         causal_only=bool(filters_cfg.get("causal_only", False)),
         min_stability=filters_cfg.get("min_stability"),
+        candidate_kind=str(filters_cfg.get("candidate_kind", "directed_causal")),
+        candidate_family_mode=str(filters_cfg.get("candidate_family_mode", "path_to_direct")),
+        path_to_direct_scope=str(filters_cfg.get("path_to_direct_scope", "broad")),
+        fully_open_min_cooc_count=int(filters_cfg.get("fully_open_min_cooc_count", 1)),
+        fully_open_min_motif_count=int(filters_cfg.get("fully_open_min_motif_count", 1)),
+        fully_open_min_path_support_raw=(
+            None
+            if filters_cfg.get("fully_open_min_path_support_raw") is None
+            else float(filters_cfg.get("fully_open_min_path_support_raw"))
+        ),
+        anchored_broad_start_pct=float(filters_cfg.get("anchored_broad_start_pct", 0.80)),
+        anchored_min_resolution_score=float(filters_cfg.get("anchored_min_resolution_score", 0.18)),
+        anchored_min_mediator_specificity_score=float(filters_cfg.get("anchored_min_mediator_specificity_score", 0.25)),
+        anchored_min_path_support_raw=float(filters_cfg.get("anchored_min_path_support_raw", 2.0)),
+        anchored_min_motif_count=int(filters_cfg.get("anchored_min_motif_count", 2)),
+        anchored_min_mediator_count=int(filters_cfg.get("anchored_min_mediator_count", 2)),
+        compression_mediator_specificity_min=float(filters_cfg.get("compression_mediator_specificity_min", 0.35)),
+        compression_endpoint_resolution_min=float(filters_cfg.get("compression_endpoint_resolution_min", 0.15)),
+        transparent_weight_support_strength=(
+            None
+            if scoring_cfg.get("transparent_weight_support_strength") is None
+            else float(scoring_cfg.get("transparent_weight_support_strength"))
+        ),
+        transparent_weight_opportunity=(
+            None
+            if scoring_cfg.get("transparent_weight_opportunity") is None
+            else float(scoring_cfg.get("transparent_weight_opportunity"))
+        ),
+        transparent_weight_specificity=(
+            None
+            if scoring_cfg.get("transparent_weight_specificity") is None
+            else float(scoring_cfg.get("transparent_weight_specificity"))
+        ),
+        transparent_weight_resolution=(
+            None
+            if scoring_cfg.get("transparent_weight_resolution") is None
+            else float(scoring_cfg.get("transparent_weight_resolution"))
+        ),
+        transparent_weight_mediator_specificity=(
+            None
+            if scoring_cfg.get("transparent_weight_mediator_specificity") is None
+            else float(scoring_cfg.get("transparent_weight_mediator_specificity"))
+        ),
+        transparent_weight_provenance=(
+            None
+            if scoring_cfg.get("transparent_weight_provenance") is None
+            else float(scoring_cfg.get("transparent_weight_provenance"))
+        ),
+        transparent_weight_topology=(
+            None
+            if scoring_cfg.get("transparent_weight_topology") is None
+            else float(scoring_cfg.get("transparent_weight_topology"))
+        ),
+        transparent_bonus_fully_open_frontier=float(scoring_cfg.get("transparent_bonus_fully_open_frontier", 0.0)),
+        transparent_bonus_contextual_to_ordered=float(scoring_cfg.get("transparent_bonus_contextual_to_ordered", 0.0)),
+        transparent_bonus_ordered_to_causal=float(scoring_cfg.get("transparent_bonus_ordered_to_causal", 0.0)),
+        transparent_bonus_causal_to_identified=float(scoring_cfg.get("transparent_bonus_causal_to_identified", 0.0)),
+        transparent_bonus_ordered_direct_to_path=float(scoring_cfg.get("transparent_bonus_ordered_direct_to_path", 0.0)),
+        transparent_bonus_causal_direct_to_path=float(scoring_cfg.get("transparent_bonus_causal_direct_to_path", 0.0)),
+        transparent_bonus_identified_direct_to_path=float(scoring_cfg.get("transparent_bonus_identified_direct_to_path", 0.0)),
     )
     if best_config_path and Path(best_config_path).exists():
         payload = yaml.safe_load(Path(best_config_path).read_text(encoding="utf-8")) or {}
@@ -53,7 +114,101 @@ def main_ranking_for_cutoff(
         boundary_quota=float(getattr(cfg, "boundary_quota", 0.0)),
         quota_max_rank=int(getattr(cfg, "boundary_quota_max_rank", 1000)),
     )
-    keep = [c for c in ["u", "v", "score", "rank", "cooc_count", "path_support_norm", "motif_bonus_norm"] if c in out.columns]
+    keep = [
+        c
+        for c in [
+            "candidate_id",
+            "candidate_kind",
+            "candidate_kind_input",
+            "candidate_family_mode",
+            "candidate_family_mode_input",
+            "candidate_layer",
+            "candidate_family",
+            "candidate_subfamily",
+            "candidate_scope_bucket",
+            "candidate_status_at_t",
+            "focal_question_type",
+            "compression_confidence",
+            "compressed_triplet_json",
+            "compression_failure_reason",
+            "candidate_generation_gate_failed",
+            "candidate_generation_gate_reason",
+            "main_anchor_layer",
+            "strict_anchor_layer",
+            "u",
+            "v",
+            "source_id",
+            "target_id",
+            "source_label",
+            "target_label",
+            "pair_key",
+            "score",
+            "rank",
+            "cooc_count",
+            "support_paper_count",
+            "support_year_min",
+            "support_year_max",
+            "path_support_norm",
+            "motif_bonus_norm",
+            "gap_bonus",
+            "hub_penalty",
+            "direct_support_norm",
+            "mediator_count",
+            "motif_count",
+            "top_mediators_json",
+            "top_paths_json",
+            "evidence_motif_tags_json",
+            "local_topology_class",
+            "closure_state",
+            "source_support_out_degree",
+            "target_support_in_degree",
+            "source_direct_out_degree",
+            "target_direct_in_degree",
+            "support_degree_product_norm",
+            "direct_degree_product_norm",
+            "transparent_support_strength_component",
+            "transparent_opportunity_component",
+            "transparent_specificity_component",
+            "transparent_resolution_component",
+            "transparent_mediator_specificity_component",
+            "transparent_provenance_component",
+            "transparent_topology_component",
+            "source_support_total_degree",
+            "target_support_total_degree",
+            "endpoint_broadness_raw",
+            "endpoint_broadness_pct",
+            "endpoint_resolution_score",
+            "focal_mediator_support_total_degree",
+            "focal_mediator_broadness_raw",
+            "focal_mediator_specificity_score",
+            "source_node_age_years",
+            "target_node_age_years",
+            "focal_mediator_age_years",
+            "progression_depth",
+            "subfamily_fully_open_frontier",
+            "subfamily_contextual_to_ordered",
+            "subfamily_ordered_to_causal",
+            "subfamily_causal_to_identified",
+            "subfamily_ordered_direct_to_path",
+            "subfamily_causal_direct_to_path",
+            "subfamily_identified_direct_to_path",
+            "scope_fully_open",
+            "scope_contextual_progression",
+            "scope_anchored_progression",
+            "scope_direct_present_path_missing",
+            "transparent_score_x_progression_depth",
+            "provenance_x_progression_depth",
+            "contextual_support_count",
+            "ordered_support_count",
+            "causal_claim_support_count",
+            "identified_causal_support_count",
+            "direct_literature_status_main",
+            "direct_literature_status_strict",
+            "ordered_direct_literature_status",
+            "contextual_direct_literature_status",
+        ]
+        if c in out.columns
+    ]
     return out[keep].copy()
 
 
@@ -169,6 +324,24 @@ def cooc_gap_ranking(train_df: pd.DataFrame, tau: int, all_pairs_df: pd.DataFram
     return base
 
 
+def cooc_gap_ranking_from_universe(
+    train_df: pd.DataFrame,
+    candidate_pairs_df: pd.DataFrame,
+    tau: int,
+) -> pd.DataFrame:
+    if candidate_pairs_df.empty:
+        return pd.DataFrame(columns=["u", "v", "score", "rank"])
+    if "edge_kind" in train_df.columns:
+        base = candidate_pairs_df[["u", "v"]].drop_duplicates().copy()
+        context_counts = compute_underexplored_pairs(train_df, tau=tau)
+        gap_map = {pair_key(str(r.u), str(r.v)): float(r.gap_bonus) for r in context_counts.itertuples(index=False)}
+        base["score"] = [gap_map.get(pair_key(str(r.u), str(r.v)), 0.0) for r in base.itertuples(index=False)]
+        base = base.sort_values(["score", "u", "v"], ascending=[False, True, True]).reset_index(drop=True)
+        base["rank"] = base.index + 1
+        return base
+    return cooc_gap_ranking(train_df, tau=tau, all_pairs_df=candidate_pairs_df[["u", "v"]].drop_duplicates())
+
+
 def pref_attach_ranking(train_df: pd.DataFrame, all_pairs_df: pd.DataFrame) -> pd.DataFrame:
     base = missing_pairs(train_df, all_pairs_df)
     if base.empty:
@@ -181,6 +354,76 @@ def pref_attach_ranking(train_df: pd.DataFrame, all_pairs_df: pd.DataFrame) -> p
     base = base.sort_values("score", ascending=False).reset_index(drop=True)
     base["rank"] = base.index + 1
     return base
+
+
+def pref_attach_ranking_from_universe(
+    train_df: pd.DataFrame,
+    candidate_pairs_df: pd.DataFrame,
+) -> pd.DataFrame:
+    if candidate_pairs_df.empty:
+        return pd.DataFrame(columns=["u", "v", "score", "rank"])
+    base = candidate_pairs_df[["u", "v"]].drop_duplicates().copy()
+    if "edge_kind" in train_df.columns:
+        candidate_kind = None
+        if "candidate_kind" in candidate_pairs_df.columns and not candidate_pairs_df["candidate_kind"].empty:
+            candidate_kind = normalize_candidate_kind(candidate_pairs_df["candidate_kind"].iloc[0])
+        if candidate_kind == "contextual_pair":
+            degree_df = (
+                train_df[candidate_layer_mask(train_df, "contextual_pair")][["src_code", "dst_code"]]
+                .melt(value_vars=["src_code", "dst_code"], value_name="code")
+                .groupby("code", as_index=False)
+                .agg(degree=("code", "size"))
+            )
+            degree_map = {str(r.code): int(r.degree) for r in degree_df.itertuples(index=False)}
+            base["score"] = [float(degree_map.get(str(r.u), 0) * degree_map.get(str(r.v), 0)) for r in base.itertuples(index=False)]
+        else:
+            support_df = train_df.copy()
+            if "edge_kind" in support_df.columns:
+                ordered = support_df[candidate_layer_mask(support_df, "ordered_claim")][["src_code", "dst_code"]].copy()
+                contextual = support_df[candidate_layer_mask(support_df, "contextual_pair")][["src_code", "dst_code"]].copy()
+                rev = contextual.rename(columns={"src_code": "dst_code", "dst_code": "src_code"})
+                support_df = pd.concat([ordered, contextual, rev], ignore_index=True)
+            out_deg = support_df.groupby("src_code", as_index=False).agg(out_degree=("dst_code", "nunique"))
+            in_deg = support_df.groupby("dst_code", as_index=False).agg(in_degree=("src_code", "nunique"))
+            out_map = {str(r.src_code): int(r.out_degree) for r in out_deg.itertuples(index=False)}
+            in_map = {str(r.dst_code): int(r.in_degree) for r in in_deg.itertuples(index=False)}
+            base["score"] = [float(out_map.get(str(r.u), 0) * in_map.get(str(r.v), 0)) for r in base.itertuples(index=False)]
+        base = base.sort_values(["score", "u", "v"], ascending=[False, True, True]).reset_index(drop=True)
+        base["rank"] = base.index + 1
+        return base
+    return pref_attach_ranking(train_df, all_pairs_df=base)
+
+
+def comparison_rankings_for_cutoff(
+    train_df: pd.DataFrame,
+    cutoff_t: int,
+    cfg: CandidateBuildConfig,
+    tau: int,
+) -> dict[str, pd.DataFrame]:
+    main = main_ranking_for_cutoff(train_df, cutoff_t=cutoff_t, cfg=cfg)
+    if main.empty:
+        empty = pd.DataFrame(columns=["u", "v", "score", "rank"])
+        return {"main": empty, "cooc_gap": empty.copy(), "pref_attach": empty.copy()}
+    universe = main[
+        [
+            c
+            for c in main.columns
+            if c in [
+                "u",
+                "v",
+                "candidate_kind",
+                "candidate_family_mode",
+                "candidate_layer",
+                "candidate_family",
+                "cooc_count",
+            ]
+        ]
+    ].copy()
+    return {
+        "main": main,
+        "cooc_gap": cooc_gap_ranking_from_universe(train_df, candidate_pairs_df=universe, tau=tau),
+        "pref_attach": pref_attach_ranking_from_universe(train_df, candidate_pairs_df=universe),
+    }
 
 
 def evaluate_binary_ranking(
@@ -210,7 +453,7 @@ def parse_horizons(raw: str | Iterable[int], default: list[int] | None = None) -
     hs = sorted(set(h for h in hs if h > 0))
     if hs:
         return hs
-    return default or [1, 3, 5]
+    return default or [3, 5, 10]
 
 
 def parse_cutoff_years(

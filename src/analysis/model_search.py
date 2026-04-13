@@ -16,8 +16,12 @@ from src.analysis.common import (
     ensure_output_dir,
     first_appearance_map,
     future_edges_for,
+    restrict_positive_set_for_family,
+    score_with_transparent_component_params,
     set_seed,
+    transparent_score_param_dict,
 )
+from src.analysis.ranking_utils import pref_attach_ranking_from_universe
 from src.utils import load_config, load_corpus
 
 
@@ -67,20 +71,8 @@ def pref_attach_ranking(train_df: pd.DataFrame, all_pairs_df: pd.DataFrame) -> p
 
 
 def score_with_coefficients(df: pd.DataFrame, cfg: CandidateBuildConfig) -> pd.DataFrame:
-    g = df.copy()
-    g["score"] = (
-        float(cfg.alpha) * g["path_support_norm"].astype(float)
-        + float(cfg.beta) * g["gap_bonus"].astype(float)
-        + float(cfg.gamma) * g["motif_bonus_norm"].astype(float)
-        - float(cfg.delta) * g["hub_penalty"].astype(float)
-        + float(cfg.cooc_trend_coef) * g["cooc_trend_norm"].astype(float)
-        - float(cfg.field_hub_penalty_scale)
-        * g["hub_penalty"].astype(float)
-        * g.get("field_same_group", pd.Series(0, index=g.index)).astype(float)
-    )
-    g = g.sort_values("score", ascending=False).reset_index(drop=True)
-    g["rank"] = g.index + 1
-    return g
+    params = transparent_score_param_dict(cfg=cfg, family_mode=cfg.candidate_family_mode)
+    return score_with_transparent_component_params(df, params=params)
 
 
 def make_structural_configs(base: CandidateBuildConfig) -> list[tuple[str, CandidateBuildConfig]]:
@@ -103,15 +95,43 @@ def make_structural_configs(base: CandidateBuildConfig) -> list[tuple[str, Candi
     ]
 
 
-def sample_weight_trials(n_trials: int, seed: int = 42) -> list[tuple[float, float, float, float, float]]:
+def sample_weight_trials(
+    base_cfg: CandidateBuildConfig,
+    n_trials: int,
+    seed: int = 42,
+) -> list[dict[str, float]]:
     rng = np.random.default_rng(seed)
-    trials: list[tuple[float, float, float, float, float]] = []
-    for _ in range(n_trials):
-        w = rng.dirichlet(np.array([2.0, 1.0, 1.5]))
-        alpha, beta, gamma = [float(x) for x in w]
-        delta = float(rng.uniform(0.05, 0.35))
-        eta = float(rng.uniform(0.05, 0.35))
-        trials.append((alpha, beta, gamma, delta, eta))
+    base = transparent_score_param_dict(base_cfg, family_mode=base_cfg.candidate_family_mode)
+    weight_names = [
+        "transparent_weight_support_strength",
+        "transparent_weight_opportunity",
+        "transparent_weight_specificity",
+        "transparent_weight_resolution",
+        "transparent_weight_mediator_specificity",
+        "transparent_weight_provenance",
+        "transparent_weight_topology",
+    ]
+    bonus_names = [
+        "transparent_bonus_fully_open_frontier",
+        "transparent_bonus_contextual_to_ordered",
+        "transparent_bonus_ordered_to_causal",
+        "transparent_bonus_causal_to_identified",
+        "transparent_bonus_ordered_direct_to_path",
+        "transparent_bonus_causal_direct_to_path",
+        "transparent_bonus_identified_direct_to_path",
+    ]
+    w0 = np.array([max(float(base.get(name, 0.0)), 1e-4) for name in weight_names], dtype=float)
+    w0 = w0 / w0.sum()
+    conc = np.maximum(w0 * 40.0, 0.5)
+    trials: list[dict[str, float]] = []
+    trials.append({name: float(base.get(name, 0.0)) for name in weight_names + bonus_names})
+    for _ in range(max(0, int(n_trials) - 1)):
+        w = rng.dirichlet(conc)
+        payload = {name: float(w[i]) for i, name in enumerate(weight_names)}
+        for name in bonus_names:
+            center = float(base.get(name, 0.0))
+            payload[name] = float(np.clip(rng.normal(center, 0.05), -0.30, 0.30))
+        trials.append(payload)
     return trials
 
 
@@ -129,7 +149,7 @@ def parse_years(year_values: list[int] | None, min_year: int, max_year: int, max
 def parse_horizons(raw: str) -> list[int]:
     hs = [int(x.strip()) for x in str(raw).split(",") if x.strip()]
     hs = sorted(set(h for h in hs if h > 0))
-    return hs if hs else [1, 3, 5]
+    return hs if hs else [3, 5, 10]
 
 
 def run_model_search(
@@ -141,12 +161,11 @@ def run_model_search(
     seed: int = 42,
 ) -> tuple[pd.DataFrame, dict, str]:
     set_seed(seed)
-    first_year = first_appearance_map(corpus_df)
-    all_nodes = sorted(set(corpus_df["src_code"].astype(str)) | set(corpus_df["dst_code"].astype(str)))
-    all_pairs = build_all_pairs(all_nodes)
+    has_edge_kind = "edge_kind" in corpus_df.columns
 
     feature_cfg = config.get("features", {})
     score_cfg = config.get("scoring", {})
+    filters_cfg = config.get("filters", {})
     base_cfg = CandidateBuildConfig(
         tau=int(feature_cfg.get("tau", 2)),
         max_path_len=int(feature_cfg.get("max_path_len", 2)),
@@ -155,6 +174,13 @@ def run_model_search(
         beta=float(score_cfg.get("beta", 0.2)),
         gamma=float(score_cfg.get("gamma", 0.3)),
         delta=float(score_cfg.get("delta", 0.2)),
+        candidate_kind=str(filters_cfg.get("candidate_kind", "directed_causal")),
+        candidate_family_mode=str(filters_cfg.get("candidate_family_mode", "path_to_direct")),
+    )
+    first_year = first_appearance_map(
+        corpus_df,
+        candidate_kind=base_cfg.candidate_kind,
+        candidate_family_mode=base_cfg.candidate_family_mode,
     )
 
     structural_cfgs = make_structural_configs(base_cfg)
@@ -167,11 +193,30 @@ def run_model_search(
     leakage_rows: list[dict] = []
     for t in cutoff_years:
         train = corpus_df[corpus_df["year"] <= (t - 1)]
-        pref_rankings[t] = pref_attach_ranking(train, all_pairs_df=all_pairs)
         for h in horizons:
-            leakage_rows.append({"cutoff_year_t": int(t), "horizon": int(h), "no_leakage": check_no_leakage(corpus_df, t, h, first_year)})
+            leakage_rows.append(
+                {
+                    "cutoff_year_t": int(t),
+                    "horizon": int(h),
+                    "no_leakage": check_no_leakage(
+                        corpus_df,
+                        t,
+                        h,
+                        candidate_kind=base_cfg.candidate_kind,
+                        candidate_family_mode=base_cfg.candidate_family_mode,
+                        first_year_map=first_year,
+                    ),
+                }
+            )
         for cfg_name, cfg in structural_cfgs:
             feature_cache[(cfg_name, t)] = build_candidate_table(train, cutoff_t=t, cfg=cfg)
+        if has_edge_kind:
+            base_universe = feature_cache.get(("base_main", t), pd.DataFrame(columns=["u", "v"]))
+            pref_rankings[t] = pref_attach_ranking_from_universe(train, candidate_pairs_df=base_universe)
+        else:
+            all_nodes = sorted(set(train["src_code"].astype(str)) | set(train["dst_code"].astype(str)))
+            all_pairs = build_all_pairs(all_nodes)
+            pref_rankings[t] = pref_attach_ranking(train, all_pairs_df=all_pairs)
 
     def evaluate_cfg(
         cfg_name: str,
@@ -186,6 +231,11 @@ def run_model_search(
             pref = pref_rankings[t]
             for h in horizons:
                 future = future_edges_for(first_year, cutoff_t=t, horizon_h=h)
+                future = restrict_positive_set_for_family(
+                    future,
+                    candidate_pairs_df=ranking,
+                    candidate_family_mode=cfg.candidate_family_mode,
+                )
                 m = evaluate_ranking(ranking, future, k=100)
                 p = evaluate_ranking(pref, future, k=100)
                 rows.append(
@@ -208,16 +258,13 @@ def run_model_search(
 
     # Tune coefficients on full structural config (plus_cooc_trend), then evaluate.
     full_name, full_cfg = structural_cfgs[-1]
-    trials = sample_weight_trials(n_weight_trials, seed=seed)
+    trials = sample_weight_trials(base_cfg=full_cfg, n_trials=n_weight_trials, seed=seed)
     best_score = -np.inf
     best_cfg = CandidateBuildConfig(**asdict(full_cfg))
-    for alpha, beta, gamma, delta, eta in trials:
+    for trial in trials:
         trial_cfg = CandidateBuildConfig(**asdict(full_cfg))
-        trial_cfg.alpha = alpha
-        trial_cfg.beta = beta
-        trial_cfg.gamma = gamma
-        trial_cfg.delta = delta
-        trial_cfg.cooc_trend_coef = eta
+        for key, value in trial.items():
+            setattr(trial_cfg, key, float(value))
         tune_eval = evaluate_cfg(full_name, trial_cfg, years=tune_years)
         if tune_eval.empty:
             continue
@@ -235,6 +282,11 @@ def run_model_search(
         pref = pref_rankings[t]
         for h in horizons:
             future = future_edges_for(first_year, cutoff_t=t, horizon_h=h)
+            future = restrict_positive_set_for_family(
+                future,
+                candidate_pairs_df=pref,
+                candidate_family_mode=base_cfg.candidate_family_mode,
+            )
             p = evaluate_ranking(pref, future, k=100)
             pref_rows.append(
                 {
@@ -324,7 +376,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", default="config/config_causalclaims.yaml", dest="config_path")
     parser.add_argument("--out", required=True, dest="out_dir")
     parser.add_argument("--years", type=int, nargs="*", default=None)
-    parser.add_argument("--horizons", default="1,3,5")
+    parser.add_argument("--horizons", default="3,5,10")
     parser.add_argument("--n_weight_trials", type=int, default=25)
     parser.add_argument("--seed", type=int, default=42)
     return parser.parse_args()

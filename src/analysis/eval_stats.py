@@ -213,6 +213,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--vintage_predictions", default=None)
     parser.add_argument("--vintage_realization", default=None)
     parser.add_argument("--corpus", default=None, dest="corpus_path")
+    parser.add_argument(
+        "--candidate-kind",
+        default="directed_causal",
+        choices=[
+            "directed_causal",
+            "undirected_noncausal",
+            "contextual_pair",
+            "ordered_claim",
+            "causal_claim",
+            "identified_causal_claim",
+        ],
+    )
+    parser.add_argument("--candidate-family-mode", default="path_to_direct", choices=["path_to_direct", "direct_to_path"])
     return parser.parse_args()
 
 
@@ -231,10 +244,21 @@ def main() -> None:
     leakage_df = pd.DataFrame(columns=["cutoff_year_t", "horizon", "no_leakage"])
     if args.corpus_path:
         corpus_df = load_corpus(args.corpus_path)
-        fmap = first_appearance_map(corpus_df)
+        fmap = first_appearance_map(
+            corpus_df,
+            candidate_kind=str(args.candidate_kind),
+            candidate_family_mode=str(args.candidate_family_mode),
+        )
         rows = []
         for row in backtest_df[["cutoff_year_t", "horizon"]].drop_duplicates().itertuples(index=False):
-            ok = check_no_leakage(corpus_df, cutoff_t=int(row.cutoff_year_t), horizon_h=int(row.horizon), first_year_map=fmap)
+            ok = check_no_leakage(
+                corpus_df,
+                cutoff_t=int(row.cutoff_year_t),
+                horizon_h=int(row.horizon),
+                candidate_kind=str(args.candidate_kind),
+                candidate_family_mode=str(args.candidate_family_mode),
+                first_year_map=fmap,
+            )
             rows.append({"cutoff_year_t": int(row.cutoff_year_t), "horizon": int(row.horizon), "no_leakage": bool(ok)})
         leakage_df = pd.DataFrame(rows)
 
@@ -256,10 +280,14 @@ def main() -> None:
     leakage_df.to_parquet(leak_pq, index=False)
     leakage_df.to_csv(leak_csv, index=False)
 
-    fig_paths = plot_ci_table(main_table, out_dir=out_dir)
-    cal_fig = plot_calibration(calib_df, out_dir=out_dir)
-    if cal_fig is not None:
-        fig_paths.append(cal_fig)
+    fig_paths: list[Path] = []
+    try:
+        fig_paths = plot_ci_table(main_table, out_dir=out_dir)
+        cal_fig = plot_calibration(calib_df, out_dir=out_dir)
+        if cal_fig is not None:
+            fig_paths.append(cal_fig)
+    except Exception as exc:  # noqa: BLE001
+        print(f"Warning: failed to render eval-stat figures: {exc}")
 
     print(f"Wrote: {main_pq}")
     print(f"Wrote: {main_csv}")
