@@ -49,3 +49,4 @@ paper/*
 
 deploy/public_beta.env
 deploy/public_release.env
+.local_agent_vault/
