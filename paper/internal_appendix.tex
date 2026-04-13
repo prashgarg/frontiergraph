@@ -1,0 +1,48 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{caption}
+
+\captionsetup{font=small,labelfont=bf}
+\newcommand{\fignotes}[1]{\caption*{\textit{Notes.} #1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\title{\textbf{Internal Appendix Notes}}
+\author{Prashant Garg}
+\date{13 April 2026}
+
+\begin{document}
+\maketitle
+
+\section{Appendix Planning Notes}
+
+\begin{table}[h]
+  \caption{What stays in the main text and what moves to the appendix}
+  \label{tab:appendix-guide}
+  \centering
+  \small
+  \begin{tabular}{L{0.22\linewidth}L{0.32\linewidth}L{0.34\linewidth}}
+    \toprule
+    Material & Why it stays in the main text & Why it moves to the appendix \\
+    \midrule
+    Paired strict-shortlist comparison, paired ranking comparison, and path development & These are the paper's central empirical results. They answer the economist-facing question: does the literature graph help direct scarce attention in both historical objects, and what kind of research progress does each object capture? & Primary evidence stays in the main text. \\
+    Paired-family frontier and paired reading-budget extensions & These results deepen the main comparison without changing the paper's baseline object. & They are useful once the matching paired runs exist, but they would overload the main narrative if shown before the core argument is clear. The separate path-length axis is parked off-paper while the main draft is stabilized. \\
+    Direct-closure reading-budget, value-weighted, heterogeneity, and surfaced-example displays & These results are informative, but they are still family-specific. Keeping them out of the main text avoids pretending that the direct-closure object already stands in for the full two-family design. & They remain useful as extensions while the matching direct-to-path versions are still being built. \\
+    Extraction prompts, schemas, and ontology pipeline & Operational detail is kept out of the main narrative. & Needed for auditability and replication. Important, but too operational to carry the main argument. \\
+    Expanded model tables and grouped-feature diagnostics & The main text reports the core comparison, not every model variant. & Helps explain why the ranking rule works and which graph features matter. Supports interpretation without changing the main result. \\
+    Extra horizon splits, time splits, funding splits, family splits, and local-density splits & The main text keeps the first paired benchmark comparison simple. & Useful for checking where the pattern is stronger or weaker across both direct closure and mechanism thickening. These displays deepen the interpretation, but they are not the paper's first claim. \\
+    Graph-evolution descriptives & The main text keeps the focus on question ranking rather than graph growth accounting. & Shows how the global graph changes over time, including degree, path length, and connectedness. These panels help interpret later family extensions and related follow-on analyses without interrupting the main argument. \\
+    Credibility audits & The main text uses the graph as an empirical object rather than turning quality auditing into a separate result. & Shows that the directed layer is not just noisy co-mention. This validates the empirical object rather than adding a new main result. \\
+    Reserve surfaced examples and current-usefulness exercises & The main text keeps only the clearest examples. & Helps the reader inspect what the surfaced questions look like and whether they are readable. These checks are supplementary because they do not replace the historical evidence. \\
+    Additional analysis on bundle uptake and adopter profiles & These are not yet part of the paper's main claims. & They are useful supplementary descriptives on how later papers realize predicted ideas and which kinds of papers and researchers move toward them. \\
+    \bottomrule
+  \end{tabular}
+  \fignotes{This internal note records the working split between the main paper and the appendix while the draft is being tightened. It is not part of the paper itself.}
+\end{table}
+
+\end{document}
