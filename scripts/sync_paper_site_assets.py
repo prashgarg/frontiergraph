@@ -17,7 +17,6 @@ WORKING_PAPER_PDF_SOURCE = ROOT / "paper" / "research_allocation_paper.pdf"
 WORKING_PAPER_PDF_TARGET = SITE_ROOT / "public" / "downloads" / "frontiergraph-working-paper.pdf"
 DISPLAY_RENDER_SCRIPT = ROOT / "scripts" / "render_paper_display_assets.py"
 
-FULL_SOURCE = ROOT / "paper" / "research_allocation_paper.md"
 OVERVIEW_SOURCE = ROOT / "paper" / "research_allocation_paper_web.md"
 FULL_TARGET = GENERATED_PAPER_DIR / "research_allocation_paper_full.md"
 OVERVIEW_TARGET = GENERATED_PAPER_DIR / "research_allocation_paper_overview.md"
@@ -246,20 +245,11 @@ def extract_headings(markdown: str) -> list[dict[str, str | int]]:
 
 
 def transform_full_markdown() -> str:
-    markdown = FULL_SOURCE.read_text(encoding="utf-8")
-    markdown = strip_title_block(markdown)
-    markdown = strip_markdown_images(markdown)
-    markdown = strip_notes_paragraphs(markdown)
-    markdown = strip_markdown_tables(markdown)
-    markdown = rewrite_images(markdown, FULL_SOURCE)
-    markdown = inject_display_blocks(markdown, load_display_manifest())
-    return add_frontmatter(
-        markdown,
-        title="What Should Economics Ask Next?",
-        description="Full HTML manuscript for the current Frontier Graph paper.",
-        eyebrow="Paper",
-        author="Prashant Garg",
-        date="12 April 2026",
+    if FULL_TARGET.exists():
+        return FULL_TARGET.read_text(encoding="utf-8")
+    raise FileNotFoundError(
+        "The generated full HTML manuscript source is missing. "
+        "Recreate site/src/generated/paper/research_allocation_paper_full.md before syncing."
     )
 
 

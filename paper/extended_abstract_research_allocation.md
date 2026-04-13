@@ -1,7 +1,7 @@
 # What Should Economics Ask Next?
 
 Prashant Garg  
-15 March 2026  
+12 April 2026  
 _Draft for comments. Please do not cite without permission._
 
 Choosing what to work on is one of the least formalized decisions in economics. Bloom et al. (2020) argue that ideas are getting harder to find. At the same time, AI is lowering the cost of several other research margins: public systems such as Project APE[^ape] are testing end-to-end paper production, and tools such as [Refine](https://www.refine.ink/)[^refine] are starting to compress editorial and review tasks. If production and review become cheaper, the scarce decision becomes where to aim attention next. This paper studies that margin and offers a public tool at [frontiergraph.com](https://frontiergraph.com/) for browsing candidate questions and the claim-graph structure behind them.
@@ -12,7 +12,7 @@ Operationally, I start from a field-weighted citation impact (FWCI)-selected pub
 
 I use one hybrid graph. Directed causal edges are kept for experiments, difference-in-differences, instrumental variables, regression discontinuity, event studies, and panel fixed-effects/TWFE designs. All other methods contribute undirected support. A directed causal candidate \(u \rightarrow v\) is missing only if that directed causal link has not previously appeared; existing undirected literature on \(\{u,v\}\) can support the candidate but does not suppress it. I then rank candidates with a transparent score built from path support, underexploration gap, motif support, and hub penalty. Each ranked question can therefore be decomposed back into interpretable structural signals.
 
-![Candidate-question schematic](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/outputs/paper/figures/method_build_step1_candidates.png)
+![Candidate-question schematic](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/site/public/paper-assets/paper-display/figure-01-fig-extraction-flow.png)
 
 *Figure 1. Observed local paths can nominate a missing directed link as a candidate next research question.*
 
@@ -20,13 +20,13 @@ Evaluation is prospective. For each cutoff year \(t\), I freeze the graph using 
 
 In the pooled rolling benchmark, preferential attachment still outperforms the graph-based score at the strict top-100 shortlist margin. In concrete terms, a 100-question shortlist built from preferential attachment retrieves roughly 2.6, 3.3, 7.0, and 10.0 more realized directed links than the graph score at \(h=3,5,10,15\). That strict-shortlist result is not the whole story. Once the reading budget widens beyond the top 100, the graph-based rule becomes more competitive, and the newer heterogeneity results suggest that pooled averages hide meaningful variation: adjacent journals and design-based causal slices are more favorable terrain for the structural score than the most central core and panel- or time-series-heavy slices.
 
-![Full rolling benchmark against preferential attachment](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/outputs/paper/slides_figures/mainline_full_rolling_vs_pref.png)
+![Full rolling benchmark against preferential attachment](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/site/public/paper-assets/paper-display/figure-08-fig-main-benchmark.png)
 
 *Figure 2. In the full rolling benchmark, preferential attachment remains stronger than the main transparent model across all tested horizons.*
 
 That is still an informative result for research allocation. The transparent model is not simply a weaker copy of popularity: it is designed to surface questions with stronger local path support and larger direct gaps, even when those questions sit away from the most connected nodes. The substantive distinction I care about is between *gap* questions, which already have nearby support but remain directly underworked, and *boundary* questions, which bridge areas with little or no direct connection.
 
-![Gap versus boundary composition of surfaced questions](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/outputs/paper/slides_figures/gap_boundary_mainline.png)
+![Gap versus boundary composition of surfaced questions](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/site/public/paper-assets/paper-display/figure-05-fig-gap-boundary.png)
 
 *Figure 3. Gap and boundary questions are the two substantive types the paper aims to separate within the hybrid claim graph.*
 

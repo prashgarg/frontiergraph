@@ -16,7 +16,7 @@ The paper starts from a large published-journal corpus, extracts paper-local res
 
 The working object is a missing relation in a concept graph. If one paper connects public debt to public investment, and another connects public investment to CO2 emissions, then the missing direct relation between public debt and CO2 emissions becomes a candidate question.
 
-![From paper text to candidate questions](/paper-assets/outputs/paper/figures/method_build_step1_candidates.png)
+![From paper text to candidate questions](/paper-assets/paper-display/figure-01-fig-extraction-flow.png)
 
 That candidate can look like a **gap** if the local support is already dense, or like a **boundary** if it bridges two regions that still have relatively little direct traffic.
 
@@ -24,15 +24,13 @@ That candidate can look like a **gap** if the local support is already dense, or
 
 The hardest benchmark in the paper is a very tight shortlist problem: suppose a researcher has time to inspect only 100 candidate questions. At that margin, a simple popularity rule based on preferential attachment remains difficult to beat.
 
-![Strict shortlist benchmark](/paper-assets/outputs/paper/slides_figures/mainline_full_rolling_vs_pref.png)
+![Strict shortlist benchmark](/paper-assets/paper-display/figure-08-fig-main-benchmark.png)
 
 That is a useful result, not a disappointing one. It says cumulative advantage is a serious force in realized scientific development. Questions that connect already-central concepts are more likely to appear later in the literature, and any structural score has to clear that bar.
 
 ## Where the story changes
 
 The pooled top-100 result is too narrow to be the whole story. Once the shortlist broadens, and once the data are split by method, journal tier, and topic region, the graph-based ranking becomes more competitive.
-
-![Broader screening frontier](/paper-assets/outputs/paper/13_heterogeneity_atlas/figures/pooled_frontier_main.png)
 
 The clearest patterns are:
 
@@ -44,7 +42,7 @@ The clearest patterns are:
 
 The paper also asks whether research more often closes a missing direct link, or instead adds mediating structure around an existing direct claim. The second pattern is more common.
 
-![Path evolution comparison](/paper-assets/outputs/paper/13_heterogeneity_atlas/figures/path_evolution_comparison.png)
+![Path evolution comparison](/paper-assets/paper-display/figure-09-fig-path-evolution.png)
 
 That matters because it changes how the graph should be interpreted. A missing direct link is not the only interesting research move. Sometimes the literature deepens a mechanism before it closes the missing direct edge that local paths already suggest.
 
