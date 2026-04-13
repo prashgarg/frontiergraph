@@ -56,13 +56,6 @@ const tier1Files = [
   { title: "Benchmark manifest JSON", path: artifacts.benchmark_manifest_json, size: artifactDetails.benchmark_manifest_json.size_bytes },
 ];
 
-const tier2Files = [
-  { title: "Literature map JSON", path: artifacts.graph_backbone_json, size: artifactDetails.graph_backbone_json.size_bytes },
-  { title: "Concept index JSON", path: artifacts.concept_index_json, size: artifactDetails.concept_index_json.size_bytes },
-  { title: "Concept neighborhoods index", path: artifacts.concept_neighborhoods_index_json, size: artifactDetails.concept_neighborhoods_index_json.size_bytes },
-  { title: "Concept opportunities index", path: artifacts.concept_opportunities_index_json, size: artifactDetails.concept_opportunities_index_json.size_bytes },
-];
-
 ---
 
 <BaseLayout
@@ -117,25 +110,14 @@ const tier2Files = [
         <article class="download-panel download-tier-tile">
           <span class="eyebrow">Tier 2</span>
           <h2>Structured graph assets</h2>
-          <p class="download-copy">Best if you want the same JSON and shard files that power the public site.</p>
+          <p class="download-copy">The structured JSON bundle is being repackaged for deployment and is temporarily omitted from the public site.</p>
           <div class="download-tier-meta">
-            <span>{formatBytes(tierBundles.tier2.size_bytes)}</span>
+            <span>Temporarily deferred</span>
             <span>Machine-readable site assets</span>
           </div>
           <div class="button-row">
-            <a class="button-primary" href={tierBundles.tier2.path}>Download bundle</a>
+            <span class="button-secondary" aria-disabled="true">Bundle rebuild in progress</span>
           </div>
-          <details class="download-tier-detail">
-            <summary>What’s inside</summary>
-            <ul class="download-tier-list">
-              {tier2Files.map((file) => (
-                <li>
-                  <a href={file.path}>{file.title}</a>
-                  <span>{formatBytes(file.size)}</span>
-                </li>
-              ))}
-            </ul>
-          </details>
         </article>
 
       </div>
