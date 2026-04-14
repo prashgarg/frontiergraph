@@ -1,6 +1,14 @@
 {
-  "filename": "frontiergraph-economics-public.db",
-  "status": "deferred",
-  "note": "The SQLite bundle is being rebuilt separately and is not part of this local release pass.",
-  "published_at": null
+  "filename": "frontiergraph-economics-public-2026-04-13.db",
+  "db_size_bytes": 849068032,
+  "db_size_gb": 0.79,
+  "sha256": "44b1c95f411c333736e7be7714ffbb5a3fdafdb61311b9dcbd4a5de6afda7d3b",
+  "public_url": "https://storage.googleapis.com/frontiergraph-public-downloads-1058669339361/frontiergraph-economics-public-2026-04-13.db",
+  "published_at": "2026-04-14T00:05:17.499505+00:00",
+  "source_db": {
+    "path": "/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant Garg/GraphDir/data/production/frontiergraph_concept_public/concept_exploratory_app.sqlite",
+    "filename": "concept_exploratory_app.sqlite",
+    "size_bytes": 18319876096,
+    "modified_at": "2026-03-15T10:52:00.126002+00:00"
+  }
 }

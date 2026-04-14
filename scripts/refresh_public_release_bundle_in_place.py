@@ -174,6 +174,16 @@ def write_deferred_tier3_placeholders() -> None:
     )
 
 
+def load_tier3_release_state() -> tuple[dict[str, object], bool]:
+    manifest_path = PUBLIC_DOWNLOADS_DIR / "frontiergraph-economics-public.manifest.json"
+    checksum_path = PUBLIC_DOWNLOADS_DIR / "frontiergraph-economics-public.sha256.txt"
+    if not manifest_path.exists() or not checksum_path.exists():
+        write_deferred_tier3_placeholders()
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    deferred = str(manifest.get("status", "")).lower() == "deferred"
+    return manifest, deferred
+
+
 def zip_bundle(output_path: Path, entries: list[tuple[Path, str]]) -> None:
     with zipfile.ZipFile(output_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
         for source_path, archive_name in entries:
@@ -191,7 +201,7 @@ def rebuild_tier_bundles() -> None:
     ]
     zip_bundle(PUBLIC_DOWNLOADS_DIR / "frontiergraph-tier1-lightweight-exports.zip", tier1_entries)
 
-    tier2_entries = [
+    tier2_core_entries = [
         (PUBLIC_DATA_DIR / "graph_backbone.json", "graph_backbone.json"),
         (PUBLIC_DATA_DIR / "concept_index.json", "concept_index.json"),
         (PUBLIC_DATA_DIR / "literature_search_index.json", "literature_search_index.json"),
@@ -201,49 +211,77 @@ def rebuild_tier_bundles() -> None:
         (PUBLIC_DOWNLOADS_DIR / "frontiergraph-release-readme.md", "README.md"),
         (PUBLIC_DOWNLOADS_DIR / "frontiergraph-data-dictionary.md", "DATA_DICTIONARY.md"),
     ]
-    for subdir_name in ("concept_neighborhoods", "concept_opportunities"):
-        directory = PUBLIC_DATA_DIR / subdir_name
-        for path in sorted(directory.rglob("*")):
-            if path.is_file():
-                tier2_entries.append((path, f"{subdir_name}/{path.relative_to(directory).as_posix()}"))
-    zip_bundle(PUBLIC_DOWNLOADS_DIR / "frontiergraph-tier2-structured-assets.zip", tier2_entries)
+    zip_bundle(PUBLIC_DOWNLOADS_DIR / "frontiergraph-tier2-core-indexes.zip", tier2_core_entries)
+
+    tier2_neighborhood_entries = [
+        (PUBLIC_DATA_DIR / "concept_neighborhoods_index.json", "concept_neighborhoods_index.json"),
+        (PUBLIC_DOWNLOADS_DIR / "frontiergraph-release-readme.md", "README.md"),
+    ]
+    directory = PUBLIC_DATA_DIR / "concept_neighborhoods"
+    for path in sorted(directory.rglob("*")):
+        if path.is_file():
+            tier2_neighborhood_entries.append((path, f"concept_neighborhoods/{path.relative_to(directory).as_posix()}"))
+    zip_bundle(PUBLIC_DOWNLOADS_DIR / "frontiergraph-tier2-concept-neighborhoods.zip", tier2_neighborhood_entries)
+
+    tier2_opportunity_entries = [
+        (PUBLIC_DATA_DIR / "concept_opportunities_index.json", "concept_opportunities_index.json"),
+        (PUBLIC_DATA_DIR / "opportunity_slices.json", "opportunity_slices.json"),
+        (PUBLIC_DOWNLOADS_DIR / "frontiergraph-release-readme.md", "README.md"),
+    ]
+    directory = PUBLIC_DATA_DIR / "concept_opportunities"
+    for path in sorted(directory.rglob("*")):
+        if path.is_file():
+            tier2_opportunity_entries.append((path, f"concept_opportunities/{path.relative_to(directory).as_posix()}"))
+    zip_bundle(PUBLIC_DOWNLOADS_DIR / "frontiergraph-tier2-concept-opportunities.zip", tier2_opportunity_entries)
+
+    legacy_bundle = PUBLIC_DOWNLOADS_DIR / "frontiergraph-tier2-structured-assets.zip"
+    if legacy_bundle.exists():
+        legacy_bundle.unlink()
 
 
 def sync_download_metadata() -> None:
     site_data = json.loads(GENERATED_SITE_DATA_PATH.read_text(encoding="utf-8"))
     carousel_assignments = json.loads(QUESTIONS_CAROUSEL_ASSIGNMENTS_PATH.read_text(encoding="utf-8"))
     rebuild_download_guides(site_data)
-    write_deferred_tier3_placeholders()
     rebuild_tier_bundles()
+    manifest, tier3_deferred = load_tier3_release_state()
 
     downloads = site_data["downloads"]
     downloads["public_db"] = {
-        "filename": "frontiergraph-economics-public.db",
-        "public_url": "",
-        "sha256": "deferred",
-        "db_size_bytes": 0,
-        "db_size_gb": 0.0,
+        "filename": str(manifest.get("filename") or "frontiergraph-economics-public.db"),
+        "public_url": "" if tier3_deferred else str(manifest.get("public_url") or ""),
+        "sha256": "deferred" if tier3_deferred else str(manifest.get("sha256") or ""),
+        "db_size_bytes": 0 if tier3_deferred else int(manifest.get("db_size_bytes") or 0),
+        "db_size_gb": 0.0 if tier3_deferred else float(manifest.get("db_size_gb") or 0.0),
     }
-    downloads["checksum_path"] = ""
-    downloads["manifest_path"] = ""
+    downloads["checksum_path"] = "/downloads/frontiergraph-economics-public.sha256.txt"
+    downloads["manifest_path"] = "/downloads/frontiergraph-economics-public.manifest.json"
     downloads["guides"] = {
         "readme": file_entry("/downloads/frontiergraph-release-readme.md"),
         "data_dictionary": file_entry("/downloads/frontiergraph-data-dictionary.md"),
     }
     downloads["tier_bundles"] = {
         "tier1": file_entry("/downloads/frontiergraph-tier1-lightweight-exports.zip"),
-        "tier2": file_entry("/downloads/frontiergraph-tier2-structured-assets.zip"),
+    }
+    downloads["tier2_packages"] = {
+        "core": file_entry("/downloads/frontiergraph-tier2-core-indexes.zip"),
+        "neighborhoods": file_entry("/downloads/frontiergraph-tier2-concept-neighborhoods.zip"),
+        "opportunities": file_entry("/downloads/frontiergraph-tier2-concept-opportunities.zip"),
     }
     downloads["artifact_details"]["top_questions_csv"] = file_entry("/data/v2/top_questions.csv")
     downloads["artifact_details"]["curated_questions_json"] = file_entry("/data/v2/curated_questions.json")
     downloads["artifact_details"]["central_concepts_csv"] = file_entry("/data/v2/central_concepts.csv")
     downloads["artifact_details"]["concept_index_json"] = file_entry("/data/v2/concept_index.json")
     downloads["artifact_details"]["concept_opportunities_index_json"] = file_entry("/data/v2/concept_opportunities_index.json")
+    downloads["artifact_details"]["concept_neighborhoods_index_json"] = file_entry("/data/v2/concept_neighborhoods_index.json")
     downloads["artifact_details"]["opportunity_slices_json"] = file_entry("/data/v2/opportunity_slices.json")
     downloads["artifact_details"]["manifest_json"] = file_entry("/downloads/frontiergraph-economics-public.manifest.json")
     downloads["artifact_details"]["checksum_txt"] = file_entry("/downloads/frontiergraph-economics-public.sha256.txt")
-    downloads["artifact_details"]["manifest_json"]["deferred"] = True
-    downloads["artifact_details"]["checksum_txt"]["deferred"] = True
+    downloads["artifact_details"]["tier2_core_zip"] = file_entry("/downloads/frontiergraph-tier2-core-indexes.zip")
+    downloads["artifact_details"]["tier2_neighborhoods_zip"] = file_entry("/downloads/frontiergraph-tier2-concept-neighborhoods.zip")
+    downloads["artifact_details"]["tier2_opportunities_zip"] = file_entry("/downloads/frontiergraph-tier2-concept-opportunities.zip")
+    downloads["artifact_details"]["manifest_json"]["deferred"] = tier3_deferred
+    downloads["artifact_details"]["checksum_txt"]["deferred"] = tier3_deferred
     if not site_data["questions"].get("field_carousels"):
         site_data["questions"]["field_carousels"] = carousel_assignments.get("field_carousels", [])
     if not site_data["questions"].get("use_case_carousels"):

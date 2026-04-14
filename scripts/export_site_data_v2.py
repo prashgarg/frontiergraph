@@ -3481,8 +3481,8 @@ Frontier Graph is a public browser for suggested research questions in economics
 
 - If you want a spreadsheet-friendly entry point, start with `top_questions.csv`.
 - If you want topic search and summary statistics, add `central_concepts.csv`.
-- If you want the same JSON and shard files the public site uses, download Tier 2.
-- The SQLite bundle is being rebuilt separately and is not part of this release pass.
+- If you want the same JSON and shard files the public site uses, download the Tier 2 packages.
+- If you want a queryable local bundle for app-style inspection, download Tier 3.
 
 ## Stable identifiers
 
@@ -3492,7 +3492,8 @@ Frontier Graph is a public browser for suggested research questions in economics
 ## Which tier should I use?
 
 - **Tier 1: lightweight exports**. Use these if you want spreadsheet-friendly question tables, shortlist reviews, or quick concept summaries.
-- **Tier 2: structured graph assets**. Use these if you want the same literature map, concept index, neighborhoods, opportunity shards, and slice files the public site uses.
+- **Tier 2: structured graph assets**. Use these if you want the same literature map, concept index, neighborhoods, opportunity shards, and slice files the public site uses. The release is split across multiple zip packages so it stays deployable on static hosting.
+- **Tier 3: SQLite bundle**. Use this if you want one local file for structured querying, reproducible local inspection, or mounting the public release into an app container.
 
 ## What each file is for
 
@@ -3908,8 +3909,8 @@ def main() -> None:
             (public_path_to_local(data_dictionary_path), "DATA_DICTIONARY.md"),
         ],
     )
-    tier2_bundle = write_zip_bundle(
-        "frontiergraph-tier2-structured-assets.zip",
+    tier2_core_bundle = write_zip_bundle(
+        "frontiergraph-tier2-core-indexes.zip",
         [
             (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/graph_backbone.json"), "graph_backbone.json"),
             (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/concept_index.json"), "concept_index.json"),
@@ -3919,7 +3920,22 @@ def main() -> None:
             (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/opportunity_slices.json"), "opportunity_slices.json"),
             (public_path_to_local(release_readme_path), "README.md"),
             (public_path_to_local(data_dictionary_path), "DATA_DICTIONARY.md"),
+        ],
+    )
+    tier2_neighborhoods_bundle = write_zip_bundle(
+        "frontiergraph-tier2-concept-neighborhoods.zip",
+        [
+            (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/concept_neighborhoods_index.json"), "concept_neighborhoods_index.json"),
+            (public_path_to_local(release_readme_path), "README.md"),
             *bundle_entries_for_directory(NEIGHBORHOOD_SHARDS_DIR, "concept_neighborhoods"),
+        ],
+    )
+    tier2_opportunities_bundle = write_zip_bundle(
+        "frontiergraph-tier2-concept-opportunities.zip",
+        [
+            (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/concept_opportunities_index.json"), "concept_opportunities_index.json"),
+            (public_path_to_local(f"{PUBLIC_DATA_URL_PREFIX}/opportunity_slices.json"), "opportunity_slices.json"),
+            (public_path_to_local(release_readme_path), "README.md"),
             *bundle_entries_for_directory(OPPORTUNITY_SHARDS_DIR, "concept_opportunities"),
         ],
     )
@@ -3938,6 +3954,9 @@ def main() -> None:
         "opportunity_slices_json": build_download_file_entry(f"{PUBLIC_DATA_URL_PREFIX}/opportunity_slices.json"),
         "manifest_json": build_download_file_entry("/downloads/frontiergraph-economics-public.manifest.json"),
         "checksum_txt": build_download_file_entry("/downloads/frontiergraph-economics-public.sha256.txt"),
+        "tier2_core_zip": build_download_file_entry("/downloads/frontiergraph-tier2-core-indexes.zip"),
+        "tier2_neighborhoods_zip": build_download_file_entry("/downloads/frontiergraph-tier2-concept-neighborhoods.zip"),
+        "tier2_opportunities_zip": build_download_file_entry("/downloads/frontiergraph-tier2-concept-opportunities.zip"),
     }
 
     site_data = {
@@ -4014,7 +4033,11 @@ def main() -> None:
             },
             "tier_bundles": {
                 "tier1": tier1_bundle,
-                "tier2": tier2_bundle,
+            },
+            "tier2_packages": {
+                "core": tier2_core_bundle,
+                "neighborhoods": tier2_neighborhoods_bundle,
+                "opportunities": tier2_opportunities_bundle,
             },
             "artifacts": {
                 "working_paper_pdf": working_paper_download,

@@ -244,7 +244,12 @@ export type SiteData = {
     };
     tier_bundles: {
       tier1: DownloadFile;
-      tier2: DownloadFile;
+      tier2?: DownloadFile;
+    };
+    tier2_packages?: {
+      core: DownloadFile;
+      neighborhoods: DownloadFile;
+      opportunities: DownloadFile;
     };
     artifacts: DownloadArtifactMap;
     artifact_details: Record<string, DownloadFile>;

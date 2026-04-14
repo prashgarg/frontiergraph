@@ -6,6 +6,8 @@ const artifacts = data.downloads.artifacts;
 const artifactDetails = data.downloads.artifact_details;
 const guides = data.downloads.guides;
 const tierBundles = data.downloads.tier_bundles;
+const tier2Packages = data.downloads.tier2_packages;
+const publicDb = data.downloads.public_db;
 const docs = [
   { title: "Current paper PDF", path: artifacts.working_paper_pdf, size: artifactDetails.working_paper_pdf.size_bytes },
   { title: "Release guide", path: guides.readme.path, size: guides.readme.size_bytes },
@@ -56,6 +58,36 @@ const tier1Files = [
   { title: "Benchmark manifest JSON", path: artifacts.benchmark_manifest_json, size: artifactDetails.benchmark_manifest_json.size_bytes },
 ];
 
+const tier2Files = tier2Packages
+  ? [
+      {
+        title: "Core indexes",
+        description: "Graph backbone, concept index, literature search index, and the shared Tier 2 indexes.",
+        file: tier2Packages.core,
+      },
+      {
+        title: "Neighborhood shards",
+        description: "The concept-neighborhood shard family plus its index for local topic context.",
+        file: tier2Packages.neighborhoods,
+      },
+      {
+        title: "Opportunity shards",
+        description: "The concept-opportunity shard family plus the slice file for question exploration.",
+        file: tier2Packages.opportunities,
+      },
+    ]
+  : tierBundles.tier2
+    ? [
+        {
+          title: "Structured assets bundle",
+          description: "Legacy combined structured-asset package.",
+          file: tierBundles.tier2,
+        },
+      ]
+    : [];
+
+const tier2TotalBytes = tier2Files.reduce((sum, item) => sum + item.file.size_bytes, 0);
+
 ---
 
 <BaseLayout
@@ -66,10 +98,10 @@ const tier1Files = [
     <section class="page-hero">
       <h1>Download the current paper and released files.</h1>
       <p class="lede">
-        Start with the paper PDF if you want the current manuscript. Use the lightweight tables for spreadsheet-friendly review, or the structured JSON bundle for the same graph assets that power the public site.
+        Start with the paper PDF if you want the current manuscript. Use Tier 1 for spreadsheet-friendly review, Tier 2 for the structured site assets, and Tier 3 if you want the queryable SQLite release locally.
       </p>
       <p class="lede">
-        The PDF is the current reference version. The HTML paper page is provisional while it is being refreshed against the 12 April 2026 manuscript. Database-style release files are being rebuilt separately and are not part of this local release pass.
+        The PDF is the current reference version. The HTML paper page is provisional while it is being refreshed against the 12 April 2026 manuscript. Tier 2 is split across multiple packages so it stays deployable on static hosting.
       </p>
     </section>
 
@@ -110,14 +142,61 @@ const tier1Files = [
         <article class="download-panel download-tier-tile">
           <span class="eyebrow">Tier 2</span>
           <h2>Structured graph assets</h2>
-          <p class="download-copy">The structured JSON bundle is being repackaged for deployment and is temporarily omitted from the public site.</p>
+          <p class="download-copy">Use these if you want the same machine-readable graph assets that power the public site.</p>
           <div class="download-tier-meta">
-            <span>Temporarily deferred</span>
-            <span>Machine-readable site assets</span>
+            <span>{tier2Files.length ? formatBytes(tier2TotalBytes) : "Unavailable"}</span>
+            <span>{tier2Files.length ? "Split into Pages-safe packages" : "Machine-readable site assets"}</span>
           </div>
-          <div class="button-row">
-            <span class="button-secondary" aria-disabled="true">Bundle rebuild in progress</span>
+          {tier2Files.length ? (
+            <>
+              <div class="button-row">
+                {tier2Files.map((item) => (
+                  <a class="button-secondary" href={item.file.path}>{item.title}</a>
+                ))}
+              </div>
+              <details class="download-tier-detail">
+                <summary>What’s inside</summary>
+                <ul class="download-tier-list">
+                  {tier2Files.map((item) => (
+                    <li>
+                      <div>
+                        <a href={item.file.path}>{item.title}</a>
+                        <span> {item.description}</span>
+                      </div>
+                      <span>{formatBytes(item.file.size_bytes)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            </>
+          ) : (
+            <div class="button-row">
+              <span class="button-secondary" aria-disabled="true">Bundle rebuild in progress</span>
+            </div>
+          )}
+        </article>
+
+        <article class="download-panel download-tier-tile">
+          <span class="eyebrow">Tier 3</span>
+          <h2>SQLite bundle</h2>
+          <p class="download-copy">Use this if you want one local file for structured querying, reproducible inspection, or mounting the public release into an app container.</p>
+          <div class="download-tier-meta">
+            <span>{publicDb.db_size_bytes ? formatBytes(publicDb.db_size_bytes) : "Upload pending"}</span>
+            <span>{publicDb.public_url ? "Hosted outside the static site" : "SQLite mirror pending"}</span>
           </div>
+          {publicDb.public_url ? (
+            <>
+              <div class="button-row">
+                <a class="button-primary" href={publicDb.public_url}>Download SQLite bundle</a>
+                <a class="button-secondary" href={data.downloads.manifest_path}>Manifest</a>
+                <a class="button-secondary" href={data.downloads.checksum_path}>Checksum</a>
+              </div>
+            </>
+          ) : (
+            <div class="button-row">
+              <span class="button-secondary" aria-disabled="true">SQLite mirror pending</span>
+            </div>
+          )}
         </article>
 
       </div>
