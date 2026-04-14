@@ -2,6 +2,58 @@
 
 This file records the major project decisions that are likely to matter in future threads.
 
+## 2026-04 Post-Seminar Reset
+
+### Stable branch policy
+
+Decision:
+
+- keep `main` as the stable public line
+- keep `v3_paper` as the forward research branch
+- keep `codex-post-seminar-cleanup-2026-04-13` only as archive
+
+Why:
+
+- release branches and old incubation pointers were causing confusion
+- public work and future research now need clean separation
+
+### Canonical paper and slides
+
+Decision:
+
+- treat [paper/research_allocation_paper.tex](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/paper/research_allocation_paper.tex) as the canonical paper source
+- treat [paper/slides_ml_econ_short_beamer.tex](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/paper/slides_ml_econ_short_beamer.tex) as the canonical seminar deck
+
+Why:
+
+- older markdown paper and older slide deck artifacts were retired
+- another agent should not have to guess which paper or deck is current
+
+### Ontology production baseline
+
+Decision:
+
+- use the `v2.3` frozen baseline for the next rebuild
+- keep unresolved tail labels unresolved by default
+- do not reopen thresholds or hierarchy promotions without a concrete error
+
+Why:
+
+- this is the ontology regime already reflected in the paper-facing baseline
+- the next blocker is future paper work, not another open-ended ontology redesign
+
+### Public downloads
+
+Decision:
+
+- keep Tier 1, Tier 2, and Tier 3 live on `main`
+- Tier 3 is a convenience layer, not a separate scientific contribution
+
+Why:
+
+- Tier 3 is useful for one-file reproducibility and local SQL querying
+- it should not block progress, but once completed it belongs on the public line
+
 ## Corpus And Retrieval
 
 ### OpenAlex source-first filtering
@@ -219,4 +271,3 @@ Deleted:
 Why:
 
 - all were superseded, diagnostic only, or known-bad
-

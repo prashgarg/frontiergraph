@@ -1,64 +1,65 @@
 # Latest
 
-## Live Product
-- Site: [frontiergraph.com](https://frontiergraph.com)
-- App: [economics-opportunity-ranker-beta-1058669339361.us-central1.run.app](https://economics-opportunity-ranker-beta-1058669339361.us-central1.run.app)
-- Public default: `Baseline exploratory`
-- Live app DB: `concept_exploratory_suppressed_top100k_app_20260309.sqlite`
-- Legacy JEL should not be public-facing.
+## As of 2026-04-14
 
-## Current Canonical Position
-- FrontierGraph is a concept-graph product, not a JEL-browser product.
-- AI is used to extract graph structure from paper text.
-- Ontology comparison exists, but `Baseline exploratory` is the default product view.
-- Duplicate suppression is part of the recommendation-cleanup layer, not a new scientific measurement model.
+## Stable Public Line
+- Branch: `main`
+- Public site: [frontiergraph.com](https://frontiergraph.com)
+- Main public routes:
+  - `/`
+  - `/paper/`
+  - `/downloads/`
+  - `/questions/`
+  - `/graph/`
 
-## Current Main Artifacts
-- Extraction corpus:
-  - [fwci_core150_adj150_extractions.sqlite](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/data/production/frontiergraph_extraction_v2/fwci_core150_adj150/merged/fwci_core150_adj150_extractions.sqlite)
-- Enriched paper metadata:
-  - [openalex_published_enriched.sqlite](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/data/processed/openalex/published_enriched/openalex_published_enriched.sqlite)
-- Ontology compare outputs:
-  - [frontiergraph_ontology_compare_v1](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/data/production/frontiergraph_ontology_compare_v1)
-- Concept compare outputs:
-  - [frontiergraph_concept_compare_v1](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/data/production/frontiergraph_concept_compare_v1)
-- Suppressed baseline app DB:
-  - [concept_exploratory_suppressed_top100k_app.sqlite](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/data/production/frontiergraph_concept_compare_v1/baseline/suppression/concept_exploratory_suppressed_top100k_app.sqlite)
+## What Is Current
+- The website refresh is merged to `main`.
+- The working paper is frozen on `main` and synced to the website download.
+- The seminar Beamer deck is the canonical slide deck on `main`.
+- Downloads now expose:
+  - Tier 1 lightweight exports
+  - Tier 2 split structured bundles
+  - Tier 3 live SQLite bundle
 
-## Current Counts
-- Papers: `242,595`
-- Extracted node instances: `1,762,898`
-- Extracted edges: `1,443,407`
-- Baseline head concepts: `6,752`
-- Baseline soft-mapped instances: `471,149`
-- Baseline suppressed candidate slice: `100,000`
-- Hard-suppressed duplicate-family rows in the top slice: `373`
+## Canonical Files
+- Paper source:
+  - [paper/research_allocation_paper.tex](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/paper/research_allocation_paper.tex)
+- Paper PDF:
+  - [paper/research_allocation_paper.pdf](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/paper/research_allocation_paper.pdf)
+- Website paper download:
+  - [site/public/downloads/frontiergraph-working-paper.pdf](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/site/public/downloads/frontiergraph-working-paper.pdf)
+- Canonical seminar deck:
+  - [paper/slides_ml_econ_short_beamer.tex](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/paper/slides_ml_econ_short_beamer.tex)
+- Canonical slide script:
+  - [paper/slides_ml_econ_short_beamer_script.md](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/paper/slides_ml_econ_short_beamer_script.md)
 
-## Most Important Decisions
-- Source-selected published corpus: `core top 150 + adjacent top 150` by mean FWCI.
-- Extraction model: `gpt-5-mini`, low reasoning.
-- Ontology regimes:
-  - Broad: `5 papers / 3 journals`
-  - Baseline: `10 papers / 3 journals`
-  - Conservative: `15 papers / 3 journals`
-- Product default: `Baseline exploratory`
-- Best strict comparison view: `Broad strict`
-- Public graph/product should not foreground JEL.
+## Downloads State
+- Tier 3 SQLite bundle is live at:
+  - [frontiergraph-economics-public-2026-04-13.db](https://storage.googleapis.com/frontiergraph-public-downloads-1058669339361/frontiergraph-economics-public-2026-04-13.db)
+- Current manifest:
+  - [site/public/downloads/frontiergraph-economics-public.manifest.json](/Users/prashgarg/Library/CloudStorage/Dropbox-PrashantGarg/Prashant%20Garg/GraphDir/site/public/downloads/frontiergraph-economics-public.manifest.json)
+
+## Branch Policy
+- `main`: stable public line
+- `v3_paper`: next research cycle
+- `codex-post-seminar-cleanup-2026-04-13`: archive only
+
+## Current Method Decision
+- Treat the ontology in the current paper as the canonical paper-facing baseline.
+- Use the `v2.3` frozen baseline for the next rebuild.
+- Do not reopen grounding thresholds unless a concrete failure appears.
+- Keep unmatched tail labels unresolved by default.
+- Do not add more hierarchy promotions unless a concrete ontology error is found.
 
 ## Immediate Next Work
-- Simplify and improve the public UX, not the backend.
-- Focus on:
-  - homepage density
-  - graph page aesthetics and usability
-  - opportunities page simplification
-  - method page progressive disclosure
-  - compare page as advanced, not mandatory
-- Keep Broad/Conservative available, but secondary.
+- Future research should begin on `v3_paper`, not `main`.
+- The first likely `v3_paper` packages are:
+  - path-length axis work (`max_path_len = 3, 4, 5`)
+  - paired-family refresh after the path-length choice
+  - context-extension work
+- `main` should only get maintenance fixes, not exploratory method growth.
 
-## Decision Log
-- Last major deployment state:
-  - Site live on simplified concept-graph framing with the page-by-page polish pass on homepage, graph, opportunities, method, and compare
-  - App live on suppressed baseline DB
-- Last major product decision:
-  - baseline exploratory is the product
-  - compare regimes are advanced options
+## Avoid These Mistakes
+- Do not use old release branches; they were deleted.
+- Do not use retired artifacts such as the old markdown paper or the old slide deck.
+- Do not merge `codex-post-seminar-cleanup-2026-04-13` wholesale.
