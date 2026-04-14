@@ -214,12 +214,12 @@
             "edge_src_display_label": "Special economic zones",
             "edge_dst_display_label": "employment",
             "authors": [
-              "Piotr Ci\u017ckowicz",
-              "Magda Ci\u017ckowicz-P\u0119ka\u0142a",
-              "Piotr P\u0119ka\u0142a",
-              "Andrzej Rzo\u0144ca"
+              "Piotr Ciżkowicz",
+              "Magda Ciżkowicz-Pękała",
+              "Piotr Pękała",
+              "Andrzej Rzońca"
             ],
-            "citation_label": "Ci\u017ckowicz et al. (2016)",
+            "citation_label": "Ciżkowicz et al. (2016)",
             "journal": "Journal of Economic Geography",
             "citation_count": 36,
             "openalex_url": "https://openalex.org/W3022707312",
@@ -336,7 +336,7 @@
         "representative_papers": [
           {
             "paper_id": "W1488339449__gpt5mini_low",
-            "title": "Impact of High\u2010Deductible Health Plans on Health Care Utilization and Costs",
+            "title": "Impact of High‐Deductible Health Plans on Health Care Utilization and Costs",
             "year": 2010,
             "edge_src": "FG3C006085",
             "edge_dst": "FG3C000825",
@@ -376,7 +376,7 @@
           },
           {
             "paper_id": "W2981776378__gpt5mini_low",
-            "title": "The role of plan choice in health care utilization of high\u2010deductible plan enrollees",
+            "title": "The role of plan choice in health care utilization of high‐deductible plan enrollees",
             "year": 2019,
             "edge_src": "FG3C006085",
             "edge_dst": "FG3C000825",
@@ -604,11 +604,11 @@
             "edge_src_display_label": "economic growth",
             "edge_dst_display_label": "energy consumption",
             "authors": [
-              "Okyay U\u00e7an",
+              "Okyay Uçan",
               "Ecem Turgut",
               "Ayberk Nuri Berkman"
             ],
-            "citation_label": "U\u00e7an et al. (2024)",
+            "citation_label": "Uçan et al. (2024)",
             "journal": "Journal of the Knowledge Economy",
             "citation_count": 5,
             "openalex_url": "https://openalex.org/W4400358233",
@@ -758,12 +758,12 @@
             "edge_src_display_label": "economic growth",
             "edge_dst_display_label": "carbon emissions",
             "authors": [
-              "Fatma T\u00fcr\u00fc\u00e7",
+              "Fatma Türüç",
               "Ata Pervar",
-              "S\u00fcheyla \u00dc\u00e7\u0131\u015f\u0131k-Erbilen",
+              "Süheyla Üçışık-Erbilen",
               "Mehdi Seraj"
             ],
-            "citation_label": "T\u00fcr\u00fc\u00e7 et al. (2026)",
+            "citation_label": "Türüç et al. (2026)",
             "journal": "Sustainability",
             "citation_count": 0,
             "openalex_url": "https://openalex.org/W7125495636",
@@ -1016,7 +1016,7 @@
         "representative_papers": [
           {
             "paper_id": "W4378895327__gpt5mini_low",
-            "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+            "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
             "year": 2023,
             "edge_src": "FG3C000012",
             "edge_dst": "FG3C000173",
@@ -1740,7 +1740,7 @@
         "representative_papers": [
           {
             "paper_id": "W4378895327__gpt5mini_low",
-            "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+            "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
             "year": 2023,
             "edge_src": "FG3C000012",
             "edge_dst": "FG3C000173",
@@ -2062,12 +2062,12 @@
             "edge_src_display_label": "economic growth",
             "edge_dst_display_label": "carbon emissions",
             "authors": [
-              "Fatma T\u00fcr\u00fc\u00e7",
+              "Fatma Türüç",
               "Ata Pervar",
-              "S\u00fcheyla \u00dc\u00e7\u0131\u015f\u0131k-Erbilen",
+              "Süheyla Üçışık-Erbilen",
               "Mehdi Seraj"
             ],
-            "citation_label": "T\u00fcr\u00fc\u00e7 et al. (2026)",
+            "citation_label": "Türüç et al. (2026)",
             "journal": "Sustainability",
             "citation_count": 0,
             "openalex_url": "https://openalex.org/W7125495636",
@@ -2210,11 +2210,11 @@
             "edge_src_display_label": "economic growth",
             "edge_dst_display_label": "energy consumption",
             "authors": [
-              "Okyay U\u00e7an",
+              "Okyay Uçan",
               "Ecem Turgut",
               "Ayberk Nuri Berkman"
             ],
-            "citation_label": "U\u00e7an et al. (2024)",
+            "citation_label": "Uçan et al. (2024)",
             "journal": "Journal of the Knowledge Economy",
             "citation_count": 5,
             "openalex_url": "https://openalex.org/W4400358233",
@@ -2340,10 +2340,10 @@
             "edge_src_display_label": "green innovation",
             "edge_dst_display_label": "renewable energy consumption",
             "authors": [
-              "M\u00fccahit Ayd\u0131n",
-              "O\u011fuzhan Bozatli"
+              "Mücahit Aydın",
+              "Oğuzhan Bozatli"
             ],
-            "citation_label": "Ayd\u0131n and Bozatli (2023)",
+            "citation_label": "Aydın and Bozatli (2023)",
             "journal": "Energy",
             "citation_count": 35,
             "openalex_url": "https://openalex.org/W4381621026",
@@ -2937,7 +2937,7 @@
             "representative_papers": [
               {
                 "paper_id": "W4378895327__gpt5mini_low",
-                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
                 "year": 2023,
                 "edge_src": "FG3C000012",
                 "edge_dst": "FG3C000173",
@@ -3112,12 +3112,12 @@
                 "edge_src_display_label": "economic growth",
                 "edge_dst_display_label": "carbon emissions",
                 "authors": [
-                  "Fatma T\u00fcr\u00fc\u00e7",
+                  "Fatma Türüç",
                   "Ata Pervar",
-                  "S\u00fcheyla \u00dc\u00e7\u0131\u015f\u0131k-Erbilen",
+                  "Süheyla Üçışık-Erbilen",
                   "Mehdi Seraj"
                 ],
-                "citation_label": "T\u00fcr\u00fc\u00e7 et al. (2026)",
+                "citation_label": "Türüç et al. (2026)",
                 "journal": "Sustainability",
                 "citation_count": 0,
                 "openalex_url": "https://openalex.org/W7125495636",
@@ -3412,11 +3412,11 @@
                 "edge_src_display_label": "economic growth",
                 "edge_dst_display_label": "energy consumption",
                 "authors": [
-                  "Okyay U\u00e7an",
+                  "Okyay Uçan",
                   "Ecem Turgut",
                   "Ayberk Nuri Berkman"
                 ],
-                "citation_label": "U\u00e7an et al. (2024)",
+                "citation_label": "Uçan et al. (2024)",
                 "journal": "Journal of the Knowledge Economy",
                 "citation_count": 5,
                 "openalex_url": "https://openalex.org/W4400358233",
@@ -3700,7 +3700,7 @@
               },
               {
                 "paper_id": "W2092083630__gpt5mini_low",
-                "title": "Short\u2010 versus Long\u2010Run Implications of Trade Liberalization for Poverty in Three Developing Countries",
+                "title": "Short‐ versus Long‐Run Implications of Trade Liberalization for Poverty in Three Developing Countries",
                 "year": 2003,
                 "edge_src": "FG3C000083",
                 "edge_dst": "FG3C000149",
@@ -3711,7 +3711,7 @@
                   "Maros Ivanic",
                   "Paul V. Preckel",
                   "John Cranfield",
-                  "Will Mart\u00edn"
+                  "Will Martín"
                 ],
                 "citation_label": "Hertel et al. (2003)",
                 "journal": "American Journal of Agricultural Economics",
@@ -4139,10 +4139,10 @@
                 "edge_src_display_label": "green innovation",
                 "edge_dst_display_label": "renewable energy consumption",
                 "authors": [
-                  "M\u00fccahit Ayd\u0131n",
-                  "O\u011fuzhan Bozatli"
+                  "Mücahit Aydın",
+                  "Oğuzhan Bozatli"
                 ],
-                "citation_label": "Ayd\u0131n and Bozatli (2023)",
+                "citation_label": "Aydın and Bozatli (2023)",
                 "journal": "Energy",
                 "citation_count": 35,
                 "openalex_url": "https://openalex.org/W4381621026",
@@ -4294,10 +4294,10 @@
                 "edge_src_display_label": "green innovation",
                 "edge_dst_display_label": "renewable energy consumption",
                 "authors": [
-                  "M\u00fccahit Ayd\u0131n",
-                  "O\u011fuzhan Bozatli"
+                  "Mücahit Aydın",
+                  "Oğuzhan Bozatli"
                 ],
-                "citation_label": "Ayd\u0131n and Bozatli (2023)",
+                "citation_label": "Aydın and Bozatli (2023)",
                 "journal": "Energy",
                 "citation_count": 35,
                 "openalex_url": "https://openalex.org/W4381621026",
@@ -4432,7 +4432,7 @@
             "representative_papers": [
               {
                 "paper_id": "W2534466090__gpt5mini_low",
-                "title": "The UK productivity puzzle, 2008\u20132012: evidence using plant-level estimates of total factor productivity",
+                "title": "The UK productivity puzzle, 2008–2012: evidence using plant-level estimates of total factor productivity",
                 "year": 2016,
                 "edge_src": "FG3C002284",
                 "edge_dst": "FG3C000061",
@@ -4450,7 +4450,7 @@
               },
               {
                 "paper_id": "W4412017035__gpt5mini_low",
-                "title": "Green Innovation, Export Synergy, and Total Factor Productivity: Evidence from China\u2019s Marine Enterprises",
+                "title": "Green Innovation, Export Synergy, and Total Factor Productivity: Evidence from China’s Marine Enterprises",
                 "year": 2025,
                 "edge_src": "FG3C000181",
                 "edge_dst": "FG3C000061",
@@ -4460,7 +4460,7 @@
                   "Peng Tian",
                   "Haofeng Sun",
                   "Yang Yang",
-                  "Xu\u2010Guang Guo"
+                  "Xu‐Guang Guo"
                 ],
                 "citation_label": "Tian et al. (2025)",
                 "journal": "Sustainability",
@@ -4603,11 +4603,11 @@
                 "edge_src_display_label": "exports",
                 "edge_dst_display_label": "productivity",
                 "authors": [
-                  "Sa\u0161a Petkovi\u0107",
+                  "Saša Petković",
                   "Jelica Rastoka",
-                  "Dragana Radi\u010di\u0107"
+                  "Dragana Radičić"
                 ],
-                "citation_label": "Petkovi\u0107 et al. (2023)",
+                "citation_label": "Petković et al. (2023)",
                 "journal": "Sustainability",
                 "citation_count": 1,
                 "openalex_url": "https://openalex.org/W4367052915",
@@ -5054,11 +5054,11 @@
                 "edge_src_display_label": "economic growth",
                 "edge_dst_display_label": "energy consumption",
                 "authors": [
-                  "Okyay U\u00e7an",
+                  "Okyay Uçan",
                   "Ecem Turgut",
                   "Ayberk Nuri Berkman"
                 ],
-                "citation_label": "U\u00e7an et al. (2024)",
+                "citation_label": "Uçan et al. (2024)",
                 "journal": "Journal of the Knowledge Economy",
                 "citation_count": 5,
                 "openalex_url": "https://openalex.org/W4400358233",
@@ -5185,7 +5185,7 @@
             "representative_papers": [
               {
                 "paper_id": "W4378895327__gpt5mini_low",
-                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
                 "year": 2023,
                 "edge_src": "FG3C000012",
                 "edge_dst": "FG3C000173",
@@ -5504,11 +5504,11 @@
                 "edge_src_display_label": "exports",
                 "edge_dst_display_label": "productivity",
                 "authors": [
-                  "Sa\u0161a Petkovi\u0107",
+                  "Saša Petković",
                   "Jelica Rastoka",
-                  "Dragana Radi\u010di\u0107"
+                  "Dragana Radičić"
                 ],
-                "citation_label": "Petkovi\u0107 et al. (2023)",
+                "citation_label": "Petković et al. (2023)",
                 "journal": "Sustainability",
                 "citation_count": 1,
                 "openalex_url": "https://openalex.org/W4367052915",
@@ -5954,12 +5954,12 @@
                 "edge_src_display_label": "economic growth",
                 "edge_dst_display_label": "carbon emissions",
                 "authors": [
-                  "Fatma T\u00fcr\u00fc\u00e7",
+                  "Fatma Türüç",
                   "Ata Pervar",
-                  "S\u00fcheyla \u00dc\u00e7\u0131\u015f\u0131k-Erbilen",
+                  "Süheyla Üçışık-Erbilen",
                   "Mehdi Seraj"
                 ],
-                "citation_label": "T\u00fcr\u00fc\u00e7 et al. (2026)",
+                "citation_label": "Türüç et al. (2026)",
                 "journal": "Sustainability",
                 "citation_count": 0,
                 "openalex_url": "https://openalex.org/W7125495636",
@@ -6084,7 +6084,7 @@
             "representative_papers": [
               {
                 "paper_id": "W4378895327__gpt5mini_low",
-                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
                 "year": 2023,
                 "edge_src": "FG3C000012",
                 "edge_dst": "FG3C000173",
@@ -6259,12 +6259,12 @@
                 "edge_src_display_label": "economic growth",
                 "edge_dst_display_label": "carbon emissions",
                 "authors": [
-                  "Fatma T\u00fcr\u00fc\u00e7",
+                  "Fatma Türüç",
                   "Ata Pervar",
-                  "S\u00fcheyla \u00dc\u00e7\u0131\u015f\u0131k-Erbilen",
+                  "Süheyla Üçışık-Erbilen",
                   "Mehdi Seraj"
                 ],
-                "citation_label": "T\u00fcr\u00fc\u00e7 et al. (2026)",
+                "citation_label": "Türüç et al. (2026)",
                 "journal": "Sustainability",
                 "citation_count": 0,
                 "openalex_url": "https://openalex.org/W7125495636",
@@ -6534,7 +6534,7 @@
             "representative_papers": [
               {
                 "paper_id": "W4378895327__gpt5mini_low",
-                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world\u2019s leading polluting countries",
+                "title": "Co-movements of income and urbanization through energy use and pollution: An investigation for world’s leading polluting countries",
                 "year": 2023,
                 "edge_src": "FG3C000012",
                 "edge_dst": "FG3C000173",
@@ -6708,11 +6708,11 @@
                 "edge_src_display_label": "economic growth",
                 "edge_dst_display_label": "energy consumption",
                 "authors": [
-                  "Okyay U\u00e7an",
+                  "Okyay Uçan",
                   "Ecem Turgut",
                   "Ayberk Nuri Berkman"
                 ],
-                "citation_label": "U\u00e7an et al. (2024)",
+                "citation_label": "Uçan et al. (2024)",
                 "journal": "Journal of the Knowledge Economy",
                 "citation_count": 5,
                 "openalex_url": "https://openalex.org/W4400358233",
@@ -7557,10 +7557,10 @@
             "edge_src_display_label": "exchange-rate regime",
             "edge_dst_display_label": "international trade",
             "authors": [
-              "J. Ernesto L\u00f3pez-C\u00f3rdova",
+              "J. Ernesto López-Córdova",
               "Christopher M. Meissner"
             ],
-            "citation_label": "L\u00f3pez-C\u00f3rdova and Meissner (2003)",
+            "citation_label": "López-Córdova and Meissner (2003)",
             "journal": "American Economic Review",
             "citation_count": 252,
             "openalex_url": "https://openalex.org/W2102353186",
@@ -7688,9 +7688,9 @@
             "edge_dst_display_label": "out-of-pocket payment",
             "authors": [
               "Alexandra-Anca Purcel",
-              "Cristian Mihai Drago\u0219",
-              "Codru\u021ba Mare",
-              "Simona Laura Drago\u0219"
+              "Cristian Mihai Dragoș",
+              "Codruța Mare",
+              "Simona Laura Dragoș"
             ],
             "citation_label": "Purcel et al. (2023)",
             "journal": "Economic Modelling",
@@ -7709,7 +7709,7 @@
             "authors": [
               "Jianqiang Gu",
               "Kostas Gouliamos",
-              "Oana\u2010Ramona Lobon\u0163",
+              "Oana‐Ramona Lobonţ",
               "Nicoleta-Claudia Moldovan"
             ],
             "citation_label": "Gu et al. (2021)",
@@ -7790,7 +7790,7 @@
         ],
         "target_alternate_display_labels": [
           "wage setting",
-          "North\u2013South wage gap",
+          "North–South wage gap",
           "wage differential"
         ],
         "source_bucket": "core",
@@ -7840,10 +7840,10 @@
             "edge_src_display_label": "exports",
             "edge_dst_display_label": "real wages",
             "authors": [
-              "Jacques Dr\u00e8ze",
+              "Jacques Drèze",
               "Franco Modigliani"
             ],
-            "citation_label": "Dr\u00e8ze and Modigliani (1981)",
+            "citation_label": "Drèze and Modigliani (1981)",
             "journal": "European Economic Review",
             "citation_count": 66,
             "openalex_url": "https://openalex.org/W2092640984",
@@ -7954,7 +7954,7 @@
             "edge_src_display_label": "shadow economy",
             "edge_dst_display_label": "welfare",
             "authors": [
-              "Pawe\u0142 Doligalski",
+              "Paweł Doligalski",
               "Luis Rojas"
             ],
             "citation_label": "Doligalski and Rojas (2024)",
@@ -7975,7 +7975,7 @@
               "Mohd Naved Khan",
               "Ahmad Ali Jan",
               "Mohammad Asif",
-              "Fong\u2010Woon Lai",
+              "Fong‐Woon Lai",
               "Muhammad Kashif Shad",
               "Saima Shadab"
             ],
@@ -8236,9 +8236,9 @@
             "edge_src_display_label": "foreign direct investments",
             "edge_dst_display_label": "income inequality",
             "authors": [
-              "Gonzalo Hern\u00e1ndez Soto",
-              "Carlos Mar\u00eda Fern\u00e1ndez-Jard\u00f3n",
-              "Xavier Martinez\u2013Cobas"
+              "Gonzalo Hernández Soto",
+              "Carlos María Fernández-Jardón",
+              "Xavier Martinez–Cobas"
             ],
             "citation_label": "Soto et al. (2023)",
             "journal": "Economic Systems",
@@ -8624,7 +8624,7 @@
           },
           {
             "paper_id": "W4289333764__gpt5mini_low",
-            "title": "Financial development and income inequality: A meta\u2010analysis",
+            "title": "Financial development and income inequality: A meta‐analysis",
             "year": 2022,
             "edge_src": "FG3C000006",
             "edge_dst": "FG3C000025",
@@ -8632,9 +8632,9 @@
             "edge_dst_display_label": "income inequality",
             "authors": [
               "Michael Chletsos",
-              "\u0391\u03bd\u03b4\u03c1\u03ad\u03b1\u03c2 \u03a3\u03af\u03bd\u03c4\u03bf\u03c2"
+              "Ανδρέας Σίντος"
             ],
-            "citation_label": "Chletsos and \u03a3\u03af\u03bd\u03c4\u03bf\u03c2 (2022)",
+            "citation_label": "Chletsos and Σίντος (2022)",
             "journal": "Journal of Economic Surveys",
             "citation_count": 11,
             "openalex_url": "https://openalex.org/W4289333764",
@@ -8745,12 +8745,12 @@
             "edge_src_display_label": "carbon emissions",
             "edge_dst_display_label": "life expectancy",
             "authors": [
-              "Frank Osei\u2010Kusi",
+              "Frank Osei‐Kusi",
               "Cisheng Wu",
               "Stephen Tetteh",
               "Wendy Irena Guerra Castillo"
             ],
-            "citation_label": "Osei\u2010Kusi et al. (2024)",
+            "citation_label": "Osei‐Kusi et al. (2024)",
             "journal": "PLoS ONE",
             "citation_count": 24,
             "openalex_url": "https://openalex.org/W4392029303",
@@ -8766,10 +8766,10 @@
             "edge_dst_display_label": "life expectancy",
             "authors": [
               "Elvira Nica",
-              "Adela Poliakov\u00e1",
+              "Adela Poliaková",
               "Gheorghe H. Popescu",
-              "Katar\u00edna Val\u00e1\u0161kov\u00e1",
-              "\u015etefan Gabriel Burcea",
+              "Katarína Valášková",
+              "Ştefan Gabriel Burcea",
               "Andreea-Ligia Drugau Constantin"
             ],
             "citation_label": "Nica et al. (2023)",
@@ -8790,7 +8790,7 @@
               "Husam Rjoub",
               "Jamiu Adetola Odugbesan",
               "Tomiwa Sunday Adebayo",
-              "Wing\u2010Keung Wong"
+              "Wing‐Keung Wong"
             ],
             "citation_label": "Rjoub et al. (2021)",
             "journal": "Sustainability",
@@ -8876,18 +8876,18 @@
         "representative_papers": [
           {
             "paper_id": "W4406082045__gpt5mini_low",
-            "title": "Governance, Corruption, Trade Openness, and Innovation: Key Drivers of Green Growth and Sustainable Development in T\u00fcrkiye",
+            "title": "Governance, Corruption, Trade Openness, and Innovation: Key Drivers of Green Growth and Sustainable Development in Türkiye",
             "year": 2025,
             "edge_src": "FG3C000017",
             "edge_dst": "FG3C000246",
             "edge_src_display_label": "trade openness",
             "edge_dst_display_label": "green growth",
             "authors": [
-              "Mustafa Naimo\u011flu",
-              "Serkan \u015eahin",
-              "Sefa \u00d6zbek"
+              "Mustafa Naimoğlu",
+              "Serkan Şahin",
+              "Sefa Özbek"
             ],
-            "citation_label": "Naimo\u011flu et al. (2025)",
+            "citation_label": "Naimoğlu et al. (2025)",
             "journal": "Sustainable Development",
             "citation_count": 12,
             "openalex_url": "https://openalex.org/W4406082045",
@@ -9018,7 +9018,7 @@
             "authors": [
               "U. Ibrahim",
               "Abraham Deka",
-              "H\u00fcseyin \u00d6zde\u015fer"
+              "Hüseyin Özdeşer"
             ],
             "citation_label": "Ibrahim et al. (2025)",
             "journal": "Sustainable Development",
@@ -9035,8 +9035,8 @@
             "edge_src_display_label": "corruption",
             "edge_dst_display_label": "economic growth",
             "authors": [
-              "Josef\u00e1 Ramoni Perazzi",
-              "H\u00e9ctor Romero"
+              "Josefá Ramoni Perazzi",
+              "Héctor Romero"
             ],
             "citation_label": "Perazzi and Romero (2022)",
             "journal": "Heliyon",
@@ -9293,11 +9293,11 @@
             "edge_src_display_label": "renewable energy consumption",
             "edge_dst_display_label": "output",
             "authors": [
-              "Mohamed Safouane Ben A\u00efssa",
+              "Mohamed Safouane Ben Aïssa",
               "Mehdi Ben Jebli",
               "Slim Ben Youssef"
             ],
-            "citation_label": "A\u00efssa et al. (2013)",
+            "citation_label": "Aïssa et al. (2013)",
             "journal": "Energy Policy",
             "citation_count": 234,
             "openalex_url": "https://openalex.org/W2035751638",
@@ -9395,7 +9395,7 @@
         "representative_papers": [
           {
             "paper_id": "W4200385732__gpt5mini_low",
-            "title": "Economic policy uncertainty, investor sentiment and financial stability\u2014an empirical study based on the time varying parameter-vector autoregression model",
+            "title": "Economic policy uncertainty, investor sentiment and financial stability—an empirical study based on the time varying parameter-vector autoregression model",
             "year": 2021,
             "edge_src": "FG3C000071",
             "edge_dst": "FG3C000100",
@@ -9548,16 +9548,16 @@
           },
           {
             "paper_id": "W4407723203__gpt5mini_low",
-            "title": "Revisiting the macroeconomic determinants of non-performing loans with a deep learning technique with causal inference: Evidence from T\u00fcrkiye",
+            "title": "Revisiting the macroeconomic determinants of non-performing loans with a deep learning technique with causal inference: Evidence from Türkiye",
             "year": 2025,
             "edge_src": "FG3C000009",
             "edge_dst": "FG3C001067",
             "edge_src_display_label": "unemployment",
             "edge_dst_display_label": "non-performing loans",
             "authors": [
-              "Muhammed Ra\u015fid BAKIR",
-              "M\u00fcmin Atalay \u00c7etin",
-              "\u0130brahim BAKIRTA\u015e"
+              "Muhammed Raşid BAKIR",
+              "Mümin Atalay Çetin",
+              "İbrahim BAKIRTAŞ"
             ],
             "citation_label": "BAKIR et al. (2025)",
             "journal": "Borsa Istanbul Review",
@@ -9711,8 +9711,8 @@
             "edge_dst_display_label": "ecological footprint",
             "authors": [
               "Babatunde Sunday Eweade",
-              "Selin Karl\u0131lar",
-              "U\u011fur Korkut Pata",
+              "Selin Karlılar",
+              "Uğur Korkut Pata",
               "Ibrahim Adeshola",
               "John O. Olaifa"
             ],
@@ -9800,7 +9800,7 @@
         "representative_papers": [
           {
             "paper_id": "W4386604997__gpt5mini_low",
-            "title": "Did high speed rail accelerate the development of tourism economy? \u2013 Empirical analysis from Northeast China",
+            "title": "Did high speed rail accelerate the development of tourism economy? – Empirical analysis from Northeast China",
             "year": 2023,
             "edge_src": "FG3C000753",
             "edge_dst": "FG3C000727",
@@ -10332,7 +10332,7 @@
             "authors": [
               "Huu Nhan Duong",
               "Justin Hung Nguyen",
-              "My Nguy\u0435n",
+              "My Nguyеn",
               "S. Ghon Rhee"
             ],
             "citation_label": "Duong et al. (2020)",
@@ -10350,7 +10350,7 @@
             "edge_src_display_label": "financial constraints",
             "edge_dst_display_label": "firm value",
             "authors": [
-              "Hui\u2010Wen Vivian Tang",
+              "Hui‐Wen Vivian Tang",
               "Chong-Chuo Chang"
             ],
             "citation_label": "Tang and Chang (2023)",
@@ -10491,20 +10491,20 @@
           },
           {
             "paper_id": "W4391850497__gpt5mini_low",
-            "title": "A new look at physicians\u2019 responses to financial incentives: Quality of care, practice characteristics, and motivations",
+            "title": "A new look at physicians’ responses to financial incentives: Quality of care, practice characteristics, and motivations",
             "year": 2024,
             "edge_src": "FG3C001519",
             "edge_dst": "FG3C000109",
             "edge_src_display_label": "severity of illness",
             "edge_dst_display_label": "quality of care",
             "authors": [
-              "Jeannette Brosig\u2010Koch",
-              "Heike Hennig\u2010Schmidt",
-              "Nadja Kairies\u2010Schwarz",
+              "Jeannette Brosig‐Koch",
+              "Heike Hennig‐Schmidt",
+              "Nadja Kairies‐Schwarz",
               "Johanna Kokot",
               "Daniel Wiesen"
             ],
-            "citation_label": "Brosig\u2010Koch et al. (2024)",
+            "citation_label": "Brosig‐Koch et al. (2024)",
             "journal": "Journal of Health Economics",
             "citation_count": 20,
             "openalex_url": "https://openalex.org/W4391850497",
@@ -10596,8 +10596,8 @@
             "edge_dst_display_label": "length of stay",
             "authors": [
               "Sun Jung Kim",
-              "Eun\u2010Cheol Park",
-              "Sung\u2010In Jang",
+              "Eun‐Cheol Park",
+              "Sung‐In Jang",
               "Minjee Lee",
               "Tae Hyun Kim"
             ],
@@ -11023,7 +11023,7 @@
           },
           {
             "paper_id": "W2095588614__gpt5mini_low",
-            "title": "Expanding Coverage to Low\u2010Income Childless Adults in Massachusetts: Implications for National Health Reform",
+            "title": "Expanding Coverage to Low‐Income Childless Adults in Massachusetts: Implications for National Health Reform",
             "year": 2014,
             "edge_src": "FG3C004045",
             "edge_dst": "FG3C002397",
@@ -11160,9 +11160,9 @@
             "edge_src_display_label": "investor sentiment",
             "edge_dst_display_label": "equity returns",
             "authors": [
-              "Mei\u2010Ping Chen",
-              "Chien\u2010Chiang Lee",
-              "Yi\u2010Chung Hsu"
+              "Mei‐Ping Chen",
+              "Chien‐Chiang Lee",
+              "Yi‐Chung Hsu"
             ],
             "citation_label": "Chen et al. (2017)",
             "journal": "The North American Journal of Economics and Finance",
@@ -11640,19 +11640,19 @@
         "representative_papers": [
           {
             "paper_id": "W4414158543__gpt5mini_low",
-            "title": "Market Access, the Skill Premium and Human Capital in Spain (1860\u20131930)",
+            "title": "Market Access, the Skill Premium and Human Capital in Spain (1860–1930)",
             "year": 2025,
             "edge_src": "FG3C001077",
             "edge_dst": "FG3C000499",
             "edge_src_display_label": "market access",
             "edge_dst_display_label": "skill premium",
             "authors": [
-              "Rafael Gonz\u00e1lez\u2010Val",
-              "Pau Insa\u2010S\u00e1nchez",
-              "Julio Mart\u00ednez\u2010Galarraga",
-              "Daniel A. Tirado\u2010Fabregat"
+              "Rafael González‐Val",
+              "Pau Insa‐Sánchez",
+              "Julio Martínez‐Galarraga",
+              "Daniel A. Tirado‐Fabregat"
             ],
-            "citation_label": "Gonz\u00e1lez\u2010Val et al. (2025)",
+            "citation_label": "González‐Val et al. (2025)",
             "journal": "Journal of Regional Science",
             "citation_count": 0,
             "openalex_url": "https://openalex.org/W4414158543",
@@ -12035,13 +12035,13 @@
             "edge_src_display_label": "urbanization",
             "edge_dst_display_label": "productivity",
             "authors": [
-              "Ali \u00c7eli\u0307k",
+              "Ali Çeli̇k",
               "Salwa Bajja",
               "Hassan Radoine",
               "Jerome Chenal",
               "Soufiane Bouyghrissi"
             ],
-            "citation_label": "\u00c7eli\u0307k et al. (2024)",
+            "citation_label": "Çeli̇k et al. (2024)",
             "journal": "Heliyon",
             "citation_count": 18,
             "openalex_url": "https://openalex.org/W4400077457",
@@ -12160,7 +12160,7 @@
         "representative_papers": [
           {
             "paper_id": "W4319599484__gpt5mini_low",
-            "title": "Research on Passengers\u2019 Preferences and Impact of High-Speed Rail on Air Transport Demand",
+            "title": "Research on Passengers’ Preferences and Impact of High-Speed Rail on Air Transport Demand",
             "year": 2023,
             "edge_src": "FG3C000753",
             "edge_dst": "FG3C002990",
@@ -12187,7 +12187,7 @@
             "edge_src_display_label": "high-speed rail",
             "edge_dst_display_label": "labour mobility",
             "authors": [
-              "Bego\u00f1a Guirao",
+              "Begoña Guirao",
               "Juan Luis Campa",
               "Natalia Casado-Sanz"
             ],
@@ -12199,7 +12199,7 @@
           },
           {
             "paper_id": "W4386604997__gpt5mini_low",
-            "title": "Did high speed rail accelerate the development of tourism economy? \u2013 Empirical analysis from Northeast China",
+            "title": "Did high speed rail accelerate the development of tourism economy? – Empirical analysis from Northeast China",
             "year": 2023,
             "edge_src": "FG3C000753",
             "edge_dst": "FG3C000727",
@@ -12293,7 +12293,7 @@
         "representative_papers": [
           {
             "paper_id": "W4308515307__gpt5mini_low",
-            "title": "Technological Innovation, Risk-Taking and Firm Performance\u2014Empirical Evidence from Chinese Listed Companies",
+            "title": "Technological Innovation, Risk-Taking and Firm Performance—Empirical Evidence from Chinese Listed Companies",
             "year": 2022,
             "edge_src": "FG3C000013",
             "edge_dst": "FG3C000113",
@@ -12472,12 +12472,12 @@
             "edge_src_display_label": "foreign direct investments",
             "edge_dst_display_label": "financial development",
             "authors": [
-              "Daniel Ofori\u2010Sasu",
+              "Daniel Ofori‐Sasu",
               "Eunice Adu-Darko",
               "Michael Effah Asamoah",
               "Joshua Yindenaba Abor"
             ],
-            "citation_label": "Ofori\u2010Sasu et al. (2023)",
+            "citation_label": "Ofori‐Sasu et al. (2023)",
             "journal": "Resources Policy",
             "citation_count": 2,
             "openalex_url": "https://openalex.org/W4363652027",
@@ -12570,7 +12570,7 @@
               "Zhanar Nurgazina",
               "Arshian Sharif",
               "Mustafa Tevfik Kartal",
-              "Serpil K\u0131l\u0131\u00e7 Depren",
+              "Serpil Kılıç Depren",
               "Aftab Ahmed Khan"
             ],
             "citation_label": "Ali et al. (2023)",
@@ -12935,7 +12935,7 @@
         ],
         "target_alternate_display_labels": [
           "wage setting",
-          "North\u2013South wage gap",
+          "North–South wage gap",
           "wage differential"
         ],
         "source_bucket": "adjacent",
@@ -12984,10 +12984,10 @@
             "edge_src_display_label": "exports",
             "edge_dst_display_label": "real wages",
             "authors": [
-              "Jacques Dr\u00e8ze",
+              "Jacques Drèze",
               "Franco Modigliani"
             ],
-            "citation_label": "Dr\u00e8ze and Modigliani (1981)",
+            "citation_label": "Drèze and Modigliani (1981)",
             "journal": "European Economic Review",
             "citation_count": 66,
             "openalex_url": "https://openalex.org/W2092640984",
@@ -13004,7 +13004,7 @@
             "authors": [
               "Xin Li",
               "Hsu Ling Chang",
-              "Chi\u2010Wei Su",
+              "Chi‐Wei Su",
               "Yin Dai"
             ],
             "citation_label": "Li et al. (2017)",
@@ -13116,7 +13116,7 @@
             "edge_dst_display_label": "real exchange rate",
             "authors": [
               "Gustavo Adler",
-              "No\u00ebmie Lisack",
+              "Noëmie Lisack",
               "Rui Mano"
             ],
             "citation_label": "Adler et al. (2019)",
@@ -13230,7 +13230,7 @@
               "Zhanar Nurgazina",
               "Arshian Sharif",
               "Mustafa Tevfik Kartal",
-              "Serpil K\u0131l\u0131\u00e7 Depren",
+              "Serpil Kılıç Depren",
               "Aftab Ahmed Khan"
             ],
             "citation_label": "Ali et al. (2023)",
@@ -13250,7 +13250,7 @@
             "authors": [
               "Huan Zhang",
               "Zhao Liu",
-              "Yue\u2010Jun Zhang"
+              "Yue‐Jun Zhang"
             ],
             "citation_label": "Zhang et al. (2021)",
             "journal": "Journal of Cleaner Production",
@@ -13260,7 +13260,7 @@
           },
           {
             "paper_id": "W4286433639__gpt5mini_low",
-            "title": "Has Industrial Upgrading Improved Air Pollution?\u2014Evidence from China\u2019s Digital Economy",
+            "title": "Has Industrial Upgrading Improved Air Pollution?—Evidence from China’s Digital Economy",
             "year": 2022,
             "edge_src": "FG3C000443",
             "edge_dst": "FG3C001615",
@@ -14021,12 +14021,12 @@
             "edge_src_display_label": "Special economic zones",
             "edge_dst_display_label": "employment",
             "authors": [
-              "Piotr Ci\u017ckowicz",
-              "Magda Ci\u017ckowicz-P\u0119ka\u0142a",
-              "Piotr P\u0119ka\u0142a",
-              "Andrzej Rzo\u0144ca"
+              "Piotr Ciżkowicz",
+              "Magda Ciżkowicz-Pękała",
+              "Piotr Pękała",
+              "Andrzej Rzońca"
             ],
-            "citation_label": "Ci\u017ckowicz et al. (2016)",
+            "citation_label": "Ciżkowicz et al. (2016)",
             "journal": "Journal of Economic Geography",
             "citation_count": 36,
             "openalex_url": "https://openalex.org/W3022707312",
@@ -14318,8 +14318,8 @@
             "edge_dst_display_label": "investment efficiency",
             "authors": [
               "Yizhong Wu",
-              "Chien\u2010Chiang Lee",
-              "Chi\u2010Chuan Lee",
+              "Chien‐Chiang Lee",
+              "Chi‐Chuan Lee",
               "Diyun Peng"
             ],
             "citation_label": "Wu et al. (2022)",
@@ -14572,7 +14572,7 @@
           },
           {
             "paper_id": "W3125591525__gpt5mini_low",
-            "title": "Media Coverage and the Cross\u2010section of Stock Returns",
+            "title": "Media Coverage and the Cross‐section of Stock Returns",
             "year": 2009,
             "edge_src": "FG3C001858",
             "edge_dst": "FG3C000811",
@@ -14580,7 +14580,7 @@
             "edge_dst_display_label": "expected stock returns",
             "authors": [
               "Lily H. Fang",
-              "Jo\u00ebl Peress"
+              "Joël Peress"
             ],
             "citation_label": "Fang and Peress (2009)",
             "journal": "The Journal of Finance",
@@ -14709,7 +14709,7 @@
             "edge_src_display_label": "imports",
             "edge_dst_display_label": "price-cost margin",
             "authors": [
-              "Herv\u00e9 Boulhol"
+              "Hervé Boulhol"
             ],
             "citation_label": "Boulhol (2010)",
             "journal": "Oxford Bulletin of Economics and Statistics",
@@ -14793,7 +14793,7 @@
         "representative_papers": [
           {
             "paper_id": "W4406613855__gpt5mini_low",
-            "title": "Economic Policy Uncertainty and Corporate Green Technology Innovation\u2014Evidence from Privately Listed Companies in China",
+            "title": "Economic Policy Uncertainty and Corporate Green Technology Innovation—Evidence from Privately Listed Companies in China",
             "year": 2025,
             "edge_src": "FG3C000074",
             "edge_dst": "FG3C001741",
@@ -14803,7 +14803,7 @@
               "Yiran Song",
               "Ying Wang",
               "Yuting Zhang",
-              "Nan L\u00fc",
+              "Nan Lü",
               "Chunbao Ge"
             ],
             "citation_label": "Song et al. (2025)",
@@ -14835,7 +14835,7 @@
           },
           {
             "paper_id": "W4295926545__gpt5mini_low",
-            "title": "The Effect of Economic Policy Uncertainty on Green Technology Innovation: Evidence from China\u2019s Enterprises",
+            "title": "The Effect of Economic Policy Uncertainty on Green Technology Innovation: Evidence from China’s Enterprises",
             "year": 2022,
             "edge_src": "FG3C000074",
             "edge_dst": "FG3C001741",
@@ -14955,12 +14955,12 @@
             "edge_src_display_label": "Special economic zones",
             "edge_dst_display_label": "investment",
             "authors": [
-              "Piotr Ci\u017ckowicz",
-              "Magda Ci\u017ckowicz-P\u0119ka\u0142a",
-              "Piotr P\u0119ka\u0142a",
-              "Andrzej Rzo\u0144ca"
+              "Piotr Ciżkowicz",
+              "Magda Ciżkowicz-Pękała",
+              "Piotr Pękała",
+              "Andrzej Rzońca"
             ],
-            "citation_label": "Ci\u017ckowicz et al. (2016)",
+            "citation_label": "Ciżkowicz et al. (2016)",
             "journal": "Journal of Economic Geography",
             "citation_count": 36,
             "openalex_url": "https://openalex.org/W3022707312",
@@ -15090,7 +15090,7 @@
             "edge_dst_display_label": "green total factor productivity",
             "authors": [
               "Lei Tong",
-              "Charbel Jos\u00e9 Chiappetta Jabbour",
+              "Charbel José Chiappetta Jabbour",
               "Samira Ben Belgacem",
               "Hina Najam",
               "Jawad Abbas"
@@ -15103,7 +15103,7 @@
           },
           {
             "paper_id": "W4389919576__gpt5mini_low",
-            "title": "Can China\u2019s Campaign-Style Environmental Regulation Improve the Green Total Factor Productivity?",
+            "title": "Can China’s Campaign-Style Environmental Regulation Improve the Green Total Factor Productivity?",
             "year": 2023,
             "edge_src": "FG3C000045",
             "edge_dst": "FG3C000797",
@@ -15201,8 +15201,8 @@
             "edge_src_display_label": "COVID-19 pandemic",
             "edge_dst_display_label": "unemployment",
             "authors": [
-              "Ay\u015fe Aylin Bayar",
-              "\u00d6ner G\u00fcn\u00e7avd\u0131",
+              "Ayşe Aylin Bayar",
+              "Öner Günçavdı",
               "Haluk Levent"
             ],
             "citation_label": "Bayar et al. (2023)",
@@ -15220,13 +15220,13 @@
             "edge_src_display_label": "COVID-19 pandemic",
             "edge_dst_display_label": "household income",
             "authors": [
-              "Romana G\u0142owicka-Wo\u0142oszyn",
-              "Andrzej Wo\u0142oszyn",
-              "Joanna Stanis\u0142awska",
-              "Am\u00edlcar Oliveira",
+              "Romana Głowicka-Wołoszyn",
+              "Andrzej Wołoszyn",
+              "Joanna Stanisławska",
+              "Amílcar Oliveira",
               "Teresa Oliveira"
             ],
-            "citation_label": "G\u0142owicka-Wo\u0142oszyn et al. (2024)",
+            "citation_label": "Głowicka-Wołoszyn et al. (2024)",
             "journal": "Sustainability",
             "citation_count": 4,
             "openalex_url": "https://openalex.org/W4402988785",
@@ -15481,7 +15481,7 @@
             "edge_dst_display_label": "market liquidity",
             "authors": [
               "Jasmina Arifovic",
-              "Xue\u2010Zhong He",
+              "Xue‐Zhong He",
               "Lijian Wei"
             ],
             "citation_label": "Arifovic et al. (2022)",
@@ -15500,8 +15500,8 @@
             "edge_dst_display_label": "cost of capital",
             "authors": [
               "Laura Malceniece",
-              "K\u0101rlis Malcenieks",
-              "T\u0101lis J. Putni\u0146\u0161"
+              "Kārlis Malcenieks",
+              "Tālis J. Putniņš"
             ],
             "citation_label": "Malceniece et al. (2019)",
             "journal": "Journal of Financial Economics",
@@ -15595,12 +15595,12 @@
             "edge_src_display_label": "Special economic zones",
             "edge_dst_display_label": "investment",
             "authors": [
-              "Piotr Ci\u017ckowicz",
-              "Magda Ci\u017ckowicz-P\u0119ka\u0142a",
-              "Piotr P\u0119ka\u0142a",
-              "Andrzej Rzo\u0144ca"
+              "Piotr Ciżkowicz",
+              "Magda Ciżkowicz-Pękała",
+              "Piotr Pękała",
+              "Andrzej Rzońca"
             ],
-            "citation_label": "Ci\u017ckowicz et al. (2016)",
+            "citation_label": "Ciżkowicz et al. (2016)",
             "journal": "Journal of Economic Geography",
             "citation_count": 36,
             "openalex_url": "https://openalex.org/W3022707312",
@@ -15755,7 +15755,7 @@
           },
           {
             "paper_id": "W1910652022__gpt5mini_low",
-            "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out\u2010of\u2010Pocket Spending for Mental Health Services",
+            "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out‐of‐Pocket Spending for Mental Health Services",
             "year": 2015,
             "edge_src": "FG3C005647",
             "edge_dst": "FG3C000305",
@@ -15984,7 +15984,7 @@
             "edge_src_display_label": "trade liberalization",
             "edge_dst_display_label": "product market competition",
             "authors": [
-              "Mar\u00eda Guadalupe",
+              "María Guadalupe",
               "Julie Wulf"
             ],
             "citation_label": "Guadalupe and Wulf (2010)",
@@ -16128,7 +16128,7 @@
           },
           {
             "paper_id": "W4320032616__gpt5mini_low",
-            "title": "An empirical analysis of the nexus between digital financial inclusion, industrial structure distortion, and China\u2019s energy intensity",
+            "title": "An empirical analysis of the nexus between digital financial inclusion, industrial structure distortion, and China’s energy intensity",
             "year": 2023,
             "edge_src": "FG3C000717",
             "edge_dst": "FG3C000044",
@@ -16149,7 +16149,7 @@
           },
           {
             "paper_id": "W4400077304__gpt5mini_low",
-            "title": "Digital financial inclusion, industrial structure and urban\u2013Rural income disparity: Evidence from Zhejiang Province, China",
+            "title": "Digital financial inclusion, industrial structure and urban–Rural income disparity: Evidence from Zhejiang Province, China",
             "year": 2024,
             "edge_src": "FG3C000717",
             "edge_dst": "FG3C000869",
@@ -16524,7 +16524,7 @@
           },
           {
             "paper_id": "W4401977559__gpt5mini_low",
-            "title": "The Effect of Trade Policy Uncertainty on Green Technology Innovation: Evidence from China\u2019s Enterprises",
+            "title": "The Effect of Trade Policy Uncertainty on Green Technology Innovation: Evidence from China’s Enterprises",
             "year": 2024,
             "edge_src": "FG3C000296",
             "edge_dst": "FG3C000094",
@@ -16534,7 +16534,7 @@
               "Xiaoling Zhao",
               "Mingru Peng",
               "Xing Wang",
-              "Rui\u2010Hua Xu",
+              "Rui‐Hua Xu",
               "Yongze Cui"
             ],
             "citation_label": "Zhao et al. (2024)",
@@ -16684,9 +16684,9 @@
             "edge_src_display_label": "foreign direct investments",
             "edge_dst_display_label": "income inequality",
             "authors": [
-              "Gonzalo Hern\u00e1ndez Soto",
-              "Carlos Mar\u00eda Fern\u00e1ndez-Jard\u00f3n",
-              "Xavier Martinez\u2013Cobas"
+              "Gonzalo Hernández Soto",
+              "Carlos María Fernández-Jardón",
+              "Xavier Martinez–Cobas"
             ],
             "citation_label": "Soto et al. (2023)",
             "journal": "Economic Systems",
@@ -16778,7 +16778,7 @@
             "authors": [
               "Fatemeh Dehdar",
               "Nuno Silva",
-              "Jos\u00e9 Alberto Fuinhas",
+              "José Alberto Fuinhas",
               "Matheus Koengkan",
               "Nazia Nazeer"
             ],
@@ -16800,7 +16800,7 @@
               "Samuel Adams",
               "Festus Fatai Adedoyin",
               "Eniola Olaniran",
-              "Festus V\u0131ctor Bekun"
+              "Festus Vıctor Bekun"
             ],
             "citation_label": "Adams et al. (2020)",
             "journal": "Economic Analysis and Policy",
@@ -16908,12 +16908,12 @@
             "edge_src_display_label": "Special economic zones",
             "edge_dst_display_label": "employment",
             "authors": [
-              "Piotr Ci\u017ckowicz",
-              "Magda Ci\u017ckowicz-P\u0119ka\u0142a",
-              "Piotr P\u0119ka\u0142a",
-              "Andrzej Rzo\u0144ca"
+              "Piotr Ciżkowicz",
+              "Magda Ciżkowicz-Pękała",
+              "Piotr Pękała",
+              "Andrzej Rzońca"
             ],
-            "citation_label": "Ci\u017ckowicz et al. (2016)",
+            "citation_label": "Ciżkowicz et al. (2016)",
             "journal": "Journal of Economic Geography",
             "citation_count": 36,
             "openalex_url": "https://openalex.org/W3022707312",
@@ -16930,7 +16930,7 @@
             "authors": [
               "Javier Barbero",
               "Kristian Behrens",
-              "Jos\u00e9 L. Zof\u00edo"
+              "José L. Zofío"
             ],
             "citation_label": "Barbero et al. (2018)",
             "journal": "Regional Science and Urban Economics",
@@ -17062,11 +17062,11 @@
             "edge_src_display_label": "interest rates",
             "edge_dst_display_label": "exchange rates",
             "authors": [
-              "Fernando \u00c1lvarez",
+              "Fernando Álvarez",
               "Andrew Atkeson",
               "Patrick J. Kehoe"
             ],
-            "citation_label": "\u00c1lvarez et al. (2009)",
+            "citation_label": "Álvarez et al. (2009)",
             "journal": "The Review of Economic Studies",
             "citation_count": 242,
             "openalex_url": "https://openalex.org/W1968905532",
@@ -17174,11 +17174,11 @@
             "edge_src_display_label": "geopolitical risks",
             "edge_dst_display_label": "sustainable development",
             "authors": [
-              "Oktay \u00d6zkan",
-              "\u00d6mer Faruk Bi\u00e7en",
-              "Mustafa Necati \u00c7oban"
+              "Oktay Özkan",
+              "Ömer Faruk Biçen",
+              "Mustafa Necati Çoban"
             ],
-            "citation_label": "\u00d6zkan et al. (2025)",
+            "citation_label": "Özkan et al. (2025)",
             "journal": "Sustainable Development",
             "citation_count": 0,
             "openalex_url": "https://openalex.org/W7117366032",
@@ -17193,7 +17193,7 @@
             "edge_src_display_label": "US dollar",
             "edge_dst_display_label": "sustainable development",
             "authors": [
-              "Kai\u2010Hua Wang",
+              "Kai‐Hua Wang",
               "Lili Liu",
               "Hongwen Liu",
               "Zheng-Zheng Li"
@@ -17344,7 +17344,7 @@
               "Tsangyao Chang",
               "Shu-Ching Cheng",
               "Guochen Pan",
-              "Tsung\u2010Pao Wu"
+              "Tsung‐Pao Wu"
             ],
             "citation_label": "Chang et al. (2013)",
             "journal": "Economic Modelling",
@@ -17827,12 +17827,12 @@
             "edge_src_display_label": "Special economic zones",
             "edge_dst_display_label": "employment",
             "authors": [
-              "Piotr Ci\u017ckowicz",
-              "Magda Ci\u017ckowicz-P\u0119ka\u0142a",
-              "Piotr P\u0119ka\u0142a",
-              "Andrzej Rzo\u0144ca"
+              "Piotr Ciżkowicz",
+              "Magda Ciżkowicz-Pękała",
+              "Piotr Pękała",
+              "Andrzej Rzońca"
             ],
-            "citation_label": "Ci\u017ckowicz et al. (2016)",
+            "citation_label": "Ciżkowicz et al. (2016)",
             "journal": "Journal of Economic Geography",
             "citation_count": 36,
             "openalex_url": "https://openalex.org/W3022707312",
@@ -17848,9 +17848,9 @@
             "edge_dst_display_label": "production",
             "authors": [
               "Ennio Bilancini",
-              "Simone D\u2019Alessandro"
+              "Simone D’Alessandro"
             ],
-            "citation_label": "Bilancini and D\u2019Alessandro (2011)",
+            "citation_label": "Bilancini and D’Alessandro (2011)",
             "journal": "Ecological Economics",
             "citation_count": 64,
             "openalex_url": "https://openalex.org/W2074030876",
@@ -17985,7 +17985,7 @@
           },
           {
             "paper_id": "W4407031367__gpt5mini_low",
-            "title": "How Does China\u2019s Digital Economy Affect Green Total Factor Energy Efficiency in the Context of Sustainable Development?",
+            "title": "How Does China’s Digital Economy Affect Green Total Factor Energy Efficiency in the Context of Sustainable Development?",
             "year": 2025,
             "edge_src": "FG3C000068",
             "edge_dst": "FG3C000013",
@@ -18218,8 +18218,8 @@
             "edge_src_display_label": "COVID-19 pandemic",
             "edge_dst_display_label": "income distribution",
             "authors": [
-              "Ay\u015fe Aylin Bayar",
-              "\u00d6ner G\u00fcn\u00e7avd\u0131",
+              "Ayşe Aylin Bayar",
+              "Öner Günçavdı",
               "Haluk Levent"
             ],
             "citation_label": "Bayar et al. (2023)",
@@ -18366,7 +18366,7 @@
             "edge_dst_display_label": "carbon emissions",
             "authors": [
               "Aamir Javed",
-              "Jos\u00e9 Alberto Fuinhas",
+              "José Alberto Fuinhas",
               "Agnese Rapposelli"
             ],
             "citation_label": "Javed et al. (2023)",
@@ -18377,7 +18377,7 @@
           },
           {
             "paper_id": "W4396785390__gpt5mini_low",
-            "title": "How does economic policy uncertainty impact CO2 emissions? Investigating investment's role across 22 economies (1997\u20132021)",
+            "title": "How does economic policy uncertainty impact CO2 emissions? Investigating investment's role across 22 economies (1997–2021)",
             "year": 2024,
             "edge_src": "FG3C000074",
             "edge_dst": "FG3C000003",
@@ -18474,7 +18474,7 @@
         "representative_papers": [
           {
             "paper_id": "W4368374093__gpt5mini_low",
-            "title": "Influence and effect of industrial agglomeration on urban green total factor productivity\u2014On the regulatory role of innovation agglomeration and institutional distance",
+            "title": "Influence and effect of industrial agglomeration on urban green total factor productivity—On the regulatory role of innovation agglomeration and institutional distance",
             "year": 2023,
             "edge_src": "FG3C000225",
             "edge_dst": "FG3C003177",
@@ -18609,7 +18609,7 @@
         "representative_papers": [
           {
             "paper_id": "W4309741906__gpt5mini_low",
-            "title": "A General Equilibrium Analysis of Achieving the Goal of Stable Growth by China\u2019s Market Expectations in the Context of the COVID-19 Pandemic",
+            "title": "A General Equilibrium Analysis of Achieving the Goal of Stable Growth by China’s Market Expectations in the Context of the COVID-19 Pandemic",
             "year": 2022,
             "edge_src": "FG3C000005",
             "edge_dst": "FG3C000046",
@@ -18656,8 +18656,8 @@
             "authors": [
               "Lianggui Liao",
               "Chan Wang",
-              "Hong\u2010xing Wen",
-              "Pu\u2010yan Nie",
+              "Hong‐xing Wen",
+              "Pu‐yan Nie",
               "Ying Huang"
             ],
             "citation_label": "Liao et al. (2023)",
@@ -18743,7 +18743,7 @@
         "representative_papers": [
           {
             "paper_id": "W4392387681__gpt5mini_low",
-            "title": "High-Speed Railway Opening, Industrial Symbiotic Agglomeration and Green Sustainable Development\u2014Empirical Evidence from China",
+            "title": "High-Speed Railway Opening, Industrial Symbiotic Agglomeration and Green Sustainable Development—Empirical Evidence from China",
             "year": 2024,
             "edge_src": "FG3C000753",
             "edge_dst": "FG3C000225",
@@ -18895,7 +18895,7 @@
           },
           {
             "paper_id": "W2803313057__gpt5mini_low",
-            "title": "Volatility\u2013Trading volume intraday correlation profiles and its nonstationary features",
+            "title": "Volatility–Trading volume intraday correlation profiles and its nonstationary features",
             "year": 2018,
             "edge_src": "FG3C000043",
             "edge_dst": "FG3C000042",
@@ -18903,9 +18903,9 @@
             "edge_dst_display_label": "trading volume",
             "authors": [
               "Michelle B. Graczyk",
-              "S\u0131\u0301lvio M. Duarte Queir\u00f3s"
+              "Sı́lvio M. Duarte Queirós"
             ],
-            "citation_label": "Graczyk and Queir\u00f3s (2018)",
+            "citation_label": "Graczyk and Queirós (2018)",
             "journal": "Physica A Statistical Mechanics and its Applications",
             "citation_count": 4,
             "openalex_url": "https://openalex.org/W2803313057",
@@ -19014,12 +19014,12 @@
             "edge_src_display_label": "Special economic zones",
             "edge_dst_display_label": "employment",
             "authors": [
-              "Piotr Ci\u017ckowicz",
-              "Magda Ci\u017ckowicz-P\u0119ka\u0142a",
-              "Piotr P\u0119ka\u0142a",
-              "Andrzej Rzo\u0144ca"
+              "Piotr Ciżkowicz",
+              "Magda Ciżkowicz-Pękała",
+              "Piotr Pękała",
+              "Andrzej Rzońca"
             ],
-            "citation_label": "Ci\u017ckowicz et al. (2016)",
+            "citation_label": "Ciżkowicz et al. (2016)",
             "journal": "Journal of Economic Geography",
             "citation_count": 36,
             "openalex_url": "https://openalex.org/W3022707312",
@@ -19027,7 +19027,7 @@
           },
           {
             "paper_id": "W1959079159__gpt5mini_low",
-            "title": "SEMI\u2010INPUT\u2013OUTPUT AND SHADOW PRICES: A REPLY",
+            "title": "SEMI‐INPUT–OUTPUT AND SHADOW PRICES: A REPLY",
             "year": 1980,
             "edge_src": "FG3C003077",
             "edge_dst": "FG3C000011",
@@ -19052,7 +19052,7 @@
             "edge_dst_display_label": "output",
             "authors": [
               "Q. Farooq Akram",
-              "\u00d8yvind Eitrheim"
+              "Øyvind Eitrheim"
             ],
             "citation_label": "Akram and Eitrheim (2007)",
             "journal": "Journal of Banking & Finance",
@@ -19147,7 +19147,7 @@
               "Sajid Ali",
               "Syed Jawad Hussain Shahzad",
               "Naveed Raza",
-              "Khamis Hamed Al\u2010Yahyaee"
+              "Khamis Hamed Al‐Yahyaee"
             ],
             "citation_label": "Ali et al. (2018)",
             "journal": "Physica A Statistical Mechanics and its Applications",
@@ -19164,10 +19164,10 @@
             "edge_src_display_label": "cryptocurrency returns",
             "edge_dst_display_label": "market efficiency",
             "authors": [
-              "Ladislav Kri\u0161toufek",
-              "Miloslav Vo\u0161vrda"
+              "Ladislav Krištoufek",
+              "Miloslav Vošvrda"
             ],
-            "citation_label": "Kri\u0161toufek and Vo\u0161vrda (2019)",
+            "citation_label": "Krištoufek and Vošvrda (2019)",
             "journal": "Physica A Statistical Mechanics and its Applications",
             "citation_count": 73,
             "openalex_url": "https://openalex.org/W2948724073",
@@ -19295,8 +19295,8 @@
             "edge_dst_display_label": "trading volume",
             "authors": [
               "Yu-Sheng Kao",
-              "Hwei\u2010Lin Chuang",
-              "Yu\u2010Cheng Ku"
+              "Hwei‐Lin Chuang",
+              "Yu‐Cheng Ku"
             ],
             "citation_label": "Kao et al. (2019)",
             "journal": "The North American Journal of Economics and Finance",
@@ -19528,7 +19528,7 @@
         "representative_papers": [
           {
             "paper_id": "W4200605434__gpt5mini_low",
-            "title": "High-frequency trading and market quality: The case of a \u201cslightly exposed\u201d market",
+            "title": "High-frequency trading and market quality: The case of a “slightly exposed” market",
             "year": 2021,
             "edge_src": "FG3C004458",
             "edge_dst": "FG3C000043",
@@ -19536,7 +19536,7 @@
             "edge_dst_display_label": "volatility",
             "authors": [
               "Cumhur Ekinci",
-              "O\u011fuz Ersan"
+              "Oğuz Ersan"
             ],
             "citation_label": "Ekinci and Ersan (2021)",
             "journal": "International Review of Financial Analysis",
@@ -19685,7 +19685,7 @@
             "authors": [
               "Bo Lin",
               "Yuan Liu",
-              "Bo L\u00fc"
+              "Bo Lü"
             ],
             "citation_label": "Lin et al. (2023)",
             "journal": "Sustainability",
@@ -19702,9 +19702,9 @@
             "edge_src_display_label": "U.S. economic policy uncertainty",
             "edge_dst_display_label": "natural resource rents",
             "authors": [
-              "Pelin \u00d6ge G\u00fcney"
+              "Pelin Öge Güney"
             ],
-            "citation_label": "G\u00fcney (2025)",
+            "citation_label": "Güney (2025)",
             "journal": "Natural Resources Forum",
             "citation_count": 1,
             "openalex_url": "https://openalex.org/W4406298454",
@@ -19785,7 +19785,7 @@
         "representative_papers": [
           {
             "paper_id": "W4200605434__gpt5mini_low",
-            "title": "High-frequency trading and market quality: The case of a \u201cslightly exposed\u201d market",
+            "title": "High-frequency trading and market quality: The case of a “slightly exposed” market",
             "year": 2021,
             "edge_src": "FG3C004458",
             "edge_dst": "FG3C000043",
@@ -19793,7 +19793,7 @@
             "edge_dst_display_label": "volatility",
             "authors": [
               "Cumhur Ekinci",
-              "O\u011fuz Ersan"
+              "Oğuz Ersan"
             ],
             "citation_label": "Ekinci and Ersan (2021)",
             "journal": "International Review of Financial Analysis",
@@ -19811,7 +19811,7 @@
             "edge_dst_display_label": "market liquidity",
             "authors": [
               "Jasmina Arifovic",
-              "Xue\u2010Zhong He",
+              "Xue‐Zhong He",
               "Lijian Wei"
             ],
             "citation_label": "Arifovic et al. (2022)",
@@ -19931,7 +19931,7 @@
           },
           {
             "paper_id": "W4200605434__gpt5mini_low",
-            "title": "High-frequency trading and market quality: The case of a \u201cslightly exposed\u201d market",
+            "title": "High-frequency trading and market quality: The case of a “slightly exposed” market",
             "year": 2021,
             "edge_src": "FG3C004458",
             "edge_dst": "FG3C000043",
@@ -19939,7 +19939,7 @@
             "edge_dst_display_label": "volatility",
             "authors": [
               "Cumhur Ekinci",
-              "O\u011fuz Ersan"
+              "Oğuz Ersan"
             ],
             "citation_label": "Ekinci and Ersan (2021)",
             "journal": "International Review of Financial Analysis",
@@ -19949,7 +19949,7 @@
           },
           {
             "paper_id": "W2906304234__gpt5mini_low",
-            "title": "Measurement of Investor Sentiment and Its Bi-Directional Contemporaneous and Lead\u2013Lag Relationship with Returns: Evidence from Pakistan",
+            "title": "Measurement of Investor Sentiment and Its Bi-Directional Contemporaneous and Lead–Lag Relationship with Returns: Evidence from Pakistan",
             "year": 2018,
             "edge_src": "FG3C000626",
             "edge_dst": "FG3C000100",
@@ -20070,9 +20070,9 @@
             "edge_dst_display_label": "welfare",
             "authors": [
               "Vincent Boucher",
-              "Yann Bramoull\u00e9"
+              "Yann Bramoullé"
             ],
-            "citation_label": "Boucher and Bramoull\u00e9 (2010)",
+            "citation_label": "Boucher and Bramoullé (2010)",
             "journal": "Journal of Public Economics",
             "citation_count": 34,
             "openalex_url": "https://openalex.org/W2051552702",
@@ -20181,9 +20181,9 @@
             "edge_src_display_label": "oil prices",
             "edge_dst_display_label": "unemployment",
             "authors": [
-              "Bar\u0131\u015f Kocaarslan",
-              "Mehmet Ali Soyta\u015f",
-              "U\u011fur Soyta\u015f"
+              "Barış Kocaarslan",
+              "Mehmet Ali Soytaş",
+              "Uğur Soytaş"
             ],
             "citation_label": "Kocaarslan et al. (2020)",
             "journal": "Energy Economics",
@@ -21129,10 +21129,10 @@
             "edge_src_display_label": "cryptocurrency returns",
             "edge_dst_display_label": "market efficiency",
             "authors": [
-              "Ladislav Kri\u0161toufek",
-              "Miloslav Vo\u0161vrda"
+              "Ladislav Krištoufek",
+              "Miloslav Vošvrda"
             ],
-            "citation_label": "Kri\u0161toufek and Vo\u0161vrda (2019)",
+            "citation_label": "Krištoufek and Vošvrda (2019)",
             "journal": "Physica A Statistical Mechanics and its Applications",
             "citation_count": 73,
             "openalex_url": "https://openalex.org/W2948724073",
@@ -21250,7 +21250,7 @@
           },
           {
             "paper_id": "W4200605434__gpt5mini_low",
-            "title": "High-frequency trading and market quality: The case of a \u201cslightly exposed\u201d market",
+            "title": "High-frequency trading and market quality: The case of a “slightly exposed” market",
             "year": 2021,
             "edge_src": "FG3C004458",
             "edge_dst": "FG3C000043",
@@ -21258,7 +21258,7 @@
             "edge_dst_display_label": "volatility",
             "authors": [
               "Cumhur Ekinci",
-              "O\u011fuz Ersan"
+              "Oğuz Ersan"
             ],
             "citation_label": "Ekinci and Ersan (2021)",
             "journal": "International Review of Financial Analysis",
@@ -21521,7 +21521,7 @@
             "edge_dst_display_label": "unemployment",
             "authors": [
               "Martin Geiger",
-              "Daniel Gr\u00fcndler",
+              "Daniel Gründler",
               "Johann Scharler"
             ],
             "citation_label": "Geiger et al. (2023)",
@@ -21625,7 +21625,7 @@
         "representative_papers": [
           {
             "paper_id": "W3138605302__gpt5mini_low",
-            "title": "The impact of Renewable Portfolio Standards on carbon emission trading under the background of China\u2019s electricity marketization reform",
+            "title": "The impact of Renewable Portfolio Standards on carbon emission trading under the background of China’s electricity marketization reform",
             "year": 2021,
             "edge_src": "FG3C002799",
             "edge_dst": "FG3C005566",
@@ -21902,7 +21902,7 @@
             "edge_dst_display_label": "exchange rates",
             "authors": [
               "Zixiong Xie",
-              "Shyh\u2010Wei Chen"
+              "Shyh‐Wei Chen"
             ],
             "citation_label": "Xie and Chen (2018)",
             "journal": "Economic Modelling",
@@ -21937,7 +21937,7 @@
             "edge_src_display_label": "exchange rates",
             "edge_dst_display_label": "price-cost margin",
             "authors": [
-              "Jos\u00e9 Manuel Campa",
+              "José Manuel Campa",
               "Linda S. Goldberg"
             ],
             "citation_label": "Campa and Goldberg (1995)",
@@ -22159,7 +22159,7 @@
         "representative_papers": [
           {
             "paper_id": "W3138605302__gpt5mini_low",
-            "title": "The impact of Renewable Portfolio Standards on carbon emission trading under the background of China\u2019s electricity marketization reform",
+            "title": "The impact of Renewable Portfolio Standards on carbon emission trading under the background of China’s electricity marketization reform",
             "year": 2021,
             "edge_src": "FG3C002799",
             "edge_dst": "FG3C005566",
@@ -22194,7 +22194,7 @@
           },
           {
             "paper_id": "W2598925650__gpt5mini_low",
-            "title": "The Development of the Renewable Energy Power Industry under Feed-In Tariff and Renewable Portfolio Standard: A Case Study of China\u2019s Photovoltaic Power Industry",
+            "title": "The Development of the Renewable Energy Power Industry under Feed-In Tariff and Renewable Portfolio Standard: A Case Study of China’s Photovoltaic Power Industry",
             "year": 2017,
             "edge_src": "FG3C002799",
             "edge_dst": "FG3C001511",
@@ -22335,8 +22335,8 @@
             "edge_dst_display_label": "volatility spillovers",
             "authors": [
               "Ikram Jebabli",
-              "Mohamed El H\u00e9di Arouri",
-              "Fr\u00e9d\u00e8ric Teulon"
+              "Mohamed El Hédi Arouri",
+              "Frédèric Teulon"
             ],
             "citation_label": "Jebabli et al. (2014)",
             "journal": "Energy Economics",
@@ -22384,7 +22384,7 @@
         "source_id": "FG3C001621",
         "target_id": "FG3C005649",
         "source_label": "property taxes",
-        "target_label": "price\u2013rent ratio",
+        "target_label": "price–rent ratio",
         "source_display_label": "property taxes",
         "target_display_label": "price-to-rent ratio",
         "source_display_concept_id": "FG3C001621",
@@ -22464,7 +22464,7 @@
             "edge_src_display_label": "house prices",
             "edge_dst_display_label": "price-to-rent ratio",
             "authors": [
-              "Juan Francisco Rodr\u00edguez Ayuso",
+              "Juan Francisco Rodríguez Ayuso",
               "Fernando Restoy"
             ],
             "citation_label": "Ayuso and Restoy (2007)",
@@ -22560,7 +22560,7 @@
             "authors": [
               "Bart Frijns",
               "Ivan Indriawan",
-              "Alireza Tourani\u2010Rad"
+              "Alireza Tourani‐Rad"
             ],
             "citation_label": "Frijns et al. (2018)",
             "journal": "International Review of Financial Analysis",
@@ -22597,7 +22597,7 @@
             "edge_dst_display_label": "price discovery",
             "authors": [
               "Ke Xu",
-              "Yu\u2010Lun Chen",
+              "Yu‐Lun Chen",
               "J. Jimmy Yang"
             ],
             "citation_label": "Xu et al. (2023)",
@@ -22712,7 +22712,7 @@
             "edge_dst_display_label": "free trade",
             "authors": [
               "James Lake",
-              "Mo\u00efse Nken",
+              "Moïse Nken",
               "Halis Murat Yildiz"
             ],
             "citation_label": "Lake et al. (2019)",
@@ -23108,7 +23108,7 @@
               "William Diebold",
               "Donald J. Savoie",
               "Irving Brecher",
-              "Benjam\u00edn Higgins"
+              "Benjamín Higgins"
             ],
             "citation_label": "Diebold et al. (1993)",
             "journal": "Foreign Affairs",
@@ -23214,7 +23214,7 @@
           "representative_papers": [
             {
               "paper_id": "W1488339449__gpt5mini_low",
-              "title": "Impact of High\u2010Deductible Health Plans on Health Care Utilization and Costs",
+              "title": "Impact of High‐Deductible Health Plans on Health Care Utilization and Costs",
               "year": 2010,
               "edge_src": "FG3C006085",
               "edge_dst": "FG3C000825",
@@ -23254,7 +23254,7 @@
             },
             {
               "paper_id": "W2981776378__gpt5mini_low",
-              "title": "The role of plan choice in health care utilization of high\u2010deductible plan enrollees",
+              "title": "The role of plan choice in health care utilization of high‐deductible plan enrollees",
               "year": 2019,
               "edge_src": "FG3C006085",
               "edge_dst": "FG3C000825",
@@ -23518,8 +23518,8 @@
               "edge_dst_display_label": "investment efficiency",
               "authors": [
                 "Yizhong Wu",
-                "Chien\u2010Chiang Lee",
-                "Chi\u2010Chuan Lee",
+                "Chien‐Chiang Lee",
+                "Chi‐Chuan Lee",
                 "Diyun Peng"
               ],
               "citation_label": "Wu et al. (2022)",
@@ -23772,7 +23772,7 @@
             },
             {
               "paper_id": "W3125591525__gpt5mini_low",
-              "title": "Media Coverage and the Cross\u2010section of Stock Returns",
+              "title": "Media Coverage and the Cross‐section of Stock Returns",
               "year": 2009,
               "edge_src": "FG3C001858",
               "edge_dst": "FG3C000811",
@@ -23780,7 +23780,7 @@
               "edge_dst_display_label": "expected stock returns",
               "authors": [
                 "Lily H. Fang",
-                "Jo\u00ebl Peress"
+                "Joël Peress"
               ],
               "citation_label": "Fang and Peress (2009)",
               "journal": "The Journal of Finance",
@@ -23894,7 +23894,7 @@
                 "Atif Jahanger",
                 "Mohammad Razib Hossain",
                 "Yanming Wang",
-                "Daniel Balsalobre\u2010Lorente"
+                "Daniel Balsalobre‐Lorente"
               ],
               "citation_label": "Yang et al. (2023)",
               "journal": "Economic Analysis and Policy",
@@ -24042,7 +24042,7 @@
               "edge_src_display_label": "imports",
               "edge_dst_display_label": "price-cost margin",
               "authors": [
-                "Herv\u00e9 Boulhol"
+                "Hervé Boulhol"
               ],
               "citation_label": "Boulhol (2010)",
               "journal": "Oxford Bulletin of Economics and Statistics",
@@ -24134,10 +24134,10 @@
               "edge_src_display_label": "exchange-rate regime",
               "edge_dst_display_label": "international trade",
               "authors": [
-                "J. Ernesto L\u00f3pez-C\u00f3rdova",
+                "J. Ernesto López-Córdova",
                 "Christopher M. Meissner"
               ],
-              "citation_label": "L\u00f3pez-C\u00f3rdova and Meissner (2003)",
+              "citation_label": "López-Córdova and Meissner (2003)",
               "journal": "American Economic Review",
               "citation_count": 252,
               "openalex_url": "https://openalex.org/W2102353186",
@@ -24281,12 +24281,12 @@
               "edge_src_display_label": "Special economic zones",
               "edge_dst_display_label": "investment",
               "authors": [
-                "Piotr Ci\u017ckowicz",
-                "Magda Ci\u017ckowicz-P\u0119ka\u0142a",
-                "Piotr P\u0119ka\u0142a",
-                "Andrzej Rzo\u0144ca"
+                "Piotr Ciżkowicz",
+                "Magda Ciżkowicz-Pękała",
+                "Piotr Pękała",
+                "Andrzej Rzońca"
               ],
-              "citation_label": "Ci\u017ckowicz et al. (2016)",
+              "citation_label": "Ciżkowicz et al. (2016)",
               "journal": "Journal of Economic Geography",
               "citation_count": 36,
               "openalex_url": "https://openalex.org/W3022707312",
@@ -24413,7 +24413,7 @@
               "edge_dst_display_label": "market liquidity",
               "authors": [
                 "Jasmina Arifovic",
-                "Xue\u2010Zhong He",
+                "Xue‐Zhong He",
                 "Lijian Wei"
               ],
               "citation_label": "Arifovic et al. (2022)",
@@ -24432,8 +24432,8 @@
               "edge_dst_display_label": "cost of capital",
               "authors": [
                 "Laura Malceniece",
-                "K\u0101rlis Malcenieks",
-                "T\u0101lis J. Putni\u0146\u0161"
+                "Kārlis Malcenieks",
+                "Tālis J. Putniņš"
               ],
               "citation_label": "Malceniece et al. (2019)",
               "journal": "Journal of Financial Economics",
@@ -24557,7 +24557,7 @@
             },
             {
               "paper_id": "W1910652022__gpt5mini_low",
-              "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out\u2010of\u2010Pocket Spending for Mental Health Services",
+              "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out‐of‐Pocket Spending for Mental Health Services",
               "year": 2015,
               "edge_src": "FG3C005647",
               "edge_dst": "FG3C000305",
@@ -24923,12 +24923,12 @@
               "edge_src_display_label": "Special economic zones",
               "edge_dst_display_label": "employment",
               "authors": [
-                "Piotr Ci\u017ckowicz",
-                "Magda Ci\u017ckowicz-P\u0119ka\u0142a",
-                "Piotr P\u0119ka\u0142a",
-                "Andrzej Rzo\u0144ca"
+                "Piotr Ciżkowicz",
+                "Magda Ciżkowicz-Pękała",
+                "Piotr Pękała",
+                "Andrzej Rzońca"
               ],
-              "citation_label": "Ci\u017ckowicz et al. (2016)",
+              "citation_label": "Ciżkowicz et al. (2016)",
               "journal": "Journal of Economic Geography",
               "citation_count": 36,
               "openalex_url": "https://openalex.org/W3022707312",
@@ -25340,7 +25340,7 @@
                 "Atif Jahanger",
                 "Mohammad Razib Hossain",
                 "Yanming Wang",
-                "Daniel Balsalobre\u2010Lorente"
+                "Daniel Balsalobre‐Lorente"
               ],
               "citation_label": "Yang et al. (2023)",
               "journal": "Economic Analysis and Policy",
@@ -25488,7 +25488,7 @@
               "edge_src_display_label": "imports",
               "edge_dst_display_label": "price-cost margin",
               "authors": [
-                "Herv\u00e9 Boulhol"
+                "Hervé Boulhol"
               ],
               "citation_label": "Boulhol (2010)",
               "journal": "Oxford Bulletin of Economics and Statistics",
@@ -25597,12 +25597,12 @@
               "edge_src_display_label": "Special economic zones",
               "edge_dst_display_label": "investment",
               "authors": [
-                "Piotr Ci\u017ckowicz",
-                "Magda Ci\u017ckowicz-P\u0119ka\u0142a",
-                "Piotr P\u0119ka\u0142a",
-                "Andrzej Rzo\u0144ca"
+                "Piotr Ciżkowicz",
+                "Magda Ciżkowicz-Pękała",
+                "Piotr Pękała",
+                "Andrzej Rzońca"
               ],
-              "citation_label": "Ci\u017ckowicz et al. (2016)",
+              "citation_label": "Ciżkowicz et al. (2016)",
               "journal": "Journal of Economic Geography",
               "citation_count": 36,
               "openalex_url": "https://openalex.org/W3022707312",
@@ -25837,12 +25837,12 @@
               "edge_src_display_label": "Special economic zones",
               "edge_dst_display_label": "investment",
               "authors": [
-                "Piotr Ci\u017ckowicz",
-                "Magda Ci\u017ckowicz-P\u0119ka\u0142a",
-                "Piotr P\u0119ka\u0142a",
-                "Andrzej Rzo\u0144ca"
+                "Piotr Ciżkowicz",
+                "Magda Ciżkowicz-Pękała",
+                "Piotr Pękała",
+                "Andrzej Rzońca"
               ],
-              "citation_label": "Ci\u017ckowicz et al. (2016)",
+              "citation_label": "Ciżkowicz et al. (2016)",
               "journal": "Journal of Economic Geography",
               "citation_count": 36,
               "openalex_url": "https://openalex.org/W3022707312",
@@ -26096,12 +26096,12 @@
               "edge_src_display_label": "Special economic zones",
               "edge_dst_display_label": "employment",
               "authors": [
-                "Piotr Ci\u017ckowicz",
-                "Magda Ci\u017ckowicz-P\u0119ka\u0142a",
-                "Piotr P\u0119ka\u0142a",
-                "Andrzej Rzo\u0144ca"
+                "Piotr Ciżkowicz",
+                "Magda Ciżkowicz-Pękała",
+                "Piotr Pękała",
+                "Andrzej Rzońca"
               ],
-              "citation_label": "Ci\u017ckowicz et al. (2016)",
+              "citation_label": "Ciżkowicz et al. (2016)",
               "journal": "Journal of Economic Geography",
               "citation_count": 36,
               "openalex_url": "https://openalex.org/W3022707312",
@@ -26116,10 +26116,10 @@
               "edge_src_display_label": "Special economic zones",
               "edge_dst_display_label": "productivity growth",
               "authors": [
-                "Holger G\u00f6rg",
+                "Holger Görg",
                 "Alina Mulyukova"
               ],
-              "citation_label": "G\u00f6rg and Mulyukova (2024)",
+              "citation_label": "Görg and Mulyukova (2024)",
               "journal": "European Economic Review",
               "citation_count": 15,
               "openalex_url": "https://openalex.org/W4396798331",
@@ -26350,7 +26350,7 @@
           "representative_papers": [
             {
               "paper_id": "W1488339449__gpt5mini_low",
-              "title": "Impact of High\u2010Deductible Health Plans on Health Care Utilization and Costs",
+              "title": "Impact of High‐Deductible Health Plans on Health Care Utilization and Costs",
               "year": 2010,
               "edge_src": "FG3C006085",
               "edge_dst": "FG3C000825",
@@ -26390,7 +26390,7 @@
             },
             {
               "paper_id": "W2981776378__gpt5mini_low",
-              "title": "The role of plan choice in health care utilization of high\u2010deductible plan enrollees",
+              "title": "The role of plan choice in health care utilization of high‐deductible plan enrollees",
               "year": 2019,
               "edge_src": "FG3C006085",
               "edge_dst": "FG3C000825",
@@ -26654,8 +26654,8 @@
               "edge_dst_display_label": "investment efficiency",
               "authors": [
                 "Yizhong Wu",
-                "Chien\u2010Chiang Lee",
-                "Chi\u2010Chuan Lee",
+                "Chien‐Chiang Lee",
+                "Chi‐Chuan Lee",
                 "Diyun Peng"
               ],
               "citation_label": "Wu et al. (2022)",
@@ -26908,7 +26908,7 @@
             },
             {
               "paper_id": "W3125591525__gpt5mini_low",
-              "title": "Media Coverage and the Cross\u2010section of Stock Returns",
+              "title": "Media Coverage and the Cross‐section of Stock Returns",
               "year": 2009,
               "edge_src": "FG3C001858",
               "edge_dst": "FG3C000811",
@@ -26916,7 +26916,7 @@
               "edge_dst_display_label": "expected stock returns",
               "authors": [
                 "Lily H. Fang",
-                "Jo\u00ebl Peress"
+                "Joël Peress"
               ],
               "citation_label": "Fang and Peress (2009)",
               "journal": "The Journal of Finance",
@@ -27030,7 +27030,7 @@
                 "Atif Jahanger",
                 "Mohammad Razib Hossain",
                 "Yanming Wang",
-                "Daniel Balsalobre\u2010Lorente"
+                "Daniel Balsalobre‐Lorente"
               ],
               "citation_label": "Yang et al. (2023)",
               "journal": "Economic Analysis and Policy",
@@ -27178,7 +27178,7 @@
               "edge_src_display_label": "imports",
               "edge_dst_display_label": "price-cost margin",
               "authors": [
-                "Herv\u00e9 Boulhol"
+                "Hervé Boulhol"
               ],
               "citation_label": "Boulhol (2010)",
               "journal": "Oxford Bulletin of Economics and Statistics",
@@ -27270,10 +27270,10 @@
               "edge_src_display_label": "exchange-rate regime",
               "edge_dst_display_label": "international trade",
               "authors": [
-                "J. Ernesto L\u00f3pez-C\u00f3rdova",
+                "J. Ernesto López-Córdova",
                 "Christopher M. Meissner"
               ],
-              "citation_label": "L\u00f3pez-C\u00f3rdova and Meissner (2003)",
+              "citation_label": "López-Córdova and Meissner (2003)",
               "journal": "American Economic Review",
               "citation_count": 252,
               "openalex_url": "https://openalex.org/W2102353186",
@@ -27417,12 +27417,12 @@
               "edge_src_display_label": "Special economic zones",
               "edge_dst_display_label": "investment",
               "authors": [
-                "Piotr Ci\u017ckowicz",
-                "Magda Ci\u017ckowicz-P\u0119ka\u0142a",
-                "Piotr P\u0119ka\u0142a",
-                "Andrzej Rzo\u0144ca"
+                "Piotr Ciżkowicz",
+                "Magda Ciżkowicz-Pękała",
+                "Piotr Pękała",
+                "Andrzej Rzońca"
               ],
-              "citation_label": "Ci\u017ckowicz et al. (2016)",
+              "citation_label": "Ciżkowicz et al. (2016)",
               "journal": "Journal of Economic Geography",
               "citation_count": 36,
               "openalex_url": "https://openalex.org/W3022707312",
@@ -27549,7 +27549,7 @@
               "edge_dst_display_label": "market liquidity",
               "authors": [
                 "Jasmina Arifovic",
-                "Xue\u2010Zhong He",
+                "Xue‐Zhong He",
                 "Lijian Wei"
               ],
               "citation_label": "Arifovic et al. (2022)",
@@ -27568,8 +27568,8 @@
               "edge_dst_display_label": "cost of capital",
               "authors": [
                 "Laura Malceniece",
-                "K\u0101rlis Malcenieks",
-                "T\u0101lis J. Putni\u0146\u0161"
+                "Kārlis Malcenieks",
+                "Tālis J. Putniņš"
               ],
               "citation_label": "Malceniece et al. (2019)",
               "journal": "Journal of Financial Economics",
@@ -27693,7 +27693,7 @@
             },
             {
               "paper_id": "W1910652022__gpt5mini_low",
-              "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out\u2010of\u2010Pocket Spending for Mental Health Services",
+              "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out‐of‐Pocket Spending for Mental Health Services",
               "year": 2015,
               "edge_src": "FG3C005647",
               "edge_dst": "FG3C000305",
@@ -27924,11 +27924,11 @@
               "edge_src_display_label": "economic growth",
               "edge_dst_display_label": "energy consumption",
               "authors": [
-                "Okyay U\u00e7an",
+                "Okyay Uçan",
                 "Ecem Turgut",
                 "Ayberk Nuri Berkman"
               ],
-              "citation_label": "U\u00e7an et al. (2024)",
+              "citation_label": "Uçan et al. (2024)",
               "journal": "Journal of the Knowledge Economy",
               "citation_count": 5,
               "openalex_url": "https://openalex.org/W4400358233",
@@ -28078,12 +28078,12 @@
               "edge_src_display_label": "economic growth",
               "edge_dst_display_label": "carbon emissions",
               "authors": [
-                "Fatma T\u00fcr\u00fc\u00e7",
+                "Fatma Türüç",
                 "Ata Pervar",
-                "S\u00fcheyla \u00dc\u00e7\u0131\u015f\u0131k-Erbilen",
+                "Süheyla Üçışık-Erbilen",
                 "Mehdi Seraj"
               ],
-              "citation_label": "T\u00fcr\u00fc\u00e7 et al. (2026)",
+              "citation_label": "Türüç et al. (2026)",
               "journal": "Sustainability",
               "citation_count": 0,
               "openalex_url": "https://openalex.org/W7125495636",
@@ -28185,7 +28185,7 @@
           "representative_papers": [
             {
               "paper_id": "W1488339449__gpt5mini_low",
-              "title": "Impact of High\u2010Deductible Health Plans on Health Care Utilization and Costs",
+              "title": "Impact of High‐Deductible Health Plans on Health Care Utilization and Costs",
               "year": 2010,
               "edge_src": "FG3C006085",
               "edge_dst": "FG3C000825",
@@ -28225,7 +28225,7 @@
             },
             {
               "paper_id": "W2981776378__gpt5mini_low",
-              "title": "The role of plan choice in health care utilization of high\u2010deductible plan enrollees",
+              "title": "The role of plan choice in health care utilization of high‐deductible plan enrollees",
               "year": 2019,
               "edge_src": "FG3C006085",
               "edge_dst": "FG3C000825",
@@ -28489,8 +28489,8 @@
               "edge_dst_display_label": "investment efficiency",
               "authors": [
                 "Yizhong Wu",
-                "Chien\u2010Chiang Lee",
-                "Chi\u2010Chuan Lee",
+                "Chien‐Chiang Lee",
+                "Chi‐Chuan Lee",
                 "Diyun Peng"
               ],
               "citation_label": "Wu et al. (2022)",
@@ -28743,7 +28743,7 @@
             },
             {
               "paper_id": "W3125591525__gpt5mini_low",
-              "title": "Media Coverage and the Cross\u2010section of Stock Returns",
+              "title": "Media Coverage and the Cross‐section of Stock Returns",
               "year": 2009,
               "edge_src": "FG3C001858",
               "edge_dst": "FG3C000811",
@@ -28751,7 +28751,7 @@
               "edge_dst_display_label": "expected stock returns",
               "authors": [
                 "Lily H. Fang",
-                "Jo\u00ebl Peress"
+                "Joël Peress"
               ],
               "citation_label": "Fang and Peress (2009)",
               "journal": "The Journal of Finance",
@@ -28865,7 +28865,7 @@
                 "Atif Jahanger",
                 "Mohammad Razib Hossain",
                 "Yanming Wang",
-                "Daniel Balsalobre\u2010Lorente"
+                "Daniel Balsalobre‐Lorente"
               ],
               "citation_label": "Yang et al. (2023)",
               "journal": "Economic Analysis and Policy",
@@ -29013,7 +29013,7 @@
               "edge_src_display_label": "imports",
               "edge_dst_display_label": "price-cost margin",
               "authors": [
-                "Herv\u00e9 Boulhol"
+                "Hervé Boulhol"
               ],
               "citation_label": "Boulhol (2010)",
               "journal": "Oxford Bulletin of Economics and Statistics",
@@ -29105,10 +29105,10 @@
               "edge_src_display_label": "exchange-rate regime",
               "edge_dst_display_label": "international trade",
               "authors": [
-                "J. Ernesto L\u00f3pez-C\u00f3rdova",
+                "J. Ernesto López-Córdova",
                 "Christopher M. Meissner"
               ],
-              "citation_label": "L\u00f3pez-C\u00f3rdova and Meissner (2003)",
+              "citation_label": "López-Córdova and Meissner (2003)",
               "journal": "American Economic Review",
               "citation_count": 252,
               "openalex_url": "https://openalex.org/W2102353186",
@@ -29252,12 +29252,12 @@
               "edge_src_display_label": "Special economic zones",
               "edge_dst_display_label": "investment",
               "authors": [
-                "Piotr Ci\u017ckowicz",
-                "Magda Ci\u017ckowicz-P\u0119ka\u0142a",
-                "Piotr P\u0119ka\u0142a",
-                "Andrzej Rzo\u0144ca"
+                "Piotr Ciżkowicz",
+                "Magda Ciżkowicz-Pękała",
+                "Piotr Pękała",
+                "Andrzej Rzońca"
               ],
-              "citation_label": "Ci\u017ckowicz et al. (2016)",
+              "citation_label": "Ciżkowicz et al. (2016)",
               "journal": "Journal of Economic Geography",
               "citation_count": 36,
               "openalex_url": "https://openalex.org/W3022707312",
@@ -29384,7 +29384,7 @@
               "edge_dst_display_label": "market liquidity",
               "authors": [
                 "Jasmina Arifovic",
-                "Xue\u2010Zhong He",
+                "Xue‐Zhong He",
                 "Lijian Wei"
               ],
               "citation_label": "Arifovic et al. (2022)",
@@ -29403,8 +29403,8 @@
               "edge_dst_display_label": "cost of capital",
               "authors": [
                 "Laura Malceniece",
-                "K\u0101rlis Malcenieks",
-                "T\u0101lis J. Putni\u0146\u0161"
+                "Kārlis Malcenieks",
+                "Tālis J. Putniņš"
               ],
               "citation_label": "Malceniece et al. (2019)",
               "journal": "Journal of Financial Economics",
@@ -29528,7 +29528,7 @@
             },
             {
               "paper_id": "W1910652022__gpt5mini_low",
-              "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out\u2010of\u2010Pocket Spending for Mental Health Services",
+              "title": "The Effects of Medicaid Eligibility on Mental Health Services and Out‐of‐Pocket Spending for Mental Health Services",
               "year": 2015,
               "edge_src": "FG3C005647",
               "edge_dst": "FG3C000305",
@@ -29810,14 +29810,14 @@
       "manifest_json": {
         "path": "/downloads/frontiergraph-economics-public.manifest.json",
         "filename": "frontiergraph-economics-public.manifest.json",
-        "size_bytes": 205,
-        "deferred": true
+        "size_bytes": 721,
+        "deferred": false
       },
       "checksum_txt": {
         "path": "/downloads/frontiergraph-economics-public.sha256.txt",
         "filename": "frontiergraph-economics-public.sha256.txt",
-        "size_bytes": 44,
-        "deferred": true
+        "size_bytes": 111,
+        "deferred": false
       },
       "tier2_core_zip": {
         "path": "/downloads/frontiergraph-tier2-core-indexes.zip",
