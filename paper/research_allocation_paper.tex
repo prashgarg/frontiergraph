@@ -47,6 +47,9 @@
 
 \newcommand{\repoURL}{\href{https://github.com/prashgarg/frontiergraph}{github.com/prashgarg/frontiergraph}}
 \newcommand{\fignotes}[1]{\caption*{\textit{Notes.} #1}}
+% WIP marker — renders in red bold; remove or replace with final content when done
+\newcommand{\pendingnote}[1]{%
+  \medskip\noindent\textcolor{red}{\textbf{[WIP: }\textit{#1}\textbf{]}}\medskip}
 \newtcolorbox{promptbox}{
   enhanced,
   breakable,
@@ -67,7 +70,7 @@
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 
-\title{\textbf{What Should Economics Ask Next?}}
+\title{\textbf{What Should Economics Ask Next?}\thanks{For helpful comments and discussions I thank Elliott Ash, Jasmin Baier, Thiemo Fetzer, Thomas Graeber, Paul H\"unermund, Ralf Martin, Chris Roth, Zekai Shen, and seminar participants at the CEPR--MPWZ Text-as-Data workshop. All remaining errors are my own.}}
 \author{Prashant Garg\\[0.2em]\normalsize Imperial College London}
 \date{12 April 2026\\[0.3em]\normalsize Draft for comments. Please do not cite without permission.}
 
@@ -76,54 +79,50 @@
 \onehalfspacing
 
 \begin{abstract}
-Choosing what to work on is one of the least formalized decisions in science. I study whether the local structure of past research helps screen which still-open questions are worth reading first. I build a directed literature graph from 242{,}595 published economics-facing papers from 1976 to 2026, rank open questions using only the literature available at each date, and test those rankings against which questions later enter published work. On realistic shortlists, graph-based screening outperforms ranking by popularity alone, and a second-stage model built on the same graph improves further. The gains differ across two broad kinds of question. Questions that deepen existing claims with clearer mechanisms produce more later realizations per inspected shortlist, while questions that close missing direct relations cover a larger share of the links the literature eventually adds. More broadly, the historical record suggests that economics more often adds mechanisms around existing claims than closes locally implied direct relations. The paper therefore contributes in two ways. Practically, it shows that local literature structure contains useful screening information. Descriptively, it uses that screen to characterize how economics more often moves.
+How should an economist choose which open question to work on next? I build a directed literature graph from 242{,}595 published economics-facing papers spanning 1976 to 2026, rank still-open candidate questions using only the graph available at each historical date, and test those rankings against later publication. A learned reranker built on that graph achieves a 17.0\% top-100 hit rate for mechanism-thickening questions and 10.7\% for direct-closure questions at a five-year horizon, versus 1.7\% for both under preferential attachment. The two families differ in what the screening recovers: mechanism-thickening yields denser shortlists, while direct-closure captures a larger share of all eventual realizations. These results establish that local literature structure contains useful upstream screening information---and that economics moves by deepening mechanisms around existing claims at roughly 3--12 times the rate at which it closes locally implied direct relations.
 \end{abstract}
 
 \textbf{Keywords:} research direction, economics of science, scientific discovery, question choice, literature graphs
+
+\textbf{JEL codes:} O31, O33, C45, C81
 
 \section{Introduction}
 
 Choosing what to work on is one of the least formalized decisions in economics. We have disciplined tools for identification, estimation, and inference. We have much less guidance for the upstream choice of which question deserves scarce attention in the first place. Bloom et al.~\citeyearpar{bloom2020ideas} argue that ideas are getting harder to find, while Jones~\citeyearpar{jones2009burden} emphasizes the growing knowledge burden faced by new researchers. Those arguments point in the same direction: as the stock of published work grows, it becomes harder to see which question is worth pursuing next. Foster, Rzhetsky, and Evans~\citeyearpar{foster2015tradition} add a second concern. Scientists overwhelmingly choose conservative strategies even though riskier exploration disproportionately generates high-impact work. The problem is not only that question choice is hard. It is also tilted toward the familiar.
 
-That problem becomes sharper when AI lowers the cost of downstream research tasks such as writing, background research, data analysis, and coding \citep{korinek2024generative}. Agrawal, McHale, and Oettl~\citeyearpar{agrawal2024ai} make the complementary point in a model of prioritized search: once ranking hypotheses becomes cheaper and better, the value of choosing what to test shifts further upstream. The question here is narrower than ``what should economics study?'' in the abstract. It is whether the structure of past research can help rank candidate next questions in a disciplined way.
+That problem becomes sharper when AI lowers the cost of downstream research tasks such as writing, background research, data analysis, and coding \citep{korinek2024generative}. Agrawal, McHale, and Oettl~\citeyearpar{agrawal2024ai} make the complementary point in a model of prioritized search: once ranking hypotheses becomes cheaper and better, the value of choosing what to test shifts further upstream. The question here is narrower than ``what should economics study?'' in the philosophical sense. It is whether the structure of past research can help rank candidate next questions in a disciplined way.
 
-This paper asks whether the structure of past research can help economists decide which open questions are worth reading first. I build a directed literature graph from published economics-facing papers and use it to surface two kinds of candidate next questions. In a direct-to-path case, the literature already contains a direct relation, but later work adds a clearer mechanism around it. In a path-to-direct case, the literature already contains nearby support for a relation, but the direct link itself is still missing and only appears later. The distinction matters because these are different scientific moves. The first asks where an accepted claim is still underexplained. The second asks where nearby evidence already points toward a direct relation that the literature has not yet stated explicitly.
+This paper builds a directed literature graph from 242{,}595 published economics-facing papers and tests whether that graph can predict which still-open questions later become part of the literature. At each historical date, I freeze the graph at \(t-1\), rank open candidate questions using only information available at that date, and check which ones appear in later published work. Comparing a popularity baseline, a transparent graph score, and a learned reranker, the answer is yes: a learned reranker achieves a 17.0\% top-100 hit rate for mechanism-thickening questions and 10.7\% for direct-closure questions at a five-year horizon, versus 1.7\% for both families under preferential attachment. The gains also differ in form. Mechanism-thickening yields denser shortlists (more later realizations per 100 suggestions), while direct-closure captures a larger share of all eventual realizations and ranks them earlier on average. The graph is therefore most useful as a tool for directing scarce reading time, not as a substitute for broad reading or field knowledge.
 
-An example makes the distinction concrete. Suppose the literature already links broadband access to business formation. Later work may connect that relation more clearly to search frictions, market access, or information costs. That is a direct-to-path case. Now consider a case where the literature already links trade liberalization to imported inputs and imported inputs to firm productivity, but has not yet stated a direct trade-liberalization-to-productivity relation. That is a path-to-direct case. The paper studies both prospectively in the same graph, while keeping them separate enough to compare.
+The paper studies two kinds of candidate question, which it calls \emph{direct-to-path} and \emph{path-to-direct}. In a direct-to-path case, the literature already contains a direct relation, but later work adds a clearer mechanism around it. In a path-to-direct case, the literature already contains nearby support for a relation, but the direct link itself is still missing and only appears later. These are different scientific moves. Direct-to-path asks where an accepted claim is still underexplained. Path-to-direct asks where nearby evidence already points toward a direct relation that the literature has not yet stated explicitly. An example: if the literature already links broadband access to business formation, later work adding a search-friction channel is a direct-to-path move. If the literature already connects trade liberalization to imported inputs and imported inputs to firm productivity, but has not yet stated a direct trade-to-productivity link, later work stating that link is a path-to-direct move.
 
-The empirical comparison is simple. At each date, I freeze the literature at \(t-1\), rank still-open candidate questions using only the graph observed by that date, and then ask which of them later become part of published work. I compare a popularity baseline, a transparent graph score, and a learned reranker built on the same candidate set. The popularity baseline matters because it captures one plausible model of how scientific attention moves. If later work mostly follows visibility and existing traffic, popularity should already do well.
+The paper also documents the descriptive balance between these two motions. Economics more often adds mechanisms around existing claims than closes locally implied direct relations---at roughly 3--12 times the rate, depending on the horizon and era. That asymmetry is consistent with a scientific literature that deepens accepted lines rather than replaces them, and it bears on the interpretation of both shortlist families: the more abundant family is also the one for which the screening tool is most practically useful.
 
-The main result keeps the two historical families side by side. The graph helps in both. The transparent score improves on the popularity baseline in the top 100 suggestions, and the learned reranker improves further. But the gains differ in form. Direct-to-path yields more later realizations per 100 suggestions, while path-to-direct captures a larger share of all later-realized links and ranks them earlier on average. The graph is therefore most useful as a tool for directing scarce reading time, not as a substitute for broad reading or field knowledge.
-
-The paper answers two questions. First, does graph-based screening line up better with what later becomes part of the literature? Second, what does that screening exercise say about how economics tends to move? The core analysis starts with the paired shortlist comparison across the two historical families and then asks how often the literature deepens mechanisms around existing claims versus closing a missing direct relation. Appendix~\ref{app:appendix-guide} reports the supporting material: extraction details, expanded model comparisons, paired extensions, credibility checks, supplementary usefulness exercises, and graph-evolution descriptives.
+The roadmap is as follows. Section~\ref{sec:relatedlit} positions the paper in four related literatures. Section~\ref{sec:data} describes the corpus, extraction, and normalization pipeline. Section~\ref{sec:design} defines the two question objects, the transparent scoring rule, and the learned reranker. Section~\ref{sec:results} presents the paired shortlist comparison, the direct-to-path/path-to-direct asymmetry, and the reranker decomposition. Section~\ref{sec:discussion} interprets the findings and discusses implications. The appendix provides extraction details, full model comparisons, paired extensions showing the direct-to-path/path-to-direct trade-off across reading budgets, credibility audits, and supplementary usefulness checks.
 
 \section{Related Literature}
+\label{sec:relatedlit}
 
-This paper speaks to four literatures.
+Four literatures bear on this paper, and the contribution is clearest against all four.
 
-First, it speaks to the economics of ideas, discovery, and research direction. Bloom et al.~\citeyearpar{bloom2020ideas} document rising research effort alongside falling research productivity across several domains, while Jones~\citeyearpar{jones2009burden} studies how accumulating knowledge changes the organization of innovative activity.\footnote{The ``ideas are getting harder to find'' framing is itself debated. Fort et al.~\citeyearpar{fort2025growth} argue that what is declining is the translation of ideas into measured growth, not the rate of idea generation itself.} Those papers focus on the production of ideas and the cost of reaching the frontier. A related literature asks whether incentives and norms steer researchers toward safe topics. Azoulay, Graff Zivin, and Manso~\citeyearpar{azoulay2011incentives} show that tolerating early failure produces more novel and more high-impact work. Foster, Rzhetsky, and Evans~\citeyearpar{foster2015tradition} show that conservative strategies dominate in practice even though riskier exploration disproportionately generates breakthroughs.\footnote{Packalen and Bhattacharya~\citeyearpar{packalen2020stagnation} argue that citation-based incentives have further shifted scientists away from new ideas toward established topics, creating a self-reinforcing momentum that a screening tool could partially offset.} The present paper studies a narrower but operationally central problem: given a large existing literature, can the structure of past research help screen candidate next questions in a way that is less path-dependent than pure cumulative advantage?
+The first is the economics of ideas, discovery, and research direction. Bloom et al.~\citeyearpar{bloom2020ideas} document rising research effort alongside falling research productivity, while Jones~\citeyearpar{jones2009burden} studies how accumulating knowledge changes the organization of innovative activity.\footnote{The ``ideas are getting harder to find'' framing is itself debated. Fort et al.~\citeyearpar{fort2025growth} argue that what is declining is the translation of ideas into measured growth, not the rate of idea generation itself.} Those papers focus on the cost of reaching the frontier. However, a related literature asks whether incentives and norms steer researchers toward safe topics. Azoulay, Graff Zivin, and Manso~\citeyearpar{azoulay2011incentives} show that tolerating early failure produces more novel and high-impact work. Foster, Rzhetsky, and Evans~\citeyearpar{foster2015tradition} show that conservative strategies dominate in practice even though riskier exploration disproportionately generates breakthroughs.\footnote{Bhattacharya and Packalen~\citeyearpar{packalen2020stagnation} argue that citation-based incentives have further shifted scientists away from new ideas toward established topics, creating a self-reinforcing momentum that a screening tool could partially offset.} Although those papers study incentives at the system level, they motivate a narrower, operationally tractable question: given a large existing literature, can its local structure help screen candidate next questions in a way that is less path-dependent than cumulative advantage alone?
 
-Second, the paper draws on science-of-science work that uses large-scale scientific data to study novelty, impact, and frontier formation. Fortunato et al.~\citeyearpar{fortunato2018science} provide a broad synthesis. Wang and Barabasi~\citeyearpar{wang2021science} provide a quantitative overview of that literature, while Uzzi et al.~\citeyearpar{uzzi2013atypical} show that novelty often combines conventional structure with a limited number of atypical combinations. Park, Leahey, and Funk~\citeyearpar{park2023disruptive} document a broad decline in disruptive science since the mid-twentieth century, and Wang, Veugelers, and Stephan~\citeyearpar{wang2017novelty} show that genuinely novel papers face a short-run citation penalty even though they are far more likely to become top-cited in the long run.\footnote{The disruption-decline finding is itself debated. Petersen, Arroyave, and Pammolli~\citeyearpar{petersen2024disruption} argue that part of the measured decline reflects citation inflation rather than a real shift in innovativeness. For this paper, the relevant implication is narrower: whether or not measured disruption is declining, the literature's structure visibly thickens around existing claims over time, and that thickening is exactly what the path-development results in Section~\ref{sec:path-evolution} measure.} That literature is relevant in spirit, but the empirical object here is different. I do not measure novelty from citations or reference-pair combinations. I define candidate next questions as missing links in a directed claim graph and evaluate them against later publication.
+The second literature is science-of-science work using large-scale scientific data to study novelty, impact, and frontier formation. Fortunato et al.~\citeyearpar{fortunato2018science} and Wang and Barabasi~\citeyearpar{wang2021science} provide overviews of this field. Two specific findings are relevant here. Uzzi et al.~\citeyearpar{uzzi2013atypical} show that novelty often combines conventional structure with a small number of atypical combinations. Park, Leahey, and Funk~\citeyearpar{park2023disruptive} document a broad decline in disruptive science since the mid-twentieth century.\footnote{Petersen, Arroyave, and Pammolli~\citeyearpar{petersen2024disruption} argue that part of the measured decline reflects citation inflation rather than a real shift in innovativeness. For this paper, the relevant implication is narrower: whether or not measured disruption is declining, the literature's structure visibly thickens around existing claims over time, and that thickening is exactly what the path-development results in Section~\ref{sec:path-evolution} measure.} Although this literature is relevant in spirit, the empirical object here is different. I do not measure novelty from citations or reference-pair combinations. I define candidate next questions as missing links in a directed claim graph and evaluate them prospectively against later publication.
 
-Third, the paper relates to network growth, link prediction, and learning to rank. Price~\citeyearpar{price1976general} and Barabasi and Albert~\citeyearpar{barabasi1999emergence} show why already connected nodes tend to attract more links. In this paper that is the main null, not a decorative comparison. If the future of the literature is mostly a popularity process, then a rich-get-richer rule should perform well when the target is future edge appearance. Preferential attachment is therefore a serious benchmark because it encodes one plausible model of how scientific attention moves. The broader link-prediction literature \citep{liben2007link,martinez2016survey} and the learning-to-rank tradition \citep{liu2009learning} show that learned models can improve on fixed heuristics. More directly, recent work treats missing links in scientific knowledge graphs as candidate research directions. Krenn and Zeilinger~\citeyearpar{krenn2020predicting}, Gu and Krenn~\citeyearpar{gu2025impact4cast}, Sourati et al.~\citeyearpar{sourati2023accelerating}, and Rzhetsky et al.~\citeyearpar{rzhetsky2015choosing} are the closest examples. The present paper differs in three ways: it uses a directed economics claim graph, it evaluates candidate questions prospectively in walk-forward vintages, and it interprets the ranking problem as one of scarce reading time rather than generic link prediction.
+The third literature covers network growth, link prediction, and learning to rank. Price~\citeyearpar{price1976general} and Barabasi and Albert~\citeyearpar{barabasi1999emergence} show why already connected nodes tend to attract more links---a finding that here becomes the main null rather than a decorative comparison. The broader link-prediction literature \citep{liben2007link,martinez2016survey} and the learning-to-rank tradition \citep{liu2009learning} show that learned models can improve on fixed heuristics. More directly, recent work treats missing links in scientific knowledge graphs as candidate research directions. Krenn and Zeilinger~\citeyearpar{krenn2020predicting} and Gu and Krenn~\citeyearpar{gu2025impact4cast} propose knowledge-graph based discovery benchmarks; Sourati et al.~\citeyearpar{sourati2023accelerating} and Rzhetsky et al.~\citeyearpar{rzhetsky2015choosing} connect link prediction to scientific discovery. The present paper differs from all of these in three ways: it uses a directed economics claim graph, evaluates candidate questions in walk-forward vintages, and frames the problem as one of scarce reading time rather than generic link prediction. A nearby but distinct branch asks not which missing relation later appears, but which disconnected literatures or rising clusters are worth monitoring. Swanson's literature-based discovery program \citep{swanson1986upk} and emerging-topic systems \citep{blei2006dynamictopics,chen2006citespace,small2014emergingtopics} fall in this branch. The object here is more economist-facing: a ranked list of directed candidate questions evaluated against realized publication.
 
-A nearby but distinct literature asks a different question: not which missing relation later appears, but which disconnected literatures or rising clusters are worth joining or monitoring. Swanson's classic literature-based discovery program asks whether separately developed literatures imply useful hypotheses that no single literature states explicitly \citep{swanson1986upk}. Dynamic topic models, burst-detection systems, and emerging-topic maps instead track which themes are gaining salience \citep{blei2006dynamictopics,chen2006citespace,small2014emergingtopics}. Those systems are adjacent to this paper, but the object here is narrower and more economist-facing. I do not rank topics by growth or ask whether any bridge between disconnected literatures looks plausible in principle. I rank candidate directed research questions and evaluate them against later publication.
+The fourth literature is AI-assisted scientific work. Recent systems help with hypothesis generation, literature synthesis, and manuscript support \citep{zhang2025scientificmethod,shao2025sciscigpt,korinek2024generative}.\footnote{Contemporary deployed examples include Refine (\url{https://www.refine.ink/}), the ICLR 2026 Reviewer Guide (\url{https://iclr.cc/Conferences/2026/ReviewerGuide}), Stanford Agentic Reviewer (\url{https://paperreview.ai/tech-overview}), and Project APE (\url{https://ape.socialcatalystlab.org/}). These are useful examples of the current tool landscape, but they are not treated as archival scholarly references in the bibliography.} Si, Yang, and Hashimoto~\citeyearpar{si2024llmideas} find that LLM-generated research ideas are rated more novel, though slightly less feasible, than expert-generated ones. Agrawal, McHale, and Oettl~\citeyearpar{agrawal2024ai} formalize AI-assisted discovery as prioritized search over a combinatorial hypothesis space. d'Aquin~\citeyearpar{daquin2025kgdiscovery} argues that knowledge graphs are becoming scaffolds for AI-based scientific discovery.\footnote{A related concern is that data-driven tools may narrow exploration rather than broaden it. Hoelzemann et al.~\citeyearpar{hoelzemann2024streetlight} show that when data highlights attractive but suboptimal paths, it can suppress breakthrough discovery. A screening tool has to be honest about that risk. The attention-frontier and heterogeneity results in the appendix speak to it directly.} The closest social-science comparisons in this space are Tong et al.~\citeyearpar{tong2024automating}, who extract causal relations from 43{,}312 psychology papers and use knowledge-graph link prediction to generate hypotheses, and Lee et al.~\citeyearpar{lee2024econcausal}, who construct a 10{,}490-triplet benchmark from economics and finance studies. The present paper differs in scale, in using prospective walk-forward evaluation rather than expert judgment, and in explicitly separating the benchmarkable historical object from the surfaced question---the human-readable candidate prompt built from the local graph neighborhood.
 
-Fourth, the paper enters a fast-moving discussion around AI-assisted scientific work. Recent systems already help with tasks such as hypothesis generation, literature synthesis, and manuscript or workflow support \citep{zhang2025scientificmethod,shao2025sciscigpt,korinek2024generative}.\footnote{Contemporary deployed examples include Refine (\url{https://www.refine.ink/}), the ICLR 2026 Reviewer Guide (\url{https://iclr.cc/Conferences/2026/ReviewerGuide}), Stanford Agentic Reviewer (\url{https://paperreview.ai/tech-overview}), and Project APE (\url{https://ape.socialcatalystlab.org/}). These are useful examples of the current tool landscape, but they are not treated as archival scholarly references in the bibliography.} Si, Yang, and Hashimoto~\citeyearpar{si2024llmideas} find in a large-scale evaluation that LLM-generated research ideas are rated more novel, though slightly less feasible, than expert-generated ones. Agrawal, McHale, and Oettl~\citeyearpar{agrawal2024ai} formalize AI-assisted discovery as prioritized search over a combinatorial hypothesis space. d'Aquin~\citeyearpar{daquin2025kgdiscovery} argues more broadly that knowledge graphs are becoming scaffolds for AI-based scientific discovery.\footnote{A related concern is that data-driven tools may narrow exploration rather than broaden it. Hoelzemann et al.~\citeyearpar{hoelzemann2024streetlight} show that when data highlights attractive but suboptimal paths, it can suppress breakthrough discovery. That is a ``streetlight effect.'' A screening tool has to be honest about that risk. The attention-frontier and heterogeneity results in the appendix speak to it directly.} My contribution is not a new general-purpose AI assistant and not a new claim-extraction model. The paper uses AI-extracted paper-level structure as an enabling layer, then asks an economics question: can that structure be turned into an inspectable, prospectively testable object for deciding what to read and work on next?
-
-That positioning also helps distinguish this project from generic link prediction. Generic link-prediction work asks whether a missing edge will appear in a network. The closest social-science comparisons are Tong et al.~\citeyearpar{tong2024automating}, who extract causal relations from 43{,}312 psychology papers and use knowledge-graph link prediction to generate hypotheses, and Lee et al.~\citeyearpar{lee2024econcausal}, who construct a 10{,}490-triplet benchmark from 2{,}595 economics and finance studies to evaluate LLM causal reasoning. The present paper differs in scale, in evaluation design (prospective walk-forward backtesting rather than expert judgment or causal-reasoning benchmarking), and in the separation between the benchmarkable historical object and the surfaced question. The paper is therefore best understood as economics-first metascience with a graph-based empirical object, rather than as a pure machine-learning exercise.
-
-Taken together, these literatures frame the paper's central question. If the frontier is harder to navigate, if incentives bias researchers toward the familiar, and if AI is lowering the cost of downstream research tasks, then the upstream choice of what to work on becomes more important and more amenable to structured screening. The paper tests whether a graph-based screen can add value beyond cumulative advantage in that specific decision problem. Table~\ref{tab:positioning} summarizes how this paper differs from the closest comparable systems.
+The present paper uses AI-extracted paper-level structure as an enabling layer and then asks an economics question: can that structure be turned into an inspectable, prospectively testable object for deciding what to read and work on next? Table~\ref{tab:positioning} summarizes how this paper differs from the closest comparable systems. The positioning is economics-first metascience with a graph-based empirical object, not a general-purpose AI assistant or a claim-extraction model.
 
 \section{Data, Extraction, and Normalization}
+\label{sec:data}
 
-This section defines the paper's main data object before the benchmark begins. The paper starts from a published-journal corpus, extracts a paper-level claim graph from each title and abstract, matches repeated labels across papers, and then ranks missing directed links for prospective evaluation. The selected journal corpus contains 242{,}595 papers from the top 150 core economics journals and the top 150 adjacent journals under the field-weighted citation impact selection rule. The sample spans 1976 to early 2026. Of those papers, 230{,}929 contain at least one extracted edge, yielding 1{,}443{,}407 raw extracted edges. After normalization and graph construction, the benchmark graph retains 230{,}479 papers and 1{,}271{,}014 normalized links. The frozen ontology is a separate object used for node matching and audit; it contains 154{,}359 rows. The next figures walk through the pipeline in order: one paper-level extraction, cross-paper matching into a shared graph, one live graph neighborhood, and the difference between the benchmark event and the richer question a reader inspects.
+The sample covers 242{,}595 published economics-facing papers from 300 journals spanning 1976 to early 2026, at the directed concept-pair level. The pipeline extracts a paper-level claim graph from each title and abstract, matches repeated concept labels across papers into a shared node inventory, and then ranks missing directed links for prospective evaluation. Of those papers, 230{,}929 contain at least one extracted edge, yielding 1{,}443{,}407 raw extracted edges. After normalization and graph construction, the benchmark graph retains 230{,}479 papers and 1{,}271{,}014 normalized links. The frozen ontology---a fixed vocabulary of canonical concept labels used for cross-paper node matching and audit---contains 154{,}359 rows and is a separate object from the live benchmark graph. The next figures walk through the pipeline in order: one paper-level extraction, cross-paper matching into a shared graph, one live graph neighborhood, and the difference between the benchmark event and the richer question a reader inspects.
 
 \subsection{Corpus}
 
-The paper uses the published-journal corpus because the goal is to study realized scientific structure in an economics-facing literature, not to optimize coverage of working papers, drafts, or preprints. This choice is conservative. It sacrifices some freshness in exchange for clearer source control, more stable metadata, and a graph that is easier to interpret as realized economics research rather than a noisy mix of partially filtered text. Work-level metadata, source metadata, and journal assignments come from OpenAlex.\footnote{OpenAlex enters the paper as the bibliographic and journal-metadata layer. The extraction, normalization, and ranking steps are built on top of that source rather than inherited from it.}
-
-The journal universe is deliberately narrow in two senses. First, it uses a selected journal universe rather than a universal bibliographic crawl. Second, it uses the FWCI-based selection rule so that the retained sample is tied to a published-literature core with credible economics or adjacent relevance. This is not meant to claim that the retained corpus exhausts the frontier. It is meant to define a reproducible, interpretable literature against which missing links can be backtested. Appendix~\ref{app:benchmark-details} summarizes the resulting corpus waterfall and the retention numbers.
+The corpus covers the top 150 core economics journals and the top 150 adjacent journals, selected by field-weighted citation impact (FWCI). Work-level metadata, source metadata, and journal assignments come from OpenAlex.\footnote{OpenAlex enters the paper as the bibliographic and journal-metadata layer. The extraction, normalization, and ranking steps are built on top of that source rather than inherited from it.} The sample uses published journal papers rather than working papers, drafts, or preprints, because the goal is to study realized scientific structure in an economics-facing literature. That choice sacrifices some freshness in exchange for clearer source control, more stable metadata, and a graph that is easier to interpret as realized research rather than a mix of partially filtered text. The FWCI-based selection rule ties the retained sample to a published-literature core with credible economics or adjacent relevance. The corpus is not meant to exhaust the frontier. It defines a reproducible, interpretable literature against which missing links can be backtested. Appendix~\ref{app:benchmark-details} summarizes the corpus waterfall and retention numbers.
 
 \begin{figure}[H]
   \caption{A paper excerpt and its local graph}
@@ -177,7 +176,7 @@ The decision to work paper by paper first is deliberate. At extraction time, the
 
 \subsection{Node normalization}
 
-The normalization problem is central in this paper because candidate generation, path counts, gap measures, and missingness all depend on node identity. Paper-local concept strings vary in wording, scope, and granularity. ``Inflation in Germany'', ``inflation'', and ``German inflation'' should not automatically remain three separate graph nodes if the downstream object is a reusable concept graph. But they should not be merged carelessly either.
+Node normalization is central to the design because candidate generation, path counts, gap measures, and missingness all depend on node identity. Paper-local concept strings vary in wording, scope, and granularity. ``Inflation in Germany'', ``inflation'', and ``German inflation'' should not automatically remain three separate graph nodes if the downstream object is a reusable concept graph. But they should not be merged carelessly either.
 
 For that reason the paper uses a fixed ontology and an auditable matching procedure rather than letting every paper-local label become its own global node or allowing unconstrained merging. The ontology combines JEL, an economics-filtered Wikidata pull, OpenAlex topics, OpenAlex keywords, and an economics-filtered Wikipedia crawl. The frozen baseline contains 154{,}359 rows. Matching then proceeds in stages. Exact lexical cases are resolved deterministically first. Harder cases use embedding retrieval, but the system keeps multiple candidates and reviewed overlays rather than forcing one irreversible merge.\footnote{The embedding step is used as a retrieval and ranking device after exact lexical passes, not as an unconstrained merge rule. That ordering keeps obvious cases deterministic and makes softer matches auditable.} The practical aim is simple: merge obvious duplicates, avoid false precision, and keep uncertain cases visible for later audit rather than hiding them inside one aggressive normalization pass. Appendix~\ref{app:node-normalization} gives the full algorithm and the retention counts. Table~\ref{tab:notation} fixes the key notation used throughout the paper.
 
@@ -271,27 +270,30 @@ For that reason the paper uses a fixed ontology and an auditable matching proced
 \end{figure}
 
 \section{Question Objects and Evaluation}
+\label{sec:design}
 
-The graph is now a dated concept graph with directed causal links and undirected contextual support. Figure~\ref{fig:real-neighborhood} shows one real neighborhood. The historical backtest needs a dated event. The reader needs a question worth inspecting. Those are not always the same object. I therefore separate two graph-grounded historical question objects from the richer reader-facing question built around them.
+A natural first instinct is to ask a large language model directly: list the concept pairs likely to be studied next, or judge whether a given pair will be connected. The difficulty is one of evaluation rather than prediction. A general-purpose model has been trained on much of the period one would hope to predict, so any accuracy figure is confounded by leakage from the test window into the training corpus \citep{kapoor2023leakage,carlini2023memorization}. It has no calibrated base rate at which pairs become linked, so shortlists cannot be compared against a top-\(K\) realization count. And it cannot be re-run at strict pre-training cutoffs, which rules out walk-forward evaluation. Semantic-similarity baselines over concept embeddings inherit the same problems. What follows in this section is designed around those constraints: a dated support graph, a transparent structural score, and a learned reranker evaluated walk-forward against realized future links.
+
+The historical backtest requires separating two objects: the dated graph event that can be tested prospectively, and the reader-facing question built from the same neighborhood. Figure~\ref{fig:real-neighborhood} shows one real neighborhood of the underlying concept graph. The remainder of this section makes the distinction precise.
 
 \subsection{Two question objects}
 \label{sec:missing-links}
 
 The graph supports two historical families of candidate question. In a \emph{direct-to-path} case, the literature already contains a direct relation at date \(t-1\), but the surrounding mechanism is still thin. Later work adds a mediating path around that relation. In a \emph{path-to-direct} case, the literature already contains a local path at date \(t-1\), but the direct relation itself is still missing. Later work states that direct relation explicitly.
 
-The distinction matters because these are different scientific moves. Direct-to-path asks where an accepted relation is still underexplained. Path-to-direct asks where nearby evidence already points to a direct claim that the literature has not yet stated. Economists will often care more about the first object because much empirical work moves from reduced-form relations to channels, heterogeneity, and scope. But the second matters too because some later papers do close a missing direct relation rather than only elaborate an accepted claim.
+The distinction matters because the two families ask different things of a literature. Direct-to-path asks where an accepted relation is still underexplained. Path-to-direct asks where nearby evidence already points to a direct claim the literature has not yet stated. Direct-to-path is the more immediately readable family for most economists, since much empirical work moves from reduced-form relations to channels, heterogeneity, and scope conditions. But path-to-direct matters too: some later papers close a missing direct relation rather than only elaborate an accepted claim.
 
-The headline benchmark is directed. At cutoff \(t\), the candidate universe is the set of directed causal links that are still missing from the graph observed through year \(t-1\). Undirected contextual support remains important because it helps score and interpret those directed candidates, but the main historical comparison does not rank undirected pairs separately.
+The headline benchmark is directed. At cutoff \(t\), the candidate universe is the set of directed causal links that are still missing from the graph observed through year \(t-1\). Undirected contextual support remains important: it scores and interprets the directed candidates without itself being ranked.
 
 For the directed causal task, the candidate universe at cutoff \(t\) is
 \[
 \mathcal{C}^{D}_{t}=\{(u,v)\in V\times V: u\neq v,\ (u\rightarrow v)\notin E^{D}_{t-1}\},
 \]
-where \(E^{D}_{t-1}\) denotes the directed causal subgraph observed through year \(t-1\). A future realization occurs when \(u \rightarrow v\) first appears during \([t,t+h]\). At each cutoff, take the active concepts, form all ordered source-target pairs, and drop any pair whose directed causal edge is already in the graph. What remains is the set of still-missing direct claims the paper can rank at date \(t\). A candidate counts as realized only when that direct claim first appears within the horizon window, not when the concepts merely keep co-appearing or when the surrounding neighborhood changes in some other way.
+where \(E^{D}_{t-1}\) denotes the directed causal subgraph observed through year \(t-1\). A future realization occurs when \(u \rightarrow v\) first appears during \([t,t+h]\). At each cutoff, take the active concepts, form all ordered source-target pairs, and drop any pair whose directed causal edge is already in the graph. What remains is the set of still-missing direct claims the paper can rank at date \(t\). A candidate counts as realized only when that direct claim first appears within the horizon window, not when the concepts merely keep co-appearing.
 
 The historical event and the surfaced question are not the same. The historical event is whether the relevant direct edge or path appears later in the graph. The surfaced question is the human-readable prompt built around the local neighborhood. That separation matters because economists do not browse bare graph events. They browse questions that could plausibly become papers (Figure~\ref{fig:candidate-schematic}).
 
-The surfaced question stays centered on the endpoints, or on the endpoints plus one mediator, for a practical reason. The benchmark needs one dated event, and the reader needs one inspectable question. A fuller local neighborhood may contain several paths and several overlapping readings, but those richer motifs enter as supporting evidence rather than as the event itself.
+The surfaced question stays centered on the endpoints---or on the endpoints plus one mediator---because the benchmark requires one dated event and the reader needs one inspectable question. A fuller local neighborhood may contain several paths and overlapping readings, but those richer motifs enter as supporting evidence rather than as the event itself.
 
 The main backtest also holds the active concept set fixed at the cutoff. A distinct extension is \emph{node activation}: dormant ontology concepts, weakly grounded phrases, or genuinely new concepts entering the active graph later. That object matters, but it requires a different dated event than missing-link appearance and is therefore better treated as a separate frontier problem.
 
@@ -380,7 +382,7 @@ Two kinds of surfaced questions matter in practice. Gap questions already have r
   \fignotes{This figure exists to separate two screening cases that would otherwise look similar in prose. The left panel shows a gap-like candidate: nearby support is already dense, but the direct relation remains missing. The right panel shows a more boundary-like candidate: the two end concepts are connected only by a thinner mechanism chain. The node labels are hand-curated economics-facing examples used only to make the local graph pattern readable. The diagrams are conceptual rather than exhaustive.}
 \end{figure}
 
-In the language of the graph, gap questions have high local support and low direct completion. Boundary questions have weaker local closure but connect parts of the graph that are still far apart. The distinction becomes substantively useful later, because the main model tends to surface a different gap-boundary mix than the popularity benchmark.
+In the language of the graph, gap questions have high local support and low direct completion. Boundary questions have weaker local closure but connect parts of the graph that are still far apart. The gap-boundary split matters for interpreting the screening results: the reranker surfaces a different gap-boundary mix than the popularity benchmark (Section~\ref{sec:results}).
 
 \subsection{Transparent scoring rule}
 
@@ -461,9 +463,9 @@ weights are fixed by design rather than tuned to maximize forecasting
 performance. A pair scores highly when several nearby routes keep pointing toward it, the
 direct relation still looks oddly absent relative to that support, and the pair is not
 simply another generic high-degree combination. Figures~\ref{fig:gap-boundary}
-and~\ref{fig:score-components} are useful here because they show what the rule is actually
-rewarding: multiple short paths, repeated local support, and a direct link that still looks
-underfilled relative to its neighborhood.
+and~\ref{fig:score-components} show directly what the rule rewards: multiple short paths,
+repeated local support, and a direct link that still looks underfilled relative to its
+neighborhood.
 The notation is easier to read if each term is treated as answering one question. Is there
 already short local support connecting the endpoints? That is \(\tilde P\). Does the direct
 claim still look missing relative to that support? That is \(G\). Is the signal repeated in
@@ -475,30 +477,29 @@ penalty for generic popularity.
 
 That transparency choice matters for interpretation. The graph already stores stability,
 causal-presentation, evidence-type, and edge-role metadata, but the main score does not yet
-fully weight those signals. That is deliberate in this version. The score is meant to be
-inspectable question by question rather than optimized as a forecasting black box, and
-richer credibility weighting is better understood as the next extension than as a hidden
-tuning layer.
+fully weight those signals. That choice is deliberate. The score is meant to be inspectable question by question rather
+than optimized as a forecasting black box, and richer credibility weighting is better
+understood as the next extension than as a hidden tuning layer.
 
 \subsection{Learned reranker}
 \label{sec:reranker-design}
 
 The transparent score is fixed-weight and inspectable. Its weights are chosen by design rather than tuned to historical outcomes, which keeps the score readable question by question. The cost is that fixed weights may miss combinations of graph features that matter for screening. The learned reranker asks a narrower question: if the candidate set and time discipline stay fixed, does a model that learns how to weight the same graph information improve the shortlist? The reranker uses the same missing-link candidates, only information available at the historical cutoff, and no text, author, or institutional features.
 
-\paragraph{Feature families.} 
-The reranker uses five nested feature families. The first is the transparent graph score itself. The second adds local structure: path support, motif counts, mediator counts, co-occurrence signals, endpoint degree products, and a same-field indicator. The third adds timing: support age, recency of the most recent supporting edge, and recent-window degree and incident counts for each endpoint. The fourth adds evidence composition: mean edge stability, evidence-type diversity, venue diversity, source diversity, and mean field-weighted citation impact at each endpoint. The fifth adds boundary and gap indicators: whether the endpoints sit in different field groups with no co-occurrence, whether the pair looks gap-like, and the local closure density around the pair. The richest specification uses 34 graph-derived features. Table~\ref{tab:feature-families} in Appendix~\ref{app:reranker-design} lists the full inventory.
+\paragraph{Feature families.}
+The reranker uses five nested feature families. The base is the transparent graph score itself. Two further families add local graph structure---path support, motif counts, mediator counts, co-occurrence signals, endpoint degree products, and a same-field indicator---and timing signals: support age, recency of the most recent supporting edge, and recent-window degree and incident counts for each endpoint. The final two families cover evidence composition (mean edge stability, evidence-type diversity, venue diversity, source diversity, and mean field-weighted citation impact at each endpoint) and boundary and gap indicators (whether the endpoints sit in different field groups with no co-occurrence, whether the pair looks gap-like, and the local closure density around the pair). The richest specification uses 34 graph-derived features; Table~\ref{tab:feature-families} in Appendix~\ref{app:reranker-design} lists the full inventory. The ordering is cumulative so each nested specification's marginal contribution can be isolated.
 
 \paragraph{Training design.}
 Training follows the same walk-forward discipline as the main benchmark. At each evaluation cutoff \(t\), the model is trained only on earlier cutoff-year cells and is evaluated at \(t\). Features are computed from the historical corpus through year \(t-1\). The positive label is whether the candidate edge first appears within the evaluation horizon. I test two model families: logistic regression with class-balanced weights, and a pairwise ranking model trained on positive-versus-negative feature differences. Both use \(L_2\) regularization. Because the feature families are nested, the paper can ask a simple question at each step: does adding more graph information improve screening beyond topology alone? Appendix~\ref{app:reranker-design} gives the full training design, regularization grid, best configurations by horizon, and grouped feature decompositions.
 
 \paragraph{Scope.}
-The reranker stays inside the graph-screening framing: every feature comes from the literature graph (no text, no author identity, no external data), the candidate set is the same set of missing links, and the temporal discipline is the same walk-forward design.\footnote{The difference is only in how the graph features are combined: by fixed design judgment in the transparent score, or by weights learned from earlier cutoffs in the reranker.}
+The reranker stays inside the graph-screening framing: every feature comes from the literature graph (no text, no author identity, no external data), the candidate set is the same set of missing links, and the temporal discipline is the same walk-forward design.\footnote{The difference is only in how the graph features are combined: by fixed design judgment in the transparent score, or by weights learned from earlier cutoffs in the reranker. A separate design question is how far out in the support graph to look when generating candidates. The main benchmark uses \texttt{max\_path\_len = 3}, allowing paths of length two (one mediator) and three (two mediators). Appendix~\ref{app:path-length-axis} documents the sensitivity of the results to that choice, comparing path lengths 2 and 3 on the same tuned pipeline. Appendix~\ref{app:path-length-illustrations} makes that comparison concrete with four curated endpoint pairs (one per cluster), and Appendix~\ref{app:path-length-illustrations-sweep} extends the illustration to full per-source top-20 target sweeps for eight anchor concepts. Appendix~\ref{app:reranker-design} includes a Shapley-value decomposition showing which features drive the combined model's predictions.}
 
 \subsection{Walk-forward evaluation}
 
-The prospective design freezes the graph at year \(t-1\), ranks candidates using only information available at that date, and then checks whether those links first appear over the evaluation horizon. This vintage design avoids using future edges, future degrees, and later realizations when scoring the historical cutoff year,\footnote{In other words, the model at year \(t-1\) is not allowed to borrow information from papers that appear in \(t\) or later. That is the sense in which the design avoids leakage here.} which keeps the interpretation close to the real ex ante decision problem. The benchmark is therefore not ``how well does the score fit the historical graph?'' but ``how well would this score have surfaced links that later became realized work?'' That distinction matters because retrospective fit can reward mechanical regularities that are not actually useful for research allocation.
+The prospective design freezes the graph at year \(t-1\), ranks candidates using only information available at that date, and checks whether those links first appear over the evaluation horizon.\footnote{The model at year \(t-1\) cannot use information from papers appearing in \(t\) or later---that is the sense in which the design avoids leakage.} This keeps the benchmark close to the ex ante decision problem rather than retrospective fit. The question is not ``how well does the score fit the historical graph?'' but ``how well would this score have surfaced links that later became realized work?'' Retrospective fit can reward mechanical regularities that carry no information about research allocation; the walk-forward design cannot.
 
-For each cutoff year, the graph is built from the historical stock only. Realizations are then defined from future papers over the chosen horizon. The benchmark is rolling rather than one-shot, so each horizon is evaluated across multiple cutoff dates. A cutoff is eligible for horizon \(h\) only if \(t+h\leq 2026\), and the appendix horizon extension applies the same rule on a five-year cutoff grid when it extends the transparent benchmark to \(h=20\). The headline benchmark focuses on directed causal candidates, but the fuller atlas also evaluates directed and undirected objects separately and then pools them by weighted aggregation rather than by constructing one mixed ranking universe. Figure~\ref{fig:evaluation-design} makes the temporal discipline visual.
+For each cutoff year, the graph is built from the historical stock only. Realizations are then defined from future papers over the chosen horizon. The benchmark is rolling rather than one-shot, so each horizon is evaluated across multiple cutoff dates. A cutoff is eligible for horizon \(h\) only if \(t+h\leq 2026\); the appendix horizon extension applies the same rule on a five-year cutoff grid when it extends the transparent benchmark to \(h=20\). The headline benchmark focuses on directed causal candidates. The fuller atlas also evaluates directed and undirected objects separately and pools them by weighted aggregation rather than constructing one mixed ranking universe. Figure~\ref{fig:evaluation-design} makes the temporal discipline visual.
 
 \begin{figure}[p]
   \caption{Walk-forward evaluation keeps scoring vintage-correct}
@@ -601,17 +602,7 @@ Preferential attachment is the cumulative-advantage null. Co-occurrence asks whe
 \paragraph{Horizon choice.} The main horizons are 5, 10, and 15 years. Five years is a natural first window in economics because publication and diffusion are slow relative to many neighboring fields \citep{hadavand2024publishing}. But a five-year window is not enough to see many slower adjustments in topic, method, and citation uptake. Economics papers often keep accumulating attention over long citation life cycles, which is one reason to look beyond only the short run \citep{hamermesh2018citations}. Ten years therefore captures slower movement in questions that take time to propagate through papers, methods, and field conventions. Fifteen years remains empirically useful because many slower literatures are still only partly visible at shorter windows. Three years and twenty years are kept as appendix extensions, but the main benchmark comparison is now centered on 5, 10, and 15 years.
 
 \section{Results}
-
-The results reported first are the ones available symmetrically for both historical
-families. The families are related but not identical. Path-to-direct asks whether a locally
-supported direct relation later becomes explicit. Direct-to-path asks whether an existing
-direct relation later acquires a clearer mechanism. The same shortlist metrics can be used
-for both, but they answer different questions. Within each family, the metrics describe how
-well the ranking surfaces later realizations of that family-specific event. Cross-family
-comparisons are still useful, but they should be read as comparisons across different
-historical motions rather than as one common denominator problem. Family-specific frontier,
-weighting, and heterogeneity extensions stay in the appendix until both families have
-matching runs.
+\label{sec:results}
 
 \subsection{Paired shortlist comparison}
 
@@ -622,14 +613,14 @@ cumulative-advantage process does most of the work, a popularity rule should alr
 future questions well. It does not. In both historical families, the transparent graph
 score beats preferential attachment, and the learned reranker improves further.
 
-The two families then diverge in a useful way. Direct-to-path yields denser shortlists. In
+The two families then diverge in form. Direct-to-path yields denser shortlists. In
 plain language, a larger share of the top 100 suggestions later becomes part of the
-published record. At \(h=5\), the learned reranker surfaces about 16.0 future links per 100
-suggestions in direct-to-path, versus 10.5 in path-to-direct, which is equivalent to a
-16.0\% versus 10.5\% shortlist hit rate. At \(h=10\), the comparison is 31.3 versus 20.7.
-At \(h=15\), it is 45.6 versus 26.4. Path-to-direct instead captures more of the
+published record. At \(h=5\), the learned reranker surfaces about 17.0 future links per 100
+suggestions in direct-to-path, versus 10.7 in path-to-direct, which is equivalent to a
+17.0\% versus 10.7\% shortlist hit rate. At \(h=10\), the comparison is 29.5 versus 21.2.
+At \(h=15\), it is 41.2 versus 26.0. Path-to-direct instead captures more of the
 later-realized stock and ranks it earlier on average. The learned reranker reaches
-Recall@100 of 13.8, 13.9, and 15.4 across \(h=5,10,15\), versus 7.6, 10.0, and 8.7 in
+Recall@100 of 11.9, 15.5, and 15.3 across \(h=5,10,15\), versus 8.8, 9.6, and 7.7 in
 direct-to-path (Figure~\ref{fig:main-benchmark} and
 Table~\ref{tab:benchmark-summary-main}).
 
@@ -637,40 +628,18 @@ Table~\ref{tab:benchmark-summary-main}).
   \caption{The two historical families are informative in different ways}
   \label{fig:main-benchmark}
   \centering
-  \includegraphics[width=0.92\linewidth]{../outputs/paper/149_dual_family_main_pairing/dual_family_main_benchmark.pdf}
+  \includegraphics[width=0.92\linewidth]{../outputs/paper/193_dual_family_main_pairing_field_overlap/dual_family_main_benchmark.pdf}
   \fignotes{Each row is one historical family and each column is one shortlist metric. Path-to-direct asks whether a locally supported direct relation later appears. Direct-to-path asks whether an existing direct relation later acquires a supporting path. Within each family, the transparent score beats preferential attachment and the learned reranker improves further. Across families, the comparison is not one-dimensional: direct-to-path delivers more later realizations per 100 suggestions, while path-to-direct has higher Recall@100 and MRR.}
 \end{figure}
 
-This is a severe screening problem in both families. The top-100 shortlist is being asked to
-pull forward a small fraction of a much larger future stock. The graph helps, but it helps
-in different ways. In direct-to-path, the main gain is a denser flow of later realizations
-through the shortlist. In path-to-direct, the main gain is bringing a larger share of the
-later-realized stock nearer the top of the ranking.
+The top-100 shortlist recovers 10--15\% of the eventual realization stock from candidate pools that contain thousands of pairs. The graph helps, but it helps in different ways. In direct-to-path, the main gain is a denser flow of later realizations through the shortlist: Precision@100 rises. In path-to-direct, the main gain is bringing a larger share of the later-realized stock nearer the top of the ranking: Recall@100 and MRR rise.
 
-That distinction is useful rather than awkward. It says that the two families should not be
-collapsed into one generic score. They capture different forms of research progress. One is
-the later appearance of a direct relation. The other is the later appearance of a mechanism
-around an existing relation. Economists will often care more immediately about the second
-object, because much empirical work moves from a reduced-form relation to channels,
-heterogeneity, and scope conditions. But the first still matters, because some later papers
-do close a missing direct claim that nearby support had already made plausible.
+The two families capture different forms of research progress and should not be collapsed into one generic score. Direct-to-path is most useful when an editor, researcher, or funder wants a sharp shortlist of claims that look paper-ready but still underworked. Path-to-direct is most useful when the task is to see which accepted claims are still structurally thin---where mechanism work is still missing. Much empirical economics moves from a reduced-form relation to channels, heterogeneity, and scope conditions, so direct-to-path is the more immediately readable family for most economists. But path-to-direct still matters: it closes missing direct claims that nearby support had already made plausible.
 
 \subsection{Mechanism thickening versus direct closure}
 \label{sec:path-evolution}
 
-\subsubsection{Aggregate patterns}
-
-This subsection asks which motion is more common. One is direct closure: a supporting path
-already exists at \(t-1\), the direct link does not, and that direct link later appears.
-The other is mechanism thickening: a direct link already exists at \(t-1\), but a
-supporting mediator path appears only later. The distinction matters because it separates
-two uses of research effort. Direct closure states a missing claim. Mechanism thickening
-explains, disciplines, or extends a claim the literature already treats as meaningful. Work
-on conservative search and declining disruption suggests that later work often develops
-accepted lines rather than replaces them with wholly new ones
-\citep{foster2015tradition,park2023disruptive}. I compare the two motions on the same dated
-length-2 graph structure
-(Figure~\ref{fig:candidate-schematic}).
+Which motion is more common? One is direct closure: a supporting path already exists at \(t-1\), the direct link does not, and that direct link later appears. The other is mechanism thickening: a direct link already exists at \(t-1\), but a supporting mediator path appears only later. The distinction separates two uses of research effort. Direct closure states a missing claim. Mechanism thickening explains, disciplines, or extends a claim the literature already treats as meaningful. Work on conservative search and declining disruption suggests that later work often develops accepted lines rather than replaces them with wholly new ones \citep{foster2015tradition,park2023disruptive}. I compare the two motions on the same dated length-2 graph structure (Figure~\ref{fig:candidate-schematic}).
 
 \begin{figure}[t]
   \caption{Mechanism thickening is more common than direct closure}
@@ -680,25 +649,19 @@ length-2 graph structure
   \fignotes{``Path to direct'': a local path exists first and the direct link appears later. ``Direct to path'': the direct link exists first and a mediating path appears later. The figure exists to compare these two motions directly. Mechanism-deepening around existing claims dominates at all horizons.}
 \end{figure}
 
-The aggregate comparison is clear (Figure~\ref{fig:path-evolution}). Direct-to-path
-transitions dominate path-to-direct transitions in every cutoff-period block and at every
-horizon. The cleanest way to state this is in transition rates, because the eligible sets
-differ. At \(h=10\), the direct-to-path transition share rises from about \(0.009\) in the
-1990s to \(0.043\) in the 2000s and \(0.121\) in the 2010s, while the corresponding
-path-to-direct shares are about \(0.003\), \(0.007\), and \(0.014\).
+The aggregate comparison is clear (Figure~\ref{fig:path-evolution}). Direct-to-path transitions dominate path-to-direct transitions in every cutoff-period block and at every horizon. The cleanest way to state this is in transition rates, because the eligible sets differ. At \(h=10\), the direct-to-path transition share rises from about 0.9\% in the 1990s to 4.3\% in the 2000s and 12.1\% in the 2010s---a roughly 12-fold increase over three decades---while the corresponding path-to-direct shares are about 0.3\%, 0.7\%, and 1.4\%.\footnote{These numbers use a length-2 definition of ``supporting path.'' Appendix~\ref{app:graph-evolution} reports the same rates under a length-3 definition (any three-hop chain $u \to w_1 \to w_2 \to v$). The direct-to-path share roughly doubles at every horizon under L3 (e.g., at $h=10$: 1.9\% $\to$ 10.3\% $\to$ 30.2\% across decades), while the path-to-direct share is diluted by the larger eligible set; the direct-to-path over path-to-direct ratio therefore strengthens, not weakens, when the path definition is broadened (Table~\ref{tab:path-evolution-L2-vs-L3}). The 12-fold figure in the text is the conservative length-2 version.}
 
 The gap is large. Economics more often elaborates mechanisms around claims it already states
 than closes a missing direct relation implied by nearby support. That is consistent with a
 broader view of scientific change in which the literature more often thickens around
 existing structure than opens wholly new direct connections
-\citep{foster2015tradition,park2023disruptive}. In this paper's terms, the
-graph more often surfaces structured elaborations of accepted claims than missing direct
+\citep{foster2015tradition,park2023disruptive}. The graph more often surfaces structured elaborations of accepted claims than missing direct
 links between otherwise distant concepts. That helps explain why direct-to-path is the more
 natural reader-facing object in economics: it lines up with a literature that often asks
 not only whether a relation exists, but through what channel, under what conditions, and
 with what supporting mechanism.
 
-The pattern varies across the literature in economically interpretable ways. Adjacent journals are relatively more path-closure heavy than the core, but direct-to-path still dominates in both tiers. At \(h=5\), the share of realized transitions taking the path-to-direct form is about \(0.45\) in adjacent journals versus \(0.28\) in the core. Finance remains more direct-to-path heavy throughout. Figure~\ref{fig:path-source-mix} reports the journal-tier split.
+The pattern varies across the literature in economically interpretable ways. Adjacent journals are relatively more path-closure heavy than the core, but direct-to-path still dominates in both tiers. At \(h=5\), the share of realized transitions taking the path-to-direct form is about \(0.45\) in adjacent journals versus \(0.28\) in the core. Finance remains more direct-to-path heavy throughout. Figure~\ref{fig:path-source-mix} reports the journal-tier split. The asymmetry is therefore not an artefact of which journals are included in the core.
 
 \begin{figure}[h]
   \caption{Adjacent journals close more path-implied links, but direct-to-path still dominates}
@@ -708,40 +671,31 @@ The pattern varies across the literature in economically interpretable ways. Adj
   \fignotes{This figure asks whether the transition mix differs by journal tier. It reports the share of realized path-related transitions taking the path-to-direct form by journal tier and horizon. Adjacent journals are consistently more path-closure heavy than the core, but direct-to-path remains the larger transition type in both tiers.}
 \end{figure}
 
-The aggregate transition pattern also clarifies how the surfaced object should be read. The
-most useful question is often richer than a single missing edge, because the literature more
-often deepens mechanisms around existing claims than it closes one missing direct relation.
-Illustrative surfaced examples therefore belong naturally in a section that keeps both
-families in view rather than treating direct closure as the default object.
-
-Taken together, the paired evidence says two things. In both historical families, graph
-structure improves on popularity and the reranker improves further. But the larger
-substantive point is that much of scientific development takes the form of
-mechanism-deepening around existing claims. The most useful next question is therefore often
-richer than a single missing edge.
+The paired evidence carries two lessons. In both historical families, graph structure
+improves on popularity and the reranker improves further. The larger substantive point is
+that much of scientific development takes the form of mechanism-deepening around existing
+claims. The most useful next question is therefore often richer than a single missing edge.
 
 \subsection{Reranked results in both families}
 
-The baseline comparison is now established. The next question is whether learned graph
-features improve on the same candidate set once the transparent ranking has done the first
-pass. They do in both families. The reranker keeps the ontology, sample, and timing
-discipline fixed and changes only how graph features are weighted. The best reranker is not
-the same in every family and horizon, so the appendix reports the full tuning table. The
-main point is simpler: once the graph defines the candidate set, learned weighting improves
-on the transparent score in both families.
+The learned reranker improves on the transparent score in both families. Keeping the
+ontology, sample, and timing discipline fixed, it changes only how graph features are
+weighted. The best configuration differs by family and horizon---the appendix reports the
+full tuning table---but the direction is consistent: learned weighting moves more eventual
+realizations toward the top of the shortlist. The improvement comes from combination
+effects that the transparent fixed-weight score misses, not from additional data.
 
-The learned reranker's role is the same in both families. It changes \emph{which} questions
-move toward the top of the list. The transparent score remains useful because it explains
-\emph{why} those questions look promising in graph terms: path support, missingness relative
-to nearby support, topology, and provenance. Table~\ref{tab:benchmark-summary-main}
-summarizes the paired comparison.
+The transparent score remains useful alongside the reranker because it explains \emph{why}
+a candidate looks promising in graph terms: path support, missingness relative to nearby
+support, topology, and provenance. Table~\ref{tab:benchmark-summary-main} summarizes the
+paired comparison.
 
 \begin{table}[H]
   \caption{Paired benchmark summary for the two historical families}
   \label{tab:benchmark-summary-main}
   \centering
   \scriptsize
-  \input{../outputs/paper/149_dual_family_main_pairing/dual_family_main_benchmark_table.tex}
+  \input{../outputs/paper/193_dual_family_main_pairing_field_overlap/dual_family_main_benchmark_table.tex}
   \fignotes{Each row reports one family-model combination averaged across the 1990--2015 cutoff grid. Columns are grouped by metric, with the three main horizons nested underneath. Future links per 100 suggestions is the shortlist hit rate, that is, Precision@100 expressed in percent. Recall@100 is the share of all later realizations in that family captured in the top 100. Mean reciprocal rank rewards putting later realizations nearer the top. The table shows the same pattern as Figure~\ref{fig:main-benchmark}: the graph beats preferential attachment in both families, the learned reranker improves further, and the two families remain substantively different rather than collapsing to one ranking problem.}
 \end{table}
 
@@ -755,14 +709,23 @@ practical lesson: path-to-direct is sharper when the reader wants a very short s
 while direct-to-path becomes more useful once the reader is willing to inspect a broader
 set of candidates (Appendix~\ref{app:paired-budget-extensions}).
 
-\section{Discussion and Extensions}
+\paragraph{What the reranker loads on.}
+A grouped Shapley decomposition (Appendix~\ref{app:reranker-design}) separates two things the reranker does. It loads \emph{positively} on directed causal degree, recency, and evidence quality: pairs whose endpoints are central in the causal subgraph, have been the subject of recent research, and draw on well-evidenced concepts. It loads \emph{negatively} on broad support-graph popularity: once directed causal degree and recency are controlled for, being a well-connected concept in the wider support graph reduces the predicted probability of realization. In plain terms, the model identifies concept pairs whose recent and causally central activity outpaces their long-run popularity. That is the opposite of cumulative advantage, and the decomposition is stable across logistic and tree-based model families (Figure~\ref{fig:grouped-shap}).
 
-The paper makes three claims. First, graph structure improves on a pure popularity rule in
-both historical families. Second, a richer weighting of the same graph features improves
-further. Third, the literature more often adds mechanisms around existing claims than it
-closes missing direct relations implied by nearby support. The point is not only that a
-graph can beat popularity. It is that local literature structure changes what economists
-should inspect first.
+\section{Discussion and Extensions}
+\label{sec:discussion}
+
+These results speak to a structural feature of the economics literature, not merely to the
+performance of a ranking algorithm. At each historical cutoff, the graph stores the
+directional accumulation of what the literature has already asserted and what it has
+conspicuously left unsaid. When that structure predicts later publication at rates far above
+the popularity baseline, it means past claims carry systematic information about where the
+next ones will go. The asymmetry between the two families is equally informative. The
+literature more often extends accepted claims through new mechanisms than it closes locally
+implied direct relations---a pattern that is stable across eras and horizons. A screening
+tool calibrated on such a literature will surface a larger share of mechanism-thickening
+candidates: not because the algorithm favors them, but because that is the shape of
+research progress in economics.
 
 \paragraph{What the distinction means.}
 The two historical objects capture different parts of research progress. Direct closure is
@@ -798,7 +761,7 @@ Appendix~\ref{app:credibility-audit}.}
 
 \paragraph{Where the graph helps.}
 Two broader implications follow. First, the graph does not add the most value where the
-literature is maximally thin. The appendix regime splits show that its relative edge is
+literature is maximally thin. The appendix regime splits show that its comparative advantage is
 larger where some usable local structure already exists. So this is not a machine for
 discovering the most remote idea in the graph. It is a screening device for the large middle
 of the literature, where there is enough nearby evidence to make a question legible but
@@ -808,7 +771,7 @@ useful role for computational tools is not open-ended idea generation. It is to 
 economists see where an accepted relation is still structurally underexplained.
 
 \paragraph{Benchmark event and surfaced question.}
-That is also why the paper keeps the benchmark and the reader-facing question separate. A
+Keeping the benchmark and the reader-facing question separate follows from that logic. A
 dated graph event is useful because it can be tested prospectively. A surfaced question is
 useful because it can be read, argued over, and discarded if it is uninteresting. The
 historical benchmark gives discipline. The surfaced object gives the tool practical value.
@@ -828,22 +791,18 @@ recovers a much broader share of the future mechanism literature. That is the re
 object when the problem is to see where an accepted relation is still underexplained rather
 than merely underclaimed.
 
-That point also connects the paper to a broader literature on how science allocates
-attention. Jones~\citeyearpar{jones2009burden} and Bloom et al.~\citeyearpar{bloom2020ideas}
-stress the rising burden of reaching the frontier. Azoulay, Graff Zivin, and
-Manso~\citeyearpar{azoulay2011incentives}, Foster, Rzhetsky, and
-Evans~\citeyearpar{foster2015tradition}, and Packalen and
-Bhattacharya~\citeyearpar{packalen2020stagnation} emphasize that institutions and norms can
-tilt scientific attention toward safer, more familiar directions. The present paper does
-not solve that problem at the level of incentives. But it does speak to scientific method
-in a narrower way: under severe screening constraints, a useful method is one that moves
-more plausible questions into the stage where economists, editors, and funders can exercise
-judgment. The graph is not a replacement for judgment. It is a disciplined way to widen the
-agenda that reaches judgment.
+These budget results also connect the paper to a broader literature on how science allocates
+attention \citep{jones2009burden,bloom2020ideas,azoulay2011incentives,foster2015tradition,packalen2020stagnation}.
+That literature emphasizes the rising burden of reaching the frontier and the institutional
+tilt toward safer, more familiar directions. The present paper does not solve that problem
+at the level of incentives. But it does speak to scientific method in a narrower way: under
+severe screening constraints, a useful method is one that moves more plausible questions
+into the stage where economists, editors, and funders can exercise judgment. The graph is
+not a replacement for judgment. It is a disciplined way to widen the agenda that reaches
+judgment.
 
 \paragraph{Bundle uptake.}
-One natural extension is to ask whether later papers usually realize one predicted edge or a
-small bundle of connected predicted ideas. Work in science-of-science has emphasized that
+Later papers could in principle realize a bundle of predicted edges rather than one. Work in science-of-science has emphasized that
 novel contributions often recombine nearby ingredients rather than arriving as isolated
 moves \citep{uzzi2013atypical,foster2015tradition,fortunato2018science}. The bundle-uptake
 analysis in Appendix~\ref{app:bundle-uptake} suggests that the dominant downstream object in
@@ -852,15 +811,19 @@ papers take up more than one historically predicted edge, and mixed-family bundl
 rare. But when multi-edge uptake does occur, it is strongly local in graph space. That
 result helps interpret the budget evidence. The wider-budget advantage of
 \emph{direct-to-path} seems to come mainly from broader coverage across many separate
-papers, not from a large number of later papers absorbing broad mixed bundles at once.
+papers, not from a large number of later papers each realizing multiple predicted edges across both families.
 
-The contribution here is modest but pointed: a prospectively testable historical design, a
-readable surfaced object, and an honest comparison with the cumulative-advantage null.
-Economics should not decide what to ask next only through popularity. The nearby structure
-of the literature carries screening information that popularity alone misses. If ideas are
-harder to find and downstream research tasks are getting cheaper, then better upstream
-screening becomes more valuable. The point is not to replace judgment. It is to widen the
-set of questions that reaches the judgment stage.
+\paragraph{Extensions.}
+Two extensions are most worth developing. The first is to test whether the mechanism-thickening asymmetry is specific to economics or a broader feature of cumulative science. Applying the same walk-forward benchmark to sociology, political science, and psychology would reveal whether directed claim graphs in other social sciences show the same imbalance between mechanism elaboration and direct closure. The second is dynamic concept activation. The current benchmark holds the active concept set fixed at each cutoff, but some of the highest-impact work introduces entirely new nodes. A model that predicts when a dormant concept pair becomes active---rather than when a missing edge closes---would complement the missing-link design and speak more directly to radical novelty.
+
+This paper provides a prospectively testable historical design, a readable surfaced object,
+and an honest comparison with the cumulative-advantage null.
+That is enough to establish that the nearby structure of the literature carries screening
+information that popularity alone misses. If ideas are harder to find and downstream
+research tasks are getting cheaper, the value of better upstream screening rises.
+Economics should not decide what to work on next only through popularity and familiarity.
+The graph offers a structured way to widen the set of questions that reaches the judgment
+stage---not to replace judgment, but to give it more to work with.
 
 \appendix
 \clearpage
@@ -1219,9 +1182,9 @@ comparison against preferential attachment on the same stricter layer.
     \toprule
     Horizon & Selected reranker & P@100 & Recall@100 & MRR \\
     \midrule
-    \(h=5\) & \shortstack[l]{Logistic GLM +\\ family-aware boundary-gap\\ (\(\alpha=0.20\), pool \(=5000\))} & 0.105 & 0.1376 & 0.0133 \\
-    \(h=10\) & \shortstack[l]{Pairwise logistic ranker +\\ family-aware composition\\ (\(\alpha=0.10\), pool \(=5000\))} & 0.207 & 0.1391 & 0.0103 \\
-    \(h=15\) & \shortstack[l]{Logistic GLM + quality\\ (\(\alpha=0.05\), pool \(=5000\))} & 0.264 & 0.1541 & 0.0116 \\
+    \(h=5\) & \shortstack[l]{Logistic GLM +\\ composition family\\ (\(\alpha=0.01\), pool \(=5000\))} & 0.107 & 0.1189 & 0.0123 \\
+    \(h=10\) & \shortstack[l]{Logistic GLM +\\ composition family\\ (\(\alpha=0.05\), pool \(=5000\))} & 0.212 & 0.1551 & 0.0104 \\
+    \(h=15\) & \shortstack[l]{Logistic GLM +\\ composition family\\ (\(\alpha=0.01\), pool \(=5000\))} & 0.260 & 0.1528 & 0.0114 \\
     \bottomrule
   \end{tabular}
   \fignotes{Each row reports the reranker specification that performs best at that horizon on the 1990--2015 direct-closure benchmark. Precision@100 is the share of the top 100 candidates that later realize, Recall@100 is the share of all later-realized links captured in that top 100, and MRR rewards putting realized links nearer the top of the ranking. This table is intentionally narrower than the paired main-text comparison. It documents how the richer reranker behaves inside one family while the paper's main comparison keeps both families visible.}
@@ -1297,7 +1260,7 @@ The reranker's features are organized into five nested families. Each family add
     Family & Features & What it adds \\
     \midrule
     Base & 1 & The transparent graph score itself. \\
-    Structural & 14 & Path support, motif bonus, gap bonus, hub penalty, mediator and motif counts, co-occurrence count and trend, same-field indicator, endpoint degree products for both direct and support subgraphs. \\
+    Structural & 14 & Path support, motif bonus, gap bonus, hub penalty, mediator and motif counts, co-occurrence count and trend, same-field indicator (see below), endpoint degree products for both direct and support subgraphs. \\
     Dynamic & 21 & Support age, recency of most recent supporting edge, recent-window degree and incident counts for each endpoint, recent-share fractions. \\
     Composition & 31 & Mean stability, evidence-type diversity, venue diversity, source diversity, and mean field-weighted citation impact at each endpoint and at the pair level. \\
     Boundary + gap & 34 & Whether the two endpoints sit in different field groups with no co-occurrence, whether the pair has path support despite a missing direct link, and the local closure density around the pair. \\
@@ -1307,6 +1270,8 @@ The reranker's features are organized into five nested families. Each family add
 \end{table}
 
 Every feature is computed from the historical graph through year \(t-1\). The reranker sees no paper text, no future edges or degrees, and no author or institutional identity. That constraint is what keeps the exercise a graph-screening benchmark rather than a free-form prediction model.
+
+The same-field indicator in the Structural family deserves a brief note because its earliest version of this paper used a cheap proxy---whether the two endpoint identifiers shared a first character---that was confounded with identifier source (JEL, OpenAlex, Wikidata) rather than substantive field membership. The current feature is a proper multi-label field overlap: each of the 154{,}490 ontology concepts is labeled into a 14-field taxonomy (macro, micro, labor, trade, finance, development, public, urban, environment, health, IO, methods, history, political economy) by an LLM classifier run on every concept's label and description (details in Appendix~\ref{app:reranker-design}). The indicator fires when the two endpoints share at least one labeled field. On the 75{,}000-row evaluation panel, the new feature agrees with the old first-character heuristic only 47.6\% of the time---12.9\% of pairs were wrongly flagged as same-field by the identifier-coincidence proxy, and 39.7\% of genuine cross-source same-field pairs were missed. Re-tuning the reranker on the corrected feature leaves the qualitative result intact: the composition family wins at every horizon, and the reranker's Recall@100 advantage over the transparent score is preserved to within 0.01 (Appendix~\ref{app:reranker-design}).
 
 \subsection{Training design}
 
@@ -1318,7 +1283,36 @@ Two model families are tested. The first is a class-balanced logistic regression
 
 \subsection{Best models}
 
-On the current main benchmark, the best reranker at \(h=5\) uses the interpretable logistic model with the boundary + gap feature family and \(\alpha=0.20\). The best at \(h=10\) uses the pairwise ranking model with the composition feature family and \(\alpha=0.10\). At \(h=15\), the winning specification shifts to the logistic model with the broader quality feature family and \(\alpha=0.05\). The difference is substantively interpretable. At shorter horizons, the boundary and gap flags, which capture cross-group bridging and path-implied missingness, add the most screening value. At intermediate horizons, evidence-composition features, such as stability, diversity, and citation impact, matter more. By \(h=15\), the broader sharpness-quality bundle performs best.
+On the current main benchmark (path-to-direct, corrected \texttt{field\_same\_group} feature), the best reranker at every horizon uses the interpretable logistic model with the composition feature family; the chosen $L_2$ strength is $\alpha=0.01$ at $h=5$, $\alpha=0.05$ at $h=10$, and $\alpha=0.01$ at $h=15$. The composition family adds evidence-composition features---mean stability, evidence-type and venue diversity, and field-weighted citation impact at each endpoint---on top of structural and dynamic signals. For the direct-to-path family, the retune (Appendix~\ref{app:field-overlap}) selects the structural family at $\alpha=0.01$ for $h=5$ and $h=10$ and a pairwise-logistic structural specification at $\alpha=0.01$ for $h=15$. The two families therefore favor slightly different reranker bundles, but both prefer the lightest $L_2$ shrinkage in the tested grid.
+
+\subsection{Same-field indicator: source and robustness check}
+\label{app:field-overlap}
+
+The same-field indicator is computed from a multi-label field classification over the full 154{,}490-concept ontology. Each concept is classified into a 14-field taxonomy (macro, micro, labor, trade, finance, development, public, urban, environment, health, IO, methods, history, political economy) by an LLM applied to its label and description; a concept may receive one to four field labels. The indicator for a candidate pair $(u, v)$ fires when $u$'s and $v$'s field sets have non-empty intersection. Concepts with no recoverable field labels (roughly 42\% of the ontology, including paper identifiers and very-specific entity concepts) contribute zero. The classifier output and helper code are versioned at \texttt{data/ontology\_v2/concept\_fields.parquet} and \texttt{src/field\_overlap.py}.
+
+Relative to the first-character identifier heuristic used in earlier drafts of this paper, the new feature flips 52.4\% of rows on the 75{,}000-row evaluation panel: 12.9\% of pairs the proxy flagged as same-field (e.g., two JEL codes that both begin with ``\texttt{j}'') no longer fire, and 39.7\% of genuine cross-source same-field pairs (e.g., \texttt{jel:F13:Tariff} paired with the OpenAlex keyword \texttt{trade-policy}) now fire. Re-tuning the full grid on the corrected feature (\texttt{outputs/paper/191\_reranker\_retune\_field\_overlap/}) returns the following best configurations and metrics by horizon:
+
+\begin{table}[h]
+  \caption{Best-config comparison: legacy first-character heuristic vs corrected field overlap}
+  \label{tab:field-overlap-retune}
+  \centering
+  \small
+  \begin{tabular}{lcccccc}
+    \toprule
+    & \multicolumn{3}{c}{Legacy (first-character)} & \multicolumn{3}{c}{Corrected (field overlap)} \\
+    Horizon & Family & $\alpha$ & R@100 & Family & $\alpha$ & R@100 \\
+    \midrule
+    $h=5$  & boundary+gap & 0.01 & 0.163 & composition & 0.01 & 0.162 \\
+    $h=10$ & composition  & 0.20 & 0.201 & composition & 0.05 & 0.193 \\
+    $h=15$ & boundary+gap & 0.01 & 0.183 & composition & 0.01 & 0.179 \\
+    \bottomrule
+  \end{tabular}
+  \fignotes{All configurations use the glm-logit model on the same panel. Absolute Recall@100 falls by 0.001--0.008 per horizon on the corrected feature because the legacy heuristic was spuriously predictive through its correlation with identifier-source availability. The improvement of the learned reranker over the transparent score is preserved (Recall@100 deltas of $+0.060$, $+0.107$, $+0.106$ under the corrected feature at $h=5, 10, 15$, versus $+0.048$, $+0.111$, $+0.108$ under the legacy feature). All three horizons now select the composition family.}
+\end{table}
+
+The takeaway is that the reranker's improvement over the transparent score is not driven by the spurious identifier proxy: the same composition-family configuration wins at every horizon under the corrected feature, with essentially unchanged deltas versus the fixed-weight score. The $h=10$ regularization strength drops from $\alpha = 0.20$ to $\alpha = 0.05$, consistent with a broader true-positive rate for the corrected feature requiring less $L_2$ shrinkage. The paired benchmark table in the main text (Table~\ref{tab:benchmark-summary-main}) is itself built on the corrected feature and the retuned configs reported above; the direct-to-path side uses a parallel retune on its own panel, which selects the structural family at $\alpha=0.01$ for $h=5$ and $h=10$ and a pairwise-logistic structural specification at $\alpha=0.01$ for $h=15$. The headline reranker-versus-transparent gap is therefore reported under the corrected same-field signal across both families.
+
+\paragraph{Coverage check for the conservative zero.} A natural concern with zero-coding unlabeled concepts is that 42\% of the raw ontology carries no field labels, which could plausibly be dead weight for the reranker. The held-out panel at $h=10$ tells a different story. Only 9.7\% of candidate pairs have at least one endpoint unlabeled, and just 0.5\% (191 rows out of 35{,}000) have both endpoints unlabeled. Realization rates fall monotonically with coverage: the baseline rate is 2.85\% for pairs where both endpoints carry a field label, 1.06\% for pairs with exactly one labeled endpoint, and 0.00\% across all 191 pairs where both endpoints are unlabeled. None of the reranker's top-100 predictions at any cutoff come from the both-unlabeled region. Unlabeled concepts are therefore concentrated in precisely the part of the candidate space that does not realize, so the conservative zero-coding of \texttt{field\_same\_group} costs the reranker very little predictive information.
 
 \subsection{Single-feature importance}
 
@@ -1377,7 +1371,7 @@ To resolve this, I group the 34 features into nine interpretable families, chose
   \fignotes{Each bar shows the absolute logistic coefficient on the standardized within-group PC1 score, with bootstrap 95\% confidence intervals. Bar color shows the coefficient sign. Support degree is largest in magnitude but negative; directed causal degree, recency, and evidence quality are the strongest positive groups. Group-level VIF stays below 5.}
 \end{figure}
 
-Three results stand out. First, the largest coefficient by magnitude is support degree (1.28, bootstrap CI [1.09, 1.51]), but it enters with a \emph{negative} sign. Once directed causal degree is controlled for, broad support-graph popularity hurts rather than helps. The model is learning to separate concepts that are prominent in causal work from concepts that are merely popular overall. Second, the strongest \emph{positive} groups are directed causal degree (0.88, [0.78, 0.99]), recency (0.85, [0.68, 1.02]), and evidence quality (0.59, [0.47, 0.71]). So the reranker loads on a mix of causal centrality, recent activation, and the quality of the underlying evidence base. Third, co-occurrence remains useful (0.37, [0.28, 0.46]), but it is not the whole story. In economics, the central distinction is not simply between more versus less popular concepts. It is whether that centrality lives in the causal graph or only in the broader support graph.
+Three results stand out. First, the largest coefficient by magnitude is support degree (1.23, bootstrap CI [1.04, 1.45]), but it enters with a \emph{negative} sign. Once directed causal degree is controlled for, broad support-graph popularity hurts rather than helps. The model is learning to separate concepts that are prominent in causal work from concepts that are merely popular overall. Second, the strongest \emph{positive} groups are directed causal degree (0.89, [0.79, 0.99]), recency (0.89, [0.70, 1.07]), and evidence quality (0.56, [0.46, 0.68]). So the reranker loads on a mix of causal centrality, recent activation, and the quality of the underlying evidence base. Third, co-occurrence remains useful (0.34, [0.25, 0.43]), but it is not the whole story. In economics, the central distinction is not simply between more versus less popular concepts. It is whether that centrality lives in the causal graph or only in the broader support graph.
 
 \begin{figure}[h]
   \caption{Model comparison on grouped feature families}
@@ -1414,6 +1408,28 @@ The grouped decomposition improves interpretability more than it delivers a sing
   \includegraphics[width=0.94\linewidth]{grouped_correlation.png}
   \fignotes{Pairwise correlations between the nine group-level PC1 scores. The strongest remaining correlation is between support degree and recency (about 0.86), so the grouped features are not orthogonal. But the grouped VIFs remain below 5, which is enough for substantially cleaner interpretation than at the raw-feature level.}
 \end{figure}
+
+\paragraph{Raw feature-level decomposition.} The grouped analysis resolves collinearity but aggregates within families. Figure~\ref{fig:shap-importance-raw} complements it by showing raw feature-level Shapley importance for a logistic regression trained on the full 34-feature panel. The top six features by mean $|\text{SHAP}|$ are all degree or topology measures: target support in-degree (1.30), target recent support in-degree (1.10), source support out-degree (0.92), target direct in-degree (0.70), normalized path support (0.51), and source direct out-degree (0.45). Two are total support degree, one is recency, two are directed causal degree, and one is path support. The coefficient signs confirm the grouped-level interpretation: total support-degree features enter negatively (broad popularity, once recency and directed degree are controlled for, lowers the predicted probability), while recency, directed causal degree, and path support enter positively.
+
+\begin{figure}[h]
+  \caption{Raw feature-level SHAP importance}
+  \label{fig:shap-importance-raw}
+  \centering
+  \includegraphics[width=0.82\linewidth]{shap_importance.png}
+  \fignotes{Each bar shows mean $|\text{SHAP}|$ for the given feature across all candidate pairs in the training panel. Color indicates feature family. The top six features are all degree or recency measures. Composition, topology, and boundary features contribute individually small amounts but collectively provide the residual signal.}
+\end{figure}
+
+\paragraph{Prediction clusters.} To see how the reranker applies this signal heterogeneously, I cluster the top-5{,}000 candidate pairs into five groups by their SHAP-value profiles and compare each cluster's positive rate (Figure~\ref{fig:cluster-profiles}). The cluster driven by very high source recency (``hot source concept,'' $n=440$) has the highest positive rate at 13.6\%, more than double the overall base rate of 6.2\%. The cluster with low recency on both endpoints (``cold pairs,'' $n=2{,}944$) has the lowest at 4.7\%. The remaining three clusters---high target recency (8.7\%), high source recency (8.2\%), and hot target concept (8.6\%)---all beat the base rate. This confirms that the reranker's screening value concentrates on concept pairs where at least one endpoint has recent research momentum, and the signal is not symmetric: the source concept's recency profile matters more than the target's.
+
+\begin{figure}[h]
+  \caption{SHAP-based prediction clusters and positive rates}
+  \label{fig:cluster-profiles}
+  \centering
+  \includegraphics[width=0.88\linewidth]{cluster_profiles.png}
+  \fignotes{Each bar shows one $k$-means cluster defined on the SHAP-value vectors of the top-5{,}000 candidates, with the positive rate (share of edges that later realize) on the vertical axis. The dashed line is the overall positive rate. Cluster labels summarize the dominant SHAP driver. The ``very high source recency'' cluster is both the most predictive and the smallest, consistent with a ``rising attention'' signal that is rare but sharp.}
+\end{figure}
+
+\paragraph{Feature interactions.} Pairwise interaction testing finds no significant synergy above main effects: the maximum interaction synergy is 0.004 (target recent support in-degree $\times$ target recent incident count). This confirms that the logistic model is a reasonable approximation for this feature set and that the reranker's screening value comes from combining individually informative features rather than from nonlinear interactions.
 
 \subsection{Failure mode profiles}
 
@@ -1484,6 +1500,8 @@ These appendix figures answer two interpretation questions that are useful but n
   \includegraphics[width=0.92\linewidth]{auxiliary_horizon_comparison.png}
   \fignotes{This figure uses the same fixed 5{,}000-candidate pool at each horizon. The left panel reports later-realized links per 100 surfaced candidates. The right panel reports Recall@100, the share of all later-realized links captured in the top 100 candidates, together with the much higher recall available if one inspected the full candidate pool. As the horizon lengthens, top-100 hit rates rise because more future links become eligible realizations. But Recall@100 remains small relative to the full-pool ceiling, which is why the paper treats the transparent score as a screening layer and studies reranking and reading budgets separately.}
 \end{figure}
+
+\input{appendix_path_length_axis.tex}
 
 \section{Credibility Audit Summaries}
 \label{app:credibility-audit}
@@ -1574,6 +1592,71 @@ differences across arms rather than as a fine ranking of individual questions. F
 reason, it is reported only as supplementary appendix evidence.
 
 \input{appendix_exploratory_extensions.tex}
+
+\section{Reproducibility Map}
+\label{app:reproducibility-map}
+
+This appendix maps each main-text and appendix object to the script and output
+directory that produced it. The intent is to make every numeric claim and figure
+in the paper traceable to a single source artifact.
+
+\begin{longtable}{L{0.36\linewidth}L{0.58\linewidth}}
+  \caption{Main-text objects and their source artifacts}
+  \label{tab:repro-main}\\
+  \toprule
+  Paper object & Source artifact (under \texttt{outputs/paper/}) \\
+  \midrule
+  \endfirsthead
+  \toprule
+  Paper object & Source artifact (under \texttt{outputs/paper/}) \\
+  \midrule
+  \endhead
+  Figure~\ref{fig:main-benchmark}, Table~\ref{tab:benchmark-summary-main} (dual-family benchmark) & \texttt{193\_dual\_family\_main\_pairing\_field\_overlap/}; built by \texttt{scripts/build\_dual\_family\_main\_pairing\_field\_overlap.py} \\
+  Main-text hit rates (\S5.1) & \texttt{193\_dual\_family\_main\_pairing\_field\_overlap/dual\_family\_main\_overall.csv} \\
+  Figure~\ref{fig:path-evolution} (direct-to-path dominance) & \texttt{path\_evolution\_comparison.png}; length-3 robustness in \texttt{appendix\_graph\_evolution.tex} \\
+  Figure~\ref{fig:path-source-mix} (journal-tier split) & \texttt{path\_transition\_mix\_by\_source.png} \\
+  Figure~\ref{fig:grouped-shap} (grouped SHAP) & \texttt{140\_grouped\_shap\_refresh/grouped\_bootstrap.csv} \\
+  Figure~\ref{fig:temporal-generalization-main} (held-out era) & \texttt{temporal\_generalization.png}; full table in Appendix~\ref{app:temporal-generalization} \\
+  Corpus waterfall (Table~\ref{tab:corpus-summary}) & \texttt{data/graph\_v2/} build logs \\
+  \bottomrule
+\end{longtable}
+
+\begin{longtable}{L{0.36\linewidth}L{0.58\linewidth}}
+  \caption{Appendix objects and their source artifacts}
+  \label{tab:repro-appendix}\\
+  \toprule
+  Paper object & Source artifact (under \texttt{outputs/paper/}) \\
+  \midrule
+  \endfirsthead
+  \toprule
+  Paper object & Source artifact (under \texttt{outputs/paper/}) \\
+  \midrule
+  \endhead
+  Table~\ref{tab:expanded-reranker-benchmark} (path-to-direct reranker) & \texttt{193\_dual\_family\_main\_pairing\_field\_overlap/dual\_family\_main\_overall.csv} (path-to-direct rows) \\
+  Table~\ref{tab:early-late-regime} (early vs late regime) & \texttt{outputs/paper/early\_late\_regime/} summary CSV \\
+  Table~\ref{tab:field-overlap-retune} (legacy vs corrected feature) & \texttt{191\_reranker\_retune\_field\_overlap/tuning\_best\_configs.csv} (corrected); run 70 (legacy) \\
+  Coverage-check statistics (\S\ref{app:field-overlap}) & \texttt{193\_classifier\_coverage\_diagnostic/}; built by \texttt{scripts/build\_classifier\_coverage\_diagnostic.py} \\
+  Table~\ref{tab:single-feature-top10} (single-feature top~10) & \texttt{139\_single\_feature\_importance\_refresh/} \\
+  Figure~\ref{fig:feature-importance-bars} & \texttt{139\_single\_feature\_importance\_refresh/feature\_importance\_h5.png} \\
+  Figure~\ref{fig:grouped-beeswarm}, Figure~\ref{fig:grouped-correlation}, Figure~\ref{fig:grouped-multi-model} & \texttt{140\_grouped\_shap\_refresh/} \\
+  Figure~\ref{fig:vif-comparison} & \texttt{140\_grouped\_shap\_refresh/vif\_comparison.png} \\
+  Figure~\ref{fig:shap-importance-raw}, top-6 raw SHAP values (\S\ref{app:reranker-design}) & \texttt{141\_shap\_robustness\_refresh/bootstrap\_importance.csv} \\
+  Figure~\ref{fig:cluster-profiles} (cluster positive rates) & \texttt{52\_hypothesis\_discovery/cluster\_profiles.png} \\
+  Table~\ref{tab:failure-modes} (failure-mode profiles) & \texttt{outputs/paper/reranker\_failure\_modes/} summary CSV \\
+  Table~\ref{tab:temporal-generalization} (held-out era) & \texttt{outputs/paper/temporal\_generalization/} \\
+  Figure~\ref{fig:regime-split-refresh}, Figure~\ref{fig:auxiliary-horizon-refresh} & \texttt{regime\_split\_delta.png}, \texttt{auxiliary\_horizon\_comparison.png} \\
+  Path-length L2 vs L3 (\S\ref{app:graph-evolution}, Appendix~\ref{app:path-length-axis}) & \texttt{path\_evolution\_L2\_vs\_L3.tex}; underlying CSVs in \texttt{outputs/paper/path\_evolution/} \\
+  Extended abstract / extra results & \texttt{extra\_results.tex} and \texttt{extended\_abstract\_research\_allocation.tex} \\
+  \bottomrule
+\end{longtable}
+
+Scripts that produce paper-specific artifacts are under \texttt{scripts/}
+(\texttt{build\_dual\_family\_main\_pairing\_field\_overlap.py},
+\texttt{build\_classifier\_coverage\_diagnostic.py}, and the sibling tuning
+runners). The public repository (\repoURL) contains the full extraction,
+normalization, and benchmark pipeline. The \texttt{src/field\_overlap.py} helper
+computes the corrected \texttt{field\_same\_group} indicator used in both
+families' final benchmark runs.
 
 \bibliographystyle{plainnat}
 \bibliography{research_allocation_paper}
