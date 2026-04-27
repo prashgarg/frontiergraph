@@ -1167,6 +1167,41 @@ h3 {
   padding: 0.6rem 0 1.4rem;
 }
 
+.paper-shell.paper-shell-flat {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 56rem;
+  margin-inline: auto;
+}
+
+.paper-shell.paper-shell-flat .paper-article > section + section {
+  margin-top: 1.6rem;
+}
+
+.paper-shell.paper-shell-flat .paper-article h2 {
+  margin-top: 0;
+}
+
+.paper-shell.paper-shell-flat .paper-article pre {
+  overflow-x: auto;
+  background: var(--surface-muted);
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+  padding: 0.95rem 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.paper-shell.paper-shell-flat .paper-article pre code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+}
+
+.paper-shell.paper-shell-flat .paper-article figcaption {
+  max-width: 48rem;
+  margin-inline: auto;
+}
+
 .paper-toc-shell {
   position: sticky;
   top: 1.2rem;

@@ -70,7 +70,7 @@ const showToc = toc.length > 0;
       </div>
     </section>
 
-    <section class="paper-shell">
+    <section class:list={["paper-shell", !showToc && "paper-shell-flat"]}>
       {showToc && (
         <aside class="paper-toc-shell">
           <div class="paper-toc-card">
