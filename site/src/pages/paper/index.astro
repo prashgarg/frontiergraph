@@ -3,49 +3,13 @@ import PaperLayout from "../../layouts/PaperLayout.astro";
 import { data } from "../../lib/site-data";
 
 const pdfUrl = data.downloads.artifacts.working_paper_pdf;
-
-const figures = [
-  {
-    src: "/paper-assets/paper-display/figure-08-fig-main-benchmark.png",
-    alt: "Main benchmark across families and horizons",
-    caption:
-      "Headline benchmark across direct-to-path and path-to-direct families. The learned reranker reaches a 17.0% top-100 hit rate for mechanism-thickening questions and 10.7% for direct-closure questions at a five-year horizon, versus 1.7% for both under preferential attachment.",
-  },
-  {
-    src: "/paper-assets/paper-display/figure-09-fig-path-evolution.png",
-    alt: "Direct-to-path versus path-to-direct asymmetry",
-    caption:
-      "Mechanism-thickening moves (direct-to-path) outnumber direct-closure moves (path-to-direct) by a factor of roughly three to twelve, depending on horizon and era.",
-  },
-  {
-    src: "/paper-assets/paper-display/figure-14-fig-grouped-shap.png",
-    alt: "Grouped Shapley decomposition of the reranker",
-    caption:
-      "Grouped Shapley decomposition of the reranker. Recency, directed causal degree, and evidence quality contribute positively; broad support-graph popularity contributes negatively.",
-  },
-  {
-    src: "/paper-assets/paper-display/figure-11-fig-temporal-generalization-main.png",
-    alt: "Temporal generalization of the reranker",
-    caption:
-      "Reranker trained on early cutoffs continues to outperform preferential attachment when scored on later cutoffs, with no sign of horizon-specific overfitting.",
-  },
-];
-
-const bibtex = `@unpublished{garg2026economicsask,
-  author = {Garg, Prashant},
-  title  = {What Should Economics Ask Next?},
-  year   = {2026},
-  note   = {Working paper, Imperial College London},
-  url    = {https://frontiergraph.com/paper/}
-}`;
 ---
 
 <PaperLayout
   title="What Should Economics Ask Next?"
-  description="Working paper landing page: abstract, headline figures, and citation."
+  description="Working paper landing page: abstract and citation metadata."
   eyebrow="Paper"
   pdfUrl={pdfUrl}
-  deck="The PDF is the reference version of this paper. This page carries the abstract, the headline figures, and the citation; the PDF carries the full text, tables, and appendices."
   author="Prashant Garg"
   authorUrl="https://www.prashantgarg.org/"
   affiliation="Imperial College London"
@@ -62,23 +26,5 @@ const bibtex = `@unpublished{garg2026economicsask,
   <section class="paper-landing-section">
     <p><strong>Keywords:</strong> research direction; economics of science; scientific discovery; question choice; literature graphs</p>
     <p><strong>JEL codes:</strong> O31, O33, C45, C81</p>
-  </section>
-
-  <section class="paper-landing-section">
-    <h2 id="figures">Headline figures</h2>
-    <p>
-      Thumbnails below; the PDF carries the full versions with notes and references.
-    </p>
-    {figures.map((fig) => (
-      <figure class="paper-display-block">
-        <img src={fig.src} alt={fig.alt} loading="lazy" />
-        <figcaption>{fig.caption}</figcaption>
-      </figure>
-    ))}
-  </section>
-
-  <section class="paper-landing-section">
-    <h2 id="cite">How to cite</h2>
-    <pre><code>{bibtex}</code></pre>
   </section>
 </PaperLayout>
